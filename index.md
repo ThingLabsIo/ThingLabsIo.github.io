@@ -16,11 +16,18 @@ widget-1:
 widget-2:
     title: "Blog"
     url: 'http://thinglabsio.github.io/blog/'
-    text: 'This is where the ThingLabs team writes freely and openly about whatever is on our mind...sometimes that's nothing...sometimes that's robots. You never really know.'
-    image: typewritter_thumb.jpg
+    text: 'This is where the ThingLabs team writes freely and openly about whatever is on our mind...sometimes that&apos;s nothing...sometimes that&apos;s robots. You never really know.'
+    image: unsplash_9-302x182.jpg
 widget-3:
     title: "Upcoming Labs"
     url: 'http://thinglabsio.github.io/schedule/'
     text: 'Check out where we will be doing the IoT Labs live and join us for a fun filled few hours.'
     image: unsplash_4-303x182.jpg
 ---
+
+<div id="videoModal" class="reveal-modal large" data-reveal="">
+  <div class="flex-video widescreen vimeo" style="display: block;">
+    <iframe width="1280" height="720" src="https://www.youtube.com/embed/3b5zCFSmVvU" frameborder="0" allowfullscreen></iframe>
+  </div>
+  <a class="close-reveal-modal">&#215;</a>
+</div>
