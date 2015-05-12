@@ -91,6 +91,7 @@ On Mac OS X open Terminal and type the following:
 </blockquote>
 
 ## Install Apache Cordova and Cordova Icon
+
 ### Apache Cordova
 Apache Cordova is an open-source mobile development framework. It allows you to use standard web technologies such as HTML5, CSS3, and JavaScript for cross-platform development, avoiding each mobile platforms' native development language. Applications execute within wrappers targeted to each platform, and rely on standards-compliant API bindings to access each device's sensors, data, and network status.
 
@@ -104,7 +105,7 @@ On Mac OS X open Terminal and type the following:
 	<p>sudo npm install -g cordova</p>
 </blockquote>
 
-Cordova Icon
+### Cordova Icon
 
 Cordova Icon is a tool that provides automatic icon resizing for Cordova apps.
 
@@ -147,6 +148,7 @@ On Mac OS X open Terminal and type the following:
 
 ## Set Up a Development Directory
 The last thing to do is prepare a place to save all of your work in the labs. I recommend an easy to navigate to directory with a relatively short path. Create a new folder/directory for the workshop - I recommend:
+
 Windows
 <blockquote>
 	<p>C:\Development\IoTLabs</p>
