@@ -11,7 +11,7 @@ header:
 widget-1:
     title: "IoT Workshop"
     url: 'http://thinglabsio.github.io/iotlabs/'
-    text: 'In this IoT workshop you will begin by learning the basics of working with micro-controllers and sensors, and move on to connecting them to the Internet. You will learn how to leverage Cloud IoT services to collect data and control devices and use advanced services like machine learning and analytics to discover insights using your 'things.'
+    text: 'In this IoT workshop you will begin by learning the basics of working with micro-controllers and sensors, and move on to connecting them to the Internet. You will learn how to leverage Cloud IoT services to collect data and control devices and use advanced services like machine learning and analytics to discover insights using your <em>things</em>.'
     image: unsplash_9-302x182.jpg
 widget-2:
     title: "Blog"
