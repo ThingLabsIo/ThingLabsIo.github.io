@@ -1,4 +1,4 @@
-- title: Start
+- title: Home
   url: "/"
   side: left
 
@@ -6,60 +6,42 @@
   url: "/getting-started/"
   side: left
 
-- title: "Templates"
-  url: "/design/"
+- title: "IoT Labs"
+  url: "/iotlabs/"
   side: left
   dropdown:
-  - title: "Grid & Colors"
-    url: "/design/grid/"
-  - title: "Typography"
-    url: "/design/typography/"
-  - title: "Page/Post"
-    url: "/design/page/"
-  - title: "Post-Left-Sidebar"
-    url: "/design/post-left-sidebar/"
-  - title: "Post-Right-Sidebar"
-    url: "/design/post-right-sidebar/"
-  - title: "Page Full-Width"
-    url: "/design/page-fullwidth/"
-  - title: "Blog-Page"
-    url: "/blog/"
-  - title: "Video"
-    url: "/design/video/"
-  - title: "Gallery"
-    url: "/design/gallery/"
-  - title: "Portfolio"
-    url: "/design/portfolio/"
+  - title: "Writing Digital Output"
+    url: "/iotlabs/lab001/"
+  - title: "Reading Analog Input"
+    url: "/iotlabs/lab002/"
+  - title: "Input Controls Output"
+    url: "/iotlabs/lab003/"
+  - title: "Sending Data to the Cloud"
+    url: "/iotlabs/lab004/"
+  - title: "Command & Control"
+    url: "/iotlabs/lab005/"
 
-- title: "Header Styles"
-  url: "/headers/"
-  side: left
-  dropdown:
-  - title: "Header with Full-Width-Image"
-    url: "/design/header-full-width-image/"
-  - title: "Header with Image and Pattern"
-    url: "/design/header-image-pattern/"
-  - title: "Header with image and color"
-    url: "/design/header-image-color/"
-  - title: "Header Only With Logo"
-    url: "/design/header-logo-only/"
-  - title: "Header With Text"
-    url: "/design/header-with-text/"
-  - title: "No Header"
-    url: "/design/no-header/"
-  - title: "No Header but Image"
-    url: "/design/no-header-but-image/"
+#
+#- title: "Header Styles"
+#  url: "/headers/"
+#  side: left
+#  dropdown:
+#  - title: "Header with Full-Width-Image"
+#    url: "/design/header-full-width-image/"
+#  - title: "Header with Image and Pattern"
+#    url: "/design/header-image-pattern/"
+#  - title: "Header with image and color"
+#    url: "/design/header-image-color/"
+#
 
-- title: Documentation
-  url: "/documentation/"
-  side: left
-  dropdown:
-  - title: Documentation
-    url: "/documentation/"
-  - title: "Changelog"
-    url: "/changelog/"
-  - title: "Roadmap"
-    url: "/roadmap/"
+#- title: Documentation
+#  url: "/documentation/"
+#  side: left
+#  dropdown:
+#  - title: Documentation
+#    url: "/documentation/"
+#  - title: "Changelog"
+#    url: "/changelog/"
 
 - title: Blog
   url: "/blog/"
