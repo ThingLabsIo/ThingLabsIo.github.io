@@ -18,6 +18,11 @@ widget-2:
     url: 'http://thinglabsio.github.io/blog/'
     text: 'This is where the ThingLabs team writes freely and openly about whatever is on our mind...sometimes that's nothing...sometimes that's robots. You never really know.'
     image: typewritter_thumb.jpg
+widget-3:
+    title: "Upcoming Labs"
+    url: 'http://thinglabsio.github.io/schedule/'
+    text: 'Check out where we will be doing the IoT Labs live and join us for a fun filled few hours.'
+    image: unsplash_4-303x182.jpg
 ---
 
 
