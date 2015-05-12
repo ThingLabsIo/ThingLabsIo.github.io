@@ -160,6 +160,4 @@ Mac OS X
 	~\Devleopment\IoTLabs
 </pre>
 
-That's it for now. You are ready to start the [first set of labs](/lab001/).
-
-[1]: {{ site.url }}/lab001/
+That's it for now. You are ready to start the [first set of labs](/iotlabs/lab001/).
