@@ -157,6 +157,6 @@ Mac OS X
 	<p>~\Devleopment\IoTLabs</p>
 </blockquote>
 
-That's it for now. You are ready to start the [first set of labs](./Lab001.md).
+That's it for now. You are ready to start the [first set of labs](/lab001/).
 
-#[1]: {{ site.url }}/lab001/
+[1]: {{ site.url }}/lab001/
