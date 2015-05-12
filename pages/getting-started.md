@@ -1,5 +1,6 @@
 ---
 layout: page
+comments: true
 show_meta: false
 title: "Getting Started"
 subheadline: "A Step-by-Step Guide"
@@ -62,9 +63,9 @@ If you don't choose this option, after you have installed Git, you need to add t
 3. Locate the User variable named __PATH__ and double-click it.
 
 4. Append the following to the Variable value textbox (if you installed Git to a different location you will need to modify this value accordingly):
-	<blockquote>
-		<p>;C:\Program Files (x86)\Git\bin;C:\Program Files (x86)\Git\cmd</p>
-	</blockquote>
+	<pre>
+		;C:\Program Files (x86)\Git\bin;C:\Program Files (x86)\Git\cmd
+	</pre>
 
 5. Click _OK_ to close the Edit User Variable dialog.
 
@@ -81,14 +82,14 @@ Follow the [instructions here to install Node.js](https://nodejs.org/) on your c
 Bower is a package manager similar to the Node Package Manager (NPM). For these labs we will use both NPM and Bower. You install Bower using NPM. 
 
 On Windows, open the Node.js command prompt and type the following:
-<blockquote>
-	<p>npm install -g bower</p>
-</blockquote>
+<pre>
+	npm install -g bower
+</pre>
 
 On Mac OS X open Terminal and type the following:
-<blockquote>
-	<p>sudo npm install -g bower</p>
-</blockquote>
+<pre>
+	sudo npm install -g bower
+</pre>
 
 ## Install Apache Cordova and Cordova Icon
 
@@ -96,68 +97,68 @@ On Mac OS X open Terminal and type the following:
 Apache Cordova is an open-source mobile development framework. It allows you to use standard web technologies such as HTML5, CSS3, and JavaScript for cross-platform development, avoiding each mobile platforms' native development language. Applications execute within wrappers targeted to each platform, and rely on standards-compliant API bindings to access each device's sensors, data, and network status.
 
 On Windows, open the Node.js command prompt and type the following:
-<blockquote>
-	<p>npm install -g cordova</p>
-</blockquote>
+<pre>
+	npm install -g cordova
+</pre>
 
 On Mac OS X open Terminal and type the following:
-<blockquote>
-	<p>sudo npm install -g cordova</p>
-</blockquote>
+<pre>
+	sudo npm install -g cordova
+</pre>
 
 ### Cordova Icon
 
 Cordova Icon is a tool that provides automatic icon resizing for Cordova apps.
 
 On Windows, open the Node.js command prompt and type the following:
-<blockquote>
-	<p>npm install -g cordova-icon</p>
-</blockquote>
+<pre>
+	npm install -g cordova-icon
+</pre>
 
 On Mac OS X open Terminal and type the following:
-<blockquote>
-	<p>sudo npm install -g cordova-icon</p>
-</blockquote>
+<pre>
+	sudo npm install -g cordova-icon
+</pre>
 
 ## Install Johnny-Five
 Johnny-Five is an open source JavaScript framework that provides a simple object model for interacting with an Arduino-based board and the sensors and devices you connect to it. 
 
 Once you have Node.js installed, install [Johnny-Five](https://www.npmjs.com/package/johnny-five) using NPM.
 On Windows, open the Node.js command prompt and type the following:
-<blockquote>
-	<p>npm install johnny-five</p>
-</blockquote>
+<pre>
+	npm install johnny-five
+</pre>
 
 On Mac OS X open Terminal and type the following:
-<blockquote>
-	<p>sudo npm install johnny-five</p>
-</blockquote>
+<pre>
+	sudo npm install johnny-five
+</pre>
 
 ## Install Nitrogen
 Nitrogen is a messaging service that will act as a gateway for your Thing connecting to Azure. Nitrogen supports connecting devices via Message Queue Telemetry Transport (MQTT) or using the Nitrogen Node.js client library (you can learn more about MQTT here). You install Nitrogen using NPM.
 
 On Windows, open the Node.js command prompt and type the following:
-<blockquote>
-	<p>npm install -g nitrogen-cli</p>
-</blockquote>
+<pre>
+	npm install -g nitrogen-cli
+</pre>
 
 On Mac OS X open Terminal and type the following:
-<blockquote>
-	<p>sudo npm install -g nitrogen-cli</p>
-</blockquote>
+<pre>
+	sudo npm install -g nitrogen-cli
+</pre>
 
 ## Set Up a Development Directory
 The last thing to do is prepare a place to save all of your work in the labs. I recommend an easy to navigate to directory with a relatively short path. Create a new folder/directory for the workshop - I recommend:
 
 Windows
-<blockquote>
-	<p>C:\Development\IoTLabs</p>
-</blockquote>
+<pre>
+	C:\Development\IoTLabs
+</pre>
 
 Mac OS X
-<blockquote>
-	<p>~\Devleopment\IoTLabs</p>
-</blockquote>
+<pre>
+	~\Devleopment\IoTLabs
+</pre>
 
 That's it for now. You are ready to start the [first set of labs](/lab001/).
 
