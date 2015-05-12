@@ -13,12 +13,12 @@ The labs in this series build on each other to enable you to prototype your own 
 In this lab you will use Node.js and an open source framework for interacting with hardware called Johnny-Five, 
 which works as a baseline control kit for Arduino-based projects. This enables you to write applications in JavaScript 
 that can run either on your computer connected to an Arduino board or directly on the board itself (if the board has 
-a Linux distribution, like the Arduino Yun and Linino ONE).
+a Linux distribution, like the Arduino Y&uacute;n and Linino ONE).
 
-I chose the Arduino Yun for this workshop because it has both a Linux distribution and on-board Wi-Fi, although several 
+We chose the Arduino Y&uacute;n for this workshop because it has both a Linux distribution and on-board Wi-Fi, although several 
 of the labs can be completed using any Arduino board because the Node.js code will run on your laptop and use the Arduino 
 over USB. If you want to deploy the applications you build to the Arduino, you will need a board that has a Linux distro
-(such as the Yun or the Linino ONE).
+(such as the Y&uacute;n or the Linino ONE).
 
 ## Bill of Materials
 To prepare your development environment for this lab series you don't need anything other than a computer. Each lab in the
@@ -26,7 +26,7 @@ series will have a bill of materials indicating what is required for that lab.
 
 If you want to prepare yourself further before the labs you can acquire the following:
 
-0. [Arduino You](http://www.arduino.cc/en/Main/ArduinoBoardYun) 
+0. [Arduino Y&uacute;n](http://www.arduino.cc/en/Main/ArduinoBoardYun) 
 1. USB to micro-USB cable 
 2. An Arduino compatible starter kit w/o the board (1)
 	1.	An example would be the [SparkFun Inventor's Kit (for Arduino Uno) - V3.2](https://www.sparkfun.com/products/13154) (it comes with an Arduino Uno R3, which you can use only in some of the early lessons)
@@ -73,7 +73,7 @@ If you don't choose this option, after you have installed Git, you need to add t
 7. Close any remaining dialogs/windows (i.e. Control Panel).
 
 ## Install Node.js
-In the labs you will write small programs that will run on your computer, connected to your Arduino (these can also be deployed to run solely on your Arduino Yun). These programs will be written in JavaScript and will be built on Node.js. If you are not familiar or experienced with Node.js, don't worry. You will learn everything you need to know for these labs in these labs. 
+In the labs you will write small programs that will run on your computer, connected to your Arduino (these can also be deployed to run solely on your Arduino Y&uacute;n). These programs will be written in JavaScript and will be built on Node.js. If you are not familiar or experienced with Node.js, don't worry. You will learn everything you need to know for these labs in these labs. 
 
 Follow the [instructions here to install Node.js](https://nodejs.org/) on your computer.
 
