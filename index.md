@@ -10,12 +10,12 @@ header:
    image_fullwidth: "header_unsplash_4.jpg"
 widget-1:
     title: "IoT Labs"
-    url: 'http://thinglabsio.github.io/iotlabs/'
+    url: '/labs/lab000/'
     text: 'In these IoT Labs you will begin by learning the basics of working with micro-controllers and sensors, and move on to connecting them to the Internet. You will learn how to leverage Cloud IoT services to collect data and control devices and use advanced services like machine learning and analytics to discover insights using your <em>Things</em>.'
     image: unsplash_9-302x182.jpg
 widget-2:
     title: "Blog"
-    url: 'http://thinglabsio.github.io/blog/'
+    url: '/blog/'
     text: 'This is where the ThingLabs team writes freely and openly about whatever is on our mind...sometimes that&apos;s nothing...sometimes that&apos;s robots. You never really know.'
     image: unsplash_9-302x182.jpg
 widget-3:
