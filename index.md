@@ -4,7 +4,7 @@
 # inserted automagically in the webpage. To make
 # this work, you have to use › layout: frontpage
 #
-layout: page-fullwidth
+layout: frontpage
 title: "ThingLabs.io - Educational Labratories for the Internet of Things"
 header:
    image_fullwidth: "header_unsplash_4.jpg"
