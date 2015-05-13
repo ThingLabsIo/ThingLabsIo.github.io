@@ -6,20 +6,25 @@
   url: "/getting-started/"
   side: left
 
-- title: "IoT Labs"
-  url: "/iotlabs/"
+- title: "Maker 101 Labs"
+  url: "/maker101/"
   side: left
   dropdown:
-  - title: "Writing Digital Output"
-    url: "/iotlabs/lab001/"
-  - title: "Reading Analog Input"
-    url: "/iotlabs/lab002/"
-  - title: "Input Controls Output"
-    url: "/iotlabs/lab003/"
-  - title: "Sending Data to the Cloud"
-    url: "/iotlabs/lab004/"
-  - title: "Command & Control"
-    url: "/iotlabs/lab005/"
+  - title: "01 - Writing Digital Output"
+    url: "/labs/lab001/"
+  - title: "02 - Reading Analog Input"
+    url: "/labs/lab002/"
+  - title: "03 - Input Controls Output"
+    url: "/labs/lab003/"
+
+- title: "Connected Thing Labs"
+  url: "/connected/"
+  side: left
+  dropdown:
+  - title: "04 - Sending Data to the Cloud"
+    url: "/labs/lab004/"
+  - title: "05 - Command & Control"
+    url: "/labs/lab005/"
 
 #
 #- title: "Header Styles"
