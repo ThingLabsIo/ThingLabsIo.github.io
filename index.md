@@ -17,7 +17,7 @@ widget-2:
     title: "Blog"
     url: '/blog/'
     text: 'This is where the ThingLabs team writes freely and openly about whatever is on our mind...sometimes that&apos;s nothing...sometimes that&apos;s robots. You never really know.'
-    image: unsplash_9-302x182.jpg
+    image: typewriter_thumb.jpg
 widget-3:
     title: "Upcoming Labs"
     url: 'http://thinglabsio.github.io/schedule/'
