@@ -2,29 +2,26 @@
   url: "/"
   side: left
 
-- title: Getting Started
-  url: "/getting-started/"
-  side: left
-
-- title: "Maker 101 Labs"
-  url: "/maker101/"
+- title: "IoT Labs"
+  url: "/labs/"
   side: left
   dropdown:
+  - title: "00 - Getting Started"
+    url: "/labs/lab000/"
   - title: "01 - Writing Digital Output"
     url: "/labs/lab001/"
   - title: "02 - Reading Analog Input"
     url: "/labs/lab002/"
   - title: "03 - Input Controls Output"
     url: "/labs/lab003/"
-
-- title: "Connected Thing Labs"
-  url: "/connected/"
-  side: left
-  dropdown:
   - title: "04 - Sending Data to the Cloud"
     url: "/labs/lab004/"
   - title: "05 - Command & Control"
     url: "/labs/lab005/"
+  - title: "06 - Visualizing IoT Data"
+    url: "/labs/lab006/"
+  - title: "07 - Connecting Multiple Things"
+    url: "/labs/lab007/"
 
 #
 #- title: "Header Styles"
