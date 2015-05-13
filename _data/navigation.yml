@@ -2,6 +2,10 @@
   url: "/"
   side: left
 
+- title: Getting Started
+  url: "/labs/lab000/"
+  side: left
+  
 - title: "IoT Labs"
   url: "/labs/"
   side: left
