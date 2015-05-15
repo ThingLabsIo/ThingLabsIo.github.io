@@ -52,18 +52,18 @@ In this lab you will build an Arduino circuit that acts as both a message sendin
 
 Estimated time to complete: 40-minutes
 
-### [Connecting Multiple Things][7]
+### Connecting Multiple Things - Coming Soon
 Coming soon.
 
-### [Visualizing IoT Data][8]
+### Visualizing IoT Data - Coming Soon
 Coming soon.
 
 ## Using Cloud IoT Services
 
-### Gaining IoT Insight with Analytics
+### Gaining IoT Insight with Analytics - Coming Soon
 Coming soon.
 
-### Making IoT Smart with Machine Learning
+### Making IoT Smart with Machine Learning - Coming Soon
 Coming soon.
 
 [1]: /arduino/00/
