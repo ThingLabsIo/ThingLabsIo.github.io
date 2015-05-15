@@ -48,7 +48,7 @@ In this lab you will build a simple ambient light detection app and send the dat
 Estimated time to complete: 30-minutes
 
 ### [Command &amp; Control][6]
-In this lab you will build an Arduino circuit that acts as both a message sending device (an ambient light detector) and a command/control receiving device (LED). You will learn how to send command/control messages and how to process them. These are the concepts of connected Things."
+In this lab you will build an Arduino circuit that acts as both a message sending device (an ambient light detector) and a command/control receiving device (LED). You will learn how to send command/control messages and how to process them. These are the concepts of connected Things.
 
 Estimated time to complete: 40-minutes
 
@@ -56,6 +56,14 @@ Estimated time to complete: 40-minutes
 Coming soon.
 
 ### [Visualizing IoT Data][8]
+Coming soon.
+
+## Using Cloud IoT Services
+
+### Gaining IoT Insight with Analytics
+Coming soon.
+
+### Making IoT Smart with Machine Learning
 Coming soon.
 
 [1]: /labs/000/
