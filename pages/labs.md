@@ -20,32 +20,42 @@ permalink: "/labs/"
 
 ## [Getting Started][1]
 This is a step-by-step guide to preparing your computer for the IoT Labs.
+
 Estimated time to complete: 30-minutes
 
-## [Writing Digital Output][2]
+## Maker 101
+
+### [Writing Digital Output][2]
 In this lab you will write to a digital output.
+
 Estimated time to complete: 20-minutes
 
-## [Reading Analog Input][3]
+### [Reading Analog Input][3]
 In this lab you will read input from an analog sensor using a voltage divider.
+
 Estimated time to complete: 20-minutes
 
-## [Input Controls Output][4]
+### [Input Controls Output][4]
 In this lab you will use analog input to control digital output.
+
 Estimated time to complete: 20-minutes
 
-## [Sending Data to the Cloud][5]
+## Connected Things 101
+
+### [Sending Data to the Cloud][5]
 In this lab you will build a simple ambient light detection app and send the data that is being collected to the Cloud.
+
 Estimated time to complete: 30-minutes
 
-## [Command &amp; Control][6]
+### [Command &amp; Control][6]
 In this lab you will build an Arduino circuit that acts as both a message sending device (an ambient light detector) and a command/control receiving device (LED). You will learn how to send command/control messages and how to process them. These are the concepts of connected Things."
+
 Estimated time to complete: 40-minutes
 
-## [Connecting Multiple Things][7]
+### [Connecting Multiple Things][7]
 Coming soon.
 
-## [Visualizing IoT Data][8]
+### [Visualizing IoT Data][8]
 Coming soon.
 
 [1]: /labs/000/
