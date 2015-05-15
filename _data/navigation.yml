@@ -22,10 +22,11 @@
     url: "/labs/004/"
   - title: "05 - Command & Control"
     url: "/labs/005/"
-  - title: "06 - Visualizing IoT Data"
+  - title: "06 - Connecting Multiple Things"
     url: "/labs/006/"
-  - title: "07 - Connecting Multiple Things"
+  - title: "07 - Visualizing IoT Data"
     url: "/labs/007/"
+
 
 #
 #- title: "Header Styles"
