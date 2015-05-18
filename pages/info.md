@@ -44,7 +44,7 @@ Yours sincerelly, [Moritz »mo.« Sauer][7]
  [3]: http://automattic.com/
  [4]: http://alistapart.com/
  [5]: http://www.smashingmagazine.com/
- [6]: https://github.com/
+ [6]: http://github.com/
  [7]: http://sauer.io
  [8]: #
  [9]: #

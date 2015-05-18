@@ -8,10 +8,10 @@ comments: true
 header: no
 breadcrumb: true
 categories:
-    - iot-labs
+    - iot-arduino-labs
     - maker-101
     - connected-things-101
-permalink: "/labs/"
+permalink: "/arduino/"
 ---
 
 ### Table of Contents
@@ -66,11 +66,11 @@ Coming soon.
 ### Making IoT Smart with Machine Learning
 Coming soon.
 
-[1]: /labs/000/
-[2]: /labs/001/
-[3]: /labs/002/
-[4]: /labs/003/
-[5]: /labs/004/
-[6]: /labs/005/
-[7]: /labs/006/
-[8]: /labs/007/
+[1]: /arduino/00/
+[2]: /arduino/01/
+[3]: /arduino/02/
+[4]: /arduino/03/
+[5]: /arduino/04/
+[6]: /arduino/05/
+[7]: /arduino/06/
+[8]: /arduino/07/
