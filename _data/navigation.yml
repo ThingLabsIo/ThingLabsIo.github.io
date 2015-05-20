@@ -51,19 +51,19 @@
 #    url: "/changelog/"
 #
 
-- title: Blog
-  url: "/blog/"
-  side: left
-  dropdown:
-  - title: Blog
-    url: "/blog/"
-  - title: "Blog Archive"
-    url: "/blog/archive/"
-
-- title: "Search"
-  url: "/search/"
-  side: right
-
+# - title: Blog
+#  url: "/blog/"
+#  side: left
+#  dropdown:
+#  - title: Blog
+#    url: "/blog/"
+#  - title: "Blog Archive"
+#    url: "/blog/archive/"
+#
+#- title: "Search"
+#  url: "/search/"
+#  side: right
+#
 #
 #- title: "Contact"
 #  url: "/contact/"
