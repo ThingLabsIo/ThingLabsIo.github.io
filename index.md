@@ -7,7 +7,7 @@
 layout: frontpage
 title: "ThingLabs.io - Educational Labratories for the Internet of Things"
 header:
-   image_fullwidth: "header_unsplash_4.jpg"
+   image_fullwidth: "header_unsplash_10.jpg"
 widget-1:
     title: "Arduino IoT Labs"
     url: '/arduino/'
