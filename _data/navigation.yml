@@ -2,8 +2,8 @@
   url: "/"
   side: left
   
-- title: Getting Started
-  url: "/arduino/00/"
+- title: Upcoming Labs
+  url: "/schedule/"
   side: left
   
 - title: "Arduino"
@@ -27,9 +27,6 @@
   - title: "07 - Visualizing IoT Data"
     url: "/arduino/07/"
 
-- title: Upcoming Labs
-  url: "/schedule/"
-  side: right
 #
 #- title: "Header Styles"
 #  url: "/headers/"
