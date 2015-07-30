@@ -13,7 +13,7 @@ categories:
 author: "Doug Seven"
 permalink: "/schedule/"
 ---
-### Table of Contents
+
 *  Auto generated table of contents
 {:toc}
 
