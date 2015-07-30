@@ -1,7 +1,7 @@
 - title: ThingLabs.io
   url: "/"
   side: left
-
+  
 - title: Getting Started
   url: "/arduino/00/"
   side: left
@@ -27,7 +27,9 @@
   - title: "07 - Visualizing IoT Data"
     url: "/arduino/07/"
 
-
+- title: Upcoming Labs
+  url: "/schedule/"
+  side: right
 #
 #- title: "Header Styles"
 #  url: "/headers/"
