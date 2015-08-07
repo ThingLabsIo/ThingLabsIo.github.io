@@ -1,9 +1,9 @@
 - name: Twitter
-  url: http://twitter.com/thinglabsio
+  url: https://twitter.com/thinglabsio
   class: icon-twitter
   title: "ThingLabs.io on Twitter"
 
 - name: GitHub
-  url: http://github.com/ThingLabsIo
+  url: https://github.com/ThingLabsIo
   class: icon-github
   title: "ThingLabs.io on GitHub"
