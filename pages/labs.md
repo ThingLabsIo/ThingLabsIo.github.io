@@ -52,7 +52,7 @@ In this lab you will build an Arduino circuit that acts as both a message sendin
 
 Estimated time to complete: 40-minutes
 
-### Connecting Multiple Things[7]
+### [Connecting Multiple Things][7]
 In this lab you will build two Things, and enable one Thing to share its state with the other, which will alter its own state based on the information received. In other words, you will build one connected Thing that controls another Connected Thing.
 
 ### Visualizing IoT Data - Coming Soon
