@@ -1,8 +1,8 @@
 ---
 layout: page-fullwidth
 title: "Prepare for Deployment"
-subheadline: "Prepping the Yun for Johnny Five and Nitrogen"
-teaser: "This is a step-by-step guide to preparing your computer for the IoT Labs."
+subheadline: "IoT Lab 4a"
+teaser: "Prepping the Yun for Johnny Five and Nitrogen."
 show_meta: true
 comments: true
 header: no
@@ -11,7 +11,7 @@ categories:
     - iot-arduino-labs
     - maker-101
 author: "Doug Seven"
-permalink: "/arduino/0A/"
+permalink: "/arduino/4a/"
 ---
 
 ### Table of Contents

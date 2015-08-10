@@ -1,7 +1,7 @@
 ---
 layout: page-fullwidth
 title: "Deploy App to Arduino Yun"
-subheadline: "Running a Johnny Five app on Arduino Yun"
+subheadline: "IoT Lab 4b"
 teaser: "Deploy your application to the Arduino Yun.."
 show_meta: true
 comments: true
@@ -11,7 +11,7 @@ categories:
     - iot-arduino-labs
     - maker-101
 author: "Doug Seven"
-permalink: "/arduino/0A/"
+permalink: "/arduino/4b/"
 ---
 
 ### Table of Contents
