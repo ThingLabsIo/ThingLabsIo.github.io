@@ -11,7 +11,7 @@ categories:
     - iot-arduino-labs
     - maker-101
 author: "Doug Seven"
-permalink: "/arduino/4a/"
+permalink: "/arduino/04a/"
 ---
 
 ### Table of Contents
