@@ -23,15 +23,15 @@ In this lab you will use one of the digital output pins to send a signal to an L
 ## Bill of Materials
 What you will need:
 
-1. [Particle Photon](https://store.particle.io/?product=particle-photon)
-2. USB to micro-USB cable
-3. LED (there is one included in the [Photon Development Kit](https://store.particle.io/?product=photon-kit))
-4. 220-Ohm 1/4 Watt resistor (Orange-Orange-Brown - there is one included in the [Photon Development Kit](https://store.particle.io/?product=photon-kit))
+1. [Particle Photon][1]
+2. USB to micro-USB cable (there is one included in the [Photon Development Kit][1])
+3. LED (there is one included in the [Photon Development Kit][1])
+4. 220-Ohm 1/4 Watt resistor (Orange-Orange-Brown - there is one included in the [Photon Development Kit][1])
 
 For this lab series you are using a Particle Photon, a small Wi-Fi enabled development board. The Photon is an excellent prototyping board for connected Things and Particle, the makers of the Photon, sell the P0 chip that drives the board (so when you are ready to go into production you can easily use the same chip). While you can develop for the Photon using Particle Build or Particle Dev and leverage the Particle Cloud, this lab series is designed to teach you how to build a Wi-Fi based hub-and-spoke system, similar to how SmartThings or Phillips Hue works. For the first few labs you will learn how to create Node.js applications that run on your PC and control the Photon. Later in the lab you will learn how to deploy the Node.js applications to a hub device, like a Raspberry Pi 2 or an Arduino Y&uacute;n, which will act as the field gateway for all of the connected Photons in your solution.
 
 ## Claim Your Photon
-Associating a Particle Photon to your account is known as claiming (you are claiming the Photon so no one else can claim it - its like techno-dibbs). If you refer to the Particle website there is information about how to [claim the Photon using either an iPhone or an Android phone](https://docs.particle.io/guide/getting-started/start/photon/#step-1-power-on-your-device), or [over USB from Windows or OS X](https://docs.particle.io/guide/getting-started/connect/photon/). As of the writing of this tutorial, there is a bug in the USB claiming process for WIndows 10. Use the following steps to claim the Photon to your account if you are on Windows 10, or experience difficulties on previous versions of Windows.
+Associating a Particle Photon to your account is known as claiming (you are claiming the Photon so no one else can claim it - its like techno-dibbs). If you refer to the Particle website there is information about how to [claim the Photon using either an iPhone or an Android phone](https://docs.particle.io/guide/getting-started/start/photon/#step-1-power-on-your-device), or [over USB from Windows or OS X](https://docs.particle.io/guide/getting-started/connect/photon/). As of the writing of this tutorial, there is a bug in the USB claiming process for Windows 10. After following the steps to install the Particle USB driver, use the following steps to claim the Photon to your account if you are on Windows 10, or if you experience difficulties on previous versions of Windows.
 
 Open a terminal window (Mac OS X) or Node.js command prompt (Windows) and execute the following command to get the device ID of your Photon:
 
@@ -268,3 +268,5 @@ In this lab you learned how to write a Node.js/Johnny-Five application that writ
 In the [next lab][/photon/02] you will learn how to read voltage coming in on an analog pin, and you will learn how to use a voltage divider to capture the variable resistance provided by a photoresistor.
 
 {% include next-previous-post-in-category.html %}
+
+[1]: https://store.particle.io/?product=photon-kit
