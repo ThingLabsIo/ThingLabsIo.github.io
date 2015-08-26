@@ -27,7 +27,8 @@ To prepare your development environment for this lab series you don't need anyth
 
 If you want to prepare yourself further before the labs you can acquire the following:
 
-1. [Particle Photon Development Kit - $29][1] 
+1. [Particle Photon Development Kit - $29.00][1]
+2. [Jumper wires - $1.95](https://www.sparkfun.com/products/12795)
 
 ## Install a Code Editor
 If you don't already have one installed, pick a text/code editor. Feel free to use anything you like, provided it won't inject any extra text into your files.
