@@ -36,12 +36,12 @@ Associating a Particle Photon to your account is known as claiming (you are clai
 Open a terminal window (Mac OS X) or Node.js command prompt (Windows) and execute the following command to get the device ID of your Photon:
 
 <pre>
-particle identify  
+  particle identify  
 </pre>
 
 If the Photon is connected correctly and working you shold see a result similar to this:
 <pre>
-Your device id is 21003f000447343335555555
+  Your device id is 21003f000447343335555555
 </pre>
 
 Copy the device ID somewhere you can reference it in a momment. Next, enter the following to connect the Photon to your Wi-Fi network:
@@ -70,55 +70,55 @@ c:\Development\gh\IoTLabs>particle serial wifi
 Use the down arrow key to highlight the SSID for the Wi-Fi network you want to connect to and press <kbd>Enter</kbd>. You should be prompted to identify the seurity protocol (e.g. WPA2, WPA, WEP, Unsecured). Choose the correct option for your Wi-Fi network and press <kbd>Enter</kbd>, then enter the Wi-Fi network password when prompted.
 
 <pre>
-c:\Development\gh\IoTLabs>particle serial wifi
-? Should I scan for nearby Wi-Fi networks? (Y/n) y
-? Should I scan for nearby Wi-Fi networks? Yes
-? Select the Wi-Fi network with which you wish to connect your device: (Use arro? Select the Wi-Fi network with which you wish to connect your device: Terminus
-? Security Type: WPA2
-? Wi-Fi Password: 2494994942
-Attempting to configure Wi-Fi on COM4
-I said: w
-Serial said: SSID:
-I said: Terminus
-
-Serial said: Terminus
-Security 0=unsecured, 1=WEP, 2=WPA, 3=WPA2:
-I said: 3
-
-Serial said: 3
-Password:
-I said: RickGrimes
-
-Serial said: RickGrimes
-Thanks! Wait while I save those credentials...
-
-Done! Your device should now restart.
-
-c:\Development\gh\IoTLabs>
+  c:\Development\gh\IoTLabs>particle serial wifi
+  ? Should I scan for nearby Wi-Fi networks? (Y/n) y
+  ? Should I scan for nearby Wi-Fi networks? Yes
+  ? Select the Wi-Fi network with which you wish to connect your device: (Use arro? Select the Wi-Fi network with which you wish to connect your device: Terminus
+  ? Security Type: WPA2
+  ? Wi-Fi Password: 2494994942
+  Attempting to configure Wi-Fi on COM4
+  I said: w
+  Serial said: SSID:
+  I said: Terminus
+  
+  Serial said: Terminus
+  Security 0=unsecured, 1=WEP, 2=WPA, 3=WPA2:
+  I said: 3
+  
+  Serial said: 3
+  Password:
+  I said: RickGrimes
+  
+  Serial said: RickGrimes
+  Thanks! Wait while I save those credentials...
+  
+  Done! Your device should now restart.
+  
+  c:\Development\gh\IoTLabs>
 </pre>
 
-Now push the <b>Reset</b> button on the Photon. After the Photon reboots the indicator LED will flash magenta. At this point the Photon has been configured to connect to your Wi-Fi network. Now you need to add the Photon to your Particle.io account (this is where you need the device ID that you copied earlier). 
+Now push the <b>Reset</b> button on the Photon. After the Photon reboots the indicator LED will flash magenta. At this point the Photon has been configured to connect to your Wi-Fi network. Now you need to add the Photon to your Particle.io account (this is where you need the device ID that you copied earlier).
 
 <pre>
-  particle device add [device ID]
+  particle device add YOUR_DEVICE_ID_HERE
 </pre>
 
 If you are not already logged in to your Particle.io account, you will be prompted to login. Follow the prompts and run the above command again. You should see something like this:
 
 <pre>
-c:\Development\gh\IoTLabs>particle device add 21003f000447343335555555
-You're not logged in. Please login using particle cloud login before using this command
-
-c:\Development\gh\IoTLabs>particle cloud login
-? Please enter your email address: me@thinglabs.io
-? Please enter your password: **********
-> Successfully completed login!
-
-c:\Development\gh\IoTLabs>particle device add 21003f000447343335555555
-Claiming device 21003f000447343335555555
-Successfully claimed device 21003f000447343335555555
-
-c:\Development\gh\IoTLabs>
+  c:\Development\gh\IoTLabs>particle device add 21003f000447343335555555
+  You're not logged in. Please login using particle cloud login before using this command
+  
+  c:\Development\gh\IoTLabs>particle cloud login
+  ? Please enter your email address: me@thinglabs.io
+  ? Please enter your password: **********
+  > Successfully completed login!
+  
+  c:\Development\gh\IoTLabs>particle device add 21003f000447343335555555
+  Claiming device 21003f000447343335555555
+  Successfully claimed device 21003f000447343335555555
+  
+  c:\Development\gh\IoTLabs>
 </pre>
 
 At this point your Photon may blick magenta on and off for a few seconds (or up to a minute) as it gets any core firmware updates available for it. When the blinking light turns to a 'breathing' cyan then your Photon is ready for use (the 'breathing' cyan is the ready state indicator).
@@ -175,8 +175,8 @@ Using your favorite/preferred text/code editor, create a file in your labs folde
 With the package.json file created you can use NPM to pull down the necessary Node modules. Open a terminal window (Mac OS X) or Node.js command prompt (Windows) and execute the following commands (replace _C:\Development\IoTLabs_ with the path that leads to your labs folder):
 
 <pre>
-cd C:\Development\IoTLabs
-npm install
+  cd C:\Development\IoTLabs
+  npm install
 </pre>
 
 Next you will create the application code to make the LED turn on and off.
@@ -250,8 +250,8 @@ When you run the application it will execute on your computer, and thanks to Joh
 Open a terminal window (Mac OS X) or Node.js command prompt (Windows) and execute the following commands (replace c:\Development\IoTLabs with the path that leads to your labs folder):
 
 <pre>
-cd C:\Development\IoTLabs
-node lab01.js
+  cd C:\Development\IoTLabs
+  node lab01.js
 </pre>
 
 You should the indicator LED on the Photon blink a little as the app is initialized, and then the on-board LED next to pin _D7_ and the LED you connected should start blinking in unison at one blink per second.
