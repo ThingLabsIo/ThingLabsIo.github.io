@@ -265,8 +265,11 @@ Press <kbd>CTRL</kbd> + <kbd>C</kbd> twice to exit the program without closing t
 ## Conclusion &amp; Next Steps
 In this lab you learned how to write a Node.js/Johnny-Five application that writes LOW and HIGH signals to a digital pin (designated for output) to make an LED blink. In itself this may not be very exciting, but the core concept is necessary - writing to a digital output pin.
 
-In the [next lab][/photon/02] you will learn how to read voltage coming in on an analog pin, and you will learn how to use a voltage divider to capture the variable resistance provided by a photoresistor.
+In the [next lab][2] you will learn how to read voltage coming in on an analog pin, and you will learn how to use a voltage divider to capture the variable resistance provided by a photoresistor.
+
+[Next Lab ->][2]
 
 {% include next-previous-post-in-category.html %}
 
 [1]: https://store.particle.io/?product=photon-kit
+[2]: /photon/02/
