@@ -124,7 +124,7 @@ If you are not already logged in to your Particle.io account, you will be prompt
 At this point your Photon may blick magenta on and off for a few seconds (or up to a minute) as it gets any core firmware updates available for it. When the blinking light turns to a 'breathing' cyan then your Photon is ready for use (the 'breathing' cyan is the ready state indicator).
  
 ## Upload the VoodooSpark Firmware to Your Photon
-For this lab series you will be controlling the Photon from a master/hub device (your PC for the early parts of the labs series, and a Raspberry Pi 2 for the later parts). The controller application will use Node.js and a framework called Johnny Five. In order for these toosl to communicate with the Photon, it needs to have the VoodooSpark firmware installed. Fortunately, this is easy to do using the Particle Build web-based IDE.
+For this lab series you will be controlling the Photon from a master/hub device (your PC for the early parts of the labs series, and a Raspberry Pi 2 for the later parts). The controller application will use Node.js and a framework called Johnny Five. In order for these tools to communicate with the Photon, it needs to have the VoodooSpark firmware installed. The VoodooSpark firmware enables direct TCP communication from the host machine (your PC running the Node.js app) and the Photon (provided they are on the same Wi-Fi network). Installing the VoodooSpark firmware is fairly easy to do using the Particle Build web-based IDE.
 
 1. In a browser open the [VoodooSpark code from GitHub](https://raw.githubusercontent.com/voodootikigod/voodoospark/master/firmware/voodoospark.cpp).
 2. With your Photon still powered on, use a second browser tab/window to open [Particle Build](https://build.particle.io/).
@@ -256,17 +256,15 @@ Open a terminal window (Mac OS X) or Node.js command prompt (Windows) and execut
 
 You should the indicator LED on the Photon blink a little as the app is initialized, and then the on-board LED next to pin _D7_ and the LED you connected should start blinking in unison at one blink per second.
 
+<blockquote>
+Note: The Photon doesn't need to be plugged into your PC - it simply needs to be powered on and on the same Wi-Fi you configured it for (and the PC running the Node.js app has to be on the same Wi-F network). 
+</blockquote>
+  
 Press <kbd>CTRL</kbd> + <kbd>C</kbd> twice to exit the program without closing the window. After stopping the application press the _Reset_ button on the Photon to prepare it for the next run. 
 
 ## Conclusion &amp; Next Steps
 In this lab you learned how to write a Node.js/Johnny-Five application that writes LOW and HIGH signals to a digital pin (designated for output) to make an LED blink. In itself this may not be very exciting, but the core concept is necessary - writing to a digital output pin.
 
 In the [next lab][/photon/02] you will learn how to read voltage coming in on an analog pin, and you will learn how to use a voltage divider to capture the variable resistance provided by a photoresistor.
-
-## Want to Try Something?
-If you want to experinment with more labs like this you can try out these code samples:
-
-1. [Writing out to a RGB LED][7]
-2. [Writing out to a Servo][8]
 
 {% include next-previous-post-in-category.html %}
