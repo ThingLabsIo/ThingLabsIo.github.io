@@ -68,6 +68,7 @@ c:\Development\gh\IoTLabs>particle serial wifi
 </pre>
 
 Use the down arrow key to highlight the SSID for the Wi-Fi network you want to connect to and press <kbd>Enter</kbd>. You should be prompted to identify the seurity protocol (e.g. WPA2, WPA, WEP, Unsecured). Choose the correct option for your Wi-Fi network and press <kbd>Enter</kbd>, then enter the Wi-Fi network password when prompted.
+
 <pre>
 c:\Development\gh\IoTLabs>particle serial wifi
 ? Should I scan for nearby Wi-Fi networks? (Y/n) y
@@ -99,7 +100,7 @@ c:\Development\gh\IoTLabs>
 Now push the <b>Reset</b> button on the Photon. After the Photon reboots the indicator LED will flash magenta. At this point the Photon has been configured to connect to your Wi-Fi network. Now you need to add the Photon to your Particle.io account (this is where you need the device ID that you copied earlier). 
 
 <pre>
-  particle device add <device ID>
+  particle device add [device ID]
 </pre>
 
 If you are not already logged in to your Particle.io account, you will be prompted to login. Follow the prompts and run the above command again. You should see something like this:
