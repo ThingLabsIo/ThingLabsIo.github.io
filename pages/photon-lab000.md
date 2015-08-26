@@ -77,16 +77,16 @@ Johnny-Five is an open source JavaScript framework that provides a simple object
 Once you have Node.js installed, install [Johnny-Five][11] using NPM.
 On Windows, open the Node.js command prompt and type the following:
 <pre>
-npm install -g johnny-five
+  npm install -g johnny-five
 </pre>
 
 On Mac OS X open Terminal and type the following:
 <pre>
-sudo npm install -g johnny-five
+  sudo npm install -g johnny-five
 </pre>
 
 ## Install Particle-CLI
-THe [Particle-CLI][3] is a command line interface for working with both the Particle Photon and the Particle Cloud. This tool will be used to 'claim' or provision your Photon, and may provide other useful benefits.
+The [Particle-CLI][3] is a command line interface for working with both the Particle Photon and the Particle Cloud. This tool will be used to 'claim' or provision your Photon, and may provide other useful benefits.
 
 On Windows, open the Node.js command prompt and type the following:
 <pre>
