@@ -12,7 +12,7 @@ categories:
     - maker-101
 permalink: "/photon/01/"
 ---
-If you haven't already done so, please follow the instructions in [Lab 00: Getting Started][6] section.
+If you haven't already done so, please follow the instructions in [Lab 00: Getting Started](/photon/00/) section.
 
 ### Table of Contents
 *  Auto generated table of contents
@@ -141,6 +141,7 @@ After completing the last step you should see the indicator LED on your Photon b
 
 ## Wiring the LED
 Next you need to wire up the Photon board so that it can send <code>ON</code> and <code>OFF</code> commands to the LED. You can wire your board according to the diagram (wire colors don't matter, but help with identification of purpose).
+
 <img src="/images/photon_lab01_bb.png"/>
 
 ### LED
@@ -189,7 +190,7 @@ The first thing you need to do is define the objects you will be working with in
 
 Find the token for _user_ (make sure if you see more than one that you choose the one that is not expired).
 
-Now add the following code to the <b>lab01.js<b> file:
+Now add the following code to the <b>lab01.js</b> file:
 
 {% highlight javascript %}
 // Define the Jonny Five and Spark-IO variables
@@ -233,7 +234,7 @@ board.on("ready", function(){
 });
 {% endhighlight %}
   
-Johnny-Five actually has an object model for an LED and we could also have simply done the following, but I wanted you to see how the digitalWrite() function works before abstracting it away.
+Johnny-Five actually has an object model for an LED and we could also have simply done the following, but I wanted you to see how the <code>digitalWrite()</code> function works before abstracting it away.
 
 {% highlight javascript %}
 board.on("ready", function() {
