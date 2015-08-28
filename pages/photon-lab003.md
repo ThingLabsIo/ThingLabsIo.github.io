@@ -188,26 +188,21 @@ node lab03.js
 
 You should see the indicator LED blink a little as the app is initialized, and then you should see something like the following in the terminal/console window (the actual values will depend on how much light the photoresistor is receiving):
 <pre>
-C:\Development\IoTLabs>node lab03.js
-1429678663007 Device(s) COM3
-1429678663038 Connected COM3
-1429678668085 Repl Initialized
->> val: 1.5478515625; brightness: 0
-val: 1.552734375; brightness: 0
-val: 1.5478515625; brightness: 0
-val: 1.5478515625; brightness: 0
-val: 1.5478515625; brightness: 0
-val: 1.5478515625; brightness: 0
-val: 1.5478515625; brightness: 0
-val: 1.5478515625; brightness: 0
-val: 1.552734375; brightness: 0
-val: 1.5478515625; brightness: 0
-val: 1.5478515625; brightness: 0
-val: 1.5478515625; brightness: 0
-val: 1.5478515625; brightness: 0
-val: 1.5478515625; brightness: 0
-val: 1.5478515625; brightness: 0
-val: 1.5478515625; brightness: 0
+c:\Development\gh\IoTLabs\Photon\Lab03>node lab03.js
+1440745763751 Device(s) spark-io
+1440745764610 Connected spark-io
+1440745764735 Repl Initialized
+>> val: 899; voltage: 2.89716796875; brightness: 0
+val: 899; voltage: 2.89716796875; brightness: 0
+val: 899; voltage: 2.89716796875; brightness: 0
+val: 899; voltage: 2.89716796875; brightness: 0
+val: 899; voltage: 2.89716796875; brightness: 0
+val: 900; voltage: 2.900390625; brightness: 0
+val: 900; voltage: 2.900390625; brightness: 0
+val: 900; voltage: 2.900390625; brightness: 0
+val: 900; voltage: 2.900390625; brightness: 0
+val: 900; voltage: 2.900390625; brightness: 0
+val: 900; voltage: 2.900390625; brightness: 0
 </pre>
 
 With the application running try changing the amount of light the photoresistor is receiving by slowly covering it with your hand. As the amount of light it detects reduces, the resistance will decrease and more voltage will pass into the INPUT pin. As that happens, thanks to your code, the voltage to the LED over the OUTPUT pin will increase and the LED will glow brighter. You should also notice that there is a minimum amount of light that will cause the LED to turn off all together. That is because of the mapping of the input value of 950 to the output value of 0 (if the room you are in is too dim and the LED is never shutting off, you can increase 950 to something like 1000 and see what happens).
