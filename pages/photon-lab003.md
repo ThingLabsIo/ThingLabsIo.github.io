@@ -33,7 +33,7 @@ For this lab series you are using a Particle Photon, a small Wi-Fi enabled devel
 ## Wiring the Board
 This lesson combines the previous two lessons, so it's likely that you already have most of the wiring done from the previous lesson. Wire the Photon according to the diagram.
 
-<img src="/images/photon-lab03_bb.png"/>
+<img src="/images/photon_lab03_bb.png"/>
 
 ### Resistors
 One of the 220 Ohm resistor is one part of the voltage divider, working in partnership with the photoresistor.
