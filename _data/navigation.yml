@@ -24,6 +24,26 @@
     url: "/arduino/05/"
   - title: "06 - Connecting Multiple Things"
     url: "/arduino/06/"
+    
+  
+- title: "Particle Photon"
+  url: "/photon/"
+  side: left
+  dropdown:
+  - title: "00 - Getting Started"
+    url: "/photon/00/"
+  - title: "01 - Writing Digital Output"
+    url: "/photon/01/"
+  - title: "02 - Reading Analog Input"
+    url: "/photon/02/"
+  - title: "03 - Input Controls Output"
+    url: "/photon/03/"
+  - title: "04 - Sending Data to the Cloud"
+    url: "/photon/04/"
+  - title: "05 - Command & Control"
+    url: "/photon/05/"
+  - title: "06 - Connecting Multiple Things"
+    url: "/photon/06/"
 
 #
 #- title: "Header Styles"
