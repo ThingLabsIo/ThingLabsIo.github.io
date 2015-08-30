@@ -62,7 +62,7 @@ In the lab05.js file start by declaring the key objects, including Johnny Five, 
 // Define the Jonny Five and Particle-IO variables
 var five = require("johnny-five"),
     board, photoresistor;
-var Particle = require("particle-io");
+var Spark = require("spark-io");
 var Store = require("nitrogen-file-store"),
     nitrogen = require("nitrogen"),
     service, lightSensor;
@@ -106,7 +106,7 @@ Instantiate the Johnny Five <code>board</code> object.
 {% highlight javascript %}
 // Define the Johnny Five board as your Particle Photon
 board = new five.Board({
-  io: new Particle({
+  io: new Spark({
     token: process.env.PARTICLE_KEY || 'YOUR API KEY HERE',
     deviceId: process.env.PARTICLE_DEVICE || 'YOUR DEVICE ID OR ALIAS HERE'
   })
