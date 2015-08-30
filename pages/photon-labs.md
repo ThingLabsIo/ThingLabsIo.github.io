@@ -61,6 +61,32 @@ Estimated time to complete: 40-minutes
 ### [Connecting Multiple Things][7]
 In this lab you will build two Things, and enable one Thing to share its state with the other, which will alter its own state based on the information received. In other words, you will build one connected Thing that controls another Connected Thing.
 
+## Cloud IoT Services
+
+### Persisting IoT Data (coming soon)
+Coming soon.
+
+### Visualizing IoT Data (coming soon)
+Coming soon.
+
+## Building a Home Automation Solution (coming soon)
+Coming soon.
+
+### A Climate Reporting Device (coming soon)
+Coming soon.
+
+### Raspberry Pi - Your IoT Hub (coming soon)
+Coming soon.
+
+### A Light Controller (coming soon)
+Coming soon.
+
+### A Motion Detector (coming soon)
+Coming soon.
+
+### Controlling Your Devices from an App (coming soon)
+Coming soon.
+ 
 ### Coming Soon
 More labs will be comming soon. Check back regularly.
 
