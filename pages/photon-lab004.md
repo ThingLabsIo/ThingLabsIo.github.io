@@ -133,24 +133,24 @@ Since you are using Nitrogen as the agent and Cloud gateway, you need to update 
   "name": "IoT-Labs",
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://github.com/ThingLabsIo/IoTLabs/Photon"
   },
   "version": "0.1.0",
   "private": true,
   "dependencies": {
     "johnny-five": "^0.8.0",
-    "spark-io": "^0.6.1",
-    "nitrogen": "^0.2.0",
-    "nitrogen-cli": "^0.2.0",
-    "nitrogen-file-store": "^0.2.0"
+    "spark-io": "^0.6.0",    
+    "nitrogen": "^0.2.4",
+    "nitrogen-cli": "^0.2.4",
+    "nitrogen-file-store": "^0.2.1",
+    "nitrogen-sensor": "^0.2.3"
   },
   "keywords": [
     "devices",
     "iot",
     "particle photon",
     "particle",
-    "photon",
-    "spark"
+    "photon"
   ]
 }
 {% endhighlight %}
