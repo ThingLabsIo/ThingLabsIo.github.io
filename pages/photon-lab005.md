@@ -23,11 +23,11 @@ In this lab you will use a photoresistor to create an ambient light sensor. You 
 ## Bill of Materials
 What you will need (all the parts from the previous lessons):
 
-1. [Particle Photon][1]
-2. USB to micro-USB cable (there is one included in the [Photon Development Kit][1])
-3. LED (there is one included in the [Photon Development Kit][1])
-4. Two (2) 220-Ohm 1/4 Watt resistor (there are two included in the [Photon Development Kit][1])
-5. Photoresistor (there is one included in the [Photon Development Kit][1])
+1. [Particle Photon][2]
+2. USB to micro-USB cable (there is one included in the [Photon Development Kit][2])
+3. LED (there is one included in the [Photon Development Kit][2])
+4. Two (2) 220-Ohm 1/4 Watt resistor (there are two included in the [Photon Development Kit][2])
+5. Photoresistor (there is one included in the [Photon Development Kit][2])
 7. [Jumper wires](https://www.sparkfun.com/products/12795)
 
 For this lab series you are using a Particle Photon, a small Wi-Fi enabled development board. The Photon is an excellent prototyping board for connected Things and Particle, the makers of the Photon, sell the P0 chip that drives the board (so when you are ready to go into production you can easily use the same chip). While you can develop for the Photon using Particle Build or Particle Dev and leverage the Particle Cloud, this lab series is designed to teach you how to build a Wi-Fi based hub-and-spoke system, similar to how SmartThings or Phillips Hue works. For the first few labs you will learn how to create Node.js applications that run on your PC and control the Photon. Later in the lab you will learn how to deploy the Node.js applications to a hub device, like a Raspberry Pi 2 or an Arduino Y&uacute;n, which will act as the field gateway for all of the connected Photons in your solution.
@@ -56,7 +56,7 @@ The other 220 Ohm resistor connects to the negative (shorter) lead of the LED.
 ## Writing the Code
 For this lab you will create a new file named <strong>lab05.js</strong> in the same directory as you did in the previous labs. There are no additional dependencies after [Lab 4][8], so we don't need to make any changes to the _package.json_ file.
 
-In the lab05.js file start by declaring the key objects, including Johnny Five, Spark IO and Johnny Five photoresistor (this is where you will start to use the 'object model' that Johnny Five provides. You will also declare the Nitrogen objects that you will use in this application, including the service and lightSensor.
+In the lab05.js file start by declaring the key objects, including Johnny Five, Particle IO and Johnny Five photoresistor (this is where you will start to use the 'object model' that Johnny Five provides. You will also declare the Nitrogen objects that you will use in this application, including the service and lightSensor.
 
 {% highlight javascript %}
 // Define the Jonny Five and Particle-IO variables
@@ -116,7 +116,7 @@ board = new five.Board({
 Define a variable to represent the LED:
 
 {% highlight javascript %}
-var LEDPIN = 13;
+var LEDPIN = "D0";
 {% endhighlight %}
 
 ## Connect to Nitrogen
@@ -299,7 +299,7 @@ While in the loop, set the <code>ligthOn</code> value (true/false) based on a pr
 
 {% highlight javascript %}
         // Determine the final state of the light (on/true or off/false)
-        lightOn = light > 350;
+        lightOn = light > 950;
     });
 {% endhighlight %}
 
@@ -412,7 +412,7 @@ Inside the <code>board.on()</code> function you should have a <code>// TODO: pho
         });
 </pre>
 
-This is similar to the Nitrogen message you created in [Lab 4][8], with some differences. First, notice the <code>type</code> is set to <code>\_lightLevel</code>. This is the message type that you have defined as containing a command to be executed. That means when this message is received by any subscribing device (this same device in this case) the command will be processed and executed as necessary. (As a note, it is by convention to use an underscore (\_) as the prefix for custom types - types defined by Nitrogen don't use underscores). 
+This is similar to the Nitrogen message you created in [Lab 4][8], with some differences. First, notice the <code>type</code> is set to <code>_lightLevel</code>. This is the message type that you have defined as containing a command to be executed. That means when this message is received by any subscribing device (this same device in this case) the command will be processed and executed as necessary. (As a note, it is by convention to use an underscore (\_) as the prefix for custom types - types defined by Nitrogen don't use underscores). 
 
 Secondly, notice that the <code>body</code> of the message is defined as a <code>command</code> named <code>ambientLight</code> (this is the command name you used in the <code>executeQueue()</code> function). The value being passed in with that command is the captured <code>lightLevel</code>.
 
@@ -431,8 +431,8 @@ After a few initialization messages you will see upstream and downstream message
 
 <pre>
 C:\Development\IoTLabs>node lab05.js
-1431508763751 Device(s) spark-io
-1431508764610 Connected spark-io
+1431508763751 Device(s) particle-io
+1431508764610 Connected particle-io
 5/13/2015 2:18:31 AM: Light Sensor: debug: session: created.
 5/13/2015 2:18:31 AM: Light Sensor: debug: CommandManager::execute: empty command queue.
 5/13/2015 2:18:31 AM: Light Sensor: debug: starting heartbeat interval
@@ -470,11 +470,7 @@ Congratulations! You have created a _Thing_ that collects input from its physica
 {% include next-previous-post-in-category.html %}
 
  [1]: /photon/00/
- [3]: http://www.sparkfun.com/products/12062
- [4]: http://www.sparkfun.com/products/10969
- [5]: http://www.sparkfun.com/products/9088
- [6]: http://www.sparkfun.com/products/10969
- [7]: http://www.sparkfun.com/products/13154
+ [2]: https://store.particle.io/?product=photon-kit
  [8]: /photon/04/
  [9]: /photon/06/
  [10]: /photon/03/
