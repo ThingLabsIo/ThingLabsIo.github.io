@@ -39,7 +39,7 @@ This lesson uses a similar wiring configuration from [Lab 5][lab05], but it is s
 
 ## Wiring the Ambient Light Sensor Board
 The second Photon uses the same wiring configuration for the ambient light sensor device from [Lab 4][lab04]. Wire the second Photon according to the following diagram:
-<img src="/images/photon_lab06bs_bb.png"/>
+<img src="/images/photon_lab06b_bb.png"/>
 
 ## Writing the Light Sensor Code
 The ambient light sensor device code is very similar to the code you wrote in [Lab 04][lab04]. Create a new file in the same directory as the other labs and name it <strong>lab06_lightSensor.js</strong>. Following is the code for that file.
