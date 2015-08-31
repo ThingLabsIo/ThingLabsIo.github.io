@@ -33,7 +33,7 @@ What you will need (all the parts from the previous lessons):
 For this lab series you are using a Particle Photon, a small Wi-Fi enabled development board. The Photon is an excellent prototyping board for connected Things and Particle, the makers of the Photon, sell the P0 chip that drives the board (so when you are ready to go into production you can easily use the same chip). While you can develop for the Photon using Particle Build or Particle Dev and leverage the Particle Cloud, this lab series is designed to teach you how to build a Wi-Fi based hub-and-spoke system, similar to how SmartThings or Phillips Hue works. For the first few labs you will learn how to create Node.js applications that run on your PC and control the Photon. Later in the lab you will learn how to deploy the Node.js applications to a hub device, like a Raspberry Pi 2 or an Arduino Y&uacute;n, which will act as the field gateway for all of the connected Photons in your solution.
 
 ## Wiring the Board
-This lesson uses the same wiring configuration from [Lab 3][10], so its possible that you already have most of the wiring done from the previous lesson. if not, wire the Photon according to the diagram.
+This lesson uses a similar wiring configuration from [Lab 3][10], so its possible that you already have most of the wiring done from the previous lesson. if not, wire the Photon according to the diagram.
 
 <img src="/images/photon_lab03_bb.png"/>
 
@@ -49,7 +49,7 @@ The other 220 Ohm resistor connects to the negative (shorter) lead of the LED.
 3. Connect the red/positive side rail to one end of the 220 Ohm resistor that will connect be part of the voltage divider.
 4. Connect the other end of the 220 Ohm resistor to both one end of the photoresistor and to analog pin 0 (A0).
 5. Connect the other end of the photoresistor to the negative side rail.
-6. Connect digital pin _D0_ to the positive lead of the LED (the longer lead is the positive lead).
+6. Connect digital pin _D0_ to the positive lead of the LED (the longer lead is the positive lead). NOTE: in [Lab 3][10] the LED was wired to _D7_ - since _D7_ is not e a PWM capable output, you must move the LED to another pin.
 7. Connect the other lead from the LED to the negative siderail (opposite the wiring in steps 1-6).
 8. Connect the other 220 Ohm resistor from the negative siderail to the _GND_ pin next to the _D7_ pin.
 
