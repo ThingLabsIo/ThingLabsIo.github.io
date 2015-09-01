@@ -19,7 +19,7 @@ widget-2:
     text: 'In these IoT Labs you will begin by learning the basics of working with the Particle Photon Wi-Fi enabled development kit. You will learn how to leverage Cloud IoT services to collect data and control devices and use advanced services like machine learning and analytics to discover insights using your <em>Things</em>.'
     image: particle-photon-303x182.jpg
 widget-3:
-    title: "Attend a Workshops"
+    title: "Attend a Workshop"
     url: '/schedule/'
     text: 'Check out where we will be doing the IoT workshop and join us for a fun filled few hours.'
     image: schedule-303x182.jpg
