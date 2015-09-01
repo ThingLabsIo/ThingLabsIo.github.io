@@ -22,5 +22,5 @@ widget-3:
     title: "Attend a Workshops"
     url: '/schedule/'
     text: 'Check out where we will be doing the IoT workshop and join us for a fun filled few hours.'
-    image: unsplash_9-302x182.jpg
+    image: schedule-303x182.jpg
 ---
