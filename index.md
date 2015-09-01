@@ -13,7 +13,7 @@ widget-1:
     url: '/arduino/'
     text: 'In these IoT Labs you will begin by learning the basics of working with Arduino micro-controllers and sensors, and move on to connecting them to the Internet. You will learn how to leverage Cloud IoT services to collect data and control devices and use advanced services like machine learning and analytics to discover insights using your <em>Things</em>.'
     image: arduino-yun.jpg
-widget-1:
+widget-2:
     title: "Particle Photon IoT Labs"
     url: '/photon/'
     text: 'In these IoT Labs you will begin by learning the basics of working with the Particle Photon Wi-Fi enabled development kit. You will learn how to leverage Cloud IoT services to collect data and control devices and use advanced services like machine learning and analytics to discover insights using your <em>Things</em>.'
