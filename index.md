@@ -12,15 +12,15 @@ widget-1:
     title: "Arduino IoT Labs"
     url: '/arduino/'
     text: 'In these IoT Labs you will begin by learning the basics of working with Arduino micro-controllers and sensors, and move on to connecting them to the Internet. You will learn how to leverage Cloud IoT services to collect data and control devices and use advanced services like machine learning and analytics to discover insights using your <em>Things</em>.'
-    image: unsplash_4-303x182.jpg
-widget-2:
-    title: "Blog"
-    url: '/blog/'
-    text: 'This is where the ThingLabs team writes freely and openly about whatever is on our mind...sometimes that&apos;s nothing...sometimes that&apos;s robots. You never really know.'
-    image: typewriter_thumb.jpg
+    image: arduino-yun.jpg
+widget-1:
+    title: "Particle Photon IoT Labs"
+    url: '/photon/'
+    text: 'In these IoT Labs you will begin by learning the basics of working with the Particle Photon Wi-Fi enabled development kit. You will learn how to leverage Cloud IoT services to collect data and control devices and use advanced services like machine learning and analytics to discover insights using your <em>Things</em>.'
+    image: arduino-yun.jpg
 widget-3:
-    title: "Upcoming Labs"
+    title: "Attend a Workshops"
     url: '/schedule/'
-    text: 'Check out where we will be doing the IoT Labs live and join us for a fun filled few hours.'
+    text: 'Check out where we will be doing the IoT workshop and join us for a fun filled few hours.'
     image: unsplash_9-302x182.jpg
 ---
