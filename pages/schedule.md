@@ -1,6 +1,6 @@
 ---
 layout: page-fullwidth
-title: "Upcoming Labs"
+title: "Attend a Workshop"
 subheadline: "Where and when to find us"
 teaser: "Check out where we will be doing the IoT Labs live and join us for a fun filled few hours."
 show_meta: true
