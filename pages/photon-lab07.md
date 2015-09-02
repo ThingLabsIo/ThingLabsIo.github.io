@@ -34,6 +34,7 @@ For this lab series you are using a Particle Photon, a small Wi-Fi enabled devel
 In this lab you will be sending telemetry into Azure Event Hubs and visualizing it using Power BI. TO simplify this lab you will not be using Nitrogen like you did in the preceeding three labs. The reason for that is that to use Nitrogen with Azure services, the Nitrogen instance has to be running in your account. Rather than takign the time to set up Nitrogen within your account, we will remove that layer (meaning that we no longer have some of the benefits of Nitrogen, such as command/control messages, etc.). When you are ready to build a complete solution that leverages Nitrogen you can refer to the Nitrogen setup labs (coming soon).
 
 Here are the specific wiring instructions for the board.
+
 <img src="/images/photon_lab02_bb.png"/>
 
 ### Photoresistor
@@ -60,11 +61,10 @@ This completes the circuit.
 ## Prepare an Azure Event Hub
 Using a browser navigate to [http://manage.windowsazure.com](http://manage.windowsazure.com). If you don't already have an Azure subscription you should set up a free trial.
  
-In the lower left hand corner click on "NEW"
-
+In the lower left hand corner click on __NEW__
 <img src="/images/photon_lab07_1.png"/>
   
-Select _APP SERVICES_ > _SERVICE BUS_ > _EVENT HUB_ > _QUICK CREATE_
+Select __APP SERVICES__ > __SERVICE BUS__ > __EVENT HUB__ > __QUICK CREATE__
 
 <img src="/images/photon_lab07_2.png"/>
 
@@ -74,15 +74,15 @@ Enter the following information:
 3. __SUBSCRIPTION__: Choose the subscription that you want to use to pay for this Event Hub
 4. __NAMESPACE NAME__: A unique name that will identify this Service Bus instance.
  
-Once the Event Hub has been created click on the line with the name "iotlab"
+Once the Event Hub has been created click on the line with the name _iotlab_
 
 <img src="/images/photon_lab07_3.png"/>
 
-Click on the _CONFIGURE_ tab to create a shared access policy that will allow you to send messages to the event hub.
+Click on the __CONFIGURE__ tab to create a shared access policy that will allow you to send messages to the event hub.
 
 <img src="/images/photon_lab07_4.png"/>
   
-The _POLICY NAME_ and the _PRIMARY KEY_ will be used later when you write code to generate the SAS token.
+The __POLICY NAME__ and the __PRIMARY KEY__ will be used later when you write code to generate the SAS token.
 
 ## Writing the Code
 For this lab you will create a new file named <strong>lab07.js</strong> in the same directory as you did in the previous labs. There are no additional dependencies, so you don't need to make any changes to the package.json file.
