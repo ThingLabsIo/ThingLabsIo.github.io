@@ -18,7 +18,7 @@ If you haven't already done so, please follow the instructions in [Lab 00: Getti
 *  Auto generated table of contents
 {:toc}
 
-In this lab you will use two Arduinos to create a connection between two devices. The concepts are similar to the previous lab, although you will learn about Permissions to enable two or more devices to engage in communication. The devices you will build are the same as in [Lab 01][lab01] and [Lab 02][lab02].
+In this lab you will use two Photons to create a connection between two devices. The concepts are similar to the previous lab, although you will learn about Permissions to enable two or more devices to engage in communication. The devices you will build are the same as in [Lab 01][lab01] and [Lab 02][lab02].
   
 ## Bill of Materials
 What you will need (all the parts from the previous lessons):
