@@ -23,10 +23,10 @@ In this lab you will send some sensor data to Azure Event Hubs, process the data
 ## Bill of Materials
 For this lab you need the same materials as [Lab 2][lab02]
 
-1. [Particle Photon][1]
-2. USB to micro-USB cable (there is one included in the [Photon Development Kit][1])
-3. Photoresistor (there is one included in the [Photon Development Kit][1])
-4. 220-Ohm 1/4 Watt resistor (there is one included in the [Photon Development Kit][1])
+1. [Particle Photon][photon]
+2. USB to micro-USB cable (there is one included in the [Photon Development Kit][photon])
+3. Photoresistor (there is one included in the [Photon Development Kit][photon])
+4. 220-Ohm 1/4 Watt resistor (there is one included in the [Photon Development Kit][photon])
 5. [Jumper wires](https://www.sparkfun.com/products/12795)
 
 For this lab series you are using a Particle Photon, a small Wi-Fi enabled development board. The Photon is an excellent prototyping board for connected Things and Particle, the makers of the Photon, sell the P0 chip that drives the board (so when you are ready to go into production you can easily use the same chip). While you can develop for the Photon using Particle Build or Particle Dev and leverage the Particle Cloud, this lab series is designed to teach you how to build a Wi-Fi based hub-and-spoke system, similar to how SmartThings or Phillips Hue works. For the first few labs you will learn how to create Node.js applications that run on your PC and control the Photon. Later in the lab you will learn how to deploy the Node.js applications to a hub device, like a Raspberry Pi 2 or an Arduino Y&uacute;n, which will act as the field gateway for all of the connected Photons in your solution.
@@ -277,5 +277,6 @@ Click on the __Save__ button above the chart to save it with the name _Lab 07_. 
   
 If you want to compare your code to the final solution you can see the code in GitHub [here](https://github.com/ThingLabsIo/IoTLabs/blob/master/Photon/Lab07/lab07.js).
 
-
-[lab02]: /photon/02/
+ [photon]: https://store.particle.io/?product=photon-kit
+ [lab02]: /photon/02/
+ 
