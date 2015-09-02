@@ -63,11 +63,8 @@ In this lab you will build two Things, and enable one Thing to share its state w
 
 ## Cloud IoT Services
 
-### Persisting IoT Data (coming soon)
-Coming soon.
-
-### Visualizing IoT Data (coming soon)
-Coming soon.
+### Visualizing IoT Data
+In this lab you will send some sensor data to Azure Event Hubs, process the data using Azure Stream Analytics and visualize the data using Power BI.
 
 ## Building a Home Automation Solution (coming soon)
 Coming soon.

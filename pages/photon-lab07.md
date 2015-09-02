@@ -1,6 +1,6 @@
 ---
 layout: page-fullwidth
-title: "Connecting Multiple Things"
+title: "Visualizing IoT Data"
 subheadline: "Particle Photon IoT Lab 7"
 teaser: "In this lab you will send some sensor data to Azure Event Hubs, process the data using Azure Stream Analytics and visualize the data using Power BI."
 show_meta: true
