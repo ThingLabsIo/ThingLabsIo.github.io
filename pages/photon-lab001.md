@@ -75,7 +75,7 @@ Use the down arrow key to highlight the SSID for the Wi-Fi network you want to c
   ? Should I scan for nearby Wi-Fi networks? Yes
   ? Select the Wi-Fi network with which you wish to connect your device: (Use arro? Select the Wi-Fi network with which you wish to connect your device: Terminus
   ? Security Type: WPA2
-  ? Wi-Fi Password: 2494994942
+  ? Wi-Fi Password: RickGrimes
   Attempting to configure Wi-Fi on COM4
   I said: w
   Serial said: SSID:
