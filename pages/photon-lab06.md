@@ -45,10 +45,10 @@ The second Photon uses the same wiring configuration for the ambient light senso
 The ambient light sensor device code is very similar to the code you wrote in [Lab 04][lab04]. Create a new file in the same directory as the other labs and name it <strong>lab06_lightSensor.js</strong>. Following is the code for that file.
 
 {% highlight javascript %}
-// Define the Jonny Five and Spark-IO variables
+// Define the Jonny Five and Particle-IO variables
 var five = require ("johnny-five"),
     board, photoresistor;
-var Spark = require("spark-io");
+var particle = require("particle-io");
 var Store = require("nitrogen-file-store"),
     nitrogen = require("nitrogen"),
     service, lightSensor;
@@ -72,7 +72,7 @@ lightSensor = new nitrogen.Device({
 
 // Define the Johnny Five board as your Particle Photon
 board = new five.Board({
-  io: new Spark({
+  io: new particle({
     token: process.env.PARTICLE_KEY || 'YOUR API KEY HERE',
     deviceId: process.env.PARTICLE_DEVICE || 'YOUR DEVICE ID OR ALIAS HERE'
   })
@@ -144,7 +144,7 @@ The indicaor light device is a status indicator using a  LED connected to pin _D
 // Define the Jonny Five and Spark-IO variables
 var five = require ("johnny-five"),
     board, led;
-var Spark = require("spark-io");
+var particle = require("particle-io");
 var Store = require("nitrogen-file-store"),
     nitrogen = require("nitrogen"),
     service, indicatorLight;
@@ -168,7 +168,7 @@ indicatorLight = new nitrogen.Device({
 
 // Define the Johnny Five board as your Particle Photon
 board = new five.Board({
-  io: new Spark({
+  io: new particle({
     token: process.env.PARTICLE_KEY || 'YOUR API KEY HERE',
     deviceId: process.env.PARTICLE_DEVICE || 'YOUR DEVICE ID OR ALIAS HERE'
   })

@@ -139,7 +139,7 @@ Since you are using Nitrogen as the agent and Cloud gateway, you need to update 
   "private": true,
   "dependencies": {
     "johnny-five": "^0.8.0",
-    "spark-io": "^0.6.0",    
+    "particle-io": "^0.8.1",    
     "nitrogen": "^0.2.4",
     "nitrogen-cli": "^0.2.4",
     "nitrogen-file-store": "^0.2.1",
@@ -173,7 +173,7 @@ In the lab04.js file start by declaring the key objects, including Johnny Five, 
 // Define the Jonny Five and Spark-IO variables
 var five = require("johnny-five"),
     board, photoresistor;
-var Spark = require("spark-io");
+var particle = require("particle-io");
 {% endhighlight %}
 
 Declare the Nitrogen objects you will need. You need to require Nitrogen and the Nitrogen File Store, then declare a variable to reference the Nitrogen service itself and a <code>lightSensor</code> as the Niotrogen device (this is a proxy for the photoresistor circuit you create with the Photon).
@@ -208,7 +208,7 @@ lightSensor = new nitrogen.Device({
     
 // Define the Johnny Five board as your Particle Photon
 board = new five.Board({
-  io: new Spark({
+  io: new particle({
     token: process.env.PARTICLE_KEY || 'YOUR API KEY HERE',
     deviceId: process.env.PARTICLE_DEVICE || 'YOUR DEVICE ID OR ALIAS HERE'
   })

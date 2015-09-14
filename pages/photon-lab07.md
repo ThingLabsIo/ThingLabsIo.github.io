@@ -91,10 +91,10 @@ For this lab you will create a new file named <strong>lab07.js</strong> in the s
 In the lab07.js file start by declaring the key objects, including a variable for the analog pin number you will use (A0 or 0). THis is the exact same code as [Lab 2][lab02].
 
 {% highlight javascript %}
-// Define the Jonny Five and Spark-IO variables
+// Define the Jonny Five and Particle-IO variables
 var five = require ("johnny-five"),
     board, photoresistor;
-var Spark = require("spark-io");
+var particle = require("particle-io");
 {% endhighlight %}
 
 In order to send messages to Azure Event Hub you will need to require the <code>https</code> and <code>crypto</code> libraries.
@@ -123,7 +123,7 @@ Define the Johnny FIve board object using Spark IO.
 {% highlight javascript %}
 // Define the Johnny Five board as your Particle Photon
 var board = new five.Board({
-  io: new Spark({
+  io: new particle({
     token: process.env.PARTICLE_KEY || 'YOUR API KEY HERE',
     deviceId: process.env.PARTICLE_DEVICE || 'YOUR DEVICE ID OR ALIAS HERE'
   })

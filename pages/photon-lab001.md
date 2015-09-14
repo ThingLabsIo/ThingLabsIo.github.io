@@ -167,7 +167,7 @@ Using your favorite/preferred text/code editor, create a file in your labs folde
   "private": true,
   "dependencies": {
     "johnny-five": "^0.8.0",
-    "spark-io": "^0.6.1"
+    "particle-io": "^0.8.1"
   }
 }
 {% endhighlight %}
@@ -194,12 +194,12 @@ Find the token for _user_ (make sure if you see more than one that you choose th
 Now add the following code to the <b>lab01.js</b> file:
 
 {% highlight javascript %}
-// Define the Jonny Five and Spark-IO variables
+// Define the Jonny Five and Particle-IO variables
 var five = require("johnny-five");
-var spark = require("spark-io");
+var particle = require("particle-io");
 // Define the Johnny Five board as your Particle Photon
 var board = new five.Board({
-  io: new spark({
+  io: new particle({
     token: process.env.PARTICLE_KEY || 'YOUR API KEY HERE',
     deviceId: process.env.PARTICLE_DEVICE || 'YOUR DEVICE ID OR ALIAS HERE'
   })
@@ -211,7 +211,7 @@ var LEDPIN = "D7";
 In this code you define four variables that you will be working with:
 
 1. <code>five</code> - represents the Johnny Five framework capabilities, which provide a type of object model for working with boards like Arduino and Particle.
-2. <code>spark</code> - represents the Spark IO framework capabilities which exposes the specifics of the Particle boards inclusing the Core and the Photon.
+2. <code>particle</code> - represents the Particle IO framework capabilities which exposes the specifics of the Particle boards inclusing the Core and the Photon.
 3. <code>board</code> - a representation of the physical board you are using. This is created by specifying the Spark board and passing in the Particle Cloud API token and the device ID.
 4. <code>LEDPIN</code> - a variable that references pin D7, which you will connected the LED to.
 

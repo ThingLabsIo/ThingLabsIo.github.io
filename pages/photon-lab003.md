@@ -70,12 +70,12 @@ For this lab you will create a new file named <strong>lab03.js</strong> in the s
 In the lab03.js file start by declaring the key objects, including a variable for the LED pin and the analog pin you will use (digital pin _D0_ for the LED and analog pin _A0_ for the photoresistor - if you still have your project board wired up from the previous labs then you should be all set). You should also stub out the <code>board.on()</code> callback function for Johnny Five.
 
 {% highlight javascript %}
-// Define the Jonny Five and Spark-IO variables
+// Define the Jonny Five and Particle-IO variables
 var five = require("johnny-five");
-var Spark = require("spark-io");
+var particle = require("particle-io");
 // Define the Johnny Five board as your Particle Photon
 var board = new five.Board({
-  io: new Spark({
+  io: new particle({
     token: process.env.PARTICLE_KEY || 'YOUR API KEY HERE',
     deviceId: process.env.PARTICLE_DEVICE || 'YOUR DEVICE ID OR ALIAS HERE'
   })
