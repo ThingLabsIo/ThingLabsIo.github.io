@@ -69,20 +69,21 @@ Select __APP SERVICES__ > __SERVICE BUS__ > __EVENT HUB__ > __QUICK CREATE__
 <img src="/images/photon_lab07_2.png"/>
 
 Enter the following information:
+
 1. __EVENT HUB NAME__: "iotlab"
 2. __REGION__: Choose a region that is physically close to the location of the device that will be sending data to it.
 3. __SUBSCRIPTION__: Choose the subscription that you want to use to pay for this Event Hub
-4. __NAMESPACE NAME__: A unique name that will identify this Service Bus instance.
+4. __NAMESPACE NAME__: "iotlabs-ns"
  
-Once the Event Hub has been created click on the line with the name _iotlab_
+Once the Event Hub has been created click on the line with the name _iotlabs-ns_
 
 <img src="/images/photon_lab07_3.png"/>
 
-Click on the __CONFIGURE__ tab to create a shared access policy that will allow you to send messages to the event hub.
+Click on the __CONFIGURE__ tab to create a shared access policy that will allow you to send messages to the event hub. Under _shared access policies_ add a policy named _Send_ and Select _Send_ in the _Permissions_ dropdown.
 
 <img src="/images/photon_lab07_4.png"/>
   
-The __POLICY NAME__ and the __PRIMARY KEY__ will be used later when you write code to generate the SAS token.
+The __POLICY NAME__ and the __PRIMARY KEY__ for the _Send_ policy will be used later when you write code to generate the SAS token.
 
 ## Writing the Code
 For this lab you will create a new file named <strong>lab07.js</strong> in the same directory as you did in the previous labs. There are no additional dependencies, so you don't need to make any changes to the package.json file.
@@ -158,7 +159,7 @@ board.on("ready", function(){
   photoresistor.on('data', function() {
     // Capture the ambient light level from the photoresistor
     var lightLevel = this.value;
-    var payload = '{\"_lightLevel\": ' + lightLevel + '}';
+    var payload = '{\"LightLevel\": ' + lightLevel + '}';
     
     console.log(payload);
         
@@ -232,10 +233,16 @@ Create a new Stream Analytics Job in the same region that you used to create the
 
 <img src="/images/photon_lab07_6.png"/>
 
-Navigate into the job and add a new input to your job
+Navigate into the job and to the _INPUT_ menu.
+ 
+<img src="/images/photon_lab07_6a.png"/>
+ 
+Add a new input as a _Data stream_
 
 <img src="/images/photon_lab07_7.png"/>
-
+ 
+Select _Event Hub_
+ 
 <img src="/images/photon_lab07_8.png"/>
 
 Choose the namespace that you used to build the event hub and then choose the event hub from the drop down list
@@ -248,6 +255,10 @@ Create Query that the data from the event hub will pass through. Normalize data 
 
 <img src="/images/photon_lab07_11.png"/>
 
+Navigate to the _OUTPUTS_ menu.
+
+<img src="/images/photon_lab07_12a.png"/>
+  
 Add an output to the job to send the results into Power BI where you can create some charts for the data.
 
 <img src="/images/photon_lab07_12.png"/>
@@ -278,5 +289,6 @@ Click on the __Save__ button above the chart to save it with the name _Lab 07_. 
 If you want to compare your code to the final solution you can see the code in GitHub [here](https://github.com/ThingLabsIo/IoTLabs/blob/master/Photon/Lab07/lab07.js).
 
  [photon]: https://store.particle.io/?product=photon-kit
+ [lab00]: /photon/00/
  [lab02]: /photon/02/
  

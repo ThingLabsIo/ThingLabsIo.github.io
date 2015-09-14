@@ -1,6 +1,6 @@
 ---
 layout: page-fullwidth
-title: "Getting Started"
+title: "Particle Photon IoT Labs: Getting Started"
 subheadline: "A Step-by-Step Guide"
 teaser: "This is a step-by-step guide to preparing your computer for the Particle Photon IoT Labs."
 show_meta: true
