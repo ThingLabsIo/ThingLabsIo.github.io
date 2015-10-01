@@ -2,7 +2,7 @@
 layout: page-fullwidth
 title: "Sending Telemetry to the Cloud"
 subheadline: "Microsoft Azure IoT Lab 1"
-teaser: "In this lab you will write to a digital output."
+teaser: "In this lab you will gather telemetry and send it to the cloud."
 show_meta: true
 comments: true
 header: no
@@ -10,7 +10,6 @@ breadcrumb: true
 categories:
     - iot-photon-labs
     - maker-101
-	  - azure-iot
 author: "Doug Seven"
 permalink: "/azure/01/"
 ---

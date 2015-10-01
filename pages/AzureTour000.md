@@ -1,6 +1,6 @@
 ---
 layout: page-fullwidth
-title: "Microsoft Azure IoT Labs: Getting Started"
+title: "Microsoft Azure IoT Labs - Getting Started"
 subheadline: "A Step-by-Step Guide"
 teaser: "This is a step-by-step guide to preparing your computer for the Azure IoT Labs."
 show_meta: true
@@ -10,7 +10,6 @@ breadcrumb: true
 categories:
     - iot-photon-labs
     - maker-101
-	- azure-iot
 author: "Doug Seven"
 permalink: "/azure/00/"
 ---
