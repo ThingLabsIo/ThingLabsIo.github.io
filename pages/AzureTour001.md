@@ -154,7 +154,7 @@ The weather shield comes equiped with two onboard sensors - a HTU21D humidity se
 <img src="/images/Photon_Weather_Shield.jpg"/>
 
 <blockquote>
-TEMP - Wire up the TMP36 Temperature Sensor
+## TEMP - Wire up the TMP36 Temperature Sensor
 Until the Weather Sheild is supported in Johnny Five we will use the common TMP36 sensor. With the flat side facing you, connect the left lead to the 3.3v pin, the center lead to the A0 pin, and the right lead to the GND pin.
 
 <img src="/images/photon_tmp36_bb.png"/>
@@ -162,7 +162,7 @@ Until the Weather Sheild is supported in Johnny Five we will use the common TMP3
 
 ## Setup an Azure IoT Hub
 
-In a browser, navigate to https://portal.azure.com. Login to the account you created in in [Lab 00: Getting Started](/azure/00/). Once logged in:
+In a browser, navigate to the [Azure Portal](https://portal.azure.com). Login to the account you created in in [Lab 00: Getting Started](/azure/00/). Once logged in:
 
 1. Click on the _New_ menu option in the upper-left
 2. Select _Internet of Things_
