@@ -417,6 +417,7 @@ function printResultFor(op) {
 {% endhighlight %}
 
 In this code you do a number of things:
+
 1. <code>board.on()</code> - This function triggers the Photon to invoke the anonymous callback function as soon as the board is on and ready. All of the application code for the device is written inside this callback function.
 2. Define the <code>shield</code> object. This is a representation of the physical sensor shield connected to the Photon. You instantiate it by specifying the controller class to use (this informs the framework how to interact with this sensor) and a frequency to report the data collected by the sensor. Many sensors are capable of collecting data in fraction of a second intervals. You may not want to collect data and send it to your Azure IoT Hub that frequently. The <code>freq</code> property defines (in milliseconds) how often to raise an event to report the data from the sensor. In this example you are establishing the callback at a frequency of once per second. 
 3. <code>shield.on()</code> is the function that initializes the controller for the multi-sensor shield. As soon as it is initialized it begins invoking the ananymous callback function repeatedly based on the <code>freq</code> value. Each time the data is gathered and passed ot the ananymous function you can create and send a telemetry message to Azure IoT Hub.
