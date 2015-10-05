@@ -23,14 +23,14 @@ If you haven't already done so, please follow the instructions in [Lab 00: Getti
 *  Auto generated table of contents
 {:toc}
 
-In this lab you will create a small device that collects environmental telemetry (i.e. temperature, humidity) and send it to the cloud. THis is the first setp in building an IoT solution.
+In this lab you will create a small device that collects environmental telemetry (i.e. temperature, humidity, pressure) and send it to the cloud. This is the first step in building an IoT solution.
 
 ## Bill of Materials
 What you will need:
 
 1. [Particle Photon][1]
 2. USB to micro-USB cable (there is one included in the [Photon Development Kit][1])
-3. [SparkFun Weather Shield for Particle Photon - $32.95](https://www.sparkfun.com/products/13630) _TEMP EDIT: we will use the TMP36 tempurature sensor in this lab until the new sensor capabilities are added to Johnny Five_
+3. [SparkFun Weather Shield for Particle Photon - $32.95](https://www.sparkfun.com/products/13630) _TEMP EDIT: we will use the TMP36 temperature sensor in this lab until the new sensor capabilities are added to Johnny Five_
 
 For this lab series you are using a Particle Photon, a small Wi-Fi enabled development board. The Photon is an excellent prototyping board for connected Things and Particle, the makers of the Photon, sell the P0 chip that drives the board (so when you are ready to go into production you can easily use the same chip). While you can develop for the Photon using Particle Build or Particle Dev and leverage the Particle Cloud services, this lab series is designed to teach you how to build a Wi-Fi based hub-and-spoke system, similar to how SmartThings, Lowes Iris, or Phillips Hue works. For the first few labs you will learn how to create Node.js applications that run on your PC and control the Photon. If you choose to continue with these labs on your own, you will learn how to deploy the Node.js applications to a hub device, like a Raspberry Pi or an Arduino Y&uacute;n, which will act as the field gateway for all of the connected _Things_ in your solution.
 
@@ -47,12 +47,12 @@ Open a terminal window (Mac OS X) or Node.js command prompt (Windows) and execut
   particle identify  
 </pre>
 
-If the Photon is connected correctly and working you shold see a result similar to this:
+If the Photon is connected correctly and working you should see a result similar to this:
 <pre>
   Your device id is 21003f000447343335555555
 </pre>
 
-Copy the device ID somewhere you can reference it in a momment. Next, enter the following to connect the Photon to your Wi-Fi network:
+Copy the device ID somewhere you can reference it in a moment. Next, enter the following to connect the Photon to your Wi-Fi network:
 
 <pre>
   c:\Development\gh\IoTLabs>particle serial wifi
@@ -75,7 +75,7 @@ c:\Development\gh\IoTLabs>particle serial wifi
   JimsHouse
 </pre>
 
-Use the down arrow key to highlight the SSID for the Wi-Fi network you want to connect to and press <kbd>Enter</kbd>. You should be prompted to identify the seurity protocol (e.g. WPA2, WPA, WEP, Unsecured). Choose the correct option for your Wi-Fi network and press <kbd>Enter</kbd>, then enter the Wi-Fi network password when prompted.
+Use the down arrow key to highlight the SSID for the Wi-Fi network you want to connect to and press <kbd>Enter</kbd>. You should be prompted to identify the security protocol (e.g. WPA2, WPA, WEP, Unsecured). Choose the correct option for your Wi-Fi network and press <kbd>Enter</kbd>, then enter the Wi-Fi network password when prompted.
 
 <pre>
   c:\Development\gh\IoTLabs>particle serial wifi
@@ -141,7 +141,7 @@ For this lab series you will be controlling the Photon from a master/hub device 
 5. Name the app "VoodooSpark"
 6. Copy all of the code from the VoodooSpark GitHub page to your new app (be sure to replace any code in the new app).
 7. Click on the _Devices_ icon in the lower-left toolbar (it looks like a targeting sight).
-8. Find your new Photon (there will likely be a device with no name/alias with the text 'No TItle (click to edit)' - that is your new Photon - feel free to give it a friendly name at this time).
+8. Find your new Photon (there will likely be a device with no name/alias with the text 'No Title (click to edit)' - that is your new Photon - feel free to give it a friendly name at this time).
 9. Click on the gray star that appears next to the Photon when you hover over it to turn it yellow (doing this selects this device as the target for a firmware flash).
 10. Click on the verify icon in the upper-left toolbar (it looks like a checkmark). In the lower-left corner of the IDE you will see the verification status.
 11. After the app is verified, click the flash firmware icon in the upper-left toolbar (it looks like a lightening bolt) to flash your Photon with the VoodooSpark firmware.
@@ -149,13 +149,12 @@ For this lab series you will be controlling the Photon from a master/hub device 
 After completing the last step you should see the indicator LED on your Photon begin to blink. When it returns to the 'breathing' cyan the update is complete.
 
 ## Connecting the Weather Shield
-The weather shield comes equiped with two onboard sensors - a HTU21D humidity sensor capable of gathering both humidity and temperature, and a MPL3115A2 barometric pressure sensor. THere are connections for other optional sensors, such as wind, rain and soile moisture sensors (we will not be working with the optional sensors in this lab series). Simply plug the Photon into the weather shield so that the USB port on the Photon is on the same side as the RJ-11 plugs on the weather shield. 
+The weather shield comes equipped with two onboard sensors - a HTU21D humidity sensor capable of gathering both humidity and temperature, and a MPL3115A2 barometric pressure sensor. There are connections for other optional sensors, such as wind, rain and soile moisture sensors (we will not be working with the optional sensors in this lab series). Simply plug the Photon into the weather shield so that the USB port on the Photon is on the same side as the RJ-11 plugs on the weather shield. 
 
 <img src="/images/Photon_Weather_Shield.jpg"/>
 
 <blockquote>
-## TEMP - Wire up the TMP36 Temperature Sensor
-Until the Weather Sheild is supported in Johnny Five we will use the common TMP36 sensor. With the flat side facing you, connect the left lead to the 3.3v pin, the center lead to the A0 pin, and the right lead to the GND pin.
+TEMP - Wire Up the TMP36 Temperature Sensor - Until the Weather Shield is supported in Johnny Five we will use the common TMP36 sensor. With the flat side facing you, connect the left lead to the 3.3v pin, the center lead to the A0 pin, and the right lead to the GND pin.
 
 <img src="/images/photon_tmp36_bb.png"/>
 </blockquote>
@@ -169,7 +168,7 @@ In a browser, navigate to the [Azure Portal](https://portal.azure.com). Login to
 3. Select _Azure IoT Hub_
 4. Give it a name such as your name followed by 'iot-labs' (i.e. rickgrimes-iot-labs)
 5. Select or create a new Resource Group
-6. Select a location (choose the one closest to your pysical location)
+6. Select a location (choose the one closest to your physical location)
 
 <img src="/images/New-IoT-Hub.png"/>
   
@@ -195,7 +194,7 @@ On Mac OS X open Terminal and type the following:
   sudo npm install
 </pre>
 
-After the dependencies are installed, you can execute a _create_ command to create a new device in your Azure IoT Hub. WHen you are using the iothub-explorer utility you must provide the connection string you copied above.
+After the dependencies are installed, you can execute a _create_ command to create a new device in your Azure IoT Hub. When you are using the iothub-explorer utility you must provide the connection string you copied above.
 
 In the same directory as before, using the Node.js command prompt or Terminal:
 
@@ -212,7 +211,7 @@ Once a device is created, you can get the device-specific connection string with
 The device-specific connection string identifies the device by name and includes a key that is only for that device. Copy the device connection string somewhere that you will be able to access it shortly.
 
 <blockquote>
-  Optionally you can download and run a small Windows utility app called [Device Explorer][deviceexplorer]. This utility is configured witht he same connection string you used for the iothub-explorer utility but it has a graphical UI instead of a command-line interface, however; it is limited to running on Windows. 
+  Optionally you can download and run a small Windows utility app called [Device Explorer][deviceexplorer]. This utility is configured with he same connection string you used for the iothub-explorer utility but it has a graphical UI instead of a command-line interface, however; it is limited to running on Windows. 
 </blockquote>
 
 ## Write the Code
@@ -259,7 +258,7 @@ Next you will create the application code to gather temperature data and send it
 
 Create another file in the same directory named __weather.js__.
 
-The first thing you need to do is define the objects you will be working with in the application. The three things that matter are the Azure IoT Device object, a Johnny-Five framework object, and an object to represent the Photon. In order to complete this step you will need the device ID you copied earlier when you were claiming the Photon (or the name/alias you gave the Photon when you updated the firmware to VoodooSpark) and your Particle Cloud access token. To get the access token, Open a terminal window (Mac OS X) or Node.js command prompt (Windows) and execute the following command (you may be prompted to login or provide your Particle Cloud password again):
+The first thing you need to do is define the objects you will be working with in the application. The three things that matter are the Azure IoT Device object, a Johnny-Five framework object, and an object to represent the Photon. In order to complete this step, you will need the device ID you copied earlier when you were claiming the Photon (or the name/alias you gave the Photon when you updated the firmware to VoodooSpark) and your Particle Cloud access token. To get the access token, open a terminal window (Mac OS X) or Node.js command prompt (Windows) and execute the following command (you may be prompted to login or provide your Particle Cloud password again):
 
 <pre>
   particle token list
@@ -307,11 +306,11 @@ In this code you define four variables that you will be working with:
 3. <code>board</code> - a representation of the physical board you are using. This is created by specifying the Particle board and passing in the Particle Access Token and the device ID or alias.
 4. <code>client</code> - This is the agent class that facilitates the communication between your device and the Azure IoT Hub. It takes the device-specific connection string as an argument and establishes a connection with the IoT Hub.
 
-Now that the objects are created, you can get to the meat of the application. Johnny Five provides a board 'ready' event that makes a callback when the board is on, initialized and ready for action. Inside the ananymous callback function is where your application code executes (this function is invoked when the board is ready for use).
+Now that the objects are created, you can get to the meat of the application. Johnny Five provides a board 'ready' event that makes a callback when the board is on, initialized and ready for action. Inside the anonymous callback function is where your application code executes (this function is invoked when the board is ready for use).
 
-Johnny Five provides a collection of objects that represent the board, the pins on the board, and various types of sensors and devices that could be connected to the board. In this lab series you will work with the Temperature and Barometer classes as a representation of the HTU21D humidity sensor and the MPL3115A2 barometric pressure sensor respectively. When you create an instance of the classes you will specfy the controller class by defining the sensor name (HTU21D or MPL3115A2).
+Johnny Five provides a collection of objects that represent the board, the pins on the board, and various types of sensors and devices that could be connected to the board. In this lab series you will work with the Temperature and Barometer classes as a representation of the HTU21D humidity sensor and the MPL3115A2 barometric pressure sensor respectively. When you create an instance of the classes you will specify the controller class by defining the sensor name (HTU21D or MPL3115A2).
 
-In the following code you will invoke the <code>board.on()</code> function which establishes a callback function that is invoked when the board is on, initialized and ready. All of the operational code for the board will be in the <code>board.on()</code> function (helper functions may exist outside the scope on the <code>board.on()</code> function). Withint the <code>board.on()</code> function you will create an object reference to the sensors on the weather shield. Similar to the <code>board</code> object, the object you create to referenc ethe shield will have an <code>on()</code> function that establishes a callback that exposes the data read from the sensors on the shield.
+In the following code you will invoke the <code>board.on()</code> function which establishes a callback function that is invoked when the board is on, initialized and ready. All of the operational code for the board will be in the <code>board.on()</code> function (helper functions may exist outside the scope on the <code>board.on()</code> function). Within the <code>board.on()</code> function you will create an object reference to the sensors on the weather shield. Similar to the <code>board</code> object, the object you create to reference the shield will have an <code>on()</code> function that establishes a callback that exposes the data read from the sensors on the shield.
 
 {% highlight javascript %}
 // The board.on() executes the anonymous function when the 
@@ -330,7 +329,7 @@ board.on("ready", function() {
         freq: 1000 // Collect data once per second
     });
     
-    // The shield.on function invokes the ananymous callback function at the 
+    // The shield.on function invokes the anonymous callback function at the 
     // frequency specified (250ms by default). The anonymous function is scoped
     // to the object (e.g. this == the weather shield Multi class object). 
     shield.on("data", function() {
@@ -385,10 +384,10 @@ board.on("ready", function() {
         freq: 1000 // Gather the temperature once per second
     });
 
-    // The temperature.on function involes the ananymous callback
+    // The temperature.on function invokes the anonymous callback
     // function at the frequency specified above. The anonymous function
-    // is scoped to the data returned from the sensor (e.g. fahrenheit 
-    // or celsius temperatures). 
+    // is scoped to the data returned from the sensor (e.g. Fahrenheit 
+    // or Celsius temperatures). 
     temperature.on("data", function() {
         hF = this.F;
         hC = this.C;
@@ -404,7 +403,7 @@ board.on("ready", function() {
         // Create the message based on the payload JSON
         var message = new device.Message(payload);
  
-        // For debugging purposes, write out the message paylod to the console
+        // For debugging purposes, write out the message payload to the console
         console.log("Sending message: " + message.getData());
         
         // Send the message to Azure IoT Hub
@@ -427,13 +426,13 @@ In this code you do a number of things:
 
 1. <code>board.on()</code> - This function triggers the Photon to invoke the anonymous callback function as soon as the board is on and ready. All of the application code for the device is written inside this callback function.
 2. Define the <code>shield</code> object. This is a representation of the physical sensor shield connected to the Photon. You instantiate it by specifying the controller class to use (this informs the framework how to interact with this sensor) and a frequency to report the data collected by the sensor. Many sensors are capable of collecting data in fraction of a second intervals. You may not want to collect data and send it to your Azure IoT Hub that frequently. The <code>freq</code> property defines (in milliseconds) how often to raise an event to report the data from the sensor. In this example you are establishing the callback at a frequency of once per second. 
-3. <code>shield.on()</code> is the function that initializes the controller for the multi-sensor shield. As soon as it is initialized it begins invoking the ananymous callback function repeatedly based on the <code>freq</code> value. Each time the data is gathered and passed ot the ananymous function you can create and send a telemetry message to Azure IoT Hub.
+3. <code>shield.on()</code> is the function that initializes the controller for the multi-sensor shield. As soon as it is initialized it begins invoking the anonymous callback function repeatedly based on the <code>freq</code> value. Each time the data is gathered and passed ot the anonymous function you can create and send a telemetry message to Azure IoT Hub.
 4. <code>message</code> is the object that represents the data you are sending to Azure IoT Hub. This is a JSON formatted message.
 
 When <code>client.sendEvent()</code> is invoked, the JSON message is sent to Azure IoT Hub. For now, nothing happens with the message once it is received in your IoT Hub because you haven't set up anything that will capture the message and do something with it (we will get to that soon). 
 
 ## Run the App
-When you run the application it will execute on your computer, and thanks to Johnny Five, it will connect with your Photon and work directly with it. Basically, your computer is acting as a hub and communicating via TCP over your local Wi-Fi network with the Photon as one of potentilly many devices (or spokes). If you continue on past today, in a future lab you will deploy the Node.js application to another device (like a Rasberry Pi) which will act as the hub and connect to multiple spoke devices.
+When you run the application it will execute on your computer, and thanks to Johnny Five, it will connect with your Photon and work directly with it. Basically, your computer is acting as a hub and communicating via TCP over your local Wi-Fi network with the Photon as one of potentially many devices (or spokes). If you continue on past today, in a future lab you will deploy the Node.js application to another device (like a Raspberry Pi) which will act as the hub and connect to multiple spoke devices.
 
 Open a terminal window (Mac OS X) or Node.js command prompt (Windows) and execute the following commands (replace c:\Development\IoTLabs with the path that leads to your labs folder):
 
