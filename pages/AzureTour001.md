@@ -365,7 +365,7 @@ function printResultFor(op) {
 {% endhighlight %}
 
 <blockqoute>
-  TEMP EDIT: for this code sample you need to replace the board.on() function with one that uses the TMP36 sensor until the weather shield is supported in Johnny Five (planned by Oct-9-2015)_
+  TEMP EDIT: for this code sample you need to replace the board.on() function with one that uses the TMP36 sensor until the weather shield is supported in Johnny Five (planned by Oct-9-2015)
 </blockqoute>
 
 {% highlight javascript %}
@@ -423,7 +423,7 @@ In this code you do a number of things:
 3. <code>shield.on()</code> is the function that initializes the controller for the multi-sensor shield. As soon as it is initialized it begins invoking the ananymous callback function repeatedly based on the <code>freq</code> value. Each time the data is gathered and passed ot the ananymous function you can create and send a telemetry message to Azure IoT Hub.
 4. <code>message</code> is the object that represents the data you are sending to Azure IoT Hub. This is a JSON formatted message.
 
-WHen <code>client.sendEvent()</code> is invoked, the JSON message is sent to Azure IoT Hub. For now, nothing happens with the message once it is received in your IoT Hub because you haven't set up anything that will capture the message and do something with it (we will get to that soon). 
+When <code>client.sendEvent()</code> is invoked, the JSON message is sent to Azure IoT Hub. For now, nothing happens with the message once it is received in your IoT Hub because you haven't set up anything that will capture the message and do something with it (we will get to that soon). 
 
 ## Run the App
 When you run the application it will execute on your computer, and thanks to Johnny Five, it will connect with your Photon and work directly with it. Basically, your computer is acting as a hub and communicating via TCP over your local Wi-Fi network with the Photon as one of potentilly many devices (or spokes). If you continue on past today, in a future lab you will deploy the Node.js application to another device (like a Rasberry Pi) which will act as the hub and connect to multiple spoke devices.
