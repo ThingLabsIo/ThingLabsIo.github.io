@@ -35,7 +35,11 @@ What you will need:
 For this lab series you are using a Particle Photon, a small Wi-Fi enabled development board. The Photon is an excellent prototyping board for connected Things and Particle, the makers of the Photon, sell the P0 chip that drives the board (so when you are ready to go into production you can easily use the same chip). While you can develop for the Photon using Particle Build or Particle Dev and leverage the Particle Cloud services, this lab series is designed to teach you how to build a Wi-Fi based hub-and-spoke system, similar to how SmartThings, Lowes Iris, or Phillips Hue works. For the first few labs you will learn how to create Node.js applications that run on your PC and control the Photon. If you choose to continue with these labs on your own, you will learn how to deploy the Node.js applications to a hub device, like a Raspberry Pi or an Arduino Y&uacute;n, which will act as the field gateway for all of the connected _Things_ in your solution.
 
 ## Claim Your Photon
-Associating a Particle Photon to your Particle account is known as _claiming_ (you are claiming the Photon so no one else can claim it - its like high-tech cookie-licking). If you refer to the Particle website there is information about how to [claim the Photon using either an iPhone or an Android phone](https://docs.particle.io/guide/getting-started/start/photon/#step-1-power-on-your-device), or [over USB from Windows or OS X](https://docs.particle.io/guide/getting-started/connect/photon/). As of the writing of this tutorial, there is a bug in the USB claiming process for Windows 10. After following the steps to install the Particle USB driver, use the following steps to claim the Photon to your account if you are on Windows 10, or if you experience difficulties on previous versions of Windows.
+Associating a Particle Photon to your Particle account is known as _claiming_ (you are claiming the Photon so no one else can claim it - its like high-tech cookie-licking). If you refer to the Particle website there is information about how to [claim the Photon using either an iOS or Android device](https://docs.particle.io/guide/getting-started/start/photon/#step-1-power-on-your-device), or [over USB from Windows or OS X](https://docs.particle.io/guide/getting-started/connect/photon/). 
+
+<blockquote>
+  As of the writing of this tutorial, there is a bug in the USB claiming process for Windows 10. After following the steps to install the Particle USB driver, use the following steps to claim the Photon to your account if you are on Windows 10, or if you experience difficulties on previous versions of Windows.
+</blockquote>
 
 Open a terminal window (Mac OS X) or Node.js command prompt (Windows) and execute the following command to get the device ID of your Photon:
 
@@ -101,7 +105,7 @@ Use the down arrow key to highlight the SSID for the Wi-Fi network you want to c
   c:\Development\gh\IoTLabs>
 </pre>
 
-Now push the <b>Reset</b> button on the Photon. After the Photon reboots the indicator LED will flash magenta. At this point the Photon has been configured to connect to your Wi-Fi network. Now you need to add the Photon to your Particle.io account (this is where you need the device ID that you copied earlier).
+Now push the __Reset__ button on the Photon. After the Photon reboots the indicator LED will flash magenta. At this point the Photon has been configured to connect to your Wi-Fi network. Now you need to add the Photon to your Particle.io account (this is where you need the device ID that you copied earlier).
 
 <pre>
   particle device add YOUR_DEVICE_ID_HERE
@@ -226,7 +230,7 @@ Using your favorite/preferred text/code editor, create a file in your developmen
   "dependencies": {
     "azure-iot-device": "^1.0.0-preview.3",
     "johnny-five": "^0.8.0",
-    "particle-io": "^0.8.1"
+    "particle-io": "^0.10.0"
   }
 }
 {% endhighlight %}
@@ -298,11 +302,91 @@ Johnny Five provides a collection of objects that represent the board, the pins 
 
 In the following code you will create a callback function that is invoked when the Photon is initialized and ready (this is a Johnny Five concept). You will set digital pin _D7_ (the <code>LEDPIN</code> variable above) as an output pin (vs. an input pin), meaning the application is expecting to send voltage out from the pin as opposed to read the voltage coming in to the pin. Then you will create a loop that runs once per second and inside that loop you will write out to the pin either LOW or HIGH voltage. Since pin _D7_ is a digital pin, its only options are 0 and 1 - in the world of Arduino-based boards that is LOW and HIGH. When you send 0 (or LOW) to the pin, that is equivalent to off (sending no voltage). When you send 1 (or HIGH) to the pin that is equivalent to on (sending full voltage).
 
-_TEMP EDIT: for this code sample you will use the TMP36 sensor until the weather shield is supported in Johnny Five_
+{% highlight javascript %}
+'use strict';
+var five = require ("johnny-five");
+var device = require('azure-iot-device');
+var Particle = require("particle-io");
+
+var particleKey = process.env.PARTICLE_KEY || 'YOUR PARTICLE ACCESS TOKEN HERE';
+var deviceName = process.env.DEVICE_NAME || 'YOUR PARTICLE PHOTON DEVICE ID/ALIAS HERE';
+var location = process.env.DEVICE_LOCATION || 'THE LOCATION OF THE PARTICLE PHOTON DEVICE';
+var connectionString = process.env.IOTHUB_CONN || 'YOUR IOT HUB DEVICE-SPECIFIC CONNECTION STRING HERE';
+
+var client = new device.Client(connectionString, new device.Https());
+
+// Create a Johnny Five board board instance to represent your Particle Photon
+var board = new five.Board({
+  io: new Particle({
+    token: particleKey,
+    deviceId: deviceName
+  })
+});
+
+// hF, hC, bF, bC are holder variables for the fahrenheit and celsius values from the
+// hygrometer and barometer respectively.
+var hF, hC, bF, bC, relativeHumidity, pressure;
+
+// The board.on() executes the anonymous function when the 
+// board reports back that it is initialized and ready.
+board.on("ready", function() {
+    console.log("Board connected...");
+    
+    // The SparkFun Weather Shield for the Particle Photon has two sensors on the I2C bus - 
+    // a humidity sensor (HTU21D) which can provide both humidity and temperature, and a 
+    // barometer (MPL3115A2) which can provide both barometric pressure and humidity.
+    // WHen you create objects for the sensors you use the PHOTON_WEATHER_SHILED controller
+    // which is a multi-class controller. Create objects for each data type you will 
+    // use by specifying the controller which maps to the specific sensor.
+    var shield = new five.Multi({
+        controller: "PHOTON_WEATHER_SHIELD"
+    });
+    
+    // The shield.on function invokes the ananymous callback function at the 
+    // frequency specified (250ms by default). The anonymous function is scoped
+    // to the object (e.g. this == the weather shield Multi class object). 
+    shield.on("data", function() {
+        hF = this.hygrometer.temperature.fahrenheit;
+        hC = this.hygrometer.temperature.celsius;
+        relativeHumidity = this.hygrometer.hygrometer.relativeHumidity;
+        
+        bF = this.barometer.temperature.fahrenheit;
+        bC = this.barometer.temperature.celsius;
+        pressure = this.barometer.pressure;
+        
+        // Create a JSON payload for the message that will be sent to Azure IoT Hub
+        var payload = JSON.stringify({
+            deviceId: deviceName,
+            location: location,
+            fahrenheit: (hF + bF) /2,
+            celsius: (hC + bC) / 2,
+            relativeHumidity: relativeHumidity,
+            pressure: pressure
+        });
+    
+        // Create the message based on the payload JSON
+        var message = new device.Message(payload);
+        // For debugging purposes, write out the message paylod to the console
+        console.log("Sending message: " + message.getData());
+        // Send the message to Azure IoT Hub
+        client.sendEvent(message, printResultFor('send'));
+    });
+});
+    
+// Helper function to print results in the console
+function printResultFor(op) {
+  return function printResult(err, res) {
+    if (err) console.log(op + ' error: ' + err.toString());
+    if (res && (res.statusCode !== 204)) console.log(op + ' status: ' + res.statusCode + ' ' + res.statusMessage);
+  };
+}
+{% endhighlight %}
+
+_TEMP EDIT: for this code sample you need to replace the board.on() function with one that uses the TMP36 sensor until the weather shield is supported in Johnny Five (planned by Oct-9-2015)_
 
 {% highlight javascript %}
 // The board.on() executes the anonymous function when the 
-// Partile Photon reports back that it is initialized and ready.
+// Particle Photon reports back that it is initialized and ready.
 board.on("ready", function() {
     console.log("Board connected...");
     
@@ -317,9 +401,16 @@ board.on("ready", function() {
     // is scoped to the data returned from the sensor (e.g. fahrenheit 
     // or celsius temperatures). 
     temperature.on("data", function() {
+        hF = this.F;
+        hC = this.C;
     
         // Create a JSON payload for the message that will be sent to Azure IoT Hub
-        var payload = JSON.stringify({ deviceId: deviceName, temperature: this.F });
+        var payload = JSON.stringify({
+          deviceId: deviceName,
+          location: location,
+          fahrenheit: hF,
+          celsius: hC 
+        });
         
         // Create the message based on the payload JSON
         var message = new device.Message(payload);
