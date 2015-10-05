@@ -275,7 +275,8 @@ var device = require('azure-iot-device');
 
 // Set up the access credentials for Particle and Azure
 var particleKey = process.env.PARTICLE_KEY || 'YOUR PARTICLE ACCESS TOKEN HERE';
-var deviceName = process.env.PARTICLE_DEVICE || 'YOUR PARTICLE DEVICE ID/ALIAS HERE';
+var deviceName = process.env.DEVICE_NAME || 'YOUR PARTICLE PHOTON DEVICE ID/ALIAS HERE';
+var location = process.env.DEVICE_LOCATION || 'THE LOCATION OF THE PARTICLE PHOTON DEVICE';
 var connectionString = process.env.IOTHUB_CONN || 'YOUR IOT HUB DEVICE-SPECIFIC CONNECTION STRING HERE';
 
 // Define the Johnny Five board as your Particle Photon
@@ -303,18 +304,6 @@ Johnny Five provides a collection of objects that represent the board, the pins 
 In the following code you will create a callback function that is invoked when the Photon is initialized and ready (this is a Johnny Five concept). You will set digital pin _D7_ (the <code>LEDPIN</code> variable above) as an output pin (vs. an input pin), meaning the application is expecting to send voltage out from the pin as opposed to read the voltage coming in to the pin. Then you will create a loop that runs once per second and inside that loop you will write out to the pin either LOW or HIGH voltage. Since pin _D7_ is a digital pin, its only options are 0 and 1 - in the world of Arduino-based boards that is LOW and HIGH. When you send 0 (or LOW) to the pin, that is equivalent to off (sending no voltage). When you send 1 (or HIGH) to the pin that is equivalent to on (sending full voltage).
 
 {% highlight javascript %}
-'use strict';
-var five = require ("johnny-five");
-var device = require('azure-iot-device');
-var Particle = require("particle-io");
-
-var particleKey = process.env.PARTICLE_KEY || 'YOUR PARTICLE ACCESS TOKEN HERE';
-var deviceName = process.env.DEVICE_NAME || 'YOUR PARTICLE PHOTON DEVICE ID/ALIAS HERE';
-var location = process.env.DEVICE_LOCATION || 'THE LOCATION OF THE PARTICLE PHOTON DEVICE';
-var connectionString = process.env.IOTHUB_CONN || 'YOUR IOT HUB DEVICE-SPECIFIC CONNECTION STRING HERE';
-
-var client = new device.Client(connectionString, new device.Https());
-
 // Create a Johnny Five board board instance to represent your Particle Photon
 var board = new five.Board({
   io: new Particle({
