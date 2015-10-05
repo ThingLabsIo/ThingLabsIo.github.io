@@ -210,7 +210,7 @@ Once a device is created, you can get the device-specific connection string with
 The device-specific connection string identifies the device by name and includes a key that is only for that device. Copy the device connection string somewhere that you will be able to access it shortly.
 
 <blockquote>
-  Optionally you can download and run a small Windows utility app called [Device Explorer](https://github.com/Azure/azure-iot-sdks/blob/master/tools/DeviceExplorer/doc/how_to_use_device_explorer.md). This utility is configured witht he same connection string you used for the iothub-explorer utility, but it has a graphical UI instead of a command-line interface, however; it is limited to running on Windows. 
+  Optionally you can download and run a small Windows utility app called [Device Explorer][deviceexplorer]. This utility is configured witht he same connection string you used for the iothub-explorer utility but it has a graphical UI instead of a command-line interface, however; it is limited to running on Windows. 
 </blockquote>
 
 ## Write the Code
@@ -316,7 +316,7 @@ board.on("ready", function() {
     // The SparkFun Weather Shield for the Particle Photon has two sensors on the I2C bus - 
     // a humidity sensor (HTU21D) which can provide both humidity and temperature, and a 
     // barometer (MPL3115A2) which can provide both barometric pressure and humidity.
-    // WHen you create objects for the sensors you use the PHOTON_WEATHER_SHILED controller
+    // When you create objects for the sensors you use the PHOTON_WEATHER_SHILED controller
     // which is a multi-class controller. Create objects for each data type you will 
     // use by specifying the controller which maps to the specific sensor.
     var shield = new five.Multi({
@@ -364,7 +364,8 @@ function printResultFor(op) {
 }
 {% endhighlight %}
 
-_TEMP EDIT: for this code sample you need to replace the board.on() function with one that uses the TMP36 sensor until the weather shield is supported in Johnny Five (planned by Oct-9-2015)_
+<blockqoute>
+  _TEMP EDIT: for this code sample you need to replace the board.on() function with one that uses the TMP36 sensor until the weather shield is supported in Johnny Five (planned by Oct-9-2015)_
 
 {% highlight javascript %}
 // The board.on() executes the anonymous function when the 
@@ -414,6 +415,8 @@ function printResultFor(op) {
 }
 {% endhighlight %}
   
+</blockquote>
+
 In this code you do a number of things:
 1. <code>board.on()</code> - This function triggers the Photon to invoke the anonymous callback function as soon as the board is on and ready. All of the application code for the device is written inside this callback function.
 2. Define the <code>shield</code> object. This is a representation of the physical sensor shield connected to the Photon. You instantiate it by specifying the controller class to use (this informs the framework how to interact with this sensor) and a frequency to report the data collected by the sensor. Many sensors are capable of collecting data in fraction of a second intervals. You may not want to collect data and send it to your Azure IoT Hub that frequently. The <code>freq</code> property defines (in milliseconds) how often to raise an event to report the data from the sensor. In this example you are establishing the callback at a frequency of once per second. 
@@ -449,3 +452,4 @@ In this lab you learned how to write a Node.js/Johnny Five application that coll
 
 [1]: https://store.particle.io/?product=photon-kit
 [2]: /azure/02/
+[deviceexplorer]: https://github.com/Azure/azure-iot-sdks/blob/master/tools/DeviceExplorer/doc/how_to_use_device_explorer.md
