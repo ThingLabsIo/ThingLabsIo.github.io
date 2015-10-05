@@ -224,7 +224,7 @@ Using your favorite/preferred text/code editor, create a file in your developmen
   "version": "0.1.0",
   "private":true,
   "description": "Sample app that connects a device to Azure using Node.js",
-  "main": "temp.js",
+  "main": "weather.js",
     "author": "YOUR NAME HERE",
   "license": "MIT",
   "dependencies": {
@@ -251,7 +251,7 @@ On Mac OS X open Terminal and type the following:
 
 Next you will create the application code to gather temperature data and send it to the cloud.
 
-Create another file in the same directory named __temp.js__.
+Create another file in the same directory named __weather.js__.
 
 The first thing you need to do is define the objects you will be working with in the application. The three things that matter are the Azure IoT Device object, a Johnny-Five framework object, and an object to represent the Photon. In order to complete this step you will need the device ID you copied earlier when you were claiming the Photon (or the name/alias you gave the Photon when you updated the firmware to VoodooSpark) and your Particle Cloud access token. To get the access token, Open a terminal window (Mac OS X) or Node.js command prompt (Windows) and execute the following command (you may be prompted to login or provide your Particle Cloud password again):
 
@@ -264,7 +264,7 @@ Find the token for _user_ (make sure if you see more than one that you choose th
 Optionally you can use a browser to navigate to [Particle Build](https://build.particle.io/) and find your Access Token on the setting page (click on the gear icon in the lower-left part of the screen).
 
 
-Now add the following code to the __temp.js__ file:
+Now add the following code to the __weather.js__ file:
 
 {% highlight javascript %}
 'use strict';
@@ -279,13 +279,17 @@ var deviceName = process.env.DEVICE_NAME || 'YOUR PARTICLE PHOTON DEVICE ID/ALIA
 var location = process.env.DEVICE_LOCATION || 'THE LOCATION OF THE PARTICLE PHOTON DEVICE';
 var connectionString = process.env.IOTHUB_CONN || 'YOUR IOT HUB DEVICE-SPECIFIC CONNECTION STRING HERE';
 
-// Define the Johnny Five board as your Particle Photon
+// Create a Johnny Five board board instance to represent your Particle Photon
 var board = new five.Board({
   io: new Particle({
     token: particleKey,
     deviceId: deviceName
   })
 });
+
+// hF, hC, bF, bC are holder variables for the fahrenheit and celsius values from the
+// hygrometer and barometer respectively.
+var hF, hC, bF, bC, relativeHumidity, pressure;
 
 var client = new device.Client(connectionString, new device.Https());
 {% endhighlight %}
@@ -301,21 +305,9 @@ Now that the objects are created, you can get to the meat of the application. Jo
 
 Johnny Five provides a collection of objects that represent the board, the pins on the board, and various types of sensors and devices that could be connected to the board. In this lab series you will work with the Temperature and Barometer classes as a representation of the HTU21D humidity sensor and the MPL3115A2 barometric pressure sensor respectively. When you create an instance of the classes you will specfy the controller class by defining the sensor name (HTU21D or MPL3115A2).
 
-In the following code you will create a callback function that is invoked when the Photon is initialized and ready (this is a Johnny Five concept). You will set digital pin _D7_ (the <code>LEDPIN</code> variable above) as an output pin (vs. an input pin), meaning the application is expecting to send voltage out from the pin as opposed to read the voltage coming in to the pin. Then you will create a loop that runs once per second and inside that loop you will write out to the pin either LOW or HIGH voltage. Since pin _D7_ is a digital pin, its only options are 0 and 1 - in the world of Arduino-based boards that is LOW and HIGH. When you send 0 (or LOW) to the pin, that is equivalent to off (sending no voltage). When you send 1 (or HIGH) to the pin that is equivalent to on (sending full voltage).
+In the following code you will invoke the <code>board.on()</code> function which establishes a callback function that is invoked when the board is on, initialized and ready. All of the operational code for the board will be in the <code>board.on()</code> function (helper functions may exist outside the scope on the <code>board.on()</code> function). Withint the <code>board.on()</code> function you will create an object reference to the sensors on the weather shield. Similar to the <code>board</code> object, the object you create to referenc ethe shield will have an <code>on()</code> function that establishes a callback that exposes the data read from the sensors on the shield.
 
 {% highlight javascript %}
-// Create a Johnny Five board board instance to represent your Particle Photon
-var board = new five.Board({
-  io: new Particle({
-    token: particleKey,
-    deviceId: deviceName
-  })
-});
-
-// hF, hC, bF, bC are holder variables for the fahrenheit and celsius values from the
-// hygrometer and barometer respectively.
-var hF, hC, bF, bC, relativeHumidity, pressure;
-
 // The board.on() executes the anonymous function when the 
 // board reports back that it is initialized and ready.
 board.on("ready", function() {
@@ -328,7 +320,8 @@ board.on("ready", function() {
     // which is a multi-class controller. Create objects for each data type you will 
     // use by specifying the controller which maps to the specific sensor.
     var shield = new five.Multi({
-        controller: "PHOTON_WEATHER_SHIELD"
+        controller: "PHOTON_WEATHER_SHIELD",
+        freq: 1000 // Collect data once per second
     });
     
     // The shield.on function invokes the ananymous callback function at the 
@@ -423,11 +416,11 @@ function printResultFor(op) {
   
 In this code you do a number of things:
 1. <code>board.on()</code> - This function triggers the Photon to invoke the anonymous callback function as soon as the board is on and ready. All of the application code for the device is written inside this callback function.
-2. Define <code>temperature</code> object. This is a representation of the physical sensor connected to the Photon. You instantiate it by specifying the controller class to use (this informs the framework how to interact with this sensor), the physical pin that it is sending data to (Analog pin 0 -or A0- in this example), and a frequency to report the data collected by the sensor. Many sensors are capable of collecting data in fraction of a second intervals. You may not want to collect data and send it to Azure IoT Hubs that frequently. The <code>freq</code> property defines (in milliseconds) how ofter to raise an event to report the data from the sensor. In this example you are raising the event once per second. 
-3. <code>temperature.on()</code> is the function that initializes the temperature sensor controller. As soon as it is initialized it begins invoking the ananymous callback function repeatedly based on the <code>freq</code> value. Each time the data is gathered and passed ot the ananymous function you can create and send a telemetry message to Azure IoT Hub.
-4. <code>message</code> is the object that represents the data you are sending to Azure IoT Hub. This is a JSON formatted message. In this example you create a message with two data points - _deviceName_ and _temperture_.
+2. Define the <code>shield</code> object. This is a representation of the physical sensor shield connected to the Photon. You instantiate it by specifying the controller class to use (this informs the framework how to interact with this sensor) and a frequency to report the data collected by the sensor. Many sensors are capable of collecting data in fraction of a second intervals. You may not want to collect data and send it to your Azure IoT Hub that frequently. The <code>freq</code> property defines (in milliseconds) how often to raise an event to report the data from the sensor. In this example you are establishing the callback at a frequency of once per second. 
+3. <code>shield.on()</code> is the function that initializes the controller for the multi-sensor shield. As soon as it is initialized it begins invoking the ananymous callback function repeatedly based on the <code>freq</code> value. Each time the data is gathered and passed ot the ananymous function you can create and send a telemetry message to Azure IoT Hub.
+4. <code>message</code> is the object that represents the data you are sending to Azure IoT Hub. This is a JSON formatted message.
 
-WHen <code>client.sendEvent()</code> is invoked, the JSON message is sent to Azure IoT Hub. FOr now, nothing happens with the message because you haven't set up anything that will capture the message and do something with it (we will get to that soon). 
+WHen <code>client.sendEvent()</code> is invoked, the JSON message is sent to Azure IoT Hub. For now, nothing happens with the message once it is received in your IoT Hub because you haven't set up anything that will capture the message and do something with it (we will get to that soon). 
 
 ## Run the App
 When you run the application it will execute on your computer, and thanks to Johnny Five, it will connect with your Photon and work directly with it. Basically, your computer is acting as a hub and communicating via TCP over your local Wi-Fi network with the Photon as one of potentilly many devices (or spokes). If you continue on past today, in a future lab you will deploy the Node.js application to another device (like a Rasberry Pi) which will act as the hub and connect to multiple spoke devices.
@@ -436,7 +429,7 @@ Open a terminal window (Mac OS X) or Node.js command prompt (Windows) and execut
 
 <pre>
   cd C:\Development\IoTLabs
-  node temp.js
+  node weather.js
 </pre>
 
 After the board initializes you will see messages printing out once per second. These are the same messages being sent to Azure IoT Hub. If you downloaded the Device Explorer utility for Windows you can open the _Data_ tab, select a device, and click _Monitor_ to begin monitoring messages as they come into your Azure IoT Hub.
