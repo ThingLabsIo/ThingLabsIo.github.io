@@ -365,7 +365,8 @@ function printResultFor(op) {
 {% endhighlight %}
 
 <blockqoute>
-  _TEMP EDIT: for this code sample you need to replace the board.on() function with one that uses the TMP36 sensor until the weather shield is supported in Johnny Five (planned by Oct-9-2015)_
+  TEMP EDIT: for this code sample you need to replace the board.on() function with one that uses the TMP36 sensor until the weather shield is supported in Johnny Five (planned by Oct-9-2015)_
+</blockqoute>
 
 {% highlight javascript %}
 // The board.on() executes the anonymous function when the 
@@ -414,8 +415,6 @@ function printResultFor(op) {
   };
 }
 {% endhighlight %}
-  
-</blockquote>
 
 In this code you do a number of things:
 1. <code>board.on()</code> - This function triggers the Photon to invoke the anonymous callback function as soon as the board is on and ready. All of the application code for the device is written inside this callback function.
