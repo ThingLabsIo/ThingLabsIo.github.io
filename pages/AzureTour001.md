@@ -364,9 +364,8 @@ function printResultFor(op) {
 }
 {% endhighlight %}
 
-<blockqoute>
-  TEMP EDIT: for this code sample you need to replace the board.on() function with one that uses the TMP36 sensor until the weather shield is supported in Johnny Five (planned by Oct-9-2015)
-</blockqoute>
+<blockquote>
+TEMP EDIT: for this code sample you need to replace the board.on() function with one that uses the TMP36 sensor until the weather shield is supported in Johnny Five (planned by Oct-9-2015).
 
 {% highlight javascript %}
 // The board.on() executes the anonymous function when the 
@@ -415,6 +414,8 @@ function printResultFor(op) {
   };
 }
 {% endhighlight %}
+
+</blockquote>
 
 In this code you do a number of things:
 
