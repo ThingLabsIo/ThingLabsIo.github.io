@@ -19,10 +19,6 @@ permalink: "/azure/01/"
 
 If you haven't already done so, please follow the instructions in [Lab 00: Getting Started](/azure/00/) section.
 
-### Table of Contents
-*  Auto generated table of contents
-{:toc}
-
 In this lab you will create a small device that collects environmental telemetry (i.e. temperature, humidity, pressure) and send it to the cloud. This is the first step in building an IoT solution.
 
 ## Bill of Materials
@@ -134,7 +130,7 @@ At this point your Photon may blink magenta on and off for a few seconds (or up 
 ## Upload the VoodooSpark Firmware to Your Photon
 For this lab series you will be controlling the Photon from a master/hub device (during development this will be your laptop). The controller application will use Node.js and a framework called Johnny Five. In order for these tools to communicate with the Photon, it needs to have the VoodooSpark firmware installed. The VoodooSpark firmware enables direct TCP communication from the host machine (your laptop running the Node.js app) and the Photon (provided they are on the same Wi-Fi network). Installing the VoodooSpark firmware is fairly easy to do using the Particle Build web-based IDE.
 
-1. In a browser open the [VoodooSpark code from GitHub](https://raw.githubusercontent.com/voodootikigod/voodoospark/master/firmware/voodoospark.cpp).
+1. In a browser open the [VoodooSpark code from GitHub](https://raw.githubusercontent.com/voodootikigod/voodoospark/master/firmware/voodoospark.cpp). Make sure in the comments at the top of the file it specifies '@version V3.1.0' or greater.
 2. With your Photon still powered on, use a second browser tab/window to open [Particle Build](https://build.particle.io/).
 3. In Particle Build, click on the code icon in the lower-left toolbar (it looks like opening and closing angle brackets &lt; &gt;).
 4. Click on the _Create New App_ button.
@@ -230,8 +226,8 @@ Using your favorite/preferred text/code editor, create a file in your developmen
   "license": "MIT",
   "dependencies": {
     "azure-iot-device": "^1.0.0-preview.3",
-    "johnny-five": "^0.8.0",
-    "particle-io": "^0.10.0"
+    "johnny-five": "^0.8.95",
+    "particle-io": "^0.10.1"
   }
 }
 {% endhighlight %}
