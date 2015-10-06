@@ -288,9 +288,9 @@ var board = new five.Board({
   })
 });
 
-// hF, hC, bF, bC are holder variables for the fahrenheit and celsius values from the
+// hF, hC are holder variables for the fahrenheit and celsius values from the
 // hygrometer and barometer respectively.
-var hF, hC, bF, bC, relativeHumidity, pressure;
+var hF, hC, relativeHumidity, pressure;
 
 var client = new device.Client(connectionString, new device.Https());
 {% endhighlight %}
@@ -313,36 +313,30 @@ In the following code you will invoke the <code>board.on()</code> function which
 // board reports back that it is initialized and ready.
 board.on("ready", function() {
     console.log("Board connected...");
-    
     // The SparkFun Weather Shield for the Particle Photon has two sensors on the I2C bus - 
     // a humidity sensor (HTU21D) which can provide both humidity and temperature, and a 
     // barometer (MPL3115A2) which can provide both barometric pressure and humidity.
-    // When you create objects for the sensors you use the PHOTON_WEATHER_SHILED controller
-    // which is a multi-class controller. Create objects for each data type you will 
-    // use by specifying the controller which maps to the specific sensor.
-    var shield = new five.Multi({
-        controller: "PHOTON_WEATHER_SHIELD",
-        freq: 1000 // Collect data once per second
-    });
+    // When you create objects for the sensors you use the controller for the specific sensor,
+    // which is a multi-class controller.
+      var hygrometer = new five.Multi({
+          controller: "HTU21D",
+          freq: 10000
+      });
     
-    // The shield.on function invokes the anonymous callback function at the 
-    // frequency specified (250ms by default). The anonymous function is scoped
-    // to the object (e.g. this == the weather shield Multi class object). 
-    shield.on("data", function() {
-        hF = this.hygrometer.temperature.fahrenheit;
-        hC = this.hygrometer.temperature.celsius;
-        relativeHumidity = this.hygrometer.hygrometer.relativeHumidity;
-        
-        bF = this.barometer.temperature.fahrenheit;
-        bC = this.barometer.temperature.celsius;
-        pressure = this.barometer.pressure;
+    // The hygrometer.on function invokes the ananymous callback function at the 
+    // frequency specified in the constructor (25ms by default). The anonymous function 
+    // is scoped to the object (e.g. this == the hygrometer Multi class object). 
+    hygrometer.on("data", function() {
+        hF = this.temperature.fahrenheit;
+        hC = this.temperature.celsius;
+        relativeHumidity = this.hygrometer.relativeHumidity;
         
         // Create a JSON payload for the message that will be sent to Azure IoT Hub
         var payload = JSON.stringify({
             deviceId: deviceName,
             location: location,
-            fahrenheit: (hF + bF) /2,
-            celsius: (hC + bC) / 2,
+            fahrenheit: hF,
+            celsius: hC,
             relativeHumidity: relativeHumidity,
             pressure: pressure
         });
@@ -421,8 +415,8 @@ function printResultFor(op) {
 In this code you do a number of things:
 
 1. <code>board.on()</code> - This function triggers the Photon to invoke the anonymous callback function as soon as the board is on and ready. All of the application code for the device is written inside this callback function.
-2. Define the <code>shield</code> object. This is a representation of the physical sensor shield connected to the Photon. You instantiate it by specifying the controller class to use (this informs the framework how to interact with this sensor) and a frequency to report the data collected by the sensor. Many sensors are capable of collecting data in fraction of a second intervals. You may not want to collect data and send it to your Azure IoT Hub that frequently. The <code>freq</code> property defines (in milliseconds) how often to raise an event to report the data from the sensor. In this example you are establishing the callback at a frequency of once per second. 
-3. <code>shield.on()</code> is the function that initializes the controller for the multi-sensor shield. As soon as it is initialized it begins invoking the anonymous callback function repeatedly based on the <code>freq</code> value. Each time the data is gathered and passed ot the anonymous function you can create and send a telemetry message to Azure IoT Hub.
+2. Define the <code>hygrometer</code> object. This is a representation of the physical sensor shield connected to the Photon. You instantiate it by specifying the controller class to use (this informs the framework how to interact with this sensor) and a frequency to report the data collected by the sensor. Many sensors are capable of collecting data in fraction of a second intervals. You may not want to collect data and send it to your Azure IoT Hub that frequently. The <code>freq</code> property defines (in milliseconds) how often to raise an event to report the data from the sensor. In this example you are establishing the callback at a frequency of once per second. 
+3. <code>hygrometer.on()</code> is the function that initializes the controller for the Multi class HTU21D sensor. As soon as it is initialized it begins invoking the anonymous callback function repeatedly based on the <code>freq</code> value. Each time the data is gathered and passed ot the anonymous function you can create and send a telemetry message to Azure IoT Hub.
 4. <code>message</code> is the object that represents the data you are sending to Azure IoT Hub. This is a JSON formatted message.
 
 When <code>client.sendEvent()</code> is invoked, the JSON message is sent to Azure IoT Hub. For now, nothing happens with the message once it is received in your IoT Hub because you haven't set up anything that will capture the message and do something with it (we will get to that soon). 
