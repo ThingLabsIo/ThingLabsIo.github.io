@@ -122,7 +122,7 @@ The last thing to do is prepare a place to save all of your work in the labs. I 
 
 ### Mac OS X
 <pre>
-  ~\Devleopment\IoTLabs
+  ~\Development\IoTLabs
 </pre>
 
 ## Create a Free Particle Cloud Account

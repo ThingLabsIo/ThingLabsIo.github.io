@@ -83,7 +83,7 @@ Prepare a place to save all of your work in the labs. I recommend an easy to nav
 
 ### Mac OS X
 <pre>
-  ~/Devleopment/IoTLabs
+  ~/Development/IoTLabs
 </pre>
 
 ## Install Azure IoT Hub Explorer
