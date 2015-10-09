@@ -48,7 +48,7 @@
     url: "/photon/07/"
     
 - title: "Azure IoT Hub + Photon"
-  url: "/azure/00/"
+  url: "/azure/"
   side: left
   dropdown:
   - title: "00 - Getting Started"

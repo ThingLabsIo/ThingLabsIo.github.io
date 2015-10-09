@@ -11,7 +11,7 @@ categories:
     - iot-photon-labs
     - maker-101
 author: "Doug Seven"
-permalink: "/azure/00/"
+permalink: "/azure/"
 ---
 ### Table of Contents
 *  Auto generated table of contents
