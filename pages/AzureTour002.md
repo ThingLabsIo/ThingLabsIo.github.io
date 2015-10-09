@@ -28,7 +28,7 @@ What you will need:
 2. USB to micro-USB cable (there is one included in the [Photon Development Kit][1])
 3. [SparkFun Weather Shield for Particle Photon - $32.95](https://www.sparkfun.com/products/13630)
 
-In the previous lab you claimed your Particle Photon and prepared it by flashing it with the VoodooSpark firmware. THen you provisioned a new Azure IoT Hub and used either the _DeviceExploere_ or _iothub-explorer_ to provision a device. In this lab you will write a Node.js application that communicates with the Photon over local TCP and gathers the data from the temperature and barometer on the weather shield. Once you understand this concept you can apply it to any sensor that collects data, such as a light sensor, motion sensor, vibration or tilt sensors, and more.
+In the previous lab you claimed your Particle Photon and prepared it by flashing it with the VoodooSpark firmware. Then you provisioned a new Azure IoT Hub and used either the _DeviceExploer_ or _iothub-explorer_ to provision a device. In this lab you will write a Node.js application that communicates with the Photon over local TCP and gathers the data from the temperature and barometer on the weather shield. Once you understand this concept you can apply it to any sensor that collects data, such as a light sensor, motion sensor, vibration or tilt sensors, and more.
 
 ## Write the Code
 Since you will be using Node.js for this lab you can take advantage of the dependency management capabilities that Node.js and NPM provide. You need to let your application know that it has a dependency on the following NPM packages - Azure IoT Device, Johnny-Five and Particle-IO. In Node.js this is done with a _package.json_ file. This file provides some basic meta-data about the application, including any dependencies on packages that can be retrieved using NPM (according to [npmjs.com](https://www.npmjs.com) today, NPM stands for Narrating Prophetic Monks...not Node Package Manager like you may have thought).
@@ -80,7 +80,6 @@ Find the token for _user_ (make sure if you see more than one that you choose th
 
 Optionally you can use a browser to navigate to [Particle Build](https://build.particle.io/) and find your Access Token on the setting page (click on the gear icon in the lower-left part of the screen).
 
-
 Now add the following code to the __weather.js__ file:
 
 {% highlight javascript %}
@@ -112,9 +111,8 @@ var hF, hC, bF, bC, relativeHumidity, pressure, altitude_f, altitude_m;
 
 // Create an Azure IoT client that will manage the connection to your IoT Hub
 // The client is created in the context of an Azure IoT device, which is why
-// you use a device-specifi connection string.
+// you use a device-specific connection string.
 var client = new device.Client(connectionString, new device.Https());
-
 {% endhighlight %}
 
 In this code you define four variables that you will be working with:
@@ -204,18 +202,18 @@ function printResultFor(op) {
 In this code you do a number of things:
 
 1. <code>board.on()</code> - This function triggers the Photon to invoke the anonymous callback function as soon as the board is on and ready. All of the application code for the device is written inside this callback function.
-2. Define the <code>htu21d</code> and <code>mpl3115a2</code> objects. These are a representation of the two physical sensors on the shield connected to the Photon. You instantiate each of them by specifying the controller class to use (this informs the framework how to interact with this sensor) and optionally a frequency to report the data collected by the sensor. Many sensors are capable of collecting data in fraction of a second intervals. You may not want to collect data and send it to your Azure IoT Hub that frequently. The <code>freq</code> property defines (in milliseconds) how often to raise an event to report the data from the sensor. In this example you are establishing the callback at a frequency of once per 10-seconds for the <code>htu21d</code> tempeature/humidity sensor, and the default frequency of 25ms for the <code>mpl3115a2</code> barometer. 
+2. Define the <code>htu21d</code> and <code>mpl3115a2</code> objects. These are a representation of the two physical sensors on the shield connected to the Photon. You instantiate each of them by specifying the controller class to use (this informs the framework how to interact with this sensor) and optionally a frequency to report the data collected by the sensor. Many sensors are capable of collecting data in fraction of a second intervals. You may not want to collect data and send it to your Azure IoT Hub that frequently. The <code>freq</code> property defines (in milliseconds) how often to raise an event to report the data from the sensor. In this example you are establishing the callback at a frequency of once per 10-seconds for the <code>htu21d</code> temperature/humidity sensor, and the default frequency of 25ms for the <code>mpl3115a2</code> barometer. 
 3. <code>mpl3115a2.on()</code> is the function that initializes the controller for the Multi class MPL3115A2 barometer. As soon as it is initialized it invokes the anonymous callback function any time the data for the sensor changes. Each time the data is gathered and passed to the anonymous function you store the sensor values in variables for later use.
 4. <code>htu21d.on()</code> is the function that initializes the controller for the Multi class HTU21D sensor. As soon as it is initialized it begins invoking the anonymous callback function repeatedly based on the <code>freq</code> value (every 10000ms or every 10-seconds). Each time the data is gathered and passed to the anonymous function you create and send a telemetry message that also includes the latest data from the MPL3115A2 barometer to Azure IoT Hub.
 4. <code>message</code> is the object that represents the data you are sending to Azure IoT Hub. This is a JSON formatted message.
 
-When <code>client.sendEvent()</code> is invoked, the JSON message is sent to Azure IoT Hub. For now, nothing happens with the message once it is received in your IoT Hub because you haven't set up anything that will capture the message and do something with it (we will get to that soon). By default the messages have a one-day retention time.
+When <code>client.sendEvent()</code> is invoked, the JSON message is sent to Azure IoT Hub. For now, nothing happens with the message once it is received in your IoT Hub because you haven't set up anything that will capture the message and do something with it (we will get to that soon). By default, the messages have a one-day retention time.
 
 ## Run the App
 When you run the application it will execute on your computer, and thanks to Johnny Five, it will connect with your Photon and work directly with it. Basically, your computer is acting as a hub and communicating via TCP over your local Wi-Fi network with the Photon as one of potentially many devices (or spokes). If you continue on past today, in a future lab you will deploy the Node.js application to another device (like a Raspberry Pi) which will act as the hub and connect to multiple spoke devices.
 
 <blockquote>
-  When you power on the Photon and it establishes a Wi-Fi connection, the first thing it does is a 'phone home' to the Particle Cloud where it registers itself as online. WHen it does that, it also registers its local IP address. When you run the Node.js application, thanks to the Johnny Five framework and the Particle-IO plugin, the Node app pings the Particle Cloud and requests the IP address for the device name you specified (that is why the Particle Token and Device ID/Alias are needed). Once the application has the local IP address for the Photon, all communications with the device are over local TCP (which is why your development machine and the Photon have to be on the same network). SInce the communication from the Node.js app to the Photon is over TCP and not USB, tThe Photon doesn't need to be plugged into your USB port - it simply needs to be powered on and on the same Wi-Fi you configured it for (and the machine running the Node.js app has to be on the same Wi-F network). 
+  When you power on the Photon and it establishes a Wi-Fi connection, the first thing it does is a 'phone home' to the Particle Cloud where it registers itself as online. When it does that, it also registers its local IP address. When you run the Node.js application, thanks to the Johnny Five framework and the Particle-IO plugin, the Node app pings the Particle Cloud and requests the IP address for the device name you specified (that is why the Particle Token and Device ID/Alias are needed). Once the application has the local IP address for the Photon, all communications with the device are over local TCP (which is why your development machine and the Photon have to be on the same network). Since the communication from the Node.js app to the Photon is over TCP and not USB, the Photon doesn't need to be plugged into your USB port - it simply needs to be powered on and on the same Wi-Fi you configured it for (and the machine running the Node.js app has to be on the same Wi-F network). 
 <blockquote>
 
 Open a terminal window (Mac OS X) or Node.js command prompt (Windows) and execute the following commands (replace c:\Development\IoTLabs with the path that leads to your labs folder):
@@ -225,7 +223,7 @@ Open a terminal window (Mac OS X) or Node.js command prompt (Windows) and execut
   node weather.js
 </pre>
 
-After the board initializes you will see messages printing out once per 10-seconds (this first message will print out after the initial 10-seconds). THis is the message payload that is being sent to Azure IoT Hub.
+After the board initializes you will see messages printing out once per 10-seconds (this first message will print out after the initial 10-seconds). This is the message payload that is being sent to Azure IoT Hub.
 
 <blockquote>
 If you downloaded the Device Explorer utility for Windows you can open the _Data_ tab, select a device, and click _Monitor_ to begin monitoring messages as they come into your Azure IoT Hub.
