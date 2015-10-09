@@ -33,6 +33,10 @@ For this lab series you are using a Particle Photon, a small Wi-Fi enabled devel
 ## Claim Your Photon
 Associating a Particle Photon to your Particle account is known as _claiming_ (you are claiming the Photon so no one else can claim it - its like high-tech cookie-licking). If you refer to the Particle website there is information about how to [claim the Photon using either an iOS or Android device](https://docs.particle.io/guide/getting-started/start/photon/#step-1-power-on-your-device), or [over USB from Windows or OS X](https://docs.particle.io/guide/getting-started/connect/photon/). 
 
+If you use the Android or iOS application for claiming your device and there are other developers around you doing the same thing, it can get confusing figuring out which Wi-Fi SSID goes with which physical device. The trick is to look at the sticker on the underside of the box. The four digits at the end of the barcode are the same four digits that are appended to the SSID name _Photon-_. Simply match the numbers on your box with the SSID and claim your Photon.
+
+<img src="/images/photonclaim.png"/>
+
 <blockquote>
   As of the writing of this tutorial, there is a bug in the USB claiming process for Windows 10. After following the steps to install the Particle USB driver, use the following steps to claim the Photon to your account if you are on Windows 10, or if you experience difficulties on previous versions of Windows.
 </blockquote>
@@ -137,10 +141,12 @@ For this lab series you will be controlling the Photon from a master/hub device 
 5. Name the app "VoodooSpark"
 6. Copy all of the code from the VoodooSpark GitHub page to your new app (be sure to replace any code in the new app).
 7. Click on the _Devices_ icon in the lower-left toolbar (it looks like a targeting sight).
-8. Find your new Photon (there will likely be a device with no name/alias with the text 'No Title (click to edit)' - that is your new Photon - feel free to give it a friendly name at this time).
-9. Click on the gray star that appears next to the Photon when you hover over it to turn it yellow (doing this selects this device as the target for a firmware flash).
+8. Find your new Photon (if you claimed your Photon using the command line interface, there will likely be a device with no name/alias with the text 'No Title (click to edit)' - that is your new Photon - feel free to give it a friendly name at this time).
+9. If you have more than one device, click on the gray star that appears next to the Photon when you hover over it to turn it yellow (doing this selects this device as the target for a firmware flash).
 10. Click on the verify icon in the upper-left toolbar (it looks like a checkmark). In the lower-left corner of the IDE you will see the verification status.
 11. After the app is verified, click the flash firmware icon in the upper-left toolbar (it looks like a lightening bolt) to flash your Photon with the VoodooSpark firmware.
+
+<img src="/images/particlebuild01.png"/>
 
 After completing the last step you should see the indicator LED on your Photon begin to blink. When it returns to the 'breathing' cyan the update is complete.
 
