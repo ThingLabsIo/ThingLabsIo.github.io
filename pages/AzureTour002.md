@@ -1,7 +1,7 @@
 ---
 layout: page-fullwidth
 title: "Sending Telemetry to the Cloud"
-subheadline: "Microsoft Azure IoT Lab 1"
+subheadline: "Microsoft Azure IoT Lab 2"
 teaser: "In this lab you will gather telemetry and send it to the cloud."
 show_meta: true
 comments: true
