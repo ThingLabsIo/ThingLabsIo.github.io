@@ -201,7 +201,7 @@ On Mac OS X open Terminal and type the following:
 
 ## Create a New Azure IoT Device
 
-If you are using the _DeviceExplorer_ simply open the _Management_ tab and click the _Create_button. In the dialog that opens, enter the name of your device (use the Particle Photon device ID or the alias you named your device). Then Click the _Create_ button, and click _Done_ on the confirmation dialog that opens.
+If you are using the _DeviceExplorer_ simply open the _Management_ tab and click the _Create_ button. In the dialog that opens, enter the name of your device (use the Particle Photon device ID or the alias you named your device). Then Click the _Create_ button, and click _Done_ on the confirmation dialog that opens.
 
 <img src="/images/deviceexplorer02.png"/> 
 
