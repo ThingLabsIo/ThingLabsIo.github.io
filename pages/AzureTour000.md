@@ -86,21 +86,6 @@ Prepare a place to save all of your work in the labs. I recommend an easy to nav
   ~/Development/IoTLabs
 </pre>
 
-## Install Azure IoT Hub Explorer
-Azure IoT Hub only allows connections from known devices that present proper credentials. In this lab series you will use the _iothub-explorer_ tool to provision a device for use in Azure IoT Hub. While Azure IoT Hub supports multiple authentication schemes, you will use pre-shared keys in this lab series.
-
-On Windows, open the Node.js command prompt and type the following:
-<pre>
-  cd C:\Development\IoTLabs
-  npm install -g iothub-explorer
-</pre>
-
-On Mac OS X open Terminal and type the following:
-<pre>
-  cd ~/Development/IoTLabs
-  sudo npm -g install iothub-explorer
-</pre>
-
 ## Create a Free Particle Cloud Account
 The Particle Photon is pre-configured to connect to the Particle Cloud. In order to 'claim' or provision the device, and to update its firmware (which you will do in [Lab 01][13]) you must create a free account with Particle Cloud. Go to [https://build.particle.io/signup][14] to create a new Particle Cloud account (make sure you remember your login email address and password - you will need it during this lab series).
 
