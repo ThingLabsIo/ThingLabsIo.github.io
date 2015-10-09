@@ -31,7 +31,7 @@ What you will need:
 For this lab series you are using a Particle Photon, a small Wi-Fi enabled development board. The Photon is an excellent prototyping board for connected Things and Particle, the makers of the Photon, sell the P0 chip that drives the board (so when you are ready to go into production you can easily use the same chip). While you can develop for the Photon using Particle Build or Particle Dev and leverage the Particle Cloud services, this lab series is designed to teach you how to build a Wi-Fi based hub-and-spoke system, similar to how SmartThings, Lowes Iris, or Phillips Hue works. For the first few labs you will learn how to create Node.js applications that run on your PC and control the Photon. If you choose to continue with these labs on your own, you will learn how to deploy the Node.js applications to a hub device, like a Raspberry Pi or an Arduino Y&uacute;n, which will act as the field gateway for all of the connected _Things_ in your solution.
 
 ## Claim Your Photon
-Associating a Particle Photon to your Particle account is known as _claiming_ (you are claiming the Photon so no one else can claim it - its like high-tech cookie-licking). If you refer to the Particle website there is information about how to [claim the Photon using either an iOS or Android device](https://docs.particle.io/guide/getting-started/start/photon/#step-1-power-on-your-device), or [over USB from Windows or OS X](https://docs.particle.io/guide/getting-started/connect/photon/). 
+Associating a Particle Photon to your Particle account is known as _claiming_ (you are claiming the Photon so no one else can claim it - it's like high-tech cookie-licking). If you refer to the Particle website there is information about how to [claim the Photon using either an iOS or Android device](https://docs.particle.io/guide/getting-started/start/photon/#step-1-power-on-your-device), or [over USB from Windows or OS X](https://docs.particle.io/guide/getting-started/connect/photon/). 
 
 If you use the Android or iOS application for claiming your device and there are other developers around you doing the same thing, it can get confusing figuring out which Wi-Fi SSID goes with which physical device. The trick is to look at the sticker on the underside of the box. The four digits at the end of the barcode are the same four digits that are appended to the SSID name _Photon-_. Simply match the numbers on your box with the SSID and claim your Photon.
 
@@ -47,7 +47,7 @@ Open a terminal window (Mac OS X) or Node.js command prompt (Windows) and execut
   particle identify  
 </pre>
 
-If the Photon is connected correctly and working you should see a result similar to this:
+If the Photon is connected correctly and working, you should see a result similar to this:
 <pre>
   Your device id is 21003f000447343335555555
 </pre>
@@ -148,7 +148,7 @@ For this lab series you will be controlling the Photon from a master/hub device 
 
 <img src="/images/particlebuild01.png"/>
 
-After completing the last step you should see the indicator LED on your Photon begin to blink. When it returns to the 'breathing' cyan the update is complete.
+After completing the last step, you should see the indicator LED on your Photon begin to blink. When it returns to the 'breathing' cyan the update is complete.
 
 ## Connecting the Weather Shield
 The weather shield comes equipped with two onboard sensors - a HTU21D humidity sensor capable of gathering both humidity and temperature, and a MPL3115A2 barometric pressure sensor. There are connections for other optional sensors, such as wind, rain and soile moisture sensors (we will not be working with the optional sensors in this lab series). Simply plug the Photon into the weather shield so that the USB port on the Photon is on the same side as the RJ-11 plugs on the weather shield. 
@@ -179,7 +179,7 @@ Once the IoT Hub is created, navigate into it and:
 ## Install Azure IoT Hub DeviceExplorer
 Azure IoT Hub only allows connections from known devices that present proper credentials. In this lab series you will use either the _DeviceExplorer_ utility or the _iothub-explorer_ command line interface to provision a device for use in Azure IoT Hub. While Azure IoT Hub supports multiple authentication schemes, you will use pre-shared keys in this lab series.
 
-The simplest way to provision a new device is with the _DeviceManager_ utility (Windows only). If you are using Windows, download and run  [Device Explorer][deviceexplorer]. After running the installed, the _DeviceExplorer.exe_ can be found at __C:\Program Files (x86)\Microsoft\DeviceExplorer__. When you run the utility you need to input the _iothubowner_ connection strong (from the previous step) in the _IoT Hub Connection String_ field found in the _Configuration_ tab.
+The simplest way to provision a new device is with the _DeviceExplorer_ utility (Windows only). If you are using Windows, download and run [Device Explorer][deviceexplorer]. After running the installed, the _DeviceExplorer.exe_ can be found at __C:\Program Files (x86)\Microsoft\DeviceExplorer__. When you run the utility you need to input the _iothubowner_ connection strong (from the previous step) in the _IoT Hub Connection String_ field found in the _Configuration_ tab.
 
 <img src="/images/deviceexplorer01.png"/>
 
@@ -209,9 +209,10 @@ You will see your device in the _Devices_ list. Once a device is created, you ca
 
 <img src="/images/deviceexplorer03.png"/> 
 
-## Create a New Azure IoT Device from the Command Line
+### Create a New Azure IoT Device from the Command Line
+If you are on a non-Windows machine, or prefer to use a command line interface instead of the _DeviceExplorer_ utility, you can provision a new Azure IoT Hub device using the _iothub-explorer_ command line interface.
 
-On Windows, open the Node.js command prompt and type the following (note, the _iothub-explorer_ may be installed in a different directorty for you - if you followed the instructions above, then this path should be correct):
+On Windows, open the Node.js command prompt and type the following (note, the _iothub-explorer_ may be installed in a different directory for you - if you followed the instructions above, then this path should be correct):
 
 <pre>
   cd c:\Development\node_modules\iothub-explorer
@@ -244,7 +245,7 @@ The device-specific connection string identifies the device by name and includes
 
 ## Conclusion &amp; Next Steps
 
-In this lab you learned how to claim a PArticle Photon, provision an Azure IoT Hub and provision a device for use with Azure IoT Hub. In the [next lab][2] you will build a Node.js application that will collect data from the Photon and the weather shield and send the data to Azure IoT Hub.
+Congratulations! You have created a physical device, a software representation of that device, and the IoT Hub service to connect it to. In the [next lab][2] you will build a Node.js application that will collect data from the Photon and the weather shield and send the data to Azure IoT Hub.
 
 [Next Lab ->][2]
 
