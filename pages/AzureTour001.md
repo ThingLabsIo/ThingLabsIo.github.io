@@ -190,13 +190,15 @@ If you are on a non-Windows machine, or prefer to use a command line interface i
 On Windows, open the Node.js command prompt and type the following:
 <pre>
   cd C:\Development\IoTLabs
-  npm install iothub-explorer
+  npm install -g iothub-explorer
+  npm update -g iothub-explorer
 </pre>
 
 On Mac OS X open Terminal and type the following:
 <pre>
   cd ~/Development/IoTLabs
-  sudo npm install iothub-explorer
+  sudo npm install -g iothub-explorer
+  sudo npm update -g iothub-explorer
 </pre>
 
 ## Create a New Azure IoT Device
@@ -212,31 +214,16 @@ You will see your device in the _Devices_ list. Once a device is created, you ca
 ### Create a New Azure IoT Device from the Command Line
 If you are on a non-Windows machine, or prefer to use a command line interface instead of the _DeviceExplorer_ utility, you can provision a new Azure IoT Hub device using the _iothub-explorer_ command line interface.
 
-On Windows, open the Node.js command prompt and type the following (note, the _iothub-explorer_ may be installed in a different directory for you - if you followed the instructions above, then this path should be correct):
-
-<pre>
-  cd c:\Development\node_modules\iothub-explorer
-  npm install
-</pre>
-
-On Mac OS X open Terminal and type the following:
-<pre>
-  cd ~/Development/IoTLabs/node_modules/iothub-explorer
-  sudo npm install
-</pre>
-
-After the dependencies are installed, you can execute a _create_ command to create a new device in your Azure IoT Hub. When you are using the iothub-explorer utility you must provide the connection string you copied above.
-
 In the same directory as before, using the Node.js command prompt or Terminal:
 
 <pre>
-  node iothub-explorer.js [YOUR IOT HUB CONNECTION STRING] create [YOUR PHOTON DEVICE ID/ALIAS]
+  iothub-explorer.js [YOUR IOT HUB CONNECTION STRING] create [YOUR PHOTON DEVICE ID/ALIAS]
 </pre>
 
 Once a device is created, you can get the device-specific connection string with the following command:
 
 <pre>
-  node iothub-explorer.js [YOUR IOT HUB CONNECTION STRING] get [YOUR PHOTON DEVICE ID/ALIAS] --connection-string
+  iothub-explorer.js [YOUR IOT HUB CONNECTION STRING] get [YOUR PHOTON DEVICE ID/ALIAS] --connection-string
 </pre>
 
 <img src="/images/iothub-explorer01.png"/> 
