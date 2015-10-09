@@ -1,6 +1,6 @@
 ---
 layout: page-fullwidth
-title: "Setting Up Azure IoT and Your Deviced"
+title: "Setting Up Azure IoT and Your Device"
 subheadline: "Microsoft Azure IoT Lab 1"
 teaser: "In this lab you will claim your Photon, provision an Azure IoT Hub and an IoT Hub device."
 show_meta: true

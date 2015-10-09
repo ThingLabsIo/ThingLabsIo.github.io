@@ -46,6 +46,19 @@
     url: "/photon/06/"
   - title: "07 - Visualizing IoT Data"
     url: "/photon/07/"
+    
+- title: "Azure IoT Hub + Photon"
+  url: "/azure/00/"
+  side: left
+  dropdown:
+  - title: "00 - Getting Started"
+    url: "/azure/00/"
+  - title: "01 - Setting Up Azure IoT and Your Device"
+    url: "/azure/01/"
+  - title: "02 - Sending Telemetry to the Cloud"
+    url: "/azure/02/"
+  - title: "03 - Visualizing IoT Data"
+    url: "/azure/03/"
 
 #
 #- title: "Header Styles"
