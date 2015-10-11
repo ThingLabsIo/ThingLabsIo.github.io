@@ -43,7 +43,7 @@ Open a new browser tab and navigate to the [https://manage.windowsazure.com](htt
 Select __DATA SERVICES__ > __STREAM ANALYTICS__ > __QUICK CREATE__ and enter the following:
 
 1. JOB NAME: You can use anything you'd like here...I recommend __iotlab__ or something similar so you can identify it easily later.
-2. REGION: Select __East US__ (or whatever region you created your IoT Hub in)
+2. REGION: Select __East US 2__ (or whatever region you created your IoT Hub in)
 3. REGIONAL MONITORING STORAGE ACCOUNT: Select or create a storage account.
 
 <img src="/images/newasa.png"/>

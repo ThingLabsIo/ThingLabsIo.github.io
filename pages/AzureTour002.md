@@ -147,7 +147,7 @@ board.on("ready", function() {
       controller: "MPL3115A2"
     });
     
-    // The mpl3115a2.on("change", callback) function invokes the ananymous callback function 
+    // The mpl3115a2.on("change", callback) function invokes the anonymous callback function 
     // whenever the data from the sensor changes (no faster than every 25ms). The anonymous 
     // function is scoped to the object (e.g. this == the mpl3115a2 Multi class object). 
     mpl3115a2.on("change", function() {
@@ -158,7 +158,7 @@ board.on("ready", function() {
       altitude_m = this.altimeter.meters
     });
     
-    // The htu21d.on("data", callback) function invokes the ananymous callback function at the 
+    // The htu21d.on("data", callback) function invokes the anonymous callback function at the 
     // frequency specified in the constructor (25ms by default). The anonymous function 
     // is scoped to the object (e.g. this == the htu21d Multi class object). 
     htu21d.on("data", function() {
@@ -183,7 +183,7 @@ board.on("ready", function() {
       
       // Create the message based on the payload JSON
       var message = new device.Message(payload);
-      // For debugging purposes, write out the message paylod to the console
+      // For debugging purposes, write out the message payload to the console
       console.log("Sending message: " + message.getData());
       // Send the message to Azure IoT Hub
       client.sendEvent(message, printResultFor('send'));
