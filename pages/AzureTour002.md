@@ -107,7 +107,7 @@ var board = new five.Board({
 
 // hF, hC, bF, bC are holder variables for the fahrenheit and celsius values from the
 // hygrometer and barometer respectively.
-var hF, hC, bF, bC, relativeHumidity, pressure, altitude_f, altitude_m;
+var hF, hC, bF, bC, relativeHumidity, pressure;
 
 // Create an Azure IoT client that will manage the connection to your IoT Hub
 // The client is created in the context of an Azure IoT device, which is why
@@ -154,8 +154,6 @@ board.on("ready", function() {
       bF = this.temperature.fahrenheit;
       bC = this.temperature.celsius;
       pressure = this.barometer.pressure;
-      altitude_f = this.altimeter.feet;
-      altitude_m = this.altimeter.meters
     });
     
     // The htu21d.on("data", callback) function invokes the ananymous callback function at the 
@@ -176,9 +174,7 @@ board.on("ready", function() {
         fahrenheit: (hF + bF) /2,
         celsius: (hC + bC) / 2,
         relativeHumidity: relativeHumidity,
-        pressure: pressure,
-        altitude_f: altitude_f,
-        altitude_m: altitude_m
+        pressure: pressure
       });
       
       // Create the message based on the payload JSON
