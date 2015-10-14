@@ -97,13 +97,8 @@ var deviceId = process.env.DEVICE_NAME || 'YOUR PARTICLE PHOTON DEVICE ID/ALIAS 
 var location = process.env.DEVICE_LOCATION || 'THE LOCATION OF THE PARTICLE PHOTON DEVICE';
 var connectionString = process.env.IOTHUB_CONN || 'YOUR IOT HUB DEVICE-SPECIFIC CONNECTION STRING HERE';
 
-<<<<<<< HEAD
 // Create a Johnny-Five board instance to represent your Particle Photon
 // Board is simply an abstraction of the physical hardware, whether is is a 
-=======
-// Create a Johnny Five board instance to represent your Particle Photon.
-// Board is simply an abstraction of the physical hardware, whether it is a 
->>>>>>> origin/master
 // Photon, Arduino, Raspberry Pi or other boards.
 var board = new five.Board({
   io: new Particle({
@@ -112,13 +107,6 @@ var board = new five.Board({
   })
 });
 
-<<<<<<< HEAD
-=======
-// hF, hC, bF, bC are holder variables for the fahrenheit and celsius values from the
-// hygrometer and barometer.
-var hF, hC, bF, bC, relativeHumidity, pressure;
-
->>>>>>> origin/master
 // Create an Azure IoT client that will manage the connection to your IoT Hub
 // The client is created in the context of an Azure IoT device, which is why
 // you use a device-specific connection string.
@@ -147,7 +135,6 @@ board.on("ready", function() {
     // The SparkFun Weather Shield for the Particle Photon has two sensors on the I2C bus - 
     // a humidity sensor (HTU21D) which can provide both humidity and temperature, and a 
     // barometer (MPL3115A2) which can provide both barometric pressure and humidity.
-<<<<<<< HEAD
     // Controllers for these are wrapped in the convenient `Weather` plugin class:
     var weather = new Weather({
       variant: "PHOTON",
@@ -158,40 +145,6 @@ board.on("ready", function() {
     // whenever the data from the sensor changes (no faster than every 25ms). The anonymous 
     // function is scoped to the object (e.g. this == the instance of Weather class object). 
     weather.on("data", function () {
-=======
-    // When you create objects for the sensors you use the controller for the specific sensor,
-    // which is a multi-class controller.
-    var htu21d = new five.Multi({
-      controller: "HTU21D",
-      freq: 1000
-    });
-    
-    var mpl3115a2 = new five.Multi({
-      controller: "MPL3115A2"
-    });
-    
-    // The mpl3115a2.on("change", callback) function invokes the anonymous callback function 
-    // whenever the data from the sensor changes (no faster than every 25ms). The anonymous 
-    // function is scoped to the object (e.g. this == the mpl3115a2 Multi class object). 
-    mpl3115a2.on("change", function() {
-      bF = this.temperature.fahrenheit;
-      bC = this.temperature.celsius;
-      pressure = this.barometer.pressure;
-    });
-    
-    // The htu21d.on("data", callback) function invokes the anonymous callback function at the 
-    // frequency specified in the constructor (25ms by default). The anonymous function 
-    // is scoped to the object (e.g. this == the htu21d Multi class object). 
-    htu21d.on("data", function() {
-      hF = this.temperature.fahrenheit;
-      hC = this.temperature.celsius;
-      relativeHumidity = this.hygrometer.relativeHumidity;
-      
-      // The MPL311A2 (barometer) sensor will update the global variables associated with it.
-      // Each time the HTU21D (temperature) sensor invokes this function the message sent to Azure
-      // IoT Hub will include the data from the MPL311A2 sensor as well.
-      // Create a JSON payload for the message that will be sent to Azure IoT Hub
->>>>>>> origin/master
       var payload = JSON.stringify({
         deviceId: deviceId,
         location: location,
