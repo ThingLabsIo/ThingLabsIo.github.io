@@ -148,6 +148,8 @@ Go back to the browser tab where you have Power BI open. Look in the _Datasets_ 
 
 Repeat steps 2-4 for __avgtempf__ and __mintempf__, changing their field type to __Average__ and __Minimum__ respectively.
 
+<img src="/images/powerbi01.png"/>
+
 As you are setting the values you should see the line chart updating with the changes. Click __File__ > __Save_ and give the report the name __Temperature Gauges__. Hover over the upper-right corner of each gauge and click on the pin icon. Create a new dashboard to pin the gauges to. Once you have pinned all three gauges, click on the dashboard in the left sidebar. On the dashboard you can watch the data update in near real-time (remember, you set up a tumbling window for 10-seconds, so you will only see updates once every 10-seconds). While you are watching the dashboard, pinch or blow on the sensors on the weather shield and you will see the data change in the gauges.
 
 ## Conclusion &amp; Next Steps

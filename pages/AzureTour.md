@@ -1,8 +1,8 @@
 ---
 layout: page-fullwidth
-title: "Aure IoT and Particle Photon Weather Station"
+title: "Azure IoT and Particle Photon Weather Station"
 subheadline: "Microsoft Azure IoT Labs"
-teaser: "A series of labs that teach you to connect physical devices to Azure Iot Hubs."
+teaser: "A series of labs that teach you to connect physical devices to Azure IoT Hubs."
 show_meta: true
 comments: true
 header: no
