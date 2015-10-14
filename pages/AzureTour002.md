@@ -47,6 +47,7 @@ Using your favorite/preferred text/code editor, create a file in your developmen
   "dependencies": {
     "azure-iot-device": "^1.0.0-preview.3",
     "johnny-five": "^0.8.98",
+    "j5-sparkfun-weather-shield": "^0.2.0",
     "particle-io": "^0.10.1"
   }
 }
@@ -70,7 +71,7 @@ Next you will create the application code to gather temperature, humidity, and b
 
 Create another file in the same directory named __weather.js__.
 
-The first thing you need to do is define the objects you will be working with in the application. The three things that matter are the Azure IoT Device object, a Johnny-Five framework object, and an object to represent the Photon. In order to complete this step, you will need the device ID you copied earlier when you were claiming the Photon (or the name/alias you gave the Photon when you updated the firmware to VoodooSpark) and your Particle Cloud access token. To get the access token, open a terminal window (Mac OS X) or Node.js command prompt (Windows) and execute the following command (you may be prompted to login or provide your Particle Cloud password again):
+The first thing you need to do is define the objects you will be working with in the application. The four things that matter are the Azure IoT _device_ object, a Johnny-Five framework object, the Weather Shield plugin object, and an object to represent the Photon. In order to complete this step, you will need the device ID you copied earlier when you were claiming the Photon (or the name/alias you gave the Photon when you updated the firmware to VoodooSpark) and your Particle Cloud access token. To get the access token, open a terminal window (Mac OS X) or Node.js command prompt (Windows) and execute the following command (you may be prompted to login or provide your Particle Cloud password again): 
 
 <pre>
   particle token list
@@ -86,28 +87,25 @@ Now add the following code to the __weather.js__ file:
 'use strict';
 // Define the Jonny Five, Particle and Azure IoT objects
 var five = require ("johnny-five");
+var Weather = require("j5-sparkfun-weather-shield")(five);
 var device = require('azure-iot-device');
 var Particle = require("particle-io");
 
 // Set up the access credentials for Particle and Azure
-var particleKey = process.env.PARTICLE_KEY || 'YOUR PARTICLE ACCESS TOKEN HERE';
-var deviceName = process.env.DEVICE_NAME || 'YOUR PARTICLE PHOTON DEVICE ID/ALIAS HERE';
+var token = process.env.PARTICLE_KEY || 'YOUR PARTICLE ACCESS TOKEN HERE';
+var deviceId = process.env.DEVICE_NAME || 'YOUR PARTICLE PHOTON DEVICE ID/ALIAS HERE';
 var location = process.env.DEVICE_LOCATION || 'THE LOCATION OF THE PARTICLE PHOTON DEVICE';
 var connectionString = process.env.IOTHUB_CONN || 'YOUR IOT HUB DEVICE-SPECIFIC CONNECTION STRING HERE';
 
-// Create a Johnny Five board instance to represent your Particle Photon
+// Create a Johnny-Five board instance to represent your Particle Photon
 // Board is simply an abstraction of the physical hardware, whether is is a 
 // Photon, Arduino, Raspberry Pi or other boards.
 var board = new five.Board({
   io: new Particle({
-    token: particleKey,
-    deviceId: deviceName
+    token: token,
+    deviceId: deviceId
   })
 });
-
-// hF, hC, bF, bC are holder variables for the fahrenheit and celsius values from the
-// hygrometer and barometer respectively.
-var hF, hC, bF, bC, relativeHumidity, pressure;
 
 // Create an Azure IoT client that will manage the connection to your IoT Hub
 // The client is created in the context of an Azure IoT device, which is why
@@ -117,14 +115,15 @@ var client = new device.Client(connectionString, new device.Https());
 
 In this code you define four variables that you will be working with:
 
-1. <code>five</code> - represents the Johnny Five framework capabilities, which provide a type of object model for working with boards like Arduino and Particle.
-2. <code>Particle</code> - represents the Particle IO framework capabilities which exposes the specifics of the Particle boards including the Core and the Photon.
-3. <code>board</code> - a representation of the physical board you are using. This is created by specifying the Particle board and passing in the Particle Access Token and the device ID or alias.
-4. <code>client</code> - This is the agent class that facilitates the communication between your device and the Azure IoT Hub. It takes the device-specific connection string as an argument and establishes a connection with the IoT Hub.
+1. <code>five</code> - represents the Johnny-Five framework capabilities, which provide a type of object model for working with boards like Arduino and Particle.
+2. <code>Weather</code> - represents the Weather Shield plugin for Johnny-Five, which is compatible with both the Arduino and Photon variants. 
+3. <code>Particle</code> - represents the Particle IO framework capabilities which exposes the specifics of the Particle boards including the Core and the Photon.
+4. <code>board</code> - represents the physical board you are using. This is created by specifying the Particle board and passing in the Particle Access Token and the device ID or alias.
+5. <code>client</code> - the agent class that facilitates the communication between your device and the Azure IoT Hub. It takes the device-specific connection string as an argument and establishes a connection with the IoT Hub.
 
-Now that the objects are created, you can get to the meat of the application. Johnny Five provides a board 'ready' event that makes a callback when the board is on, initialized and ready for action. Inside the anonymous callback function is where your application code executes (this function is invoked when the board is ready for use).
+Now that the objects are created, you can get to the meat of the application. Johnny-Five provides a board 'ready' event that makes a callback when the board is on, initialized and ready for action. Inside the anonymous callback function is where your application code executes (this function is invoked when the board is ready for use).
 
-Johnny Five provides a collection of objects that represent the board, the pins on the board, and various types of sensors and devices that could be connected to the board. In this lab series you will work with the Temperature and Barometer classes as a representation of the HTU21D humidity sensor and the MPL3115A2 barometric pressure sensor respectively. When you create an instance of the classes you will specify the controller class by defining the sensor name (HTU21D or MPL3115A2).
+Johnny-Five provides a collection of objects that represent the board, the pins on the board, and various types of sensors and devices that could be connected to the board. In this lab series you will work with the Temperature and Barometer classes as a representation of the HTU21D humidity sensor and the MPL3115A2 barometric pressure sensor respectively. When you create an instance of the classes you will specify the controller class by defining the sensor name (HTU21D or MPL3115A2).
 
 In the following code you will invoke the <code>board.on()</code> function which establishes a callback function that is invoked when the board is on, initialized and ready. All of the operational code for the board will be in the <code>board.on()</code> function (helper functions may exist outside the scope on the <code>board.on()</code> function). Within the <code>board.on()</code> function you will create an object reference to the sensors on the weather shield. Similar to the <code>board</code> object, the object you create to reference the shield will have an <code>on()</code> function that establishes a callback that exposes the data read from the sensors on the shield.
 
@@ -136,45 +135,26 @@ board.on("ready", function() {
     // The SparkFun Weather Shield for the Particle Photon has two sensors on the I2C bus - 
     // a humidity sensor (HTU21D) which can provide both humidity and temperature, and a 
     // barometer (MPL3115A2) which can provide both barometric pressure and humidity.
-    // When you create objects for the sensors you use the controller for the specific sensor,
-    // which is a multi-class controller.
-    var htu21d = new five.Multi({
-      controller: "HTU21D",
-      freq: 10000
+    // Controllers for these are wrapped in the convenient `Weather` plugin class:
+    var weather = new Weather({
+      variant: "PHOTON",
+      freq: 1000
     });
     
-    var mpl3115a2 = new five.Multi({
-      controller: "MPL3115A2"
-    });
-    
-    // The mpl3115a2.on("change", callback) function invokes the ananymous callback function 
+    // The weather.on("data", callback) function invokes the anonymous callback function 
     // whenever the data from the sensor changes (no faster than every 25ms). The anonymous 
-    // function is scoped to the object (e.g. this == the mpl3115a2 Multi class object). 
-    mpl3115a2.on("change", function() {
-      bF = this.temperature.fahrenheit;
-      bC = this.temperature.celsius;
-      pressure = this.barometer.pressure;
-    });
-    
-    // The htu21d.on("data", callback) function invokes the ananymous callback function at the 
-    // frequency specified in the constructor (25ms by default). The anonymous function 
-    // is scoped to the object (e.g. this == the htu21d Multi class object). 
-    htu21d.on("data", function() {
-      hF = this.temperature.fahrenheit;
-      hC = this.temperature.celsius;
-      relativeHumidity = this.hygrometer.relativeHumidity;
-      
-      // The MPL311A2 (barometer) sensor will update the global variables associated with it.
-      // Each time the HTU21D (temperature) sensor invokes this function the message sent to Azure
-      // IoT Hub will include the data from the MPL311A2 sensor as well.
-      // Create a JSON payload for the message that will be sent to Azure IoT Hub
+    // function is scoped to the object (e.g. this == the instance of Weather class object). 
+    weather.on("data", function () {
       var payload = JSON.stringify({
-        deviceId: deviceName,
+        deviceId: deviceId,
         location: location,
-        fahrenheit: (hF + bF) /2,
-        celsius: (hC + bC) / 2,
-        relativeHumidity: relativeHumidity,
-        pressure: pressure
+        // celsius & fahrenheit are averages taken from both sensors
+        celsius: this.celsius,
+        fahrenheit: this.fahrenheit,
+        relativeHumidity: this.relativeHumidity,
+        pressure: this.pressure,
+        feet: this.feet,
+        meters: this.meters
       });
       
       // Create the message based on the payload JSON
@@ -205,11 +185,13 @@ In this code you do a number of things:
 
 When <code>client.sendEvent()</code> is invoked, the JSON message is sent to Azure IoT Hub. For now, nothing happens with the message once it is received in your IoT Hub because you haven't set up anything that will capture the message and do something with it (we will get to that soon). By default, the messages have a one-day retention time.
 
+You can view the file source file (here)(https://github.com/ThingLabsIo/IoTLabs/tree/master/Azure).
+
 ## Run the App
-When you run the application it will execute on your computer, and thanks to Johnny Five, it will connect with your Photon and work directly with it. Basically, your computer is acting as a hub and communicating via TCP over your local Wi-Fi network with the Photon as one of potentially many devices (or spokes). If you continue on past today, in a future lab you will deploy the Node.js application to another device (like a Raspberry Pi) which will act as the hub and connect to multiple spoke devices.
+When you run the application it will execute on your computer, and thanks to Johnny-Five, it will connect with your Photon and work directly with it. Basically, your computer is acting as a hub and communicating via TCP over your local Wi-Fi network with the Photon as one of potentially many devices (or spokes). If you continue on past today, in a future lab you will deploy the Node.js application to another device (like a Raspberry Pi) which will act as the hub and connect to multiple spoke devices.
 
 <blockquote>
-  When you power on the Photon and it establishes a Wi-Fi connection, the first thing it does is a 'phone home' to the Particle Cloud where it registers itself as online. When it does that, it also registers its local IP address. When you run the Node.js application, thanks to the Johnny Five framework and the Particle-IO plugin, the Node app pings the Particle Cloud and requests the IP address for the device name you specified (that is why the Particle Token and Device ID/Alias are needed). Once the application has the local IP address for the Photon, all communications with the device are over local TCP (which is why your development machine and the Photon have to be on the same network). Since the communication from the Node.js app to the Photon is over TCP and not USB, the Photon doesn't need to be plugged into your USB port - it simply needs to be powered on and on the same Wi-Fi you configured it for (and the machine running the Node.js app has to be on the same Wi-F network). 
+  When you power on the Photon and it establishes a Wi-Fi connection, the first thing it does is a 'phone home' to the Particle Cloud where it registers itself as online. When it does that, it also registers its local IP address. When you run the Node.js application, thanks to the Johnny-Five framework and the Particle-IO plugin, the Node app pings the Particle Cloud and requests the IP address for the device name you specified (that is why the Particle Token and Device ID/Alias are needed). Once the application has the local IP address for the Photon, all communications with the device are over local TCP (which is why your development machine and the Photon have to be on the same network). Since the communication from the Node.js app to the Photon is over TCP and not USB, the Photon doesn't need to be plugged into your USB port - it simply needs to be powered on and on the same Wi-Fi you configured it for (and the machine running the Node.js app has to be on the same Wi-F network). 
 </blockquote>
 
 Open a terminal window (Mac OS X) or Node.js command prompt (Windows) and execute the following commands (replace c:\Development\IoTLabs with the path that leads to your labs folder):
@@ -229,7 +211,7 @@ When you want to quite the application, press <kbd>CTRL</kbd> + <kbd>C</kbd> twi
 
 ## Conclusion &amp; Next Steps
 
-In this lab you learned how to write a Node.js/Johnny Five application that collects environment telemetry and sends it to Azure IoT Hub. In the [next lab][2] you will setup some Azure services to store and visualize the data.
+In this lab you learned how to write a Node.js/Johnny-Five application that collects environment telemetry and sends it to Azure IoT Hub. In the [next lab][2] you will setup some Azure services to store and visualize the data.
 
 [Next Lab ->][2]
 
