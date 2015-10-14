@@ -97,8 +97,13 @@ var deviceId = process.env.DEVICE_NAME || 'YOUR PARTICLE PHOTON DEVICE ID/ALIAS 
 var location = process.env.DEVICE_LOCATION || 'THE LOCATION OF THE PARTICLE PHOTON DEVICE';
 var connectionString = process.env.IOTHUB_CONN || 'YOUR IOT HUB DEVICE-SPECIFIC CONNECTION STRING HERE';
 
+<<<<<<< HEAD
 // Create a Johnny-Five board instance to represent your Particle Photon
 // Board is simply an abstraction of the physical hardware, whether is is a 
+=======
+// Create a Johnny Five board instance to represent your Particle Photon.
+// Board is simply an abstraction of the physical hardware, whether it is a 
+>>>>>>> origin/master
 // Photon, Arduino, Raspberry Pi or other boards.
 var board = new five.Board({
   io: new Particle({
@@ -107,6 +112,13 @@ var board = new five.Board({
   })
 });
 
+<<<<<<< HEAD
+=======
+// hF, hC, bF, bC are holder variables for the fahrenheit and celsius values from the
+// hygrometer and barometer.
+var hF, hC, bF, bC, relativeHumidity, pressure;
+
+>>>>>>> origin/master
 // Create an Azure IoT client that will manage the connection to your IoT Hub
 // The client is created in the context of an Azure IoT device, which is why
 // you use a device-specific connection string.
@@ -135,6 +147,7 @@ board.on("ready", function() {
     // The SparkFun Weather Shield for the Particle Photon has two sensors on the I2C bus - 
     // a humidity sensor (HTU21D) which can provide both humidity and temperature, and a 
     // barometer (MPL3115A2) which can provide both barometric pressure and humidity.
+<<<<<<< HEAD
     // Controllers for these are wrapped in the convenient `Weather` plugin class:
     var weather = new Weather({
       variant: "PHOTON",
@@ -145,6 +158,40 @@ board.on("ready", function() {
     // whenever the data from the sensor changes (no faster than every 25ms). The anonymous 
     // function is scoped to the object (e.g. this == the instance of Weather class object). 
     weather.on("data", function () {
+=======
+    // When you create objects for the sensors you use the controller for the specific sensor,
+    // which is a multi-class controller.
+    var htu21d = new five.Multi({
+      controller: "HTU21D",
+      freq: 1000
+    });
+    
+    var mpl3115a2 = new five.Multi({
+      controller: "MPL3115A2"
+    });
+    
+    // The mpl3115a2.on("change", callback) function invokes the anonymous callback function 
+    // whenever the data from the sensor changes (no faster than every 25ms). The anonymous 
+    // function is scoped to the object (e.g. this == the mpl3115a2 Multi class object). 
+    mpl3115a2.on("change", function() {
+      bF = this.temperature.fahrenheit;
+      bC = this.temperature.celsius;
+      pressure = this.barometer.pressure;
+    });
+    
+    // The htu21d.on("data", callback) function invokes the anonymous callback function at the 
+    // frequency specified in the constructor (25ms by default). The anonymous function 
+    // is scoped to the object (e.g. this == the htu21d Multi class object). 
+    htu21d.on("data", function() {
+      hF = this.temperature.fahrenheit;
+      hC = this.temperature.celsius;
+      relativeHumidity = this.hygrometer.relativeHumidity;
+      
+      // The MPL311A2 (barometer) sensor will update the global variables associated with it.
+      // Each time the HTU21D (temperature) sensor invokes this function the message sent to Azure
+      // IoT Hub will include the data from the MPL311A2 sensor as well.
+      // Create a JSON payload for the message that will be sent to Azure IoT Hub
+>>>>>>> origin/master
       var payload = JSON.stringify({
         deviceId: deviceId,
         location: location,
@@ -178,9 +225,9 @@ function printResultFor(op) {
 In this code you do a number of things:
 
 1. <code>board.on()</code> - This function triggers the Photon to invoke the anonymous callback function as soon as the board is on and ready. All of the application code for the device is written inside this callback function.
-2. Define the <code>htu21d</code> and <code>mpl3115a2</code> objects. These are a representation of the two physical sensors on the shield connected to the Photon. You instantiate each of them by specifying the controller class to use (this informs the framework how to interact with this sensor) and optionally a frequency to report the data collected by the sensor. Many sensors are capable of collecting data in fraction of a second intervals. You may not want to collect data and send it to your Azure IoT Hub that frequently. The <code>freq</code> property defines (in milliseconds) how often to raise an event to report the data from the sensor. In this example you are establishing the callback at a frequency of once per 10-seconds for the <code>htu21d</code> temperature/humidity sensor, and the default frequency of 25ms for the <code>mpl3115a2</code> barometer. 
+2. Define the <code>htu21d</code> and <code>mpl3115a2</code> objects. These are a representation of the two physical sensors on the shield connected to the Photon. You instantiate each of them by specifying the controller class to use (this informs the framework how to interact with this sensor) and optionally a frequency to report the data collected by the sensor. Many sensors are capable of collecting data in fraction of a second intervals. You may not want to collect data and send it to your Azure IoT Hub that frequently. The <code>freq</code> property defines (in milliseconds) how often to raise an event to report the data from the sensor. In this example you are establishing the callback at a frequency of once per second for the <code>htu21d</code> temperature/humidity sensor, and the default frequency of 25ms for the <code>mpl3115a2</code> barometer. 
 3. <code>mpl3115a2.on()</code> is the function that initializes the controller for the Multi class MPL3115A2 barometer. As soon as it is initialized it invokes the anonymous callback function any time the data for the sensor changes. Each time the data is gathered and passed to the anonymous function you store the sensor values in variables for later use.
-4. <code>htu21d.on()</code> is the function that initializes the controller for the Multi class HTU21D sensor. As soon as it is initialized it begins invoking the anonymous callback function repeatedly based on the <code>freq</code> value (every 10000ms or every 10-seconds). Each time the data is gathered and passed to the anonymous function you create and send a telemetry message that also includes the latest data from the MPL3115A2 barometer to Azure IoT Hub.
+4. <code>htu21d.on()</code> is the function that initializes the controller for the Multi class HTU21D sensor. As soon as it is initialized it begins invoking the anonymous callback function repeatedly based on the <code>freq</code> value (every 1000ms or every one-second). Each time the data is gathered and passed to the anonymous function you create and send a telemetry message that also includes the latest data from the MPL3115A2 barometer to Azure IoT Hub.
 4. <code>message</code> is the object that represents the data you are sending to Azure IoT Hub. This is a JSON formatted message.
 
 When <code>client.sendEvent()</code> is invoked, the JSON message is sent to Azure IoT Hub. For now, nothing happens with the message once it is received in your IoT Hub because you haven't set up anything that will capture the message and do something with it (we will get to that soon). By default, the messages have a one-day retention time.
@@ -201,10 +248,10 @@ Open a terminal window (Mac OS X) or Node.js command prompt (Windows) and execut
   node weather.js
 </pre>
 
-After the board initializes you will see messages printing out once per 10-seconds (this first message will print out after the initial 10-seconds). This is the message payload that is being sent to Azure IoT Hub.
+After the board initializes you will see messages printing out once per second. This is the message payload that is being sent to Azure IoT Hub.
 
 <blockquote>
-If you downloaded the Device Explorer utility for Windows you can open the _Data_ tab, select a device, and click _Monitor_ to begin monitoring messages as they come into your Azure IoT Hub.
+If you downloaded the [Device Explorer[deviceexplorer] utility for Windows you can open the _Data_ tab, select a device, and click _Monitor_ to begin monitoring messages as they come into your Azure IoT Hub.
 </blockquote>
 
 When you want to quite the application, press <kbd>CTRL</kbd> + <kbd>C</kbd> twice to exit the program without closing the window (you may also have to press <kbd>Enter</kbd>). After stopping the application press the _Reset_ button on the Photon to prepare it for the next run. 
