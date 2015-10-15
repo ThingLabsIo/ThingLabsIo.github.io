@@ -6,7 +6,7 @@ show_meta: false
 teaser: "We are a group of engineers who frequently get distracted by blinking lights and shiney objects."
 permalink: "/info/"
 header:
-    image_fullwidth: "header_drop.jpg"
+    image_fullwidth: "header_unsplash_10.jpg"
 ---
 
 ## Doug Seven
