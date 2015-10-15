@@ -12,20 +12,24 @@ header:
 ## Doug Seven
 
 <img src="../images/author_doug.png"/>
+
 Twitter: [@dseven](https://twitter.com/dseven)
 
 ## Josh Holmes
 
 <img src="../images/author_josh.png"/>
+
 Twitter: [@joshholmes](https://twitter.com/joshholmes)
 
 ## Ivan Judson
 
 <img src="../images/author_ivan.png"/>
+
 Twitter: [@irjudson](https://twitter.com/irjudson)
 
 ## Ryan Pedersen
 
 <img src="../images/author_ryan.png"/>
+
 Twitter: [@rpedersen](https://twitter.com/rpedersen)
 
