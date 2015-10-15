@@ -11,21 +11,21 @@ header:
 
 ## Doug Seven
 
-Twitter: [@dseven](https://twitter.com/dseven)
 <img src="../images/author_doug.png"/>
+Twitter: [@dseven](https://twitter.com/dseven)
 
 ## Josh Holmes
 
-Twitter: [@joshholmes](https://twitter.com/joshholmes)
 <img src="../images/author_josh.png"/>
+Twitter: [@joshholmes](https://twitter.com/joshholmes)
 
 ## Ivan Judson
 
-Twitter: [@irjudson](https://twitter.com/irjudson)
 <img src="../images/author_ivan.png"/>
+Twitter: [@irjudson](https://twitter.com/irjudson)
 
 ## Ryan Pedersen
 
-Twitter: [@rpedersen](https://twitter.com/rpedersen)
 <img src="../images/author_ryan.png"/>
+Twitter: [@rpedersen](https://twitter.com/rpedersen)
 
