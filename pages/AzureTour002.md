@@ -46,7 +46,7 @@ Using your favorite/preferred text/code editor, create a file in your developmen
   "license": "MIT",
   "dependencies": {
     "azure-iot-device": "^1.0.0-preview.3",
-    "johnny-five": "^0.8.98",
+    "johnny-five": "^0.8.104",
     "j5-sparkfun-weather-shield": "^0.2.0",
     "particle-io": "^0.10.1"
   }
