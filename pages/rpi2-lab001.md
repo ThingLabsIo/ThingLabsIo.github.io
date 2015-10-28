@@ -61,7 +61,11 @@ Windows 10 IoT Core will boot on power-up. The first boot may take a few minutes
 
 <img src="/images/rpi2_defaultapp.png"/>
 
-## Create a UWP App
+## Create a Universal App
+A Universal Windows app is a Windows experience that is built upon the Universal Windows Platform (UWP), which was first introduced in Windows 8 as the Windows Runtime. The UWP enables you to write an app that targets a device family, such as IoT devices. In fact, the universal app that you write may be able to run on multiple devices families, depending on the device characteristics that it takes advantage of. In this lab you will create a universal app targeting IoT devices running Windows 10. Technically this could be nearly any device, such as a phone, a tablet or a Raspberry Pi 2, however; the universal app you write will access the General Purpose Input/Output (GPIO) of the device, so the app won't actually be compatible with devices that don't have a GPIO.   
+
+### Create a Blank Universal App
+Launch Visual Studio and start a new __Blank Universal Application__ (found in the _C# -> Windows_ section).
 
 ## Run the App
 
