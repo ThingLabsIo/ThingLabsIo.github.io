@@ -61,13 +61,41 @@ Windows 10 IoT Core will boot on power-up. The first boot may take a few minutes
 
 <img src="/images/rpi2_defaultapp.png"/>
 
+## Wire Up the RPi2
+
+<img src="/images/rpi2_lab01_bb.png"/>
+
 ## Create a Universal App
 A Universal Windows app is a Windows experience that is built upon the Universal Windows Platform (UWP), which was first introduced in Windows 8 as the Windows Runtime. The UWP enables you to write an app that targets a device family, such as IoT devices. In fact, the universal app that you write may be able to run on multiple devices families, depending on the device characteristics that it takes advantage of. In this lab you will create a universal app targeting IoT devices running Windows 10. Technically this could be nearly any device, such as a phone, a tablet or a Raspberry Pi 2, however; the universal app you write will access the General Purpose Input/Output (GPIO) of the device, so the app won't actually be compatible with devices that don't have a GPIO.   
 
 ### Create a Blank Universal App
 Launch Visual Studio and start a new __Blank Universal Application__ (found in the _C# -> Windows_ section).
 
+Name the application _HelloWindowsIoT_.
+
+<img src="/images/rpi2_new_universal.png"/>
+
+Once the solution is created, click on the _Project_ menu and select _Add Reference_.
+In the Reference Manager dialog, expand the _Universal Windows_ node and select _Extensions_.
+In the list of extensions, check the box next to __Windows IoT Extensions for the UWP__ and click __OK__.
+
+<img src="/images/rpi2_install_iotextensions.png"/>
+
+Open the _MainPage.xaml_ file. This is the layout definition for the inital page that loads when the app is run. Next you will add a few elements to the page.
+
+{% highlight xml %}
+<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+</Grid>
+{% endhighlight %}
+
 ## Run the App
+
+<img src="/images/rpi2_lab01_nogpio.png"/>
+
+<img src="/images/rpi2_lab01_arm.png"/>
+
+<img src="/images/rpi2_lab01_remote.png"/>
 
 ## Conclusion &amp; Next Steps
 
