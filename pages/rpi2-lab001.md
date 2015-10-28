@@ -1,8 +1,8 @@
 ---
-layout: page-fullwidth
-title: "Setting Up Azure IoT"
+layout: "page-fullwidth"
+title: "Hello, Windows IoT!"
 subheadline: "Raspberry Pi IoT Lab 1"
-teaser: "In this lab you will create a simple 'Thing'."
+teaser: "In this lab you will create a simple 'Thing' using Wndows 10 IoT Core and a Raspberry Pi 2."
 show_meta: true
 comments: true
 header: no
@@ -11,13 +11,13 @@ categories:
     - iot-rpi2-labs
     - maker-101
 author: "Doug Seven"
-permalink: "/rpi/01/"
+permalink: /rpi2/01/
 ---
 ### Table of Contents
 *  Auto generated table of contents
 {:toc}
 
-If you haven't already done so, please follow the instructions in [Lab 00: Getting Started](/rpi/00/) section.
+If you haven't already done so, please follow the instructions in [Lab 00: Getting Started](/rpi2/00/) section.
 
 In this lab you will create a simple _Thing_ using the Raspberry Pi and the Unniversal Windows Platform. 
 
@@ -32,7 +32,7 @@ What you will need:
 6. 8GB micro SD card - class 10 or better. Microsoft suggests [this one](http://www.amazon.com/gp/product/B00IVPU786) or [this one](http://www.amazon.com/SanDisk-Ultra-Micro-SDHC-16GB/dp/9966573445).
 7. Micro SD card writer
 
-## Install WIndows 10 IoT Core on Raspberry Pi 2
+## Install Windows 10 IoT Core on Raspberry Pi 2
 Windows 10 IoT Core is a version of Windows 10 designed to run on small devices, like the Raspberry Pi 2. You can download and install the Windows IoT Core image using the micro SD card. 
 
 1. Download a Windows 10 IoT Core image from the [Microsoft downloads page](http://ms-iot.github.io/content/en-US/Downloads.htm). 
@@ -73,5 +73,4 @@ Congratulations! You have created a software representation of the physical devi
 
 {% include next-previous-post-in-category.html %}
 
-[nextlab]: /rpi/02/
-[deviceexplorer]: https://github.com/Azure/azure-iot-sdks/blob/master/tools/DeviceExplorer/doc/how_to_use_device_explorer.md
+[nextlab]: /rpi2/02/

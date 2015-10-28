@@ -1,5 +1,5 @@
 ---
-layout: page-fullwidth
+layout: "page-fullwidth"
 title: "Raspberry Pi 2 IoT Labs: Getting Started"
 subheadline: "A Step-by-Step Guide"
 teaser: "This is a step-by-step guide to preparing your computer for the Raspberry Pi 2 IoT Labs."
@@ -11,7 +11,7 @@ categories:
     - iot-rpi2-labs
     - maker-101
 author: "Doug Seven"
-permalink: "/rpi/00/"
+permalink: /rpi2/00/
 ---
 ### Table of Contents
 *  Auto generated table of contents

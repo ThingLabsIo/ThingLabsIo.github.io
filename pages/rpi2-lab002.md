@@ -11,13 +11,13 @@ categories:
     - iot-rpi2-labs
     - maker-101
 author: "Doug Seven"
-permalink: "/rpi/02/"
+permalink: /rpi2/02/
 ---
 ### Table of Contents
 *  Auto generated table of contents
 {:toc}
 
-If you haven't already done so, please follow the instructions in [Lab 00: Getting Started](/rpi/00/) section.
+If you haven't already done so, please follow the instructions in [Lab 00: Getting Started](/rpi2/00/) section.
 
 In this lab you will provision a new Azure IoT Hub. Once you have the IoT Hub created, you will be able to create a new Azure IoT device (a software reference to your physical device) that you will use to send telemetry to Azure. 
 
@@ -99,5 +99,5 @@ Congratulations! You have created a software representation of the physical devi
 
 {% include next-previous-post-in-category.html %}
 
-[nextlab]: /rpi/02/
+[nextlab]: /rpi2/03/
 [deviceexplorer]: https://github.com/Azure/azure-iot-sdks/blob/master/tools/DeviceExplorer/doc/how_to_use_device_explorer.md
