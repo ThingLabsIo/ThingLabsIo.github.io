@@ -149,7 +149,7 @@ Next you need to wire up the Photon board so that it can send <code>ON</code> an
 Insert a LED into the breadboard as shown in the diagram, connecting the positive lead to the D7 pin and inserting the negative lead into the negative (-) side rail. For reference, an LED has one lead that is longer than the other. The longer lead is the positive (+) lead, and the shorter lead is the negative (-) lead.
 
 ### Resistor
-Connect a 2200-Ohm resistor from the negative (-) side rail to the GND pin.
+Connect a 220 Ohm resistor from the negative (-) side rail to the GND pin.
 
 ## Write the Code
 Since we are using Node.js and Johnny-Five for this lab we can take advantage of the dependency management capabilities that Node.js provides. We need to let our application know that it has a dependency on the Johnny-Five framework as well as the Spark-IO framework so that when the application is prepared for execution, it can fetch the required dependencies for us. In Node.js this is done with a package.json file. This file provides some basic meta-data about the application, including any dependencies on packages that can be retrieved using NPM (according to [npmjs.com](https://www.npmjs.com) today, NPM stands for Narrating Prophetic Monks...not Node Package Manager like you may have thought).
@@ -164,10 +164,14 @@ Using your favorite/preferred text/code editor, create a file in your labs folde
     "url": "https://github.com/ThingLabsIo/IoTLabs/Photon"
   },
   "version": "0.1.0",
-  "private": true,
+  "private":true,
+  "description": "Sample app that connects a device to Azure using Node.js",
+  "main": "lab01.js",
+    "author": "YOUR NAME",
+  "license": "MIT",
   "dependencies": {
-    "johnny-five": "^0.8.0",
-    "particle-io": "^0.8.1"
+    "johnny-five": "^0.8.104",
+    "particle-io": "^0.10.1"
   }
 }
 {% endhighlight %}
@@ -195,25 +199,33 @@ Now add the following code to the <b>lab01.js</b> file:
 
 {% highlight javascript %}
 // Define the Jonny Five and Particle-IO variables
-var five = require("johnny-five");
-var particle = require("particle-io");
-// Define the Johnny Five board as your Particle Photon
-var board = new five.Board({
-  io: new particle({
-    token: process.env.PARTICLE_KEY || 'YOUR API KEY HERE',
-    deviceId: process.env.PARTICLE_DEVICE || 'YOUR DEVICE ID OR ALIAS HERE'
-  })
+var five = require ("johnny-five"); 
+var Particle = require("particle-io");
+
+// Set up the access credentials for Particle and Azure 
+var token = process.env.PARTICLE_KEY || 'YOUR PARTICLE ACCESS TOKEN HERE'; 
+var deviceId = process.env.PHOTON_ID || 'YOUR PARTICLE PHOTON DEVICE ID/ALIAS HERE'; 
+
+// Define the pin that is connected to the LED 
+var LEDPIN = 'D7';
+
+// Create a Johnny Five board instance to represent your Particle Photon.
+// Board is simply an abstraction of the physical hardware, whether it is 
+// a Photon, Arduino, Raspberry Pi or other boards. 
+var board = new five.Board({ 
+	io: new Particle({ 
+		token: token, 
+		deviceId: deviceId 
+	}) 
 });
-// Define the pin that is connected to the LED
-var LEDPIN = "D7";
 {% endhighlight %}
 
 In this code you define four variables that you will be working with:
 
 1. <code>five</code> - represents the Johnny Five framework capabilities, which provide a type of object model for working with boards like Arduino and Particle.
-2. <code>particle</code> - represents the Particle IO framework capabilities which exposes the specifics of the Particle boards inclusing the Core and the Photon.
-3. <code>board</code> - a representation of the physical board you are using. This is created by specifying the Spark board and passing in the Particle Cloud API token and the device ID.
-4. <code>LEDPIN</code> - a variable that references pin D7, which you will connected the LED to.
+2. <code>Particle</code> - represents the Particle IO framework capabilities which exposes the specifics of the Particle boards inclusing the Core and the Photon.
+3. <code>LEDPIN</code> - a variable that references pin D7, which you will connected the LED to.
+4. <code>board</code> - a representation of the physical board you are using. This is created by specifying the Spark board and passing in the Particle Cloud API token and the device ID.
 
 Now that the objects are created, you can get to the meat of the application. Johnny-Five provides a board 'ready' construct that makes a callback when the board is on, initialized and ready for action. Inside the ananymous callback function is where your application code executes (this function is invoked when the board is ready for use).
 
@@ -222,16 +234,17 @@ Johnny-Five provides a collection of objects that represent the board, the pins 
 In the following code you will create a callback function that is invoked when the Photon is initialized and ready (this is a Johnny-Five concept). You will set digital pin _D7_ (the <code>LEDPIN</code> variable above) as an output pin (vs. an input pin), meaning the application is expecting to send voltage out from the pin as opposed to read the voltage coming in to the pin. Then you will create a loop that runs once per second and inside that loop you will write out to the pin either LOW or HIGH voltage. Since pin _D7_ is a digital pin, its only options are 0 and 1 - in the world of Arduino-based boards that is LOW and HIGH. When you send 0 (or LOW) to the pin, that is equivalent to off (sending no voltage). When you send 1 (or HIGH) to the pin that is equivalent to on (sending full voltage).
 
 {% highlight javascript %}
-// The board.on() executes the anonymous function when the 
-// Partile Photon reports back that it is initialized and ready.
-board.on("ready", function(){
-  // Set the pin you connected to the LED to OUTPUT mode
-  this.pinMode(LEDPIN, five.Pin.OUTPUT);
-  // Create a loop to "flash/blink/strobe" an led
-  var val = 0;
-  this.loop( 1000, function() {
-    this.digitalWrite(LEDPIN, (val = val ? 0 : 1));
-  });
+// The board.on() executes the anonymous function when the
+// board reports back that it is initialized and ready. 
+board.on("ready", function() { 
+	console.log("Board connected..."); 
+	// Set the pin you connected to the LED to OUTPUT mode  
+	this.pinMode(LEDPIN, five.Pin.OUTPUT); 
+
+	// Create a loop to "flash/blink/strobe" an led  
+	var val = 0;  this.loop( 1000, function() {
+		this.digitalWrite(LEDPIN, (val = val ? 0 : 1));
+	});
 });
 {% endhighlight %}
   
@@ -239,8 +252,8 @@ Johnny-Five actually has an object model for an LED and we could also have simpl
 
 {% highlight javascript %}
 board.on("ready", function() {
-  var led = new five.Led(LEDPIN);
-  led.blink(1000);
+	var led = new five.Led(LEDPIN);
+	led.blink(1000);
 });
 {% endhighlight %}
 
