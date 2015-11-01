@@ -47,7 +47,7 @@ In the labs you will write small programs that will run on your computer, connec
 Follow the [instructions here to install Node.js][10] on your computer. __Be sure to install [version 0.12.x][node_12_7]__ - not version 4.0.
 
 ## Install Johnny-Five
-Johnny-Five is an open source JavaScript framework that provides a simple object model for interacting with a varaiety of hardware boards and the sensors and devices you connect to them. 
+Johnny-Five is an open source JavaScript framework that provides a simple object model for interacting with a variety of hardware boards and the sensors and devices you connect to them. 
 
 Once you have Node.js installed, install [Johnny-Five][11] using NPM.
 On Windows, open the Node.js command prompt and type the following:
@@ -90,7 +90,7 @@ Prepare a place to save all of your work in the labs. I recommend an easy to nav
 The Particle Photon is pre-configured to connect to the Particle Cloud. In order to 'claim' or provision the device, and to update its firmware (which you will do in [Lab 01][13]) you must create a free account with Particle Cloud. Go to [https://build.particle.io/signup][14] to create a new Particle Cloud account (make sure you remember your login email address and password - you will need it during this lab series).
 
 ## Create a Microsoft Azure Trial Account
-In this lab series you will use Microsoft Azure as the cloud backend for your IoT solution. If you don't allready have an Azure account, go to [https://azure.microsoft.com/en-us/pricing/free-trial/][15] to start a free trial of Microsoft Azure. You may need a credit card for identity verification, but the trial is completely free. If you have an MSDN Subscription you may be eligible for free credits to Microsoft Azure every month. Check your [MSDN account][16] page for details.
+In this lab series you will use Microsoft Azure as the cloud backend for your IoT solution. If you don't already have an Azure account, go to [https://azure.microsoft.com/en-us/pricing/free-trial/][15] to start a free trial of Microsoft Azure. You may need a credit card for identity verification, but the trial is completely free. If you have an MSDN Subscription you may be eligible for free credits to Microsoft Azure every month. Check your [MSDN account][16] page for details.
 
 That's it for now. You are ready to start the [first set of labs][13].
 

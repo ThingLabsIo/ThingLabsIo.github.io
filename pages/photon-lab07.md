@@ -91,7 +91,7 @@ For this lab you will create a new file named <strong>lab07.js</strong> in the s
 In the lab07.js file start by declaring the key objects, including a variable for the analog pin number you will use (A0 or 0). THis is the exact same code as [Lab 2][lab02].
 
 {% highlight javascript %}
-// Define the Jonny Five and Particle-IO variables
+// Define the Johnny Five and Particle-IO variables
 var five = require ("johnny-five"),
     board, photoresistor;
 var particle = require("particle-io");
@@ -216,7 +216,7 @@ Next you need to create the message that will be sent to your Event Hub each tim
       console.error(e);
     });
     
-    // Write the message paylod to the request stream
+    // Write the message payload to the request stream
     req.write(payload);
     // End/close the request
     req.end();

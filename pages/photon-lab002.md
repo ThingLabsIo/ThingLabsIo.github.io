@@ -94,7 +94,7 @@ For this lab you will create a new file named <strong>lab02.js</strong> in the s
 In the lab02.js file start by declaring the key objects, including a variable for the analog pin number you will use (A0 or 0). Most of this is identical to Lab 1.
 
 {% highlight javascript %}
-// Define the Jonny Five and Particle-IO variables
+// Define the Johnny Five and Particle-IO variables
 var five = require("johnny-five");
 var particle = require("particle-io");
 // Define the Johnny Five board as your Particle Photon

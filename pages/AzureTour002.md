@@ -28,7 +28,7 @@ What you will need:
 2. USB to micro-USB cable (there is one included in the [Photon Development Kit][1])
 3. [SparkFun Weather Shield for Particle Photon - $32.95](https://www.sparkfun.com/products/13630)
 
-In the previous lab you claimed your Particle Photon and prepared it by flashing it with the VoodooSpark firmware. Then you provisioned a new Azure IoT Hub and used either the _DeviceExploer_ or _iothub-explorer_ to provision a device. In this lab you will write a Node.js application that communicates with the Photon over local TCP and gathers the data from the temperature and barometer on the weather shield. Once you understand this concept you can apply it to any sensor that collects data, such as a light sensor, motion sensor, vibration or tilt sensors, and more.
+In the previous lab you claimed your Particle Photon and prepared it by flashing it with the VoodooSpark firmware. Then you provisioned a new Azure IoT Hub and used either the _DeviceExplorer_ or _iothub-explorer_ to provision a device. In this lab you will write a Node.js application that communicates with the Photon over local TCP and gathers the data from the temperature and barometer on the weather shield. Once you understand this concept you can apply it to any sensor that collects data, such as a light sensor, motion sensor, vibration or tilt sensors, and more.
 
 ## Write the Code
 Since you will be using Node.js for this lab you can take advantage of the dependency management capabilities that Node.js and NPM provide. You need to let your application know that it has a dependency on the following NPM packages - Azure IoT Device, Johnny-Five and Particle-IO. In Node.js this is done with a _package.json_ file. This file provides some basic meta-data about the application, including any dependencies on packages that can be retrieved using NPM (according to [npmjs.com](https://www.npmjs.com) today, NPM stands for Narrating Prophetic Monks...not Node Package Manager like you may have thought).
@@ -85,7 +85,7 @@ Now add the following code to the __weather.js__ file:
 
 {% highlight javascript %}
 'use strict';
-// Define the Jonny Five, Particle and Azure IoT objects
+// Define the Johnny Five, Particle and Azure IoT objects
 var five = require ("johnny-five");
 var Weather = require("j5-sparkfun-weather-shield")(five);
 var device = require('azure-iot-device');
@@ -159,7 +159,7 @@ board.on("ready", function() {
       
       // Create the message based on the payload JSON
       var message = new device.Message(payload);
-      // For debugging purposes, write out the message paylod to the console
+      // For debugging purposes, write out the message payload to the console
       console.log("Sending message: " + message.getData());
       // Send the message to Azure IoT Hub
       client.sendEvent(message, printResultFor('send'));
@@ -191,7 +191,7 @@ You can view the file source file (here)(https://github.com/ThingLabsIo/IoTLabs/
 When you run the application it will execute on your computer, and thanks to Johnny-Five, it will connect with your Photon and work directly with it. Basically, your computer is acting as a hub and communicating via TCP over your local Wi-Fi network with the Photon as one of potentially many devices (or spokes). If you continue on past today, in a future lab you will deploy the Node.js application to another device (like a Raspberry Pi) which will act as the hub and connect to multiple spoke devices.
 
 <blockquote>
-  When you power on the Photon and it establishes a Wi-Fi connection, the first thing it does is a 'phone home' to the Particle Cloud where it registers itself as online. When it does that, it also registers its local IP address. When you run the Node.js application, thanks to the Johnny-Five framework and the Particle-IO plugin, the Node app pings the Particle Cloud and requests the IP address for the device name you specified (that is why the Particle Token and Device ID/Alias are needed). Once the application has the local IP address for the Photon, all communications with the device are over local TCP (which is why your development machine and the Photon have to be on the same network). Since the communication from the Node.js app to the Photon is over TCP and not USB, the Photon doesn't need to be plugged into your USB port - it simply needs to be powered on and on the same Wi-Fi you configured it for (and the machine running the Node.js app has to be on the same Wi-F network). 
+  When you power on the Photon and it establishes a Wi-Fi connection, the first thing it does is a 'phone home' to the Particle Cloud where it registers itself as online. When it does that, it also registers its local IP address. When you run the Node.js application, thanks to the Johnny-Five framework and the Particle-IO plugin, the Node app pings the Particle Cloud and requests the IP address for the device name you specified (that is why the Particle Token and Device ID/Alias are needed). Once the application has the local IP address for the Photon, all communications with the device are over local TCP (which is why your development machine and the Photon have to be on the same network). Since the communication from the Node.js app to the Photon is over TCP and not USB, the Photon doesn't need to be plugged into your USB port - it simply needs to be powered on and on the same Wi-Fi you configured it for (and the machine running the Node.js app has to be on the same Wi-Fi network). 
 </blockquote>
 
 Open a terminal window (Mac OS X) or Node.js command prompt (Windows) and execute the following commands (replace c:\Development\IoTLabs with the path that leads to your labs folder):

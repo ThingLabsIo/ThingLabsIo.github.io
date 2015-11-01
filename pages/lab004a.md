@@ -33,7 +33,7 @@ Follow the instructions [here](http://arduino.cc/en/Tutorial/YunSysupgrade) to u
 The following steps require the Arduino to have internet access. Follow the instructions [here](http://arduino.cc/en/Guide/ArduinoYun#toc13) to get the Arduino connected to your Wi-Fi.
 
 ## Expand Onto the microSD Card  
-Follow the instructions [here](http://arduino.cc/en/Tutorial/ExpandingYunDiskSpace) to expand the Arduino disk spce onto the microSD card (we need the space because the Arduino has only a small amount of flash storage).  
+Follow the instructions [here](http://arduino.cc/en/Tutorial/ExpandingYunDiskSpace) to expand the Arduino disk space onto the microSD card (we need the space because the Arduino has only a small amount of flash storage).  
 >When prompted for the expansion size enter **4096**  
 
 ## Add a Swap File  
@@ -89,7 +89,7 @@ The following step can take several minutes.
     npm install –g johnny-five
 
 ## Disable the Bridge Script  
-Remove the bridge setup from the inittab script by commenting out the **ttyATH0** line using the stream editor. This will replace the first argumenet (ttyAHT0) with the second argument (# ttyAHT0) which results in the line being commented out.  
+Remove the bridge setup from the inittab script by commenting out the **ttyATH0** line using the stream editor. This will replace the first argument (ttyAHT0) with the second argument (# ttyAHT0) which results in the line being commented out.  
 
     sed -i -e 's/ttyATH0/# ttyATH0/g' /etc/inittab
   
@@ -102,4 +102,4 @@ Remove the bridge setup from the inittab script by commenting out the **ttyATH0*
 
     opkg install alljoyn-samples alljoyn-sample_apps
     
-Congratulations! Your Arduino Yun is configured and ready for you to [deploy Nitrogen apps to it](/arduino/0B/).
+Congratulations! Your Arduino Y&uacute;n is configured and ready for you to [deploy Nitrogen apps to it](/arduino/0B/).

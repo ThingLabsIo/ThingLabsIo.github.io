@@ -149,7 +149,7 @@ For this lab series you will be controlling the Photon from a master/hub device 
 After completing the last step, you should see the indicator LED on your Photon begin to blink. When it returns to the 'breathing' cyan the update is complete.
 
 ## Connecting the Weather Shield
-The weather shield comes equipped with two onboard sensors - a HTU21D humidity sensor capable of gathering both humidity and temperature, and a MPL3115A2 barometric pressure sensor. There are connections for other optional sensors, such as wind, rain and soile moisture sensors (we will not be working with the optional sensors in this lab series). Simply plug the Photon into the weather shield so that the USB port on the Photon is on the same side as the RJ-11 plugs on the weather shield. 
+The weather shield comes equipped with two onboard sensors - a HTU21D humidity sensor capable of gathering both humidity and temperature, and a MPL3115A2 barometric pressure sensor. There are connections for other optional sensors, such as wind, rain and soil moisture sensors (we will not be working with the optional sensors in this lab series). Simply plug the Photon into the weather shield so that the USB port on the Photon is on the same side as the RJ-11 plugs on the weather shield. 
 
 <img src="/images/Photon_Weather_Shield.jpg"/>
 

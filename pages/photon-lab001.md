@@ -44,7 +44,7 @@ If the Photon is connected correctly and working you shold see a result similar 
   Your device id is 21003f000447343335555555
 </pre>
 
-Copy the device ID somewhere you can reference it in a momment. Next, enter the following to connect the Photon to your Wi-Fi network:
+Copy the device ID somewhere you can reference it in a moment. Next, enter the following to connect the Photon to your Wi-Fi network:
 
 <pre>
   c:\Development\gh\IoTLabs>particle serial wifi
@@ -67,13 +67,13 @@ c:\Development\gh\IoTLabs>particle serial wifi
   JimsHouse
 </pre>
 
-Use the down arrow key to highlight the SSID for the Wi-Fi network you want to connect to and press <kbd>Enter</kbd>. You should be prompted to identify the seurity protocol (e.g. WPA2, WPA, WEP, Unsecured). Choose the correct option for your Wi-Fi network and press <kbd>Enter</kbd>, then enter the Wi-Fi network password when prompted.
+Use the down arrow key to highlight the SSID for the Wi-Fi network you want to connect to and press <kbd>Enter</kbd>. You should be prompted to identify the security protocol (e.g. WPA2, WPA, WEP, Unsecured). Choose the correct option for your Wi-Fi network and press <kbd>Enter</kbd>, then enter the Wi-Fi network password when prompted.
 
 <pre>
   c:\Development\gh\IoTLabs>particle serial wifi
   ? Should I scan for nearby Wi-Fi networks? (Y/n) y
   ? Should I scan for nearby Wi-Fi networks? Yes
-  ? Select the Wi-Fi network with which you wish to connect your device: (Use arro? Select the Wi-Fi network with which you wish to connect your device: Terminus
+  ? Select the Wi-Fi network with which you wish to connect your device: (Use arrow up or down Select the Wi-Fi network with which you wish to connect your device: Terminus
   ? Security Type: WPA2
   ? Wi-Fi Password: RickGrimes
   Attempting to configure Wi-Fi on COM4
@@ -198,7 +198,7 @@ Find the token for _user_ (make sure if you see more than one that you choose th
 Now add the following code to the <b>lab01.js</b> file:
 
 {% highlight javascript %}
-// Define the Jonny Five and Particle-IO variables
+// Define the Johnny Five and Particle-IO variables
 var five = require ("johnny-five"); 
 var Particle = require("particle-io");
 
@@ -270,7 +270,7 @@ Open a terminal window (Mac OS X) or Node.js command prompt (Windows) and execut
 You should the indicator LED on the Photon blink a little as the app is initialized, and then the on-board LED next to pin _D7_ and the LED you connected should start blinking in unison at one blink per second.
 
 <blockquote>
-Note: The Photon doesn't need to be plugged into your PC - it simply needs to be powered on and on the same Wi-Fi you configured it for (and the PC running the Node.js app has to be on the same Wi-F network). 
+Note: The Photon doesn't need to be plugged into your PC - it simply needs to be powered on and on the same Wi-Fi you configured it for (and the PC running the Node.js app has to be on the same Wi-Fi network). 
 </blockquote>
   
 Press <kbd>CTRL</kbd> + <kbd>C</kbd> twice to exit the program without closing the window. After stopping the application press the _Reset_ button on the Photon to prepare it for the next run. 
