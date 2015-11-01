@@ -128,9 +128,9 @@ board.on("ready", function() {
     // Read the residual voltage coming from the photoresistor
     this.analogRead(ANALOGPIN, function(val) {
         // The analogRed() function has a value range of 0-1023 (1024 steps).
-		// The circuit is pulling 3.3V from the 3V3 pin.
-		// Determine the residual voltage that is not going through the
-		// photoresistor by multiplying the value on pin A0 by 3.3V / 1024.
+        // The circuit is pulling 3.3V from the 3V3 pin.
+        // Determine the residual voltage that is not going through the
+        // photoresistor by multiplying the value on pin A0 by 3.3V / 1024.
         console.log(val * (3.3 / 1024.0));
     }); 
 });
