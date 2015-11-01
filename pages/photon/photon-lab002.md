@@ -45,7 +45,7 @@ A <strong>photoresistor</strong>, also known as light-dependent resistor (LDR) o
 
 In order to take advantage of the photoresistor you will create a voltage divider - a passive linear circuit that splits the input voltage amongst two or more components (similar to a Y-splitter).
 
-<img src="/images/lab02_schem.png"/>
+<img src="/images/photon_lab02_schem.png"/>
 
 To create the voltage divider needed for this lesson you will:
 
