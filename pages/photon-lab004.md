@@ -20,7 +20,7 @@ If you haven't already done so, please follow the instructions in [Lab 00: Getti
 *  Auto generated table of contents
 {:toc}
 
-In this lab you will build a simple ambient light detection app (similar to [Lab 02][2]) and send the data that is being collected to the Cloud. You will use Nitrogen to send data to a cloud gateway and you will be able to verify the messaging is working by logging into the Nitrogen Web Admin.
+In this lab you will build a simple ambient light detection app (similar to [Lab 02][2]) and send the data that is being collected to the Cloud. You will use Azure IoT Hubs for device registration and management, and as the CLoud Gateway that you will send messages to.
 
 ## Bill of Materials
 What you will need (all the parts from [Lab 02][2]:
