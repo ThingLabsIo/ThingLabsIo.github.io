@@ -61,6 +61,7 @@ As the photoresistor increases its resistance (lower light intensity) more of th
 In short, the more voltage to the A0 pin, the darker it is.
 
 Here are the specific wiring instructions.
+
 <img src="/images/photon_lab02_bb.png"/>
 
 ### Photoresistor
@@ -97,13 +98,21 @@ In the lab02.js file start by declaring the key objects, including a variable fo
 // Define the Jonny Five and Particle-IO variables
 var five = require("johnny-five");
 var particle = require("particle-io");
-// Define the Johnny Five board as your Particle Photon
-var board = new five.Board({
-  io: new particle({
-    token: process.env.PARTICLE_KEY || 'YOUR API KEY HERE',
-    deviceId: process.env.PARTICLE_DEVICE || 'YOUR DEVICE ID OR ALIAS HERE'
-  })
+
+// Set up the access credentials for Particle and Azure 
+var token = process.env.PARTICLE_KEY || 'YOUR PARTICLE ACCESS TOKEN HERE'; 
+var deviceId = process.env.PHOTON_ID || 'YOUR PARTICLE PHOTON DEVICE ID/ALIAS HERE'; 
+
+// Create a Johnny Five board instance to represent your Particle Photon.
+// Board is simply an abstraction of the physical hardware, whether it is 
+// a Photon, Arduino, Raspberry Pi or other board. 
+var board = new five.Board({ 
+	io: new Particle({ 
+		token: token, 
+		deviceId: deviceId 
+	}) 
 });
+
 // Define the pin you will use to read the residual voltage 
 // coming from the photoresistor
 var ANALOGPIN = "A0";
@@ -113,18 +122,21 @@ Next, define the callback function in the Johnny-Five board initialization. For 
 
 {% highlight javascript %}
 // The board.on() executes the anonymous function when the 
-// Partile Photon reports back that it is initialized and ready.
-board.on("ready", function(){
-  // Read the residual voltage coming from the photoresistor
-  this.analogRead(ANALOGPIN, function(val) {
-    // Multiple the value by 3.3V / 1024, which the the
-    // value range of the photoresistor
-    console.log(val * (3.3 / 1024.0));
-  });
+// board reports back that it is initialized and ready.
+board.on("ready", function() {
+    console.log("Board connected...");
+    // Read the residual voltage coming from the photoresistor
+    this.analogRead(ANALOGPIN, function(val) {
+        // The analogRed() function has a value range of 0-1023 (1024 steps).
+		// The circuit is pulling 3.3V from the 3V3 pin.
+		// Determine the residual voltage that is not going through the
+		// photoresistor by multiplying the value on pin A0 by 3.3V / 1024.
+        console.log(val * (3.3 / 1024.0));
+    }); 
 });
 {% endhighlight %}
 
-In this case, a value for the voltage coming in to the pin from the voltage divider is passed into the callback method. The value passed in is not the actual voltage, but rather a value from 0-1023 that represents the voltage. Since you are using a 3.3V power circuit you have to multiple the voltage value by 1024th of 3.3V (or 3.3 / 1024). The result is the actual voltage being read off of the analog pin.
+The value that the _analogRead()_ function is passing to the callback function (as the _val_ argument) is the amount of voltage that is not being pulled thhrough the photoresistor, and is instead being pulling into pin _A0_. The value is not the actual voltage, but rather a representation of the voltage as a range value between 0 and 1023. Since you are using a 3.3V power circuit you have to multiple the voltage value by 1024th of 3.3V (or 3.3 / 1024). The result is the actual voltage being pulled into analog pin A0.
 
 If you want to compare your code to the final solution you can see the code in GitHub [here](https://github.com/ThingLabsIo/IoTLabs/blob/master/Photon/Lab02/lab02.js).
 
@@ -139,9 +151,9 @@ To run the application, plug the Photon into a power supply using the USB cable.
 You should see the indicator LED blink a little as the app is initialized, and then you should see something like the following in the terminal/console window (the actual values will depend on how much light the photoresistor is receiving):
 
 <pre>
-c:\Development\gh\IoTLabs\Photon\Lab02>node lab02.js
-1440573763366 Device(s) spark-io
-1440573764086 Connected spark-io
+c:\Development\IoTLabs>node lab02.js
+1440573763366 Device(s) particle-io
+1440573764086 Connected particle-io
 1440573764109 Repl Initialized
 >> 2.6876953125
 2.6876953125
