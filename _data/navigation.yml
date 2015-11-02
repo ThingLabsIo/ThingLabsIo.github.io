@@ -21,7 +21,9 @@
   - title: "Input Controls Output"
     url: "/arduino/04/"
   - title: "Sending Data to the Cloud"
-    url: "/arduino/04/"
+    url: "/arduino/05/"
+  - title: "Visualizing IoT Data"
+    url: "/arduino/06/"
   
 - title: "Particle Photon"
   url: "/photon/"

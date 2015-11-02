@@ -1,7 +1,7 @@
 ---
 layout: page-fullwidth
 title: "Input Controls Output"
-subheadline: "Arduino IoT Lab 4"
+subheadline: "Arduino + Azure IoT Lab 4"
 teaser: "In this lab you will use analog input to control digital output."
 show_meta: true
 comments: true

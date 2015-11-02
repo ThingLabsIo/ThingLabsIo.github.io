@@ -1,6 +1,6 @@
 ---
 layout: page-fullwidth
-title: "Arduino IoT Labs: Getting Started"
+title: "Arduino + Azure IoT Labs: Getting Started"
 subheadline: "A Step-by-Step Guide"
 teaser: "This is a step-by-step guide to preparing your computer for the Arduino IoT Labs."
 show_meta: true

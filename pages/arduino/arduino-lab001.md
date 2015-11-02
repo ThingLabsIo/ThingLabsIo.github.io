@@ -1,7 +1,7 @@
 ---
 layout: page-fullwidth
 title: "Setting Up Your Arduino and Azure IoT"
-subheadline: "Arduino IoT Lab 1"
+subheadline: "Arduino + Azure IoT Lab 1"
 teaser: "In this lab you will install firmware onto your Arduino, provision an Azure IoT Hub and an IoT Hub device."
 show_meta: true
 comments: true

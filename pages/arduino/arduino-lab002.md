@@ -1,7 +1,7 @@
 ---
 layout: page-fullwidth
 title: "Writing Digital Output"
-subheadline: "Arduino IoT Lab 2"
+subheadline: "Arduino + Azure IoT Lab 2"
 teaser: "In this lab you will write to a digital output."
 show_meta: true
 comments: true

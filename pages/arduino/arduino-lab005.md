@@ -3,7 +3,7 @@ layout: page-fullwidth
 comments: true
 show_meta: true
 title: "Sending Data to the Cloud"
-subheadline: "Arduino IoT Lab 5"
+subheadline: "Arduino + Azure IoT Lab 5"
 teaser: "In this lab you will build a simple ambient light detection app and send the data that is being collected to the Cloud."
 show_meta: true
 comments: true
@@ -187,7 +187,7 @@ Replace the <code>TODO: Create and send a message to Azure IoT</code> with the f
         deviceId: deviceId,
         location: location,
         messurementType: 'darkness',
-        ambientLight: darkIntensity
+        messurementValue: darkIntensity
       });
       
       // Create the message based on the payload JSON

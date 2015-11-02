@@ -1,7 +1,7 @@
 ---
 layout: page-fullwidth
 title: "Reading Analog Input"
-subheadline: "Arduino IoT Lab 3"
+subheadline: "Arduino + Azure IoT Lab 3"
 teaser: "In this lab you will read input from an analog sensor using a voltage divider."
 show_meta: true
 comments: true
