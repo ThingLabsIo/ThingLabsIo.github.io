@@ -190,6 +190,8 @@ If you want to experiment with more labs like this you can try out these code sa
 
 {% include next-previous-post-in-category.html %}
 
+[uno]: http://www.arduino.cc/en/Main/ArduinoBoardUno
+[yun]: http://www.arduino.cc/en/Main/ArduinoBoardYun
 [1]: http://www.arduino.cc/en/Main/ArduinoBoardYun
 [2]: http://www.sparkfun.com/products/12062
 [3]: http://www.sparkfun.com/products/10969

@@ -24,7 +24,7 @@ In this lab you will use two resistors - a static resistor and a variable resist
 
 What you will need:
 
-1. [Arduino Y&uacute;n](http://www.arduino.cc/en/Main/ArduinoBoardYun)
+1. [Arduino Uno][uno] or [Arduino Y&uacute;n][yun] 
 2. USB to micro-USB cable
 3. [Photoresistor (5528)](http://www.sparkfun.com/products/9088)
 4. [10k-Ohm 1/4 Watt resistor](http://www.sparkfun.com/products/10969) (Brown-Black-Orange)
@@ -159,6 +159,8 @@ If you want to experiment with more labs like this you can try out these code sa
 {% include next-previous-post-in-category.html %}
 
 [nextlab]: /arduino/04/
+[uno]: http://www.arduino.cc/en/Main/ArduinoBoardUno
+[yun]: http://www.arduino.cc/en/Main/ArduinoBoardYun
 [2]: https://github.com/ThingLabsIo/IoTLabs/blob/master/Arduino/Labs01_04/lab03_button.js
 [3]: https://github.com/ThingLabsIo/IoTLabs/blob/master/Arduino/Labs01_04/lab03_flex.js
 [4]: https://github.com/ThingLabsIo/IoTLabs/blob/master/Arduino/Labs01_04/lab03_temp.js

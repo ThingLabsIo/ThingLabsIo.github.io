@@ -21,7 +21,7 @@ If you haven't already done so, please follow the instructions in [Lab 00: Getti
 ## Bill of Materials
 What you will need (all the parts from the previous lessons):
 
-1. [Arduino Y&uacute;n](http://www.arduino.cc/en/Main/ArduinoBoardYun)
+1. [Arduino Uno][uno] or [Arduino Y&uacute;n][yun] 
 2. USB to micro-USB cable
 3. [5mm Green LED](http://www.sparkfun.com/products/12062)
 4. [330-Ohm 1/4 Watt resistor](http://www.sparkfun.com/products/10969) (Orange-Orange-Brown)
@@ -206,4 +206,6 @@ In the [next lab][1] you will learn how to start sending data from your Arduino 
 
 {% include next-previous-post-in-category.html %}
 
+[uno]: http://www.arduino.cc/en/Main/ArduinoBoardUno
+[yun]: http://www.arduino.cc/en/Main/ArduinoBoardYun
 [1]: /arduino/04/
