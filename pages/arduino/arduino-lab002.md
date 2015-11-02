@@ -10,7 +10,7 @@ breadcrumb: true
 categories:
     - iot-arduino-labs
     - maker-101
-permalink: "/arduino/01/"
+permalink: "/arduino/02/"
 ---
 If you haven't already done so, please follow the instructions in [Lab 00: Getting Started][6] section.
 

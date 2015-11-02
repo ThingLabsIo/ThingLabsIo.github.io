@@ -12,6 +12,8 @@
   dropdown:
   - title: "Getting Started"
     url: "/arduino/00/"
+  - title: "Setting Up Your Arduino and Azure IoT"
+    url: "/arduino/01/"
   - title: "Writing Digital Output"
     url: "/arduino/01/"
   - title: "Reading Analog Input"
