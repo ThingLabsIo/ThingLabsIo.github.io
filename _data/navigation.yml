@@ -15,11 +15,13 @@
   - title: "Setting Up Your Arduino and Azure IoT"
     url: "/arduino/01/"
   - title: "Writing Digital Output"
-    url: "/arduino/01/"
-  - title: "Reading Analog Input"
     url: "/arduino/02/"
-  - title: "Input Controls Output"
+  - title: "Reading Analog Input"
     url: "/arduino/03/"
+  - title: "Input Controls Output"
+    url: "/arduino/04/"
+  - title: "Sending Data to the Cloud"
+    url: "/arduino/04/"
   
 - title: "Particle Photon"
   url: "/photon/"
@@ -53,6 +55,15 @@
   - title: "Visualizing IoT Data"
     url: "/azure/03/"
 
+- title: "Web Summit"
+  url: "/websummit/"
+  side: left
+  dropdown:
+  - title: "Setting Up Your Device"
+    url: "/websummit/01/"
+  - title: "Sending Telemetry to the Cloud"
+    url: "/websummit/02/"
+        
 #
 #- title: "Header Styles"
 #  url: "/headers/"
