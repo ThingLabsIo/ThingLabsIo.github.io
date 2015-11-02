@@ -18,43 +18,43 @@ permalink: "/arduino/"
 *  Auto generated table of contents
 {:toc}
 
-## [Getting Started](../00/)
+## [Getting Started](/arduino/00/)
 This is a step-by-step guide to preparing your computer for the IoT Labs.
 
 Estimated time to complete: 30-minutes. [Go to lab ->](/arduino/00/)
 
 ## Maker 101
 
-### [Setting Up Your Arduino and Azure IoT](../01/)
+### [Setting Up Your Arduino and Azure IoT](/arduino/01/)
 In this lab you will install firmware onto your Arduino, provision an Azure IoT Hub and an IoT Hub device.
 
 Estimated time to complete: 20-minutes. [Go to lab ->](/arduino/01/)
 
-### [Writing Digital Output](../02/)
+### [Writing Digital Output](/arduino/02/)
 In this lab you will write to a digital output.
 
 Estimated time to complete: 20-minutes. [Go to lab ->](/arduino/02/)
 
-### [Reading Analog Input](../03/)
+### [Reading Analog Input](/arduino/03/)
 In this lab you will read input from an analog sensor using a voltage divider.
 
 Estimated time to complete: 20-minutes. [Go to lab ->](/arduino/03/)
 
-### [Input Controls Output](../04/)
+### [Input Controls Output](/arduino/04/)
 In this lab you will use analog input to control digital output.
 
 Estimated time to complete: 20-minutes. [Go to lab ->](/arduino/04/)
 
 ## Connected Things 101
 
-### [Sending Data to the Cloud](../05/)
+### [Sending Data to the Cloud](/arduino/05/)
 In this lab you will build a simple ambient light detection app and send the data that is being collected to the Cloud.
 
 Estimated time to complete: 30-minutes. [Go to lab ->](/arduino/05/)
 
 ## Using Cloud IoT Services
 
-### [Visualizing IoT Data](../06/)
+### [Visualizing IoT Data](/arduino/06/)
 In this lab you will create visualizations of IoT data.
 
 Estimated time to complete: 30-minutes. [Go to lab ->](/arduino/06/)
