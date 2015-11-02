@@ -2,7 +2,7 @@
 layout: "page-fullwidth"
 title: "Hello, Windows IoT!"
 subheadline: "Raspberry Pi IoT Lab 1"
-teaser: "In this lab you will create a simple 'Thing' using Wndows 10 IoT Core and a Raspberry Pi 2."
+teaser: "In this lab you will create a simple 'Thing' using Windows 10 IoT Core and a Raspberry Pi 2."
 show_meta: true
 comments: true
 header: no
@@ -19,7 +19,7 @@ permalink: /rpi2/01/
 
 If you haven't already done so, please follow the instructions in [Lab 00: Getting Started](/rpi2/00/) section.
 
-In this lab you will create a simple _Thing_ using the Raspberry Pi and the Unniversal Windows Platform. 
+In this lab you will create a simple _Thing_ using the Raspberry Pi and the Universal Windows Platform. 
 
 ## Bill of Materials
 What you will need:
@@ -45,15 +45,15 @@ Now that the utilities and firmware (FFU) are on your development device, you ca
 
 1. Insert the micro SD card into your SD card writer.
 2. Click on the Windows icon (Start menu) and type _WindowsIoT_ - select the __WindowsIoTImageHelper__ from the _Best match_ list.
-3. When the tool launches, selct the SD card from the list.
+3. When the tool launches, select the SD card from the list.
 4. Select the FFU file be browsing to __C:\Program Files (x86)\Microsoft IoT\FFU\RaspberryPi2__
-5. Once the SD card is complete, safely eject the SD card (use either _Safely Remove Hardware_ from the taskbar, or right-click on the SD card in File Explorer and choose _Eject_ - failing to do so may corupt the SD card.). 
+5. Once the SD card is complete, safely eject the SD card (use either _Safely Remove Hardware_ from the taskbar, or right-click on the SD card in File Explorer and choose _Eject_ - failing to do so may corrupt the SD card.). 
 
 ## Connect the Raspberry Pi 2
 You are now ready to connect and power on your Raspberry Pi 2.
 
 1. Insert the micro SD card with the Windows 10 IoT Core image on it into your Raspberry Pi 2 (the slot is on the underside, on the opposite edge from the side with the USB ports).
-2. Connect a network cable from your local network to the ethernet port on the Raspberry Pi 2. Your development device must be on the same network.
+2. Connect a network cable from your local network to the Ethernet port on the Raspberry Pi 2. Your development device must be on the same network.
 3. Connect an HDMI monitor to the HDMI port on the board.
 4. Connect the power supply to the micro USB port on the board. You must power this from the 5V 2A adapter - USB power from your computer is insufficient.
 
@@ -83,12 +83,51 @@ In the list of extensions, check the box next to __Windows IoT Extensions for th
 
 <img src="/images/rpi2_install_iotextensions.png"/>
 
-Open the _MainPage.xaml_ file. This is the layout definition for the inital page that loads when the app is run. Next you will add a few elements to the page.
+Open the _MainPage.xaml_ file. This is the layout definition for the initial page that loads when the app is run. Next you will add a few elements to the page.
 
 {% highlight xml %}
 <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
+    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Ellipse x:Name="LedGraphic" Fill="LightGray" Stroke="White" Width="100" Height="100" Margin="10"/>
+        <TextBlock x:Name="DelayText" Text="500ms" Margin="10" TextAlignment="Center" FontSize="26"/>
+        <TextBlock x:Name="GpioStatus" Text="Waiting to initialize GPIO..." Margin="10,50,10,10" TextAlignment="Center" FontSize="26"/>
+    </StackPanel>
 </Grid>
+{% endhighlight %}
+
+Open the _MainPage.xaml.cs_ file. This is the code behind the layout for the MainPage.xaml. Add the following to the _using_ statements at the top of the file. 
+
+{% highlight csharp %}
+using Windows.Devices.Gpio;
+{% endhighlight %}
+
+Next, add the following varialble definitions inside the <code>public sealed partial class MainPage : Page</code> class definition:
+
+{% highlight csharp %}
+public sealed partial class MainPage : Page
+{
+    // Define the physical pin connected to the LED.
+    private const int LED_PIN = 5;
+    // Deifne a valiable to represent the pin as an object.
+    private GpioPin pin;
+    // Define a valiable to hold the value of the pin (HIGH or LOW).
+    private GpioPinValue pinValue;
+    // Define a time used to control the frequency of events.
+    private DispatcherTimer timer;
+    // Define a color bruch for the on screen representation of the LED and initialize it to Red.
+    private SolidColorBrush brush = new SolidColorBrush(Windows.UI.Colors.Red);
+
+    public MainPage()
+    {
+        this.InitializeComponent();
+        
+        // TODO: Create a timer and initialize the GPIO
+    }
+}
+{% endhighlight %}
+
+{% highlight csharp %}
+
 {% endhighlight %}
 
 ## Run the App

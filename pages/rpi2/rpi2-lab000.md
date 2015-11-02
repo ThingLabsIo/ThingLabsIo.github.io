@@ -18,7 +18,7 @@ permalink: /rpi2/00/
 {:toc}
 
 ## Preparing for the Raspberry Pi 2 IoT Labs
-The labs in this series build on each other to enable you to prototype your own Internet of Things (IoT) devices. In this lab you will use the Microsoft .NET Framework to build a Universal Windows Platform application that can run on any WIndows 10 device, including a Raspberry Pi2 running Windows 10 IoT Core.
+The labs in this series build on each other to enable you to prototype your own Internet of Things (IoT) devices. In this lab you will use the Microsoft .NET Framework to build a Universal Windows Platform application that can run on any Windows 10 device, including a Raspberry Pi2 running Windows 10 IoT Core.
 
 ## Bill of Materials
 In this lab series you will need the following:
@@ -36,17 +36,17 @@ In this lab series you will need the following:
 
 To make life easy, you can get these components and more in the [Microsoft IoT Pack for Raspberry Pi 2](http://www.adafruit.com/windows10iotpi2) from AdaFruit.
 
-Each lab may require additional components. See the Bill of Materials section at the beginning fo each lab.
+Each lab may require additional components. See the Bill of Materials section at the beginning of each lab.
 
 ## Install a Visual Studio 2015
-If you don't already have one installed, install [Visual Studio 2015](https://www.visualstudio.com/). You can use the free Community edition, or any other highter edition. When you are installing Visual Studio, you must do a __Custom__ install and select to install the __Universal Windows App Development Tools -> Tools and Windows SDK__. 
+If you don't already have one installed, install [Visual Studio 2015](https://www.visualstudio.com/). You can use the free Community edition, or any other higher edition. When you are installing Visual Studio, you must do a __Custom__ install and select to install the __Universal Windows App Development Tools -> Tools and Windows SDK__. 
 
 <img src="/images/rpi2_install_uwp.png"/>
 
 After the installation is complete, install the Windows IoT Core Project Templates from [here](https://visualstudiogallery.msdn.microsoft.com/55b357e1-a533-43ad-82a5-a88ac4b01dec).
 
 ## Enable Developer Mode on your Windows 10 Development Device
-When you are developing on Windows 10, you choose what tasks you want to enable on the device. This includes any devices - Windows 10 desktops, tablets and phones. You can enable a device for development, or just app sideloading. To enable _Developer mode_ on your Windows 10 device:
+When you are developing on Windows 10, you choose what tasks you want to enable on the device. This includes any devices - Windows 10 desktops, tablets and phones. You can enable a device for development, or just app side loading. To enable _Developer mode_ on your Windows 10 device:
 
 1. Click the Windows icon (typically in the lower-left of the screen, on the left-most side of the toolbar). 
 2. Type __Update__ and select _Windows Update settings_ from the _Best match_ list. This will open the __UPDATE & SECURITY__ settings page. 
