@@ -1,7 +1,7 @@
 ---
 layout: page-fullwidth
 title: "Input Controls Output"
-subheadline: "IoT Lab 3"
+subheadline: "Arduino IoT Lab 4"
 teaser: "In this lab you will use analog input to control digital output."
 show_meta: true
 comments: true
@@ -10,7 +10,7 @@ breadcrumb: true
 categories:
     - iot-arduino-labs
     - maker-101
-permalink: "/arduino/03/"
+permalink: "/arduino/04/"
 ---
 If you haven't already done so, please follow the instructions in [Lab 00: Getting Started](/arduino/00/) section.
 

@@ -1,7 +1,7 @@
 ---
 layout: page-fullwidth
 title: "Reading Analog Input"
-subheadline: "IoT Lab 2"
+subheadline: "Arduino IoT Lab 3"
 teaser: "In this lab you will read input from an analog sensor using a voltage divider."
 show_meta: true
 comments: true
@@ -10,7 +10,7 @@ breadcrumb: true
 categories:
     - iot-arduino-labs
     - maker-101
-permalink: "/arduino/02/"
+permalink: "/arduino/03/"
 ---
 If you haven't already done so, please follow the instructions in [Lab 00: Getting Started](/arduino/00/) section.
 
