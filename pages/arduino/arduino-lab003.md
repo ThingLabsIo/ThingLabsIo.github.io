@@ -12,7 +12,7 @@ categories:
     - maker-101
 permalink: "/arduino/03/"
 ---
-If you haven't already done so, please follow the instructions in [Lab 00: Getting Started](/arduino/00/) section.
+If you haven't already done so, please follow the instructions in [Lab 00: Getting Started](../00/) section.
 
 ### Table of Contents
 *  Auto generated table of contents
@@ -105,14 +105,14 @@ Next, define the callback function in the Johnny-Five board initialization. For 
 board.on("ready", function() {
     // read the input on analog pin 0:
     this.analogRead(ANALOGPIN, function(voltage) {
-      console.log(voltage * (5.0 / 1024.0));
+        console.log(voltage * (5.0 / 1024.0));
     });
 });
 {% endhighlight %}
 
 In this case, a value for the voltage coming in to the pin from the voltage divider is passed into the callback method. The value passed in is not the actual voltage, but rather a value from 0-1023 that represents the voltage. Since you are using a 5V power circuit you have to multiple the voltage value by 1024th of 5V (or 5.0 / 1024). The result is the actual voltage being read off of the analog pin.
 
-If you want to compare your code to the final solution you can see the code in GitHub [here](https://github.com/ThingLabsIo/IoTLabs/blob/master/Arduino/Labs01_03/lab02.js).
+If you want to compare your code to the final solution you can see the code in GitHub [here](https://github.com/ThingLabsIo/IoTLabs/blob/master/Arduino/Labs01_04/lab02.js).
 
 ## Run the Application
 To run the application, plug the Arduino into your computer with the USB cable. Open a terminal window (Mac OS X) or Node.js command prompt (Windows) and execute the following commands (replace _C:\Development\IoTLabs_ with the path that leads to your labs folder):
@@ -138,17 +138,6 @@ C:\Development\IoTLabs>node lab02.js
 1.7041015625
 1.6943359375
 1.7041015625
-1.7138671875
-1.7041015625
-1.69921875
-1.708984375
-1.7041015625
-1.6943359375
-1.7041015625
-1.708984375
-1.7041015625
-1.69921875
-1.708984375
 </pre>
 
 While the application is running and you are seeing data in the console, try covering the photoresistor (thus decreasing the light and increasing the resistance from the photoresistor and pushing more voltage to pin A0) or shining a light on the photoresistor (thus increasing the light and decreasing the resistance from the photoresistor and allowing more voltage through to ground (effectively stealing voltage away from the A0 pin).
@@ -158,7 +147,7 @@ Press <kbd>CTRL</kbd> + <kbd>C</kbd> twice then <kbd>Enter</kbd>to exit the prog
 ## Conclusion &amp; Next Steps
 Congratulations! You have made your first device that responds to its environment, you learned about a voltage divider and how to read data from an analog input sensor. In the [next lab][1] you will put together the two labs so far to make an LED that responds to the ambient light (and you will learn about Pulse-Width Modulation).
 
-[Next Lab ->][1]
+[Next Lab ->][nextlab]
 
 ## Want to Try Something?
 If you want to experiment with more labs like this you can try out these code samples:
@@ -169,7 +158,7 @@ If you want to experiment with more labs like this you can try out these code sa
 
 {% include next-previous-post-in-category.html %}
 
-[1]: /arduino/03/
-[2]: https://github.com/ThingLabsIo/IoTLabs/blob/master/Arduino/Labs01_03/lab02_button.js
-[3]: https://github.com/ThingLabsIo/IoTLabs/blob/master/Arduino/Labs01_03/lab02_flex.js
-[4]: https://github.com/ThingLabsIo/IoTLabs/blob/master/Arduino/Labs01_03/lab02_temp.js
+[nextlab]: /arduino/04/
+[2]: https://github.com/ThingLabsIo/IoTLabs/blob/master/Arduino/Labs01_04/lab03_button.js
+[3]: https://github.com/ThingLabsIo/IoTLabs/blob/master/Arduino/Labs01_04/lab03_flex.js
+[4]: https://github.com/ThingLabsIo/IoTLabs/blob/master/Arduino/Labs01_04/lab03_temp.js

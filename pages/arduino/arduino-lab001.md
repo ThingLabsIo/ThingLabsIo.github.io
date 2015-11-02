@@ -138,5 +138,5 @@ it to. In the [next lab][2] you will build a Thing that is controlled by the gat
 
 {% include next-previous-post-in-category.html %}
 
-[2]: /azure/02/
+[2]: /arduino/02/
 [deviceexplorer]: https://github.com/Azure/azure-iot-sdks/blob/master/tools/DeviceExplorer/doc/how_to_use_device_explorer.md

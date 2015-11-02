@@ -12,7 +12,7 @@ categories:
     - maker-101
 permalink: "/arduino/02/"
 ---
-If you haven't already done so, please follow the instructions in [Lab 00: Getting Started][6] section.
+If you haven't already done so, please follow the instructions in [Lab 00: Getting Started][gettingstarted] section.
 
 ### Table of Contents
 *  Auto generated table of contents
@@ -135,6 +135,7 @@ board.on("ready", function() {
   
   // Create a loop to "flash/blink/strobe" an led
   var val = 0;
+  
   this.loop( 1000, function() {
     this.digitalWrite(LEDPIN, (val = val ? 0 : 1));
   });
@@ -176,16 +177,16 @@ Press <kbd>CTRL</kbd> + <kbd>C</kbd> twice then <kbd>Enter</kbd>to exit the prog
 In this lab you learned how to write a Node.js/Johnny-Five application that writes LOW and HIGH signals to a digital pin (designated for output) 
 to make an LED blink. In itself this may not be very exciting, but the core concept is necessary - writing to a digital output pin.
 
-In the [next lab][5] you will learn how to read voltage coming in on an analog pin, and you will learn how to use a voltage divider to capture the 
+In the [next lab][nextlab] you will learn how to read voltage coming in on an analog pin, and you will learn how to use a voltage divider to capture the 
 variable resistance provided by a photoresistor.
 
-[Next Lab ->][5]
+[Next Lab ->][nextlab]
 
 ## Want to Try Something?
 If you want to experiment with more labs like this you can try out these code samples:
 
-1. [Writing out to a RGB LED][7]
-2. [Writing out to a Servo][8]
+1. [Writing out to a RGB LED][lab02rgb]
+2. [Writing out to a Servo][lab02servo]
 
 {% include next-previous-post-in-category.html %}
 
@@ -193,8 +194,8 @@ If you want to experiment with more labs like this you can try out these code sa
 [2]: http://www.sparkfun.com/products/12062
 [3]: http://www.sparkfun.com/products/10969
 [4]: http://www.sparkfun.com/products/13154
-[5]: /arduino/02/
-[6]: /arduino/00/
-[7]: https://github.com/ThingLabsIo/IoTLabs/blob/master/Arduino/Labs01_03/lab02_rgb.js
-[8]: https://github.com/ThingLabsIo/IoTLabs/blob/master/Arduino/Labs01_03/lab02_servo.js
+[nextlab]: /arduino/03/
+[gettingstarted]: /arduino/00/
+[lab02rgb]: https://github.com/ThingLabsIo/IoTLabs/blob/master/Arduino/Labs01_03/lab02_rgb.js
+[lab02servo]: https://github.com/ThingLabsIo/IoTLabs/blob/master/Arduino/Labs01_03/lab02_servo.js
 [lab02code]: https://github.com/ThingLabsIo/IoTLabs/blob/master/Arduino/Labs01_03/lab02.js
