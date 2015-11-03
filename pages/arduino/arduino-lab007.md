@@ -137,14 +137,15 @@ INTO
 FROM
     [DeviceInputStream]
 WHERE
-    [messurementValue] = 'darkness'
+    [messurementType] = 'darkness'
 GROUP BY
-    TumblingWindow (second, 1), deviceId, location 
+    TumblingWindow (second, 10), deviceId, location 
 {% endhighlight %}
 
 Click __SAVE__ in the lower middle of the screen. Once the query is saved, click __START_ to start the Stream Analytics job. If your Node.js app 
-from the [previous lab](../05/) isn't still running, go ahead and start it up. It will take a few minutes for the Stream Analytics job to get 
-started and to start sending data to Power BI, but you should see the _TemperatureDataSet_ show up in Power BI within a few minutes.
+from the [previous lab](../06/) isn't still running, go ahead and start it up. It will take a few minutes for the Stream Analytics job to get 
+started and to start sending data to Power BI, but you should see the _TemperatureDataSet_ show up in Power BI within a few minutes. Remember, 
+the _TumblingWindow_ is set to 10-seconds, so PowerBI will only update every 10-seconds.
 
 ## Build Reports in Power BI
 

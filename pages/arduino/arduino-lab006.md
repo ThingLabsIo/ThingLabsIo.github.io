@@ -151,7 +151,8 @@ board.on("ready", function() {
     
   // Create a new 'photoresistor' hardware instance.
   var photoresistor = new five.Sensor({
-    pin: ANALOGPIN  // Analog pin 0
+    pin: ANALOGPIN,  // Analog pin 0
+    freq: 1000 // Set the callback frequency to 1-second
   });
   
   // Define the callback function for the photoresistor reading.
