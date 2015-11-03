@@ -46,12 +46,12 @@ This is where building a habit of connecting positive (5V) and negative (GND) pi
 3. Connect the red/positive side rail to one end of the 10k resistor.
 4. Connect the other end of the 10k Ohm resistor to both one end of the photoresistor and to analog pin 0 (A0).
 5. Connect the other end of the photoresistor to the negative side rail.
-6. Connect digital pin 13 to the positive lead of the LED (the longer lead is the positive lead).
+6. Connect digital pin 11 (a PWM pin) to the positive lead of the LED (the longer lead is the positive lead).
 7. Connect the other lead from the LED to the 330 Ohm resistor.
 8. Connect the other end of the 330 Ohm resistor to the negative side rail.
 
 ## Using Pulse Width Modulation (PWM)
-Pulse Width Modulation (PWM) is a technique for simulating analog values on a digital pin. There are several digital pins on Arduino boards that support PWM depending on the board you are using. For example, the Arduino Yun you are using in this lab supports 8-bit (0-255) PWM on digital pins 3, 5, 6, 9, 10, 11, and 13 using the <code>analogWrite()</code> function.
+Pulse Width Modulation (PWM) is a technique for simulating analog values on a digital pin. There are several digital pins on Arduino boards that support PWM depending on the board you are using. For example, the Arduino you are using in this lab supports 8-bit (0-255) PWM on digital pins 3, 5, 6, 9, 10, 11, and 13 using the <code>analogWrite()</code> function.
 
 PWM simulates analog data by creating a square wave (basically a repeating switch between on and off) where the duration of 'on' time is the pulse width. If the square wave has a 50% pulse width (more commonly known as a duty cycle), then the output from that pin is equal amounts on and off. If the duty cycle is 25% then the output from the pin will be on for only one-quarter of the duty cycle (inversely it will be off for three times as long as it is on - 25% on, 75% off).
 
@@ -62,20 +62,24 @@ Because the time windows of a cycle is too fast for the human eye to perceive (a
 ## Writing the Code
 For this lab you will create a new file named <strong>lab03.js</strong> in the same directory as you did in the previous labs. There are no additional dependencies, so we don't need to make any changes to the _package.json_ file.
 
-In the lab03.js file start by declaring the key objects, including a variable for the LED pin and the analog pin you will use (digital pin 13 for the LED and analog pin A0 for the photoresistor - if you still have your project board wired up from the previous labs then you should be all set). You should also stub out the <code>board.on()</code> callback function for Johnny Five.
+In the lab03.js file start by declaring the key objects, including a variable for the LED pin and the analog pin you will use (digital pin 11 for the LED and analog pin A0 for the photoresistor - if you still have your project board wired up from the previous labs then you should be all set). You should also stub out the <code>board.on()</code> callback function for Johnny Five.
 
 {% highlight javascript %}
 'use strict';
-// Define the Johnny Five, Particle and Azure IoT objects
-var five = require ("johnny-five");
-var device = require('azure-iot-device');
+// Define the Johnny Five component
+var five = require("johnny-five");
 
-// Create a Johnny-Five board instance to represent your Particle Photon
-// Board is simply an abstraction of the physical hardware, whether is is an 
-// Arduino, Raspberry Pi, Particle Photon, or other boards.
+// Create a Johnny Five board instance to represent your Arduino.
+// Board is simply an abstraction of the physical hardware, whether it is 
+// a Arduino, Raspberry Pi, Particle Photon, or other boards. 
 var board = new five.Board();
-var LEDPIN = 13;
-var ANALOGPIN = 0; 
+
+// Define the pin that is connected to the LED 
+var LEDPIN = 11;
+
+// Define the pin you will use to read the residual voltage 
+// coming from the photoresistor
+var ANALOGPIN = 0;
 
 // The board.on() executes the anonymous function when the
 // board reports back that it is initialized and ready.
@@ -89,7 +93,7 @@ Inside of the <code>board.on()</code> function you will first initialize the dig
 
 {% highlight javascript %}
 board.on("ready", function() {
-  // Set pin 13 to PWM mode
+  // Set pin 11 to PWM mode
   this.pinMode(LEDPIN, five.Pin.PWM);
  
   // TODO 03 - You will add the photoresistor code here.
@@ -119,7 +123,7 @@ First, define the <code>analogRead()</code> function and the callback function t
 
 The anonymous callback function is invoked at the frequency that the Sensor class is configured to read data from the photoresistor (every 25ms by default). The scope of the callback function is the Sensor object (the photoresistor in this case), meaning <code>this.value</code> is the value of voltage being read on pin _A0_. 
 
-Your goal is to create an application that increases the LED brightness as the ambient room light decreases. The __scale(0, 255)__ function call will result in the value being read from pin _A0_ - which has a value range of 0-1023 - to be scaled down to a value range of 0-255. The LED has a value range of 0-255, which means that the scaling matches the value range for the PWM output.
+Your goal is to create an application that increases the LED brightness as the ambient room light decreases. The __scale(0, 255)__ function call will result in the value being read from pin _A0_ (Johnny-Five normalizes analog inputs to a range of 0-1023) to be scaled down to a value range of 0-255. The LED has a value range of 0-255, which means that the scaling matches the value range for the PWM output.
 
 The final step is to set the value of the _OUTPUT_ pin to a brightness value. In [Lab 02](../02/) you used <code>digitalWrite()</code> to set the OUTPUT pin to either HIGH or LOW (1 or 0). Since you defined the LED OUTPUT pin as a PWM pin you will use <code>analogWrite()</code> instead, which will tell the board to simulate an analog device using PWM. For debugging purposes you can also add a <code>console.log()</code> call. Add the following code where the <code>TODO: Write a value to the LED output pin</code> comment is.
 
