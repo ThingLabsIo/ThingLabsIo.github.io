@@ -47,14 +47,19 @@ Estimated time to complete: 20-minutes. [Go to lab ->](/arduino/04/)
 
 ## Connected Things 101
 
+## Setting Up Your Azure IoT Hub
+In this lab you will provision an Azure IoT Hub and an IoT Hub device.
+
+Estimated time to complete: 15-minutes. [Go to lab ->](/arduino/05/)
+
 ### Sending Data to the Cloud
 In this lab you will build a simple ambient light detection app and send the data that is being collected to the Cloud.
 
-Estimated time to complete: 30-minutes. [Go to lab ->](/arduino/05/)
+Estimated time to complete: 30-minutes. [Go to lab ->](/arduino/06/)
 
 ## Using Cloud IoT Services
 
 ### Visualizing IoT Data
 In this lab you will create visualizations of IoT data.
 
-Estimated time to complete: 30-minutes. [Go to lab ->](/arduino/06/)
+Estimated time to complete: 30-minutes. [Go to lab ->](/arduino/07/)

@@ -12,7 +12,7 @@ categories:
     - maker-101
 permalink: "/arduino/04/"
 ---
-If you haven't already done so, please follow the instructions in [Lab 00: Getting Started](/arduino/00/) section.
+If you haven't already done so, please follow the instructions in [Lab 00: Getting Started](../00/) section.
 
 ### Table of Contents
 *  Auto generated table of contents
@@ -27,8 +27,6 @@ What you will need (all the parts from the previous lessons):
 4. [330-Ohm 1/4 Watt resistor](http://www.sparkfun.com/products/10969) (Orange-Orange-Brown)
 5. [Photoresistor (5528)](http://www.sparkfun.com/products/9088)
 6. [10k-Ohm 1/4 Watt resistor](http://www.sparkfun.com/products/10969) (Brown-Black-Orange)
-
-For this lab series you are using an Arduino Y&uacute;n. The reason for using this vs. other less expensive Arduino boards is because in future lessons you will make use of the fact that the Arduino Y&uacute;n has on-board Wi-Fi and a Linux distribution. Neither of those capabilities are needed for this lesson so if you have a different Arduino board (e.g. an Arduino Uno) you can use it. The [SparkFun Inventor's Kit (for Arduino Uno)](http://www.sparkfun.com/products/13154) is a good kit with lots of parts (LEDs, resistors, servos, etc.), but it ships with an Arduino Uno instead of the Y&uacute;n (the Uno doesn't have onboard Wi-Fi or the Linux distribution we will use in later lessons).
 
 ## Wiring the Board
 This lesson combines the previous two lessons, so it's likely that you already have most of the wiring done from the previous lesson. Wire the Arduino according to the diagram.
@@ -62,21 +60,29 @@ PWM simulates analog data by creating a square wave (basically a repeating switc
 Because the time windows of a cycle is too fast for the human eye to perceive (about 2 milliseconds on the Arduino pins that support PWM), instead of causing an LED to strobe or flicker, it simply appears to be more or less bright. Using a 25% duty cycle the LED would be on (HIGH output) for half a millisecond and off (LOW output) for 1.5 milliseconds which makes the LED appear to be at 25% brightness. So while we aren't truly sending analog data to a digital LED, we are using PWM to simulate the effect of analog data.
 
 ## Writing the Code
-For this lab you will create a new file named <strong>lab03.js</strong> in the same directory as you did in the previous labs. There are no additional dependencies, so we don't need to make any changes to the package.json file.
+For this lab you will create a new file named <strong>lab03.js</strong> in the same directory as you did in the previous labs. There are no additional dependencies, so we don't need to make any changes to the _package.json_ file.
 
 In the lab03.js file start by declaring the key objects, including a variable for the LED pin and the analog pin you will use (digital pin 13 for the LED and analog pin A0 for the photoresistor - if you still have your project board wired up from the previous labs then you should be all set). You should also stub out the <code>board.on()</code> callback function for Johnny Five.
 
 {% highlight javascript %}
-var five = require("johnny-five");
+'use strict';
+// Define the Johnny Five, Particle and Azure IoT objects
+var five = require ("johnny-five");
+var device = require('azure-iot-device');
+
+// Create a Johnny-Five board instance to represent your Particle Photon
+// Board is simply an abstraction of the physical hardware, whether is is an 
+// Arduino, Raspberry Pi, Particle Photon, or other boards.
 var board = new five.Board();
 var LEDPIN = 13;
-var ANALOGPIN = 0;
+var ANALOGPIN = 0; 
 
+// The board.on() executes the anonymous function when the
+// board reports back that it is initialized and ready.
 board.on("ready", function() {
-  // TODO 01 - Add the code to read data from the analog pin
+  console.log("Board connected...");
+ 
 });
-
-// TODO 02 - You will add a couple support functions here later in the lab
 {% endhighlight %}
 
 Inside of the <code>board.on()</code> function you will first initialize the digital pin that you will use for the LED as a pulse width modulation (PWM) pin. Replace the <code>board.on()</code> code block with the following code.
@@ -86,76 +92,47 @@ board.on("ready", function() {
   // Set pin 13 to PWM mode
   this.pinMode(LEDPIN, five.Pin.PWM);
  
-  // TODO 03 - You will add the analogRead code here.
+  // TODO 03 - You will add the photoresistor code here.
   
 });
 {% endhighlight %}
 
-Next you will use the <code>analogRead()</code> function to capture the data coming from the photoresistor. In [Lab 02](/02/) you simply wrote the data out to the console log. For this lab you will use the data to determine how bright the LED should be. The concept is the same, but the callback function you write this time will have a little more to it (but not much).
+Next you will use the <code>analogRead()</code> function to capture the data coming from the photoresistor. In [Lab 02](../02/) you simply wrote the data out to the console log. For this lab you will use the data to determine how bright the LED should be. The concept is the same, but the callback function you write this time will have a little more to it (but not much).
 
-First, define the <code>analogRead()</code> function and the callback function that will be invoked when data input is received. The format is <code>this.analogRead( pinNumber, callbackFunction );</code> - add the following code where the <code>// TODO 03</code> comment is.
+First, define the <code>analogRead()</code> function and the callback function that will be invoked when data input is received. The format is <code>this.analogRead( pinNumber, callbackFunction );</code> - add the following code where the <code>// TODO 03 - You will add the photoresistor code here.</code> comment is.
 
 {% highlight javascript %}
-// read the input on analog pin 0:
-this.analogRead(ANALOGPIN, function(val) {
+  // Create a new 'photoresistor' hardware instance.
+  var photoresistor = new five.Sensor({
+    pin: ANALOGPIN  // Analog pin 0
+  });
   
-  // TODO 04 - map the value read to the correct range for the LED
-  
-});
+  // Define the callback function for the photoresistor reading.
+  // The Sensor class raises the "data" event every 25ms by default.
+  photoresistor.scale(0, 255).on("data", function() {
+    var darkIntensity = this.value;
+
+    // TODO: Write a value to the LED output pin
+
+  });
 {% endhighlight %}
 
-This function tells the application to read the data from the analog pin (0 in this lab) and when input is collected, invoke the callback function in the second argument and pass the input data in the val argument.
+The anonymous callback function is invoked at the frequency that the Sensor class is configured to read data from the photoresistor (every 25ms by default). The scope of the callback function is the Sensor object (the photoresistor in this case), meaning <code>this.value</code> is the value of voltage being read on pin _A0_. 
 
-Your goal is to create an application that increases the LED brightness as the ambient room light decreases. If it is light in the room, you don't want the LED to illuminate, and the darker it gets the brighter you want the LED to get. You also want some threshold of ambient light where the LED turns off (i.e. you don't want to have the LED faintly illuminated in a moderately bright room - it just wears the LED out). The way to do this is to map the incoming voltage from the photoresistor to the output voltage for the LED. There is a mismatch though. The photoresistor input is in a 10-bit range of 0-1023 and the PWM supported by our board is an 8-bit range of 0-255.
+Your goal is to create an application that increases the LED brightness as the ambient room light decreases. The __scale(0, 255)__ function call will result in the value being read from pin _A0_ - which has a value range of 0-1023 - to be scaled down to a value range of 0-255. The LED has a value range of 0-255, which means that the scaling matches the value range for the PWM output.
 
-If you were doing this in C using the Arduino structures, values and functions without using frameworks such as Johnny-Five, you could use the <code>map()</code> function to map the input value into a new data range, such as mapping the analog input value (ranged to 0-1023) to a new range of 0-255. You can do that here - you just have to write the <code>map()</code> function yourself. Add the following code to the bottom of the lab03.js file (after the end of the <code>board.on()</code> function, where the <code>// TODO 02</code> comment is.
-
-{% highlight javascript %}
-// This function maps a value from one range into another range
-// Example: map (25, 0, 25, 0, 50) returns 50
-// Example: map (20, 0, 100, 0, 10) returns 2
-function map(x, in_min, in_max, out_min, out_max) {
-  return Math.round((x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min);
-}
-
-// TODO 05 another support method here.
-{% endhighlight %}
-
-This is the [exact formula](http://www.arduino.cc/en/Reference/Map) used by the Arduino. Using this function you can pass in a value and its predefined range, and the desired data range and it will return the appropriate value for that range.
-
-The <code>map()</code> function will return negative values so you need to also recreate the [Arduino Constrain function](http://www.arduino.cc/en/Reference/Constrain), which will enable you to ensure the value is constrained to a minimum and maximum value. Add the following code immediately after the <code>map()</code> function, where the <code>// TODO 05</code> comment is.
+The final step is to set the value of the _OUTPUT_ pin to a brightness value. In [Lab 02](../02/) you used <code>digitalWrite()</code> to set the OUTPUT pin to either HIGH or LOW (1 or 0). Since you defined the LED OUTPUT pin as a PWM pin you will use <code>analogWrite()</code> instead, which will tell the board to simulate an analog device using PWM. For debugging purposes you can also add a <code>console.log()</code> call. Add the following code where the <code>TODO: Write a value to the LED output pin</code> comment is.
 
 {% highlight javascript %}
-// This function ensures a value is within a defined range
-function constrain(x, in_min, in_max) {
-  return Math.round(x < in_min ? in_min : x > in_max ? in_max : x);
-}
-{% endhighlight %}
+    // Write the value to the PWM output pin
+    // As the detected light intensity decreases (it gets darker)
+    // the value coming in on pin A0 increases.
+    // Using the value as output will make the LED grow brighter
+    // as the room gets darker.
+    board.analogWrite(LEDPIN, darkIntensity);
 
-Now that you have written the supporting functions for <code>map()</code> and <code>constrain()</code> you can write the callback function for the <code>analogRead()</code> function you started writing inside the <code>board.on()</code> function. First you need to use the <code>map()</code> function to map the incoming value from the photoresistor to a brightness value for the LED. Add the following code where the <code>// TODO 04</code> comment is.
+    console.log('value: ' + darkIntensity + ' ; voltage: '  + (darkIntensity * (5.0 / 256.0)));
 
-{% highlight javascript %}
-// Map the analog value (0-1023) to an 8-bit value (0-255)
-// so it can be used to define the LED output.
-var brightness = map(val, 350, 1023, 0, 255);
-{% endhighlight %}
-
-When you set the brightness value you mapped the incoming data from a range of 350-1023 to 0-255. In doing so you effectively set the ambient light value of 350 to a brightness of 0 (since 350 maps to 0). If the value coming in from the photoresistor is below 350 then the <code>map()</code> function will return a negative value. To account for the potential for a negative value you can constrain the value to the 0-255 range using the <code>constrain()</code> function you wrote. Add the following code immediately after the last code you added inside the <code>this.analogRead(...)</code> method.
-
-{% highlight javascript %}
-// Use the constrain function to ensure the right values
-brightness = constrain(brightness, 0, 255);
-{% endhighlight %}
-
-This will ensure that the value of brightness is between 0 and 255.
-
-The final step is to set the value of the OUTPUT pin to the value of brightness. In [Lab 01](/arduino/01/) you used <code>digitalWrite()</code> to set the OUTPUT pin to either HIGH or LOW (1 or 0). Since you defined the LED OUTPUT pin as a PWM pin you will use <code>analogWrite()</code> instead, which will tell the board to simulate an analog device using PWM. For debugging purposes you can also add a <code>console.log()</code> call. Add the following code immediately after the last code you added inside the <code>this.analogRead(...)</code> method.
-
-{% highlight javascript %}
-console.log('val: ' + (val * (5.0 / 1024.0)) + '; brightness: ' + brightness);
-
-// Set the brigthness of the LED
-this.analogWrite(LEDPIN, brightness);
 {% endhighlight %}
 
 That's all the code - now you are ready to run the application.
@@ -200,7 +177,7 @@ Press <kbd>CTRL</kbd> + <kbd>C</kbd> twice then <kbd>Enter</kbd>to exit the prog
 ## Conclusion &amp; Next Steps
 Congratulations! You made a device that both detects its environment and responds to it. You learned about Pulse Width Modulation and the analogWrite() function for simulating analog behavior on a digital device, and you learned how to recreate the Arduino map() and constrain() functions.
 
-In the [next lab][1] you will learn how to start sending data from your Arduino to the Cloud.
+In the [next lab][nextlab] you will learn how to start sending data from your Arduino to the Cloud.
 
 [Next Lab ->][1]
 
@@ -208,4 +185,4 @@ In the [next lab][1] you will learn how to start sending data from your Arduino 
 
 [uno]: http://www.arduino.cc/en/Main/ArduinoBoardUno
 [yun]: http://www.arduino.cc/en/Main/ArduinoBoardYun
-[1]: /arduino/04/
+[nextlab]: /arduino/05/

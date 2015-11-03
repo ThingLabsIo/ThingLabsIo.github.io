@@ -1,259 +1,134 @@
 ---
 layout: page-fullwidth
-comments: true
-show_meta: true
-title: "Sending Data to the Cloud"
+title: "Setting Up Your Azure IoT Hub"
 subheadline: "Arduino + Azure IoT Lab 5"
-teaser: "In this lab you will build a simple ambient light detection app and send the data that is being collected to the Cloud."
+teaser: "In this lab you will provision an Azure IoT Hub and an IoT Hub device."
 show_meta: true
 comments: true
 header: no
 breadcrumb: true
 categories:
     - iot-arduino-labs
-    - connected-things-101
+    - maker-101
+author: "Doug Seven"
 permalink: "/arduino/05/"
 ---
-If you haven't already done so, please follow the instructions in [Lab 00: Getting Started](../00/) section.
-
 ### Table of Contents
 *  Auto generated table of contents
 {:toc}
 
-In this lab you will build a simple ambient light detection app (similar to [Lab 03](../03/)) and send the data that is being 
-collected to Azure IoT Hub. In following labs you will build a data pipeline to process the incoming data stream and output it
-to a visualization tool.
+If you haven't already done so, please follow the instructions in [Lab 00: Getting Started](../00/) section.
+
+In this lab you will provision a new Azure IoT Hub. Once you have the IoT Hub created, you will be able to create a new Azure IoT device (a software reference to your physical device) that you will use to send telemetry 
+to Azure. 
 
 ## Bill of Materials
-What you will need (all the parts from [Lab 02][2]:
+What you will need:
 
-1. [Arduino Uno][uno] or [Arduino Y&uacute;n][yun] 
-2. USB to micro-USB cable
-3. [5mm Green LED](http://www.sparkfun.com/products/12062)
-4. [330-Ohm 1/4 Watt resistor](http://www.sparkfun.com/products/10969) (Orange-Orange-Brown)
-5. [Photoresistor (5528)](http://www.sparkfun.com/products/9088)
-6. [10k-Ohm 1/4 Watt resistor](http://www.sparkfun.com/products/10969) (Brown-Black-Orange)
+N/A
 
-## Wiring the Board
-This lab follows the same wiring plan as [Lab 04](../04/). If your board is still wired up from [Lab 04](../04/), you can leave 
-it as is and go to the next step. If not, wire it as follows.
+## Create a Microsoft Azure Trial Account
+In this lab series you will use Microsoft Azure as the cloud backend for your IoT solution. If you don't already have an Azure account, go to [https://azure.microsoft.com/en-us/pricing/free-trial/][azuretrial] to start a free trial of Microsoft Azure. You may need a credit card 
+for identity verification, but the trial is completely free. If you have an MSDN Subscription you may be eligible for free credits to Microsoft Azure every month. Check your [MSDN account][msdn] page for details.
 
-<img src="/images/Lab03_bb.png"/>
+## Setup an Azure IoT Hub
+In a browser, navigate to the the Azure Portal at [http://portal.azure.com](https://portal.azure.com). Login to the account you created in in [Lab 00: Getting Started](../00/). Once logged in:
 
-### Resistors
-The 10k Ohm resistor is one part of the voltage divider, working in partnership with the photoresistor.
+1. Click on the _New_ menu option in the upper-left
+2. Select _Internet of Things_
+3. Select _Azure IoT Hub_
+4. Give it a name such as your name followed by 'iot-labs' (i.e. rickgrimes-iot-labs)
+5. Select or create a new Resource Group
+6. Select a location (choose the one closest to your physical location)
 
-The 330 Ohm resistor connects to the negative (shorter) lead of the LED.
+<img src="/images/New-IoT-Hub.png"/>
+  
+Once the IoT Hub is created, navigate into it and:
 
-### Wires
-This is where building a habit of connecting positive (5V) and negative (GND) pins from the Arduino to the breadboard side-rails starts to pay off. In this lab the pin coming from GND to the negative side-rail supports both the photoresistor circuit and the LED circuit.
+1. Click on the key icon at the top of the blade
+2. In the next blade, click on the _iothubowner_ entry
+3. Copy the _Connection string-primary key_ to your clipboard
 
-1. Connect 5V to the positive side rail.
-2. Connect GND to the negative side rail.
-3. Connect the red/positive side rail to one end of the 10k resistor.
-4. Connect the other end of the 10k Ohm resistor to both one end of the photoresistor and to analog pin 0 (A0).
-5. Connect the other end of the photoresistor to the negative side rail.
-6. Connect digital pin 13 to the positive lead of the LED (the longer lead is the positive lead).
-7. Connect the other lead from the LED to the 330 Ohm resistor.
-8. Connect the other end of the 330 Ohm resistor to the negative side rail.
+<img src="/images/AzureIoTConnectionString.png"/>
 
-## Write the Code
-Since you are using Node.js for this lab you can take advantage of the dependency management capabilities that Node.js and NPM provide. 
-You need to let your application know that it has a dependency on the __Azure IoT Device__ package in addition to the __Johnny-Five__ package. 
-In Node.js this is done with the _package.json_ file. This file provides some basic meta-data about the application, including any dependencies 
-on packages that can be retrieved using NPM (according to [npmjs.com](https://www.npmjs.com) today, NPM stands for Narrating Prophetic 
-Monks...not Node Package Manager like you may have thought).
+## Install Azure IoT Hub DeviceExplorer
+Azure IoT Hub only allows connections from known devices that present proper credentials. In this lab series you will use either 
+the _DeviceExplorer_ utility or the _iothub-explorer_ command line interface to provision a device for use in Azure IoT Hub. 
+While Azure IoT Hub supports multiple authentication schemes, you will use pre-shared keys in this lab series.
 
-Using your favorite/preferred text/code editor, create a file in your development directory named __package.json__ and add the following:
+The simplest way to provision a new device is with the _DeviceExplorer_ utility (Windows only). If you are using Windows, download 
+and run [Device Explorer][deviceexplorer]. After running the installed, the _DeviceExplorer.exe_ can be found 
+at __C:\Program Files (x86)\Microsoft\DeviceExplorer__. When you run the utility you need to input the _iothubowner_ connection 
+string (from the previous step) in the _IoT Hub Connection String_ field found in the _Configuration_ tab.
 
-{% highlight javascript %}
-{
-  "name": "IoT-Labs",
-  "version": "0.1.0",
-  "private":true,
-  "description": "Sample app that connects a device to Azure using Node.js",
-  "main": "lab05.js",
-    "author": "YOUR NAME HERE",
-  "license": "MIT",
-  "dependencies": {
-    "johnny-five": "^0.8.104",
-    "azure-iot-device": "^1.0.0-preview.3"
-  }
-}
-{% endhighlight %}
+<img src="/images/deviceexplorer01.png"/>
 
-With the package.json file created you can use NPM to pull down the necessary Node modules. Open a terminal window (Mac OS X) or Node.js 
-command prompt (Windows) and execute the following commands (replace _C:\Development\IoTLabs_ with the path that leads to your development directory):
+### Install the IoT Hub Explorer Command Line Interface
+If you are on a non-Windows machine, or prefer to use a command line interface instead of the _DeviceExplorer_ utility, you can install 
+the _iothub-explorer_ command line interface. The iothub-explorer tool enables you to provision devices in your IoT hub. It runs on any 
+computer where Node.js is available.
 
 On Windows, open the Node.js command prompt and type the following:
 <pre>
   cd C:\Development\IoTLabs
-  npm install
+  npm install -g iothub-explorer
+  npm update -g iothub-explorer
 </pre>
 
 On Mac OS X open Terminal and type the following:
 <pre>
   cd ~/Development/IoTLabs
-  sudo npm install
+  sudo npm install -g iothub-explorer
+  sudo npm update -g iothub-explorer
 </pre>
 
-Next you will create the application code to gather ambient light data and send it to the cloud.
+## Create a New Azure IoT Device
+In your Azure IoT Hub you have to explicitly create a device representation of your gateway device (your laptop for now). You don't need a device for 
+every sensor or device connected to the gateway - only the gateway needs to be represented. For the purpose of this lab your can name your 
+gateway something like __YOURNAME-Hub__
 
-Create another file in the same directory named __lab05.js__ and add the following code:
+If you are using the _DeviceExplorer_ simply open the _Management_ tab and click the _Create_ button. In the dialog that opens, enter the 
+name of your device (e.g. _YOURNMAE-Hub_). Then Click the _Create_ button, and click _Done_ on the confirmation dialog that opens.
 
-{% highlight javascript %}
-'use strict';
-// Define the Johnny Five, Particle and Azure IoT objects
-var five = require ("johnny-five");
-var device = require('azure-iot-device');
+<img src="/images/deviceexplorer02.png"/> 
 
-// Create a Johnny-Five board instance to represent your Particle Photon
-// Board is simply an abstraction of the physical hardware, whether is is an 
-// Arduino, Raspberry Pi, Particle Photon, or other boards.
-var board = new five.Board();
-var LEDPIN = 13;
-var ANALOGPIN = 0;
+You will see your device in the _Devices_ list. Once a device is created, you can get the device-specific connection string by selecting 
+it in the _Devices_ list, right-clicking and selecting _Copy connection string for selected device_:
 
-var deviceId = process.env.DEVICE_NAME || 'YOUR AZURE GATEWAY DEVICE NAME HERE (E.G. RICKGRIMES-HUB)';
-var location = process.env.DEVICE_LOCATION || 'THE LOCATION OF THE DEVICE (E.G. HOME OFFICE)';
-var connectionString = process.env.IOTHUB_CONN || 'YOUR AZURE IOT HUB DEVICE-SPECIFIC CONNECTION STRING HERE';
+<img src="/images/deviceexplorer03.png"/> 
 
-// Create an Azure IoT client that will manage the connection to your IoT Hub
-// The client is created in the context of an Azure IoT device, which is why
-// you use a device-specific connection string.
-var client = new device.Client(connectionString, new device.Https());
-{% endhighlight %}
+### Create a New Azure IoT Device from the Command Line
+If you are on a non-Windows machine, or prefer to use a command line interface instead of the _DeviceExplorer_ utility, you can provision 
+a new Azure IoT Hub device using the _iothub-explorer_ command line interface.
 
-In this code you define four variables that you will be working with:
-
-1. <code>five</code> - represents the Johnny-Five framework capabilities, which provide a type of object model for working with boards like Arduino and Particle.
-2. <code>device</code> - represents the Azure IoT Hubs SDK.
-3. <code>board</code> - represents the physical board you are using.
-5. <code>client</code> - the agent class that facilitates the communication between your device and the Azure IoT Hub. It takes the device-specific connection string as an argument and establishes a connection with the IoT Hub.
-
-Now that the objects are created, you can get to the meat of the application. Johnny-Five provides a board 'ready' event that makes a callback 
-when the board is on, initialized and ready for action. Inside the anonymous callback function is where your application code executes (this 
-function is invoked when the board is ready for use).
-
-Johnny-Five provides a collection of objects that represent the board, the pins on the board, and various types of sensors and devices that could be 
-connected to the board. The __Sensor__ class in Johnny-Five enables you to represent an analog sensor, such as a photoresistor.
-
-Next you will use the _Sensor_ class to represent the photoresistor and capture the light/darkness measurement. Start by defining 
-a _photoresistor_ variable using the __Sensor__ class. Next create a handler function for the photoresistor _data_ event. Add the 
-following code to _lab05.js_:
-
-{% highlight javascript %}
-board.on("ready", function() {
-  console.log("Board connected...");
-  
-  // Set pin 13 to PWM mode - See Lab 04 for more information on PWM
-  this.pinMode(LEDPIN, five.Pin.PWM);
-    
-  // Create a new 'photoresistor' hardware instance.
-  var photoresistor = new five.Sensor({
-    pin: ANALOGPIN  // Analog pin 0
-  });
-  
-  // Define the callback function for the photoresistor reading.
-  // The Sensor class raises the "data" event every 25ms by default.
-  photoresistor.scale(0, 255).on("data", function() {
-    var darkIntensity = this.value;
-    
-    // Write the value to the PWM output pin
-    // As the detected light intensity decreases (it gets darker)
-    // the value coming in on pin A0 increase.
-    // Using the value as output will make the LED grow brighter
-    // as the room gets darker.
-    board.analogWrite(LEDPIN, this.value);
-    
-    // TODO: Create and send a message to Azure IoT
-    
-  });
-});
-{% endhighlight %}
-
-The __scale(0, 255)__ function call will result in the value being read from pin _A0_ - which has a value range of 0-1023 - to be scaled down to 
-a value range of 0-255. The LED has a value range of 0-255, which means that the scaling matches the value range for the PWM output.
-
-## Send Telemetry to Azure IoT Hubs
-Now that you have the device working, using the _Sensor_ class (the <code>photoresistor</code> object) and the _data_ event, you need to create 
-and send a message to Azure. The __Message__ class enables you to define a telemetry message with a JSON payload. Then, using the _client_ object
-you can invoke __sendEvent(message, callback)__ function to send the message over HTTP to the Azure IoT Hub.
-
-Replace the <code>TODO: Create and send a message to Azure IoT</code> with the following code.
-
-{% highlight javascript %}
-      var payload = JSON.stringify({
-        deviceId: deviceId,
-        location: location,
-        messurementType: 'darkness',
-        messurementValue: darkIntensity
-      });
-      
-      // Create the message based on the payload JSON
-      var message = new device.Message(payload);
-      // For debugging purposes, write out the message payload to the console
-      console.log("Sending message: " + message.getData());
-      // Send the message to Azure IoT Hub
-      client.sendEvent(message, printResultFor('send'));
-{% endhighlight %}
-
-When <code>client.sendEvent()</code> is invoked, the JSON message is sent to Azure IoT Hub. For now, nothing happens with the message once it is 
-received in your IoT Hub because you haven't set up anything that will capture the message and do something with it (we will get to that soon). 
-By default, the messages have a one-day retention time.
-
-Beforw you run the app, you need to add the __printResultFor()__ callback function you reference in the <code>client.sendEvent()</code> function. 
-Add the following to the end of the _lab05.js_ file, after the <code>board.on()</code> function.
-
-{% highlight javascript %}
-// Helper function to print results in the console
-function printResultFor(op) {
-  return function printResult(err, res) {
-    if (err) console.log(op + ' error: ' + err.toString());
-    if (res && (res.statusCode !== 204)) console.log(op + ' status: ' + res.statusCode + ' ' + res.statusMessage);
-  };
-}
-{% endhighlight %}
-
-If you want to compare your code to the final solution you can see the code in GitHub [here](https://github.com/ThingLabsIo/IoTLabs/blob/master/Arduino/Lab05/lab05.js).
-
-## Run the App and Verify Data is Being Sent
-Open a terminal window (Mac OS) or Node.js command prompt (Windows) and execute the following commands (replace _C:\Development\IoTLabs_ with the 
-path that leads to your labs folder):
+In the same directory as before, using the Node.js command prompt or Terminal:
 
 <pre>
-cd C:\Development\IoTLabs 
-node lab05.js
+  iothub-explorer.js [YOUR IOT HUB CONNECTION STRING] create [YOUR GATEWWAY NAME]
 </pre>
 
-After the board initializes you will see messages printing out in the console once per second. This is the message payload that is being sent to 
-Azure IoT Hub.
+Once a device is created, you can get the device-specific connection string with the following command:
 
-<blockquote>
-  If you downloaded the [Device Explorer[deviceexplorer] utility for Windows in [Lab 1](../01/) you can open the _Data_ tab, select a device, 
-  and click _Monitor_ to begin monitoring messages as they come into your Azure IoT Hub.
-</blockquote>
+<pre>
+  iothub-explorer.js [YOUR IOT HUB CONNECTION STRING] get [YOUR GATEWWAY NAME] --connection-string
+</pre>
 
-When you want to quite the application, press <kbd>CTRL</kbd> + <kbd>C</kbd> twice to exit the program without closing the window (you may also have to press <kbd>Enter</kbd>). After stopping the application press the _Reset_ button on the Photon to prepare it for the next run. 
+<img src="/images/iothub-explorer01.png"/> 
 
-## Conclusions &amp; Next Steps
-Congratulations! You have created your first internet connected Thing. Welcome to the world of IoT. In the [next lab][nextlab] you will setup some Azure services to store and visualize the data.
+The device-specific connection string identifies the device by name and includes a key that is only for that device. Copy the device 
+connection string somewhere that you will be able to access it shortly.
+
+## Conclusion &amp; Next Steps
+Congratulations! You have configured a physical device, a software representation of that device, and the IoT Hub service to connect 
+it to. In the [next lab][nextlab] you will build a Thing that is controlled by the gateway.
 
 [Next Lab ->][nextlab]
 
-## Want to Try Something?
-If you want to experiment with more labs like this you can try out these code samples:
-
-1. [Temperature Device][6]
-
 {% include next-previous-post-in-category.html %}
 
-[nextlab]: /arduino/06/
 [uno]: http://www.arduino.cc/en/Main/ArduinoBoardUno
 [yun]: http://www.arduino.cc/en/Main/ArduinoBoardYun
-[1]: /arduino/00/
-[2]: /arduino/02/
-[3]: /arduino/05/
-[4]: /arduino/01/
-[5]: /arduino/03/
-[6]: https://github.com/ThingLabsIo/IoTLabs/blob/master/Arduino/Labs04_06/lab04_temp.js
+[nextlab]: /arduino/06/
+[azuretrial]: https://azure.microsoft.com/en-us/pricing/free-trial/
+[msdn]: https://msdn.microsoft.com/subscriptions/manage/
+[deviceexplorer]: https://github.com/Azure/azure-iot-sdks/blob/master/tools/DeviceExplorer/doc/how_to_use_device_explorer.md

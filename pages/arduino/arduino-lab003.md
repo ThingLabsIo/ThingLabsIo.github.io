@@ -29,8 +29,6 @@ What you will need:
 3. [Photoresistor (5528)](http://www.sparkfun.com/products/9088)
 4. [10k-Ohm 1/4 Watt resistor](http://www.sparkfun.com/products/10969) (Brown-Black-Orange)
 
-For this lab series you are using an Arduino Y&uacute;n. The reason for using this vs. other less expensive Arduino boards is because in future lessons you will make use of the fact that the Arduino Y&uacute;n has on-board Wi-Fi and a Linux distribution. Neither of those capabilities are needed for this lesson so if you have a different Arduino board (e.g. an Arduino Uno) you can use it. The [SparkFun Inventor's Kit (for Arduino Uno)](http://www.sparkfun.com/products/13154) is a good kit with lots of parts (LEDs, resistors, servos, etc.), but it ships with an Arduino Uno instead of the Y&uacute;n (the Uno doesn't have onboard Wi-Fi or the Linux distribution we will use in later lessons).
-
 ## Wiring a Voltage Divider
 The first step is to wire up the Arduino to read voltage as determined by the resistance created by the photoresistor. Wire your board according to the diagram (wire colors don't matter, but help with identification of purpose).
 
@@ -40,7 +38,7 @@ The A0-A5 pins on the board enable you to read from or write to analog sensors, 
 The Arduino board contains a 6 channel, 10-bit analog to digital converter. This means that it will map input voltages between 0 and 5 volts into integer values between 0 and 1023. This yields a resolution between readings of: 5 volts / 1024 units or, .0049 volts (4.9 mV) per unit.
 </blockquote>
 
-A <strong>photoresistor</strong>, also known as light-dependent resistor (LDR) or a photocell, works by limiting the amount of voltage that passes through it based on the intensity of light detected. The resistance decreases as light input increases - in other words, the more light, the more voltage passes through the photoresistor.
+A _photoresistor_, also known as light-dependent resistor (LDR) or a photocell, works by limiting the amount of voltage that passes through it based on the intensity of light detected. The resistance decreases as light input increases - in other words, the more light, the more voltage passes through the photoresistor.
 
 In order to take advantage of the photoresistor you will create a voltage divider - a passive linear circuit that splits the input voltage amongst two or more components (similar to a Y-splitter).
 
@@ -60,6 +58,7 @@ As the photoresistor increases its resistance (lower light intensity) more of th
 In short, the more voltage to the A0 pin, the darker it is.
 
 Here are the specific wiring instructions.
+
 <img src="/images/lab02_bb.png"/>
 
 ### Photoresistor
@@ -72,26 +71,22 @@ Connect a 10k-Ohm resistor from one side of the photoresistor across a couple of
 Connect the wires as shown in the diagram:
 
 #### Red
-Connect the 5V pin to the red/positive side-rail on the breadboard.
-Connect the red/positive side-rail to the row where the resistor lead is connected but the photoresistor is not (this is the input voltage into the static resistor part of the voltage divider).
+Connect the 5V pin to the red/positive side-rail on the breadboard. Connect the red/positive side-rail to the row where the resistor lead is connected but the photoresistor is not (this is the input voltage into the static resistor part of the voltage divider).
 
 #### Green
 Connect the green wire from the other side of the static resistor (this should be in the same row as the static resistor lead and one of the photoresistor leads) to the A0 pin on the Arduino (this is one route of the voltage divider - the other route is through the photoresistor).
 
 #### Black
-Connect the row holding the other lead from the photoresistor to the black/negative side-rail on the breadboard.
-Connect the black/negative side-rail of the breadboard to the GND pin on the Arduino.
-This completes the circuit.
+Connect the row holding the other lead from the photoresistor to the black/negative side-rail on the breadboard. Connect the black/negative side-rail of the breadboard to the GND pin on the Arduino. This completes the circuit.
 
 <blockquote>
 Note: You could connect the 5V pin directly to the same row as the lone lead of the static resistor and the GND directly to the lead of the photoresistor, but I like building a habit of connecting the input voltage and ground pins from the Arduino to the side rails. This will come in handy in the future lessons.
 </blockquote>
 
 ## Writing the Code
+For this lab we will create a new file named <strong>lab02.js</strong> in the same directory as you did in Lab 1. There are no additional dependencies, so you don't need to make any changes to the package.json file.
 
-For this lab we will create a new file named <strong>lab02.js</strong> in the same directory as you did in Lab 1. There are no additional dependencies, so we don't need to make any changes to the package.json file.
-
-In the lab02.js file start by declaring the key objects, including a variable for the analog pin number you will use (A0 or 0).
+In the _lab02.js_ file start by declaring the key objects, including a variable for the analog pin number you will use (A0 or 0).
 
 {% highlight javascript %}
 var five = require("johnny-five");
@@ -152,15 +147,12 @@ Congratulations! You have made your first device that responds to its environmen
 ## Want to Try Something?
 If you want to experiment with more labs like this you can try out these code samples:
 
-1. [Reading data from a button][2]
-2. [Reading data from a flex resistor][3]
-3. [Reading data from a temperature sensor][4]
+1. [Reading data from a button](https://github.com/ThingLabsIo/IoTLabs/blob/master/Arduino/Labs01_04/lab03_button.js)
+2. [Reading data from a flex resistor](https://github.com/ThingLabsIo/IoTLabs/blob/master/Arduino/Labs01_04/lab03_flex.js)
+3. [Reading data from a temperature sensor](https://github.com/ThingLabsIo/IoTLabs/blob/master/Arduino/Labs01_04/lab03_temp.js)
 
 {% include next-previous-post-in-category.html %}
 
 [nextlab]: /arduino/04/
 [uno]: http://www.arduino.cc/en/Main/ArduinoBoardUno
 [yun]: http://www.arduino.cc/en/Main/ArduinoBoardYun
-[2]: https://github.com/ThingLabsIo/IoTLabs/blob/master/Arduino/Labs01_04/lab03_button.js
-[3]: https://github.com/ThingLabsIo/IoTLabs/blob/master/Arduino/Labs01_04/lab03_flex.js
-[4]: https://github.com/ThingLabsIo/IoTLabs/blob/master/Arduino/Labs01_04/lab03_temp.js
