@@ -216,7 +216,7 @@ function printResultFor(op) {
 }
 {% endhighlight %}
 
-If you want to compare your code to the final solution you can see the code in GitHub [here](https://github.com/ThingLabsIo/IoTLabs/blob/master/Arduino/Lab05_07/lab06.js).
+If you want to compare your code to the final solution you can see the code in GitHub [here](https://github.com/ThingLabsIo/IoTLabs/blob/master/Arduino/Labs05_07/lab06.js).
 
 ## Run the App and Verify Data is Being Sent
 Open a terminal window (Mac OS) or Node.js command prompt (Windows) and execute the following commands (replace _C:\Development\IoTLabs_ with the 
@@ -245,8 +245,6 @@ Congratulations! You have created your first internet connected Thing. Welcome t
 ## Want to Try Something?
 If you want to experiment with more labs like this you can try out these code samples:
 
-1. [Temperature Device][6]
-
 {% include next-previous-post-in-category.html %}
 
 [nextlab]: /arduino/07/
@@ -257,4 +255,3 @@ If you want to experiment with more labs like this you can try out these code sa
 [3]: /arduino/05/
 [4]: /arduino/01/
 [5]: /arduino/03/
-[6]: https://github.com/ThingLabsIo/IoTLabs/blob/master/Arduino/Labs04_06/lab04_temp.js

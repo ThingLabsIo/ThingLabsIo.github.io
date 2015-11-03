@@ -164,8 +164,8 @@ In the [next lab][nextlab] you will learn how to read voltage coming in on an an
 ## Want to Try Something?
 If you want to experiment with more labs like this, you can try out these code samples:
 
-1. [Writing out to a RGB LED](https://github.com/ThingLabsIo/IoTLabs/blob/master/Arduino/Labs01_03/lab02_rgb.js)
-2. [Writing out to a Servo](https://github.com/ThingLabsIo/IoTLabs/blob/master/Arduino/Labs01_03/lab02_servo.js)
+1. [Writing out to a RGB LED](https://github.com/ThingLabsIo/IoTLabs/blob/master/Arduino/Labs01_04/lab02_rgb.js)
+2. [Writing out to a Servo](https://github.com/ThingLabsIo/IoTLabs/blob/master/Arduino/Labs01_04/lab02_servo.js)
 
 {% include next-previous-post-in-category.html %}
 

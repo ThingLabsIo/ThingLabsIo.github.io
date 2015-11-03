@@ -141,7 +141,7 @@ The final step is to set the value of the _OUTPUT_ pin to a brightness value. In
 
 That's all the code - now you are ready to run the application.
 
-If you want to compare your code to the final solution you can see the code in GitHub [here](https://github.com/ThingLabsIo/IoTLabs/blob/master/Arduino/Labs01_03/lab03.js).
+If you want to compare your code to the final solution you can see the code in GitHub [here](https://github.com/ThingLabsIo/IoTLabs/blob/master/Arduino/Labs01_04/lab04.js).
 
 ## Run the Application
 To run the application, plug your Arduino into your computer with the USB cable. Open a terminal window (Mac OS X) or Node.js command prompt (Windows) and execute the following commands (replace _C:\Development\IoTLabs_ with the path that leads to your labs folder):
