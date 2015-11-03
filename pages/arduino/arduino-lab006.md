@@ -72,7 +72,7 @@ Using your favorite/preferred text/code editor, create a file in your developmen
   "version": "0.1.0",
   "private":true,
   "description": "Sample app that connects a device to Azure using Node.js",
-  "main": "lab05.js",
+  "main": "lab06.js",
     "author": "YOUR NAME HERE",
   "license": "MIT",
   "dependencies": {
@@ -99,7 +99,7 @@ On Mac OS X open Terminal and type the following:
 
 Next you will create the application code to gather ambient light data and send it to the cloud.
 
-Create another file in the same directory named __lab05.js__ and add the following code:
+Create another file in the same directory named __lab06.js__ and add the following code:
 
 {% highlight javascript %}
 'use strict';
@@ -111,7 +111,7 @@ var device = require('azure-iot-device');
 // Board is simply an abstraction of the physical hardware, whether is is an 
 // Arduino, Raspberry Pi, Particle Photon, or other boards.
 var board = new five.Board();
-var LEDPIN = 13;
+var LEDPIN = 11;
 var ANALOGPIN = 0;
 
 var deviceId = process.env.DEVICE_NAME || 'YOUR AZURE GATEWAY DEVICE NAME HERE (E.G. RICKGRIMES-HUB)';
@@ -140,13 +140,13 @@ connected to the board. The __Sensor__ class in Johnny-Five enables you to repre
 
 Next you will use the _Sensor_ class to represent the photoresistor and capture the light/darkness measurement. Start by defining 
 a _photoresistor_ variable using the __Sensor__ class. Next create a handler function for the photoresistor _data_ event. Add the 
-following code to _lab05.js_:
+following code to _lab06.js_:
 
 {% highlight javascript %}
 board.on("ready", function() {
   console.log("Board connected...");
   
-  // Set pin 13 to PWM mode - See Lab 04 for more information on PWM
+  // Set pin 11 to PWM mode - See Lab 04 for more information on PWM
   this.pinMode(LEDPIN, five.Pin.PWM);
     
   // Create a new 'photoresistor' hardware instance.
@@ -203,7 +203,7 @@ received in your IoT Hub because you haven't set up anything that will capture t
 By default, the messages have a one-day retention time.
 
 Beforw you run the app, you need to add the __printResultFor()__ callback function you reference in the <code>client.sendEvent()</code> function. 
-Add the following to the end of the _lab05.js_ file, after the <code>board.on()</code> function.
+Add the following to the end of the _lab06.js_ file, after the <code>board.on()</code> function.
 
 {% highlight javascript %}
 // Helper function to print results in the console
@@ -215,7 +215,7 @@ function printResultFor(op) {
 }
 {% endhighlight %}
 
-If you want to compare your code to the final solution you can see the code in GitHub [here](https://github.com/ThingLabsIo/IoTLabs/blob/master/Arduino/Lab05/lab05.js).
+If you want to compare your code to the final solution you can see the code in GitHub [here](https://github.com/ThingLabsIo/IoTLabs/blob/master/Arduino/Lab05_07/lab06.js).
 
 ## Run the App and Verify Data is Being Sent
 Open a terminal window (Mac OS) or Node.js command prompt (Windows) and execute the following commands (replace _C:\Development\IoTLabs_ with the 
@@ -223,7 +223,7 @@ path that leads to your labs folder):
 
 <pre>
 cd C:\Development\IoTLabs 
-node lab05.js
+node lab06.js
 </pre>
 
 After the board initializes you will see messages printing out in the console once per second. This is the message payload that is being sent to 
