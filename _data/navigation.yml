@@ -12,7 +12,7 @@
   dropdown:
   - title: "Getting Started"
     url: "/arduino/00/"
-  - title: "Setting Up Your Arduino and Azure IoT"
+  - title: "Setting Up Your Arduino"
     url: "/arduino/01/"
   - title: "Writing Digital Output"
     url: "/arduino/02/"
@@ -20,7 +20,7 @@
     url: "/arduino/03/"
   - title: "Input Controls Output"
     url: "/arduino/04/"
-  - title: "Setting Up Your Azure IoT Hub"
+  - title: "Setting Up Azure IoT"
     url: "/arduino/05/"
   - title: "Sending Data to the Cloud"
     url: "/arduino/06/"
