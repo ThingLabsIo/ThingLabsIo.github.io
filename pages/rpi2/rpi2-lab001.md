@@ -59,11 +59,11 @@ You are now ready to connect and power on your Raspberry Pi 2.
 
 Windows 10 IoT Core will boot on power-up. The first boot may take a few minutes.
 
-<img src="/images/rpi2_defaultapp.png"/>
+<img src="/images/rpi2/rpi2_defaultapp.png"/>
 
 ## Wire Up the RPi2
 
-<img src="/images/rpi2_lab01_bb.png"/>
+<img src="/images/rpi2/rpi2_lab01_bb.png"/>
 
 ## Create a Universal App
 A Universal Windows app is a Windows experience that is built upon the Universal Windows Platform (UWP), which was first introduced in Windows 8 as the Windows Runtime. The UWP enables you to write an app that targets a device family, such as IoT devices. In fact, the universal app that you write may be able to run on multiple devices families, depending on the device characteristics that it takes advantage of. In this lab you will create a universal app targeting IoT devices running Windows 10. Technically this could be nearly any device, such as a phone, a tablet or a Raspberry Pi 2, however; the universal app you write will access the General Purpose Input/Output (GPIO) of the device, so the app won't actually be compatible with devices that don't have a GPIO.   
@@ -73,7 +73,7 @@ Launch Visual Studio and start a new __Blank App (Universal Windows)__ (found in
 
 Name the application _HelloWindowsIoT_.
 
-<img src="/images/rpi2_new_universal.png"/>
+<img src="/images/rpi2/rpi2_new_universal.png"/>
 
 Once the solution is created, click on the _Project_ menu and select _Add Reference_.
 
@@ -81,7 +81,7 @@ In the Reference Manager dialog, expand the _Universal Windows_ node and select 
 
 In the list of extensions, check the box next to __Windows IoT Extensions for the UWP__ and click __OK__.
 
-<img src="/images/rpi2_install_iotextensions.png"/>
+<img src="/images/rpi2/rpi2_install_iotextensions.png"/>
 
 Open the _MainPage.xaml_ file. This is the layout definition for the initial page that loads when the app is run. Next you will add a few elements to the page.
 
@@ -126,9 +126,59 @@ public sealed partial class MainPage : Page
 }
 {% endhighlight %}
 
-{% highlight csharp %}
+Following the call to <code>InitializeComponent</code>, create a _Timer_ that will raise an event every 500ms.
 
+{% highlight csharp %}
+        // Create an instance of a Timer that will raise an event every 500ms
+        timer = new DispatcherTimer();
+        timer.Interval = TimeSpan.FromMilliseconds(500);
+        timer.Tick += Timer_Tick;
+        
+        // TODO: Initilize the GPIO bus
 {% endhighlight %}
+
+Using the Visual Studio refactoring tools you can gernetate the method stub for the __Timer_Tick__ event handler. Hover over the _Timer\_Tick_ text until a lightbulb appears. Click the down arrow and select _Generate method 'MainPage.Timer\_Tick'_ 
+
+<img src="/images/rpi2/rpi2_lab01_Timer_Tick.png"/>
+
+Add the following code for the _Timer\_Tick_ event handler.
+
+{% highlight csharp %)
+        private void Timer_Tick(object sender, object e)
+        {
+            // This Timer event will be raised on each timer interval (defined above)
+            
+            if (pinValue == GpioPinValue.Low)
+            {
+                // If the current state of the pin is LOW (off), then set it to HIGH (on)
+                // and update the on screen UI to represent the LED in the on state
+                pinValue = GpioPinValue.High;
+                brush = new SolidColorBrush(Windows.UI.Colors.Red);
+            }
+            else
+            {
+                // If the current state of the pin is HIGH (on), then set it to LOW (off)
+                // and update the on screen UI to represent the LED in the off state
+                pinValue = GpioPinValue.Low;
+                brush = new SolidColorBrush(Windows.UI.Colors.LightGray); ;
+            }
+            // Write the state to to pin
+            pin.Write(pinValue);
+            // Update the on screen UI
+            LedGraphic.Fill = brush;
+        }
+{% endhighlight %}
+
+Next, make a call to a method that you haven't defined yet called <code>InitGpio()</code>. 
+
+{% highlight csharp %}
+        // Initilize the GPIO bus
+        InitGpio();
+        
+        // TODO: As long as the pin object is not null, proceed with the timer.
+{% endhighlight %}
+
+Use the refactoring lightbulb tool to generate the <code>InitGpio</code> method.
 
 ## Run the App
 
@@ -147,3 +197,4 @@ Congratulations! You have created a software representation of the physical devi
 {% include next-previous-post-in-category.html %}
 
 [nextlab]: /rpi2/02/
+    
