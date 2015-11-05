@@ -143,7 +143,7 @@ Using the Visual Studio refactoring tools you can gernetate the method stub for 
 
 Add the following code for the _Timer\_Tick_ event handler.
 
-{% highlight csharp %)
+{% highlight csharp %}
         private void Timer_Tick(object sender, object e)
         {
             // This Timer event will be raised on each timer interval (defined above)
