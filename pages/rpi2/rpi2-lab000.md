@@ -41,7 +41,7 @@ Each lab may require additional components. See the Bill of Materials section at
 ## Install a Visual Studio 2015
 If you don't already have one installed, install [Visual Studio 2015](https://www.visualstudio.com/). You can use the free Community edition, or any other higher edition. When you are installing Visual Studio, you must do a __Custom__ install and select to install the __Universal Windows App Development Tools -> Tools and Windows SDK__. 
 
-<img src="/images/rpi2_install_uwp.png"/>
+<img src="/images/rpi2/rpi2_install_uwp.png"/>
 
 After the installation is complete, install the Windows IoT Core Project Templates from [here](https://visualstudiogallery.msdn.microsoft.com/55b357e1-a533-43ad-82a5-a88ac4b01dec).
 
