@@ -73,7 +73,7 @@ Wire up the RPi2 according to this diagram.
 2. The negative (shorter) lead on the LED is connected to a resistor to reduce the amount of voltage pulled through the circuit.
 3. The other end of the resistor is connected to one of the ground GPIO pins, completing the circuit.
 
-The LED will light up when voltage is passed through the circuit. 
+The LED will light up when current is passed through the circuit. 
 
 ## Create a Universal App
 A Universal Windows app is a Windows experience that is built upon the Universal Windows Platform (UWP), which was first introduced in Windows 8 as the Windows Runtime. The UWP enables you to write an app that targets a device family, such as IoT devices. In fact, the universal app that you write may be able to run on multiple devices families, depending on the device characteristics that it takes advantage of. In this lab you will create a universal app targeting IoT devices running Windows 10. Technically this could be nearly any device, such as a phone, a tablet or a RPi2, however; the universal app you write will access the General Purpose Input/Output (GPIO) of the device, so the app won't actually be compatible with devices that don't have a GPIO.   
