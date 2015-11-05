@@ -65,11 +65,11 @@ On Windows, open the Node.js command prompt and type the following:
 
 If you are using the _DeviceExplorer_ simply open the _Management_ tab and click the _Create_ button. In the dialog that opens, enter the name of your device as your name followed by _Hub_ - e.g. _RickGrimesHub_. Then Click the _Create_ button, and click _Done_ on the confirmation dialog that opens.
 
-<img src="/images/rpi2/rpi_deviceexplorer02.png"/> 
+<img src="/images/rpi2/rpi2_deviceexplorer02.png"/> 
 
 You will see your device in the _Devices_ list. Once a device is created, you can get the device-specific connection string by selecting it in the _Devices_ list, right-clicking and selecting _Copy connection string for selected device_:
 
-<img src="/images/rpi2/rpi_deviceexplorer03.png"/> 
+<img src="/images/rpi2/rpi2_deviceexplorer03.png"/> 
 
 ### Optional: Create a New Azure IoT Device from the Command Line
 If you are on a non-Windows machine, or prefer to use a command line interface instead of the _DeviceExplorer_ utility, you can provision a new Azure IoT Hub device using the _iothub-explorer_ command line interface.
@@ -77,22 +77,23 @@ If you are on a non-Windows machine, or prefer to use a command line interface i
 In the same directory as before, using the Node.js command prompt or Terminal:
 
 <pre>
-  iothub-explorer.js [YOUR IOT HUB CONNECTION STRING] create [YOUR DEVICE NAME]
+  iothub-explorer [YOUR IOT HUB CONNECTION STRING] create [YOUR DEVICE NAME] --connection-string
 </pre>
 
-Once a device is created, you can get the device-specific connection string with the following command:
+The device will be created in your IoT Hub and the device-specific connection string will be displayed. 
+
+<img src="/images/rpi2/rpi2_iothub-explorer01.png"/> 
+
+If you ever need to get the connection string again, you can use the <code>get</code> command:
 
 <pre>
-  iothub-explorer.js [YOUR IOT HUB CONNECTION STRING] get [YOUR DEVICE NAME] --connection-string
+  iothub-explorer [YOUR IOT HUB CONNECTION STRING] get [YOUR DEVICE NAME] --connection-string
 </pre>
 
-<img src="/images/iothub-explorer01.png"/> 
-
-The device-specific connection string identifies the device by name and includes a key that is only for that device. Copy the device connection string somewhere that you will be able to access it in the [next lab][nextlab].
+The device-specific connection string identifies the device by name and includes a key that is only for that device, which makes authorizing and revoking that specific device much easier. Copy the device connection string somewhere that you will be able to access it in the [next lab][nextlab].
 
 ## Conclusion &amp; Next Steps
-
-Congratulations! You have created a software representation of the physical device that you will build, and the IoT Hub service to connect it to. In the [next lab][nextlab] you will build a Universal Windows Application application that will collect data from the Raspberry Pi and send it to Azure IoT Hub.
+Congratulations! You have created an Azure IoT Hub that you will connect devices to. You also created a representation of a physical device in your IoT Hub. In the [next lab][nextlab] you will build a Universal Windows Application application that will collect data from the RPi2 and send it to Azure IoT Hub.
 
 [Next Lab ->][nextlab]
 
