@@ -61,8 +61,19 @@ Windows 10 IoT Core will boot on power-up. The first boot may take a few minutes
 <img src="/images/rpi2/rpi2_defaultapp.png"/>
 
 ## Wire Up the RPi2
+The RPi2 connects to the physical world through the GPIO pins. GPIO stands for General Purpose Input/Output and refers to the two rows of pins on RPI2. The GPIO pins are a physical interface between the RPi2 and the physical world. Through your app you can designate pins to either receive input or send output. The inputs can be from switches, sensors or other devices. The outputs can be LEDs, servos, motors or countless other devices. Twenty-six of the 40 pins are GPIO pins; the others are power, ground, or reserved pins.
+
+<img src="/images/rpi2/rpi12_pinout.png"/>
+
+Wire up the RPi2 according to this diagram.
 
 <img src="/images/rpi2/rpi2_lab01_bb.png"/>
+
+1. GPIO pin 12 is connected to the positive (longer) lead on the LED. In the app you build, you will control whether or not GPIO pin 12 sends voltage over the circuit.
+2. The negative (shorter) lead on the LED is connected to a resistor to reduce the amount of voltage pulled through the circuit.
+3. The other end of the resistor is connected to one of the ground GPIO pins, completing the circuit.
+
+The LED will light up when voltage is passed through the circuit. 
 
 ## Create a Universal App
 A Universal Windows app is a Windows experience that is built upon the Universal Windows Platform (UWP), which was first introduced in Windows 8 as the Windows Runtime. The UWP enables you to write an app that targets a device family, such as IoT devices. In fact, the universal app that you write may be able to run on multiple devices families, depending on the device characteristics that it takes advantage of. In this lab you will create a universal app targeting IoT devices running Windows 10. Technically this could be nearly any device, such as a phone, a tablet or a RPi2, however; the universal app you write will access the General Purpose Input/Output (GPIO) of the device, so the app won't actually be compatible with devices that don't have a GPIO.   
@@ -171,11 +182,7 @@ Add the following code for the _Timer\_Tick_ event handler.
 {% endhighlight %}
 
 #### Initialize the GPIO Controller
-The next thing to do is initialize the GPIO controller. GPIO stands for General Purpose Input/Output and refers to the two rows of pins on RPI2. The GPIO pins are a physical interface between the RPi2 and the physical world. Through your app you can designate pins to either receive input or send output. The inputs can be from switches, sensors or other devices. The outputs can be LEDs, servos, motors or countless other devices. Twenty-six of the 40 pins are GPIO pins; the others are power, ground, or reserved pins.
-
-<img src="/images/rpi2/rpi12_pinout.png"/>
-
-Back in the _MainPage()_ constructor, following the timer code, make a call to a method that you haven't defined yet called <code>InitGpio()</code>. 
+The next thing to do is initialize the GPIO controller. Back in the _MainPage()_ constructor, following the timer code, make a call to a method that you haven't defined yet called <code>InitGpio()</code>. 
 
 {% highlight csharp %}
             // Initialize the GPIO bus
