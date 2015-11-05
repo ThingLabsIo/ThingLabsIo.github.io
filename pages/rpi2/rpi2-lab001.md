@@ -139,7 +139,7 @@ Following the call to <code>InitializeComponent</code>, create a _Timer_ that wi
 
 Using the Visual Studio refactoring tools you can gernetate the method stub for the __Timer\_Tick__ event handler. Hover over the _Timer\_Tick_ text until a lightbulb appears. Click the down arrow and select _Generate method 'MainPage.Timer\_Tick'_ 
 
-<img src="/images/rpi2/rpi2_lab01_Timer_Tick.png"/>
+<img src="/images/rpi2/rpi2_lab01_Timer_Tick.PNG"/>
 
 Add the following code for the _Timer\_Tick_ event handler.
 
