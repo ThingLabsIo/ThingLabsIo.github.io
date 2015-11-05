@@ -233,12 +233,18 @@ This is what the _MainPage()_ constructor should look like when completed.
 If you want to compare your code with the master lab code, you can find it [here](https://github.com/ThingLabsIo/IoTLabs/blob/master/RPi2/Lab01/Lab01/MainPage.xaml.cs).
 
 ## Run the App
-
+When you run the app locally you should see a screen similar to this:
 <img src="/images/rpi2_lab01_nogpio.png"/>
+
+This screen is displayed because your development machine doesn't have a GPIO controller. To deploy this application to your Raspberry Pi 2, select __ARM__ from the _Solution Platforms_ list in the toolbar, and select __REMOTE MACHINE__ from the _Device_ dropdown list in the toolbar.
 
 <img src="/images/rpi2_lab01_arm.png"/>
 
+You will be prompted with the _Remote Connections_ dialog. Select your device from the list of _Auto Detected_ devices, or type in the device name or IP address into the _Manual Configuration_ textbox (set the _Authentication Mode_ to __None__) and click _Select_.
+
 <img src="/images/rpi2_lab01_remote.png"/>
+
+Now run the application and you should see it deploy on the Raspberry Pi 2. You will see the red LED blick in unison with the red circle on the screen. If the red LED is not blinking, but the display on the screen is, recheck your wiring. 
 
 ## Conclusion &amp; Next Steps
 
