@@ -106,38 +106,38 @@ Next, add the following varialble definitions inside the <code>public sealed par
 {% highlight csharp %}
 public sealed partial class MainPage : Page
 {
-    // Define the physical pin connected to the LED.
-    private const int LED_PIN = 5;
-    // Deifne a valiable to represent the pin as an object.
-    private GpioPin pin;
-    // Define a valiable to hold the value of the pin (HIGH or LOW).
-    private GpioPinValue pinValue;
-    // Define a time used to control the frequency of events.
-    private DispatcherTimer timer;
-    // Define a color bruch for the on screen representation of the LED and initialize it to Red.
-    private SolidColorBrush brush = new SolidColorBrush(Windows.UI.Colors.Red);
+        // Define the physical pin connected to the LED.
+        private const int LED_PIN = 12;
+        // Deifne a valiable to represent the pin as an object.
+        private GpioPin pin;
+        // Define a valiable to hold the value of the pin (HIGH or LOW).
+        private GpioPinValue pinValue;
+        // Define a time used to control the frequency of events.
+        private DispatcherTimer timer;
+        // Define a color brushes for the on screen representation of the LED.
+        private SolidColorBrush redBrush = new SolidColorBrush(Windows.UI.Colors.Red);
+        private SolidColorBrush grayBrush = new SolidColorBrush(Windows.UI.Colors.LightGray);
 
-    public MainPage()
-    {
-        this.InitializeComponent();
-        
-        // TODO: Create a timer and initialize the GPIO
-    }
+        public MainPage()
+        {
+            this.InitializeComponent();
+            
+            // TODO: Create an instance of a Timer that will raise an event every 500ms
+        }
 }
 {% endhighlight %}
 
 Following the call to <code>InitializeComponent</code>, create a _Timer_ that will raise an event every 500ms.
 
 {% highlight csharp %}
-        // Create an instance of a Timer that will raise an event every 500ms
-        timer = new DispatcherTimer();
-        timer.Interval = TimeSpan.FromMilliseconds(500);
-        timer.Tick += Timer_Tick;
-        
-        // TODO: Initilize the GPIO bus
+            // Create an instance of a Timer that will raise an event every 500ms
+            timer = new DispatcherTimer();
+            timer.Interval = TimeSpan.FromMilliseconds(500);
+            timer.Tick += Timer_Tick;
+            // TODO: Initilize the GPIO bus
 {% endhighlight %}
 
-Using the Visual Studio refactoring tools you can gernetate the method stub for the __Timer_Tick__ event handler. Hover over the _Timer\_Tick_ text until a lightbulb appears. Click the down arrow and select _Generate method 'MainPage.Timer\_Tick'_ 
+Using the Visual Studio refactoring tools you can gernetate the method stub for the __Timer\_Tick__ event handler. Hover over the _Timer\_Tick_ text until a lightbulb appears. Click the down arrow and select _Generate method 'MainPage.Timer\_Tick'_ 
 
 <img src="/images/rpi2/rpi2_lab01_Timer_Tick.png"/>
 
@@ -153,32 +153,84 @@ Add the following code for the _Timer\_Tick_ event handler.
                 // If the current state of the pin is LOW (off), then set it to HIGH (on)
                 // and update the on screen UI to represent the LED in the on state
                 pinValue = GpioPinValue.High;
-                brush = new SolidColorBrush(Windows.UI.Colors.Red);
+                LedGraphic.Fill = redBrush;
             }
             else
             {
                 // If the current state of the pin is HIGH (on), then set it to LOW (off)
                 // and update the on screen UI to represent the LED in the off state
                 pinValue = GpioPinValue.Low;
-                brush = new SolidColorBrush(Windows.UI.Colors.LightGray); ;
+                LedGraphic.Fill = grayBrush;
             }
             // Write the state to to pin
             pin.Write(pinValue);
-            // Update the on screen UI
-            LedGraphic.Fill = brush;
         }
 {% endhighlight %}
 
 Next, make a call to a method that you haven't defined yet called <code>InitGpio()</code>. 
 
 {% highlight csharp %}
-        // Initilize the GPIO bus
-        InitGpio();
-        
-        // TODO: As long as the pin object is not null, proceed with the timer.
+            // Initilize the GPIO bus
+            InitGpio();
+            
+            // TODO: As long as the pin object is not null, proceed with the timer.
+                        
 {% endhighlight %}
 
-Use the refactoring lightbulb tool to generate the <code>InitGpio</code> method.
+Use the refactoring lightbulb tool to generate the <code>InitGpio()</code> method. In the _InitGpio()_ method you will get a handle on the default GPIO controller - the object that brokers all communication between your app and the GPIO bus. If the GPIO controller is _null_ then the device the app is running on doesn't support GPIO, and you will disply a message on the screen indicating this, and that will be the end of the app functionality. If there is a GPIO controller then you will use it to open the GPIO pin that you have connected to the LED and prepare it for use. Lastly you will display a message that the GPIO pin is initialized. 
+
+{% highlight csharp %}
+        private void InitGpio()
+        {
+            // Get the default GPIO controller
+            var gpio = GpioController.GetDefault();
+            // If the default GPIO controller is not present, then the device 
+            // running this app isn't capable of GPIO operations.
+            if (gpio == null)
+            {
+                pin = null;
+                GpioStatus.Text = "There is no GPIO controller on this device.";
+                return;
+            }
+            // Open the GPIO pin channel
+            pin = gpio.OpenPin(LED_PIN);
+            // Define the pin as an OUTPUT pin
+            pin.SetDriveMode(GpioPinDriveMode.Output);
+            // Define the initial state as LOW (off)
+            pinValue = GpioPinValue.Low;
+            // Write the state to to pin
+            pin.Write(pinValue);
+            // Update the on screen text to indicate that GPIO is ready
+            GpioStatus.Text = "GPIO pin initialized correctly.";
+        }
+{% endhighlight %}
+
+Back in the _MainPage()_ constructor, add a _null_ check on the _pin_ instance (remember, it will be _null_ if the GPIO controller was null). If it is not _null_, go ahead and start the timer. The timer will begin invoking the _Timer\_Tick_ event every 500ms.
+
+This is what the _MainPage()_ constructor should look like when completed.
+
+{% highlight csharp %}
+        public MainPage()
+        {
+            this.InitializeComponent();
+            
+            // Create an instance of a Timer that will raise an event every 500ms
+            timer = new DispatcherTimer();
+            timer.Interval = TimeSpan.FromMilliseconds(500);
+            timer.Tick += Timer_Tick;
+            
+            // Initilize the GPIO bus
+            InitGpio();
+            
+            // As long as the pin object is not null, proceed with the timer.
+            if (pin != null)
+            {
+                timer.Start();
+            }
+        }
+{% endhighlight %}
+
+If you want to compare your code with the master lab code, you can find it [here](https://github.com/ThingLabsIo/IoTLabs/blob/master/RPi2/Lab01/Lab01/MainPage.xaml.cs).
 
 ## Run the App
 
