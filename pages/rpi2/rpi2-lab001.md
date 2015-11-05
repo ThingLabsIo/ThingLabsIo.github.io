@@ -103,7 +103,7 @@ using Windows.Devices.Gpio;
 
 Next, add the following varialble definitions inside the <code>public sealed partial class MainPage : Page</code> class definition:
 
-'''csharp
+{% highlight csharp %}
 public sealed partial class MainPage : Page
 {
         // Define the physical pin connected to the LED.
@@ -125,7 +125,7 @@ public sealed partial class MainPage : Page
             // TODO: Create an instance of a Timer that will raise an event every 500ms
         }
 }
-'''
+{% endhighlight %}
 
 Following the call to <code>InitializeComponent</code>, create a _Timer_ that will raise an event every 500ms.
 
