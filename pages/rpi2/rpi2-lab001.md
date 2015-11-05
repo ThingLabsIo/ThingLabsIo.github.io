@@ -8,8 +8,7 @@ comments: true
 header: no
 breadcrumb: true
 categories:
-    - iot-rpi2-labs
-    - maker-101
+    - rpi2
 author: "Doug Seven"
 permalink: /rpi2/01/
 ---
@@ -75,6 +74,7 @@ Name the application _HelloWindowsIoT_.
 
 <img src="/images/rpi2/rpi2_new_universal.png"/>
 
+### Add the Windows IoT Extensions for the UWP
 Once the solution is created, click on the _Project_ menu and select _Add Reference_.
 
 In the Reference Manager dialog, expand the _Universal Windows_ node and select _Extensions_.
@@ -83,6 +83,7 @@ In the list of extensions, check the box next to __Windows IoT Extensions for th
 
 <img src="/images/rpi2/rpi2_install_iotextensions.png"/>
 
+### Design the App UI
 Open the _MainPage.xaml_ file. This is the layout definition for the initial page that loads when the app is run. Next you will add a few elements to the page.
 
 {% highlight xml %}
@@ -95,13 +96,14 @@ Open the _MainPage.xaml_ file. This is the layout definition for the initial pag
 </Grid>
 {% endhighlight %}
 
+### Code the App Logic
 Open the _MainPage.xaml.cs_ file. This is the code behind the layout for the MainPage.xaml. Add the following to the _using_ statements at the top of the file. 
 
 {% highlight csharp %}
 using Windows.Devices.Gpio;
 {% endhighlight %}
 
-Next, add the following varialble definitions inside the <code>public sealed partial class MainPage : Page</code> class definition:
+Add the following varialble definitions inside the <code>public sealed partial class MainPage : Page</code> class definition:
 
 {% highlight csharp %}
 public sealed partial class MainPage : Page
@@ -127,6 +129,7 @@ public sealed partial class MainPage : Page
 }
 {% endhighlight %}
 
+#### Create a Timer to Control the LED
 Following the call to <code>InitializeComponent</code>, create a _Timer_ that will raise an event every 500ms.
 
 {% highlight csharp %}
@@ -167,7 +170,12 @@ Add the following code for the _Timer\_Tick_ event handler.
         }
 {% endhighlight %}
 
-Next, make a call to a method that you haven't defined yet called <code>InitGpio()</code>. 
+#### Initialize the GPIO Controller
+The next thing to do is initialize the GPIO controller. GPIO stands for General Purpose Input/Output and refers to the two rows of pins on RPI2. The GPIO pins are a physical interface between the RPi2 and the physical world. Through your app you can can designate pins to either recieve input or send output. The inputs can be from switches, sensors or other devices. The outputs can be LEDs, servos, motors or countless other devices. Twenty-six of the 40 pins are GPIO pins; the others are power, ground, or reserved pins.
+
+<img src="/images/rpi2/rpi12_pinout.png"/>
+
+Back in the _MainPage()_ constructor, following the timer code, make a call to a method that you haven't defined yet called <code>InitGpio()</code>. 
 
 {% highlight csharp %}
             // Initilize the GPIO bus
@@ -177,7 +185,9 @@ Next, make a call to a method that you haven't defined yet called <code>InitGpio
                         
 {% endhighlight %}
 
-Use the refactoring lightbulb tool to generate the <code>InitGpio()</code> method. In the _InitGpio()_ method you will get a handle on the default GPIO controller - the object that brokers all communication between your app and the GPIO bus. If the GPIO controller is _null_ then the device the app is running on doesn't support GPIO, and you will disply a message on the screen indicating this, and that will be the end of the app functionality. If there is a GPIO controller then you will use it to open the GPIO pin that you have connected to the LED and prepare it for use. Lastly you will display a message that the GPIO pin is initialized. 
+Just like you did with the _Timer\_Tick_ code, use the refactoring _lightbulb_ tool to generate the <code>InitGpio()</code> method. In the _InitGpio()_ method you will get the instance of the default GPIO controller - the object that brokers all communication between your app and the GPIO bus. 
+
+If the GPIO controller instance is _null_ then the device the app is running on doesn't support GPIO, and you will disply a message on the screen indicating this, and that will be the end of the app functionality. If there is a GPIO controller instance then you will use it to open the GPIO pin that you have connected to the LED and prepare it for use. Lastly you will display a message that the GPIO pin is initialized. 
 
 {% highlight csharp %}
         private void InitGpio()
@@ -205,6 +215,7 @@ Use the refactoring lightbulb tool to generate the <code>InitGpio()</code> metho
         }
 {% endhighlight %}
 
+#### Check for the Existance of the GPIO Pin Object and Start the Timer
 Back in the _MainPage()_ constructor, add a _null_ check on the _pin_ instance (remember, it will be _null_ if the GPIO controller was null). If it is not _null_, go ahead and start the timer. The timer will begin invoking the _Timer\_Tick_ event every 500ms.
 
 This is what the _MainPage()_ constructor should look like when completed.
@@ -232,23 +243,35 @@ This is what the _MainPage()_ constructor should look like when completed.
 
 If you want to compare your code with the master lab code, you can find it [here](https://github.com/ThingLabsIo/IoTLabs/blob/master/RPi2/Lab01/Lab01/MainPage.xaml.cs).
 
-## Run the App
-When you run the app locally you should see a screen similar to this:
+## Run the App Locally
+Press __F5__ to run the app locally. You should see a screen similar to this:
+
 <img src="/images/rpi2_lab01_nogpio.png"/>
 
-This screen is displayed because your development machine doesn't have a GPIO controller. To deploy this application to your Raspberry Pi 2, select __ARM__ from the _Solution Platforms_ list in the toolbar, and select __REMOTE MACHINE__ from the _Device_ dropdown list in the toolbar.
+This screen is displayed because your development machine doesn't have a GPIO controller.
 
-<img src="/images/rpi2_lab01_arm.png"/>
+## Run the APp on the Raspberry Pi 2
+To deploy this application to your Raspberry Pi 2, select __ARM__ from the _Solution Platforms_ list in the toolbar, and select __REMOTE MACHINE__ from the _Device_ dropdown list in the toolbar.
+
+<img src="/images/rpi2/rpi2_lab01_arm.png"/>
 
 You will be prompted with the _Remote Connections_ dialog. Select your device from the list of _Auto Detected_ devices, or type in the device name or IP address into the _Manual Configuration_ textbox (set the _Authentication Mode_ to __None__) and click _Select_.
 
-<img src="/images/rpi2_lab01_remote.png"/>
+<img src="/images/rpi2/rpi2_lab01_remote.png"/>
 
-Now run the application and you should see it deploy on the Raspberry Pi 2. You will see the red LED blick in unison with the red circle on the screen. If the red LED is not blinking, but the display on the screen is, recheck your wiring. 
+__NOTE:__ You can verify or modify these values by navigating to the project properties (select Properties in the Solution Explorer) and choosing the Debug tab on the left.
+
+Now press __F5__ to run the application and you should see it deploy on the Raspberry Pi 2. You will see the red LED blick in unison with the red circle on the screen. If the red LED is not blinking, but the display on the screen is, recheck your wiring. 
 
 ## Conclusion &amp; Next Steps
 
-Congratulations! You have created a software representation of the physical device that you will build, and the IoT Hub service to connect it to. In the [next lab][nextlab] you will build a Universal Windows Application application that will collect data from the Raspberry Pi and send it to Azure IoT Hub.
+Congratulations! You have build a Universal Windows Platform application that controlled one of the GPIO pins and deployed the app to a Raspberry Pi. The core concepts you've learned are:
+
+1. Building a Universal Windows Platform application that can run on any WIndows 10 device. 
+2. Testing for the existance of the GPIO controller to inform the application of what capabilities are accessible.
+3. COntrolling the state of a device via the GPIO pins. 
+
+In the [next lab][nextlab] you will set up a Microsoft Azure IoT Hub that will act as the cloud backend for your IoT devices. In the labs after that you will build a new _Thing_ that will collect environment data and send it to your IoT hub.
 
 [Next Lab ->][nextlab]
 

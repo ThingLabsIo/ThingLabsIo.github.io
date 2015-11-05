@@ -8,8 +8,7 @@ comments: true
 header: no
 breadcrumb: true
 categories:
-    - iot-rpi2-labs
-    - maker-101
+    - rpi2
 author: "Doug Seven"
 permalink: /rpi2/02/
 ---
