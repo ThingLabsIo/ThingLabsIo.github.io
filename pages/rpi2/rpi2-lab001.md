@@ -32,12 +32,12 @@ What you will need:
 7. Micro SD card writer
 
 ## Install Windows 10 IoT Core on Raspberry Pi 2
-Windows 10 IoT Core is a version of Windows 10 designed to run on small devices, like the Raspberry Pi 2. You can download and install the Windows IoT Core image using the micro SD card. 
+Windows 10 IoT Core is a version of Windows 10 designed to run on small devices, like the Raspberry Pi 2 (RPi2). You can download and install the Windows IoT Core image using the micro SD card. 
 
 1. Download a Windows 10 IoT Core image from the [Microsoft downloads page](http://ms-iot.github.io/content/en-US/Downloads.htm). 
 2. Save the ISO to a local folder (e.g. C:\Development\IoTLabs).
 3. Double-click the ISO to mount it as a virtual drive. 
-4. Install __Windows_10_IoT_Core_RPi2.msi__. This will install the _Windows IoT Core Watcher_ utility and the Raspberry Pi 2 FFU (Field Firmware Update).
+4. Install __Windows_10_IoT_Core_RPi2.msi__. This will install the _Windows IoT Core Watcher_ utility and the RPi2 FFU (Field Firmware Update).
 5. Eject the virtual drive after the installation is complete.
 
 Now that the utilities and firmware (FFU) are on your development device, you can create a Windows IoT Core image on the SD card.
@@ -48,11 +48,11 @@ Now that the utilities and firmware (FFU) are on your development device, you ca
 4. Select the FFU file be browsing to __C:\Program Files (x86)\Microsoft IoT\FFU\RaspberryPi2__
 5. Once the SD card is complete, safely eject the SD card (use either _Safely Remove Hardware_ from the taskbar, or right-click on the SD card in File Explorer and choose _Eject_ - failing to do so may corrupt the SD card.). 
 
-## Connect the Raspberry Pi 2
-You are now ready to connect and power on your Raspberry Pi 2.
+## Connect the RPi2
+You are now ready to connect and power on your RPi2.
 
-1. Insert the micro SD card with the Windows 10 IoT Core image on it into your Raspberry Pi 2 (the slot is on the underside, on the opposite edge from the side with the USB ports).
-2. Connect a network cable from your local network to the Ethernet port on the Raspberry Pi 2. Your development device must be on the same network.
+1. Insert the micro SD card with the Windows 10 IoT Core image on it into your RPi2 (the slot is on the underside, on the opposite edge from the side with the USB ports).
+2. Connect a network cable from your local network to the Ethernet port on the RPi2. Your development device must be on the same network.
 3. Connect an HDMI monitor to the HDMI port on the board.
 4. Connect the power supply to the micro USB port on the board. You must power this from the 5V 2A adapter - USB power from your computer is insufficient.
 
@@ -65,7 +65,7 @@ Windows 10 IoT Core will boot on power-up. The first boot may take a few minutes
 <img src="/images/rpi2/rpi2_lab01_bb.png"/>
 
 ## Create a Universal App
-A Universal Windows app is a Windows experience that is built upon the Universal Windows Platform (UWP), which was first introduced in Windows 8 as the Windows Runtime. The UWP enables you to write an app that targets a device family, such as IoT devices. In fact, the universal app that you write may be able to run on multiple devices families, depending on the device characteristics that it takes advantage of. In this lab you will create a universal app targeting IoT devices running Windows 10. Technically this could be nearly any device, such as a phone, a tablet or a Raspberry Pi 2, however; the universal app you write will access the General Purpose Input/Output (GPIO) of the device, so the app won't actually be compatible with devices that don't have a GPIO.   
+A Universal Windows app is a Windows experience that is built upon the Universal Windows Platform (UWP), which was first introduced in Windows 8 as the Windows Runtime. The UWP enables you to write an app that targets a device family, such as IoT devices. In fact, the universal app that you write may be able to run on multiple devices families, depending on the device characteristics that it takes advantage of. In this lab you will create a universal app targeting IoT devices running Windows 10. Technically this could be nearly any device, such as a phone, a tablet or a RPi2, however; the universal app you write will access the General Purpose Input/Output (GPIO) of the device, so the app won't actually be compatible with devices that don't have a GPIO.   
 
 ### Create a Blank Universal App
 Launch Visual Studio and start a new __Blank App (Universal Windows)__ (found in the _C# -> Windows -> Universal_ node).
@@ -103,7 +103,7 @@ Open the _MainPage.xaml.cs_ file. This is the code behind the layout for the Mai
 using Windows.Devices.Gpio;
 {% endhighlight %}
 
-Add the following varialble definitions inside the <code>public sealed partial class MainPage : Page</code> class definition:
+Add the following variable definitions inside the <code>public sealed partial class MainPage : Page</code> class definition:
 
 {% highlight csharp %}
 public sealed partial class MainPage : Page
@@ -137,10 +137,10 @@ Following the call to <code>InitializeComponent</code>, create a _Timer_ that wi
             timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromMilliseconds(500);
             timer.Tick += Timer_Tick;
-            // TODO: Initilize the GPIO bus
+            // TODO: Initialize the GPIO bus
 {% endhighlight %}
 
-Using the Visual Studio refactoring tools you can gernetate the method stub for the __Timer\_Tick__ event handler. Hover over the _Timer\_Tick_ text until a lightbulb appears. Click the down arrow and select _Generate method 'MainPage.Timer\_Tick'_ 
+Using the Visual Studio refactoring tools, you can generate the method stub for the __Timer\_Tick__ event handler. Hover over the _Timer\_Tick_ text until a lightbulb appears. Click the down arrow and select _Generate method 'MainPage.Timer\_Tick'_ 
 
 <img src="/images/rpi2/rpi2_lab01_Timer_Tick.PNG"/>
 
@@ -171,14 +171,14 @@ Add the following code for the _Timer\_Tick_ event handler.
 {% endhighlight %}
 
 #### Initialize the GPIO Controller
-The next thing to do is initialize the GPIO controller. GPIO stands for General Purpose Input/Output and refers to the two rows of pins on RPI2. The GPIO pins are a physical interface between the RPi2 and the physical world. Through your app you can can designate pins to either recieve input or send output. The inputs can be from switches, sensors or other devices. The outputs can be LEDs, servos, motors or countless other devices. Twenty-six of the 40 pins are GPIO pins; the others are power, ground, or reserved pins.
+The next thing to do is initialize the GPIO controller. GPIO stands for General Purpose Input/Output and refers to the two rows of pins on RPI2. The GPIO pins are a physical interface between the RPi2 and the physical world. Through your app you can designate pins to either receive input or send output. The inputs can be from switches, sensors or other devices. The outputs can be LEDs, servos, motors or countless other devices. Twenty-six of the 40 pins are GPIO pins; the others are power, ground, or reserved pins.
 
 <img src="/images/rpi2/rpi12_pinout.png"/>
 
 Back in the _MainPage()_ constructor, following the timer code, make a call to a method that you haven't defined yet called <code>InitGpio()</code>. 
 
 {% highlight csharp %}
-            // Initilize the GPIO bus
+            // Initialize the GPIO bus
             InitGpio();
             
             // TODO: As long as the pin object is not null, proceed with the timer.
@@ -187,7 +187,7 @@ Back in the _MainPage()_ constructor, following the timer code, make a call to a
 
 Just like you did with the _Timer\_Tick_ code, use the refactoring _lightbulb_ tool to generate the <code>InitGpio()</code> method. In the _InitGpio()_ method you will get the instance of the default GPIO controller - the object that brokers all communication between your app and the GPIO bus. 
 
-If the GPIO controller instance is _null_ then the device the app is running on doesn't support GPIO, and you will disply a message on the screen indicating this, and that will be the end of the app functionality. If there is a GPIO controller instance then you will use it to open the GPIO pin that you have connected to the LED and prepare it for use. Lastly you will display a message that the GPIO pin is initialized. 
+If the GPIO controller instance is _null_ then the device the app is running on doesn't support GPIO, and you will display a message on the screen indicating this, and that will be the end of the app functionality. If there is a GPIO controller instance, then you will use it to open the GPIO pin that you have connected to the LED and prepare it for use. Lastly you will display a message that the GPIO pin is initialized. 
 
 {% highlight csharp %}
         private void InitGpio()
@@ -215,7 +215,7 @@ If the GPIO controller instance is _null_ then the device the app is running on 
         }
 {% endhighlight %}
 
-#### Check for the Existance of the GPIO Pin Object and Start the Timer
+#### Check for the Existence of the GPIO Pin Object and Start the Timer
 Back in the _MainPage()_ constructor, add a _null_ check on the _pin_ instance (remember, it will be _null_ if the GPIO controller was null). If it is not _null_, go ahead and start the timer. The timer will begin invoking the _Timer\_Tick_ event every 500ms.
 
 This is what the _MainPage()_ constructor should look like when completed.
@@ -230,7 +230,7 @@ This is what the _MainPage()_ constructor should look like when completed.
             timer.Interval = TimeSpan.FromMilliseconds(500);
             timer.Tick += Timer_Tick;
             
-            // Initilize the GPIO bus
+            // Initialize the GPIO bus
             InitGpio();
             
             // As long as the pin object is not null, proceed with the timer.
@@ -250,8 +250,8 @@ Press __F5__ to run the app locally. You should see a screen similar to this:
 
 This screen is displayed because your development machine doesn't have a GPIO controller.
 
-## Run the APp on the Raspberry Pi 2
-To deploy this application to your Raspberry Pi 2, select __ARM__ from the _Solution Platforms_ list in the toolbar, and select __REMOTE MACHINE__ from the _Device_ dropdown list in the toolbar.
+## Run the App on the RPi2
+To deploy this application to your RPi2, select __ARM__ from the _Solution Platforms_ list in the toolbar, and select __REMOTE MACHINE__ from the _Device_ dropdown list in the toolbar.
 
 <img src="/images/rpi2/rpi2_lab01_arm.png"/>
 
@@ -261,15 +261,15 @@ You will be prompted with the _Remote Connections_ dialog. Select your device fr
 
 __NOTE:__ You can verify or modify these values by navigating to the project properties (select Properties in the Solution Explorer) and choosing the Debug tab on the left.
 
-Now press __F5__ to run the application and you should see it deploy on the Raspberry Pi 2. You will see the red LED blick in unison with the red circle on the screen. If the red LED is not blinking, but the display on the screen is, recheck your wiring. 
+Now press __F5__ to run the application and you should see it deploy on the RPi2. You will see the red LED blink in unison with the red circle on the screen. If the red LED is not blinking, but the display on the screen is, recheck your wiring. 
 
 ## Conclusion &amp; Next Steps
 
-Congratulations! You have build a Universal Windows Platform application that controlled one of the GPIO pins and deployed the app to a Raspberry Pi. The core concepts you've learned are:
+Congratulations! You have built a Universal Windows Platform application that controlled one of the GPIO pins and deployed the app to a Raspberry Pi. The core concepts you've learned are:
 
-1. Building a Universal Windows Platform application that can run on any WIndows 10 device. 
-2. Testing for the existance of the GPIO controller to inform the application of what capabilities are accessible.
-3. COntrolling the state of a device via the GPIO pins. 
+1. Building a Universal Windows Platform application that can run on any Windows 10 device. 
+2. Testing for the existence of the GPIO controller to inform the application of what capabilities are accessible.
+3. Controlling the state of a device via the GPIO pins. 
 
 In the [next lab][nextlab] you will set up a Microsoft Azure IoT Hub that will act as the cloud backend for your IoT devices. In the labs after that you will build a new _Thing_ that will collect environment data and send it to your IoT hub.
 
@@ -278,4 +278,3 @@ In the [next lab][nextlab] you will set up a Microsoft Azure IoT Hub that will a
 {% include next-previous-post-in-category.html %}
 
 [nextlab]: /rpi2/02/
-    
