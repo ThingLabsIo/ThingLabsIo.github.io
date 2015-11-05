@@ -110,9 +110,9 @@ public sealed partial class MainPage : Page
 {
         // Define the physical pin connected to the LED.
         private const int LED_PIN = 12;
-        // Deifne a valiable to represent the pin as an object.
+        // Deifne a variable to represent the pin as an object.
         private GpioPin pin;
-        // Define a valiable to hold the value of the pin (HIGH or LOW).
+        // Define a variable to hold the value of the pin (HIGH or LOW).
         private GpioPinValue pinValue;
         // Define a time used to control the frequency of events.
         private DispatcherTimer timer;
