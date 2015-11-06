@@ -126,40 +126,6 @@ namespace Lab03_photoresistor
             StatusText.Text = "Status: Running";
         }
 
-        public async Task ReceiveDataFromAzure()
-        {
-            Message receivedMessage;
-            string messageData;
-
-            while (true)
-            {
-                receivedMessage = await deviceClient.ReceiveAsync();
-
-                if (receivedMessage != null)
-                {
-                    messageData = Encoding.ASCII.GetString(receivedMessage.GetBytes());
-
-                    // Message:"10/26/2015 1:08:06 PM - LED:on"
-                    if (messageData.Contains("LED:on"))
-                    {
-                        redLedPin.Write(GpioPinValue.Low);
-                    }
-                    else if(messageData.Contains("LED:off"))
-                    {
-                        redLedPin.Write(GpioPinValue.High);
-                    }
-
-                    // UI updates must be invoked on the UI thread
-                    var task = this.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
-                    {
-                        MessageLog.Text = "Received message: " + messageData + "\n" + MessageLog.Text;
-                    });
-
-                    await deviceClient.CompleteAsync(receivedMessage);
-                }
-            }
-        }
-
         private void MessageTimer_Tick(object state)
         {
             SendMessageToIoTHub(adcValue);
@@ -332,5 +298,4 @@ namespace Lab03_photoresistor
         }
     }
 }
-
 {% endhighlight %}
