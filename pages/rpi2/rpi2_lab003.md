@@ -127,35 +127,35 @@ using Microsoft.Azure.Devices.Client;
 There are several constants and variables that you will reference throughout this code. This code is written to support the MCP3008 or MCP3208 ADC. At the end of this lab you will find a link to the final solution with comments for code changes to support the MCP 3002 (there are minor differences and they are noted throughout tis lab). 
 
 {% highlight csharp %}
-    public sealed partial class MainPage : Page
-    {   
-        // Use the device specific connection string here
-        private const string IOT_HUB_CONN_STRING = "YOUR DEVICE SPECIFIC CONNECTION STRING GOES HERE";
-        // Use the name of your Azure IoT device here - this should be the same as the name in the connections string
-        private const string IOT_HUB_DEVICE = "YOUR DEVICE NAME GOES HERE";
-        // Provide a short description of the location of the device, such as 'Home Office' or 'Garage'
-        private const string IOT_HUB_DEVICE_LOCATION = "YOUR DEVICE LOCATION GOES HERE";
- 
-        private const Int32 SPI_CHIP_SELECT_LINE = 0; // Line 0 maps to physical pin 24 on the RPi2
-        private const string SPI_CONTROLLER_NAME = "SPI0";
-        private const int ADC_RESOLUTION = 4096; // Use 1024 for the MCP3002
-        private const int RED_LED_PIN = 12;
-
-        private SolidColorBrush redFill = new SolidColorBrush(Windows.UI.Colors.Red);
-        private SolidColorBrush grayFill = new SolidColorBrush(Windows.UI.Colors.LightGray);
-
-        DeviceClient deviceClient;
-        private GpioPin redLedPin;
-        private SpiDevice SpiAdc;
-        private Timer readSensorTimer;
-        private Timer sendMessageTimer;
-        private int adcValue;
-        
-        public MainPage()
-        {
-            this.InitializeComponent();
-        }
+public sealed partial class MainPage : Page
+{
+    // Use the device specific connection string here
+    private const string IOT_HUB_CONN_STRING = "YOUR DEVICE SPECIFIC CONNECTION STRING GOES HERE";
+    // Use the name of your Azure IoT device here - this should be the same as the name in the connections string
+    private const string IOT_HUB_DEVICE = "YOUR DEVICE NAME GOES HERE";
+    // Provide a short description of the location of the device, such as 'Home Office' or 'Garage'
+    private const string IOT_HUB_DEVICE_LOCATION = "YOUR DEVICE LOCATION GOES HERE";
+    
+    private const Int32 SPI_CHIP_SELECT_LINE = 0; // Line 0 maps to physical pin 24 on the RPi2
+    private const string SPI_CONTROLLER_NAME = "SPI0";
+    private const int ADC_RESOLUTION = 4096; // Use 1024 for the MCP3002
+    private const int RED_LED_PIN = 12;
+    
+    private SolidColorBrush redFill = new SolidColorBrush(Windows.UI.Colors.Red);
+    private SolidColorBrush grayFill = new SolidColorBrush(Windows.UI.Colors.LightGray);
+    
+    private DeviceClient deviceClient;
+    private GpioPin redLedPin;
+    private SpiDevice SpiAdc;
+    private Timer readSensorTimer;
+    private Timer sendMessageTimer;
+    private int adcValue;
+    
+    public MainPage()
+    {
+        this.InitializeComponent();
     }
+}
 {% endhighlight %}
 
 There is a lot defined here - the function of each constant or variable will become evident as you code up the application.
@@ -164,185 +164,181 @@ There is a lot defined here - the function of each constant or variable will bec
 Inside the _MainPage()_ constructor, register an event handler for the __Unloaded__ event. 
 
 {% highlight csharp %}
-        public MainPage()
-        {
-            this.InitializeComponent();
-            
-            // Register the Unloaded event to clean up on exit
-            Unloaded += MainPage_Unloaded;
-        }
+public MainPage()
+{
+    this.InitializeComponent();
+    
+    // Register the Unloaded event to clean up on exit
+    Unloaded += MainPage_Unloaded;
+}
 {% endhighlight %}
 
 This event handler will be invoked whenever the _MainPage_ is unloaded. You will use it to clean up a few resources. Use the Visual Studio Lightbulb feature to add the __MainPage_Unloaded__ event handler and add the following code to dispose of connections to the pins on the RPi2.
 
 {% highlight csharp %}
-        private void MainPage_Unloaded(object sender, RoutedEventArgs e)
-        {
-            if (SpiAdc != null)
-            {
-                SpiAdc.Dispose();
-            }
-
-            if (redLedPin != null)
-            {
-                redLedPin.Dispose();
-            }
-        }
+private void MainPage_Unloaded(object sender, RoutedEventArgs e)
+{
+    if (SpiAdc != null)
+    {
+        SpiAdc.Dispose();
+    }
+    
+    if (redLedPin != null)
+    {
+        redLedPin.Dispose();
+    }
+}
 {% endhighlight %}
 
 ### Initialize the SPI and GPIO Busses
 Still in the _ManPage()_ constructor, add a call to a new method names __InitAll()__. 
 
 {% highlight csharp %}
-        public MainPage()
-        {
-            this.InitializeComponent();
-            
-            // Register the Unloaded event to clean up on exit
-            Unloaded += MainPage_Unloaded;
-            
-            // Initialize GPIO and SPI
-            InitAll();
-        }
+public MainPage()
+{
+    this.InitializeComponent();
+    
+    // Register the Unloaded event to clean up on exit
+    Unloaded += MainPage_Unloaded;
+    
+    // Initialize GPIO and SPI
+    InitAll();
+}
 {% endhighlight %}
 
 Use the Visual Studio Lightbulb feature to add the __InitAll()__ method.
 
 {% highlight csharp %}
-        private async void InitAll()
-        {
-            try
-            {
-                InitGpio();
-                await InitSpi();
-            }
-            catch (Exception ex)
-            {
-                StatusText.Text = ex.Message;
-                return;
-            }
-            
-            // TODO: Read sensors every 25ms and refresh the UI
-            
-            // TODO: Instantiate the Azure device client
-            
-            // TODO: Send messages to Azure IoT Hub every one-second
-
-            StatusText.Text = "Status: Running";
-        }
+private async void InitAll()
+{
+    try
+    {
+        InitGpio();
+        await InitSpi();
+    }
+    catch (Exception ex)
+    {
+        StatusText.Text = ex.Message;
+        return;
+    }
+    
+    // TODO: Read sensors every 25ms and refresh the UI
+    // TODO: Instantiate the Azure device client
+    // TODO: Send messages to Azure IoT Hub every one-second
+    
+    StatusText.Text = "Status: Running";
+}
 {% endhighlight %}
 
 This method invokes two additional methods to initialize the GPIO and SPI busses. Use the Visual Studio Lightbulb feature to create the __InitGpio()__ method. Initialize the GPIO by assigning the default GPIO controller to the <code>gpio</code> variable, and check for _null_ (throw an exception if it is _null_). Next, initialize the <code>redLedPin</code> in the same way you did in [Lab 01](../01/).
 
 {% highlight csharp %}
-        private void InitGpio()
-        {
-            var gpio = GpioController.GetDefault();
+private void InitGpio()
+{
+    var gpio = GpioController.GetDefault();
 
-            if (gpio == null)
-            {
-                throw new Exception("There is no GPIO controller on this device.");
-            }
-
-            redLedPin = gpio.OpenPin(RED_LED_PIN);
-            redLedPin.Write(GpioPinValue.High);
-            redLedPin.SetDriveMode(GpioPinDriveMode.Output);
-        }
+    if (gpio == null)
+    {
+        throw new Exception("There is no GPIO controller on this device.");
+    }
+    
+    redLedPin = gpio.OpenPin(RED_LED_PIN);
+    redLedPin.Write(GpioPinValue.High);
+    redLedPin.SetDriveMode(GpioPinDriveMode.Output);
+}
 {% endhighlight %}
 
 Go back to the _MainPage()_ constructor and use the Visual Studio Lightbulb feature to add the __InitSpi()__ method. In this method you will initialize the SPI buss so that you can use it to communicate through the ADC.
 
 {% highlight csharp %}
-        private async Task InitSpi()
-        {
-            try
-            {
-                var settings = new SpiConnectionSettings(SPI_CHIP_SELECT_LINE);
-                settings.ClockFrequency = 500000; // 0.5 MHz clock rate
-                settings.Mode = SpiMode.Mode0; // The ADC expects idle-low clock polarity so we use Mode0
-
-                string spiAqs = SpiDevice.GetDeviceSelector(SPI_CONTROLLER_NAME);
-                var deviceInfo = await DeviceInformation.FindAllAsync(spiAqs);
-                SpiAdc = await SpiDevice.FromIdAsync(deviceInfo[0].Id, settings);
-
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("SPI initialization failed.", ex);
-            }
-        }
+private async Task InitSpi()
+{
+    try
+    {
+        var settings = new SpiConnectionSettings(SPI_CHIP_SELECT_LINE);
+        settings.ClockFrequency = 500000; // 0.5 MHz clock rate
+        settings.Mode = SpiMode.Mode0; // The ADC expects idle-low clock polarity so we use Mode0
+        
+        string spiAqs = SpiDevice.GetDeviceSelector(SPI_CONTROLLER_NAME);
+        var deviceInfo = await DeviceInformation.FindAllAsync(spiAqs);
+        SpiAdc = await SpiDevice.FromIdAsync(deviceInfo[0].Id, settings);
+    }
+    catch (Exception ex)
+    {
+        throw new Exception("SPI initialization failed.", ex);
+    }
+}
 {% endhighlight %}
 
 ### Create a Timer to Read the Sensor Values
 Next you will create a timer to read the data from the photoresistor and set the state of the LED. To do this, in the _MainPage()_ constructor, replace <code>// TODO: Read sensors every 25ms and refresh the UI</code> with <code>readSensorTimer = new Timer(this.SensorTimer_Tick, null, 0, 25);</code>. Use the Visual Studio Lightbulb feature to add an event handler for __SensorTimer\_Tick__.
 
 {% highlight csharp %}
-        private void SensorTimer_Tick(object state)
-        {
-            ReadAdc();
-            LightLed();
-        }
+private void SensorTimer_Tick(object state)
+{
+    ReadAdc();
+    LightLed();
+}
 {% endhighlight %}
 
 In _SensorTmer\_Tick_ you will call two methods - one to read the sensor data in, and one to set the state of the LED. Use the Visual Studio Lightbulb feature to create the __ReadAdc()__ method.
 
 {% highlight csharp %}
-        private void ReadAdc()
-        {
-            // Create a buffer to hold the read data
-            byte[] readBuffer = new byte[3];
-            byte[] writeBuffer = new byte[3] { 0x00, 0x00, 0x00 };
-            
-            // Set the SPI configuration data in the first position
-            // MCP3208 or MCP3008 use 0x06 - 00000110 channel configuration data
-            // MCP3002 use 0x68 - 01101000 channel configuration data
-            writeBuffer[0] = 0x06;
-
-            // Read data from the ADC
-            SpiAdc.TransferFullDuplex(writeBuffer, readBuffer);
-            adcValue = convertToInt(readBuffer);
-
-            // UI updates must be invoked on the UI thread
-            var task = this.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
-            {
-                textPlaceHolder.Text = adcValue.ToString();
-                IndicatorBar.Width = Map(adcValue, 0, ADC_RESOLUTION-1, 0, 300);
-            });
-        }
+private void ReadAdc()
+{
+    // Create a buffer to hold the read data
+    byte[] readBuffer = new byte[3];
+    byte[] writeBuffer = new byte[3] { 0x00, 0x00, 0x00 };
+    
+    // Set the SPI configuration data in the first position
+    // MCP3208 or MCP3008 use 0x06 - 00000110 channel configuration data
+    // MCP3002 use 0x68 - 01101000 channel configuration data
+    writeBuffer[0] = 0x06;
+    
+    // Read data from the ADC
+    SpiAdc.TransferFullDuplex(writeBuffer, readBuffer);
+    adcValue = convertToInt(readBuffer);
+    
+    // UI updates must be invoked on the UI thread
+    var task = this.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
+    {
+        textPlaceHolder.Text = adcValue.ToString();
+        IndicatorBar.Width = Map(adcValue, 0, ADC_RESOLUTION-1, 0, 300);
+    });
+}
 {% endhighlight %}
 
 In this method you create a buffer to read the ADC data into and buffer to write out with, setting the SPI configuration as the first node in the write buffer. When you call <code>TransferFullDuplex()</code> you open a two-way channel with the ADC over the SPI bus.  
 The <code>convertToInt(readBuffer)</code> is used to convert the byte array returned from the ADC into an integer. Use the Visual Studio Lightbulb feature to add __convertToInt(byte[])__.
 
 {% highlight csharp %}
-        private int convertToInt(byte[] data)
-        {
-            int result = data[1] & 0x0F;
-            // Shift the bits left
-            result <<= 8;
-            // Add the next set of bits
-            result += data[2];
-            
-            /*
-            // For the MCP3002 use:
-            result = data[0] & 0x03;
-            // Shift the bits left
-            result <<= 8;
-            // Add the next set of bits
-            result += data[1];
-            */
-            
-            return result;
-        }
+private int convertToInt(byte[] data)
+{
+    int result = data[1] & 0x0F;
+    // Shift the bits left
+    result <<= 8;
+    // Add the next set of bits
+    result += data[2];
+    
+    /*
+    // For the MCP3002 use:
+    result = data[0] & 0x03;
+    // Shift the bits left
+    result <<= 8;
+    // Add the next set of bits
+    result += data[1];
+    */
+    return result;
+}
 {% endhighlight %}
 
 In the _ReadAdc()_ method there was also a reference to a _Map()_ method. Use the Visual Studio Lightbulb feature to add Map(int, int, int, int, int)__. This method makes it easy to map data from one value range to another.
 
 {% highlight csharp %}
-        private double Map(int val, int inMin, int inMax, int outMin, int outMax)
-        {
-            return Math.Round((double)((val - inMin) * (outMax - outMin) / (inMax - inMin) + outMin));
-        }
+private double Map(int val, int inMin, int inMax, int outMin, int outMax)
+{
+    return Math.Round((double)((val - inMin) * (outMax - outMin) / (inMax - inMin) + outMin));
+}
 {% endhighlight %}
 
 In this example you are using the _Map()_ method to map the value from the ADC, which is a range 0 - 4095 (or 0 -1023 for the MCP3002), to a range of 0 - 300, which is used to define the width of the darkness indicator bar in the UI.
@@ -350,28 +346,27 @@ In this example you are using the _Map()_ method to map the value from the ADC, 
 Next, return to the _SensorTimer\_Tick_ method and use the Visual Studio Lightbulb feature to add an event handler for __LightLed()__.
 
 {% highlight csharp %}
-        private void LightLed()
-        {
-            SolidColorBrush fillColor = grayFill;
-
-            // Tunr on LED if potentiometer is rotated more than halfway
-            if (adcValue > ADC_RESOLUTION / 2)
-            {
-                redLedPin.Write(GpioPinValue.Low);
-                fillColor = redFill;
-            }
-            else
-            {
-                redLedPin.Write(GpioPinValue.High);
-                fillColor = grayFill;
-            }
-
-            // UI updates must be invoked on the UI thread
-            var task = this.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
-            {
-                IndicatorBar.Fill = fillColor;
-            });
-        }
+private void LightLed()
+{
+    SolidColorBrush fillColor = grayFill;
+    // Turn on LED if potentiometer is rotated more than halfway
+    if (adcValue > ADC_RESOLUTION / 2)
+    {
+        redLedPin.Write(GpioPinValue.Low);
+        fillColor = redFill;
+    }
+    else
+    {
+        redLedPin.Write(GpioPinValue.High);
+        fillColor = grayFill;
+    }
+    
+    // UI updates must be invoked on the UI thread
+    var task = this.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
+    {
+        IndicatorBar.Fill = fillColor;
+    });
+}
 {% endhighlight %}
 
 In this method you simply check to see if the ADC value is greater than half of its resolution - in other words, is it halfway dark? If it is, turn on the LED and paint the indicator bar in the UI red, otherwise, turn off the LED and paint the indicator bar light gray.
@@ -403,39 +398,39 @@ Use the Visual Studio Lightbulb feature to create the __MessageTimer\_Tick()__ e
 Each tme the _MessageTimer_ ticks (once per second) this event handler will invoke the _SendMessageToIoTHubAsync()_ method. Use the Visual Studio Lightbulb feature to create the __SendMessageToIoTHubAsync()__ method.
 
 {% highlight csharp %}
-        private async Task SendMessageToIoTHubAsync(int darkness)
+private async Task SendMessageToIoTHubAsync(int darkness)
+{
+    try
+    {
+        var payload = "{\"deviceId\": \"" +
+            IOT_HUB_DEVICE + 
+            "\", \"location\": \"" +
+            IOT_HUB_DEVICE_LOCATION +
+            "\", \"data\": \"darkness:" +
+            adcValue + 
+            "\", \"localTimestamp\": \"" +
+            DateTime.Now.ToLocalTime().ToString() + 
+            "\"}";
+
+        // UI updates must be invoked on the UI thread
+        var task = this.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
         {
-            try
-            {
-                var payload = "{\"deviceId\": \"" + 
-                    IOT_HUB_DEVICE + 
-                    "\", \"location\": \"" +
-                    IOT_HUB_DEVICE_LOCATION +
-                    "\", \"data\": \"darkness:" +
-                    adcValue + 
-                    "\", \"localTimestamp\": \"" +
-                    DateTime.Now.ToLocalTime().ToString() + 
-                    "\"}";
+            MessageLog.Text = "Sending message: " + payload + "\n" + MessageLog.Text;
+        });
 
-                // UI updates must be invoked on the UI thread
-                var task = this.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
-                {
-                    MessageLog.Text = "Sending message: " + payload + "\n" + MessageLog.Text;
-                });
+        var msg = new Message(Encoding.UTF8.GetBytes(payload));
 
-                var msg = new Message(Encoding.UTF8.GetBytes(payload));
-
-                await deviceClient.SendEventAsync(msg);
-            }
-            catch (Exception ex)
-            {
-                // UI updates must be invoked on the UI thread
-                var task = this.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
-                {
-                    MessageLog.Text = "Sending message: " + ex.Message + "\n" + MessageLog.Text;
-                });
-            }
-        }
+        await deviceClient.SendEventAsync(msg);
+    }
+    catch (Exception ex)
+    {
+        // UI updates must be invoked on the UI thread
+        var task = this.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
+        {
+            MessageLog.Text = "Sending message: " + ex.Message + "\n" + MessageLog.Text;
+        });
+    }
+}
 {% endhighlight %}
 
 With this method you attempt to construct a JSON message payload, display it on the screen and send it to your Azure IoT Hub. The communication with the Azure IoT Hub is managed by the <code>deviceClient</code> object from the _Microsoft.Azure.Devices.Client_ namespace.
