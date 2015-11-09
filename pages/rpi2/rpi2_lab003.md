@@ -124,7 +124,7 @@ using Microsoft.Azure.Devices.Client;
 {% endhighlight %}
 
 ### Define Constants and Variables
-There are several constants and variables that you will reference throughout this code. This code is written to support the MCP3008 or MCP3208 ADC. At the end of this lab you will find a link to the final solution with comments for code changes to support the MCP 3002 (there are minor differences and they are noted throughout tis lab). 
+There are several constants and variables that you will reference throughout this code. This code is written to support the MCP3008 ADC. At the end of this lab you will find a link to the final solution with comments for code changes to support the MCP3208 8-channel/12-bit ADC and the MCP3002 dual-channel/10-bit ADC (there are minor differences and they are noted throughout tis lab). 
 
 {% highlight csharp %}
 public sealed partial class MainPage : Page
@@ -138,7 +138,7 @@ public sealed partial class MainPage : Page
     
     private const Int32 SPI_CHIP_SELECT_LINE = 0; // Line 0 maps to physical pin 24 on the RPi2
     private const string SPI_CONTROLLER_NAME = "SPI0";
-    private const int ADC_RESOLUTION = 4096; // Use 1024 for the MCP3002
+    private const int ADC_RESOLUTION = 1024; // Use 1024 for 10-bit ADCs (MCP3002, MPC3008) and 4096 for 12-bit ADCs (MCP3208)
     private const int RED_LED_PIN = 12;
     
     private SolidColorBrush redFill = new SolidColorBrush(Windows.UI.Colors.Red);
@@ -206,7 +206,7 @@ public MainPage()
 }
 {% endhighlight %}
 
-Use the Visual Studio Lightbulb feature to add the __InitAll()__ method.
+Use the Visual Studio Lightbulb feature to add the __InitAll()__ method. Modify the method signature to mark it as an asyn method.
 
 {% highlight csharp %}
 private async void InitAll()
@@ -214,7 +214,7 @@ private async void InitAll()
     try
     {
         InitGpio();
-        await InitSpi();
+        await InitSpiAsync();
     }
     catch (Exception ex)
     {
@@ -248,10 +248,10 @@ private void InitGpio()
 }
 {% endhighlight %}
 
-Go back to the _MainPage()_ constructor and use the Visual Studio Lightbulb feature to add the __InitSpi()__ method. In this method you will initialize the SPI buss so that you can use it to communicate through the ADC.
+Go back to the _MainPage()_ constructor and use the Visual Studio Lightbulb feature to add the __InitSpi()__ method. In this method you will initialize the SPI buss so that you can use it to communicate through the ADC. Modify the method signature to mark it as an async method.
 
 {% highlight csharp %}
-private async Task InitSpi()
+private async Task InitSpiAsync()
 {
     try
     {
@@ -315,7 +315,7 @@ private void ReadAdc()
 {% endhighlight %}
 
 In this method you create a buffer to read the ADC data into and buffer to write out with, setting the SPI configuration as the first node in the write buffer. When you call <code>TransferFullDuplex()</code> you open a two-way channel with the ADC over the SPI bus.  
-The <code>convertToInt(readBuffer)</code> is used to convert the byte array returned from the ADC into an integer. Use the Visual Studio Lightbulb feature to add __convertToInt(byte[])__.
+The <code>convertToInt(readBuffer)</code> is used to convert the byte array returned from the ADC into an integer. Use the Visual Studio Lightbulb feature to add __convertToInt(byte[])__. Modify the method signature - change the input variable name from _readBuffer_ to __data__.
 
 {% highlight csharp %}
 private int convertToInt(byte[] data)
@@ -405,7 +405,14 @@ sendMessageTimer = new Timer(this.MessageTimer_Tick, null, 0, 1000);
 
 Use the Visual Studio Lightbulb feature to create the __MessageTimer\_Tick()__ event handler.
 
-Each tme the _MessageTimer_ ticks (once per second) this event handler will invoke the _SendMessageToIoTHubAsync()_ method. Use the Visual Studio Lightbulb feature to create the __SendMessageToIoTHubAsync()__ method.
+{% highlight csharp %}
+private void MessageTimer_Tick(object state)
+{
+    SendMessageToIoTHubAsync(adcVal);
+}
+{% endhighlight %}
+
+Each tme the _MessageTimer_ ticks (once per second) this event handler will invoke the _SendMessageToIoTHubAsync()_ method. Use the Visual Studio Lightbulb feature to create the __SendMessageToIoTHubAsync()__ method. Modify the method signature to mark it as an async method.
 
 {% highlight csharp %}
 private async Task SendMessageToIoTHubAsync(int darkness)
