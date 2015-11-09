@@ -271,7 +271,13 @@ private async Task InitSpi()
 {% endhighlight %}
 
 ### Create a Timer to Read the Sensor Values
-Next you will create a timer to read the data from the photoresistor and set the state of the LED. To do this, in the _MainPage()_ constructor, replace <code>// TODO: Read sensors every 25ms and refresh the UI</code> with <code>readSensorTimer = new Timer(this.SensorTimer_Tick, null, 0, 25);</code>. Use the Visual Studio Lightbulb feature to add an event handler for __SensorTimer\_Tick__.
+Next you will create a timer to read the data from the photoresistor and set the state of the LED. To do this, in the _MainPage()_ constructor, replace <code>// TODO: Read sensors every 25ms and refresh the UI</code> with:
+
+{% highlight csharp %}
+readSensorTimer = new Timer(this.SensorTimer_Tick, null, 0, 25);
+{% endhighlight %}
+
+Use the Visual Studio Lightbulb feature to add an event handler for __SensorTimer\_Tick__.
 
 {% highlight csharp %}
 private void SensorTimer_Tick(object state)
@@ -385,15 +391,19 @@ __NOTE:__ You can verify or modify these values by navigating to the project pro
 Now press __F5__ to run the application and you should see it deploy on the RPi2. Test the circuit and application by changing the amount of light the photoresistor is exposed to.
 
 ### Send A Message to Azure IoT Hub
-Now that you know your physical device is working, it is time to send its data to Azure. In the _MainPage()_ constructor, replace the comment <code>// TODO: Instantiate the Azure device client</code> with <code>deviceClient = DeviceClient.CreateFromConnectionString(IOT_HUB_CONN_STRING);</code>.
-
-Next, replace the comment<code>// TODO: Send messages to Azure IoT Hub every one-second</code> with <code>sendMessageTimer = new Timer(this.MessageTimer_Tick, null, 0, 1000);</code>
-
-Use the Visual Studio Lightbulb feature to create the __MessageTimer\_Tick()__ event handler.
+Now that you know your physical device is working, it is time to send its data to Azure. In the _MainPage()_ constructor, replace the comment <code>// TODO: Instantiate the Azure device client</code> with:
 
 {% highlight csharp %}
- 
+deviceClient = DeviceClient.CreateFromConnectionString(IOT_HUB_CONN_STRING);
 {% endhighlight %}
+
+Next, replace the comment<code>// TODO: Send messages to Azure IoT Hub every one-second</code> with:
+
+{% highlight csharp %}
+sendMessageTimer = new Timer(this.MessageTimer_Tick, null, 0, 1000);
+{% endhighlight %}
+
+Use the Visual Studio Lightbulb feature to create the __MessageTimer\_Tick()__ event handler.
 
 Each tme the _MessageTimer_ ticks (once per second) this event handler will invoke the _SendMessageToIoTHubAsync()_ method. Use the Visual Studio Lightbulb feature to create the __SendMessageToIoTHubAsync()__ method.
 
