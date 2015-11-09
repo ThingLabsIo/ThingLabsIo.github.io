@@ -124,23 +124,18 @@ using Microsoft.Azure.Devices.Client;
 {% endhighlight %}
 
 ### Define Constants and Variables
-There are several constants and variables that you will reference throughout this code. This code is written to support the MCP3008 or MCP3208 12-bit ADC. At the end of this lab you will find a link to the final solution for either ADCs (there are minor differences). 
+There are several constants and variables that you will reference throughout this code. This code is written to support the MCP3008 or MCP3208 ADC. At the end of this lab you will find a link to the final solution with comments for code changes to support the MCP 3002 (there are minor differences and they are noted throughout tis lab). 
 
 {% highlight csharp %}
     public sealed partial class MainPage : Page
-    {
-        enum AdcDevice { None, MCP3002, MCP3208 };
-        
+    {   
         // Use the device specific connection string here
         private const string IOT_HUB_CONN_STRING = "YOUR DEVICE SPECIFIC CONNECTION STRING GOES HERE";
         // Use the name of your Azure IoT device here - this should be the same as the name in the connections string
         private const string IOT_HUB_DEVICE = "YOUR DEVICE NAME GOES HERE";
         // Provide a short description of the location of the device, such as 'Home Office' or 'Garage'
         private const string IOT_HUB_DEVICE_LOCATION = "YOUR DEVICE LOCATION GOES HERE";
-        
-        // Set this to the appropriate ADC
-        private AdcDevice ADC_DEVICE = AdcDevice.MCP3208;
-
+ 
         private const Int32 SPI_CHIP_SELECT_LINE = 0; // Line 0 maps to physical pin 24 on the RPi2
         private const string SPI_CONTROLLER_NAME = "SPI0";
         private const int ADC_RESOLUTION = 4096; // Use 1024 for the MCP3002
@@ -163,7 +158,7 @@ There are several constants and variables that you will reference throughout thi
     }
 {% endhighlight %}
 
-There is a lot defined here - we'll explain each constant and variable as you build up the code.
+There is a lot defined here - the function of each constant or variable will become evident as you code up the application.
 
 ### Add a Clean Up Event Handler
 Inside the _MainPage()_ constructor, register an event handler for the __Unloaded__ event. 
@@ -453,7 +448,7 @@ Now you can run the application on your RPi2 and not only will you see the indic
 ## Conclusion &amp; Next Steps
 Congratulations! You have built a Universal Windows Platform application that captures data from the physical word and sends it to Azure IoT Hub. The core concepts you've learned are:
 
-1. Working with analog data using an analog-t-digital converter (ADC). 
+1. Working with analog data using a voltage divider and an analog-t-digital converter (ADC). 
 2. Configuring and using the Serial Peripheral Interface (SPI).
 3. Creating and sending messages to Azure IoT Hub. 
 
