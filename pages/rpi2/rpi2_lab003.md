@@ -92,6 +92,8 @@ Once the _Windows IoT Extensions for the UWP_ are added, click on the _Project_ 
 
 Use the search field to search for __Microsoft.Azure.Devices.Client__. Click on the __Install__ button to install the package.
 
+<img src="/images/rpi2/rpi2_lab03_AzureNuGet.PNG"/>
+
 ### Design the App UI
 Open the _MainPage.xaml_ file. This is the layout definition for the initial page that loads when the app is run. Next you will add a few elements to the page.
 
