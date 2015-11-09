@@ -445,6 +445,8 @@ Each tme the _MessageTimer_ ticks (once per second) this event handler will invo
 
 With this method you attempt to construct a JSON message payload, display it on the screen and send it to your Azure IoT Hub. The communication with the Azure IoT Hub is managed by the <code>deviceClient</code> object from the _Microsoft.Azure.Devices.Client_ namespace.
 
+The final _MainPage.cxaml.cs_ can be founs [here](https://github.com/ThingLabsIo/IoTLabs/blob/master/RPi2/Lab03/Lab03/MainPage.xaml.cs) and the complete solution can be found [here](https://github.com/ThingLabsIo/IoTLabs/tree/master/RPi2/Lab03).
+
 ### Run the Application
 Now you can run the application on your RPi2 and not only will you see the indicator bar changing, but you will also see the log of messages being sent to Azure IoT Hub at a rate of once per second.
 
