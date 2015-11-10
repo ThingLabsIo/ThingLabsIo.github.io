@@ -63,8 +63,7 @@ Windows 10 IoT Core will boot on power-up. The first boot may take a few minutes
 ## Set the Machine Name and Password
 By default the RPi2 will have a machine name of _minwinpc_ and an Administrator password of _p@ssw0rd_. It is recommend that you change both of these to avoid confusion with other devices on your network.
 
-Launch PowerShell using the _Run as Administrator_ option (righ1. Launch PowerShell using the _Run as Administrator_ option (rig.h click on the PowerShell icon toeveal this option).
-Run the following set of commands:
+Launch PowerShell using the _Run as Administrator_ option (right-click on the PowerShell icon to reveal this option). Run the following set of commands:
 
 You may need to start the WinRM service on your desktop to enable remote connections:
 
