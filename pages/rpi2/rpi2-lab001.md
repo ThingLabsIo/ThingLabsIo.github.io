@@ -60,6 +60,52 @@ Windows 10 IoT Core will boot on power-up. The first boot may take a few minutes
 
 <img src="/images/rpi2/rpi2_defaultapp.png"/>
 
+## Set the Machine Name and Password
+By default the RPi2 will have a machine name of _minwinpc_ and an Administrator password of _p@ssw0rd_. It is recommend that you change both of these to avoid confusion with other devices on your network.
+
+Launch PowerShell using the _Run as Administrator_ option (righ1. Launch PowerShell using the _Run as Administrator_ option (rig.h click on the PowerShell icon toeveal this option).
+Run the following set of commands:
+
+You may need to start the WinRM service on your desktop to enable remote connections:
+
+{% highlight PowerShell %}
+net start WinRM
+{% endhighlight %}
+
+With the WInRM service running, add the RPi2 to your Trusted Hosts. Replace _<machine-name or IP Address>_ with your actual machine name or IP address (this will be displayed on the default app screen when your RPi2 is running).
+
+{% highlight PowerShell %}
+Set-Item WSMan:\localhost\Client\TrustedHosts -Value <machine-name or IP Address>
+{% endhighlight %}
+
+Enter __Y__ to confirm the change.
+
+Start a PowerShell session with your RPi2. 
+
+{% highlight PowerShell %}
+Enter-PSSession -ComputerName <machine-name or IP Address> -Credential <machine-name or IP Address or localhost>\Administrator
+{% endhighlight %}
+
+When prompted, enter the Administrator password (_p@ssw0rd_ is the default). If you successfully connected to the device, you should see the IP address of your device before the prompt.
+
+Next, change the Administrator password (replace _<new password>_ with a strong password):
+
+{% highlight PowerShell %}
+net user Administrator <new password>
+{% endhighlight %}
+
+Optionally you can change the name of your RPi2 (replace _<new name>_ with the name you prefer):
+ 
+{% highlight PowerShell %}
+setcomputername <new name>
+{% endhighlight %}
+
+Finally, reboot the RPi2.
+ 
+{% highlight PowerShell %}
+shutdown /r /t 0
+{% endhighlight %}
+ 
 ## Wire Up the RPi2
 The RPi2 connects to the physical world through the GPIO pins. GPIO stands for General Purpose Input/Output and refers to the two rows of pins on RPI2. The GPIO pins are a physical interface between the RPi2 and the physical world. Through your app you can designate pins to either receive input or send output. The inputs can be from switches, sensors or other devices. The outputs can be LEDs, servos, motors or countless other devices. Twenty-six of the 40 pins are GPIO pins; the others are power, ground, or reserved pins.
 
