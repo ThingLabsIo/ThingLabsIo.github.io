@@ -71,7 +71,7 @@ You may need to start the WinRM service on your desktop to enable remote connect
 net start WinRM
 {% endhighlight %}
 
-With the WInRM service running, add the RPi2 to your Trusted Hosts. Replace _<machine-name or IP Address>_ with your actual machine name or IP address (this will be displayed on the default app screen when your RPi2 is running).
+With the WInRM service running, add the RPi2 to your Trusted Hosts. Replace _\<machine-name or IP Address\>_ with your actual machine name or IP address (this will be displayed on the default app screen when your RPi2 is running).
 
 {% highlight PowerShell %}
 Set-Item WSMan:\localhost\Client\TrustedHosts -Value <machine-name or IP Address>
@@ -87,7 +87,7 @@ Enter-PSSession -ComputerName <machine-name or IP Address> -Credential <machine-
 
 When prompted, enter the Administrator password (_p@ssw0rd_ is the default). If you successfully connected to the device, you should see the IP address of your device before the prompt.
 
-Next, change the Administrator password (replace _<new password>_ with a strong password):
+Next, change the Administrator password (replace _\<new password\>_ with a strong password):
 
 {% highlight PowerShell %}
 net user Administrator <new password>
