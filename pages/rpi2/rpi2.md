@@ -40,7 +40,7 @@ In this lab you will build a Universal Windows Platform application that collect
 
 Estimated time to complete: 30-minutes. [Go to lab ->](03/)
 
-### Visualizing IoT Data
+## Visualizing IoT Data
 In this lab you will create visualizations of IoT data.
 
 Estimated time to complete: 30-minutes. [Go to lab ->](04/)
