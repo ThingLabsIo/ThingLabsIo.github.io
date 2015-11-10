@@ -16,10 +16,6 @@ permalink: /rpi2/
 *  Auto generated table of contents
 {:toc}
 
-### Table of Contents
-*  Auto generated table of contents
-{:toc}
-
 ## Getting Started
 This is a step-by-step guide to preparing your computer for the Raspberry Pi 2 IoT Labs..
 

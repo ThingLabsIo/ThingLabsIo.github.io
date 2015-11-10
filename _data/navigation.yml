@@ -46,7 +46,22 @@
   - title: "Visualizing IoT Data"
     url: "/azure/03/"
     
-- title: "Azure IoT Hub + Photon"
+- title: "Raspberry Pi 2"
+  url: "/rpi2/"
+  side: left
+  dropdown:
+  - title: "Getting Started"
+    url: "/rpi2/00/"
+  - title: "Hello, Windows IoT"
+    url: "/rpi2/01/"
+  - title: "Setting Up Your Azure IoT Hub"
+    url: "/rpi2/02/"
+  - title: "Sending Data to the Cloud"
+    url: "/rpi2/03/"
+  - title: "Visualizing IoT Data"
+    url: "/rpi2/04/"
+    
+- title: "Azure Tour"
   url: "/azure/"
   side: left
   dropdown:
