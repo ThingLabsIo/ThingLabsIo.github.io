@@ -2,10 +2,6 @@
   url: "/"
   side: left
   
-- title: Attend a Workshop
-  url: "/schedule/"
-  side: left
-  
 - title: "Arduino"
   url: "/arduino/"
   side: left
@@ -63,7 +59,7 @@
     
 - title: "Azure Tour"
   url: "/azure/"
-  side: left
+  side: right
   dropdown:
   - title: "Getting Started"
     url: "/azure/00/"
@@ -76,12 +72,16 @@
 
 - title: "Web Summit"
   url: "/websummit/"
-  side: left
+  side: right
   dropdown:
   - title: "Setting Up Your Device"
     url: "/websummit/01/"
   - title: "Sending Telemetry to the Cloud"
     url: "/websummit/02/"
+    
+- title: Attend a Workshop
+  url: "/schedule/"
+  side: right
         
 #
 #- title: "Header Styles"
