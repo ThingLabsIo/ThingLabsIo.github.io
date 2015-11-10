@@ -59,7 +59,7 @@ In short, the the darker it is, the more resistance the photoresistor provides a
 
 Here are the specific wiring instructions.
 
-<img src="/images/rpi2/rpi2_lab03_bb.png"/>
+<img src="/images/rpi2/rpi2_lab03_mcp3008_bb.png"/>
 
 __NOTE:__ _The ADC has a notch out of one side - ensure that the side with the notch is (according to the diagram) on the lower edge of the breadboard._
 
