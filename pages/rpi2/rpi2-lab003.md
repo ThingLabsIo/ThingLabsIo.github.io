@@ -57,7 +57,7 @@ As the photoresistor increases its resistance (lower light intensity) more of th
 
 In short, the the darker it is, the more resistance the photoresistor provides and the more voltage is diverted to the ADC.
 
-Here are the specific wiring instructions.
+Here are the specific wiring instructions for the MCP3008 or MCP3208. For the MCP3002 use [this](/images/rpi2/rpi2_lab03_mcp3002_bb.png) diagram.
 
 <img src="/images/rpi2/rpi2_lab03_mcp3008_bb.png"/>
 
