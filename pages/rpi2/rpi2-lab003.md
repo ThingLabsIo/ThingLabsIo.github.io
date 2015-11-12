@@ -90,7 +90,11 @@ In the list of extensions, check the box next to __Windows IoT Extensions for th
 ### Add the Microsoft.Azure.Devices.Client NuGet Package
 Once the _Windows IoT Extensions for the UWP_ are added, click on the _Project_ menu and select _Manage NuGet Packages.._
 
-Use the search field to search for __Microsoft.Azure.Devices.Client__. Click on the __Install__ button to install the package.
+Use the search field to search for __Microsoft.Azure.Devices.Client__. 
+
+__NOTE:__ You must check the _Include prereleases_ box.
+
+Click on the __Install__ button to install the package.
 
 <img src="/images/rpi2/rpi2_lab03_AzureNuGet.PNG"/>
 
