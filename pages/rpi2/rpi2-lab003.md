@@ -124,13 +124,13 @@ using Microsoft.Azure.Devices.Client;
 {% endhighlight %}
 
 ### Define Constants and Variables
-There are several constants and variables that you will reference throughout this code. This code is written to support the MCP3008 ADC. At the end of this lab you will find a link to the final solution with comments for code changes to support the MCP3208 8-channel/12-bit ADC and the MCP3002 dual-channel/10-bit ADC (there are minor differences and they are noted throughout tis lab). 
+There are several constants and variables that you will reference throughout this code. This code is written to support the MCP3002, MCP3008, and MCP3208 ADCs. You must set the value of <code>ADC_DEVICE</code> to the specific ADC you are using, and follow the appropriate wiring diagram (above). 
 
 {% highlight csharp %}
 public sealed partial class MainPage : Page
 {
     /* Important! Change this to either AdcDevice.MCP3002, AdcDevice.MCP3208 or AdcDevice.MCP3008 depending on which ADC you chose     */ 
-    private AdcDevice ADC_DEVICE = AdcDevice.MCP3002;
+    private AdcDevice ADC_DEVICE = AdcDevice.MCP3008;
 
     enum AdcDevice { NONE, MCP3002, MCP3208, MCP3008 };
     
@@ -141,12 +141,16 @@ public sealed partial class MainPage : Page
     // Provide a short description of the location of the device, such as 'Home Office' or 'Garage'
     private const string IOT_HUB_DEVICE_LOCATION = "YOUR DEVICE LOCATION GOES HERE";
     
-    private const Int32 SPI_CHIP_SELECT_LINE = 0; // Line 0 maps to physical pin 24 on the RPi2
+    // Line 0 maps to physical pin 24 on the RPi2
+    private const Int32 SPI_CHIP_SELECT_LINE = 0; 
     private const string SPI_CONTROLLER_NAME = "SPI0";
 
-    private const byte MCP3002_CONFIG = 0x68; /* 01101000 channel configuration data for the MCP3002 */
-    private const byte MCP3208_CONFIG = 0x06; /* 00000110 channel configuration data for the MCP3208 */
-    private const byte MCP3008_CONFIG = 0x08; /* 00001000 channel configuration data for the MCP3008 */
+    // 01101000 channel configuration data for the MCP3002
+    private const byte MCP3002_CONFIG = 0x68; 
+    // 00000110 channel configuration data for the MCP3208
+    private const byte MCP3208_CONFIG = 0x06; 
+    // 00001000 channel configuration data for the MCP3008
+    private const byte MCP3008_CONFIG = 0x08; 
 
     private const int RED_LED_PIN = 12;
 
@@ -157,9 +161,10 @@ public sealed partial class MainPage : Page
     private GpioPin redLedPin;
     private SpiDevice spiAdc;
     private int adcResolution;
+    private int adcValue;
+    
     private Timer readSensorTimer;
     private Timer sendMessageTimer;
-    private int adcValue;
 
     public MainPage()
     {
