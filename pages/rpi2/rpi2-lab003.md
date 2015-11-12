@@ -337,8 +337,9 @@ private void ReadAdc()
 }
 {% endhighlight %}
 
-In this method you create a buffer to read the ADC data into and buffer to write out with, setting the SPI configuration as the first node in the write buffer. When you call <code>TransferFullDuplex()</code> you open a two-way channel with the ADC over the SPI bus.  
-The <code>convertToInt(readBuffer)</code> is used to convert the byte array returned from the ADC into an integer. Use the Visual Studio Lightbulb feature to add __convertToInt(byte[])__. Modify the method signature - change the input variable name from _readBuffer_ to __data__.
+In this method you create a command buffer to write to the ADC, and a read buffer to capture the values from the ADC. The SPI configuration (based on which ADC you are using) is the first node in the command/write buffer. When you call <code>TransferFullDuplex()</code> you open a two-way channel with the ADC over the SPI bus - a command/write channel and a read channel. 
+
+The <code>convertToInt(readBuffer)</code> is used to convert the byte array returned from the ADC into an integer. Use the Visual Studio Lightbulb feature to add __convertToInt(byte[])__. Modify the method signature - change the input variable name from _readBuffer_ to __data__. Each ADC returns the data a little differently, so this command will convert the byte array to an integer based on the ADC you are using.
 
 {% highlight csharp %}
 private int convertToInt(byte[] data)
@@ -366,7 +367,7 @@ private int convertToInt(byte[] data)
 }
 {% endhighlight %}
 
-In the _ReadAdc()_ method there was also a reference to a _Map()_ method. Use the Visual Studio Lightbulb feature to add Map(int, int, int, int, int)__. This method makes it easy to map data from one value range to another.
+In the _ReadAdc()_ method there was also a reference to a _Map()_ method. Use the Visual Studio Lightbulb feature to add Map(int, int, int, int, int)__. This method makes it easy to map data from one value range to another. Modify the method signature according to the code example below.
 
 {% highlight csharp %}
 private double Map(int val, int inMin, int inMax, int outMin, int outMax)
@@ -375,7 +376,7 @@ private double Map(int val, int inMin, int inMax, int outMin, int outMax)
 }
 {% endhighlight %}
 
-In this example you are using the _Map()_ method to map the value from the ADC, which is a range 0 - 4095 (or 0 -1023 for the MCP3002), to a range of 0 - 300, which is used to define the width of the darkness indicator bar in the UI.
+In this example you are using the _Map()_ method to map the value from the ADC, which is a range 0 - 1023 (or 0-4096 for the 12-bit MCP3208), to a range of 0 - 300, which is used to define the width of the darkness indicator bar in the UI (max width is 300).
 
 Next, return to the _SensorTimer\_Tick_ method and use the Visual Studio Lightbulb feature to add an event handler for __LightLed()__.
 
@@ -417,7 +418,7 @@ private void LightLed()
 }
 {% endhighlight %}
 
-In this method you simply check to see if the ADC value is greater than half of its resolution - in other words, is it halfway dark? If it is, turn on the LED and paint the indicator bar in the UI red, otherwise, turn off the LED and paint the indicator bar light gray.
+In this method you simply check to see if the ADC value is greater than two-thirds of the ADC's resolution - in other words, is it kind of dark? If it is, turn on the LED and paint the indicator bar in the UI red, otherwise, turn off the LED and paint the indicator bar light gray.
 
 ### Test Run the App
 At this point you can deploy and run the application to see if the photoresistor and LED are working. You still haven't sent a message to Azure, but testing the circuit is never a bad idea. To deploy this application to your RPi2, select __ARM__ from the _Solution Platforms_ list in the toolbar, and select __REMOTE MACHINE__ from the _Device_ dropdown list in the toolbar.
