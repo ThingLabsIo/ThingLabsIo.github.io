@@ -193,9 +193,9 @@ This event handler will be invoked whenever the _MainPage_ is unloaded. You will
 {% highlight csharp %}
 private void MainPage_Unloaded(object sender, RoutedEventArgs e)
 {
-    if (SpiAdc != null)
+    if (spiAdc != null)
     {
-        SpiAdc.Dispose();
+        spiAdc.Dispose();
     }
     
     if (redLedPin != null)
