@@ -477,7 +477,7 @@ private async Task SendMessageToIoTHubAsync(int darkness)
             IOT_HUB_DEVICE + 
             "\", \"location\": \"" +
             IOT_HUB_DEVICE_LOCATION +
-            "\", \"data\": \"darkness:" +
+            "\", \"data\":" +
             darkness + 
             "\", \"localTimestamp\": \"" +
             DateTime.Now.ToLocalTime().ToString() + 
