@@ -458,7 +458,7 @@ Use the Visual Studio Lightbulb feature to create the __MessageTimer\_Tick()__ e
 {% highlight csharp %}
 private void MessageTimer_Tick(object state)
 {
-    SendMessageToIoTHubAsync(adcVal);
+    SendMessageToIoTHubAsync(adcValue);
 }
 {% endhighlight %}
 
