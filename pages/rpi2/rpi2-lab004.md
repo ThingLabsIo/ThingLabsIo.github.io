@@ -42,13 +42,13 @@ lower-left corner.
 
 Select __DATA SERVICES__ > __STREAM ANALYTICS__ > __QUICK CREATE__ and enter the following:
 
-1. JOB NAME: You can use anything you'd like here...I recommend __iotlab__ or something similar so you can identify it easily later.
-2. REGION: Select __East US__ (or whatever region you created your IoT Hub in)
+1. JOB NAME: You can use anything you'd like here...like __iotlab__ or something similar so you can identify it easily later.
+2. REGION: If you created your IoT Hub in _East US_, select __East US 2__. For other regions, select the same region you created your IoT Hub in.
 3. REGIONAL MONITORING STORAGE ACCOUNT: Select or create a storage account.
 
 <img src="/images/newasa.png"/>
 
-Click __CREATE STREAM ANALYTICS JOB__. It will take a few minutes for the Steam Analytics job to get created and become available. 
+Click _CREATE STREAM ANALYTICS JOB_. It will take a few minutes for the Steam Analytics job to get created and become available. 
 
 <img src="/images/asajobcreated.png"/>
 
@@ -59,33 +59,33 @@ Once you are in the Stream Analytics job, click on the __INPUTS__ header.
 
 <img src="/images/asainputs.png"/>
 
-Click on __ADD AN INPUT__.
+Click on _ADD AN INPUT_.
 Select __Data stream__ and click on the forward arrow in the lower-right.
 Select __IoT Hub__ and click on the forward arrow in the lower-right.
 Complete the form as follows:
 
-1. INPUT ALIAS - _DeviceInputStream_
+1. INPUT ALIAS - __DeviceInputStream__
 2. SUBSCRIPTION - choose your subscription
 3. CHOOSE AN IOT HUB - choose the IoT Hub you created earlier
 4. IOT HUB SHARED ACCESS POLICY NAME - leave this as the default, which should be _iothubowner_
-5. IOT HUB CONSUMER GROUP - select _Create a new consumer group_ and name it _AnalyticsConsumerGroup_
+5. IOT HUB CONSUMER GROUP - select _Create a new consumer group_ and name it __AnalyticsConsumerGroup__
 
 Click on the forward arrow in the lower-right.
 
-On the __Serialization settings__ form, leave the defaults (Event Serialization Format:JSON and Encoding:UTF8) click on the checkmark in the lower-right. 
+On the _Serialization settings_ form, leave the defaults (Event Serialization Format:JSON and Encoding:UTF8) click on the checkmark in the lower-right. 
 
 <img src="/images/asainputform.png"/>
 
 After a few seconds, a new input will be listed.
 
 ### Define the Output Data Stream
-Click on the __OUTPUTS__ header.
+Click on the _OUTPUTS_ header.
 
 <img src="/images/asaoutputs.png"/>
 
-Click on __ADD AN OURPUT__.
+Click on _ADD AN OURPUT_.
 Select __Power BI__ and click on the forward arrow in the lower-right.
-Follow the instructions for either __Existing Microsoft Power BI User__ or __New User__
+Follow the instructions for either _Existing Microsoft Power BI User_ or _New User_
 
 <blockquote>
 Power BI is a data visualization toolkit for organizations. To create a new user account, you will have to use an account that belongs to an 
@@ -95,18 +95,17 @@ Outlook.com, Hotmail.com, GMail.com or other general email provider accounts.
 
 After you have authorized the connection to Power BI, complete the form as follows:
 
-1. OUTPUT ALIAS - DeviceBI
-2. DATASET NAME - MyIoTDataSet
-3. TABLE NAME - MyIoTDataTable
-4. GROUP NAME - My Workplace
+1. OUTPUT ALIAS - __DeviceBI__
+2. DATASET NAME - __MyIoTDataSet__
+3. TABLE NAME - __MyIoTDataTable__
+4. GROUP NAME - __My Workplace__
 
 Click on the checkmark in the lower-right.
 
 <img src="/images/asaoutputform.png"/>
 
 ### Write the Query
-
-Click on the __QUERY__ header.
+Click on the _QUERY_ header.
 
 <img src="/images/asaquery.png"/>
 
@@ -135,7 +134,7 @@ GROUP BY
     TumblingWindow (second, 5), deviceId, location 
 {% endhighlight %}
 
-Click __SAVE__ in the lower middle of the screen. Once the query is saved, click __START_ to start the Stream Analytics job. If your app 
+Click _SAVE_ in the lower middle of the screen. Once the query is saved, click _START_ to start the Stream Analytics job. If your app 
 from the [previous lab](../03/) isn't still running, go ahead and start it up. It will take a few minutes for the Stream Analytics job to get 
 started and to start sending data to Power BI, but you should see _MyIoTDataSet_ show up in Power BI within a few minutes. Remember, 
 the _TumblingWindow_ is set to 5-seconds, so PowerBI will only update every 5-seconds.
@@ -145,7 +144,7 @@ Go back to the browser tab where you have Power BI open. Look in the _Datasets_ 
 there within a few minutes of IoT Hub data streaming into the Stream Analytics job. 
 
 1. Click on the _MyIoTDataSet_ dataset to open the report designer.
-2. Select the _Line_ chart from the __Visualizations__ toolbox on the right side.
+2. Select the __Line__ chart from the _Visualizations_ toolbox on the right side.
 3. Select __maxdark__ to set it as the _Value_
 4. Click on the dropdown arrow for _maxdark_ in the _Values_ box and select __Maximum__
 5. Select __timestamp__ to set it as the _Axis_ 
@@ -154,7 +153,7 @@ Repeat steps 2-4 for __avgdark__ and __mindark__, changing their field type to _
 
 <img src="/images/rpi2/powerbi01.png"/>
 
-As you are setting the values you should see the line chart updating with the changes. Click __File__ > __Save_ and give the report the 
+As you are setting the values you should see the line chart updating with the changes. Click _File_ > _Save_ and give the report the 
 name __Darkness Report__. Hover over the upper-right corner of the chart and click on the pin icon. Create a new dashboard to pin the gauges to. 
 Once you have pinned all three gauges, click on the dashboard in the left sidebar. On the dashboard you can watch the data update in near real-time. 
 While you are watching the dashboard, pinch or blow on the sensors on the weather shield and you will see the data change in the gauges.
