@@ -129,6 +129,11 @@ There are several constants and variables that you will reference throughout thi
 {% highlight csharp %}
 public sealed partial class MainPage : Page
 {
+    /* Important! Change this to either AdcDevice.MCP3002, AdcDevice.MCP3208 or AdcDevice.MCP3008 depending on which ADC you chose     */ 
+    private AdcDevice ADC_DEVICE = AdcDevice.MCP3002;
+
+    enum AdcDevice { NONE, MCP3002, MCP3208, MCP3008 };
+    
     // Use the device specific connection string here
     private const string IOT_HUB_CONN_STRING = "YOUR DEVICE SPECIFIC CONNECTION STRING GOES HERE";
     // Use the name of your Azure IoT device here - this should be the same as the name in the connections string
@@ -138,19 +143,24 @@ public sealed partial class MainPage : Page
     
     private const Int32 SPI_CHIP_SELECT_LINE = 0; // Line 0 maps to physical pin 24 on the RPi2
     private const string SPI_CONTROLLER_NAME = "SPI0";
-    private const int ADC_RESOLUTION = 1024; // Use 1024 for 10-bit ADCs (MCP3002, MPC3008) and 4096 for 12-bit ADCs (MCP3208)
+
+    private const byte MCP3002_CONFIG = 0x68; /* 01101000 channel configuration data for the MCP3002 */
+    private const byte MCP3208_CONFIG = 0x06; /* 00000110 channel configuration data for the MCP3208 */
+    private const byte MCP3008_CONFIG = 0x08; /* 00001000 channel configuration data for the MCP3008 */
+
     private const int RED_LED_PIN = 12;
-    
+
     private SolidColorBrush redFill = new SolidColorBrush(Windows.UI.Colors.Red);
     private SolidColorBrush grayFill = new SolidColorBrush(Windows.UI.Colors.LightGray);
-    
+
     private DeviceClient deviceClient;
     private GpioPin redLedPin;
-    private SpiDevice SpiAdc;
+    private SpiDevice spiAdc;
+    private int adcResolution;
     private Timer readSensorTimer;
     private Timer sendMessageTimer;
     private int adcValue;
-    
+
     public MainPage()
     {
         this.InitializeComponent();
@@ -222,7 +232,7 @@ private async void InitAll()
         return;
     }
     
-    // TODO: Read sensors every 25ms and refresh the UI
+    // TODO: Read sensors every 100ms and refresh the UI
     // TODO: Instantiate the Azure device client
     // TODO: Send messages to Azure IoT Hub every one-second
     
@@ -256,12 +266,16 @@ private async Task InitSpiAsync()
     try
     {
         var settings = new SpiConnectionSettings(SPI_CHIP_SELECT_LINE);
-        settings.ClockFrequency = 500000; // 0.5 MHz clock rate
-        settings.Mode = SpiMode.Mode0; // The ADC expects idle-low clock polarity so we use Mode0
-        
+        // 3.6MHz is the rated speed of the MCP3008 at 5v
+        settings.ClockFrequency = 3600000;
+        // The ADC expects idle-low clock polarity so we use Mode0
+        settings.Mode = SpiMode.Mode0; 
+        // Get a selector string that will return all SPI controllers on the system
         string spiAqs = SpiDevice.GetDeviceSelector(SPI_CONTROLLER_NAME);
+        // Find the SPI bus controller devices with our selector string 
         var deviceInfo = await DeviceInformation.FindAllAsync(spiAqs);
-        SpiAdc = await SpiDevice.FromIdAsync(deviceInfo[0].Id, settings);
+        // Create an SpiDevice with our bus controller and SPI settings
+        spiAdc = await SpiDevice.FromIdAsync(deviceInfo[0].Id, settings);
     }
     catch (Exception ex)
     {
@@ -274,7 +288,8 @@ private async Task InitSpiAsync()
 Next you will create a timer to read the data from the photoresistor and set the state of the LED. To do this, in the _MainPage()_ constructor, replace <code>// TODO: Read sensors every 25ms and refresh the UI</code> with:
 
 {% highlight csharp %}
-readSensorTimer = new Timer(this.SensorTimer_Tick, null, 0, 25);
+// Read sensors every 100ms and refresh the UI
+readSensorTimer = new Timer(this.SensorTimer_Tick, null, 0, 100);
 {% endhighlight %}
 
 Use the Visual Studio Lightbulb feature to add an event handler for __SensorTimer\_Tick__.
@@ -295,21 +310,29 @@ private void ReadAdc()
     // Create a buffer to hold the read data
     byte[] readBuffer = new byte[3];
     byte[] writeBuffer = new byte[3] { 0x00, 0x00, 0x00 };
-    
-    // Set the SPI configuration data in the first position
-    // MCP3208 or MCP3008 use 0x06 - 00000110 channel configuration data
-    // MCP3002 use 0x68 - 01101000 channel configuration data
-    writeBuffer[0] = 0x06;
-    
+
+    switch (ADC_DEVICE)
+    {
+    case AdcDevice.MCP3002:
+        writeBuffer[0] = MCP3002_CONFIG;
+        break;
+    case AdcDevice.MCP3008:
+        writeBuffer[0] = MCP3008_CONFIG;
+        break;
+    case AdcDevice.MCP3208:
+        writeBuffer[0] = MCP3208_CONFIG;
+        break;
+    }
+
     // Read data from the ADC
-    SpiAdc.TransferFullDuplex(writeBuffer, readBuffer);
+    spiAdc.TransferFullDuplex(writeBuffer, readBuffer);
     adcValue = convertToInt(readBuffer);
-    
+
     // UI updates must be invoked on the UI thread
     var task = this.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
     {
         textPlaceHolder.Text = adcValue.ToString();
-        IndicatorBar.Width = Map(adcValue, 0, ADC_RESOLUTION-1, 0, 300);
+        IndicatorBar.Width = Map(adcValue, 0, adcResolution - 1, 0, 300);
     });
 }
 {% endhighlight %}
@@ -320,20 +343,25 @@ The <code>convertToInt(readBuffer)</code> is used to convert the byte array retu
 {% highlight csharp %}
 private int convertToInt(byte[] data)
 {
-    int result = data[1] & 0x0F;
-    // Shift the bits left
-    result <<= 8;
-    // Add the next set of bits
-    result += data[2];
-    
-    /*
-    // For the MCP3002 use:
-    result = data[0] & 0x03;
-    // Shift the bits left
-    result <<= 8;
-    // Add the next set of bits
-    result += data[1];
-    */
+    int result = 0;
+    switch (ADC_DEVICE)
+    {
+        case AdcDevice.MCP3002:
+            result = data[0] & 0x03;
+            result <<= 8;
+            result += data[1];
+            break;
+        case AdcDevice.MCP3008:
+            result = data[1] & 0x03;
+            result <<= 8;
+            result += data[2];
+            break;
+        case AdcDevice.MCP3208:
+            result = data[1] & 0x0F;
+            result <<= 8;
+            result += data[2];
+            break;
+    }
     return result;
 }
 {% endhighlight %}
@@ -355,18 +383,32 @@ Next, return to the _SensorTimer\_Tick_ method and use the Visual Studio Lightbu
 private void LightLed()
 {
     SolidColorBrush fillColor = grayFill;
+
     // Turn on LED if potentiometer is rotated more than halfway
-    if (adcValue > ADC_RESOLUTION / 2)
+    switch (ADC_DEVICE)
     {
-        redLedPin.Write(GpioPinValue.Low);
+        case AdcDevice.MCP3208:
+            adcResolution = 4096;
+            break;
+        case AdcDevice.MCP3008:
+            adcResolution = 1024;
+            break;
+        case AdcDevice.MCP3002:
+            adcResolution = 1024;
+            break;
+    }
+
+    if (adcValue > adcResolution * 0.66)
+    {
+        redLedPin.Write(GpioPinValue.High);
         fillColor = redFill;
     }
     else
     {
-        redLedPin.Write(GpioPinValue.High);
+        redLedPin.Write(GpioPinValue.Low);
         fillColor = grayFill;
     }
-    
+
     // UI updates must be invoked on the UI thread
     var task = this.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
     {
@@ -394,12 +436,14 @@ Now press __F5__ to run the application and you should see it deploy on the RPi2
 Now that you know your physical device is working, it is time to send its data to Azure. In the _MainPage()_ constructor, replace the comment <code>// TODO: Instantiate the Azure device client</code> with:
 
 {% highlight csharp %}
+// Instantiate the Azure device client
 deviceClient = DeviceClient.CreateFromConnectionString(IOT_HUB_CONN_STRING);
 {% endhighlight %}
 
 Next, replace the comment<code>// TODO: Send messages to Azure IoT Hub every one-second</code> with:
 
 {% highlight csharp %}
+// Send messages to Azure IoT Hub every one-second
 sendMessageTimer = new Timer(this.MessageTimer_Tick, null, 0, 1000);
 {% endhighlight %}
 
@@ -424,7 +468,7 @@ private async Task SendMessageToIoTHubAsync(int darkness)
             "\", \"location\": \"" +
             IOT_HUB_DEVICE_LOCATION +
             "\", \"data\": \"darkness:" +
-            adcValue + 
+            darkness + 
             "\", \"localTimestamp\": \"" +
             DateTime.Now.ToLocalTime().ToString() + 
             "\"}";
