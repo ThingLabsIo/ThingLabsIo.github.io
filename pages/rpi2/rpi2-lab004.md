@@ -8,8 +8,10 @@ comments: true
 header: no
 breadcrumb: true
 categories:
-    - rpi2
-author: "Doug Seven"
+- rpi2
+- azure-iot
+- stream-analytics
+author: "doug_seven"
 permalink: "/rpi2/04/"
 ---
 ### Table of Contents
@@ -38,7 +40,7 @@ will write a SQL-like query that collects data coming in on the input stream and
 Open a new browser tab and navigate to [https://manage.windowsazure.com](https://manage.windowsazure.com). Click on the __NEW__ icon in the 
 lower-left corner.
 
-<img src="/images/photon_lab07_5.png"/>
+<img src="{{ site.url }}/images/photon_lab07_5.png"/>
 
 Select __DATA SERVICES__ > __STREAM ANALYTICS__ > __QUICK CREATE__ and enter the following:
 
@@ -132,7 +134,7 @@ WHERE
     [messurementType] = 'darkness'
 GROUP BY
     TumblingWindow (second, 5), deviceId, location 
-{% endhighlight %}
+{% endhighlight linenos %}
 
 Click _SAVE_ in the lower middle of the screen. Once the query is saved, click _START_ to start the Stream Analytics job. If your app 
 from the [previous lab](../03/) isn't still running, go ahead and start it up. It will take a few minutes for the Stream Analytics job to get 
