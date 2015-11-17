@@ -125,7 +125,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Text;
 using Microsoft.Azure.Devices.Client;
-{% endhighlight %}
+{% endhighlight linenos %}
 
 ### Define Constants and Variables
 There are several constants and variables that you will reference throughout this code. This code is written to support the MCP3002, MCP3008, and MCP3208 ADCs. You must set the value of <code>ADC_DEVICE</code> to the specific ADC you are using, and follow the appropriate wiring diagram (above). 

@@ -189,11 +189,11 @@ public sealed partial class MainPage : Page
 Following the call to <code>InitializeComponent</code>, create a _Timer_ that will raise an event every 500ms.
 
 {% highlight csharp %}
-            // Create an instance of a Timer that will raise an event every 500ms
-            timer = new DispatcherTimer();
-            timer.Interval = TimeSpan.FromMilliseconds(500);
-            timer.Tick += Timer_Tick;
-            // TODO: Initialize the GPIO bus
+// Create an instance of a Timer that will raise an event every 500ms
+timer = new DispatcherTimer();
+timer.Interval = TimeSpan.FromMilliseconds(500);
+timer.Tick += Timer_Tick;
+// TODO: Initialize the GPIO bus
 {% endhighlight %}
 
 Using the Visual Studio refactoring tools, you can generate the method stub for the __Timer\_Tick__ event handler. Hover over the _Timer\_Tick_ text until a lightbulb appears. Click the down arrow and select _Generate method 'MainPage.Timer\_Tick'_ 
@@ -203,38 +203,37 @@ Using the Visual Studio refactoring tools, you can generate the method stub for 
 Add the following code for the _Timer\_Tick_ event handler.
 
 {% highlight csharp %}
-        private void Timer_Tick(object sender, object e)
-        {
-            // This Timer event will be raised on each timer interval (defined above)
+private void Timer_Tick(object sender, object e)
+{
+    // This Timer event will be raised on each timer interval (defined above)
             
-            if (pinValue == GpioPinValue.Low)
-            {
-                // If the current state of the pin is LOW (off), then set it to HIGH (on)
-                // and update the on screen UI to represent the LED in the on state
-                pinValue = GpioPinValue.High;
-                LedGraphic.Fill = redBrush;
-            }
-            else
-            {
-                // If the current state of the pin is HIGH (on), then set it to LOW (off)
-                // and update the on screen UI to represent the LED in the off state
-                pinValue = GpioPinValue.Low;
-                LedGraphic.Fill = grayBrush;
-            }
-            // Write the state to to pin
-            pin.Write(pinValue);
-        }
+    if (pinValue == GpioPinValue.Low)
+    {
+        // If the current state of the pin is LOW (off), then set it to HIGH (on)
+        // and update the on screen UI to represent the LED in the on state
+        pinValue = GpioPinValue.High;
+        LedGraphic.Fill = redBrush;
+    }
+    else
+    {
+        // If the current state of the pin is HIGH (on), then set it to LOW (off)
+        // and update the on screen UI to represent the LED in the off state
+        pinValue = GpioPinValue.Low;
+        LedGraphic.Fill = grayBrush;
+    }
+    // Write the state to to pin
+    pin.Write(pinValue);
+}
 {% endhighlight %}
 
 #### Initialize the GPIO Controller
 The next thing to do is initialize the GPIO controller. Back in the _MainPage()_ constructor, following the timer code, make a call to a method that you haven't defined yet called <code>InitGpio()</code>. 
 
 {% highlight csharp %}
-            // Initialize the GPIO bus
-            InitGpio();
+// Initialize the GPIO bus
+InitGpio();
             
-            // TODO: As long as the pin object is not null, proceed with the timer.
-                        
+// TODO: As long as the pin object is not null, proceed with the timer.                        
 {% endhighlight %}
 
 Just like you did with the _Timer\_Tick_ code, use the refactoring _lightbulb_ tool to generate the <code>InitGpio()</code> method. In the _InitGpio()_ method you will get the instance of the default GPIO controller - the object that brokers all communication between your app and the GPIO bus. 
@@ -242,29 +241,29 @@ Just like you did with the _Timer\_Tick_ code, use the refactoring _lightbulb_ t
 If the GPIO controller instance is _null_ then the device the app is running on doesn't support GPIO, and you will display a message on the screen indicating this, and that will be the end of the app functionality. If there is a GPIO controller instance, then you will use it to open the GPIO pin that you have connected to the LED and prepare it for use. Lastly you will display a message that the GPIO pin is initialized. 
 
 {% highlight csharp %}
-        private void InitGpio()
-        {
-            // Get the default GPIO controller
-            var gpio = GpioController.GetDefault();
-            // If the default GPIO controller is not present, then the device 
-            // running this app isn't capable of GPIO operations.
-            if (gpio == null)
-            {
-                pin = null;
-                GpioStatus.Text = "There is no GPIO controller on this device.";
-                return;
-            }
-            // Open the GPIO pin channel
-            pin = gpio.OpenPin(LED_PIN);
-            // Define the pin as an OUTPUT pin
-            pin.SetDriveMode(GpioPinDriveMode.Output);
-            // Define the initial state as LOW (off)
-            pinValue = GpioPinValue.Low;
-            // Write the state to to pin
-            pin.Write(pinValue);
-            // Update the on screen text to indicate that GPIO is ready
-            GpioStatus.Text = "GPIO pin initialized correctly.";
-        }
+private void InitGpio()
+{
+    // Get the default GPIO controller
+    var gpio = GpioController.GetDefault();
+    // If the default GPIO controller is not present, then the device 
+    // running this app isn't capable of GPIO operations.
+    if (gpio == null)
+    {
+        pin = null;
+        GpioStatus.Text = "There is no GPIO controller on this device.";
+        return;
+    }
+    // Open the GPIO pin channel
+    pin = gpio.OpenPin(LED_PIN);
+    // Define the pin as an OUTPUT pin
+    pin.SetDriveMode(GpioPinDriveMode.Output);
+    // Define the initial state as LOW (off)
+    pinValue = GpioPinValue.Low;
+    // Write the state to to pin
+    pin.Write(pinValue);
+    // Update the on screen text to indicate that GPIO is ready
+    GpioStatus.Text = "GPIO pin initialized correctly.";
+}
 {% endhighlight %}
 
 #### Check for the Existence of the GPIO Pin Object and Start the Timer
@@ -273,24 +272,24 @@ Back in the _MainPage()_ constructor, add a _null_ check on the _pin_ instance (
 This is what the _MainPage()_ constructor should look like when completed.
 
 {% highlight csharp %}
-        public MainPage()
-        {
-            this.InitializeComponent();
+public MainPage()
+{
+    this.InitializeComponent();
             
-            // Create an instance of a Timer that will raise an event every 500ms
-            timer = new DispatcherTimer();
-            timer.Interval = TimeSpan.FromMilliseconds(500);
-            timer.Tick += Timer_Tick;
+    // Create an instance of a Timer that will raise an event every 500ms
+    timer = new DispatcherTimer();
+    timer.Interval = TimeSpan.FromMilliseconds(500);
+    timer.Tick += Timer_Tick;
             
-            // Initialize the GPIO bus
-            InitGpio();
+    // Initialize the GPIO bus
+    InitGpio();
             
-            // As long as the pin object is not null, proceed with the timer.
-            if (pin != null)
-            {
-                timer.Start();
-            }
-        }
+    // As long as the pin object is not null, proceed with the timer.
+    if (pin != null)
+    {
+        timer.Start();
+    }
+}
 {% endhighlight %}
 
 If you want to compare your code with the master lab code, you can find it [here](https://github.com/ThingLabsIo/IoTLabs/blob/master/RPi2/Lab01/Lab01/MainPage.xaml.cs).
