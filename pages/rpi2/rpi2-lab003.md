@@ -117,7 +117,7 @@ Open the _MainPage.xaml_ file. This is the layout definition for the initial pag
 ### Add 'using' Statements
 Open the _MainPage.xaml.cs_ file. This is the code behind the layout for the MainPage.xaml. Add the following to the _using_ statements at the top of the file. Add the following <code>using</code> 
 
-{% highlight csharp linenos %}
+{% highlight csharp %}
 using Windows.Devices.Gpio;
 using Windows.Devices.Spi;
 using Windows.Devices.Enumeration;
