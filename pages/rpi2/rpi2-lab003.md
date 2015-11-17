@@ -8,8 +8,10 @@ comments: true
 header: no
 breadcrumb: true
 categories:
-    - rpi2
-author: "Doug Seven"
+- rpi2
+- particle-photon
+- azure-iot
+author: doug_seven
 permalink: /rpi2/03/
 ---
 
