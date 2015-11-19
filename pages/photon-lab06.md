@@ -33,7 +33,7 @@ What you will need (all the parts from the previous lessons):
 For this lab series you are using a Particle Photon, a small Wi-Fi enabled development board. The Photon is an excellent prototyping board for connected Things and Particle, the makers of the Photon, sell the P0 chip that drives the board (so when you are ready to go into production you can easily use the same chip). While you can develop for the Photon using Particle Build or Particle Dev and leverage the Particle Cloud, this lab series is designed to teach you how to build a Wi-Fi based hub-and-spoke system, similar to how SmartThings or Phillips Hue works. For the first few labs you will learn how to create Node.js applications that run on your PC and control the Photon. Later in the lab you will learn how to deploy the Node.js applications to a hub device, like a Raspberry Pi 2 or an Arduino Y&uacute;n, which will act as the field gateway for all of the connected Photons in your solution.
 
 ## Wiring the Indicator Light Photon
-This lesson uses a similar wiring configuration from [Lab 5][lab05], but it is spread across two Photons - onw with the photoresistor and one with the LED. Wire the first Photon according to the following diagram.
+This lesson uses a similar wiring configuration from [Lab 5][lab05], but it is spread across two Photons - now with the photoresistor and one with the LED. Wire the first Photon according to the following diagram.
 
 <img src="/images/photon_lab06a_bb.png"/>
 
@@ -45,7 +45,7 @@ The second Photon uses the same wiring configuration for the ambient light senso
 The ambient light sensor device code is very similar to the code you wrote in [Lab 04][lab04]. Create a new file in the same directory as the other labs and name it <strong>lab06_lightSensor.js</strong>. Following is the code for that file.
 
 {% highlight javascript %}
-// Define the Jonny Five and Particle-IO variables
+// Define the Johnny Five and Particle-IO variables
 var five = require ("johnny-five"),
     board, photoresistor;
 var particle = require("particle-io");
@@ -131,17 +131,17 @@ service.connect(lightSensor, function(err, session, lightSensor) {
 You should notice two differences.
 
 1. The definition of the <code>lightSensor</code> Nitrogen device includes a <code>tags</code> parameter specifying that this device only sends <code>_lightLevel</code> messages, and doesn't execute any commands.
-2. The <code>tags</code>property of the <code>ambientLightMessage</code> specifies <code>lab06</code> instead of <code>this.device.id</code>. This enables you to set a scoping property (e.g. tag devices for an application). Any device listening to the messaage stream can filter to only the messages with this tag rather than to a single device ID.  
+2. The <code>tags</code>property of the <code>ambientLightMessage</code> specifies <code>lab06</code> instead of <code>this.device.id</code>. This enables you to set a scoping property (e.g. tag devices for an application). Any device listening to the message stream can filter to only the messages with this tag rather than to a single device ID.  
 
 For many IoT scenarios you will create devices that simply send telemetry to Cloud services, and possibly receive command and control messages back (similar to [Lab 05][lab05]). You won't have a need to have one device control another. In this lab you are designing the ambient light sensor to send telemetry to the Cloud without any knowledge of any users or devices that may be listening to the message stream. Next you will create a status indicator device the listens to the message stream of the ambient light device and uses the LED to indicate the light level that was detected. 
 
 If you want to compare your code to the final solution you can see the code in GitHub [here][https://github.com/ThingLabsIo/IoTLabs/blob/master/Photon/Lab06/lab06_lightSensor.js].
 
 ## Writing the Code for the Indicator Light Device
-The indicaor light device is a status indicator using a  LED connected to pin _D0_ and plus GND. The indicator light will illuminate with intensity inversely relative to the amount of ambient light reported. The biggest difference between this and the previous labs is that these are two physically separated boards that will communicate with each other via a Cloud service (Nitrogen). Create a new file in the same directory as the other labs and name it <strong>lab06_light.js</strong>. Following is the code for that file.
+The indicator light device is a status indicator using a  LED connected to pin _D0_ and plus GND. The indicator light will illuminate with intensity inversely relative to the amount of ambient light reported. The biggest difference between this and the previous labs is that these are two physically separated boards that will communicate with each other via a Cloud service (Nitrogen). Create a new file in the same directory as the other labs and name it <strong>lab06_light.js</strong>. Following is the code for that file.
 
 {% highlight javascript %}
-// Define the Jonny Five and Spark-IO variables
+// Define the Johnny Five and Spark-IO variables
 var five = require ("johnny-five"),
     board, led;
 var particle = require("particle-io");
@@ -342,9 +342,9 @@ The code for the indicator light should be fairly self explanatory if you have d
 If you want to compare your code to the final solution you can see the code in GitHub [here](https://github.com/ThingLabsIo/IoTLabs/blob/master/Photon/Labs06/lab06_light.js).
 
 ## Permissions
-Permissions in Nitrogen are pretty much what they sound like. Permissions enable you to define what Nitrogen Principals (users, devices, applications, etc.) can do in relation to other Nitrogen Principals. This could include enabling a user to have admin privelages over one or more devices, or giveing a group of devices to the ability to subscribe to the message stream from another device, etc. Permissions are set using the Nitrogen command-line.
+Permissions in Nitrogen are pretty much what they sound like. Permissions enable you to define what Nitrogen Principals (users, devices, applications, etc.) can do in relation to other Nitrogen Principals. This could include enabling a user to have admin privileges over one or more devices, or giving a group of devices to the ability to subscribe to the message stream from another device, etc. Permissions are set using the Nitrogen command-line.
 
-For this lab you will give permission to the indicator light device to subscribe to the ambient light device (these devices must be in the same Nitrgen account). This means that the ambient light device doesn't need to know anything about the indicator light device, but the indicator light device will know everything that the ambient light device sends on its message stream. To set the permission you first need to geth the device IDs that Nitrogen is using for each of these devices. To do that, run each of the applications, which will dynamically provision the devices in Nitrogen.
+For this lab you will give permission to the indicator light device to subscribe to the ambient light device (these devices must be in the same Nitrogen account). This means that the ambient light device doesn't need to know anything about the indicator light device, but the indicator light device will know everything that the ambient light device sends on its message stream. To set the permission you first need to get the device IDs that Nitrogen is using for each of these devices. To do that, run each of the applications, which will dynamically provision the devices in Nitrogen.
 
 Open a terminal window (Mac OS) or Node.js command prompt (Windows) and execute the following commands (replace _C:\Development\IoTLabs_ with the path that leads to your labs folder):
 
@@ -414,7 +414,7 @@ Play around with changing the amount of light the ambient light sensor reports. 
 For each device, press <kbd>CTRL</kbd> + <kbd>C</kbd> twice then <kbd>Enter</kbd>to exit the program without closing the window.
 
 ## Conclusion &amp; Next Steps
-Congratulations! You hace not created two connected Things and caused one of them to change state based on the telemetry (in the form of a message stream) of another device. Through these labs you have now been exposed to most of the concepts you need to build connected Things. In the next lab you will learn how to pull the data you are collecting from your Things and visualize it in an application.
+Congratulations! You have not created two connected Things and caused one of them to change state based on the telemetry (in the form of a message stream) of another device. Through these labs you have now been exposed to most of the concepts you need to build connected Things. In the next lab you will learn how to pull the data you are collecting from your Things and visualize it in an application.
 
  [photon]: https://store.particle.io/?product=photon-kit
  [lab00]: /photon/00/

@@ -19,11 +19,11 @@ permalink: "/arduino/04c/"
 *  Auto generated table of contents
 {:toc}
 
-# Getting the IP Address on an Arduino Yun
+# Getting the IP Address on an Arduino Y&uacute;n
 
-The simplest way to get your IP address on your Arduino Yun is to look at your network hub but the reality is that we rarely own the hub and can log in and look at it. 
+The simplest way to get your IP address on your Arduino Y&uacute;n is to look at your network hub but the reality is that we rarely own the hub and can log in and look at it. 
 
-The more sure fire way to do it is to run ifconfig on the linux side of your Yun which you can do with the sketch below. 
+The more sure fire way to do it is to run ifconfig on the linux side of your Y&uacute;n which you can do with the sketch below. 
 
 ## Writing the ifconfig sketch. 
 

@@ -2,64 +2,87 @@
   url: "/"
   side: left
   
-- title: Attend a Workshop
-  url: "/schedule/"
-  side: left
-  
 - title: "Arduino"
   url: "/arduino/"
   side: left
   dropdown:
-  - title: "00 - Getting Started"
+  - title: "Getting Started"
     url: "/arduino/00/"
-  - title: "01 - Writing Digital Output"
+  - title: "Setting Up Your Arduino"
     url: "/arduino/01/"
-  - title: "02 - Reading Analog Input"
+  - title: "Writing Digital Output"
     url: "/arduino/02/"
-  - title: "03 - Input Controls Output"
+  - title: "Reading Analog Input"
     url: "/arduino/03/"
-  - title: "04 - Sending Data to the Cloud"
+  - title: "Input Controls Output"
     url: "/arduino/04/"
-  - title: "05 - Command & Control"
+  - title: "Setting Up Azure IoT"
     url: "/arduino/05/"
-  - title: "06 - Connecting Multiple Things"
+  - title: "Sending Data to the Cloud"
     url: "/arduino/06/"
-    
+  - title: "Visualizing IoT Data"
+    url: "/arduino/07/"
   
 - title: "Particle Photon"
   url: "/photon/"
   side: left
   dropdown:
-  - title: "00 - Getting Started"
+  - title: "Getting Started"
     url: "/photon/00/"
-  - title: "01 - Writing Digital Output"
+  - title: "Writing Digital Output"
     url: "/photon/01/"
-  - title: "02 - Reading Analog Input"
+  - title: "Reading Analog Input"
     url: "/photon/02/"
-  - title: "03 - Input Controls Output"
+  - title: "Input Controls Output"
     url: "/photon/03/"
-  - title: "04 - Sending Data to the Cloud"
-    url: "/photon/04/"
-  - title: "05 - Command & Control"
-    url: "/photon/05/"
-  - title: "06 - Connecting Multiple Things"
-    url: "/photon/06/"
-  - title: "07 - Visualizing IoT Data"
-    url: "/photon/07/"
+  - title: "Setting Up Azure IoT and Your Device"
+    url: "/azure/01/"
+  - title: "Sending Telemetry to the Cloud"
+    url: "/azure/02/"
+  - title: "Visualizing IoT Data"
+    url: "/azure/03/"
     
-- title: "Azure IoT Hub + Photon"
-  url: "/azure/"
+- title: "Raspberry Pi 2"
+  url: "/rpi2/"
   side: left
   dropdown:
-  - title: "00 - Getting Started"
+  - title: "Getting Started"
+    url: "/rpi2/00/"
+  - title: "Hello, Windows IoT"
+    url: "/rpi2/01/"
+  - title: "Setting Up Your Azure IoT Hub"
+    url: "/rpi2/02/"
+  - title: "Sending Data to the Cloud"
+    url: "/rpi2/03/"
+  - title: "Visualizing IoT Data"
+    url: "/rpi2/04/"
+    
+- title: "Azure Tour"
+  url: "/azure/"
+  side: right
+  dropdown:
+  - title: "Getting Started"
     url: "/azure/00/"
-  - title: "01 - Setting Up Azure IoT and Your Device"
+  - title: "Setting Up Azure IoT and Your Device"
     url: "/azure/01/"
-  - title: "02 - Sending Telemetry to the Cloud"
+  - title: "Sending Telemetry to the Cloud"
     url: "/azure/02/"
-  - title: "03 - Visualizing IoT Data"
+  - title: "Visualizing IoT Data"
     url: "/azure/03/"
 
+- title: "Web Summit"
+  url: "/websummit/"
+  side: right
+  dropdown:
+  - title: "Setting Up Your Device"
+    url: "/websummit/01/"
+  - title: "Sending Telemetry to the Cloud"
+    url: "/websummit/02/"
+    
+- title: Attend a Workshop
+  url: "/schedule/"
+  side: right
+        
 #
 #- title: "Header Styles"
 #  url: "/headers/"

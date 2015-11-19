@@ -20,7 +20,7 @@ If you haven't already done so, please follow the instructions in [Lab 00: Getti
 *  Auto generated table of contents
 {:toc}
 
-In this lab you will build a simple ambient light detection app (similar to [Lab 02][2]) and send the data that is being collected to the Cloud. You will use Nitrogen to send data to a cloud gateway and you will be able to verify the messaging is working by logging into the Nitrogen Web Admin.
+In this lab you will build a simple ambient light detection app (similar to [Lab 02][2]) and send the data that is being collected to the Cloud. You will use Azure IoT Hubs for device registration and management, and as the CLoud Gateway that you will send messages to.
 
 ## Bill of Materials
 What you will need (all the parts from [Lab 02][2]:
@@ -170,13 +170,13 @@ While this lab is similar in wiring to [Lab 02][2], it is very different in how 
 In the lab04.js file start by declaring the key objects, including Johnny Five, Spark IO and Johnny Five photoresistor (this is where you will start to use the 'object model' that Johnny Five provides. 
 
 {% highlight javascript %}
-// Define the Jonny Five and Spark-IO variables
+// Define the Johnny Five and Spark-IO variables
 var five = require("johnny-five"),
     board, photoresistor;
 var particle = require("particle-io");
 {% endhighlight %}
 
-Declare the Nitrogen objects you will need. You need to require Nitrogen and the Nitrogen File Store, then declare a variable to reference the Nitrogen service itself and a <code>lightSensor</code> as the Niotrogen device (this is a proxy for the photoresistor circuit you create with the Photon).
+Declare the Nitrogen objects you will need. You need to require Nitrogen and the Nitrogen File Store, then declare a variable to reference the Nitrogen service itself and a <code>lightSensor</code> as the Nitrogen device (this is a proxy for the photoresistor circuit you create with the Photon).
 
 {% highlight javascript %}
 var Store = require("nitrogen-file-store"),

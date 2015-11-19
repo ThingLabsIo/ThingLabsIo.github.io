@@ -59,7 +59,7 @@ For this lab you will create a new file named <strong>lab05.js</strong> in the s
 In the lab05.js file start by declaring the key objects, including Johnny Five, Particle IO and Johnny Five photoresistor (this is where you will start to use the 'object model' that Johnny Five provides. You will also declare the Nitrogen objects that you will use in this application, including the service and lightSensor.
 
 {% highlight javascript %}
-// Define the Jonny Five and Particle-IO variables
+// Define the Johnny Five and Particle-IO variables
 var five = require("johnny-five"),
     board, photoresistor, led;
 var particle = require("particle-io");
@@ -209,7 +209,7 @@ LightManager.prototype.isRelevant = function(message) {
 
 - <code>message</code>: _Object_, The message to test to see if it is a relevant command.
 
-The subclass needs to determine if the message received is a command that needs executing. The <code>isCommand()</code> function is used to determne that. For this demo, the criterea is simple - only messages of the type <code>_lightLevel</code> need to be executed (remember the <code>tags</code> set on the <code>lightSensor</code> object?).
+The subclass needs to determine if the message received is a command that needs executing. The <code>isCommand()</code> function is used to determne that. For this demo, the criteria is simple - only messages of the type <code>_lightLevel</code> need to be executed (remember the <code>tags</code> set on the <code>lightSensor</code> object?).
 
 {% highlight javascript %}
 // Override: CommandManager.isCommand(message)
@@ -295,7 +295,7 @@ In the loop you will capture the ambientLight value that is defined in the messa
         var light = activeCommand.body.command.ambientLight;
 {% endhighlight %}
 
-While in the loop, set the <code>ligthOn</code> value (true/false) based on a predefined ambientLight threshold (you should use the smae threshold you used in [Lab 3][10]), and clode the <code>forEach</code> loop.
+While in the loop, set the <code>ligthOn</code> value (true/false) based on a predefined ambientLight threshold (you should use the same threshold you used in [Lab 3][10]), and code the <code>forEach</code> loop.
 
 {% highlight javascript %}
         // Determine the final state of the light (on/true or off/false)
@@ -463,7 +463,7 @@ Message sent: {"ts":"2015-05-13T09:18:44.268Z","body":{"command":{"ambientLight"
 Press <kbd>CTRL</kbd> + <kbd>C</kbd> twice then <kbd>Enter</kbd>to exit the program without closing the window.
 
 ## Conclusion &amp; Next Steps
-Congratulations! You have created a _Thing_ that collects input from its physical environment and sends it to the Cloud, and then recieved command/control messages and changes its state accordingly. You can use these concepts to make any number of Connected Things. In the [next lab][9] you will learn how to connect multiple devices so that you can have one physical device alter the state of another physical device.
+Congratulations! You have created a _Thing_ that collects input from its physical environment and sends it to the Cloud, and then received command/control messages and changes its state accordingly. You can use these concepts to make any number of Connected Things. In the [next lab][9] you will learn how to connect multiple devices so that you can have one physical device alter the state of another physical device.
 
 [Next Lab ->][9]
 
