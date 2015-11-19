@@ -143,8 +143,9 @@ For this lab series you will be controlling the Photon from a master/hub device 
 7. Click on the _Devices_ icon in the lower-left toolbar (it looks like a targeting sight).
 8. Find your new Photon (if you claimed your Photon using the command line interface, there will likely be a device with no name/alias with the text 'No Title (click to edit)' - that is your new Photon - feel free to give it a friendly name at this time).
 9. If you have more than one device, click on the gray star that appears next to the Photon when you hover over it to turn it yellow (doing this selects this device as the target for a firmware flash).
-10. Click on the verify icon in the upper-left toolbar (it looks like a checkmark). In the lower-left corner of the IDE you will see the verification status.
-11. After the app is verified, click the flash firmware icon in the upper-left toolbar (it looks like a lightening bolt) to flash your Photon with the VoodooSpark firmware.
+10. Click on the carrot (greater then sign) on the right on the name of your new Photon. Choose 0.4.6 from the "Your are building with firmware:" dropdown box.
+11. Click on the verify icon in the upper-left toolbar (it looks like a checkmark). In the lower-left corner of the IDE you will see the verification status.
+12. After the app is verified, click the flash firmware icon in the upper-left toolbar (it looks like a lightening bolt) to flash your Photon with the VoodooSpark firmware.
 
 <img src="/images/particlebuild01.png"/>
 
