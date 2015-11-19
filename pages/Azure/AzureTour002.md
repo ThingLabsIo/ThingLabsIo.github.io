@@ -45,7 +45,7 @@ Using your favorite/preferred text/code editor, create a file in your developmen
     "author": "YOUR NAME HERE",
   "license": "MIT",
   "dependencies": {
-    "azure-iot-device": "^1.0.0-preview.3",
+    "azure-iot-device": "^1.0.0-preview.6",
     "johnny-five": "^0.8.104",
     "j5-sparkfun-weather-shield": "^0.2.0",
     "particle-io": "^0.10.1"
@@ -86,9 +86,9 @@ Now add the following code to the __weather.js__ file:
 {% highlight javascript %}
 'use strict';
 // Define the Johnny Five, Particle and Azure IoT objects
-var five = require ("johnny-five");
+var Five = require ("johnny-five");
 var Weather = require("j5-sparkfun-weather-shield")(five);
-var device = require('azure-iot-device');
+var Device = require('azure-iot-device');
 var Particle = require("particle-io");
 
 // Set up the access credentials for Particle and Azure
@@ -100,7 +100,7 @@ var connectionString = process.env.IOTHUB_CONN || 'YOUR IOT HUB DEVICE-SPECIFIC 
 // Create a Johnny-Five board instance to represent your Particle Photon
 // Board is simply an abstraction of the physical hardware, whether is is a 
 // Photon, Arduino, Raspberry Pi or other boards.
-var board = new five.Board({
+var board = new Five.Board({
   io: new Particle({
     token: token,
     deviceId: deviceId
@@ -110,12 +110,12 @@ var board = new five.Board({
 // Create an Azure IoT client that will manage the connection to your IoT Hub
 // The client is created in the context of an Azure IoT device, which is why
 // you use a device-specific connection string.
-var client = new device.Client(connectionString, new device.Https());
+var client = Device.Client.fromConnectionString(connectionString);
 {% endhighlight %}
 
 In this code you define four variables that you will be working with:
 
-1. <code>five</code> - represents the Johnny-Five framework capabilities, which provide a type of object model for working with boards like Arduino and Particle.
+1. <code>Five</code> - represents the Johnny-Five framework capabilities, which provide a type of object model for working with boards like Arduino and Particle.
 2. <code>Weather</code> - represents the Weather Shield plugin for Johnny-Five, which is compatible with both the Arduino and Photon variants. 
 3. <code>Particle</code> - represents the Particle IO framework capabilities which exposes the specifics of the Particle boards including the Core and the Photon.
 4. <code>board</code> - represents the physical board you are using. This is created by specifying the Particle board and passing in the Particle Access Token and the device ID or alias.
@@ -133,12 +133,15 @@ In the following code you will invoke the <code>board.on()</code> function which
 board.on("ready", function() {
     console.log("Board connected...");
     // The SparkFun Weather Shield for the Particle Photon has two sensors on the I2C bus - 
-    // a humidity sensor (HTU21D) which can provide both humidity and temperature, and a 
-    // barometer (MPL3115A2) which can provide both barometric pressure and humidity.
+    // a humidity sensor (HTU21D) which can provide both humidity and temperature, a 
+    // barometer (MPL3115A2) which can provide barometric pressure, humidity and elevation.
+    // In order to calibrate elivation you need to pass in the current elevation for your 
+    // location. We have provided a default value (0) for sea level.
     // Controllers for these are wrapped in the convenient `Weather` plugin class:
     var weather = new Weather({
       variant: "PHOTON",
-      freq: 1000
+      freq: 1000,
+      elevation: 0
     });
     
     // The weather.on("data", callback) function invokes the anonymous callback function 
@@ -158,7 +161,7 @@ board.on("ready", function() {
       });
       
       // Create the message based on the payload JSON
-      var message = new device.Message(payload);
+      var message = new Device.Message(payload);
       // For debugging purposes, write out the message payload to the console
       console.log("Sending message: " + message.getData());
       // Send the message to Azure IoT Hub
