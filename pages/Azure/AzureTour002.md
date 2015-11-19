@@ -141,10 +141,36 @@ board.on("ready", function() {
       freq: 1000
     });
     
+<<<<<<< HEAD:pages/AzureTour002.md
+    // The mpl3115a2.on("change", callback) function invokes the anonymous callback function 
+    // whenever the data from the sensor changes (no faster than every 25ms). The anonymous 
+    // function is scoped to the object (e.g. this == the mpl3115a2 Multi class object). 
+    mpl3115a2.on("change", function() {
+      bF = this.temperature.fahrenheit;
+      bC = this.temperature.celsius;
+      pressure = this.barometer.pressure;
+      altitude_f = this.altimeter.feet;
+      altitude_m = this.altimeter.meters
+    });
+    
+    // The htu21d.on("data", callback) function invokes the anonymous callback function at the 
+    // frequency specified in the constructor (25ms by default). The anonymous function 
+    // is scoped to the object (e.g. this == the htu21d Multi class object). 
+    htu21d.on("data", function() {
+      hF = this.temperature.fahrenheit;
+      hC = this.temperature.celsius;
+      relativeHumidity = this.hygrometer.relativeHumidity;
+      
+      // The MPL311A2 (barometer) sensor will update the global variables associated with it.
+      // Each time the HTU21D (temperature) sensor invokes this function the message sent to Azure
+      // IoT Hub will include the data from the MPL311A2 sensor as well.
+      // Create a JSON payload for the message that will be sent to Azure IoT Hub
+=======
     // The weather.on("data", callback) function invokes the anonymous callback function 
     // whenever the data from the sensor changes (no faster than every 25ms). The anonymous 
     // function is scoped to the object (e.g. this == the instance of Weather class object). 
     weather.on("data", function () {
+>>>>>>> master:pages/Azure/AzureTour002.md
       var payload = JSON.stringify({
         deviceId: deviceId,
         location: location,

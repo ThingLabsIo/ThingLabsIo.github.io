@@ -32,7 +32,7 @@ In the previous labs you provisioned an Azure IoT Hub and a physical device, and
 
 ## Using Stream Analytics to Process and Route IoT Data
 
-Azure Stream Analytics is a service that does real-time data processing in the cloud. You will create a new Stream Analytics job and define the input data stream as the data coming from your IoT Hub. Next you will define an output data stream that sends data to Power BI. Finally, you will write a SQL-like query that collects data coming in on the input stream and routes it to the output stream. 
+Azure Stream Analytics is a service that does real-time data processing in the cloud. You will create a new Stream Analytics job and define the input data stream as the data coming from your IoT Hub. Next you will define an output data stream that sends data to Power BI. Finally, you will write a SQL-like query that collects data coming in on the input stream and routes it to the output stream.
 
 ### Create the Stream Analytics Job
 
@@ -43,12 +43,12 @@ Open a new browser tab and navigate to the [https://manage.windowsazure.com](htt
 Select __DATA SERVICES__ > __STREAM ANALYTICS__ > __QUICK CREATE__ and enter the following:
 
 1. JOB NAME: You can use anything you'd like here...I recommend __iotlab__ or something similar so you can identify it easily later.
-2. REGION: Select __East US__ (or whatever region you created your IoT Hub in)
+2. REGION: Select __East US__ (or whatever region you created your IoT Hub in) __NOTE:__ If you are using a new Azure Account and experience errors, try creating the Stream Analytics job in the __East US 2__ region
 3. REGIONAL MONITORING STORAGE ACCOUNT: Select or create a storage account.
 
 <img src="/images/newasa.png"/>
 
-Click __CREATE STREAM ANALYTICS JOB__. It will take a few minutes for the Steam Analytics job to get created and become available. 
+Click __CREATE STREAM ANALYTICS JOB__. It will take a few minutes for the Steam Analytics job to get created and become available.
 
 <img src="/images/asajobcreated.png"/>
 
@@ -73,7 +73,7 @@ Complete the form as follows:
 
 Click on the forward arrow in the lower-right.
 
-On the __Serialization settings__ form, leave the defaults (Event Serialization Format:JSON and Encoding:UTF8) click on the checkmark in the lower-right. 
+On the __Serialization settings__ form, leave the defaults (Event Serialization Format:JSON and Encoding:UTF8) click on the checkmark in the lower-right.
 
 <img src="/images/asainputform.png"/>
 
@@ -132,14 +132,14 @@ INTO
 FROM
     [DeviceInputStream]
 GROUP BY
-    TumblingWindow (second, 10), deviceId, location 
+    TumblingWindow (second, 10), deviceId, location
 {% endhighlight %}
 
 Click __SAVE__ in the lower middle of the screen. Once the query is saved, click __START_ to start the Stream Analytics job. If your Node.js app from the [previous lab](/azure/02/) isn't still running, go ahead and start it up. It will take a few minutes for the Stream Analytics job to get started and to start sending data to Power BI, but you should see the _TemperatureDataSet_ show up in Power BI within a few minutes.
 
 ## Build Reports in Power BI
 
-Go back to the browser tab where you have Power BI open. Look in the _Datasets_ node in the left-hand navigation. The _TemperatureDataSet_ should appear there within a few minutes of IoT Hub data streaming into the Stream Analytics job. 
+Go back to the browser tab where you have Power BI open. Look in the _Datasets_ node in the left-hand navigation. The _TemperatureDataSet_ should appear there within a few minutes of IoT Hub data streaming into the Stream Analytics job.
 
 1. Click on the _TemperatureDataSet_ dataset to open the report designer.
 2. Select the _Gauge_ chart from the __Visualizations__ toolbox on the right side.
