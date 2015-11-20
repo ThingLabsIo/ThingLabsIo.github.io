@@ -1,34 +1,47 @@
 ---
 layout: page-fullwidth
-title: "Setting Up Azure IoT and Your Device"
-subheadline: "Microsoft Azure IoT Lab 1"
-teaser: "In this lab you will claim your Photon, provision an Azure IoT Hub and an IoT Hub device."
+title: "Setting Up the Particle Photon"
+subheadline: "Microsoft Azure IoT Lab 2"
+teaser: "In this lab you will claim your Photon and prepare it for use in the lab series."
 show_meta: true
 comments: true
 header: no
 breadcrumb: true
 categories:
-    - iot-photon-labs
+    - photon
+    - iot-labs
     - maker-101
-author: "Doug Seven"
-permalink: "/azure/01/"
+author: doug_seven
+permalink: "/setup-photon/"
 ---
+
 ### Table of Contents
 *  Auto generated table of contents
 {:toc}
 
-If you haven't already done so, please follow the instructions in [Lab 00: Getting Started](/azure/00/) section.
-
-In this lab you will claim your Particle Photon (associate it with your Particle account) and provision a new Azure IoT Hub. Once you have the IoT Hub created, you will be able to create a new Azure IoT device (a software reference to your physical device) that you will use to send telemetry to Azure. 
+For this lab series you are using a Particle Photon, a small Wi-Fi enabled development board. The Photon is an excellent prototyping board for connected Things and Particle, the makers of the Photon, sell the P0 chip that drives the board (so when you are ready to go into production you can easily use the same chip). While you can develop for the Photon using Particle Build or Particle Dev and leverage the Particle Cloud services, this lab series is designed to teach you how to build an IoT solution using the _gsateway_ patterm, similar to how consumer products like SmartThings, Lowes Iris, or Phillips Hue works using a Node.js application on the gateway that communicates with the Photon over Wi-Fi. For the first few labs you will learn how to create the Node.js applications that run on your PC and controls the baord through a USB connection. If you choose to continue with these labs on your own, you will learn how to deploy the Node.js applications to a gateway device capable of running the Node.js application, such as a Raspberry Pi or an Arduino Y&uacute;n.
 
 ## Bill of Materials
-What you will need:
+The following hardware is needed to complete these labs with the Particle Photon:
 
-1. [Particle Photon][1]
-2. USB to micro-USB cable (there is one included in the [Photon Development Kit][1])
-3. [SparkFun Weather Shield for Particle Photon - $32.95](https://www.sparkfun.com/products/13630)
+1. [Particle Photon Development Kit - $29.00][1]
+2. [SparkFun Weather Shield for Particle Photon - $32.95](https://www.sparkfun.com/products/13630)
 
-For this lab series you are using a Particle Photon, a small Wi-Fi enabled development board. The Photon is an excellent prototyping board for connected Things and Particle, the makers of the Photon, sell the P0 chip that drives the board (so when you are ready to go into production you can easily use the same chip). While you can develop for the Photon using Particle Build or Particle Dev and leverage the Particle Cloud services, this lab series is designed to teach you how to build a Wi-Fi based hub-and-spoke system, similar to how SmartThings, Lowes Iris, or Phillips Hue works. For the first few labs you will learn how to create Node.js applications that run on your PC and control the Photon. If you choose to continue with these labs on your own, you will learn how to deploy the Node.js applications to a hub device, like a Raspberry Pi or an Arduino Y&uacute;n, which will act as the field gateway for all of the connected _Things_ in your solution.
+## Install Particle-CLI
+The [Particle-CLI][particlecli] is a command line interface for working with both the Particle Photon and the Particle Cloud. This tool will be used to 'claim' or provision your Photon, and may provide other useful benefits.
+
+On Windows, open the Node.js command prompt and type the following:
+<pre>
+  npm install -g particle-cli
+</pre>
+
+On Mac OS X open Terminal and type the following:
+<pre>
+  sudo npm install -g particle-cli
+</pre>
+
+## Create a Free Particle Cloud Account
+The Particle Photon is pre-configured to connect to the Particle Cloud. In order to 'claim' or provision the device, and to update its firmware you must create a free account with Particle Cloud. Go to [https://build.particle.io/signup][particle] to create a new Particle Cloud account.
 
 ## Claim Your Photon
 Associating a Particle Photon to your Particle account is known as _claiming_ (you are claiming the Photon so no one else can claim it - it's like high-tech cookie-licking). If you refer to the Particle website there is information about how to [claim the Photon using either an iOS or Android device](https://docs.particle.io/guide/getting-started/start/photon/#step-1-power-on-your-device), or [over USB from Windows or OS X](https://docs.particle.io/guide/getting-started/connect/photon/). 
@@ -156,89 +169,17 @@ The weather shield comes equipped with two onboard sensors - a HTU21D humidity s
 
 <img src="/images/Photon_Weather_Shield.jpg"/>
 
-## Setup an Azure IoT Hub
-
-In a browser, navigate to the [Azure Portal](https://portal.azure.com). Login to the account you created in in [Lab 00: Getting Started](/azure/00/). Once logged in:
-
-1. Click on the _New_ menu option in the upper-left
-2. Select _Internet of Things_
-3. Select _Azure IoT Hub_
-4. Give it a name such as your name followed by 'iot-labs' (i.e. rickgrimes-iot-labs)
-5. Select or create a new Resource Group
-6. Select a location (choose the one closest to your physical location)
-
-<img src="/images/New-IoT-Hub.png"/>
-  
-Once the IoT Hub is created, navigate into it and:
-
-1. Click on the key icon at the top of the blade
-2. In the next blade, click on the _iothubowner_ entry
-3. Copy the _Connection string-primary key_ to your clipboard
-
-<img src="/images/AzureIoTConnectionString.png"/>
-
-## Install Azure IoT Hub DeviceExplorer
-Azure IoT Hub only allows connections from known devices that present proper credentials. In this lab series you will use either the _DeviceExplorer_ utility or the _iothub-explorer_ command line interface to provision a device for use in Azure IoT Hub. While Azure IoT Hub supports multiple authentication schemes, you will use pre-shared keys in this lab series.
-
-The simplest way to provision a new device is with the _DeviceExplorer_ utility (Windows only). If you are using Windows, download and run [Device Explorer][deviceexplorer]. After running the installed, the _DeviceExplorer.exe_ can be found at __C:\Program Files (x86)\Microsoft\DeviceExplorer__. When you run the utility you need to input the _iothubowner_ connection strong (from the previous step) in the _IoT Hub Connection String_ field found in the _Configuration_ tab.
-
-<img src="/images/deviceexplorer01.png"/>
-
-### Install the IoT Hub Explorer Command Line Interface
-
-If you are on a non-Windows machine, or prefer to use a command line interface instead of the _DeviceExplorer_ utility, you can install the _iothub-explorer_ command line interface. The iothub-explorer tool enables you to provision devices in your IoT hub. It runs on any computer where Node.js is available.
-
-On Windows, open the Node.js command prompt and type the following:
-<pre>
-  cd C:\Development\IoTLabs
-  npm install -g iothub-explorer
-  npm update -g iothub-explorer
-</pre>
-
-On Mac OS X open Terminal and type the following:
-<pre>
-  cd ~/Development/IoTLabs
-  sudo npm install -g iothub-explorer
-  sudo npm update -g iothub-explorer
-</pre>
-
-## Create a New Azure IoT Device
-
-If you are using the _DeviceExplorer_ simply open the _Management_ tab and click the _Create_ button. In the dialog that opens, enter the name of your device (use the Particle Photon device ID or the alias you named your device). Then Click the _Create_ button, and click _Done_ on the confirmation dialog that opens.
-
-<img src="/images/deviceexplorer02.png"/> 
-
-You will see your device in the _Devices_ list. Once a device is created, you can get the device-specific connection string by selecting it in the _Devices_ list, right-clicking and selecting _Copy connection string for selected device_:
-
-<img src="/images/deviceexplorer03.png"/> 
-
-### Create a New Azure IoT Device from the Command Line
-If you are on a non-Windows machine, or prefer to use a command line interface instead of the _DeviceExplorer_ utility, you can provision a new Azure IoT Hub device using the _iothub-explorer_ command line interface.
-
-In the same directory as before, using the Node.js command prompt or Terminal:
-
-<pre>
-  iothub-explorer.js [YOUR IOT HUB CONNECTION STRING] create [YOUR PHOTON DEVICE ID/ALIAS]
-</pre>
-
-Once a device is created, you can get the device-specific connection string with the following command:
-
-<pre>
-  iothub-explorer.js [YOUR IOT HUB CONNECTION STRING] get [YOUR PHOTON DEVICE ID/ALIAS] --connection-string
-</pre>
-
-<img src="/images/iothub-explorer01.png"/> 
-
-The device-specific connection string identifies the device by name and includes a key that is only for that device. Copy the device connection string somewhere that you will be able to access it shortly.
 
 ## Conclusion &amp; Next Steps
-
-Congratulations! You have created a physical device, a software representation of that device, and the IoT Hub service to connect it to. In the [next lab][2] you will build a Node.js application that will collect data from the Photon and the weather shield and send the data to Azure IoT Hub.
-
-[Next Lab ->][2]
+That's it for now. You are ready to start the [next lab: Sending Telemetry to the Cloud =>][sending-telemetry].
 
 {% include next-previous-post-in-category.html %}
 
-[1]: https://store.particle.io/?product=photon-kit
-[2]: /azure/02/
-[deviceexplorer]: https://github.com/Azure/azure-iot-sdks/blob/master/tools/DeviceExplorer/doc/how_to_use_device_explorer.md
+[getting-started]: /getting-started/
+[setup-azure-iot-hub]: /setup-azure-iot-hub/
+[setup-photon]: /setup-photon/
+[setup-arduino]: /setup-arduino/
+[sending-telemetry]: /sending-telemetry/
+[visualize-iot-with-powerbi]: /visualize-iot-with-powerbi/
+[particle]: https://build.particle.io/signup
+[particlecli]: http://www.particle.io/prototype#cli
