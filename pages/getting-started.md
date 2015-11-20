@@ -8,11 +8,11 @@ comments: true
 header: no
 breadcrumb: true
 categories:
-	- azure
-	- iot-labs
+  - azure
+  - iot-labs
   - maker-101
 author: doug_seven
-permalink: "/getting-started"
+permalink: "getting-started"
 ---
 ### Table of Contents
 *  Auto generated table of contents
