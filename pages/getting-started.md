@@ -12,7 +12,7 @@ categories:
   - iot-labs
   - maker-101
 author: doug_seven
-permalink: "getting-started"
+permalink: "/getting-started/"
 ---
 ### Table of Contents
 *  Auto generated table of contents

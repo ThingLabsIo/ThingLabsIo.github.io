@@ -13,7 +13,7 @@ categories:
     - stream-analytics
     - power-bi
 author: doug_seven
-permalink: "visualize-iot-with-powerbi"
+permalink: "/visualize-iot-with-powerbi/"
 ---
 ### Table of Contents
 *  Auto generated table of contents

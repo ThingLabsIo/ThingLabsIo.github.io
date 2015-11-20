@@ -11,7 +11,7 @@ categories:
     - azure-iot-hub
     - iot-labs
 author: doug_seven
-permalink: "setup-azure-iot-hub"
+permalink: "/setup-azure-iot-hub/"
 ---
 ### Table of Contents
 *  Auto generated table of contents

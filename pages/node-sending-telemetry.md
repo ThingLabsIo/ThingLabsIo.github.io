@@ -11,7 +11,7 @@ categories:
   - azure-iot
   - iot-labs
 author: doug_seven
-permalink: "sending-telemetry"
+permalink: "/sending-telemetry/"
 ---
 ### Table of Contents
 *  Auto generated table of contents
