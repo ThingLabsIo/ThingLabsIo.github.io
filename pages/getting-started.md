@@ -59,7 +59,7 @@ Prepare a place to save all of your work in the labs. We recommend an easy to na
 In this lab series you will use Microsoft Azure as the cloud backend for your IoT solution. If you don't already have an Azure account, go to [https://azure.microsoft.com/en-us/pricing/free-trial/][azure] to start a free trial of Microsoft Azure. You may need a credit card for identity verification but the trial is completely free. If you have an MSDN Subscription you may be eligible for free credits to Microsoft Azure every month. Check your [MSDN account][msdn] page for details.
 
 ## Conclusion &amp; Next Steps
-That's it for now. You are ready to start the [first set of labs][nextlab].
+That's it for now. You are ready to start the first lab, [Setting Up Azure IoT Hub][setup-azure-iot-hub].
 
 {% include next-previous-post-in-category.html %}
 
