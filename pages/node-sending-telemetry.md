@@ -197,14 +197,12 @@ function printResultFor(op) {
 In this code you do a number of things:
 
 1. <code>board.on()</code> - This function triggers the board to invoke the anonymous callback function as soon as the board is on and ready. All of the application code for the device is written inside this callback function.
-2. Define the <code>htu21d</code> and <code>mpl3115a2</code> objects. These are a representation of the two physical sensors on the shield connected to the board. You instantiate each of them by specifying the controller class to use (this informs the framework how to interact with this sensor) and optionally a frequency to report the data collected by the sensor. Many sensors are capable of collecting data in fraction of a second intervals. You may not want to collect data and send it to your Azure IoT Hub that frequently. The <code>freq</code> property defines (in milliseconds) how often to raise an event to report the data from the sensor. In this example you are establishing the callback at a frequency of once per second for the <code>htu21d</code> temperature/humidity sensor, and the default frequency of 25ms for the <code>mpl3115a2</code> barometer. 
-3. <code>mpl3115a2.on()</code> is the function that initializes the controller for the Multi class MPL3115A2 barometer. As soon as it is initialized it invokes the anonymous callback function any time the data for the sensor changes. Each time the data is gathered and passed to the anonymous function you store the sensor values in variables for later use.
-4. <code>htu21d.on()</code> is the function that initializes the controller for the Multi class HTU21D sensor. As soon as it is initialized it begins invoking the anonymous callback function repeatedly based on the <code>freq</code> value (every 1000ms or every one-second). Each time the data is gathered and passed to the anonymous function you create and send a telemetry message that also includes the latest data from the MPL3115A2 barometer to Azure IoT Hub.
+2. Define the <code>weather</code> object. This is a representation of the weather shield connected to the board. When you instantiate the object, you can specify a frequency to collect the data from the sensors. Many sensors are capable of collecting data in fraction of a second intervals. You may not want to collect data and send it to your Azure IoT Hub that frequently. The <code>freq</code> property defines (in milliseconds) how often to raise an event to report the data from the sensor. In this example you are establishing the callback at a frequency of once per second for the <code>weather</code> object.
 4. <code>message</code> is the object that represents the data you are sending to Azure IoT Hub. This is a JSON formatted message.
 
 When <code>client.sendEvent()</code> is invoked, the JSON message is sent to Azure IoT Hub. For now, nothing happens with the message once it is received in your IoT Hub because you haven't set up anything that will capture the message and do something with it (we will get to that soon). By default, the messages have a one-day retention time.
 
-You can view the file source file (here)(https://github.com/ThingLabsIo/IoTLabs/tree/master/Azure).
+You can view the file source file [here =>](https://github.com/ThingLabsIo/IoTLabs/tree/master/Azure).
 
 ## Run the App
 When you run the application it will execute on your computer, and thanks to Johnny-Five, it will connect with your board and work directly with it. Basically, your computer is acting as a gateway - or hub - and communicating with the board as one of potentially many devices (or spokes). If you continue on past the intro labs, in a future lab you will deploy the Node.js application to another device (like a Raspberry Pi) which will act as the gateway and connect to multiple spoke devices.
@@ -223,7 +221,7 @@ Open a terminal window (Mac OS X) or Node.js command prompt (Windows) and execut
 After the board initializes you will see messages printing out once per second. This is the message payload that is being sent to Azure IoT Hub.
 
 <blockquote>
-If you downloaded the [Device Explorer[deviceexplorer] utility for Windows you can open the _Data_ tab, select a device, and click _Monitor_ to begin monitoring messages as they come into your Azure IoT Hub.
+If you downloaded the [Device Explorer][deviceexplorer] utility for Windows you can open the _Data_ tab, select a device, and click _Monitor_ to begin monitoring messages as they come into your Azure IoT Hub.
 </blockquote>
 
 When you want to quite the application, press <kbd>CTRL</kbd> + <kbd>C</kbd> twice to exit the program without closing the window (you may also have to press <kbd>Enter</kbd>). 
