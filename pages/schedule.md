@@ -17,11 +17,6 @@ permalink: "/schedule/"
 *  Auto generated table of contents
 {:toc}
 
-## Stockholm, Sweden - Azure Tour - November 18, 2015
-Build your cloud skills with the Azure Tour. Join us in person for this one-day, free event. Azure Tour is a one-day technical training event, designed to help IT professionals and developers be more successful in the cloud. Choose from technical breakout sessions, hands-on labs, or full-day immersions - and walk away ready to apply your new skills.
-
-[Learn more and register](https://azure.microsoft.com/en-us/community/events/azure-tour-stockholm/)
-
 ## Tel Aviv, Israel - Azure Tour - December 1, 2015
 Build your cloud skills with the Azure Tour. Join us in person for this one-day, free event. Azure Tour is a one-day technical training event, designed to help IT professionals and developers be more successful in the cloud. Choose from technical breakout sessions, hands-on labs, or full-day immersions - and walk away ready to apply your new skills.
 

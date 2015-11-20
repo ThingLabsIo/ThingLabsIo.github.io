@@ -62,13 +62,20 @@
   side: right
   dropdown:
   - title: "Getting Started"
-    url: "/azure/00/"
-  - title: "Setting Up Azure IoT and Your Device"
-    url: "/azure/01/"
+    url: "/getting-started/"
+  - title: "Setting Up Azure IoT Hub"
+    url: "/setup-azure-iot-hub/"
   - title: "Sending Telemetry to the Cloud"
-    url: "/azure/02/"
+    url: "/sending-telemetry/"
   - title: "Visualizing IoT Data"
-    url: "/azure/03/"
+    url: "/visualize-iot-with-powerbi/"
+    
+    [getting-started]: /getting-started/
+[setup-azure-iot-hub]: /setup-azure-iot-hub/
+[setup-photon]: /setup-photon/
+[setup-arduino]: /setup-arduino/
+[sending-telemetry]: /sending-telemetry/
+[visualize-iot-with-powerbi]: /visualize-iot-with-powerbi/
 
 - title: "Web Summit"
   url: "/websummit/"
