@@ -1,6 +1,6 @@
 ---
 layout: page-fullwidth
-title: "Setting Up the Arduino"
+title: "Preparing the Arduino"
 subheadline: "Microsoft Azure IoT Lab 2"
 teaser: "In this lab you will prepare your Ardunio Uno or SparkFun RedBoard for use in this lab series."
 show_meta: true

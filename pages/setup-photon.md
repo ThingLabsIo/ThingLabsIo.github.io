@@ -1,6 +1,6 @@
 ---
 layout: page-fullwidth
-title: "Setting Up the Particle Photon"
+title: "Preparing the Particle Photon"
 subheadline: "Microsoft Azure IoT Lab 2"
 teaser: "In this lab you will claim your Photon and prepare it for use in the lab series."
 show_meta: true
