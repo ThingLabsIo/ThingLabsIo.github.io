@@ -17,7 +17,7 @@ permalink: "/sending-telemetry/"
 *  Auto generated table of contents
 {:toc}
 
-If you haven't already done so, please follow the instructions in [Lab 00: Getting Started](/azure/00/) section.
+If you haven't already done so, please follow the instructions in [Lab 00: Getting Started][getting-started] section.
 
 In this lab you will write a Node.js application that runs on a hub (your development machine) and collects data from a Particle Photon (over local TCP) and sends it up to your Azure IoT Hub.
 
@@ -97,7 +97,7 @@ var device = require('azure-iot-device');
 /* 
 // PARTICLE PHOTON USERS
 // Add the following definition for the Particle plugin for Johnny-Five
-// var Particle = require("particle-io");
+var Particle = require("particle-io");
 
 var token = 'YOUR PARTICLE ACCESS TOKEN HERE';
 */
