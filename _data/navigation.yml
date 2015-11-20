@@ -62,13 +62,13 @@
   side: right
   dropdown:
   - title: "Getting Started"
-    url: "/getting-started/"
+    url: "/getting-started"
   - title: "Setting Up Azure IoT Hub"
-    url: "/setup-azure-iot-hub/"
+    url: "/setup-azure-iot-hub"
   - title: "Sending Telemetry to the Cloud"
-    url: "/sending-telemetry/"
+    url: "/sending-telemetry"
   - title: "Visualizing IoT Data"
-    url: "/visualize-iot-with-powerbi/"
+    url: "/visualize-iot-with-powerbi"
         
 - title: Attend a Workshop
   url: "/schedule/"

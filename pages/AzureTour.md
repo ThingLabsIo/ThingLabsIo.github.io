@@ -44,21 +44,21 @@ In this lab you will write a Node.js application to collect sensor readings from
 
 Estimated time to complete: 30-minutes
 
-[Getting Started =>][5]
+[Sending Telemetry to the Cloud =>][sending-telemetry]
 
 ## Visualizing IoT Data
 In this lab you will create an Azure Stream Analytics job to query data coming in to your Azure IoT hub and stream it out to Power BI. In Power BI you will build visualizations of your IoT data.
 
 Estimated time to complete: 30-minutes
 
-[Getting Started =>][4]
+[Visualizing IoT Data =>][visualize-iot-with-powerbi]
 
 ## Coming Soon
 More labs will be coming soon to teach you how to send command and control messages to your devices, how to deploy and run the Node.js app from a Raspberry Pi, and how to build a client app that interacts with your IoT devices.
 
-[getting-started]: /getting-started/
-[setup-azure-iot-hub]: /setup-azure-iot-hub/
-[setup-photon]: /setup-photon/
-[setup-arduino]: /setup-arduino/
-[sending-telemetry]: /sending-telemetry/
-[visualize-iot-with-powerbi]: /visualize-iot-with-powerbi/
+[getting-started]: /getting-started
+[setup-azure-iot-hub]: /setup-azure-iot-hub
+[setup-photon]: /setup-photon
+[setup-arduino]: /setup-arduino
+[sending-telemetry]: /sending-telemetry
+[visualize-iot-with-powerbi]: /visualize-iot-with-powerbi

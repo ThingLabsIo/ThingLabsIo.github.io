@@ -11,7 +11,7 @@ categories:
     - azure-iot
 	- iot-labs
 author: doug_seven
-permalink: "/sending-telemetry/"
+permalink: "/sending-telemetry"
 ---
 ### Table of Contents
 *  Auto generated table of contents
@@ -240,10 +240,10 @@ In this lab you learned how to write a Node.js + Johnny-Five application that co
 
 {% include next-previous-post-in-category.html %}
 
-[getting-started]: /getting-started/
-[setup-azure-iot-hub]: /setup-azure-iot-hub/
-[setup-photon]: /setup-photon/
-[setup-arduino]: /setup-arduino/
-[sending-telemetry]: /sending-telemetry/
-[visualize-iot-with-powerbi]: /visualize-iot-with-powerbi/
+[getting-started]: /getting-started
+[setup-azure-iot-hub]: /setup-azure-iot-hub
+[setup-photon]: /setup-photon
+[setup-arduino]: /setup-arduino
+[sending-telemetry]: /sending-telemetry
+[visualize-iot-with-powerbi]: /visualize-iot-with-powerbi
 [deviceexplorer]: https://github.com/Azure/azure-iot-sdks/blob/master/tools/DeviceExplorer/doc/how_to_use_device_explorer.md

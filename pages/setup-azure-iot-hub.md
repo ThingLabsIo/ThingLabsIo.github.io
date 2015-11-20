@@ -11,7 +11,7 @@ categories:
     - azure-iot-hub
     - iot-labs
 author: doug_seven
-permalink: "/setup-azure-iot-hub/"
+permalink: "/setup-azure-iot-hub"
 ---
 ### Table of Contents
 *  Auto generated table of contents
@@ -108,10 +108,10 @@ Continue to the next labs based on the device you are working with.
 
 {% include next-previous-post-in-category.html %}
 
-[getting-started]: /getting-started/
-[setup-azure-iot-hub]: /setup-azure-iot-hub/
-[setup-photon]: /setup-photon/
-[setup-arduino]: /setup-arduino/
-[sending-telemetry]: /sending-telemetry/
-[visualize-iot-with-powerbi]: /visualize-iot-with-powerbi/
+[getting-started]: /getting-started
+[setup-azure-iot-hub]: /setup-azure-iot-hub
+[setup-photon]: /setup-photon
+[setup-arduino]: /setup-arduino
+[sending-telemetry]: /sending-telemetry
+[visualize-iot-with-powerbi]: /visualize-iot-with-powerbi
 [deviceexplorer]: https://github.com/Azure/azure-iot-sdks/blob/master/tools/DeviceExplorer/doc/how_to_use_device_explorer.md

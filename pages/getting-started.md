@@ -12,7 +12,7 @@ categories:
 	- iot-labs
   - maker-101
 author: doug_seven
-permalink: "/getting-started/"
+permalink: "/getting-started"
 ---
 ### Table of Contents
 *  Auto generated table of contents
@@ -77,6 +77,12 @@ That's it for now. You are ready to start the [first set of labs][nextlab].
 
 {% include next-previous-post-in-category.html %}
 
+[getting-started]: /getting-started
+[setup-azure-iot-hub]: /setup-azure-iot-hub
+[setup-photon]: /setup-photon
+[setup-arduino]: /setup-arduino
+[sending-telemetry]: /sending-telemetry
+[visualize-iot-with-powerbi]: /visualize-iot-with-powerbi
 [nextlab]: /setup-azure-iot-hub/
 [vscode]: http://code.visualstudio.com
 [vs]: http://www.visualstudio.com 
