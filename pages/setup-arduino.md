@@ -12,7 +12,7 @@ categories:
     - iot-labs
     - maker-101
 author: doug_seven
-permalink: "/setup-arduino"
+permalink: "setup-arduino"
 ---
 
 ### Table of Contents

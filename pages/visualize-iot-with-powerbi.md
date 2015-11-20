@@ -8,12 +8,12 @@ comments: true
 header: no
 breadcrumb: true
 categories:
-	- azure-iot
+    - azure-iot
     - iot-labs
     - stream-analytics
-	- power-bi
+    - power-bi
 author: doug_seven
-permalink: "/visualize-iot-with-powerbi"
+permalink: "visualize-iot-with-powerbi"
 ---
 ### Table of Contents
 *  Auto generated table of contents
