@@ -10,7 +10,7 @@ breadcrumb: true
 categories:
 	- azure
 	- iot-labs
-    - maker-101
+  - maker-101
 author: doug_seven
 permalink: "/getting-started/"
 ---
