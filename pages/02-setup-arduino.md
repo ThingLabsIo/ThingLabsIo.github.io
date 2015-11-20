@@ -44,7 +44,7 @@ For this lab series you will use tools that require your Arduino to have the Sta
 7. Close all Arduino IDE windows.
 
 ## Conclusion &amp; Next Steps
-That's it for now. You are ready to start the [next lab: Sending Telemetry to the Cloud =>][sending-telemetry].
+That's it for now. You are ready to start the next lab: [Sending Telemetry to the Cloud =>][sending-telemetry].
 
 {% include next-previous-post-in-category.html %}
 

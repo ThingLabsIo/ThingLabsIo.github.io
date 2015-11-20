@@ -171,7 +171,7 @@ The weather shield comes equipped with two onboard sensors - a HTU21D humidity s
 
 
 ## Conclusion &amp; Next Steps
-That's it for now. You are ready to start the [next lab: Sending Telemetry to the Cloud =>][sending-telemetry].
+That's it for now. You are ready to start the next lab: [Sending Telemetry to the Cloud =>][sending-telemetry].
 
 {% include next-previous-post-in-category.html %}
 
