@@ -27,7 +27,7 @@ What you will need:
 1. A Microsoft Azure Account (refer to [Lab 00: ][getting-started])
 
 ## Setup an Azure IoT Hub
-In a browser, navigate to the [Azure Portal](https://portal.azure.com). Login to the account you created in in [Lab 00: Getting Started](/azure/00/). Once logged in:
+In a browser, navigate to the [Azure Portal](https://portal.azure.com). Login to the account you created in in the [Getting Started][getting-started] lab. Once logged in:
 
 1. Click on the _New_ menu option in the upper-left
 2. Select _Internet of Things_
@@ -73,7 +73,8 @@ On Mac OS X open Terminal and type the following:
 ## Create a New Azure IoT Device
 If you are using the _DeviceExplorer_ simply open the _Management_ tab and click the _Create_ button. In the dialog that opens, enter the name of your device  - something like __MyIoTGateway__ works well. Then Click the _Create_ button, and click _Done_ on the confirmation dialog that opens.
 
-<img src="/images/deviceexplorer02.png"/> 
+<img src="/images/deviceexplorer02.png"/>
+
 You will see your device in the _Devices_ list. Once a device is created, you can get the device-specific connection string by selecting it in the _Devices_ list, right-clicking and selecting _Copy connection string for selected device_:
 
 <img src="/images/deviceexplorer03.png"/> 
@@ -81,16 +82,16 @@ You will see your device in the _Devices_ list. Once a device is created, you ca
 ### Create a New Azure IoT Device from the Command Line
 If you are on a non-Windows machine, or prefer to use a command line interface instead of the _DeviceExplorer_ utility, you can provision a new Azure IoT Hub device using the _iothub-explorer_ command line interface.
 
-In the same directory as before, using the Node.js command prompt or Terminal (you may replace __MyIoTGateway__ with any name you'd like:
+In the same directory as before, using the Node.js command prompt or Terminal, execute the following commands (you may need to wrap the connections string in quotes, depending on the terminal application you are using). You may replace __MyIoTGateway__ with any name you'd like:
 
 <pre>
-  iothub-explorer.js [YOUR IOT HUB CONNECTION STRING] create MyIoTGateway
+  iothub-explorer [YOUR IOT HUB CONNECTION STRING] create MyIoTGateway
 </pre>
 
 Once a device is created, you can get the device-specific connection string with the following command:
 
 <pre>
-  iothub-explorer.js [YOUR IOT HUB CONNECTION STRING] get MyIoTGateway --connection-string
+  iothub-explorer [YOUR IOT HUB CONNECTION STRING] get MyIoTGateway --connection-string
 </pre>
 
 <img src="/images/iothub-explorer01.png"/> 
