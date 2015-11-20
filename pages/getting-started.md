@@ -42,20 +42,6 @@ In the labs you will write small programs that will run on your computer, connec
 
 Follow the [instructions here to install Node.js][node] on your computer. __Be sure to install [version 0.12.x][node_12_7]__ - not version 4.0.
 
-## Install Johnny-Five
-Johnny-Five is an open source JavaScript framework that provides a simple object model for interacting with a variety of hardware boards and the sensors and devices you connect to them. 
-
-Once you have Node.js installed, install [Johnny-Five][j5] using NPM.
-On Windows, open the Node.js command prompt and type the following:
-<pre>
-  npm install -g johnny-five
-</pre>
-
-On Mac OS X open Terminal and type the following:
-<pre>
-  sudo npm install -g johnny-five
-</pre>
-
 ## Set Up a Development Directory
 Prepare a place to save all of your work in the labs. We recommend an easy to navigate to directory with a relatively short path. Create a new folder/directory for the labs:
 
@@ -89,9 +75,7 @@ That's it for now. You are ready to start the [first set of labs][nextlab].
 [sublime]: http://www.sublimetext.com 
 [eclipse]: http://www.eclipse.org/downloads/ 
 [notepad]: http://notepad-plus-plus.org/
-[git]: http://git-scm.com/
 [node]: http://nodejs.org/
-[j5]: http://www.npmjs.com/package/johnny-five
 [azure]: https://azure.microsoft.com/en-us/pricing/free-trial/
 [msdn]: https://msdn.microsoft.com/subscriptions/manage/
 [node_12_7]: https://nodejs.org/dist/v0.12.7/
