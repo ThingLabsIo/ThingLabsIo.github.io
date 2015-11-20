@@ -57,7 +57,7 @@
   - title: "Visualizing IoT Data"
     url: "/rpi2/04/"
     
-- title: "Azure Tour"
+- title: "Azure Road Tour"
   url: "/azure/"
   side: right
   dropdown:
@@ -69,23 +69,7 @@
     url: "/sending-telemetry/"
   - title: "Visualizing IoT Data"
     url: "/visualize-iot-with-powerbi/"
-    
-    [getting-started]: /getting-started/
-[setup-azure-iot-hub]: /setup-azure-iot-hub/
-[setup-photon]: /setup-photon/
-[setup-arduino]: /setup-arduino/
-[sending-telemetry]: /sending-telemetry/
-[visualize-iot-with-powerbi]: /visualize-iot-with-powerbi/
-
-- title: "Web Summit"
-  url: "/websummit/"
-  side: right
-  dropdown:
-  - title: "Setting Up Your Device"
-    url: "/websummit/01/"
-  - title: "Sending Telemetry to the Cloud"
-    url: "/websummit/02/"
-    
+        
 - title: Attend a Workshop
   url: "/schedule/"
   side: right
