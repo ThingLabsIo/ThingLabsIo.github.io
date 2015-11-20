@@ -234,7 +234,7 @@ When you want to quite the application, press <kbd>CTRL</kbd> + <kbd>C</kbd> twi
 
 In this lab you learned how to write a Node.js + Johnny-Five application that collects environment telemetry and sends it to Azure IoT Hub. In the [next lab][visualize-iot-with-powerbi] you will setup some Azure services to store and visualize the data.
 
-[Next Lab ->][2]
+[Next Lab ->][visualize-iot-with-powerbi]
 
 {% include next-previous-post-in-category.html %}
 
