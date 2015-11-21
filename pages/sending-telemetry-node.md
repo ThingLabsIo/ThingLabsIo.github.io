@@ -72,7 +72,6 @@ Next you will create the application code to gather temperature, humidity, and b
 
 <blockquote>
   PARTICLE PHOTON USERS: In order to complete the next step, you will need the device ID you copied earlier when you were claiming the Photon (or the name/alias you gave the Photon when you updated the firmware to VoodooSpark) and your Particle Cloud access token. To get the access token, open a terminal window (Mac OS X) or Node.js command prompt (Windows) and execute the following command (you may be prompted to login or provide your Particle Cloud password again): 
-</blockquote>
 
 <pre>
   particle token list
@@ -81,6 +80,7 @@ Next you will create the application code to gather temperature, humidity, and b
 Find the token for _user_ (make sure if you see more than one that you choose the one that is not expired).
 
 Optionally you can use a browser to navigate to [Particle Build](https://build.particle.io/) and find your Access Token on the setting page (click on the gear icon in the lower-left part of the screen).
+</blockquote>
 
 ## Write the Weather App
 The Weather app will run on your gateway (your development machine for now) and communicate between your _Thing_ and your Azure IoT Hub. Create another file in the same directory named __weather.js__.
@@ -91,7 +91,7 @@ The first thing you need to do is define the objects you will be working with in
 'use strict';
 // Define the objects you will be working with
 var five = require ("johnny-five");
-var Weather = require("j5-sparkfun-weather-shield")(five);
+var Shield = require("j5-sparkfun-weather-shield")(five);
 var device = require('azure-iot-device');
 
 /* 
@@ -132,13 +132,13 @@ var board = new five.Board({
 In this code you define four variables that you will be working with:
 
 1. <code>five</code> - represents the Johnny-Five framework capabilities, which provide a type of object model for working with boards like Arduino and Particle.
-2. <code>Weather</code> - represents the Weather Shield plugin for Johnny-Five, which is compatible with both the Arduino and Photon variants. 
+2. <code>Shield</code> - represents the Weather Shield plugin for Johnny-Five, which is compatible with both the Arduino and Photon variants. 
 4. <code>board</code> - represents the physical board you are using. Particle Photon users must pass an instance of the Particle-IO plugin object to the Board constructor, specifying the Particle access token and the device ID or alias.
 5. <code>client</code> - the agent class that facilitates the communication between your device and the Azure IoT Hub. It takes the device-specific connection string as an argument and establishes a connection with the IoT Hub.
 
 Now that the objects are created, you can get to the meat of the application. Johnny-Five provides a board 'ready' event that makes a callback when the board is on, initialized and ready for action. Inside the anonymous callback function is where your application code executes (this function is invoked when the board is ready for use).
 
-Johnny-Five provides a collection of objects that represent the board, the pins on the board, and various types of sensors and devices that could be connected to the board. The <code>Weather</code> plug-in that you specified earlier is a software representation of the physical SparkFun Weather Shield that abstracts the Johnny-Five <code>Temperature</code> and <code>Barometer</code> classes that represent the HTU21D humidity sensor and the MPL3115A2 barometric pressure sensor respectively. When you create an instance of the <code>Weather</code> class you will specify the varient of the <code>Weather</code> class -- either <code>ARDUINO</code> or <code>PHOTON</code>.
+Johnny-Five provides a collection of objects that represent the board, the pins on the board, and various types of sensors and devices that could be connected to the board. The <code>Shield</code> plug-in that you specified earlier is a software representation of the physical SparkFun Weather Shield that abstracts the Johnny-Five <code>Temperature</code> and <code>Barometer</code> classes that represent the HTU21D humidity sensor and the MPL3115A2 barometric pressure sensor respectively. When you create an instance of the <code>Shield</code> class you will specify the varient of the <code>Shield</code> class -- either <code>ARDUINO</code> or <code>PHOTON</code>.
 
 In the following code you will invoke the <code>board.on()</code> function which establishes a callback function that is invoked when the board is on, initialized and ready. All of the operational code for the board will be in the <code>board.on()</code> function (helper functions may exist outside the scope on the <code>board.on()</code> function). Within the <code>board.on()</code> function you will create an object reference to the weather shield. Similar to the <code>board</code> object, the object you create to reference the shield will have an <code>on()</code> function that establishes a callback that exposes the data read from the sensors on the shield.
 
@@ -151,8 +151,8 @@ board.on("ready", function() {
     // The SparkFun Weather Shield has two sensors on the I2C bus - 
     // a humidity sensor (HTU21D) which can provide both humidity and temperature, and a 
     // barometer (MPL3115A2) which can provide both barometric pressure and humidity.
-    // Controllers for these are wrapped in the convenient `Weather` plugin class:
-    var weather = new Weather({
+    // Controllers for these are wrapped in a convenient plugin class:
+    var weather = new Shield({
       variant: "ARDUINO", // or PHOTON
       freq: 1000,         // Set the callback frequency to 1-second
       elevation: 100      // Go to http://www.WhatIsMyElevation.com to get your current elevation
@@ -197,7 +197,7 @@ function printResultFor(op) {
 In this code you do a number of things:
 
 1. <code>board.on()</code> - This function triggers the board to invoke the anonymous callback function as soon as the board is on and ready. All of the application code for the device is written inside this callback function.
-2. Define the <code>weather</code> object. This is a representation of the weather shield connected to the board. When you instantiate the object, you can specify a frequency to collect the data from the sensors. Many sensors are capable of collecting data in fraction of a second intervals. You may not want to collect data and send it to your Azure IoT Hub that frequently. The <code>freq</code> property defines (in milliseconds) how often to raise an event to report the data from the sensor. In this example you are establishing the callback at a frequency of once per second for the <code>weather</code> object.
+2. Define the <code>weather</code> object. This is a instance of the wrapper around the temperature and barometer on the weather shield (represented by the Shield object) connected to the board. When you instantiate the object, you can specify a frequency to collect the data from the sensors. Many sensors are capable of collecting data in fraction of a second intervals. You may not want to collect data and send it to your Azure IoT Hub that frequently. The <code>freq</code> property defines (in milliseconds) how often to raise an event to report the data from the sensor. In this example you are establishing the callback at a frequency of once per second for the <code>weather</code> object.
 4. <code>message</code> is the object that represents the data you are sending to Azure IoT Hub. This is a JSON formatted message.
 
 When <code>client.sendEvent()</code> is invoked, the JSON message is sent to Azure IoT Hub. For now, nothing happens with the message once it is received in your IoT Hub because you haven't set up anything that will capture the message and do something with it (we will get to that soon). By default, the messages have a one-day retention time.
