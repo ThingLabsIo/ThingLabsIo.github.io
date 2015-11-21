@@ -94,9 +94,9 @@ Power BI is a data visualization toolkit for organizations. To create a new user
 
 After you have authorized the connection to Power BI, complete the form as follows:
 
-1. OUTPUT ALIAS - TemperatureBI
-2. DATASET NAME - TemperatureDataSet
-3. TABLE NAME - TemperatureTable
+1. OUTPUT ALIAS - WeatherBI
+2. DATASET NAME - WeatherData
+3. TABLE NAME - Weather
 4. GROUP NAME - My Workplace
 
 Click on the checkmark in the lower-right.
@@ -125,13 +125,14 @@ SELECT
     AVG(relativeHumidity) AvgHumidity,
     location,
     deviceId,
+    sensorName,
     System.Timestamp AS Timestamp
 INTO
-    [TemperatureBI]
+    [WeatherBI]
 FROM
     [DeviceInputStream]
 GROUP BY
-    TumblingWindow (second, 5), deviceId, location 
+    TumblingWindow (second, 5), deviceId, sensorName, location 
 {% endhighlight %}
 
 Click __SAVE__ in the lower middle of the screen. Once the query is saved, click __START_ to start the Stream Analytics job. If your Node.js app from the [previous lab][sending-telemetry] isn't still running, go ahead and start it up. It will take a few minutes for the Stream Analytics job to get started and to start sending data to Power BI, but you should see the _TemperatureDataSet_ show up in Power BI within a few minutes.
@@ -140,19 +141,22 @@ Click __SAVE__ in the lower middle of the screen. Once the query is saved, click
 
 Go back to the browser tab where you have Power BI open. Look in the _Datasets_ node in the left-hand navigation. The _TemperatureDataSet_ should appear there within a few minutes of IoT Hub data streaming into the Stream Analytics job. 
 
-1. Click on the _TemperatureDataSet_ dataset to open the report designer.
-2. Select the _Gauge_ chart from the __Visualizations__ toolbox on the right side.
+1. Click on the _WeatherData_ dataset to open the report designer.
+2. Select the _Line_ chart from the __Visualizations__ toolbox on the right side.
 3. Select __maxtempf__ to set it as the _Value_
 4. Click on the dropdown arrow for _maxtempf_ in the _Values_ box and select __Maximum__
+5. Repeat steps 3-4 for __avgtempf__ and __mintempf__, changing their field type to __Average__ and __Minimum__ respectively.
+6. Click on __timestamp__ and set it as the _Axis__
 
-Repeat steps 2-4 for __avgtempf__ and __mintempf__, changing their field type to __Average__ and __Minimum__ respectively.
+<img src="/images/powerbi-linechart.png"/>
 
-<img src="/images/powerbi01.png"/>
+As you are setting the values you should see the line chart updating with the changes. Click __File__ > __Save_ and give the report the name __Weaher__. Hover over the upper-right corner of the chart and click on the pin icon. Create a new dashboard to pin the chart to. Next, click on the dashboard in the left sidebar. On the dashboard you can watch the data update in near-real-time. While you are watching the dashboard, pinch or blow on the sensors on the weather shield and you will see the data change in the chart.
 
-As you are setting the values you should see the line chart updating with the changes. Click __File__ > __Save_ and give the report the name __Temperature Gauges__. Hover over the upper-right corner of each gauge and click on the pin icon. Create a new dashboard to pin the gauges to. Once you have pinned all three gauges, click on the dashboard in the left sidebar. On the dashboard you can watch the data update in near real-time (remember, you set up a tumbling window for 10-seconds, so you will only see updates once every 10-seconds). While you are watching the dashboard, pinch or blow on the sensors on the weather shield and you will see the data change in the gauges.
+You can experiment with creating and pinning other types of charts to make an interesting and useful dashboard.
+
+<img src="/images/powerbi-dashboard.png"/>
 
 ## Conclusion &amp; Next Steps
-
 Congratulations! In this lab you learned how to create an Azure Stream Analytics job to query data coming in to Azure IoT Hub, process it and send it to Power BI. In Power BI you learned how to create reports and pin the data visualizations to a dashboard for near real-time updates.
 
 {% include next-previous-post-in-category.html %}
