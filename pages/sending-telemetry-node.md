@@ -41,9 +41,9 @@ Using your favorite/preferred text/code editor, create a file in your developmen
     "author": "YOUR NAME HERE",
   "license": "MIT",
   "dependencies": {
-    "azure-iot-device": "^1.0.0-preview.6",
-    "johnny-five": "^0.9.10",
-    "j5-sparkfun-weather-shield": "^0.2.0"
+    "azure-iot-device": "1.0.0-preview.6",
+    "johnny-five": "0.9.10",
+    "j5-sparkfun-weather-shield": "0.2.0"
   }
 }
 {% endhighlight %}
@@ -51,7 +51,7 @@ Using your favorite/preferred text/code editor, create a file in your developmen
 If you are using the Particle Photon, add the following line to the <code>dependencies</code> list:
 
 {% highlight javascript %}
-"particle-io": "^0.10.1"
+"particle-io": "0.10.1"
 {% endhighlight %}
 
 With the _package.json_ file created you can use NPM to pull down the necessary Node modules. Open a terminal window (Mac OS X) or Node.js command prompt (Windows) and execute the following commands (replace _C:\Development\IoTLabs_ with the path that leads to your development directory):
