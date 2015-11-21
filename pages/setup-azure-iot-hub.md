@@ -64,10 +64,11 @@ On Windows, open the Node.js command prompt and type the following:
 </pre>
 
 On Mac OS X open Terminal and type the following:
+
 <pre>
   cd ~/Development/IoTLabs
-  sudo npm install -g iothub-explorer
-  sudo npm update -g iothub-explorer
+  npm install -g iothub-explorer
+  npm update -g iothub-explorer
 </pre>
 
 ## Create a New Azure IoT Device
@@ -85,14 +86,10 @@ If you are on a non-Windows machine, or prefer to use a command line interface i
 In the same directory as before, using the Node.js command prompt or Terminal, execute the following commands (you may need to wrap the connections string in quotes, depending on the terminal application you are using). You may replace __MyIoTGateway__ with any name you'd like:
 
 <pre>
-  iothub-explorer [YOUR IOT HUB CONNECTION STRING] create MyIoTGateway
+  iothub-explorer [YOUR IOT HUB CONNECTION STRING] create MyIoTGateway --connection-string
 </pre>
 
-Once a device is created, you can get the device-specific connection string with the following command:
-
-<pre>
-  iothub-explorer [YOUR IOT HUB CONNECTION STRING] get MyIoTGateway --connection-string
-</pre>
+Once a device is created, the device information, including the device-specific connection string will be displayed.
 
 <img src="/images/iothub-explorer01.png"/> 
 

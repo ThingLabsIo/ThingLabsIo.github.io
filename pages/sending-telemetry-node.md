@@ -57,15 +57,24 @@ If you are using the Particle Photon, add the following line to the <code>depend
 With the _package.json_ file created you can use NPM to pull down the necessary Node modules. Open a terminal window (Mac OS X) or Node.js command prompt (Windows) and execute the following commands (replace _C:\Development\IoTLabs_ with the path that leads to your development directory):
 
 On Windows, open the Node.js command prompt and type the following:
+
 <pre>
   cd C:\Development\IoTLabs
   npm install
 </pre>
 
 On Mac OS X open Terminal and type the following:
+
 <pre>
   cd ~/Development/IoTLabs
-  sudo npm install
+  npm install
+</pre>
+
+You can verify the version of your Node.s install (remember, you want v0.12.x) using the <code>-v</code> flag.
+
+<pre>
+  node -v
+  v0.12.7
 </pre>
 
 Next you will create the application code to gather temperature, humidity, and barometer data and send it to the cloud.
@@ -73,13 +82,13 @@ Next you will create the application code to gather temperature, humidity, and b
 <blockquote>
   PARTICLE PHOTON USERS: In order to complete the next step, you will need the device ID you copied earlier when you were claiming the Photon (or the name/alias you gave the Photon when you updated the firmware to VoodooSpark) and your Particle Cloud access token. To get the access token, open a terminal window (Mac OS X) or Node.js command prompt (Windows) and execute the following command (you may be prompted to login or provide your Particle Cloud password again): 
 
-<pre>
-  particle token list
-</pre>
-
-Find the token for _user_ (make sure if you see more than one that you choose the one that is not expired).
-
-Optionally you can use a browser to navigate to [Particle Build](https://build.particle.io/) and find your Access Token on the setting page (click on the gear icon in the lower-left part of the screen).
+  <pre>
+    particle token list
+  </pre>
+  
+  Find the token for _user_ (make sure if you see more than one that you choose the one that is not expired).
+  
+  Optionally you can use a browser to navigate to [Particle Build](https://build.particle.io/) and find your Access Token on the setting page (click on the gear icon in the lower-left part of the screen).
 </blockquote>
 
 ## Write the Weather App

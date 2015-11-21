@@ -37,7 +37,7 @@ On Windows, open the Node.js command prompt and type the following:
 
 On Mac OS X open Terminal and type the following:
 <pre>
-  sudo npm install -g particle-cli
+  npm install -g particle-cli
 </pre>
 
 ## Create a Free Particle Cloud Account
