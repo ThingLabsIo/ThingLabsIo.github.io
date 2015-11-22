@@ -8,36 +8,48 @@ comments: true
 header: no
 breadcrumb: true
 categories:
+    - iot-labs
     - iot-arduino-labs
     - iot-photon-labs
+    - azure-iot
     - maker-101
-author: "Doug Seven"
+author: doug_seven
 permalink: "/azure/"
 ---
 ### Table of Contents
 *  Auto generated table of contents
 {:toc}
 
-## Getting Started
-This is a step-by-step guide to preparing your computer for the Azure IoT Labs.
+The labs in this series build on each other to enable you to prototype your own Internet of Things (IoT) devices. In this lab you will build a solution using a 'Gateway' pattern, where a device (the Gateway) collects data from one or more connected devices/sensors and aggregates the data before sending it to the cloud. For the gateway, you will write a Node.js application that uses an open source framework for interacting with hardware, called [Johnny-Five][j5], which works as a baseline control kit for hardware projects, including the Arduino, Raspberry Pi, and Particle Photon boards. This enables you to write applications in JavaScript that can run as a gateway either on your computer or on a hub device (like an Arduino Y&uacute;n, Raspberry Pi 2, or Intel Edison) connected to an variety of sensors and devices.
 
-Estimated time to complete: 30-minutes
+<img src="/images/gatewaypattern.png"/>
+
+If you want to deploy the applications you build to a gateway device, you will need a device that is capable of running Node.js, such as the Raspberry Pi 2, Arduino Y&uacute;n or the Linino ONE.
+
+## Getting Started
+This is a step-by-step guide to preparing your development computer (Windows or MacOS X) for the Azure IoT Labs.
+
+Estimated time to complete: 20-minutes
 
 [Getting Started =>][getting-started]
 
 ## Setting Up Azure IoT Hub
 In this lab you will provision an Azure IoT Hub and provision an Azure IoT device.
 
-Estimated time to complete: 30-minutes
+Estimated time to complete: 20-minutes
 
 [Setting Up Azure IoT and Your Device =>][setup-azure-iot-hub]
 
 ## Preparing Your Device
 Depending on the device you are using, there are slight differences in how you prepare them and set them up. 
 
-[Preparing Your Arduino][setup-arduino]
+[Option 1: Preparing Your Arduino =>][setup-arduino]
 
-[Preparing Your Particle Photon][setup-photon]
+Estimated time to complete: 20-minutes
+
+[Option 2: Preparing Your Particle Photon =>][setup-photon]
+
+Estimated time to complete: 30-minutes
 
 ## Sending Telemetry to the Cloud
 In this lab you will write a Node.js application to collect sensor readings from a _Thing_ and send the data as messages to your Azure IoT Hub.
@@ -62,3 +74,4 @@ More labs will be coming soon to teach you how to send command and control messa
 [setup-arduino]: /setup-arduino
 [sending-telemetry]: /sending-telemetry
 [visualize-iot-with-powerbi]: /visualize-iot-with-powerbi
+[j5]: http://johnny-five.io
