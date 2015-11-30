@@ -10,7 +10,7 @@ breadcrumb: true
 categories:
     - iot-photon-labs
     - maker-101
-author: "Doug Seven"
+author: doug_seven
 permalink: "/azure/03/"
 ---
 ### Table of Contents
