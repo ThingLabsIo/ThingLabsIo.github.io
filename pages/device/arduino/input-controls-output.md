@@ -1,18 +1,17 @@
 ---
 layout: page-fullwidth
 title: "Input Controls Output"
-subheadline: "Arduino + Azure IoT Lab 4"
+subheadline: "Arduino Thing 101 Labs #4"
 teaser: "In this lab you will use analog input to control digital output."
 show_meta: true
-comments: true
+comments: false
 header: no
 breadcrumb: true
-categories:
-    - iot-arduino-labs
-    - maker-101
-permalink: "/arduino/04/"
+categories: [arduino, iot, maker, javascript, node.js, johnny-five]
+collection: "arduino-101"
+permalink: "/device/arduino/input-controls-output"
 ---
-If you haven't already done so, please follow the instructions in [Lab 00: Getting Started](../00/) section.
+If you haven't already done so, please follow the instructions in [Lab 00: Getting Started](../getting-started) section.
 
 ### Table of Contents
 *  Auto generated table of contents
@@ -21,8 +20,8 @@ If you haven't already done so, please follow the instructions in [Lab 00: Getti
 ## Bill of Materials
 What you will need (all the parts from the previous lessons):
 
-1. [Arduino Uno][uno] or [Arduino Y&uacute;n][yun] 
-2. USB to micro-USB cable
+1. [SparkFun RedBoard Programmed with Arduino - $19.95](https://www.sparkfun.com/products/12757), [Arduino Uno R3 - $24.95](https://www.sparkfun.com/products/11021), or [Arduino Y&uacute;n - $74.95](https://www.sparkfun.com/products/12053)
+2. USB cable to connect the Arduino to your computer (the type will vary depending on the Arduino board you are using)
 3. [5mm Green LED](http://www.sparkfun.com/products/12062)
 4. [330-Ohm 1/4 Watt resistor](http://www.sparkfun.com/products/10969) (Orange-Orange-Brown)
 5. [Photoresistor (5528)](http://www.sparkfun.com/products/9088)
@@ -179,14 +178,10 @@ With the application running try changing the amount of light the photoresistor 
 Press <kbd>CTRL</kbd> + <kbd>C</kbd> twice then <kbd>Enter</kbd>to exit the program without closing the window.
 
 ## Conclusion &amp; Next Steps
-Congratulations! You made a device that both detects its environment and responds to it. You learned about Pulse Width Modulation and the analogWrite() function for simulating analog behavior on a digital device, and you learned how to recreate the Arduino map() and constrain() functions.
+Congratulations! You made a device that both detects its environment and responds to it. You learned about Pulse Width Modulation and the analogWrite() function for simulating analog behavior on a digital device.
 
-In the [next lab][nextlab] you will learn how to start sending data from your Arduino to the Cloud.
-
-[Next Lab ->][1]
+You are now ready for the [Connected Thing Labs][nextlab].
 
 {% include next-previous-post-in-category.html %}
 
-[uno]: http://www.arduino.cc/en/Main/ArduinoBoardUno
-[yun]: http://www.arduino.cc/en/Main/ArduinoBoardYun
-[nextlab]: /arduino/05/
+[nextlab]: /lang/js/azure

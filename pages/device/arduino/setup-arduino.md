@@ -1,31 +1,34 @@
 ---
 layout: page-fullwidth
 title: "Setting Up Your Arduino Firmware"
-subheadline: "Arduino + Azure IoT Lab 1"
+subheadline: "Arduino Thing 101 Labs #1"
 teaser: "In this lab you will install firmware onto your Arduino that will enable communication with the gateway application."
 show_meta: true
-comments: true
+comments: false
 header: no
 breadcrumb: true
-categories:
-    - iot-arduino-labs
-    - maker-101
-author: "Doug Seven"
-permalink: "/arduino/01/"
+categories: [arduino, iot, maker, javascript, node.js, johnny-five]
+author: doug_seven
+permalink: "/device/arduino/setup-arduino"
 ---
 ### Table of Contents
 *  Auto generated table of contents
 {:toc}
 
-If you haven't already done so, please follow the instructions in [Lab 00: Getting Started](../00/) section.
+If you haven't already done so, please follow the instructions in [Lab 00: Getting Started](../getting-started) section.
 
 In this lab you will install the Standard Firmatta onto your Arduino. The Standard Firmatta exposes basic input/output on the device for your gateway application to access.
 
 ## Bill of Materials
 What you will need:
 
-1. [Arduino Uno][uno] or [Arduino Y&uacute;n][yun] 
+1. [SparkFun RedBoard Programmed with Arduino - $19.95](https://www.sparkfun.com/products/12757), [Arduino Uno R3 - $24.95](https://www.sparkfun.com/products/11021), or [Arduino Y&uacute;n - $74.95](https://www.sparkfun.com/products/12053)
 2. USB cable to connect the Arduino to your computer (the type will vary depending on the Arduino board you are using)
+
+## Install the Arduino IDE
+While you won't use the Arduino IDE very much in the set of labs, it is necessary for a couple of things. For one thing, installing the Arduino IDE also installs the USB drivers for the Arduino board.
+
+Go to [http://www.arduino.cc][arduino] and follow the links to download the latest version of the Arduino IDE. Make sure that the checkbox for the USB driver is selected during install (it typically is by default).
 
 ## Upload the Standard Firmata to your Arduino
 For this lab series you will use tools that require your Arduino to have the Standard Firmatta loaded. Fortunately, this is easy to do using the Arduino IDE.
@@ -47,4 +50,5 @@ Congratulations! You have configured a physical device, a software representatio
 
 [uno]: http://www.arduino.cc/en/Main/ArduinoBoardUno
 [yun]: http://www.arduino.cc/en/Main/ArduinoBoardYun
-[nextlab]: /arduino/02/
+[arduino]: http://www.arduino.cc
+[nextlab]: writing-digital-output

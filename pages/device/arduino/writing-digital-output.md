@@ -1,18 +1,18 @@
 ---
 layout: page-fullwidth
 title: "Writing Digital Output"
-subheadline: "Arduino + Azure IoT Lab 2"
-teaser: "In this lab you will write to a digital output."
+subheadline: "Arduino Thing 101 Labs #2"
+teaser: "In this lab you will use one of the digital output pins to send a signal to an LED."
 show_meta: true
-comments: true
+comments: false
 header: no
 breadcrumb: true
-categories:
-    - iot-arduino-labs
-    - maker-101
-permalink: "/arduino/02/"
+categories: [arduino, iot, maker, javascript, node.js, johnny-five]
+collection: "arduino-101"
+author: doug_seven
+permalink: "/device/arduino/writing-digital-output"
 ---
-If you haven't already done so, please follow the instructions in [Lab 00: Getting Started][../00/] section.
+If you haven't already done so, please follow the instructions in [Lab 00: Getting Started][../getting-started] section.
 
 ### Table of Contents
 *  Auto generated table of contents
@@ -23,7 +23,7 @@ In this lab you will use one of the digital output pins to send a signal to an L
 ## Bill of Materials
 What you will need:
 
-1. [Arduino Uno][uno] or [Arduino Y&uacute;n][yun] 
+1. [SparkFun RedBoard Programmed with Arduino - $19.95](https://www.sparkfun.com/products/12757), [Arduino Uno R3 - $24.95](https://www.sparkfun.com/products/11021), or [Arduino Y&uacute;n - $74.95](https://www.sparkfun.com/products/12053)
 2. USB cable to connect the Arduino to your computer (the type will vary depending on the Arduino board you are using)
 3. [5mm Green LED][2]
 4. [330-Ohm 1/4 Watt resistor][3] (Orange-Orange-Brown)
@@ -52,7 +52,7 @@ Since we are using Node.js and Johnny-Five for this lab we can take advantage of
 
 Using your favorite/preferred text/code editor, create a file in your labs folder named __package.json__ and add the following:
 
-{% highlight javascript %}
+{% highlight json %}
 {
   "name": "IoT-Labs-Arduino",
   "repository": {
@@ -66,7 +66,7 @@ Using your favorite/preferred text/code editor, create a file in your labs folde
     "author": "YOUR NAME",
   "license": "MIT",
   "dependencies": {
-    "johnny-five": "^0.8.104"
+    "johnny-five": "0.8.104"
   }
 }
 {% endhighlight %}
@@ -169,10 +169,4 @@ If you want to experiment with more labs like this, you can try out these code s
 
 {% include next-previous-post-in-category.html %}
 
-[uno]: http://www.arduino.cc/en/Main/ArduinoBoardUno
-[yun]: http://www.arduino.cc/en/Main/ArduinoBoardYun
-[1]: http://www.arduino.cc/en/Main/ArduinoBoardYun
-[2]: http://www.sparkfun.com/products/12062
-[3]: http://www.sparkfun.com/products/10969
-[4]: http://www.sparkfun.com/products/13154
-[nextlab]: /arduino/03/
+[nextlab]: reading-analog-output

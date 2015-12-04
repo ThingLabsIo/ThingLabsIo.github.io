@@ -1,18 +1,17 @@
 ---
 layout: page-fullwidth
 title: "Reading Analog Input"
-subheadline: "Arduino + Azure IoT Lab 3"
+subheadline: "Arduino Thing 101 Labs #3"
 teaser: "In this lab you will read input from an analog sensor using a voltage divider."
 show_meta: true
-comments: true
+comments: false
 header: no
 breadcrumb: true
-categories:
-    - iot-arduino-labs
-    - maker-101
-permalink: "/arduino/03/"
+categories: [arduino, iot, maker, javascript, node.js, johnny-five]
+collection: "arduino-101"
+permalink: "/device/arduino/reading-analog-input"
 ---
-If you haven't already done so, please follow the instructions in [Lab 00: Getting Started](../00/) section.
+If you haven't already done so, please follow the instructions in [Lab 00: Getting Started](../getting-started) section.
 
 ### Table of Contents
 *  Auto generated table of contents
@@ -24,8 +23,8 @@ In this lab you will use two resistors - a static resistor and a variable resist
 
 What you will need:
 
-1. [Arduino Uno][uno] or [Arduino Y&uacute;n][yun] 
-2. USB to micro-USB cable
+1. [SparkFun RedBoard Programmed with Arduino - $19.95](https://www.sparkfun.com/products/12757), [Arduino Uno R3 - $24.95](https://www.sparkfun.com/products/11021), or [Arduino Y&uacute;n - $74.95](https://www.sparkfun.com/products/12053)
+2. USB cable to connect the Arduino to your computer (the type will vary depending on the Arduino board you are using)
 3. [Photoresistor (5528)](http://www.sparkfun.com/products/9088)
 4. [10k-Ohm 1/4 Watt resistor](http://www.sparkfun.com/products/10969) (Brown-Black-Orange)
 
@@ -153,6 +152,6 @@ If you want to experiment with more labs like this you can try out these code sa
 
 {% include next-previous-post-in-category.html %}
 
-[nextlab]: /arduino/04/
+[nextlab]: input-controls-output
 [uno]: http://www.arduino.cc/en/Main/ArduinoBoardUno
 [yun]: http://www.arduino.cc/en/Main/ArduinoBoardYun

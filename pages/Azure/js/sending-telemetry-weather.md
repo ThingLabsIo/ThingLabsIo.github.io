@@ -1,32 +1,40 @@
 ---
 layout: page-fullwidth
 title: "Sending Telemetry to the Cloud"
-subheadline: "Microsoft Azure IoT Lab 3"
+subheadline: "Connected Thing Labs using Azure and JavaScript"
 teaser: "In this lab you will gather telemetry and send it to the cloud."
 show_meta: true
-comments: true
+comments: false
 header: no
 breadcrumb: true
-categories:
-  - azure-iot
-  - iot-labs
+categories: [azure, azure-iot-hub, javascript, node.js, johnny-five, arduino, photon]
 author: doug_seven
-permalink: "/sending-telemetry/"
+permalink: "/lang/js/weather/sending-telemetry"
 ---
 ### Table of Contents
 *  Auto generated table of contents
 {:toc}
 
-If you haven't already done so, please follow the instructions in [Lab 00: Getting Started][getting-started] section.
+In this lab you will write a Node.js application that runs on a hub (your development machine) and collects data from a development board and sends it up to your Azure IoT Hub.
 
-In this lab you will write a Node.js application that runs on a hub (your development machine) and collects data from a Particle Photon (over local TCP) and sends it up to your Azure IoT Hub.
-
-## Bill of Materials
+# Bill of Materials
 What you will need:
 
-1. The board that you prepared in the previous lab.
+1. [SparkFun RedBoard Programmed with Arduino - $19.95](https://www.sparkfun.com/products/12757) or [Arduino Uno R3 - $24.95](https://www.sparkfun.com/products/11021) - __NOTE:__ The SparkFun Weather Shield will not work with the Arduino Y&uacute;n without modification.
+2. [SparkFun Weather Shield for Arduino - $39.95](https://www.sparkfun.com/products/12081)
+3. USB cable to connect the Arduino to your computer (the type will vary depending on the Arduino board you are using)
 
-## Setup the App Dependencies
+You must upload the Standard Firmatta to the board. See [Setting Up Your Arduino Firmware](/device/arduino/setup-arduino) for details.
+
+__OR__
+
+1. [Particle Photon Development Kit - $29.00][1]
+2. [SparkFun Weather Shield for Particle Photon - $32.95](https://www.sparkfun.com/products/13630)
+3. USB cable to connect the Photon to your computer
+
+You must upload the VoodooSpark firmware to the Photon. See [Setting Up Your Particle Photon Firmware](/device/photon/setup-photon) for details.
+
+# Setup the App Dependencies
 Since you will be using Node.js for this lab you can take advantage of the dependency management capabilities that Node.js and NPM provide. You need to let your application know that it has a dependency on the following NPM packages - Azure IoT Device, Johnny-Five and Particle-IO. In Node.js this is done with a _package.json_ file. This file provides some basic meta-data about the application, including any dependencies on packages that can be retrieved using NPM (according to [npmjs.com](https://www.npmjs.com) today, NPM stands for Narrating Prophetic Monks...not Node Package Manager like you may have thought).
 
 Using your favorite/preferred text/code editor, create a file in your development directory named __package.json__ and add the following:
@@ -41,9 +49,9 @@ Using your favorite/preferred text/code editor, create a file in your developmen
     "author": "YOUR NAME HERE",
   "license": "MIT",
   "dependencies": {
-    "azure-iot-device": "1.0.0-preview.6",
-    "johnny-five": "0.9.10",
-    "j5-sparkfun-weather-shield": "0.2.0"
+    "azure-iot-device": "latest",
+    "johnny-five": "latest",
+    "j5-sparkfun-weather-shield": "latest"
   }
 }
 {% endhighlight %}
@@ -51,7 +59,7 @@ Using your favorite/preferred text/code editor, create a file in your developmen
 If you are using the Particle Photon, add the following line to the <code>dependencies</code> list:
 
 {% highlight json %}
-"particle-io": "0.10.1"
+"particle-io": "latest"
 {% endhighlight %}
 
 With the _package.json_ file created you can use NPM to pull down the necessary Node modules. Open a terminal window (Mac OS X) or Node.js command prompt (Windows) and execute the following commands (replace _C:\Development\IoTLabs_ with the path that leads to your development directory):
@@ -247,10 +255,7 @@ In this lab you learned how to write a Node.js + Johnny-Five application that co
 
 {% include next-previous-post-in-category.html %}
 
-[getting-started]: /getting-started
-[setup-azure-iot-hub]: /setup-azure-iot-hub
-[setup-photon]: /setup-photon
-[setup-arduino]: /setup-arduino
-[sending-telemetry]: /sending-telemetry
-[visualize-iot-with-powerbi]: /visualize-iot-with-powerbi
+[setup-azure-iot-hub]: ../setup-azure-iot-hub
+[sending-telemetry]: ../sending-telemetry
+[visualize-iot-with-powerbi]: ../visualize-iot-with-powerbi
 [deviceexplorer]: https://github.com/Azure/azure-iot-sdks/blob/master/tools/DeviceExplorer/doc/how_to_use_device_explorer.md

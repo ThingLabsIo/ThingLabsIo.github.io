@@ -21,8 +21,8 @@ description: "»ThingLabs.io empowers you to build connected Things."
 
 # This URL is the main adresse. Don't include a slash at the end.
 #
-url: "https://thinglabsio.github.io"
-baseurl: "https://thinglabsio.github.io"
+url: ""
+baseurl: ""
 
 # This is for the editing function in _/includes/improve_content.html
 # Leave it empty if your site is not on GitHub/GitHub Pages
@@ -34,7 +34,7 @@ improve_content: https://github.com/ThingLabsIo/edit/gh-pages
 # Example: <img src="{{ site.urlimg }}/{{ post.image.title }}">
 # Markdown-Example for posts ![Image Text]({{ site.urlimg }}/image.jpg)
 #
-urlimg: "https://thinglabsio.github.io/images/"
+urlimg: "/images"
 
 
 # Logo size is 600x80 pixels
@@ -208,3 +208,4 @@ google_analytics_tracking_id: UA-62929409-1
 
 gems:
   - jekyll-sitemap
+  - jekyll-paginate

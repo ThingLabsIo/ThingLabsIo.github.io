@@ -12,15 +12,25 @@ widget-1:
     title: "Arduino IoT Labs"
     url: '/arduino/'
     text: 'In these IoT Labs you will begin by learning the basics of working with Arduino micro-controllers and sensors, and move on to connecting them to the Internet. You will learn how to leverage Cloud IoT services to collect data and control devices and use advanced services like machine learning and analytics to discover insights using your <em>Things</em>.'
-    image: arduino-yun-303x182.jpg
+    image: /devices/arduino-yun-255x182.jpg
+    
 widget-2:
     title: "Particle Photon IoT Labs"
     url: '/photon/'
     text: 'In these IoT Labs you will begin by learning the basics of working with the Particle Photon Wi-Fi enabled development kit. You will learn how to leverage Cloud IoT services to collect data and control devices and use advanced services like machine learning and analytics to discover insights using your <em>Things</em>.'
-    image: particle-photon-303x182.jpg
+    image: /devices/particle-photon-303x182.jpg
+    
 widget-3:
-    title: "Attend a Workshop"
-    url: '/schedule/'
-    text: 'Check out where we will be doing the IoT workshop and join us for a fun filled few hours.'
-    image: schedule-303x182.jpg
+    title: "Raspberry Pi 2 IoT Labs"
+    url: '/rpi2/'
+    text: 'In these IoT Labs you will begin by learning the basics of working with the Raspberry Pi 2 running Windows 10 IoT Core. You will learn how to leverage Cloud IoT services to collect data and control devices and use advanced services like machine learning and analytics to discover insights using your <em>Things</em>.'
+    image: /devices/rpi2-281x182.png
+
+#
+# widget-3:
+#     title: "Attend a Workshop"
+#     url: '/schedule/'
+#     text: 'Check out where we will be doing the IoT workshop and join us for a fun filled few hours.'
+#     image: schedule-303x182.jpg
+#
 ---
