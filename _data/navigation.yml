@@ -6,11 +6,7 @@
   url: "/device/"
   side: left
   dropdown:
-  - title: "Arduino Uno"
-    url: "/device/arduino"
-  - title: "Arduino Y&uacute;n"
-    url: "/device/arduino"
-  - title: "SparkFun RedBoard"
+  - title: "Arduino / RedBoard"
     url: "/device/arduino"
   - title: "Particle Photon"
     url: "/device/photon"
@@ -21,9 +17,9 @@
   url: "/lang/"
   side: left
   dropdown:
-  - title: "JavaScript + Node.js"
+  - title: "JavaScript &amp; Node.js"
     url: "/lang/js"
-  - title: "C#"
+  - title: "C# &amp; .NET"
     url: "/lang/cs"
         
 
