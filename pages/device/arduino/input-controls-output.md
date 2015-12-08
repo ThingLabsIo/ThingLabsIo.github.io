@@ -1,5 +1,5 @@
 ---
-layout: page-fullwidth
+layout: page-arduino
 title: "Input Controls Output"
 subheadline: "Arduino Thing 101 Labs #4"
 teaser: "In this lab you will use analog input to control digital output."
@@ -8,10 +8,9 @@ comments: false
 header: no
 breadcrumb: true
 categories: [arduino, iot, maker, javascript, node.js, johnny-five]
-collection: "arduino-101"
-permalink: "/device/arduino/input-controls-output"
+permalink: /device/arduino/input-controls-output/
 ---
-If you haven't already done so, please follow the instructions in [Lab 00: Getting Started](../getting-started) section.
+If you haven't already done so, please follow the instructions in ['Getting Started'](../getting-started/) section.
 
 ### Table of Contents
 *  Auto generated table of contents
@@ -22,10 +21,11 @@ What you will need (all the parts from the previous lessons):
 
 1. [SparkFun RedBoard Programmed with Arduino - $19.95](https://www.sparkfun.com/products/12757), [Arduino Uno R3 - $24.95](https://www.sparkfun.com/products/11021), or [Arduino Y&uacute;n - $74.95](https://www.sparkfun.com/products/12053)
 2. USB cable to connect the Arduino to your computer (the type will vary depending on the Arduino board you are using)
-3. [5mm Green LED](http://www.sparkfun.com/products/12062)
-4. [330-Ohm 1/4 Watt resistor](http://www.sparkfun.com/products/10969) (Orange-Orange-Brown)
-5. [Photoresistor (5528)](http://www.sparkfun.com/products/9088)
-6. [10k-Ohm 1/4 Watt resistor](http://www.sparkfun.com/products/10969) (Brown-Black-Orange)
+3. [5mm Green LED](https://www.sparkfun.com/products/12062)
+5. [Mini Photocell](http://www.sparkfun.com/products/9088)
+6. [10k-Ohm (Brown-Black-Orange) &amp; 330-Ohm (Orange-Orange-Brown) 1/4 Watt resistors](https://www.sparkfun.com/products/10969) 
+
+You can get all of it with [this SparkFun Wish List](http://sfe.io/w120919) for under $50.
 
 ## Wiring the Board
 This lesson combines the previous two lessons, so it's likely that you already have most of the wiring done from the previous lesson. Wire the Arduino according to the diagram.
@@ -182,6 +182,4 @@ Congratulations! You made a device that both detects its environment and respond
 
 You are now ready for the [Connected Thing Labs][nextlab].
 
-{% include next-previous-post-in-category.html %}
-
-[nextlab]: /lang/js/azure
+[nextlab]: /lang/js/azure/

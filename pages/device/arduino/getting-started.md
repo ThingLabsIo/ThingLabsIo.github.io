@@ -1,5 +1,5 @@
 ---
-layout: page-fullwidth
+layout: page-arduino
 title: "Arduino Labs: Getting Started"
 subheadline: "A Step-by-Step Guide"
 teaser: "This is a step-by-step guide to preparing your computer for the Arduino Labs."
@@ -7,9 +7,8 @@ show_meta: true
 comments: false
 header: no
 breadcrumb: true
-categories: [arduino, redboard, maker-101]
-author: doug_seven
-permalink: "/device/arduino/getting-started"
+categories: [arduino, maker]
+permalink: /device/arduino/getting-started/
 ---
 ### Table of Contents
 *  Auto generated table of contents
@@ -29,6 +28,9 @@ If you want to prepare yourself further before the labs you can acquire the foll
 
 1. [SparkFun RedBoard Programmed with Arduino - $19.95](https://www.sparkfun.com/products/12757), [Arduino Uno R3 - $24.95](https://www.sparkfun.com/products/11021), or [Arduino Y&uacute;n - $74.95](https://www.sparkfun.com/products/12053)
 2. USB cable to connect the Arduino to your computer (the type will vary depending on the Arduino board you are using)
+3. [Mini Photocell](http://www.sparkfun.com/products/9088)
+4. [10k-Ohm 1/4 Watt resistor](https://www.sparkfun.com/products/10969) (Brown-Black-Orange)
+
 
 ## Install a Code Editor
 If you don't already have one installed, pick a text/code editor. Feel free to use anything you like, provided it won't inject any extra text into your files.
@@ -74,9 +76,7 @@ C:\Development\IoTLabs
 
 That's it for now. You are ready to start the [first set of labs][nextlab].
 
-{% include next-previous-post-in-category.html %}
-
 [nodejs]: http://nodejs.org/
 [npmj5]: http://www.johnny-five.io
 [node_12_7]: https://nodejs.org/dist/v0.12.7/
-[nextlab]: setup-arduino
+[nextlab]: ../setup-arduino/

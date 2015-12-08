@@ -1,17 +1,15 @@
 ---
-layout: page-fullwidth
-title: "Preparing the Particle Photon"
-subheadline: "Microsoft Azure IoT Lab 2"
-teaser: "In this lab you will claim your Photon and prepare it for use in the lab series."
+layout: page-photon
+title: "Setting Up Your Particle Photon Firmware"
+subheadline: "Particle Photon Thing 101 Labs #1"
+teaser: "In this lab you will install firmware onto your Particle Photon that will enable communication with the gateway application."
 show_meta: true
-comments: true
+comments: false
 header: no
 breadcrumb: true
-categories: [javascript, node.js, johnny-five, photon]
-author: doug_seven
-permalink: "/setup-photon/"
+categories: [photon, iot, maker, javascript, node.js, johnny-five]
+permalink: /device/photon/setup-photon/
 ---
-
 ### Table of Contents
 *  Auto generated table of contents
 {:toc}
@@ -161,22 +159,15 @@ For this lab series you will be controlling the Photon from a master/hub device 
 
 After completing the last step, you should see the indicator LED on your Photon begin to blink. When it returns to the 'breathing' cyan the update is complete.
 
-## Connecting the Weather Shield
-The weather shield comes equipped with two onboard sensors - a HTU21D humidity sensor capable of gathering both humidity and temperature, and a MPL3115A2 barometric pressure sensor. There are connections for other optional sensors, such as wind, rain and soil moisture sensors (we will not be working with the optional sensors in this lab series). Simply plug the Photon into the weather shield so that the USB port on the Photon is on the same side as the RJ-11 plugs on the weather shield. 
-
-<img src="/images/Photon_Weather_Shield.jpg"/>
-
-
 ## Conclusion &amp; Next Steps
-That's it for now. You are ready to start the next lab: [Sending Telemetry to the Cloud =>][sending-telemetry].
+That's it for now. You are ready to start the next lab: [Writing Digital Output ->][writing-digital-output].
 
 {% include next-previous-post-in-category.html %}
 
-[getting-started]: /getting-started/
-[setup-azure-iot-hub]: /setup-azure-iot-hub/
-[setup-photon]: /setup-photon/
-[setup-arduino]: /setup-arduino/
-[sending-telemetry]: /sending-telemetry/
-[visualize-iot-with-powerbi]: /visualize-iot-with-powerbi/
+[getting-started]: ../getting-started/
+[setup-azure-iot-hub]: ../setup-azure-iot-hub/
+[setup-photon]: ../setup-photon/
+[writing-digital-output]: ../writing-digital-output/
+[visualize-iot-with-powerbi]: ../visualize-iot-with-powerbi/
 [particle]: https://build.particle.io/signup
 [particlecli]: http://www.particle.io/prototype#cli

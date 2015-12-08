@@ -7,9 +7,7 @@ show_meta: true
 comments: true
 header: no
 breadcrumb: true
-categories:
-  - azure-iot
-  - iot-labs
+categories: [javascript, node.js, johnny-five, arduino, redboard, photon, azure, iot-hubs]
 author: doug_seven
 permalink: "/sending-telemetry/"
 ---
@@ -17,7 +15,7 @@ permalink: "/sending-telemetry/"
 *  Auto generated table of contents
 {:toc}
 
-If you haven't already done so, please follow the instructions in [Lab 00: Getting Started][getting-started] section.
+If you haven't already done so, please follow the instructions in ['Getting Started'][getting-started] section.
 
 In this lab you will write a Node.js application that runs on a hub (your development machine) and collects data from a Particle Photon (over local TCP) and sends it up to your Azure IoT Hub.
 
@@ -247,10 +245,10 @@ In this lab you learned how to write a Node.js + Johnny-Five application that co
 
 {% include next-previous-post-in-category.html %}
 
-[getting-started]: /getting-started
-[setup-azure-iot-hub]: /setup-azure-iot-hub
-[setup-photon]: /setup-photon
-[setup-arduino]: /setup-arduino
-[sending-telemetry]: /sending-telemetry
-[visualize-iot-with-powerbi]: /visualize-iot-with-powerbi
+[getting-started]: /getting-started/
+[setup-azure-iot-hub]: /setup-azure-iot-hub/
+[setup-photon]: /setup-photon/
+[setup-arduino]: /setup-arduino/
+[sending-telemetry]: /sending-telemetry/
+[visualize-iot-with-powerbi]: /visualize-iot-with-powerbi/
 [deviceexplorer]: https://github.com/Azure/azure-iot-sdks/blob/master/tools/DeviceExplorer/doc/how_to_use_device_explorer.md

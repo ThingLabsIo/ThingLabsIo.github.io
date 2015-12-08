@@ -1,14 +1,14 @@
 ---
-layout: page-arduino
-title: "Arduino Thing Labs"
-subheadline: "Building Connected Things with Arduino programmed boards"
+layout: page-photon
+title: "Particle Photon Thing Labs"
+subheadline: "Building Connected Things with the Particle Photon"
 teaser: "In these Labs you will begin by learning the basics of working with micro-controllers and sensors, and move on to connecting them to the Internet. You will learn how to leverage Cloud IoT services to collect data and control devices and use advanced services like machine learning and analytics to discover insights using your Things."
 show_meta: true
 comments: false
 header: no
 breadcrumb: true
-categories: [arduino, redboard, maker-101]
-permalink: /device/arduino/
+categories: [photon, maker-101]
+permalink: /device/photon/
 ---
 
 # Table of Contents
@@ -16,31 +16,31 @@ permalink: /device/arduino/
 {:toc}
 
 # Getting Started
-This is a step-by-step guide to preparing your computer for the Arduino labs.
+This is a step-by-step guide to preparing your computer for the Particle Photon labs.
 
-Estimated time to complete: 20-minutes. [Go to lab ->](/device/arduino/getting-started/)
+Estimated time to complete: 20-minutes. [Go to lab ->](/device/photon/getting-started/)
 
 # Thing 101 Labs
 
-## Setting Up Your Arduino
-In this lab you will install the Standard Firmatta onto your Arduino. 
+## Setting Up Your Particle Photon
+In this lab you will install the VoodooSpark firmware on your Photon. 
 
-Estimated time to complete: 20-minutes. [Go to lab ->](/device/arduino/setup-arduino/)
+Estimated time to complete: 20-minutes. [Go to lab ->](/device/photon/setup-arduino/)
 
 ## Writing Digital Output
 In this lab you will use one of the digital output pins to send a signal to an LED.
 
-Estimated time to complete: 20-minutes. [Go to lab ->](/device/arduino/writing-digital-output/)
+Estimated time to complete: 20-minutes. [Go to lab ->](/device/photon/writing-digital-output/)
 
 ## Reading Analog Input
 In this lab you will read input from an analog sensor using a voltage divider.
 
-Estimated time to complete: 20-minutes. [Go to lab ->](/device/arduino/reading-analog-input/)
+Estimated time to complete: 20-minutes. [Go to lab ->](/device/photon/reading-analog-input/)
 
 ## Input Controls Output
 In this lab you will use analog input to control digital output.
 
-Estimated time to complete: 20-minutes. [Go to lab ->](/device/arduino/input-controls-output/)
+Estimated time to complete: 20-minutes. [Go to lab ->](/device/photon/input-controls-output/)
 
 # Connected Thing Labs
 There are options for the Connected Things Labs when coding with JavaScript depending on the board you are working with and the sensors, devices or shields you have available. Regardless of which option you pursue, you must first setup your Microsoft Azure IoT Hub. Once you have done that, return to this page to select the next lab based on your hardware.

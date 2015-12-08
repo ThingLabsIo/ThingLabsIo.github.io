@@ -1,5 +1,5 @@
 ---
-layout: page-fullwidth
+layout: page-arduino
 title: "Reading Analog Input"
 subheadline: "Arduino Thing 101 Labs #3"
 teaser: "In this lab you will read input from an analog sensor using a voltage divider."
@@ -8,14 +8,9 @@ comments: false
 header: no
 breadcrumb: true
 categories: [arduino, iot, maker, javascript, node.js, johnny-five]
-collection: "arduino-101"
-permalink: "/device/arduino/reading-analog-input"
+permalink: /device/arduino/reading-analog-input/
 ---
-If you haven't already done so, please follow the instructions in [Lab 00: Getting Started](../getting-started) section.
-
-### Table of Contents
-*  Auto generated table of contents
-{:toc}
+If you haven't already done so, please follow the instructions in ['Getting Started'](../getting-started/) section.
 
 In this lab you will use two resistors - a static resistor and a variable resistor - to create a voltage divider that enables you to effectively understand the intensity of light detected by a photoresistor - essentially a light meter. In the previous lesson you learned how to send OUTPUT and in this lesson you will learn to collect INPUT.
 
@@ -25,8 +20,10 @@ What you will need:
 
 1. [SparkFun RedBoard Programmed with Arduino - $19.95](https://www.sparkfun.com/products/12757), [Arduino Uno R3 - $24.95](https://www.sparkfun.com/products/11021), or [Arduino Y&uacute;n - $74.95](https://www.sparkfun.com/products/12053)
 2. USB cable to connect the Arduino to your computer (the type will vary depending on the Arduino board you are using)
-3. [Photoresistor (5528)](http://www.sparkfun.com/products/9088)
-4. [10k-Ohm 1/4 Watt resistor](http://www.sparkfun.com/products/10969) (Brown-Black-Orange)
+3. [Mini Photocell](http://www.sparkfun.com/products/9088)
+4. [10k-Ohm (Brown-Black-Orange) 1/4 Watt resistor](https://www.sparkfun.com/products/10969) 
+
+You can get all of it with [this SparkFun Wish List](http://sfe.io/w120919) for under $50.
 
 ## Wiring a Voltage Divider
 The first step is to wire up the Arduino to read voltage as determined by the resistance created by the photoresistor. Wire your board according to the diagram (wire colors don't matter, but help with identification of purpose).
@@ -139,19 +136,10 @@ While the application is running and you are seeing data in the console, try cov
 Press <kbd>CTRL</kbd> + <kbd>C</kbd> twice then <kbd>Enter</kbd>to exit the program without closing the window.
 
 ## Conclusion &amp; Next Steps
-Congratulations! You have made your first device that responds to its environment, you learned about a voltage divider and how to read data from an analog input sensor. In the [next lab][1] you will put together the two labs so far to make an LED that responds to the ambient light (and you will learn about Pulse-Width Modulation).
+Congratulations! You have made your first device that responds to its environment, you learned about a voltage divider and how to read data from an analog input sensor. In the [next lab][nextlab] you will put together the two labs so far to make an LED that responds to the ambient light (and you will learn about Pulse-Width Modulation).
 
 [Next Lab ->][nextlab]
 
-## Want to Try Something?
-If you want to experiment with more labs like this you can try out these code samples:
-
-1. [Reading data from a button](https://github.com/ThingLabsIo/IoTLabs/blob/master/Arduino/Labs01_04/lab03_button.js)
-2. [Reading data from a flex resistor](https://github.com/ThingLabsIo/IoTLabs/blob/master/Arduino/Labs01_04/lab03_flex.js)
-3. [Reading data from a temperature sensor](https://github.com/ThingLabsIo/IoTLabs/blob/master/Arduino/Labs01_04/lab03_temp.js)
-
-{% include next-previous-post-in-category.html %}
-
-[nextlab]: input-controls-output
+[nextlab]: ../input-controls-output/
 [uno]: http://www.arduino.cc/en/Main/ArduinoBoardUno
 [yun]: http://www.arduino.cc/en/Main/ArduinoBoardYun

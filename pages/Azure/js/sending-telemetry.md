@@ -9,7 +9,7 @@ header: no
 breadcrumb: true
 categories: [azure, azure-iot-hub, javascript, node.js, johnny-five, arduino, photon]
 author: doug_seven
-permalink: "/lang/js/sending-telemetry"
+permalink: /lang/js/sending-telemetry/
 ---
 ### Table of Contents
 *  Auto generated table of contents

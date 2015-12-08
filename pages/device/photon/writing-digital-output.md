@@ -1,16 +1,14 @@
 ---
-layout: page-fullwidth
+layout: page-photon
 title: "Writing Digital Output"
-subheadline: "Particle Photon IoT Lab 1"
-teaser: "In this lab you will write to a digital output."
+subheadline: "Arduino Thing 101 Labs #2"
+teaser: "In this lab you will use one of the digital output pins to send a signal to an LED."
 show_meta: true
-comments: true
+comments: false
 header: no
 breadcrumb: true
-categories:
-    - iot-photon-labs
-    - maker-101
-permalink: "/photon/01/"
+categories: [photon, iot, maker, javascript, node.js, johnny-five]
+permalink: /device/photon/writing-digital-output/
 ---
 If you haven't already done so, please follow the instructions in [Lab 00: Getting Started](/photon/00/) section.
 

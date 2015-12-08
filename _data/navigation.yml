@@ -7,20 +7,20 @@
   side: left
   dropdown:
   - title: "Arduino / RedBoard"
-    url: "/device/arduino"
+    url: "/device/arduino/"
   - title: "Particle Photon"
-    url: "/device/photon"
+    url: "/device/photon/"
   - title: "Raspberry Pi 2"
-    url: "/device/rpi2"
+    url: "/device/rpi2/"
     
 - title: "Labs by Language"
   url: "/lang/"
   side: left
   dropdown:
   - title: "JavaScript &amp; Node.js"
-    url: "/lang/js"
+    url: "/lang/js/"
   - title: "C# &amp; .NET"
-    url: "/lang/cs"
+    url: "/lang/cs/"
         
 
     
@@ -29,17 +29,17 @@
   side: right
   dropdown:
   - title: "Getting Started"
-    url: "/getting-started"
+    url: "/getting-started/"
   - title: "Setting Up Azure IoT Hub"
-    url: "/setup-azure-iot-hub"
+    url: "/setup-azure-iot-hub/"
   - title: "Option 1: Preparing the Arduino"
-    url: "/setup-arduino"
+    url: "/setup-arduino/"
   - title: "Option 2: Preparing the Particle Photon"
-    url: "/setup-photon"
+    url: "/setup-photon/"
   - title: "Sending Telemetry to the Cloud"
-    url: "/sending-telemetry"
+    url: "/sending-telemetry/"
   - title: "Visualizing IoT Data"
-    url: "/visualize-iot-with-powerbi"
+    url: "/visualize-iot-with-powerbi/"
         
 - title: Attend a Workshop
   url: "/schedule/"

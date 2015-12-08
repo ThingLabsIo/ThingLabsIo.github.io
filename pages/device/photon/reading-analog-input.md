@@ -1,18 +1,16 @@
 ---
-layout: page-fullwidth
+layout: page-photon
 title: "Reading Analog Input"
-subheadline: "Particle Photon IoT Lab 2"
+subheadline: "Particle Photon Thing 101 Labs #3"
 teaser: "In this lab you will read input from an analog sensor using a voltage divider."
 show_meta: true
-comments: true
+comments: false
 header: no
 breadcrumb: true
-categories:
-    - iot-photon-labs
-    - maker-101
-permalink: "/photon/02/"
+categories: [photon, iot, maker, javascript, node.js, johnny-five]
+permalink: /device/photon/reading-analog-input/
 ---
-If you haven't already done so, please follow the instructions in [Lab 00: Getting Started](/photon/00/) section.
+If you haven't already done so, please follow the instructions in ['Getting Started'](../getting-started/) section.
 
 ### Table of Contents
 *  Auto generated table of contents
@@ -28,7 +26,6 @@ What you will need:
 2. USB to micro-USB cable (there is one included in the [Photon Development Kit][1])
 3. Photoresistor (there is one included in the [Photon Development Kit][1])
 4. 220-Ohm 1/4 Watt resistor (there is one included in the [Photon Development Kit][1])
-5. [Jumper wires](https://www.sparkfun.com/products/12795)
 
 For this lab series you are using a Particle Photon, a small Wi-Fi enabled development board. The Photon is an excellent prototyping board for connected Things and Particle, the makers of the Photon, sell the P0 chip that drives the board (so when you are ready to go into production you can easily use the same chip). While you can develop for the Photon using Particle Build or Particle Dev and leverage the Particle Cloud, this lab series is designed to teach you how to build a Wi-Fi based hub-and-spoke system, similar to how SmartThings or Phillips Hue works. For the first few labs you will learn how to create Node.js applications that run on your PC and control the Photon. Later in the lab you will learn how to deploy the Node.js applications to a hub device, like a Raspberry Pi 2 or an Arduino Y&uacute;n, which will act as the field gateway for all of the connected Photons in your solution.
 
@@ -186,10 +183,5 @@ Congratulations! You have made your first device that understands its environmen
 
 [Next Lab ->][5]
 
-{% include next-previous-post-in-category.html %}
-
 [1]: https://store.particle.io/?product=photon-kit
-[2]: https://github.com/ThingLabsIo/IoTLabs/blob/master/Arduino/Labs01_03/lab02_button.js
-[3]: https://github.com/ThingLabsIo/IoTLabs/blob/master/Arduino/Labs01_03/lab02_flex.js
-[4]: https://github.com/ThingLabsIo/IoTLabs/blob/master/Arduino/Labs01_03/lab02_temp.js
-[5]: /photon/03/
+[nextlab]: ../input-controls-output/

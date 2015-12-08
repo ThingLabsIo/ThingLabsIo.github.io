@@ -8,7 +8,7 @@ comments: false
 header: no
 breadcrumb: true
 categories: [arduino, redboard, maker-101]
-permalink: /lang/js/azure
+permalink: /lang/js/azure/
 ---
 
 # Table of Contents

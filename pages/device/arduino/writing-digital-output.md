@@ -1,5 +1,5 @@
 ---
-layout: page-fullwidth
+layout: page-arduino
 title: "Writing Digital Output"
 subheadline: "Arduino Thing 101 Labs #2"
 teaser: "In this lab you will use one of the digital output pins to send a signal to an LED."
@@ -8,11 +8,9 @@ comments: false
 header: no
 breadcrumb: true
 categories: [arduino, iot, maker, javascript, node.js, johnny-five]
-collection: "arduino-101"
-author: doug_seven
-permalink: "/device/arduino/writing-digital-output"
+permalink: /device/arduino/writing-digital-output/
 ---
-If you haven't already done so, please follow the instructions in [Lab 00: Getting Started][../getting-started] section.
+If you haven't already done so, please follow the instructions in ['Getting Started'](../getting-started/) section.
 
 ### Table of Contents
 *  Auto generated table of contents
@@ -25,8 +23,10 @@ What you will need:
 
 1. [SparkFun RedBoard Programmed with Arduino - $19.95](https://www.sparkfun.com/products/12757), [Arduino Uno R3 - $24.95](https://www.sparkfun.com/products/11021), or [Arduino Y&uacute;n - $74.95](https://www.sparkfun.com/products/12053)
 2. USB cable to connect the Arduino to your computer (the type will vary depending on the Arduino board you are using)
-3. [5mm Green LED][2]
-4. [330-Ohm 1/4 Watt resistor][3] (Orange-Orange-Brown)
+3. [5mm Green LED](https://www.sparkfun.com/products/12062)
+4. [330-Ohm (Orange-Orange-Brown) 1/4 Watt resistor](https://www.sparkfun.com/products/10969)
+
+You can get all of it with [this SparkFun Wish List](http://sfe.io/w120919) for under $50.
 
 ## Wiring the LED
 Next you need to wire up the Arduino board so that it can send on and off commands to the LED. You can wire your board according to the diagram (wire colors don't matter, but help with identification of purpose).
@@ -161,12 +161,4 @@ In the [next lab][nextlab] you will learn how to read voltage coming in on an an
 
 [Next Lab ->][nextlab]
 
-## Want to Try Something?
-If you want to experiment with more labs like this, you can try out these code samples:
-
-1. [Writing out to a RGB LED](https://github.com/ThingLabsIo/IoTLabs/blob/master/Arduino/Labs01_04/lab02_rgb.js)
-2. [Writing out to a Servo](https://github.com/ThingLabsIo/IoTLabs/blob/master/Arduino/Labs01_04/lab02_servo.js)
-
-{% include next-previous-post-in-category.html %}
-
-[nextlab]: reading-analog-output
+[nextlab]: ../reading-analog-output/

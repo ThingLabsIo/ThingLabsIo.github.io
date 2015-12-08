@@ -7,11 +7,7 @@ show_meta: true
 comments: true
 header: no
 breadcrumb: true
-categories:
-    - azure-iot
-    - iot-labs
-    - stream-analytics
-    - power-bi
+categories: [azure, iot-hubs, power-bi, stream-analytics]
 author: doug_seven
 permalink: "/visualize-iot-with-powerbi/"
 ---
@@ -19,7 +15,7 @@ permalink: "/visualize-iot-with-powerbi/"
 *  Auto generated table of contents
 {:toc}
 
-If you haven't already done so, please follow the instructions in [Lab 00: Getting Started](/getting-started/) section.
+If you haven't already done so, please follow the instructions in ['Getting Started'][getting-started] section.
 
 In this lab you will process the data that you are sending into Azure IoT Hub using Azure Stream Analytics so that you can visualize it using Power BI.
 
@@ -161,9 +157,9 @@ Congratulations! In this lab you learned how to create an Azure Stream Analytics
 
 {% include next-previous-post-in-category.html %}
 
-[getting-started]: /getting-started
-[setup-azure-iot-hub]: /setup-azure-iot-hub
-[setup-photon]: /setup-photon
-[setup-arduino]: /setup-arduino
-[sending-telemetry]: /sending-telemetry
-[visualize-iot-with-powerbi]: /visualize-iot-with-powerbi
+[getting-started]: /getting-started/
+[setup-azure-iot-hub]: /setup-azure-iot-hub/
+[setup-photon]: /setup-photon/
+[setup-arduino]: /setup-arduino/
+[sending-telemetry]: /sending-telemetry/
+[visualize-iot-with-powerbi]: /visualize-iot-with-powerbi/
