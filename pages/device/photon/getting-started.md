@@ -1,17 +1,14 @@
 ---
-layout: page-fullwidth
-title: "Particle Photon IoT Labs: Getting Started"
-subheadline: "A Step-by-Step Guide"
-teaser: "This is a step-by-step guide to preparing your computer for the Particle Photon IoT Labs."
+layout: page-photon
+title: "Getting Started"
+subheadline: "Building Connected Things with the Particle Photon"
+teaser: "This is a step-by-step guide to preparing your computer for the Arduino Labs."
 show_meta: true
-comments: true
+comments: false
 header: no
 breadcrumb: true
-categories:
-    - iot-photon-labs
-    - maker-101
-author: "Doug Seven"
-permalink: "/photon/00/"
+categories: [photon, maker]
+permalink: /device/photon/getting-started/
 ---
 ### Table of Contents
 *  Auto generated table of contents
@@ -29,19 +26,21 @@ To prepare your development environment for this lab series you don't need anyth
 
 If you want to prepare yourself further before the labs you can acquire the following:
 
-1. [Particle Photon Development Kit - $29.00][1]
-2. [Jumper wires - $1.95](https://www.sparkfun.com/products/12795)
+1. [Particle Photon Development Kit][1]
+2. USB to micro-USB cable (there is one included in the [Photon Development Kit][1])
+3. LED (there is one included in the [Photon Development Kit][1])
+4. 220-Ohm 1/4 Watt resistor (there is one included in the [Photon Development Kit][1])
 
 ## Install a Code Editor
 If you don't already have one installed, pick a text/code editor. Feel free to use anything you like, provided it won't inject any extra text into your files.
 
 Some Options:
 
-* [Visual Studio Code][4] (this is our preferred tool)
-* [Visual Studio][5]
-* [Sublime Text][6] 
-* [Eclipse][7] 
-* [Notepad++][8]
+* [Visual Studio Code](http://code.visualstudio.com) (this is our preferred tool)
+* [Visual Studio](http://www.visualstudio.com)
+* [Sublime Text](http://www.sublimetext.com) 
+* [Eclipse](http://www.eclipse.org/downloads/) 
+* [Notepad++](http://notepad-plus-plus.org/)
 
 ## Install Node.js v0.12.7
 In the labs you will write small programs that will run on your computer, connected to your Photon. These programs will be written in JavaScript and will be built on Node.js. If you are not familiar or experienced with Node.js, don't worry. You will learn everything you need to know for these labs in these labs. 
@@ -94,9 +93,7 @@ The Particle Photon is pre-configured to connect to the Particle Cloud. In order
 ## Create a Microsoft Azure Trial Account
 In this lab series you will use Microsoft Azure as the cloud backend for your IoT solution. If you don't already have an Azure account, go to [https://azure.microsoft.com/en-us/pricing/free-trial/][15] to start a free trial of Microsoft Azure. You may need a credit card for identity verification, but the trial is completely free. If you have an MSDN Subscription you may be eligible for free credits to Microsoft Azure every month. Check your [MSDN account][16] page for details.
 
-That's it for now. You are ready to start the [first set of labs][13].
-
-{% include next-previous-post-in-category.html %}
+<a class="radius button small" href="{{ site.url }}/device/photon/setup-photon/">Next Lab: Setting Up Your Particle Photon ›</a>
 
  [1]: https://store.particle.io/?product=photon-kit
  [3]: http://www.particle.io/prototype#cli
@@ -109,7 +106,6 @@ That's it for now. You are ready to start the [first set of labs][13].
  [10]: http://nodejs.org/
  [11]: http://www.npmjs.com/package/johnny-five
  [12]: http://www.nitrogen.io
- [13]: /photon/01/
  [14]: https://build.particle.io/signup
  [15]: https://azure.microsoft.com/en-us/pricing/free-trial/
  [16]: https://msdn.microsoft.com/subscriptions/manage/

@@ -1,7 +1,7 @@
 ---
 layout: page-arduino
 title: "Input Controls Output"
-subheadline: "Arduino Thing 101 Labs #4"
+subheadline: "Arduino Thing 101 Labs"
 teaser: "In this lab you will use analog input to control digital output."
 show_meta: true
 comments: false
@@ -59,9 +59,9 @@ PWM simulates analog data by creating a square wave (basically a repeating switc
 Because the time windows of a cycle is too fast for the human eye to perceive (about 2 milliseconds on the Arduino pins that support PWM), instead of causing an LED to strobe or flicker, it simply appears to be more or less bright. Using a 25% duty cycle the LED would be on (HIGH output) for half a millisecond and off (LOW output) for 1.5 milliseconds which makes the LED appear to be at 25% brightness. So while we aren't truly sending analog data to a digital LED, we are using PWM to simulate the effect of analog data.
 
 ## Writing the Code
-For this lab you will create a new file named <strong>lab03.js</strong> in the same directory as you did in the previous labs. There are no additional dependencies, so we don't need to make any changes to the _package.json_ file.
+For this lab you will create a new file named <strong>inandout.js</strong> in the same directory as you did in the previous labs. There are no additional dependencies, so we don't need to make any changes to the _package.json_ file.
 
-In the lab03.js file start by declaring the key objects, including a variable for the LED pin and the analog pin you will use (digital pin 11 for the LED and analog pin A0 for the photoresistor - if you still have your project board wired up from the previous labs then you should be all set). You should also stub out the <code>board.on()</code> callback function for Johnny Five.
+In the _inandout.js_ file start by declaring the key objects, including a variable for the LED pin and the analog pin you will use (digital pin 11 for the LED and analog pin A0 for the photoresistor - if you still have your project board wired up from the previous labs then you should be all set). You should also stub out the <code>board.on()</code> callback function for Johnny Five.
 
 {% highlight javascript %}
 'use strict';
@@ -147,12 +147,12 @@ To run the application, plug your Arduino into your computer with the USB cable.
 
 <pre>
 cd C:\Development\IoTLabs
-node lab03.js
+node inandout.js
 </pre>
 
 You should see some lights on the board blink a little as the app is initialized, and then you should see something like the following in the terminal/console window (the actual values will depend on how much light the photoresistor is receiving):
 <pre>
-C:\Development\IoTLabs>node lab03.js
+C:\Development\IoTLabs>node inandout.js
 1429678663007 Device(s) COM3
 1429678663038 Connected COM3
 1429678668085 Repl Initialized

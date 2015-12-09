@@ -1,7 +1,7 @@
 ---
 layout: page-arduino
 title: "Arduino Labs: Getting Started"
-subheadline: "A Step-by-Step Guide"
+subheadline: "Arduino Thing 101 Labs"
 teaser: "This is a step-by-step guide to preparing your computer for the Arduino Labs."
 show_meta: true
 comments: false

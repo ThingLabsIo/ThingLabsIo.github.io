@@ -1,5 +1,5 @@
 ---
-layout: page-fullwidth
+layout: page-azure
 title: "Sending Telemetry to the Cloud"
 subheadline: "Connected Thing Labs using Azure and JavaScript"
 teaser: "In this lab you will gather telemetry and send it to the cloud."
@@ -8,37 +8,40 @@ comments: false
 header: no
 breadcrumb: true
 categories: [azure, azure-iot-hub, javascript, node.js, johnny-five, arduino, photon]
-author: doug_seven
 permalink: /lang/js/sending-telemetry/
 ---
-### Table of Contents
+# Table of Contents
 *  Auto generated table of contents
 {:toc}
 
 In this lab you will write a Node.js application that runs on a hub (your development machine) and collects data from a development board and sends it up to your Azure IoT Hub.
 
-## Bill of Materials
+# Bill of Materials
 What you will need:
 
-1. [SparkFun RedBoard Programmed with Arduino - $19.95](https://www.sparkfun.com/products/12757), [Arduino Uno R3 - $24.95](https://www.sparkfun.com/products/11021), [Arduino Y&uacute;n - $74.95](https://www.sparkfun.com/products/12053), or [Particle Photon Development Kit - $29.00](https://store.particle.io/?product=photon-kit)
+1. One of the following development boards:
+  * [SparkFun RedBoard Programmed with Arduino](https://www.sparkfun.com/products/12757)
+  * [Arduino Uno R3](https://www.sparkfun.com/products/11021)
+  * [Arduino Y&uacute;n](https://www.sparkfun.com/products/12053)
+  * [Particle Photon Development Kit](https://store.particle.io/?product=photon-kit)
 2. USB cable to connect the board to your computer (the type will vary depending on the board you are using)
 3. [5mm Green LED](http://www.sparkfun.com/products/12062)
-4. [330-Ohm 1/4 Watt resistor](http://www.sparkfun.com/products/10969) (Orange-Orange-Brown)
+4. [330 Ohm 1/4 Watt resistor](http://www.sparkfun.com/products/10969) (Orange-Orange-Brown)
 5. [Photoresistor (5528)](http://www.sparkfun.com/products/9088)
-6. [10k-Ohm 1/4 Watt resistor](http://www.sparkfun.com/products/10969) (Brown-Black-Orange)
+6. [10k Ohm 1/4 Watt resistor](http://www.sparkfun.com/products/10969) (Brown-Black-Orange)
 
 For Arduino and RedBoard, you must upload the Standard Firmatta to the board. See [Setting Up Your Arduino Firmware](/device/arduino/setup-arduino) for details. 
 
 For Particle Photon, you must upload the VoodooSpark firmware to the Photon. See [Setting Up Your Particle Photon Firmware](/device/photon/setup-photon) for details.
 
 # Wiring the Board
-This lab follows the same wiring plan as [Arduino: Reading Analog Input](/device/arduino/reading-analog-input) or [Photon: Reading Analog Input](/device/photon/reading-analog-input). If your board is still wired up, you can leave it as is and go to the next step. If not, wire it as follows.
+This lab follows the same wiring plan as [Arduino: Reading Analog Input](/device/arduino/reading-analog-input/) or [Photon: Reading Analog Input](/device/photon/reading-analog-input/). If your board is still wired up, you can leave it as is and go to the next step. If not, wire it as follows.
 
 ## Arduino Wiring
-<img src="/images/Lab03_bb.png"/>
+<img src="/images/Lab02_bb.png"/>
 
 ## Photon Wiring
-<img src="/images/Lab03_bb.png"/>
+<img src="/images/photon_lab02_bb.png"/>
 
 ### Resistors
 The 10k Ohm resistor is one part of the voltage divider, working in partnership with the photoresistor.
@@ -50,14 +53,14 @@ This is where building a habit of connecting positive (5V) and negative (GND) pi
 
 1. Connect 3.3V to the positive side rail.
 2. Connect GND to the negative side rail.
-3. Connect the red/positive side rail to one end of the 10k resistor.
+3. Connect the red/positive side rail to one end of the 10k Ohm resistor.
 4. Connect the other end of the 10k Ohm resistor to both one end of the photoresistor and to analog pin 0 (A0).
 5. Connect the other end of the photoresistor to the negative side rail.
 6. Connect digital pin 13 (or D1 for the Photon) to the positive lead of the LED (the longer lead is the positive lead).
 7. Connect the other lead from the LED to the 330 Ohm resistor.
 8. Connect the other end of the 330 Ohm resistor to the negative side rail.
 
-## Write the Code
+# Write the Code
 Since you are using Node.js for this lab you can take advantage of the dependency management capabilities that Node.js and NPM provide. 
 You need to let your application know that it has a dependency on the __Azure IoT Device__ package in addition to the __Johnny-Five__ package. 
 In Node.js this is done with the _package.json_ file. This file provides some basic meta-data about the application, including any dependencies 
@@ -267,7 +270,7 @@ After the board initializes you will see messages printing out in the console on
 Azure IoT Hub.
 
 <blockquote>
-  If you downloaded the [Device Explorer[deviceexplorer] utility for Windows in ['Setting Up Azure IoT Hub'](/lang/js/setup-azure-iot-hub) you can open the _Data_ tab, select a device, 
+  If you downloaded the [Device Explorer][deviceexplorer] utility for Windows in ['Setting Up Azure IoT Hub'][setup-azure-iot-hub] you can open the _Data_ tab, select a device, 
   and click _Monitor_ to begin monitoring messages as they come into your Azure IoT Hub.
 </blockquote>
 
@@ -278,13 +281,11 @@ When you want to quite the application, press <kbd>CTRL</kbd> + <kbd>C</kbd> twi
 </blockquote> 
 
 ## Conclusions &amp; Next Steps
-Congratulations! You have created your first internet connected Thing. Welcome to the world of IoT. In the [next lab][nextlab] you will setup some Azure services to store and visualize the data.
+Congratulations! You have created your first internet connected Thing. Welcome to the world of IoT. In the [next lab][visualize-iot-with-powerbi/] you will setup some Azure services to store and visualize the data.
 
-[Next Lab ->][nextlab]
+<a class="radius button small" href="{{ site.url }}/lang/js/visualize-iot-with-powerbi/">Next Lab: Visualize IoT with Power BI ›</a>
 
-{% include next-previous-post-in-category.html %}
-
-[setup-azure-iot-hub]: ../setup-azure-iot-hub
-[sending-telemetry]: ../sending-telemetry
-[visualize-iot-with-powerbi]: ../visualize-iot-with-powerbi
+[setup-azure-iot-hub]: ../setup-azure-iot-hub/
+[sending-telemetry]: ../sending-telemetry/
+[visualize-iot-with-powerbi]: ../visualize-iot-with-powerbi/
 [deviceexplorer]: https://github.com/Azure/azure-iot-sdks/blob/master/tools/DeviceExplorer/doc/how_to_use_device_explorer.md

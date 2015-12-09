@@ -1,7 +1,7 @@
 ---
 layout: page-arduino
 title: "Setting Up Your Arduino Firmware"
-subheadline: "Arduino Thing 101 Labs #1"
+subheadline: "Arduino Thing 101 Labs"
 teaser: "In this lab you will install firmware onto your Arduino that will enable communication with the gateway application."
 show_meta: true
 comments: false

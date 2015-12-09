@@ -47,7 +47,7 @@ For this lab series you will use tools that require your Arduino to have the Sta
 6. Using the _Sketch_ menu, select _Upload_. This will upload the firmware to your Arduino (you should see the lights on the Arduino blink while this happens).
 7. Close all Arduino IDE windows.
 
-#Writing DIgital Output
+# Writing DIgital Output
 In this lab you will use one of the digital output pins to send a signal to an LED. You will use digital pin 13, which also has an LED on the board connected to it (so you will be able to see it turn on and off even if you mis-wire something). While this lesson could be done using only the onboard LED, one of the objectives of this lab is to familiarize you with connecting input and output devices (an LED is an output device) to the board and controlling them with software.
 
 ## Wiring the LED

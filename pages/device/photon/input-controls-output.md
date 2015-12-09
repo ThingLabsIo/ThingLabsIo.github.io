@@ -1,18 +1,16 @@
 ---
-layout: page-fullwidth
+layout: page-photon
 title: "Input Controls Output"
-subheadline: "Particle Photon IoT Lab 3"
-teaser: "In this lab you will use analog input to control digital output."
+subheadline: "Building Connected Things with the Particle Photon"
+teaser: "In this lab you will read input from an analog sensor using a voltage divider and control an LED based on the input reading."
 show_meta: true
-comments: true
+comments: false
 header: no
 breadcrumb: true
-categories:
-    - iot-photon-labs
-    - maker-101
-permalink: "/photon/03/"
+categories: [photon, iot, maker, javascript, node.js, johnny-five]
+permalink: "/device/photon/input-controls-output/"
 ---
-If you haven't already done so, please follow the instructions in [Lab 00: Getting Started](/photon/00/) section.
+If you haven't already done so, please follow the instructions in ['Getting Started'](../getting-started/) section.
 
 ### Table of Contents
 *  Auto generated table of contents
@@ -21,12 +19,12 @@ If you haven't already done so, please follow the instructions in [Lab 00: Getti
 ## Bill of Materials
 What you will need (all the parts from the previous lessons):
 
-1. [Particle Photon][1]
+1. [Particle Photon Development Kit][1]
 2. USB to micro-USB cable (there is one included in the [Photon Development Kit][1])
 3. LED (there is one included in the [Photon Development Kit][1])
-4. Two (2) 220-Ohm 1/4 Watt resistor (there are two included in the [Photon Development Kit][1])
-5. Photoresistor (there is one included in the [Photon Development Kit][1])
-7. [Jumper wires](https://www.sparkfun.com/products/12795)
+4. Photoresistor (there is one included in the [Photon Development Kit][1])
+5. Two (2) 220-Ohm 1/4 Watt resistor (there are two included in the [Photon Development Kit][1])
+6. [One M/M jumper wire](https://www.sparkfun.com/products/11026)
 
 For this lab series you are using a Particle Photon, a small Wi-Fi enabled development board. The Photon is an excellent prototyping board for connected Things and Particle, the makers of the Photon, sell the P0 chip that drives the board (so when you are ready to go into production you can easily use the same chip). While you can develop for the Photon using Particle Build or Particle Dev and leverage the Particle Cloud, this lab series is designed to teach you how to build a Wi-Fi based hub-and-spoke system, similar to how SmartThings or Phillips Hue works. For the first few labs you will learn how to create Node.js applications that run on your PC and control the Photon. Later in the lab you will learn how to deploy the Node.js applications to a hub device, like a Raspberry Pi 2 or an Arduino Y&uacute;n, which will act as the field gateway for all of the connected Photons in your solution.
 
@@ -62,11 +60,12 @@ PWM simulates analog data by creating a square wave (basically a repeating switc
 Because the time windows of a cycle is too fast for the human eye to perceive (about 2 milliseconds on the Photon pins that support PWM), instead of causing an LED to strobe or flicker, it simply appears to be more or less bright. Using a 25% duty cycle the LED would be on (HIGH output) for half a millisecond and off (LOW output) for 1.5 milliseconds which makes the LED appear to be at 25% brightness. So while we aren't truly sending analog data to a digital LED, we are using PWM to simulate the effect of analog data.
 
 ## Writing the Code
-For this lab you will create a new file named <strong>lab03.js</strong> in the same directory as you did in the previous labs. There are no additional dependencies, so you don't need to make any changes to the package.json file.
+For this lab you will create a new file named <strong>inandout.js</strong> in the same directory as you did in the previous labs. There are no additional dependencies, so you don't need to make any changes to the package.json file.
 
-In the lab03.js file start by declaring the key objects, including a variable for the LED pin and the analog pin you will use (digital pin _D0_ for the LED and analog pin _A0_ for the photoresistor - if you still have your project board wired up from the previous labs then you should be all set). You should also stub out the <code>board.on()</code> callback function for Johnny Five.
+In the _inandout.js_ file start by declaring the key objects, including a variable for the LED pin and the analog pin you will use (digital pin _D0_ for the LED and analog pin _A0_ for the photoresistor - if you still have your project board wired up from the previous labs then you should be all set). You should also stub out the <code>board.on()</code> callback function for Johnny Five.
 
 {% highlight javascript %}
+'use strict'
 // Define the Jonny Five and Particle-IO variables
 var five = require("johnny-five");
 var particle = require("particle-io");
@@ -144,12 +143,12 @@ To run the application, plug the Photon into a power supply using the USB cable.
 
 <pre>
 cd C:\Development\IoTLabs
-node lab03.js
+node inandout.js
 </pre>
 
 You should see the indicator LED blink a little as the app is initialized, and then you should see something like the following in the terminal/console window (the actual values will depend on how much light the photoresistor is receiving):
 <pre>
-c:\Development\IoTLabs>node lab03.js
+c:\Development\IoTLabs>node inandout.js
 1446321771050 Device(s) particle-io  
 1446321772194 Connected particle-io  
 1446321772266 Repl Initialized  
@@ -172,9 +171,7 @@ Congratulations! You made a device that both detects its environment and respond
 
 In the [next lab][2] you will learn how to start sending data from your Photon to the Cloud.
 
-[Next Lab ->][2]
-
-{% include next-previous-post-in-category.html %}
+<a class="radius button small" href="{{ site.url }}/lang/js/azure/">Next Lab: Input Controls Output ›</a>
 
 [1]: https://store.particle.io/?product=photon-kit
-[2]: /photon/04/
+[2]: /lang/js/azure/

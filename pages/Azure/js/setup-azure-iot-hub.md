@@ -1,5 +1,5 @@
 ---
-layout: page-fullwidth
+layout: page-azure
 title: "Setting Up Azure IoT Hub"
 subheadline: "Connected Thing Labs using Azure and JavaScript"
 teaser: "In this lab you will provision an Azure IoT Hub and an IoT Hub device."
@@ -11,7 +11,7 @@ categories: [azure, azure-iot-hub]
 author: doug_seven
 permalink: /lang/js/setup-azure-iot-hub/
 ---
-### Table of Contents
+# Table of Contents
 *  Auto generated table of contents
 {:toc}
 
@@ -97,10 +97,10 @@ The device-specific connection string identifies the device by name and includes
 # Conclusion &amp; Next Steps
 Congratulations! You have created an Azure IoT Hub and a representation of a physical device. Next you will use a prototyping board to send telemetry data to the Cloud.
 
-[Return to Connected Thing Labs list ->][azure-labs]
+<a class="radius button small" href="{{ site.url }}/lang/js/azure/">Return to Connected Thing Labs list ›</a>
 
-[azure-labs]: /lang/js/azure
-[setup-azure-iot-hub]: ../setup-azure-iot-hub
-[sending-telemetry]: ../sending-telemetry
-[visualize-iot-with-powerbi]: ../visualize-iot-with-powerbi
+[azure-labs]: /lang/js/azure/
+[setup-azure-iot-hub]: ../setup-azure-iot-hub/
+[sending-telemetry]: ../sending-telemetry/
+[visualize-iot-with-powerbi]: ../visualize-iot-with-powerbi/
 [deviceexplorer]: https://github.com/Azure/azure-iot-sdks/blob/master/tools/DeviceExplorer/doc/how_to_use_device_explorer.md

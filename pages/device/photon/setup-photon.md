@@ -1,7 +1,7 @@
 ---
 layout: page-photon
 title: "Setting Up Your Particle Photon Firmware"
-subheadline: "Particle Photon Thing 101 Labs #1"
+subheadline: "Building Connected Things with the Particle Photon"
 teaser: "In this lab you will install firmware onto your Particle Photon that will enable communication with the gateway application."
 show_meta: true
 comments: false
@@ -142,7 +142,7 @@ At this point your Photon may blink magenta on and off for a few seconds (or up 
 ## Upload the VoodooSpark Firmware to Your Photon
 For this lab series you will be controlling the Photon from a master/hub device (during development this will be your laptop). The controller application will use Node.js and a framework called Johnny Five. In order for these tools to communicate with the Photon, it needs to have the VoodooSpark firmware installed. The VoodooSpark firmware enables direct TCP communication from the host machine (your laptop running the Node.js app) and the Photon (provided they are on the same Wi-Fi network). Installing the VoodooSpark firmware is fairly easy to do using the Particle Build web-based IDE.
 
-1. In a browser open the [VoodooSpark code from GitHub](https://raw.githubusercontent.com/voodootikigod/voodoospark/master/firmware/voodoospark.cpp). Make sure in the comments at the top of the file it specifies '@version V3.1.0' or greater.
+1. In a browser open the [VoodooSpark code from GitHub](https://raw.githubusercontent.com/voodootikigod/voodoospark/master/firmware/voodoospark.cpp). Make sure in the comments at the top of the file it specifies '@version V3.1.2' or greater.
 2. With your Photon still powered on, use a second browser tab/window to open [Particle Build](https://build.particle.io/).
 3. In Particle Build, click on the code icon in the lower-left toolbar (it looks like opening and closing angle brackets &lt; &gt;).
 4. Click on the _Create New App_ button.
@@ -160,9 +160,9 @@ For this lab series you will be controlling the Photon from a master/hub device 
 After completing the last step, you should see the indicator LED on your Photon begin to blink. When it returns to the 'breathing' cyan the update is complete.
 
 ## Conclusion &amp; Next Steps
-That's it for now. You are ready to start the next lab: [Writing Digital Output ->][writing-digital-output].
+That's it for now. You are ready to start the next lab.
 
-{% include next-previous-post-in-category.html %}
+<a class="radius button small" href="{{ site.url }}/device/photon/writing-digital-output/">Next Lab: Writing Digital Output ›</a>
 
 [getting-started]: ../getting-started/
 [setup-azure-iot-hub]: ../setup-azure-iot-hub/

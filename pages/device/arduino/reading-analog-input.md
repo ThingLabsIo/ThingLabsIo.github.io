@@ -1,7 +1,7 @@
 ---
 layout: page-arduino
 title: "Reading Analog Input"
-subheadline: "Arduino Thing 101 Labs #3"
+subheadline: "Arduino Thing 101 Labs"
 teaser: "In this lab you will read input from an analog sensor using a voltage divider."
 show_meta: true
 comments: false

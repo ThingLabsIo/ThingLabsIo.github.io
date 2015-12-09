@@ -1,7 +1,7 @@
 ---
 layout: page-arduino
 title: "Writing Digital Output"
-subheadline: "Arduino Thing 101 Labs #2"
+subheadline: "Arduino Thing 101 Labs"
 teaser: "In this lab you will use one of the digital output pins to send a signal to an LED."
 show_meta: true
 comments: false

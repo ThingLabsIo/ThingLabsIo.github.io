@@ -1,7 +1,7 @@
 ---
 layout: page-photon
 title: "Reading Analog Input"
-subheadline: "Particle Photon Thing 101 Labs #3"
+subheadline: "Building Connected Things with the Particle Photon"
 teaser: "In this lab you will read input from an analog sensor using a voltage divider."
 show_meta: true
 comments: false
@@ -22,7 +22,7 @@ In this lab you will use two resistors - a static resistor and a variable resist
 
 What you will need:
 
-1. [Particle Photon][1]
+1. [Particle Photon Development Kit][1]
 2. USB to micro-USB cable (there is one included in the [Photon Development Kit][1])
 3. Photoresistor (there is one included in the [Photon Development Kit][1])
 4. 220-Ohm 1/4 Watt resistor (there is one included in the [Photon Development Kit][1])
@@ -179,9 +179,9 @@ While the application is running and you are seeing data in the console, try cov
 Press <kbd>CTRL</kbd> + <kbd>C</kbd> twice then <kbd>Enter</kbd>to exit the program without closing the window. After stopping the application press the _Reset_ button on the Photon to prepare it for the next run.
 
 ## Conclusion &amp; Next Steps
-Congratulations! You have made your first device that understands its environment, you learned about a voltage divider, and how to read data from an analog input sensor. In the [next lab][5] you will put together the two labs so far to make an LED that responds to the ambient light (and you will learn about Pulse-Width Modulation).
+Congratulations! You have made your first device that understands its environment, you learned about a voltage divider, and how to read data from an analog input sensor. In the [next lab][nextlab] you will put together the two labs so far to make an LED that responds to the ambient light (and you will learn about Pulse-Width Modulation).
 
-[Next Lab ->][5]
+<a class="radius button small" href="{{ site.url }}/device/photon/input-controls-output/">Next Lab: Input Controls Output ›</a>
 
 [1]: https://store.particle.io/?product=photon-kit
 [nextlab]: ../input-controls-output/
