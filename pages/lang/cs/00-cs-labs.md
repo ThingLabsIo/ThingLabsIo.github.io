@@ -1,5 +1,5 @@
 ---
-layout: "page-fullwidth"
+layout: "page-cs"
 title: "Windows 10 IoT and C# Labs"
 subheadline: "Building Connected Things with Windows 10 IoT and C#"
 teaser: "In these IoT Labs you will begin by learning the basics of working with Windows 10 IoT Core connected to sensors and devices. You will move on to connecting the device to the Cloud. You will learn how to leverage Microsoft Azure services to collect data and control devices and use advanced services like analytics and machine learningto discover insights using your Things."
@@ -14,11 +14,6 @@ permalink: /lang/cs/
 # Table of Contents
 *  Auto generated table of contents
 {:toc}
-
-# The IoT Gateway Pattern
-The labs in this series build on each other to enable you to prototype your own Internet of Things (IoT) devices. In this lab you will build a solution using a 'Gateway' pattern, where a device (the Gateway) collects data from one or more connected devices/sensors and aggregates the data before sending it to the cloud. For the gateway, you will use Node.js and an open source framework for interacting with hardware, called Johnny-Five, which works as a baseline control kit for hardware projects, including Arduino, Particle Photon, Raspberry Pi, Beagle Bone, and Intel Edison boards. This enables you to write applications in JavaScript that can run as a gateway either on your computer or on a hub device (like a Raspberry Pi 2) connected to an variety of devices.
-
-<img src="/images/gatewaypattern.png"/>
 
 # Getting Started
 This is a step-by-step guide to preparing your computer for the IoT labs using JavaScript, Node.js and Johnny-Five.

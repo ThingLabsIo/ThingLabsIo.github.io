@@ -2,26 +2,32 @@
   url: "/"
   side: left
   
-- title: "Labs by Device"
-  url: "/device/"
-  side: left
-  dropdown:
-  - title: "Arduino / RedBoard"
-    url: "/device/arduino/"
-  - title: "Particle Photon"
-    url: "/device/photon/"
-  - title: "Raspberry Pi 2"
-    url: "/device/rpi2/"
+#- title: "Labs by Device"
+#  url: "/device/"
+#  side: left
+#  dropdown:
+#  - title: "Arduino / RedBoard"
+#    url: "/device/arduino/"
+#  - title: "Particle Photon"
+#    url: "/device/photon/"
+#  - title: "Raspberry Pi 2"
+#    url: "/device/rpi2/"
     
-- title: "Labs by Language"
+- title: "Labs by Programming Language"
   url: "/lang/"
   side: left
   dropdown:
-  - title: "JavaScript &amp; Node.js"
+  - title: "JavaScript, Node.js &amp; Johnny-Five"
     url: "/lang/js/"
-  - title: "C# &amp; .NET"
+  - title: "C# &amp; Windows 10 IoT Core"
     url: "/lang/cs/"
-        
+    
+- title: "Projects"
+  url: "/project/"
+  side: left
+  dropdown:
+  - title: "Connected Weather Station"
+    url: "/lang/js/weather-station/"
 
     
 - title: "Azure Road Tour"

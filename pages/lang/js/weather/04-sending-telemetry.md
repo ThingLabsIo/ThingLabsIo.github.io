@@ -1,7 +1,7 @@
 ---
 layout: page-fullwidth
 title: "Sending Telemetry to the Cloud"
-subheadline: "Connected Thing Labs using Azure and JavaScript"
+subheadline: "Microsoft Azure IoT Connected Weather Station Project"
 teaser: "In this lab you will gather telemetry and send it to the cloud."
 show_meta: true
 comments: false
@@ -9,9 +9,9 @@ header: no
 breadcrumb: true
 categories: [azure, azure-iot-hub, javascript, node.js, johnny-five, arduino, photon]
 author: doug_seven
-permalink: /lang/js/weather/sending-telemetry/
+permalink: /lang/js/weather-station/sending-telemetry/
 ---
-### Table of Contents
+# Table of Contents
 *  Auto generated table of contents
 {:toc}
 
@@ -20,47 +20,81 @@ In this lab you will write a Node.js application that runs on a hub (your develo
 # Bill of Materials
 What you will need:
 
-1. [SparkFun RedBoard Programmed with Arduino - $19.95](https://www.sparkfun.com/products/12757) or [Arduino Uno R3 - $24.95](https://www.sparkfun.com/products/11021) - __NOTE:__ The SparkFun Weather Shield will not work with the Arduino Y&uacute;n without modification.
-2. [SparkFun Weather Shield for Arduino - $39.95](https://www.sparkfun.com/products/12081)
-3. USB cable to connect the Arduino to your computer (the type will vary depending on the Arduino board you are using)
+<script src="https://www.sparkfun.com/wish_lists/120920.js"></script>
 
-You must upload the Standard Firmatta to the board. See [Setting Up Your Arduino Firmware](/device/arduino/setup-arduino) for details.
+__OR__  
+
+<script src="https://www.sparkfun.com/wish_lists/121094.js"></script>
 
 __OR__
 
-1. [Particle Photon Development Kit - $29.00][1]
-2. [SparkFun Weather Shield for Particle Photon - $32.95](https://www.sparkfun.com/products/13630)
-3. USB cable to connect the Photon to your computer
+<script src="https://www.sparkfun.com/wish_lists/120921.js"></script>
 
-You must upload the VoodooSpark firmware to the Photon. See [Setting Up Your Particle Photon Firmware](/device/photon/setup-photon) for details.
+For Arduino Uno and SparkFun RedBoard you must upload the Standard Firmatta to the board. See [Setting Up Your Arduino Firmware](../setup-arduino/) for details.
+
+For Particle Photon you must upload the VoodooSpark firmware to the Photon. See [Setting Up Your Particle Photon Firmware](../setup-photon/) for details.
 
 # Setup the App Dependencies
 Since you will be using Node.js for this lab you can take advantage of the dependency management capabilities that Node.js and NPM provide. You need to let your application know that it has a dependency on the following NPM packages - Azure IoT Device, Johnny-Five and Particle-IO. In Node.js this is done with a _package.json_ file. This file provides some basic meta-data about the application, including any dependencies on packages that can be retrieved using NPM (according to [npmjs.com](https://www.npmjs.com) today, NPM stands for Narrating Prophetic Monks...not Node Package Manager like you may have thought).
 
 Using your favorite/preferred text/code editor, create a file in your development directory named __package.json__ and add the following:
 
-{% highlight json %}
-{
-  "name": "IoT-Labs",
-  "version": "0.1.0",
-  "private":true,
-  "description": "Sample app that connects a device to Azure using Node.js",
-  "main": "weather.js",
-    "author": "YOUR NAME HERE",
-  "license": "MIT",
-  "dependencies": {
-    "azure-iot-device": "latest",
-    "johnny-five": "latest",
-    "j5-sparkfun-weather-shield": "latest"
-  }
-}
-{% endhighlight %}
 
-If you are using the Particle Photon, add the following line to the <code>dependencies</code> list:
+<div id="json-tabs">
+  <ul>
+    <li><a href="#arduino"><span>Arduino</span></a></li>
+    <li><a href="#photon"><span>Photon</span></a></li>
+  </ul>
+  <div id="arduino">
+    {% highlight json %}
+    {
+      "name": "IoT-Labs-Arduino",
+      "repository": {
+        "type": "git",
+        "url": "https://github.com/ThingLabsIo/IoTLabs/js/WeatherStation"
+      },
+      "version": "0.1.0",
+      "private":true,
+      "description": "Sample app that connects a device to Azure using Node.js",
+      "main": "weather.js",
+        "author": "YOUR NAME",
+      "license": "MIT",
+      "dependencies": {
+        "johnny-five": "latest",
+        "j5-sparkfun-weather-shield": "latest",
+        "azure-iot-device": "latest"
+      }
+    }
+    {% endhighlight %}
+  </div>
+  <div id="photon">
+    {% highlight json %}
+    {
+      "name": "IoT-Labs-Photon",
+      "repository": {
+        "type": "git",
+        "url": "https://github.com/ThingLabsIo/IoTLabs/js/WeatherStation"
+      },
+      "version": "0.1.0",
+      "private":true,
+      "description": "Sample app that connects a device to Azure using Node.js",
+      "main": "weather.js",
+        "author": "YOUR NAME",
+      "license": "MIT",
+      "dependencies": {
+        "johnny-five": "latest",
+        "j5-sparkfun-weather-shield": "latest",
+        "azure-iot-device": "latest",
+        "particle-io": "latest"
+      }
+    }
+    {% endhighlight %}
+  </div>
+</div>
 
-{% highlight json %}
-"particle-io": "latest"
-{% endhighlight %}
+<script>
+$( "#json-tabs" ).tabs();
+</script>
 
 With the _package.json_ file created you can use NPM to pull down the necessary Node modules. Open a terminal window (Mac OS X) or Node.js command prompt (Windows) and execute the following commands (replace _C:\Development\IoTLabs_ with the path that leads to your development directory):
 
@@ -104,47 +138,84 @@ The Weather app will run on your gateway (your development machine for now) and 
 
 The first thing you need to do is define the objects you will be working with in the application. The four things that matter are the Azure IoT _device_ object, a Johnny-Five framework object, the Weather Shield plugin object, and an object to represent the physical board you are working with. 
 
-{% highlight javascript %}
-'use strict';
-// Define the objects you will be working with
-var five = require ("johnny-five");
-var Shield = require("j5-sparkfun-weather-shield")(five);
-var device = require('azure-iot-device');
+<div id="code-tabs">
+  <ul>
+    <li><a href="#arduino"><span>Arduino</span></a></li>
+    <li><a href="#photon"><span>Photon</span></a></li>
+  </ul>
+  <div id="arduino">
+    {% highlight javascript %}
+    'use strict'
+    // https://github.com/ThingLabsIo/IoTLabs/blob/master/js/weather.js
+    // Define the Johnny Five object
+    var five = require ("johnny-five"); 
+    var device = require('azure-iot-device');
 
-/* 
-// PARTICLE PHOTON USERS
-// Add the following definition for the Particle plugin for Johnny-Five
-var Particle = require("particle-io");
+    var location = process.env.DEVICE_LOCATION || 'GIVE A NAME TO THE LOCATION OF THE THING';
+    var connectionString = process.env.IOTHUB_CONN || 'YOUR IOT HUB DEVICE-SPECIFIC CONNECTION STRING HERE';
+    
+    // Create an Azure IoT client that will manage the connection to your IoT Hub
+    // The client is created in the context of an Azure IoT device, which is why
+    // you use a device-specific connection string.
+    var client = device.Client.fromConnectionString(connectionString);
+    var deviceId = device.ConnectionString.parse(connectionString).DeviceId;
+    
+    // Create a Johnny Five board instance to represent your board.
+    // Board is simply an abstraction of the physical hardware, whether it is 
+    // a Photon, Arduino, Raspberry Pi or other boards. 
+    var board = new five.Board();
+    
+    /*
+    // You may optionally specify the port by providing it as a property
+    // of the options object parameter. * Denotes system specific 
+    // enumeration value (ie. a number)
+    // OSX
+    new five.Board({ port: "/dev/tty.usbmodem****" });
+    // Linux
+    new five.Board({ port: "/dev/ttyUSB*" });
+    // Windows
+    new five.Board({ port: "COM*" });
+    */
+    {% endhighlight %}
+  </div>
+  <div id="photon">
+    {% highlight javascript %}
+    'use strict'
+    // https://github.com/ThingLabsIo/IoTLabs/blob/master/js/weather.js
+    // Define the Johnny Five and Particle-IO variables
+    var five = require ("johnny-five"); 
+    var Particle = require("particle-io");
+    var device = require('azure-iot-device');
+    
+    var location = process.env.DEVICE_LOCATION || 'GIVE A NAME TO THE LOCATION OF THE THING';
+    var connectionString = process.env.IOTHUB_CONN || 'YOUR IOT HUB DEVICE-SPECIFIC CONNECTION STRING HERE';
+    
+    // Create an Azure IoT client that will manage the connection to your IoT Hub
+    // The client is created in the context of an Azure IoT device, which is why
+    // you use a device-specific connection string.
+    var client = device.Client.fromConnectionString(connectionString);
+    var deviceId = device.ConnectionString.parse(connectionString).DeviceId;
 
-var token = 'YOUR PARTICLE ACCESS TOKEN HERE';
-*/
+    // Set up the access credentials for Particle and Azure 
+    var token = process.env.PARTICLE_KEY || 'YOUR PARTICLE ACCESS TOKEN HERE'; 
+    var deviceId = process.env.PHOTON_ID || 'YOUR PARTICLE PHOTON DEVICE ID/ALIAS HERE'; 
+    
+    // Create a Johnny Five board instance to represent your Particle Photon.
+    // Board is simply an abstraction of the physical hardware, whether it is 
+    // a Photon, Arduino, Raspberry Pi or other boards. 
+    var board = new five.Board({ 
+      io: new Particle({ 
+        token: token, 
+        deviceId: deviceId 
+      }) 
+    });
+    {% endhighlight %}
+  </div>
+</div>
 
-var location = process.env.DEVICE_LOCATION || 'GIVE A NAME TO THE LOCATION OF THE THING';
-var connectionString = process.env.IOTHUB_CONN || 'YOUR IOT HUB DEVICE-SPECIFIC CONNECTION STRING HERE';
-
-// Create an Azure IoT client that will manage the connection to your IoT Hub
-// The client is created in the context of an Azure IoT device, which is why
-// you use a device-specific connection string.
-var client = device.Client.fromConnectionString(connectionString);
-var deviceId = device.ConnectionString.parse(connectionString).DeviceId;
-
-// Create a Johnny-Five board instance to represent your Particle Photon
-// Board is simply an abstraction of the physical hardware, whether is is a 
-// Photon, Arduino, Raspberry Pi or other boards.
-var board = new five.Board();
-/* 
-// PARTICLE PHOTON USERS
-// When creating a Board instance for the Photon you must specify the token and device ID
-// for your Photon using the Particle-IO Plugin for Johnny-five.
-// Replace the Board instantiation with the following:
-var board = new five.Board({
-  io: new Particle({
-    token: token,
-    deviceId: 'YOUR PARTICLE PHOTON DEVICE IS OR ALIAS'
-  })
-});
-*/
-{% endhighlight %}
+<script>
+$( "#code-tabs" ).tabs();
+</script>
 
 In this code you define four variables that you will be working with:
 
@@ -217,11 +288,9 @@ In this code you do a number of things:
 2. Define the <code>weather</code> object. This is a instance of the wrapper around the temperature and barometer on the weather shield (represented by the Shield object) connected to the board. When you instantiate the object, you can specify a frequency to collect the data from the sensors. Many sensors are capable of collecting data in fraction of a second intervals. You may not want to collect data and send it to your Azure IoT Hub that frequently. The <code>freq</code> property defines (in milliseconds) how often to raise an event to report the data from the sensor. In this example you are establishing the callback at a frequency of once per second for the <code>weather</code> object.
 4. <code>message</code> is the object that represents the data you are sending to Azure IoT Hub. This is a JSON formatted message.
 
-When <code>client.sendEvent()</code> is invoked, the JSON message is sent to Azure IoT Hub. For now, nothing happens with the message once it is received in your IoT Hub because you haven't set up anything that will capture the message and do something with it (we will get to that soon). By default, the messages have a one-day retention time.
+When <code>client.sendEvent()</code> is invoked, the JSON message is sent to Azure IoT Hub. For now, nothing happens with the message once it is received in your IoT Hub because you haven't set up anything that will capture the message and do something with it (we will get to that soon). By default the messages have a one-day retention time.
 
-You can view the file source file [here =>](https://github.com/ThingLabsIo/IoTLabs/tree/master/Azure).
-
-## Run the App
+# Run the App
 When you run the application it will execute on your computer, and thanks to Johnny-Five, it will connect with your board and work directly with it. Basically, your computer is acting as a gateway - or hub - and communicating with the board as one of potentially many devices (or spokes). If you continue on past the intro labs, in a future lab you will deploy the Node.js application to another device (like a Raspberry Pi) which will act as the gateway and connect to multiple spoke devices.
 
 <blockquote>
@@ -238,24 +307,22 @@ Open a terminal window (Mac OS X) or Node.js command prompt (Windows) and execut
 After the board initializes you will see messages printing out once per second. This is the message payload that is being sent to Azure IoT Hub.
 
 <blockquote>
-If you downloaded the [Device Explorer][deviceexplorer] utility for Windows you can open the _Data_ tab, select a device, and click _Monitor_ to begin monitoring messages as they come into your Azure IoT Hub.
+  If you downloaded the Device Explorer utility for Windows you can open the Data tab, select a device, and click Monitor to begin monitoring messages as they come into your Azure IoT Hub.
 </blockquote>
 
 When you want to quite the application, press <kbd>CTRL</kbd> + <kbd>C</kbd> twice to exit the program without closing the window (you may also have to press <kbd>Enter</kbd>). 
 
 <blockquote>
-  PARTICLE PHOTON USERS: After stopping the application press the _Reset_ button on the Photon to prepare it for the next run.
+  PARTICLE PHOTON USERS: After stopping the application press the Reset button on the Photon to prepare it for the next run.
 </blockquote> 
 
 ## Conclusion &amp; Next Steps
 
 In this lab you learned how to write a Node.js + Johnny-Five application that collects environment telemetry and sends it to Azure IoT Hub. In the [next lab][visualize-iot-with-powerbi] you will setup some Azure services to store and visualize the data.
 
-[Next Lab ->][visualize-iot-with-powerbi]
+<a class="radius button small" href="{{ site.url }}/lang/js/weather-station/visualize-iot-with-powerbi/">Go to 'Visualizing IoT Data with Power BI' ›</a>
 
-{% include next-previous-post-in-category.html %}
-
-[setup-azure-iot-hub]: ../setup-azure-iot-hub
-[sending-telemetry]: ../sending-telemetry
-[visualize-iot-with-powerbi]: ../visualize-iot-with-powerbi
+[setup-azure-iot-hub]: ../setup-azure-iot-hub/
+[sending-telemetry]: ../sending-telemetry/
+[visualize-iot-with-powerbi]: ../visualize-iot-with-powerbi/
 [deviceexplorer]: https://github.com/Azure/azure-iot-sdks/blob/master/tools/DeviceExplorer/doc/how_to_use_device_explorer.md

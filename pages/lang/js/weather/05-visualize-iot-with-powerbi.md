@@ -1,50 +1,34 @@
 ---
-layout: page-azure
-title: "Visualizing IoT Data"
+layout: page-fullwidth
+title: "Visualizing IoT Data with Power BI"
 subheadline: "Connected Thing Labs using Azure and JavaScript"
-teaser: "In this lab you will create visualizations of IoT data using Microsoft Power BI."
+teaser: "In this lab you will create visualizations of IoT data using Microsoft Azure Stream Analytics and Power BI."
 show_meta: true
 comments: false
 header: no
 breadcrumb: true
 categories: [azure, azure-iot-hub, javascript, node.js, johnny-five, arduino, photon]
-permalink: /lang/js/weather/visualize-iot-with-powerbi/
+permalink: /lang/js/weather-station/visualize-iot-with-powerbi/
 ---
-### Table of Contents
+# Table of Contents
 *  Auto generated table of contents
 {:toc}
 
 In this lab you will process the data that you are sending into Azure IoT Hub using Azure Stream Analytics so that you can visualize it using Power BI.
 
-## Bill of Materials
+# Bill of Materials
 What you will need:
 
-1. [SparkFun RedBoard Programmed with Arduino - $19.95](https://www.sparkfun.com/products/12757) or [Arduino Uno R3 - $24.95](https://www.sparkfun.com/products/11021) - __NOTE:__ The SparkFun Weather Shield will not work with the Arduino Y&uacute;n without modification.
-2. [SparkFun Weather Shield for Arduino - $39.95](https://www.sparkfun.com/products/12081)
-3. USB cable to connect the Arduino to your computer (the type will vary depending on the Arduino board you are using)
-
-You must upload the Standard Firmatta to the board. See [Setting Up Your Arduino Firmware](/device/arduino/setup-arduino) for details.
-
-__OR__
-
-1. [Particle Photon Development Kit - $29.00][1]
-2. [SparkFun Weather Shield for Particle Photon - $32.95](https://www.sparkfun.com/products/13630)
-3. USB cable to connect the Photon to your computer
-
-You must upload the VoodooSpark firmware to the Photon. See [Setting Up Your Particle Photon Firmware](/device/photon/setup-photon) for details.
-
-
-For Arduino and RedBoard, you must upload the Standard Firmatta to the board. See [Setting Up Your Arduino Firmware](/device/arduino/setup-arduino) for details. 
-
-For Particle Photon, you must upload the VoodooSpark firmware to the Photon. See [Setting Up Your Particle Photon Firmware](/device/photon/setup-photon) for details.
+1. The weather station device you created in the [previous lab](../sending-telemetry/).
+2. The Azure IoT Hub you created in a [previous lab](/lang/js/weather-station/setup-azure-iot-hub/).
 
 In the previous labs you provisioned an Azure IoT Hub and a physical device, and you wrote a Node.js application to collect data from the board and send it to your IoT Hub. At the end of the [previous lab](../sending-telemetry/) you had data going into your IoT Hub but you weren't yet doing anything with it. Let's change that.
 
-## Using Stream Analytics to Process and Route IoT Data
+# Using Stream Analytics to Process and Route IoT Data
 
 Azure Stream Analytics is a service that does real-time data processing in the cloud. You will create a new Stream Analytics job and define the input data stream as the data coming from your IoT Hub. Next you will define an output data stream that sends data to Power BI. Finally, you will write a SQL-like query that collects data coming in on the input stream and routes it to the output stream.
 
-### Create the Stream Analytics Job
+## Create the Stream Analytics Job
 
 Open a new browser tab and navigate to the [https://manage.windowsazure.com](https://manage.windowsazure.com). Click on the __NEW__ icon in the lower-left corner.
 
@@ -64,7 +48,7 @@ Click __CREATE STREAM ANALYTICS JOB__. It will take a few minutes for the Steam 
 
 When the job indicates that it is created, click into it to create the data streams and query.
 
-### Define the Input Data Stream
+## Define the Input Data Stream
 
 Once you are in the Stream Analytics job, click on the __INPUTS__ header.
 
@@ -89,7 +73,7 @@ On the __Serialization settings__ form, leave the defaults (Event Serialization 
 
 After a few seconds, a new input will be listed.
 
-### Define the Output Data Stream
+## Define the Output Data Stream
 
 Click on the __OUTPUTS__ header.
 
@@ -105,9 +89,9 @@ Power BI is a data visualization toolkit for organizations. To create a new user
 
 After you have authorized the connection to Power BI, complete the form as follows:
 
-1. OUTPUT ALIAS - TemperatureBI
-2. DATASET NAME - TemperatureDataSet
-3. TABLE NAME - TemperatureTable
+1. OUTPUT ALIAS - WeatherBI
+2. DATASET NAME - WeatherDataSet
+3. TABLE NAME - WeatherTable
 4. GROUP NAME - My Workplace
 
 Click on the checkmark in the lower-right.
@@ -138,35 +122,30 @@ SELECT
     deviceId,
     System.Timestamp AS Timestamp
 INTO
-    [TemperatureBI]
+    [WeatherBI]
 FROM
     [DeviceInputStream]
 GROUP BY
-    TumblingWindow (second, 10), deviceId, location
+    TumblingWindow (second, 5), deviceId, location
 {% endhighlight %}
 
-Click __SAVE__ in the lower middle of the screen. Once the query is saved, click __START_ to start the Stream Analytics job. If your Node.js app from the [previous lab](/azure/02/) isn't still running, go ahead and start it up. It will take a few minutes for the Stream Analytics job to get started and to start sending data to Power BI, but you should see the _TemperatureDataSet_ show up in Power BI within a few minutes.
+Click __SAVE__ in the lower middle of the screen. Once the query is saved, click __START_ to start the Stream Analytics job. If your Node.js app from the [previous lab](../sending-telemetry/) isn't still running, go ahead and start it up. It will take a few minutes for the Stream Analytics job to get started and to start sending data to Power BI, but you should see the _WeatherDataSet_ show up in Power BI within a few minutes.
 
-## Build Reports in Power BI
+# Build Reports in Power BI
 
 Go back to the browser tab where you have Power BI open. Look in the _Datasets_ node in the left-hand navigation. The _TemperatureDataSet_ should appear there within a few minutes of IoT Hub data streaming into the Stream Analytics job.
 
-1. Click on the _TemperatureDataSet_ dataset to open the report designer.
-2. Select the _Gauge_ chart from the __Visualizations__ toolbox on the right side.
+1. Click on the _WeatherDataSet_ dataset to open the report designer.
+2. Select the __Line__ chart from the _Visualizations_ toolbox on the right side.
 3. Select __maxtempf__ to set it as the _Value_
-4. Click on the dropdown arrow for _maxtempf_ in the _Values_ box and select __Maximum__
+4. Click on the dropdown arrow for __maxtempf__ in the _Values_ box and select __Maximum__
+5. Select __timestamp__ to set it as the _Axis_ 
 
 Repeat steps 2-4 for __avgtempf__ and __mintempf__, changing their field type to __Average__ and __Minimum__ respectively.
 
-<img src="/images/powerbi01.png"/>
+<img src="/images/powerbi-linechart.png"/>
 
-As you are setting the values you should see the line chart updating with the changes. Click __File__ > __Save_ and give the report the name __Temperature Gauges__. Hover over the upper-right corner of each gauge and click on the pin icon. Create a new dashboard to pin the gauges to. Once you have pinned all three gauges, click on the dashboard in the left sidebar. On the dashboard you can watch the data update in near real-time (remember, you set up a tumbling window for 10-seconds, so you will only see updates once every 10-seconds). While you are watching the dashboard, pinch or blow on the sensors on the weather shield and you will see the data change in the gauges.
+As you are setting the values you should see the line chart updating with the changes. Click __File__ > __Save__ and give the report the name __Temperature Report__. Hover over the upper-right corner of each gauge and click on the pin icon. Create a new dashboard to pin the gauges to. Once you have pinned all three gauges, click on the dashboard in the left sidebar. On the dashboard you can watch the data update in near real-time (remember, you set up a tumbling window for 5-seconds, so you will only see updates once every 5-seconds). While you are watching the dashboard, pinch or blow on the sensors on the weather shield and you will see the data change in the gauges.
 
-## Conclusion &amp; Next Steps
-
+# Conclusion &amp; Next Steps
 Congratulations! In this lab you learned how to create an Azure Stream Analytics job to query data coming in to Azure IoT Hub, process it and send it to Power BI. In Power BI you learned how to create reports and pin the data visualizations to a dashboard for near real-time updates.
-
-{% include next-previous-post-in-category.html %}
-
-[1]: https://store.particle.io/?product=photon-kit
-[2]: /azure/04/

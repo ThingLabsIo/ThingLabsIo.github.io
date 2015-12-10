@@ -227,12 +227,6 @@ Create another file in the same directory named __nightlight.js__ and add the fo
     // Define the pin you will use to read the residual voltage 
     // coming from the photoresistor
     var ANALOGPIN = "A0";
-    
-    // Define the pin that is connected to the LED
-    var LEDPIN = "D1";
-    // Define the pin you will use to read the residual voltage 
-    // coming from the photoresistor
-    var ANALOGPIN = 0;
     var darkIntensity = 0;
     
     // Create a Johnny Five board instance to represent your Particle Photon.
