@@ -21,8 +21,8 @@ description: "ThingLabs is a resource for learning about the Internet of Things.
 
 # This URL is the main adresse. Don't include a slash at the end.
 #
-url: "https://www.ThingLabs.io"
-baseurl: "https://www.ThingLabs.io"
+url: ""
+baseurl: ""
 
 # This is for the editing function in _/includes/improve_content.html
 # Leave it empty if your site is not on GitHub/GitHub Pages
