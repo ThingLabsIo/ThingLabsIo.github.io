@@ -16,13 +16,13 @@ slogan: "Educational Labratories for the Internet of Things"
 
 
 # The description is used on homepage and in the footer to quickly describe your website. Use a maximum of 150 characters for SEO-purposes.
-description: "ThingLabs is a resource for learning about the Internet of Things."
+description: "»ThingLabs.io empowers you to build connected Things."
 
 
 # This URL is the main adresse. Don't include a slash at the end.
 #
-url: "http://www.ThingLabs.io"
-baseurl: "http://www.ThingLabs.io"
+url: ""
+baseurl: ""
 
 # This is for the editing function in _/includes/improve_content.html
 # Leave it empty if your site is not on GitHub/GitHub Pages
