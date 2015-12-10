@@ -163,3 +163,5 @@ While you are watching the dashboard, pinch or blow on the sensors on the weathe
 ## Conclusion &amp; Next Steps
 Congratulations! In this lab you learned how to create an Azure Stream Analytics job to query data coming in to Azure IoT Hub, process it and send 
 it to Power BI. In Power BI you learned how to create reports and pin the data visualizations to a dashboard for near real-time updates.
+
+{% include next-previous-post-in-category.html %}

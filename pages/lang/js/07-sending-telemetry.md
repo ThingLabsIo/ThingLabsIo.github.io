@@ -1,5 +1,5 @@
 ---
-layout: page-azure
+layout: page-js
 title: "Sending Telemetry to the Cloud"
 subheadline: "Connected Thing Labs using Azure and JavaScript"
 teaser: "In this lab you will gather telemetry and send it to the cloud."
@@ -35,13 +35,24 @@ For Arduino and RedBoard, you must upload the Standard Firmatta to the board. Se
 For Particle Photon, you must upload the VoodooSpark firmware to the Photon. See [Setting Up Your Particle Photon Firmware](/device/photon/setup-photon) for details.
 
 # Wiring the Board
-This lab follows the same wiring plan as [Arduino: Reading Analog Input](/device/arduino/reading-analog-input/) or [Photon: Reading Analog Input](/device/photon/reading-analog-input/). If your board is still wired up, you can leave it as is and go to the next step. If not, wire it as follows.
+This lab follows the same wiring plan as the ['Reading Analog Input' lab](/lang/js/reading-analog-input/) . If your board is still wired up from the ['Input Controls Output'](/lang/js/input-controls-output/) lab, you can leave it as is and go to the next step. If not, wire it as follows.
 
-## Arduino Wiring
-<img src="/images/Lab02_bb.png"/>
+<div id="wiring-tabs">
+  <ul>
+    <li><a href="#arduino"><span>Arduino</span></a></li>
+    <li><a href="#photon"><span>Photon</span></a></li>
+  </ul>
+  <div id="arduino">
+    <img src="/images/Lab02_bb.png"/>
+  </div>
+  <div id="photon">
+    <img src="/images/photon_lab02_bb.png"/>
+  </div>
+</div>
 
-## Photon Wiring
-<img src="/images/photon_lab02_bb.png"/>
+<script>
+$( "#wiring-tabs" ).tabs();
+</script>
 
 ### Resistors
 The 10k Ohm resistor is one part of the voltage divider, working in partnership with the photoresistor.
@@ -69,27 +80,59 @@ Monks...not Node Package Manager like you may have thought).
 
 Using your favorite/preferred text/code editor, create a file in your development directory named __package.json__ and add the following:
 
-{% highlight json %}
-{
-  "name": "IoT-Labs",
-  "version": "0.1.0",
-  "private":true,
-  "description": "Sample app that connects a device to Azure using Node.js",
-  "main": "lightsensor.js",
-    "author": "YOUR NAME HERE",
-  "license": "MIT",
-  "dependencies": {
-    "johnny-five": "latest",
-    "azure-iot-device": "latest"
-  }
-}
-{% endhighlight %}
+<div id="json-tabs">
+  <ul>
+    <li><a href="#arduino"><span>Arduino</span></a></li>
+    <li><a href="#photon"><span>Photon</span></a></li>
+  </ul>
+  <div id="arduino">
+    {% highlight json %}
+    {
+      "name": "IoT-Labs-Arduino",
+      "repository": {
+        "type": "git",
+        "url": "https://github.com/ThingLabsIo/IoTLabs/Arduino"
+      },
+      "version": "0.1.0",
+      "private":true,
+      "description": "Sample app that connects a device to Azure using Node.js",
+      "main": "nightlight.js",
+        "author": "YOUR NAME",
+      "license": "MIT",
+      "dependencies": {
+        "johnny-five": "latest",
+        "azure-iot-device": "latest"
+      }
+    }
+    {% endhighlight %}
+  </div>
+  <div id="photon">
+    {% highlight json %}
+    {
+      "name": "IoT-Labs-Photon",
+      "repository": {
+        "type": "git",
+        "url": "https://github.com/ThingLabsIo/IoTLabs/Photon"
+      },
+      "version": "0.1.0",
+      "private":true,
+      "description": "Sample app that connects a device to Azure using Node.js",
+      "main": "nightlight.js",
+        "author": "YOUR NAME",
+      "license": "MIT",
+      "dependencies": {
+        "johnny-five": "latest",
+        "particle-io": "latest",
+        "azure-iot-device": "latest"
+      }
+    }
+    {% endhighlight %}
+  </div>
+</div>
 
-If you are using the Particle Photon, add the following line to the <code>dependencies</code> list:
-
-{% highlight json %}
-"particle-io": "latest"
-{% endhighlight %}
+<script>
+$( "#json-tabs" ).tabs();
+</script>
 
 With the package.json file created you can use NPM to pull down the necessary Node modules. Open a terminal window (Mac OS X) or Node.js 
 command prompt (Windows) and execute the following commands (replace _C:\Development\IoTLabs_ with the path that leads to your development directory):
@@ -108,53 +151,106 @@ On Mac OS X open Terminal and type the following:
 
 Next you will create the application code to gather ambient light data and send it to the cloud.
 
-Create another file in the same directory named __lightsensor.js__ and add the following code:
+Create another file in the same directory named __nightlight.js__ and add the following code:
 
-{% highlight javascript %}
-'use strict';
-// Define the objects you will be working with
-var five = require ("johnny-five");
-var device = require('azure-iot-device');
+<div id="code-tabs">
+  <ul>
+    <li><a href="#arduino"><span>Arduino</span></a></li>
+    <li><a href="#photon"><span>Photon</span></a></li>
+  </ul>
+  <div id="arduino">
+    {% highlight javascript %}
+    'use strict'
+    // https://github.com/ThingLabsIo/IoTLabs/blob/master/Arduino/nightlight.js
+    // Define the Johnny Five object
+    var five = require ("johnny-five"); 
+    var device = require('azure-iot-device');
 
-/* 
-// PARTICLE PHOTON USERS
-// Add the following definition for the Particle plugin for Johnny-Five
-var Particle = require("particle-io");
+    var location = process.env.DEVICE_LOCATION || 'GIVE A NAME TO THE LOCATION OF THE THING';
+    var connectionString = process.env.IOTHUB_CONN || 'YOUR IOT HUB DEVICE-SPECIFIC CONNECTION STRING HERE';
+    
+    // Create an Azure IoT client that will manage the connection to your IoT Hub
+    // The client is created in the context of an Azure IoT device, which is why
+    // you use a device-specific connection string.
+    var client = device.Client.fromConnectionString(connectionString);
+    var deviceId = device.ConnectionString.parse(connectionString).DeviceId;
 
-var token = 'YOUR PARTICLE ACCESS TOKEN HERE';
-*/
+    // Define the pin that is connected to the LED
+    var LEDPIN = 13;
+    // Define the pin you will use to read the residual voltage 
+    // coming from the photoresistor
+    var ANALOGPIN = 0;
+    var darkIntensity = 0;
+    
+    // Create a Johnny Five board instance to represent your board.
+    // Board is simply an abstraction of the physical hardware, whether it is 
+    // a Photon, Arduino, Raspberry Pi or other boards. 
+    var board = new five.Board();
+    
+    /*
+    // You may optionally specify the port by providing it as a property
+    // of the options object parameter. * Denotes system specific 
+    // enumeration value (ie. a number)
+    // OSX
+    new five.Board({ port: "/dev/tty.usbmodem****" });
+    // Linux
+    new five.Board({ port: "/dev/ttyUSB*" });
+    // Windows
+    new five.Board({ port: "COM*" });
+    */
+    {% endhighlight %}
+  </div>
+  <div id="photon">
+    {% highlight javascript %}
+    'use strict'
+    // https://github.com/ThingLabsIo/IoTLabs/blob/master/Photon/nightlight.js
+    // Define the Johnny Five and Particle-IO variables
+    var five = require ("johnny-five"); 
+    var Particle = require("particle-io");
+    var device = require('azure-iot-device');
+    
+    var location = process.env.DEVICE_LOCATION || 'GIVE A NAME TO THE LOCATION OF THE THING';
+    var connectionString = process.env.IOTHUB_CONN || 'YOUR IOT HUB DEVICE-SPECIFIC CONNECTION STRING HERE';
+    
+    // Create an Azure IoT client that will manage the connection to your IoT Hub
+    // The client is created in the context of an Azure IoT device, which is why
+    // you use a device-specific connection string.
+    var client = device.Client.fromConnectionString(connectionString);
+    var deviceId = device.ConnectionString.parse(connectionString).DeviceId;
 
-var location = process.env.DEVICE_LOCATION || 'GIVE A NAME TO THE LOCATION OF THE THING';
-var connectionString = process.env.IOTHUB_CONN || 'YOUR IOT HUB DEVICE-SPECIFIC CONNECTION STRING HERE';
+    // Set up the access credentials for Particle and Azure 
+    var token = process.env.PARTICLE_KEY || 'YOUR PARTICLE ACCESS TOKEN HERE'; 
+    var deviceId = process.env.PHOTON_ID || 'YOUR PARTICLE PHOTON DEVICE ID/ALIAS HERE'; 
+    
+    // Define the pin that is connected to the LED
+    var LEDPIN = "D0";
+    // Define the pin you will use to read the residual voltage 
+    // coming from the photoresistor
+    var ANALOGPIN = "A0";
+    
+    // Define the pin that is connected to the LED
+    var LEDPIN = "D1";
+    // Define the pin you will use to read the residual voltage 
+    // coming from the photoresistor
+    var ANALOGPIN = 0;
+    var darkIntensity = 0;
+    
+    // Create a Johnny Five board instance to represent your Particle Photon.
+    // Board is simply an abstraction of the physical hardware, whether it is 
+    // a Photon, Arduino, Raspberry Pi or other boards. 
+    var board = new five.Board({ 
+      io: new Particle({ 
+        token: token, 
+        deviceId: deviceId 
+      }) 
+    });
+    {% endhighlight %}
+  </div>
+</div>
 
-// Create an Azure IoT client that will manage the connection to your IoT Hub
-// The client is created in the context of an Azure IoT device, which is why
-// you use a device-specific connection string.
-var client = device.Client.fromConnectionString(connectionString);
-var deviceId = device.ConnectionString.parse(connectionString).DeviceId;
-
-// Create a Johnny-Five board instance to represent your Particle Photon
-// Board is simply an abstraction of the physical hardware, whether is is a 
-// Photon, Arduino, Raspberry Pi or other boards.
-var board = new five.Board();
-/* 
-// PARTICLE PHOTON USERS
-// When creating a Board instance for the Photon you must specify the token and device ID
-// for your Photon using the Particle-IO Plugin for Johnny-five.
-// Replace the Board instantiation with the following:
-var board = new five.Board({
-  io: new Particle({
-    token: token,
-    deviceId: 'YOUR PARTICLE PHOTON DEVICE IS OR ALIAS'
-  })
-});
-*/
-
-// Define the pins used for the LED, photoresistor and the value from the voltage divider.
-var LEDPIN = 13; // Use "D1" for the Photon
-var ANALOGPIN = 0;
-var darkIntensity = 0;
-{% endhighlight %}
+<script>
+$( "#code-tabs" ).tabs();
+</script>
 
 In this code you define four key variables that you will be working with:
 
@@ -172,7 +268,7 @@ connected to the board. The __Sensor__ class in Johnny-Five enables you to repre
 
 Next you will use the _Sensor_ class to represent the photoresistor and capture the light/darkness measurement. Start by defining 
 a _photoresistor_ variable using the __Sensor__ class. Next create a handler function for the photoresistor _data_ event. Add the 
-following code to _lightsensor.js_:
+following code to _nightlight.js_:
 
 {% highlight javascript %}
 // The board.on() executes the anonymous function when the 
@@ -185,7 +281,7 @@ board.on("ready", function() {
     
   // Create a new 'photoresistor' hardware instance.
   var photoresistor = new five.Sensor({
-    pin: ANALOGPIN,  // Analog pin 0
+    pin: ANALOGPIN,
   });
     
   // The photoresistor.on("data", callback) function invokes the anonymous callback function 
@@ -243,7 +339,7 @@ received in your IoT Hub because you haven't set up anything that will capture t
 By default, the messages have a one-day retention time.
 
 Beforw you run the app, you need to add the __printResultFor()__ callback function you reference in the <code>client.sendEvent()</code> function. 
-Add the following to the end of the _lightsensor.js_ file, __after__ the cosing of the <code>board.on()</code> function.
+Add the following to the end of the _nightlight.js_ file, __after__ the cosing of the <code>board.on()</code> function.
 
 {% highlight javascript %}
 // Helper function to print results in the console
@@ -255,35 +351,30 @@ function printResultFor(op) {
 }
 {% endhighlight %}
 
-If you want to compare your code to the final solution you can see the code in GitHub [here](https://github.com/ThingLabsIo/IoTLabs/blob/master/Arduino/Labs05_07/lightsensor.js).
-
 ## Run the App and Verify Data is Being Sent
 Open a terminal window (Mac OS) or Node.js command prompt (Windows) and execute the following commands (replace _C:\Development\IoTLabs_ with the 
 path that leads to your labs folder):
 
 <pre>
 cd C:\Development\IoTLabs 
-node lightsensor.js
+node nightlight.js
 </pre>
 
 After the board initializes you will see messages printing out in the console once per second. This is the message payload that is being sent to 
 Azure IoT Hub.
 
-<blockquote>
-  If you downloaded the [Device Explorer][deviceexplorer] utility for Windows in ['Setting Up Azure IoT Hub'][setup-azure-iot-hub] you can open the _Data_ tab, select a device, 
-  and click _Monitor_ to begin monitoring messages as they come into your Azure IoT Hub.
-</blockquote>
+If you downloaded the [Device Explorer][deviceexplorer] utility for Windows in ['Setting Up Azure IoT Hub'][setup-azure-iot-hub] you can open the _Data_ tab, select a device, and click _Monitor_ to begin monitoring messages as they come into your Azure IoT Hub.
 
-When you want to quite the application, press <kbd>CTRL</kbd> + <kbd>C</kbd> twice to exit the program without closing the window (you may also have to press <kbd>Enter</kbd>). After stopping the application press the _Reset_ button on the Photon to prepare it for the next run. 
+When you want to quite the application, press <kbd>CTRL</kbd> + <kbd>C</kbd> twice to exit the program without closing the window (you may also have to press <kbd>Enter</kbd>). 
 
 <blockquote>
   PARTICLE PHOTON USERS: After stopping the application press the _Reset_ button on the Photon to prepare it for the next run.
-</blockquote> 
+</blockquote>
 
 ## Conclusions &amp; Next Steps
-Congratulations! You have created your first internet connected Thing. Welcome to the world of IoT. In the [next lab][visualize-iot-with-powerbi/] you will setup some Azure services to store and visualize the data.
+Congratulations! You have created your first internet connected Thing. Welcome to the world of IoT. In the [next lab][visualize-iot-with-powerbi] you will setup some Azure services to store and visualize the data.
 
-<a class="radius button small" href="{{ site.url }}/lang/js/visualize-iot-with-powerbi/">Next Lab: Visualize IoT with Power BI ›</a>
+<a class="radius button small" href="{{ site.url }}/lang/js/visualize-iot-with-powerbi/">Go to 'Visualize IoT Data with Microsoft Power BI' ›</a>
 
 [setup-azure-iot-hub]: ../setup-azure-iot-hub/
 [sending-telemetry]: ../sending-telemetry/

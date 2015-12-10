@@ -1,37 +1,31 @@
 ---
-layout: page-fullwidth
-title: "Visualizing IoT Data"
-subheadline: "Raspberry Pi IoT Lab 4"
-teaser: "In this lab you will create visualizations of IoT data."
+layout: page-js
+title: "Visualize IoT Data with Microsoft Power BI"
+subheadline: "Connected Thing Labs using Azure and JavaScript"
+teaser: "In this lab you will create visualizations of IoT data using Microsoft Power BI."
 show_meta: true
-comments: true
+comments: false
 header: no
 breadcrumb: true
-categories:
-- rpi2
-- azure-iot
-- stream-analytics
-author: "doug_seven"
-permalink: "/rpi2/04/"
+categories: [azure, azure-iot-hub, javascript, node.js, johnny-five, arduino, photon]
+permalink: /lang/js/visualize-iot-with-powerbi/
 ---
 ### Table of Contents
 *  Auto generated table of contents
 {:toc}
-
-If you haven't already done so, please follow the instructions in [Lab 00: Getting Started](../00/) section.
 
 In this lab you will process the data that you are sending into Azure IoT Hub using Azure Stream Analytics so that you can visualize it using Power BI.
 
 ## Bill of Materials
 What you will need:
 
-1. The _Thing_ you created in [Lab 3](../03/)
+1. The _Thing_ you used in the ['Sending Telemetry' lab](../sending-telemetry/).
 
-In [Lab 2](../02/) you provisioned an Azure IoT Hub and in [Lab 03](../03/) you build a physical device...a _Thing_. You coded an application to collect
-data from the device and send it to your IoT Hub. At the end of the [previous lab](../03/) you had data going into your IoT Hub but you weren't yet doing 
+In a [previous lab](../setup-azure-iot-hub/) you provisioned an Azure IoT Hub and [then you began sending data to it](../sending-telemetry/) build a physical device...a _Thing_. You coded an application to collect
+data from the device and send it to your IoT Hub. At the end of the ['Sending Telemetry' lab](../sending-telemetry/) you had data going into your IoT Hub but you weren't yet doing 
 anything with it. Let's change that.
 
-## Using Stream Analytics to Process and Route IoT Data
+## Using Microsoft Azure Stream Analytics to Process and Route IoT Data
 Azure Stream Analytics is a service that does real-time data processing in the cloud. You will create a new Stream Analytics job and define the 
 input data stream as the data coming from your IoT Hub. Next you will define an output data stream that sends data to Power BI. Finally, you 
 will write a SQL-like query that collects data coming in on the input stream and routes it to the output stream. 
@@ -46,6 +40,7 @@ Select __DATA SERVICES__ > __STREAM ANALYTICS__ > __QUICK CREATE__ and enter the
 
 1. JOB NAME: You can use anything you'd like here...like __iotlab__ or something similar so you can identify it easily later.
 2. REGION: If you created your IoT Hub in _East US_, select __East US 2__. For other regions, select the same region you created your IoT Hub in.
+    * NOTE: If you are using a new Azure Account and experience errors, try creating the Stream Analytics job in the __East US 2__ region.
 3. REGIONAL MONITORING STORAGE ACCOUNT: Select or create a storage account.
 
 <img src="/images/newasa.png"/>
@@ -160,6 +155,6 @@ name __Darkness Report__. Hover over the upper-right corner of the chart and cli
 Once you have pinned all three gauges, click on the dashboard in the left sidebar. On the dashboard you can watch the data update in near real-time. 
 While you are watching the dashboard, pinch or blow on the sensors on the weather shield and you will see the data change in the gauges.
 
-## Conclusion &amp; Next Steps
+## Conclusion
 Congratulations! In this lab you learned how to create an Azure Stream Analytics job to query data coming in to Azure IoT Hub, process it and send 
 it to Power BI. In Power BI you learned how to create reports and pin the data visualizations to a dashboard for near real-time updates.
