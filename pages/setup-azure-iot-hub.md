@@ -7,9 +7,7 @@ show_meta: true
 comments: true
 header: no
 breadcrumb: true
-categories:
-    - azure-iot-hub
-    - iot-labs
+categories: [azure, iot-hubs, device-explorer, iothub-explorer]
 author: doug_seven
 permalink: "/setup-azure-iot-hub/"
 ---
@@ -17,14 +15,14 @@ permalink: "/setup-azure-iot-hub/"
 *  Auto generated table of contents
 {:toc}
 
-If you haven't already done so, please follow the instructions in [Lab 00: Getting Started][getting-started].
+If you haven't already done so, please follow the instructions in ['Getting Started'][getting-started].
 
 In this lab you will provision a new Azure IoT Hub. Once you have the IoT Hub created, you will be able to create a new Azure IoT device (a software reference to your physical device) that you will use to send telemetry to Azure. 
 
 ## Bill of Materials
 What you will need:
 
-1. A Microsoft Azure Account (refer to [Lab 00: ][getting-started])
+1. A Microsoft Azure Account (refer to ['Getting Started'][getting-started])
 
 ## Setup an Azure IoT Hub
 In a browser, navigate to the [Azure Portal](https://portal.azure.com). Login to the account you created in in the [Getting Started][getting-started] lab. Once logged in:
@@ -106,10 +104,10 @@ Continue to the next labs based on the device you are working with.
 
 {% include next-previous-post-in-category.html %}
 
-[getting-started]: /getting-started
-[setup-azure-iot-hub]: /setup-azure-iot-hub
-[setup-photon]: /setup-photon
-[setup-arduino]: /setup-arduino
-[sending-telemetry]: /sending-telemetry
-[visualize-iot-with-powerbi]: /visualize-iot-with-powerbi
+[getting-started]: /getting-started/
+[setup-azure-iot-hub]: /setup-azure-iot-hub/
+[setup-photon]: /setup-photon/
+[setup-arduino]: /setup-arduino/
+[sending-telemetry]: /sending-telemetry/
+[visualize-iot-with-powerbi]: /visualize-iot-with-powerbi/
 [deviceexplorer]: https://github.com/Azure/azure-iot-sdks/blob/master/tools/DeviceExplorer/doc/how_to_use_device_explorer.md

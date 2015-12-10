@@ -2,60 +2,33 @@
   url: "/"
   side: left
   
-- title: "Arduino"
-  url: "/arduino/"
-  side: left
-  dropdown:
-  - title: "Getting Started"
-    url: "/arduino/00/"
-  - title: "Setting Up Your Arduino"
-    url: "/arduino/01/"
-  - title: "Writing Digital Output"
-    url: "/arduino/02/"
-  - title: "Reading Analog Input"
-    url: "/arduino/03/"
-  - title: "Input Controls Output"
-    url: "/arduino/04/"
-  - title: "Setting Up Azure IoT"
-    url: "/arduino/05/"
-  - title: "Sending Data to the Cloud"
-    url: "/arduino/06/"
-  - title: "Visualizing IoT Data"
-    url: "/arduino/07/"
-  
-- title: "Particle Photon"
-  url: "/photon/"
-  side: left
-  dropdown:
-  - title: "Getting Started"
-    url: "/photon/00/"
-  - title: "Writing Digital Output"
-    url: "/photon/01/"
-  - title: "Reading Analog Input"
-    url: "/photon/02/"
-  - title: "Input Controls Output"
-    url: "/photon/03/"
-  - title: "Setting Up Azure IoT and Your Device"
-    url: "/azure/01/"
-  - title: "Sending Telemetry to the Cloud"
-    url: "/azure/02/"
-  - title: "Visualizing IoT Data"
-    url: "/azure/03/"
+#- title: "Labs by Device"
+#  url: "/device/"
+#  side: left
+#  dropdown:
+#  - title: "Arduino / RedBoard"
+#    url: "/device/arduino/"
+#  - title: "Particle Photon"
+#    url: "/device/photon/"
+#  - title: "Raspberry Pi 2"
+#    url: "/device/rpi2/"
     
-- title: "Raspberry Pi 2"
-  url: "/rpi2/"
+- title: "Labs by Programming Language"
+  url: "/lang/"
   side: left
   dropdown:
-  - title: "Getting Started"
-    url: "/rpi2/00/"
-  - title: "Hello, Windows IoT"
-    url: "/rpi2/01/"
-  - title: "Setting Up Your Azure IoT Hub"
-    url: "/rpi2/02/"
-  - title: "Sending Data to the Cloud"
-    url: "/rpi2/03/"
-  - title: "Visualizing IoT Data"
-    url: "/rpi2/04/"
+  - title: "JavaScript, Node.js &amp; Johnny-Five"
+    url: "/lang/js/"
+  - title: "C# &amp; Windows 10 IoT Core"
+    url: "/lang/cs/"
+    
+- title: "Projects"
+  url: "/project/"
+  side: left
+  dropdown:
+  - title: "Connected Weather Station"
+    url: "/lang/js/weather-station/"
+
     
 - title: "Azure Road Tour"
   url: "/azure/"

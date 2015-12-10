@@ -7,9 +7,7 @@ show_meta: true
 comments: true
 header: no
 breadcrumb: true
-categories:
-  - azure-iot
-  - iot-labs
+categories: [javascript, node.js, johnny-five, arduino, redboard, photon, azure, iot-hubs]
 author: doug_seven
 permalink: "/sending-telemetry/"
 ---
@@ -17,7 +15,7 @@ permalink: "/sending-telemetry/"
 *  Auto generated table of contents
 {:toc}
 
-If you haven't already done so, please follow the instructions in [Lab 00: Getting Started][getting-started] section.
+If you haven't already done so, please follow the instructions in ['Getting Started'][getting-started] section.
 
 In this lab you will write a Node.js application that runs on a hub (your development machine) and collects data from a Particle Photon (over local TCP) and sends it up to your Azure IoT Hub.
 
@@ -31,7 +29,7 @@ Since you will be using Node.js for this lab you can take advantage of the depen
 
 Using your favorite/preferred text/code editor, create a file in your development directory named __package.json__ and add the following:
 
-{% highlight javascript %}
+{% highlight json %}
 {
   "name": "IoT-Labs",
   "version": "0.1.0",
@@ -50,7 +48,7 @@ Using your favorite/preferred text/code editor, create a file in your developmen
 
 If you are using the Particle Photon, add the following line to the <code>dependencies</code> list:
 
-{% highlight javascript %}
+{% highlight json %}
 "particle-io": "0.10.1"
 {% endhighlight %}
 
@@ -247,10 +245,10 @@ In this lab you learned how to write a Node.js + Johnny-Five application that co
 
 {% include next-previous-post-in-category.html %}
 
-[getting-started]: /getting-started
-[setup-azure-iot-hub]: /setup-azure-iot-hub
-[setup-photon]: /setup-photon
-[setup-arduino]: /setup-arduino
-[sending-telemetry]: /sending-telemetry
-[visualize-iot-with-powerbi]: /visualize-iot-with-powerbi
+[getting-started]: /getting-started/
+[setup-azure-iot-hub]: /setup-azure-iot-hub/
+[setup-photon]: /setup-photon/
+[setup-arduino]: /setup-arduino/
+[sending-telemetry]: /sending-telemetry/
+[visualize-iot-with-powerbi]: /visualize-iot-with-powerbi/
 [deviceexplorer]: https://github.com/Azure/azure-iot-sdks/blob/master/tools/DeviceExplorer/doc/how_to_use_device_explorer.md

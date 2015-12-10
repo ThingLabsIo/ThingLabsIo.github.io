@@ -1,0 +1,122 @@
+<style type="text/css">
+	section {
+    	clear: both;
+	}	
+	.tl-section {
+    	background-color: transparent;
+    	display: block;
+    	padding: 50px 0;
+    	width: 100%;
+    	min-height: 0;
+    	overflow: hidden;
+    	position: relative;
+	}
+	.tl-section.iot-selections{
+    	border: none;
+	}
+	.tl-section:after {
+		clear: both;
+		content: "";
+		display: table;
+	}
+	.tl-content {
+		margin: 0 auto;
+	}
+	.tl-content>:first-child {
+    	margin-top: 0;
+	}
+	.tl-content>:last-child {
+    	margin-bottom: 0;
+	}
+	.tl-content:after {
+		clear: both;
+		content: "";
+		display: table;
+	}
+	.tl-gallery-item-container {
+    	margin: 0;
+		padding: 0;
+	}
+	.tl-gallery-item-container:after {
+    	clear: both;
+    	content: "";
+    	display: table;
+	}
+	.tl-section.iot-selections .tl-gallery-item {
+		heght: 145px;
+		margin: 0 9px 15px;
+		padding: 15px;
+	}
+	.tl-gallery-item {
+    	display: block;
+		float: left;
+		position: relative;
+	}
+	.tl-section.iot-selections .tl-gallery-item .image {
+    	border: 1px solid #dedede;
+	}
+	.tl-section.iot-selections .tl-gallery-item .image:hover {
+    	border-color: black;
+	}
+	.tl-gallery-item .image {
+    	display: block;
+    	position: relative;
+	}
+	.tl-section.iot-selections .tl-gallery-item .title {
+    	max-height: 50px;
+    	line-height: 1.2;
+    	margin-top: 6px;
+	}
+	.tl-gallery-item .title {
+    	display: block;
+		max-height: 40px;
+    	overflow: hidden;
+    	font-weight: 400;
+    	font-size: 14px;
+    	line-height: 1.5em;
+    	font-weight: 600;
+	}
+	section img {
+    	max-width: 100%;
+	}
+	img {
+    	border: 0;
+    	vertical-align: middle;
+	}
+</style>
+<script type="javascript">
+</script>
+	
+<section class="tl-section iot-selections">
+    <div class="tl-content">
+        <h3>Select a Device</h3>
+    </div>
+	<div class="tl-content">
+		<ul class="tl-gallery-item-container">
+			<li class="tl-gallery-item iot-selector-device" data-pattern="direct gateway" data-platform="linux windows" data-slug="raspberry-pi-2">
+				<a class="image" href="#">
+					<img src="/images/devices/rpi2-115.png" />
+				</a>
+				<a class="title" href="#">Raspberry Pi 2</a>
+			</li>
+			<li class="tl-gallery-item iot-selector-device" data-pattern="direct gateway" data-platform="linux windows" data-slug="particle-photon">
+				<a class="image" href="#">
+					<img src="/images/devices/photon-115.png" />
+				</a>
+				<a class="title" href="#">Particle Photon</a>
+			</li>
+			<li class="tl-gallery-item iot-selector-device" data-pattern="gateway" data-platform="linux windows" data-slug="arduino-uno">
+				<a class="image" href="#">
+					<img alt src="/images/devices/arduino-uno-115.png">
+				</a>
+				<a class="title" href="#">Arduino Uno</a>
+			</li>
+			<li class="tl-gallery-item iot-selector-device" data-pattern="direct gateway" data-platform="linux windows" data-slug="arduino-yun">
+				<a class="image" href="#">
+					<img alt src="/images/devices/arduino-yun-115.png">
+				</a>
+				<a class="title" href="#">Arduino Yun</a>
+			</li>
+		</ul>
+	</div>
+</section>

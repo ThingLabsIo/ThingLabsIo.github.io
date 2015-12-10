@@ -7,10 +7,7 @@ show_meta: true
 comments: true
 header: no
 breadcrumb: true
-categories:
-    - photon
-    - iot-labs
-    - maker-101
+categories: [javascript, node.js, johnny-five, photon]
 author: doug_seven
 permalink: "/setup-photon/"
 ---
@@ -175,11 +172,11 @@ That's it for now. You are ready to start the next lab: [Sending Telemetry to th
 
 {% include next-previous-post-in-category.html %}
 
-[getting-started]: /getting-started
-[setup-azure-iot-hub]: /setup-azure-iot-hub
-[setup-photon]: /setup-photon
-[setup-arduino]: /setup-arduino
-[sending-telemetry]: /sending-telemetry
-[visualize-iot-with-powerbi]: /visualize-iot-with-powerbi
+[getting-started]: /getting-started/
+[setup-azure-iot-hub]: /setup-azure-iot-hub/
+[setup-photon]: /setup-photon/
+[setup-arduino]: /setup-arduino/
+[sending-telemetry]: /sending-telemetry/
+[visualize-iot-with-powerbi]: /visualize-iot-with-powerbi/
 [particle]: https://build.particle.io/signup
 [particlecli]: http://www.particle.io/prototype#cli

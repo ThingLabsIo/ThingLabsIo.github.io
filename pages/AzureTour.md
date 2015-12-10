@@ -68,10 +68,10 @@ Estimated time to complete: 30-minutes
 ## Coming Soon
 More labs will be coming soon to teach you how to send command and control messages to your devices, how to deploy and run the Node.js app from a Raspberry Pi, and how to build a client app that interacts with your IoT devices.
 
-[getting-started]: /getting-started
-[setup-azure-iot-hub]: /setup-azure-iot-hub
-[setup-photon]: /setup-photon
-[setup-arduino]: /setup-arduino
-[sending-telemetry]: /sending-telemetry
-[visualize-iot-with-powerbi]: /visualize-iot-with-powerbi
+[getting-started]: /getting-started/
+[setup-azure-iot-hub]: /setup-azure-iot-hub/
+[setup-photon]: /setup-photon/
+[setup-arduino]: /setup-arduino/
+[sending-telemetry]: /sending-telemetry/
+[visualize-iot-with-powerbi]: /visualize-iot-with-powerbi/
 [j5]: http://johnny-five.io
