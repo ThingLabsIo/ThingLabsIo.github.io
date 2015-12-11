@@ -1,6 +1,6 @@
 ---
 layout: "page-cs"
-title: "Writing Digital Output"
+title: "Hello, Windows IoT!"
 subheadline: "Building Connected Things with Windows 10 IoT and C#"
 teaser: "In this lab you will create a simple 'Thing' using Windows 10 IoT Core."
 show_meta: true
@@ -8,7 +8,7 @@ comments: false
 header: no
 breadcrumb: true
 categories: [raspberry-pi, windows-10, dragonboard, minnowboard, c#, iot, maker]
-permalink: /lang/cs/writing-digital-output/
+permalink: /lang/cs/hello-windows-iot/
 ---
 
 # Table of Contents
@@ -21,16 +21,22 @@ In this lab you will create a simple _Thing_ using a Windows 10 IoT device and t
 What you will need:
 
 1. One of the following development boards:
-    * [Raspberry Pi 2 - $42.00](http://www.amazon.com/Raspberry-Pi-Model-Project-Board/dp/B00T2U7R7I/) with a [5V 2A Switching Power Supply w/ 20AWG 6' MicroUSB Cable - $7.95](https://www.adafruit.com/product/1995)
-    * [DragonBoard 410c - $75.00](http://partners.arrow.com/campaigns-na/qualcomm/dragonboard-410c/) with a [WM24P-12-A-QL 12V 2A Switching Power Supply - $11.24](https://www.arrow.com/en/products/wm24p-12-a-ql/autec-power-systems#page-1)
-3. [(2) Jumper wires (Male to Female) - $1.95](https://www.adafruit.com/product/1954)
-4. [(1) Red LED - 25 for $8.00](http://www.adafruit.com/products/297)
-5. [(1) 330 Ohm resistors - 100 for $3.90](http://www.amazon.com/E-Projects-Resistors-Watt-330R-Pieces/dp/B00BVOR6IS/)
+    * [Raspberry Pi 2](http://www.amazon.com/Raspberry-Pi-Model-Project-Board/dp/B00T2U7R7I/) with a [5V 2A Switching Power Supply w/ 20AWG 6' MicroUSB Cable](https://www.adafruit.com/product/1995)
+    * [DragonBoard 410c](http://partners.arrow.com/campaigns-na/qualcomm/dragonboard-410c/) with a [WM24P-12-A-QL 12V 2A Switching Power Supply](https://www.arrow.com/en/products/wm24p-12-a-ql/autec-power-systems#page-1)
+2. [Jumper wires (Male to Female)](https://www.adafruit.com/product/1954)
+3. [(1) Red LED](http://www.adafruit.com/products/297)
+4. [(1) 330 Ohm resistors](http://www.amazon.com/E-Projects-Resistors-Watt-330R-Pieces/dp/B00BVOR6IS/)
+5. [(1) 10k Ohm resistor](http://www.amazon.com/E-Projects-10k-Resistors-Watt-Pieces/dp/B00BWYS9BA/)
+6. 8GB micro SD card - class 10 or better. Microsoft suggests one of the following:
+	* [Samsung 32GB EVO Class 10 Micro SDHC up to 48MB/s with Adapter (MB-MP32DA/AM)](http://www.amazon.com/gp/product/B00IVPU786)
+	* [SanDisk Ultra Micro SDHC, 16GB Card](http://www.amazon.com/SanDisk-Ultra-Micro-SDHC-16GB/dp/9966573445).
+
+To make life easy, you can get these components and more in the [Microsoft IoT Pack for Raspberry Pi 2](http://www.adafruit.com/windows10iotpi2) from AdaFruit.
 
 The devices should be configured according to thier specific instructions.
 
-    * ['Setting Up Your Raspberry Pi 2']({ site.url }}/lang/cs/setup-rpi2/)
-    * ['Setting Up Your DragonBoard 410c']({ site.url }}/lang/cs/setup-dragon/)
+* ['Setting Up Your Raspberry Pi 2']({ site.url }}/lang/cs/setup-rpi2/)
+* ['Setting Up Your DragonBoard 410c']({ site.url }}/lang/cs/setup-dragon/)
  
 # Wire Up the Device
 The RPi2 connects to the physical world through the GPIO pins. GPIO stands for General Purpose Input/Output and refers to the two rows of pins on RPI2. The GPIO pins are a physical interface between the RPi2 and the physical world. Through your app you can designate pins to either receive input or send output. The inputs can be from switches, sensors or other devices. The outputs can be LEDs, servos, motors or countless other devices. Twenty-six of the 40 pins are GPIO pins; the others are power, ground, or reserved pins.
@@ -251,8 +257,6 @@ Congratulations! You have built a Universal Windows Platform application that co
 
 In the [next lab][nextlab] you will set up a Microsoft Azure IoT Hub that will act as the cloud backend for your IoT devices. In the labs after that you will build a new _Thing_ that will collect environment data and send it to your IoT hub.
 
-[Next Lab ->][nextlab]
+<a class="radius button small" href="{{ site.url }}/lang/cs/setup-azure-iot-hub/">Go to 'Setup Azure IoT Hub' ›</a>
 
-{% include next-previous-post-in-category.html %}
-
-[nextlab]: /rpi2/02/
+[nextlab]: /lang/cs/setup-azure-iot-hub/

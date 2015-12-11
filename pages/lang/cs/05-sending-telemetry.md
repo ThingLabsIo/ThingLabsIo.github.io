@@ -1,43 +1,48 @@
 ---
-layout: page-fullwidth
-title: "Sending Data to the Cloud"
-subheadline: "Raspberry Pi IoT Lab 3"
+layout: page-cs
+title: "Sending Telemetry to the Cloud"
+subheadline: "Building Connected Things with Windows 10 IoT and C#"
 teaser: "In this lab you will build a Universal Windows Platform application that collects ambient light data and sends it to the Cloud."
 show_meta: true
-comments: true
+comments: false
 header: no
 breadcrumb: true
-categories:
-- rpi2
-- particle-photon
-- azure-iot
-author: doug_seven
-permalink: /rpi2/03/
+categories: [raspberry-pi, windows-10, dragonboard, minnowboard, c#, iot, maker, azure, azure-iot-hub]
+permalink: /lang/cs/sending-telemetry/
 ---
 
-### Table of Contents
+# Table of Contents
 *  Auto generated table of contents
 {:toc}
 
-If you haven't already done so, please follow the instructions in [Lab 00: Getting Started](/rpi2/00/) section.
-
 In this lab you will build a Universal Windows Platform application that detects ambient light and sends the data that is being collected to Azure IoT Hub. In following lab you will build a data pipeline to process the incoming data stream and output it to a visualization tool.
 
-## Bill of Materials
+# Bill of Materials
 What you will need:
 
-1. [Raspberry Pi 2 - $42.00](http://www.amazon.com/Raspberry-Pi-Model-Project-Board/dp/B00T2U7R7I/)
-2. [5V 2A Switching Power Supply w/ 20AWG 6' MicroUSB Cable - $7.95](https://www.adafruit.com/product/1995)
-3. [Jumper wires (Male to Male) - $1.95](https://www.adafruit.com/product/1957)
-4. [Jumper wires (Male to Female) - $1.95](https://www.adafruit.com/product/1954)
-5. [Photoresistor - $0.95](https://www.adafruit.com/products/161)
-6. [A Red LED - 25 for $8.00](http://www.adafruit.com/products/297)
-7. [A 330 Ohm resistors - 100 for $3.90](http://www.amazon.com/E-Projects-Resistors-Watt-330R-Pieces/dp/B00BVOR6IS/)
-8. [A 10k Ohm resistor - 100 for $4.99](http://www.amazon.com/E-Projects-10k-Resistors-Watt-Pieces/dp/B00BWYS9BA/)
-9. [MCP3208 - 8-Channel 12-Bit ADC with SPI Interface](http://www.digikey.com/product-detail/en/MCP3208-CI%2FSL/MCP3208-CI%2FSL-ND/305929) or [MCP3008 - 8-Channel 10-Bit ADC with SPI Interface](https://www.adafruit.com/product/856) or [MCP3002 - 2-Channel 10-Bit ADC with SPI Interface](https://www.sparkfun.com/products/8636)
-10. 8GB micro SD card - class 10 or better. Microsoft suggests [this one](http://www.amazon.com/gp/product/B00IVPU786) or [this one](http://www.amazon.com/SanDisk-Ultra-Micro-SDHC-16GB/dp/9966573445).
+1. One of the following development boards:
+    * [Raspberry Pi 2](http://www.amazon.com/Raspberry-Pi-Model-Project-Board/dp/B00T2U7R7I/) with a [5V 2A Switching Power Supply w/ 20AWG 6' MicroUSB Cable](https://www.adafruit.com/product/1995)
+    * [DragonBoard 410c](http://partners.arrow.com/campaigns-na/qualcomm/dragonboard-410c/) with a [WM24P-12-A-QL 12V 2A Switching Power Supply](https://www.arrow.com/en/products/wm24p-12-a-ql/autec-power-systems#page-1)
+3. [Jumper wires (Male to Male)](https://www.adafruit.com/product/1957)
+4. [Jumper wires (Male to Female)](https://www.adafruit.com/product/1954)
+5. [Photoresistor](https://www.adafruit.com/products/161)
+6. [Red and Green (or White) LEDs](http://www.adafruit.com/products/297)
+7. [A few 330 Ohm resistors](http://www.amazon.com/E-Projects-Resistors-Watt-330R-Pieces/dp/B00BVOR6IS/)
+8. [A 10k Ohm resistor](http://www.amazon.com/E-Projects-10k-Resistors-Watt-Pieces/dp/B00BWYS9BA/)
+9. Oe of the following analog-digital-converters:
+	* [MCP3208 - 8-Channel 12-Bit ADC with SPI Interface](http://www.digikey.com/product-detail/en/MCP3208-CI%2FSL/MCP3208-CI%2FSL-ND/305929)
+	* [MCP3008 - 8-Channel 10-Bit ADC with SPI Interface](https://www.adafruit.com/product/856)
+	* [MCP3002 - 2-Channel 10-Bit ADC with SPI Interface](https://www.sparkfun.com/products/8636)
+10. 8GB micro SD card - class 10 or better. Microsoft suggests one of the following:
+	* [Samsung 32GB EVO Class 10 Micro SDHC up to 48MB/s with Adapter (MB-MP32DA/AM)](http://www.amazon.com/gp/product/B00IVPU786)
+	* [SanDisk Ultra Micro SDHC, 16GB Card](http://www.amazon.com/SanDisk-Ultra-Micro-SDHC-16GB/dp/9966573445).
 
-## Capturing Analog Data with a Voltage Divider
+To make life easy, you can get these components and more in the [Microsoft IoT Pack for Raspberry Pi 2](http://www.adafruit.com/windows10iotpi2) from AdaFruit.
+ 
+* ['Setting Up Your Raspberry Pi 2']({ site.url }}/lang/cs/setup-rpi2/)
+* ['Setting Up Your DragonBoard 410c']({ site.url }}/lang/cs/setup-dragon/)
+ 
+# Capturing Analog Data with a Voltage Divider
 For this lab you will work with a few new concepts - both in the circuits connected to the Raspberry Pi 2 (RPi2) and in the Cloud. The first thing you will do is wire up the RPi2 to be able to read voltage as determined by the resistance created by a photoresistor. Wire your board according to the diagram (wire colors don't matter, but help with identification of purpose). This wiring uses an analog-to-digital-convertor (ADC) - either an MCP3208 or an MCP3002, depending on what you have - which enables you to capture analog input instead of simply digital input. When you did the lab with the LED you dealt only with a digital signal - you sent voltage to the LED to turn it on, or off (with no voltage). Many sensors, such as a _photoresistor_, are capable of analog input or output, giving them a broader range than simply a 1 or a 0. 
 
 A _photoresistor_, also known as _light-dependent resistor (LDR)_ or a photocell, works by limiting the amount of voltage that passes through it based on the intensity of light detected. The resistance decreases as light input increases - in other words, the more light, the more voltage passes through the photoresistor.
@@ -65,7 +70,7 @@ Here are the specific wiring instructions for the MCP3008 or MCP3208. For the MC
 
 __NOTE:__ _The ADC has a notch out of one side - ensure that the side with the notch is (according to the diagram) on the lower edge of the breadboard._
 
-## Build the Universal Windows Platform Application
+# Build the Universal Windows Platform Application
 In this application you will read the voltage value coming into the ADC from the voltage divider - the higher the voltage, the darker it is (remember, you are reading in the residual voltage, which is diverted to the ADC when there is resistance in the photoresistor). You will use the _darkness_ value to determine if the LED should be on or off.
 
 The ADC is connected to the RPi2 through the Serial Peripheral Interface (SPI) bus. SPI is a synchronous serial communication interface specification used for short distance communication, primarily in embedded systems. SPI devices communicate in full duplex mode using a master-slave architecture with a single master. The master device originates the frame for reading and writing. Multiple slave devices are supported through selection with individual slave select (SS) lines. SPI is a four-wire serial bus as follows:
@@ -77,19 +82,19 @@ The ADC is connected to the RPi2 through the Serial Peripheral Interface (SPI) b
 
 We won't go any deeper into SPI or the pin layout of the two ADCs - suffice to say that the ADC is wired up to support the four-channel SPI bus, plus supply voltage and ground. The wire connecting the voltage divider to the ADC is the input channel you will read the residual voltage from. 
 
-### Create a Blank Universal App
+## Create a Blank Universal App
 Launch Visual Studio and start a new __Blank App (Universal Windows)__ (found in the _C# -> Windows -> Universal_ node).
 
 Name the application _IoTLigthSensor_.
 
-### Add the Windows IoT Extensions for the UWP
+## Add the Windows IoT Extensions for the UWP
 Once the solution is created, click on the _Project_ menu and select _Add Reference_.
 
 In the Reference Manager dialog, expand the _Universal Windows_ node and select _Extensions_.
 
 In the list of extensions, check the box next to __Windows IoT Extensions for the UWP__ and click __OK__.
 
-### Add the Microsoft.Azure.Devices.Client NuGet Package
+## Add the Microsoft.Azure.Devices.Client NuGet Package
 Once the _Windows IoT Extensions for the UWP_ are added, click on the _Project_ menu and select _Manage NuGet Packages.._
 
 Use the search field to search for __Microsoft.Azure.Devices.Client__. 
@@ -100,7 +105,7 @@ Click on the __Install__ button to install the package.
 
 <img src="/images/rpi2/rpi2_lab03_AzureNuGet.PNG"/>
 
-### Design the App UI
+## Design the App UI
 Open the _MainPage.xaml_ file. This is the layout definition for the initial page that loads when the app is run. Next you will add a few elements to the page.
 
 {% highlight xml %}
@@ -116,7 +121,7 @@ Open the _MainPage.xaml_ file. This is the layout definition for the initial pag
 </Grid>
 {% endhighlight %}
 
-### Add 'using' Statements
+## Add 'using' Statements
 Open the _MainPage.xaml.cs_ file. This is the code behind the layout for the MainPage.xaml. Add the following to the _using_ statements at the top of the file. Add the following <code>using</code> 
 
 {% highlight csharp %}
@@ -129,7 +134,7 @@ using System.Text;
 using Microsoft.Azure.Devices.Client;
 {% endhighlight %}
 
-### Define Constants and Variables
+## Define Constants and Variables
 There are several constants and variables that you will reference throughout this code. This code is written to support the MCP3002, MCP3008, and MCP3208 ADCs. You must set the value of <code>ADC_DEVICE</code> to the specific ADC you are using, and follow the appropriate wiring diagram (above). 
 
 {% highlight csharp %}
@@ -181,7 +186,7 @@ public sealed partial class MainPage : Page
 
 There is a lot defined here - the function of each constant or variable will become evident as you code up the application.
 
-### Add a Clean Up Event Handler
+## Add a Clean Up Event Handler
 Inside the _MainPage()_ constructor, register an event handler for the __Unloaded__ event. 
 
 {% highlight csharp %}
@@ -211,7 +216,7 @@ private void MainPage_Unloaded(object sender, RoutedEventArgs e)
 }
 {% endhighlight %}
 
-### Initialize the SPI and GPIO Busses
+## Initialize the SPI and GPIO Busses
 Still in the _ManPage()_ constructor, add a call to a new method names __InitAll()__. 
 
 {% highlight csharp %}
@@ -295,7 +300,7 @@ private async Task InitSpiAsync()
 }
 {% endhighlight %}
 
-### Create a Timer to Read the Sensor Values
+## Create a Timer to Read the Sensor Values
 Next you will create a timer to read the data from the photoresistor and set the state of the LED. To do this, in the _MainPage()_ constructor, replace <code>// TODO: Read sensors every 25ms and refresh the UI</code> with:
 
 {% highlight csharp %}
@@ -431,7 +436,7 @@ private void LightLed()
 
 In this method you simply check to see if the ADC value is greater than two-thirds of the ADC's resolution - in other words, is it kind of dark? If it is, turn on the LED and paint the indicator bar in the UI red, otherwise, turn off the LED and paint the indicator bar light gray.
 
-### Test Run the App
+## Test Run the App
 At this point you can deploy and run the application to see if the photoresistor and LED are working. You still haven't sent a message to Azure, but testing the circuit is never a bad idea. To deploy this application to your RPi2, select __ARM__ from the _Solution Platforms_ list in the toolbar, and select __REMOTE MACHINE__ from the _Device_ dropdown list in the toolbar.
 
 <img src="/images/rpi2/rpi2_lab01_arm.png"/>
@@ -444,7 +449,7 @@ __NOTE:__ You can verify or modify these values by navigating to the project pro
 
 Now press __F5__ to run the application and you should see it deploy on the RPi2. Test the circuit and application by changing the amount of light the photoresistor is exposed to.
 
-### Send A Message to Azure IoT Hub
+## Send A Message to Azure IoT Hub
 Now that you know your physical device is working, it is time to send its data to Azure. In the _MainPage()_ constructor, replace the comment <code>// TODO: Instantiate the Azure device client</code> with:
 
 {% highlight csharp %}
@@ -510,10 +515,10 @@ With this method you attempt to construct a JSON message payload, display it on 
 
 The final _MainPage.cxaml.cs_ can be founs [here](https://github.com/ThingLabsIo/IoTLabs/blob/master/RPi2/Lab03/Lab03/MainPage.xaml.cs) and the complete solution can be found [here](https://github.com/ThingLabsIo/IoTLabs/tree/master/RPi2/Lab03).
 
-### Run the Application
+## Run the Application
 Now you can run the application on your RPi2 and not only will you see the indicator bar changing, but you will also see the log of messages being sent to Azure IoT Hub at a rate of once per second.
 
-## Conclusion &amp; Next Steps
+# Conclusion &amp; Next Steps
 Congratulations! You have built a Universal Windows Platform application that captures data from the physical word and sends it to Azure IoT Hub. The core concepts you've learned are:
 
 1. Working with analog data using a voltage divider and an analog-t-digital converter (ADC). 
@@ -522,8 +527,6 @@ Congratulations! You have built a Universal Windows Platform application that ca
 
 At this point, nothing interesting is happening with that data you are sending to Azure. It is simply being persisted for a default amount of time (1-day) and then being dropped. In the [next lab][nextlab] you will setup some Azure services to process and visualize the data.
 
-[Next Lab ->][nextlab]
+<a class="radius button small" href="{{ site.url }}/lang/cs/visualize-iot-with-powerbi/">Go to 'Visualize IoT Data with Microsoft Power BI' ›</a>
 
-{% include next-previous-post-in-category.html %}
-
-[nextlab]: /rpi2/04/
+[nextlab]: ../visualize-iot-with-powerbi/

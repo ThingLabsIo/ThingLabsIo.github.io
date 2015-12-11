@@ -1,20 +1,16 @@
 ---
-layout: page-fullwidth
+layout: page-cs
 title: "Visualizing IoT Data"
-subheadline: "Raspberry Pi IoT Lab 4"
+subheadline: "Building Connected Things with Windows 10 IoT and C#"
 teaser: "In this lab you will create visualizations of IoT data."
 show_meta: true
-comments: true
+comments: false
 header: no
 breadcrumb: true
-categories:
-- rpi2
-- azure-iot
-- stream-analytics
-author: "doug_seven"
-permalink: "/rpi2/04/"
+categories: [raspberry-pi, windows-10, dragonboard, minnowboard, c#, iot, maker, azure, azure-iot-hub]
+permalink: /lang/cs/visualize-iot-with-powerbi/
 ---
-### Table of Contents
+# Table of Contents
 *  Auto generated table of contents
 {:toc}
 
@@ -22,21 +18,21 @@ If you haven't already done so, please follow the instructions in [Lab 00: Getti
 
 In this lab you will process the data that you are sending into Azure IoT Hub using Azure Stream Analytics so that you can visualize it using Power BI.
 
-## Bill of Materials
+# Bill of Materials
 What you will need:
 
-1. The _Thing_ you created in [Lab 3](../03/)
+1. The _Thing_ you created in a [previous lab](../sending-telemetry/).
 
-In [Lab 2](../02/) you provisioned an Azure IoT Hub and in [Lab 03](../03/) you build a physical device...a _Thing_. You coded an application to collect
-data from the device and send it to your IoT Hub. At the end of the [previous lab](../03/) you had data going into your IoT Hub but you weren't yet doing 
+In an [earlier lab](../setup-azure-iot-hub/) you provisioned an Azure IoT Hub and in the [previous lab](../sending-telemetry/) you built a physical device...a _Thing_. You coded an application to collect
+data from the device and send it to your IoT Hub. At the end of the previous lab you had data going into your IoT Hub but you weren't yet doing 
 anything with it. Let's change that.
 
-## Using Stream Analytics to Process and Route IoT Data
+# Using Stream Analytics to Process and Route IoT Data
 Azure Stream Analytics is a service that does real-time data processing in the cloud. You will create a new Stream Analytics job and define the 
 input data stream as the data coming from your IoT Hub. Next you will define an output data stream that sends data to Power BI. Finally, you 
 will write a SQL-like query that collects data coming in on the input stream and routes it to the output stream. 
 
-### Create the Stream Analytics Job
+## Create the Stream Analytics Job
 Open a new browser tab and navigate to [https://manage.windowsazure.com](https://manage.windowsazure.com). Click on the __NEW__ icon in the 
 lower-left corner.
 
@@ -56,7 +52,7 @@ Click _CREATE STREAM ANALYTICS JOB_. It will take a few minutes for the Steam An
 
 When the job indicates that it is created, click into it to create the data streams and query.
 
-### Define the Input Data Stream
+## Define the Input Data Stream
 Once you are in the Stream Analytics job, click on the __INPUTS__ header.
 
 <img src="/images/asainputs.png"/>
@@ -80,7 +76,7 @@ On the _Serialization settings_ form, leave the defaults (Event Serialization Fo
 
 After a few seconds, a new input will be listed.
 
-### Define the Output Data Stream
+## Define the Output Data Stream
 Click on the _OUTPUTS_ header.
 
 <img src="/images/asaoutputs.png"/>
@@ -141,7 +137,7 @@ from the [previous lab](../03/) isn't still running, go ahead and start it up. I
 started and to start sending data to Power BI, but you should see _MyIoTDataSet_ show up in Power BI within a few minutes. Remember, 
 the _TumblingWindow_ is set to 5-seconds, so PowerBI will only update every 5-seconds.
 
-## Build Reports in Power BI
+# Build Reports in Power BI
 Go back to the browser tab where you have Power BI open. Look in the _Datasets_ node in the left-hand navigation. The _MyIoTDataSet_ should appear 
 there within a few minutes of IoT Hub data streaming into the Stream Analytics job. 
 
@@ -160,8 +156,6 @@ name __Darkness Report__. Hover over the upper-right corner of the chart and cli
 Once you have pinned all three gauges, click on the dashboard in the left sidebar. On the dashboard you can watch the data update in near real-time. 
 While you are watching the dashboard, pinch or blow on the sensors on the weather shield and you will see the data change in the gauges.
 
-## Conclusion &amp; Next Steps
+# Conclusion &amp; Next Steps
 Congratulations! In this lab you learned how to create an Azure Stream Analytics job to query data coming in to Azure IoT Hub, process it and send 
 it to Power BI. In Power BI you learned how to create reports and pin the data visualizations to a dashboard for near real-time updates.
-
-{% include next-previous-post-in-category.html %}
