@@ -20,16 +20,22 @@ The labs in this series build on each other to enable you to prototype your own 
 ## Bill of Materials
 In this lab series you will need the following:
 
-1. [Raspberry Pi 2 - $42.00](http://www.amazon.com/Raspberry-Pi-Model-Project-Board/dp/B00T2U7R7I/)
-2. [5V 2A Switching Power Supply w/ 20AWG 6' MicroUSB Cable - $7.95](https://www.adafruit.com/product/1995)
-3. [Jumper wires (Male to Male) - $1.95](https://www.adafruit.com/product/1957)
-4. [Jumper wires (Male to Female) - $1.95](https://www.adafruit.com/product/1954)
-5. [Photoresistor - $0.95](https://www.adafruit.com/products/161)
-6. [Red and Green (or White) LEDs - 25 for $8.00](http://www.adafruit.com/products/297)
-7. [A few 330 Ohm resistors - 100 for $3.90](http://www.amazon.com/E-Projects-Resistors-Watt-330R-Pieces/dp/B00BVOR6IS/)
-8. [A 10k Ohm resistor - 100 for $4.99](http://www.amazon.com/E-Projects-10k-Resistors-Watt-Pieces/dp/B00BWYS9BA/)
-9. [MCP3208 - 8-Channel 12-Bit ADC with SPI Interface](http://www.digikey.com/product-detail/en/MCP3208-CI%2FSL/MCP3208-CI%2FSL-ND/305929) or [MCP3008 - 8-Channel 10-Bit ADC with SPI Interface](https://www.adafruit.com/product/856) or [MCP3002 - 2-Channel 10-Bit ADC with SPI Interface]
-10. 8GB micro SD card - class 10 or better. Microsoft suggests [this one](http://www.amazon.com/gp/product/B00IVPU786) or [this one](http://www.amazon.com/SanDisk-Ultra-Micro-SDHC-16GB/dp/9966573445).
+1. One of the following development boards:
+    * [Raspberry Pi 2](http://www.amazon.com/Raspberry-Pi-Model-Project-Board/dp/B00T2U7R7I/) with a [5V 2A Switching Power Supply w/ 20AWG 6' MicroUSB Cable](https://www.adafruit.com/product/1995)
+    * [DragonBoard 410c](http://partners.arrow.com/campaigns-na/qualcomm/dragonboard-410c/) with a [WM24P-12-A-QL 12V 2A Switching Power Supply](https://www.arrow.com/en/products/wm24p-12-a-ql/autec-power-systems#page-1)
+3. [Jumper wires (Male to Male)](https://www.adafruit.com/product/1957)
+4. [Jumper wires (Male to Female)](https://www.adafruit.com/product/1954)
+5. [Photoresistor](https://www.adafruit.com/products/161)
+6. [Red and Green (or White) LEDs](http://www.adafruit.com/products/297)
+7. [A few 330 Ohm resistors](http://www.amazon.com/E-Projects-Resistors-Watt-330R-Pieces/dp/B00BVOR6IS/)
+8. [A 10k Ohm resistor](http://www.amazon.com/E-Projects-10k-Resistors-Watt-Pieces/dp/B00BWYS9BA/)
+9. Oe of the following analog-digital-converters:
+	* [MCP3208 - 8-Channel 12-Bit ADC with SPI Interface](http://www.digikey.com/product-detail/en/MCP3208-CI%2FSL/MCP3208-CI%2FSL-ND/305929)
+	* [MCP3008 - 8-Channel 10-Bit ADC with SPI Interface](https://www.adafruit.com/product/856)
+	* [MCP3002 - 2-Channel 10-Bit ADC with SPI Interface](https://www.sparkfun.com/products/8636)
+10. 8GB micro SD card - class 10 or better. Microsoft suggests one of the following:
+	* [Samsung 32GB EVO Class 10 Micro SDHC up to 48MB/s with Adapter (MB-MP32DA/AM)](http://www.amazon.com/gp/product/B00IVPU786)
+	* [SanDisk Ultra Micro SDHC, 16GB Card](http://www.amazon.com/SanDisk-Ultra-Micro-SDHC-16GB/dp/9966573445).
 
 To make life easy, you can get these components and more in the [Microsoft IoT Pack for Raspberry Pi 2](http://www.adafruit.com/windows10iotpi2) from AdaFruit.
 
@@ -62,7 +68,5 @@ In this lab you prepared your development machine for the following labs. The ne
 Choose your own adventure - click one of these options to configure your board.
 
 <a class="radius button small" href="{{ site.url }}/lang/cs/setup-rpi2/">Go to 'Setting Up Your Raspberry Pi 2' ›</a>
-
-<a class="radius button small" href="{{ site.url }}/lang/cs/setup-minnow/">Go to 'Setting Up Your MinnowBoard MAX' ›</a>
 
 <a class="radius button small" href="{{ site.url }}/lang/cs/setup-dragon/">Go to 'Setting Up Your DragonBoard 410c MAX' ›</a>

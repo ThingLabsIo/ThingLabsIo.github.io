@@ -39,10 +39,10 @@ In this lab you will install Windows 10 IoT Core on your DragonBoard 410c.
 
 <a class="radius button small" href="{{ site.url }}/lang/cs/setup-dragon/">Estimated time to complete: 20-minutes. Go to  'Setting Up Your Dragon Board' ›</a>
 
-## Writing Digital Output
+## Hello, Windows IoT!
 In this lab you will use one of the digital output pins to send a signal to an LED.
 
-<a class="radius button small" href="{{ site.url }}/lang/cs/writing-digital-output/">Estimated time to complete: 20-minutes. Go to  'Writing Digital Output' ›</a>
+<a class="radius button small" href="{{ site.url }}/lang/cs/hello-windows-iot/">Estimated time to complete: 20-minutes. Go to  'Hello, Windows IoT!' ›</a>
 
 ## Reading Analog Input
 In this lab you will read input from an analog sensor using a voltage divider.

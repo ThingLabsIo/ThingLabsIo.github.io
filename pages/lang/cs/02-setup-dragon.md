@@ -137,4 +137,4 @@ Your DragonBoard will reboot and when it is back up and running it will have the
 # Conclusion &amp; Next Steps
 In this lab you prepared your DragonBoard 410c for the following labs. Next you will do the IoT equivalent 'Hello, World!' - you will make an LED blink.
 
-<a class="radius button small" href="{{ site.url }}/lang/cs/writing-digital-output/">Go to 'Writing Digital Output' ›</a>
+<a class="radius button small" href="{{ site.url }}/lang/cs/hello-windows-iot/">Go to 'Hello, Windows IoT!' ›</a>

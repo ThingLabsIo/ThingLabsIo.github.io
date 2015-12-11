@@ -1,22 +1,18 @@
 ---
-layout: page-fullwidth
+layout: "page-cs"
 title: "Setting Up Azure IoT"
-subheadline: "Raspberry Pi IoT Lab 2"
+subheadline: "Building Connected Things with Windows 10 IoT and C#"
 teaser: "In this lab you will provision an Azure IoT Hub and an IoT Hub device."
 show_meta: true
-comments: true
+comments: false
 header: no
 breadcrumb: true
-categories:
-    - rpi2
-author: "Doug Seven"
-permalink: /rpi2/02/
+categories: [raspberry-pi, windows-10, dragonboard, minnowboard, c#, iot, maker, azure, azure-iot-hub]
+permalink: /lang/cs/setup-azure-iot-hub/
 ---
 ### Table of Contents
 *  Auto generated table of contents
 {:toc}
-
-If you haven't already done so, please follow the instructions in [Lab 00: Getting Started](/rpi2/00/) section.
 
 In this lab you will provision a new Azure IoT Hub. Once you have the IoT Hub created, you will be able to create a new Azure IoT device (a software reference to your physical device) that you will use to send telemetry to Azure.
 
@@ -26,7 +22,7 @@ What you will need:
 1. An Azure Account
 
 ## Setup an Azure IoT Hub
-In a browser, navigate to the Azure Portal at [https://portal.azure.com](https://portal.azure.com). Login to the account you created in in [Lab 00: Getting Started](/rpi/00/). Once logged in:
+In a browser, navigate to the Azure Portal at [https://portal.azure.com](https://portal.azure.com). Login to the account you created in the ['Getting Started' lab](../getting-started/). Once logged in:
 
 1. Click on the __New__ menu option in the upper-left
 2. Select __Internet of Things__
@@ -95,9 +91,7 @@ The device-specific connection string identifies the device by name and includes
 ## Conclusion &amp; Next Steps
 Congratulations! You have created an Azure IoT Hub that you will connect devices to. You also created a representation of a physical device in your IoT Hub. In the [next lab][nextlab] you will build a Universal Windows Application application that will collect data from the RPi2 and send it to Azure IoT Hub.
 
-[Next Lab ->][nextlab]
+<a class="radius button small" href="{{ site.url }}/lang/cs/sending-telemetry/">Go to 'Sending Telemetry to the Cloud' ›</a>
 
-{% include next-previous-post-in-category.html %}
-
-[nextlab]: /rpi2/03/
+[nextlab]: ../lang/cs/sending-telemetry/
 [deviceexplorer]: https://github.com/Azure/azure-iot-sdks/blob/master/tools/DeviceExplorer/doc/how_to_use_device_explorer.md
