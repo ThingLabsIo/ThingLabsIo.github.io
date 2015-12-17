@@ -85,7 +85,7 @@ Using your favorite/preferred text/code editor, create a file in your labs folde
         "author": "YOUR NAME",
       "license": "MIT",
       "dependencies": {
-        "johnny-five": "latest",
+        "johnny-five": "latest"
       }
     }
     {% endhighlight %}
@@ -155,7 +155,7 @@ Now add the following code to the <b>blinky.js</b> file:
     var five = require ("johnny-five"); 
 
     // Define the pin that is connected to the LED 
-    var LEDPIN = 'D7';
+    var LEDPIN = 13;
     
     // Create a Johnny Five board instance to represent your board.
     // Board is simply an abstraction of the physical hardware, whether it is 
