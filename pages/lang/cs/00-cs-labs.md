@@ -44,16 +44,6 @@ In this lab you will use one of the digital output pins to send a signal to an L
 
 <a class="radius button small" href="{{ site.url }}/lang/cs/hello-windows-iot/">Estimated time to complete: 20-minutes. Go to  'Hello, Windows IoT!' ›</a>
 
-## Reading Analog Input
-In this lab you will read input from an analog sensor using a voltage divider.
-
-<a class="radius button small" href="{{ site.url }}/lang/cs/reading-analog-input/">Estimated time to complete: 20-minutes. Go to  'Reading Analog Input' ›</a>
-
-## Input Controls Output
-In this lab you will use analog input to control digital output.
-
-<a class="radius button small" href="{{ site.url }}/lang/cs/input-controls-output/">Estimated time to complete: 20-minutes. Go to  'Input Controls Output' ›</a>
-
 # Connected Thing Labs
 There are options for the Connected Things Labs when coding with JavaScript depending on the board you are working with and the sensors, devices or shields you have available. Regardless of which option you pursue, you must first setup your Microsoft Azure IoT Hub. Once you have done that, return to this page to select the next lab based on your hardware.
 

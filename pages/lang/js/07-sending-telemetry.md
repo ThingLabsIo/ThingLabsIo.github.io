@@ -43,7 +43,7 @@ This lab follows the same wiring plan as the ['Reading Analog Input' lab](/lang/
     <li><a href="#photon"><span>Photon</span></a></li>
   </ul>
   <div id="arduino">
-    <img src="/images/Lab02_bb.png"/>
+    <img src="/images/lab02_bb.png"/>
   </div>
   <div id="photon">
     <img src="/images/photon_lab02_bb.png"/>

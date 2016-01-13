@@ -30,9 +30,9 @@ What you will need:
 5. [Photoresistor (5528)](http://www.sparkfun.com/products/9088)
 6. [10k Ohm 1/4 Watt resistor](http://www.sparkfun.com/products/10969) (Brown-Black-Orange)
 
-For Arduino and RedBoard, you must upload the Standard Firmatta to the board. See [Setting Up Your Arduino Firmware]({ site.url }}/lang/js/setup-arduino/) for details. 
+For Arduino and RedBoard, you must upload the Standard Firmatta to the board. See [Setting Up Your Arduino Firmware]({{ site.url }}/lang/js/setup-arduino/) for details. 
 
-For Particle Photon, you must upload the VoodooSpark firmware to the board. See [Setting Up Your Particle Photon Firmware]({ site.url }}/lang/js/setup-photon/) for details.
+For Particle Photon, you must upload the VoodooSpark firmware to the board. See [Setting Up Your Particle Photon Firmware]({{ site.url }}/lang/js/setup-photon/) for details.
 
 ## Wiring a Voltage Divider
 The first step is to wire up the board to read voltage as determined by the resistance created by the photoresistor. Wire your board according to the diagram (wire colors don't matter, but help with identification of purpose).
@@ -49,10 +49,10 @@ In order to take advantage of the photoresistor you will create a voltage divide
     <li><a href="#photon"><span>Photon</span></a></li>
   </ul>
   <div id="arduino">
-    <img src="/images/lightin_schem.png"/>
+    <img src="/images/lab02_schem.png"/>
   </div>
   <div id="photon">
-    <img src="/images/photon_lightin_schem.png"/>
+    <img src="/images/photon_lab02_schem.png"/>
   </div>
 </div>
 
@@ -62,14 +62,14 @@ $( "#schem-tabs" ).tabs();
 
 To create the voltage divider needed for this lesson you will:
 
-- Connect the voltage from the 3.3-volt (input voltage) pin to a circuit (using a breadboard).
-- Connect the input voltage to a static resistor (220-Ohm).
+- Connect the the 3.3-volt pin (input voltage) to a circuit (using a breadboard).
+- Connect the input voltage to a static resistor.
 - Establish a voltage divider coming out of the static resistor:
    - One route to the analog pin (A0).
    - One route to a dynamic resistor (the photoresistor).
 - Completing the circuit out of the dynamic resistor to ground.
 
-As the photoresistor increases its resistance (lower light intensity) more of the input voltage coming out of the 220-Ohm resistor is blocked and diverted to the A0 pin. That means that the less intense the light into the photoresistor the more resistance it creates, which in turn diverts more voltage to the A0 pin (the voltage has to go somewhere). Likewise, the more intense the light into the photoresistor, the less resistance it creates, which in turn means there is less voltage to divert to the A0 pin.
+As the photoresistor increases its resistance (lower light intensity) more of the input voltage coming out of the static resistor is blocked and diverted to the A0 pin. That means that the less intense the light into the photoresistor the more resistance it creates, which in turn diverts more voltage to the A0 pin (the voltage has to go somewhere). Likewise, the more intense the light into the photoresistor, the less resistance it creates, which in turn means there is less voltage to divert to the A0 pin.
 
 In short, the more voltage to the A0 pin, the darker it is.
 
@@ -81,10 +81,10 @@ Here are the specific wiring instructions.
     <li><a href="#photon"><span>Photon</span></a></li>
   </ul>
   <div id="arduino">
-    <img src="/images/lightin_bb.png"/>
+    <img src="{{ sitte.url }}/images/lab02_bb.png"/>
   </div>
   <div id="photon">
-    <img src="/images/photon_lightin_bb.png"/>
+    <img src="/images/photon_lab02_bb.png"/>
   </div>
 </div>
 

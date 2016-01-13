@@ -14,7 +14,7 @@ permalink: /lang/cs/visualize-iot-with-powerbi/
 *  Auto generated table of contents
 {:toc}
 
-If you haven't already done so, please follow the instructions in [Lab 00: Getting Started](../00/) section.
+If you haven't already done so, please follow the instructions in [Lab 00: Getting Started](../getting-started/) section.
 
 In this lab you will process the data that you are sending into Azure IoT Hub using Azure Stream Analytics so that you can visualize it using Power BI.
 
@@ -133,7 +133,7 @@ GROUP BY
 {% endhighlight %}
 
 Click _SAVE_ in the lower middle of the screen. Once the query is saved, click _START_ to start the Stream Analytics job. If your app 
-from the [previous lab](../03/) isn't still running, go ahead and start it up. It will take a few minutes for the Stream Analytics job to get 
+from the [previous lab](../sending-telemetry/) isn't still running, go ahead and start it up. It will take a few minutes for the Stream Analytics job to get 
 started and to start sending data to Power BI, but you should see _MyIoTDataSet_ show up in Power BI within a few minutes. Remember, 
 the _TumblingWindow_ is set to 5-seconds, so PowerBI will only update every 5-seconds.
 

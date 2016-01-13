@@ -30,9 +30,9 @@ What you will need (all the parts from the previous lessons):
 5. [Photoresistor (5528)](http://www.sparkfun.com/products/9088)
 6. [10k Ohm 1/4 Watt resistor](http://www.sparkfun.com/products/10969) (Brown-Black-Orange)
 
-For Arduino and RedBoard, you must upload the Standard Firmatta to the board. See [Setting Up Your Arduino Firmware]({ site.url }}/lang/js/setup-arduino/) for details. 
+For Arduino and RedBoard, you must upload the Standard Firmatta to the board. See [Setting Up Your Arduino Firmware]({{ site.url }}/lang/js/setup-arduino/) for details. 
 
-For Particle Photon, you must upload the VoodooSpark firmware to the board. See [Setting Up Your Particle Photon Firmware]({ site.url }}/lang/js/setup-photon/) for details.
+For Particle Photon, you must upload the VoodooSpark firmware to the board. See [Setting Up Your Particle Photon Firmware]({{ site.url }}/lang/js/setup-photon/) for details.
 
 ## Wiring the Board
 In this lab you will creat two distinct circuits. This lesson combines the previous two lessons, so it's likely that you already have most of the wiring done from the previous lesson. Wire the board according to the diagram.
@@ -169,7 +169,7 @@ board.on("ready", function() {
 });
 {% endhighlight %}
 
-Next you will use the __Sensor__ class to represent the photoresistor and capture the light/darkness measurement. In [Lab 02](/photon/02/) you used _analogRead()_ to collect and log the voltage value out to the console. For this lab you will use the light/darkness value to determine how bright the LED should be. Start by defining a _photoresistor_ variable using the __Sensor__ class. Next create a hander function for the photoresistor _data_ event. Add the following code where the <code>// TODO: You will add the photoresistor code here.</code> comment is.
+Next you will use the __Sensor__ class to represent the photoresistor and capture the light/darkness measurement. In ['Reading Analog Input'](../reading-analog-input/) you used _analogRead()_ to collect and log the voltage value out to the console. For this lab you will use the light/darkness value to determine how bright the LED should be. Start by defining a _photoresistor_ variable using the __Sensor__ class. Next create a hander function for the photoresistor _data_ event. Add the following code where the <code>// TODO: You will add the photoresistor code here.</code> comment is.
 
 {% highlight javascript %}
 	  // Create a new 'photoresistor' hardware instance.
