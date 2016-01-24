@@ -1,14 +1,14 @@
 ---
-layout: page-fullwidth
+layout: page-tr22
 title: "Visualizing IoT Data with Power BI"
-subheadline: "Connected Thing Labs using Azure and JavaScript"
+subheadline: "Building Connected Things with Node.js"
 teaser: "In this lab you will create visualizations of IoT data using Microsoft Azure Stream Analytics and Power BI."
 show_meta: true
 comments: false
 header: no
 breadcrumb: true
 categories: [azure, azure-iot-hub, javascript, node.js, johnny-five, arduino, photon]
-permalink: /lang/js/weather-station/visualize-iot-with-powerbi/
+permalink: /tr22/js/visualize-iot-with-powerbi/
 ---
 # Table of Contents
 *  Auto generated table of contents
@@ -20,7 +20,7 @@ In this lab you will process the data that you are sending into Azure IoT Hub us
 What you will need:
 
 1. The weather station device you created in the [previous lab](../sending-telemetry/).
-2. The Azure IoT Hub you created in a [previous lab](/lang/js/weather-station/setup-azure-iot-hub/).
+2. The Azure IoT Hub you created in a [previous lab](../setup-azure-iot-hub/).
 
 In the previous labs you provisioned an Azure IoT Hub and a physical device, and you wrote a Node.js application to collect data from the board and send it to your IoT Hub. At the end of the [previous lab](../sending-telemetry/) you had data going into your IoT Hub but you weren't yet doing anything with it. Let's change that.
 
@@ -81,7 +81,7 @@ Click on the __OUTPUTS__ header.
 
 Click on __ADD AN OURPUT__.
 Select __Power BI__ and click on the forward arrow in the lower-right.
-Follow the instructions for either __Existing Microsoft Power BI User__ or __New User__
+Follow the instructions for either __Existing Microsoft Power BI User__ or __New User__using your __@microsoft.com__ email account.
 
 <blockquote>
 Power BI is a data visualization toolkit for organizations. To create a new user account, you will have to use an account that belongs to an organization, such as your place of employment. You will not be able to create a new user account using an email address that ends in Outlook.com, Hotmail.com, GMail.com or other general email provider accounts.

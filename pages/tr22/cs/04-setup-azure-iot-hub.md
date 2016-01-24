@@ -1,7 +1,7 @@
 ---
 layout: "page-tr22"
 title: "Setting Up Azure IoT"
-subheadline: "Building Connected Things with Windows 10 IoT and C#"
+subheadline: "Building Connected Things with Windows 10 IoT Core and C#"
 teaser: "In this lab you will provision an Azure IoT Hub and an IoT Hub device."
 show_meta: true
 comments: false

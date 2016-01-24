@@ -1,14 +1,14 @@
 ---
-layout: page-js
+layout: page-tr22
 title: "Writing Digital Output"
-subheadline: "Building Connected Things with JavaScript"
+subheadline: "Building Connected Things with Node.js"
 teaser: "In this lab you will use one of the digital output pins to send a signal to an LED."
 show_meta: true
 comments: false
 header: no
 breadcrumb: true
 categories: [arduino, photon, iot, maker, javascript, node.js, johnny-five]
-permalink: /lang/js/writing-digital-output/
+permalink: /tr22/js/writing-digital-output/
 ---
 If you haven't already done so, please follow the instructions in the ['Getting Started' lab]({{ site.url }}/lang/js/getting-started/) section.
 
@@ -30,9 +30,9 @@ What you will need:
 3. [5mm Green LED](http://www.sparkfun.com/products/12062)
 4. [330 Ohm 1/4 Watt resistor](http://www.sparkfun.com/products/10969) (Orange-Orange-Brown)
 
-For Arduino and RedBoard, you must upload the Standard Firmatta to the board. See [Setting Up Your Arduino Firmware]({{ site.url }}/lang/js/setup-arduino/) for details. 
+For Arduino and RedBoard, you must upload the Standard Firmatta to the board. See [Setting Up Your Arduino Firmware](../setup-arduino/) for details. 
 
-For Particle Photon, you must upload the VoodooSpark firmware to the board. See [Setting Up Your Particle Photon Firmware]({{ site.url }}/lang/js/setup-photon/) for details.
+For Particle Photon, you must upload the VoodooSpark firmware to the Photon. See [Setting Up Your Particle Photon Firmware](../setup-photon/) for details.
 
 # Wiring the Board
 Next you need to wire up the Photon board so that it can send <code>ON</code> and <code>OFF</code> commands to the LED. You can wire your board according to the diagram (wire colors don't matter, but help with identification of purpose).

@@ -1,7 +1,7 @@
 ---
-layout: page-fullwidth
+layout: page-tr22
 title: "Setting Up Azure IoT Hub"
-subheadline: "Microsoft Azure IoT Connected Weather Station Project"
+subheadline: "Building Connected Things with Node.js"
 teaser: "In this lab you will provision an Azure IoT Hub and an IoT Hub device."
 show_meta: true
 comments: true
@@ -9,7 +9,7 @@ header: no
 breadcrumb: true
 categories: [azure, iot-hubs, device-explorer, iothub-explorer]
 author: doug_seven
-permalink: /lang/js/weather-station/setup-azure-iot-hub/
+permalink: /tr22/js/setup-azure-iot-hub/
 ---
 # Table of Contents
 *  Auto generated table of contents
@@ -17,13 +17,8 @@ permalink: /lang/js/weather-station/setup-azure-iot-hub/
 
 In this lab you will provision a new Azure IoT Hub. Once you have the IoT Hub created, you will be able to create a new Azure IoT device (a software reference to your physical device) that you will use to send telemetry to Azure. 
 
-# Bill of Materials
-What you will need:
-
-1. A Microsoft Azure Account - refer to ['Getting Started'](../getting-started/)
-
 # Setup an Azure IoT Hub
-In a browser, navigate to the [Azure Portal at http://portal.azure.com](https://portal.azure.com). Login to the account you created in in the [Getting Started][getting-started] lab. Once logged in:
+In a browser, navigate to the [Azure Portal at http://portal.azure.com](https://portal.azure.com) and login. Once logged in:
 
 1. Click on the _New_ menu option in the upper-left
 2. Select _Internet of Things_
@@ -90,18 +85,9 @@ Once a device is created, the device information, including the device-specific 
 The device-specific connection string identifies the device by name and includes a key that is only for that device. Copy the device connection string somewhere that you will be able to access it shortly.
 
 # Conclusion &amp; Next Steps
-Congratulations! You have created an Azure IoT Hub and a representation of a physical device. Next you will prepare the development board you will be working with throughout these labs.
+Congratulations! You have created an Azure IoT Hub and a representation of a physical device. Next you will write the app that will collect data and send it to the Azure IoT Hubs.
 
-Continue to the next labs based on the device you are working with.
-
-<a class="radius button small" href="{{ site.url }}/lang/js/weather-station/setup-arduino/">Go to 'Setting Up Your Arduino' ›</a>
-
-<a class="radius button small" href="{{ site.url }}/lang/js/weather-station/setup-photon/">Go to 'Setting Up Your Particle Photon' ›</a>
-
-[getting-started]: ../getting-started/
 [setup-azure-iot-hub]: ../setup-azure-iot-hub/
-[setup-photon]: ../setup-photon/
-[setup-arduino]: ../setup-arduino/
 [sending-telemetry]: ../sending-telemetry/
 [visualize-iot-with-powerbi]: ../visualize-iot-with-powerbi/
 [deviceexplorer]: https://github.com/Azure/azure-iot-sdks/blob/master/tools/DeviceExplorer/doc/how_to_use_device_explorer.md

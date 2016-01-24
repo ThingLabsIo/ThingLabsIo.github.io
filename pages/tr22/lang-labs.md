@@ -22,25 +22,13 @@ Depending on the programming language you prefer, you can work your way through 
 # JavaScript, Node.js and Johnny-Five
 In these labs you will use JavaScript to write Node.js applications that control your _Thing_. The applications use an open source framework called Johnny-Five. Johnny-Five is the original JavaScript Robotics programming framework (which also works great for IoT). Released by Bocoup in 2012, Johnny-Five is maintained by a community of passionate software developers and hardware engineers. Over 75 developers have made contributions towards building a robust, extensible and composable ecosystem.
 
-For these labs you can use one of the following boards:
+For these labs you will use the Particle Photon.
 
-* Arduino Uno
-* Arduino Y&uacute;n
-* SparkFun RedBoard (programmed with Arduino)
-* Particle Photon
-* Beagle Bone Green (coming soon)
-* Linino ONE (coming soon)
-* Intel Edison (coming soon)
-
-<a class="radius button small" href="{{ site.url }}/lang/js/">Go to 'JavaScript, Node.js & JohnnyFive Labs' ›</a>
+<a class="radius button small" href="../js/">Go to 'JavaScript, Node.js & JohnnyFive Labs' ›</a>
 
 # Windows 10 IoT &amp; C\#
 In these labs you will use Windows 10 IoT Core and C# to write applications for the Universal Windows Platform (UWP) running on your _Thing_. These labs require a Windows 10 development machine and Visual Studio 2015 Community (or higher edition).
 
-For these labs you can use one of the following boards:
+For these labs you will use the Raspberry Pi 2.
 
-* Raspberry Pi 2
-* MinnowBoard MAX (coming soon)
-* Dragon 410c (coming soon)
-
-<a class="radius button small" href="{{ site.url }}/lang/cs/">Go to 'Windows 10 IoT & C# Labs' ›</a>
+<a class="radius button small" href="../cs/">Go to 'Windows 10 IoT & C# Labs' ›</a>

@@ -130,7 +130,7 @@ In the lightin.js file start by declaring the key objects, including a variable 
   <div id="arduino">
     {% highlight javascript %}
     'use strict'
-    // https://github.com/ThingLabsIo/IoTLabs/blob/master/Arduino/lightin.js
+    // https://github.com/ThingLabsIo/IoTLabs/tree/master/Arduino/Labs01_04
     // Define the Johnny Five and Particle-IO variables
     var five = require ("johnny-five"); 
 
@@ -159,7 +159,7 @@ In the lightin.js file start by declaring the key objects, including a variable 
   <div id="photon">
     {% highlight javascript %}
     'use strict'
-    // https://github.com/ThingLabsIo/IoTLabs/blob/master/Photon/lightin.js
+    // https://github.com/ThingLabsIo/IoTLabs/tree/master/Photon/Labs01_04
     // Define the Johnny Five and Particle-IO variables
     var five = require ("johnny-five"); 
     var Particle = require("particle-io");

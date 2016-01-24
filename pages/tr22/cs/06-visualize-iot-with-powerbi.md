@@ -1,7 +1,7 @@
 ---
 layout: page-tr22
 title: "Visualizing IoT Data"
-subheadline: "Building Connected Things with Windows 10 IoT and C#"
+subheadline: "Building Connected Things with Windows 10 IoT Core and C#"
 teaser: "In this lab you will create visualizations of IoT data."
 show_meta: true
 comments: false
@@ -26,7 +26,7 @@ input data stream as the data coming from your IoT Hub. Next you will define an 
 will write a SQL-like query that collects data coming in on the input stream and routes it to the output stream. 
 
 ## Create the Stream Analytics Job
-Open a new browser tab and navigate to [https://manage.windowsazure.com](https://manage.windowsazure.com). Click on the __NEW__ icon in the 
+Open a new browser tab and navigate to [https://manage.windowsazure.com](https://manage.windowsazure.com). Login if necessary. Click on the __NEW__ icon in the 
 lower-left corner.
 
 <img src="{{ site.url }}/images/photon_lab07_5.png"/>
@@ -76,7 +76,7 @@ Click on the _OUTPUTS_ header.
 
 Click on _ADD AN OURPUT_.
 Select __Power BI__ and click on the forward arrow in the lower-right.
-Follow the instructions for either _Existing Microsoft Power BI User_ or _New User_
+Follow the instructions for either _Existing Microsoft Power BI User_ or _New User_ using your __@microsoft.com__ email account.
 
 <blockquote>
 Power BI is a data visualization toolkit for organizations. To create a new user account, you will have to use an account that belongs to an 

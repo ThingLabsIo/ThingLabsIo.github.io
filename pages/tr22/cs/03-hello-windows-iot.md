@@ -1,13 +1,13 @@
 ---
 layout: "page-tr22"
 title: "Hello, Windows IoT!"
-subheadline: "Building Connected Things with Windows 10 IoT and C#"
+subheadline: "Building Connected Things with Windows 10 IoT Core and C#"
 teaser: "In this lab you will create a simple 'Thing' using Windows 10 IoT Core."
 show_meta: true
 comments: false
 header: no
 breadcrumb: true
-categories: [raspberry-pi, windows-10, c#, iot, maker]
+categories: [raspberry-pi, windows-10, dragonboard, minnowboard, c#, iot, maker]
 permalink: /tr22/cs/hello-windows-iot/
 ---
 
@@ -16,23 +16,40 @@ permalink: /tr22/cs/hello-windows-iot/
 {:toc}
 
 In this lab you will create a simple _Thing_ using a Windows 10 IoT device and the Universal Windows Platform. 
+
+# Bill of Materials
+What you will need:
+
+1. One of the following development boards:
+    * [Raspberry Pi 2](http://www.amazon.com/Raspberry-Pi-Model-Project-Board/dp/B00T2U7R7I/) with a [5V 2A Switching Power Supply w/ 20AWG 6' MicroUSB Cable](https://www.adafruit.com/product/1995)
+    * [DragonBoard 410c](http://partners.arrow.com/campaigns-na/qualcomm/dragonboard-410c/) with a [WM24P-12-A-QL 12V 2A Switching Power Supply](https://www.arrow.com/en/products/wm24p-12-a-ql/autec-power-systems#page-1)
+2. [Jumper wires (Male to Female)](https://www.adafruit.com/product/1954)
+3. [(1) Red LED](http://www.adafruit.com/products/297)
+4. [(1) 330 Ohm resistors](http://www.amazon.com/E-Projects-Resistors-Watt-330R-Pieces/dp/B00BVOR6IS/)
+5. [(1) 10k Ohm resistor](http://www.amazon.com/E-Projects-10k-Resistors-Watt-Pieces/dp/B00BWYS9BA/)
+6. 8GB micro SD card - class 10 or better. Microsoft suggests one of the following:
+	* [Samsung 32GB EVO Class 10 Micro SDHC up to 48MB/s with Adapter (MB-MP32DA/AM)](http://www.amazon.com/gp/product/B00IVPU786)
+	* [SanDisk Ultra Micro SDHC, 16GB Card](http://www.amazon.com/SanDisk-Ultra-Micro-SDHC-16GB/dp/9966573445).
+
+To make life easy, you can get these components and more in the [Microsoft IoT Pack for Raspberry Pi 2](http://www.adafruit.com/windows10iotpi2) from AdaFruit.
+
+The devices should be configured according to thier specific instructions.
+
+* ['Setting Up Your Raspberry Pi 2']({{ site.url }}/lang/cs/setup-rpi2/)
+* ['Setting Up Your DragonBoard 410c']({{ site.url }}/lang/cs/setup-dragon/)
  
 # Wire Up the Device
-The Raspberry Pi 2 (RPi2) connects to the physical world through the GPIO pins. GPIO stands for General Purpose Input/Output and refers to the two rows of pins on RPI2. The GPIO pins are a physical interface between the RPi2 and the physical world. Through your app you can designate pins to either receive input or send output. The inputs can be from switches, sensors or other devices. The outputs can be LEDs, servos, motors or countless other devices. Twenty-six of the 40 pins are GPIO pins; the others are power, ground, or reserved pins.
+The RPi2 connects to the physical world through the GPIO pins. GPIO stands for General Purpose Input/Output and refers to the two rows of pins on RPI2. The GPIO pins are a physical interface between the RPi2 and the physical world. Through your app you can designate pins to either receive input or send output. The inputs can be from switches, sensors or other devices. The outputs can be LEDs, servos, motors or countless other devices. Twenty-six of the 40 pins are GPIO pins; the others are power, ground, or reserved pins.
 
 <img src="/images/rpi2/rpi12_pinout.png"/>
 
-For the TechReady Maker Den labs, the Raspberry Pi 2 has already been wired up for you. It should be wired as follows:
-
-<img src="/images/rpi2/rpi2_lab03_mcp3002_bb.png"/>
-
-This lab focuses on only one of the two circuits that is wired up (a later lab will add the second circuit). The following diagram shows only the circuit that is used in this lab (this is for illustration only - DO NOT remove any thing from your hardware setup).
+Wire up the RPi2 according to this diagram.
 
 <img src="/images/rpi2/rpi2_lab01_bb.png"/>
 
-1. GPIO pin 12 (pin 32) is connected to the positive (longer) lead on the LED. In the app you build, you will control whether or not GPIO pin 12 sends voltage over the circuit.
+1. GPIO pin 12 is connected to the positive (longer) lead on the LED. In the app you build, you will control whether or not GPIO pin 12 sends voltage over the circuit.
 2. The negative (shorter) lead on the LED is connected to a resistor to reduce the amount of voltage pulled through the circuit.
-3. The other end of the resistor is connected to one of the ground GPIO pins (pin 6), completing the circuit.
+3. The other end of the resistor is connected to one of the ground GPIO pins, completing the circuit.
 
 The LED will light up when current is passed through the circuit. 
 
@@ -51,7 +68,7 @@ Once the solution is created, click on the _Project_ menu and select _Add Refere
 
 In the Reference Manager dialog, expand the _Universal Windows_ node and select _Extensions_.
 
-In the list of extensions, __check the box__ next to _Windows IoT Extensions for the UWP_ and click __OK__.
+In the list of extensions, check the box next to __Windows IoT Extensions for the UWP__ and click __OK__.
 
 <img src="/images/rpi2/rpi2_install_iotextensions.png"/>
 
@@ -228,7 +245,7 @@ You will be prompted with the _Remote Connections_ dialog. Select your device fr
 
 __NOTE:__ You can verify or modify these values by navigating to the project properties (select Properties in the Solution Explorer) and choosing the Debug tab on the left.
 
-Now press __F5__ to run the application and you should see it deploy on the RPi2 and you will see the red LED blink. If the red LED is not blinking, recheck your wiring. 
+Now press __F5__ to run the application and you should see it deploy on the RPi2. You will see the red LED blink in unison with the red circle on the screen. If the red LED is not blinking, but the display on the screen is, recheck your wiring. 
 
 # Conclusion &amp; Next Steps
 
@@ -240,6 +257,6 @@ Congratulations! You have built a Universal Windows Platform application that co
 
 In the [next lab][nextlab] you will set up a Microsoft Azure IoT Hub that will act as the cloud backend for your IoT devices. In the labs after that you will build a new _Thing_ that will collect environment data and send it to your IoT hub.
 
-<a class="radius button small" href="../cs/setup-azure-iot-hub/">Go to 'Setup Azure IoT Hub' ›</a>
+<a class="radius button small" href="{{ site.url }}/lang/cs/setup-azure-iot-hub/">Go to 'Setup Azure IoT Hub' ›</a>
 
-[nextlab]: ../cs/setup-azure-iot-hub/
+[nextlab]: /lang/cs/setup-azure-iot-hub/
