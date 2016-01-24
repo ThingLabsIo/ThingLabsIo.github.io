@@ -87,6 +87,8 @@ The device-specific connection string identifies the device by name and includes
 # Conclusion &amp; Next Steps
 Congratulations! You have created an Azure IoT Hub and a representation of a physical device. Next you will write the app that will collect data and send it to the Azure IoT Hubs.
 
+<a class="radius button small" href="../sending-telemetry/">Go to 'Sending Telemetry to the Cloud' ›</a>
+
 [setup-azure-iot-hub]: ../setup-azure-iot-hub/
 [sending-telemetry]: ../sending-telemetry/
 [visualize-iot-with-powerbi]: ../visualize-iot-with-powerbi/

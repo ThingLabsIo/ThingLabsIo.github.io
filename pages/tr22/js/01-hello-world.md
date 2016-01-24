@@ -14,64 +14,32 @@ permalink: /tr22/js/hello-world/
 *  Auto generated table of contents
 {:toc}
 
-In this lab you will use one of the digital output pins to send a signal to an LED. You will use digital pin D7, which also has an LED on the board connected to it (so you will be able to see it turn on and off even if you mis-wire something). While this lesson could be done using only the onboard LED, one of the objectives of this lab is to familiarize you with connecting input and output devices (an LED is an output device) to the board and controlling them with software.
+In this lab you will use one of the digital output pins to send a signal to an LED. You will use digital pin D7, which also has an LED on the board connected to it (so you will be able to see it turn on and off).
 
-## Write the Code
+# Write the Code
 Since you are using Node.js and Johnny-Five for this lab you can take advantage of the dependency management capabilities that Node.js provides. You need to let the application know that it has a dependency on the Johnny-Five framework as well as the Particle-IO plugin so that when the application is prepared for execution, it can fetch the required dependencies for us. In Node.js this is done with a package.json file. This file provides some basic meta-data about the application, including any dependencies on packages that can be retrieved using NPM (according to [npmjs.com](https://www.npmjs.com) today, NPM stands for Narrating Prophetic Monks...not Node Package Manager like you may have thought).
 
-Using your favorite/preferred text/code editor, create a file in your labs folder named <strong>package.json</strong> and add the following:
+Using your favorite/preferred text/code editor, create a file in your labs folder named __package.json__ and add the following:
 
-<div id="json-tabs">
-  <ul>
-    <li><a href="#arduino"><span>Arduino</span></a></li>
-    <li><a href="#photon"><span>Photon</span></a></li>
-  </ul>
-  <div id="arduino">
-    {% highlight json %}
-    {
-      "name": "IoT-Labs-Arduino",
-      "repository": {
-        "type": "git",
-        "url": "https://github.com/ThingLabsIo/IoTLabs/Arduino"
-      },
-      "version": "0.1.0",
-      "private":true,
-      "description": "Sample app that connects a device to Azure using Node.js",
-      "main": "blinky.js",
-        "author": "YOUR NAME",
-      "license": "MIT",
-      "dependencies": {
-        "johnny-five": "latest"
-      }
-    }
-    {% endhighlight %}
-  </div>
-  <div id="photon">
-    {% highlight json %}
-    {
-      "name": "IoT-Labs-Photon",
-      "repository": {
-        "type": "git",
-        "url": "https://github.com/ThingLabsIo/IoTLabs/Photon"
-      },
-      "version": "0.1.0",
-      "private":true,
-      "description": "Sample app that connects a device to Azure using Node.js",
-      "main": "blinky.js",
-        "author": "YOUR NAME",
-      "license": "MIT",
-      "dependencies": {
-        "johnny-five": "latest",
-        "particle-io": "latest"
-      }
-    }
-    {% endhighlight %}
-  </div>
-</div>
-
-<script>
-$( "#json-tabs" ).tabs();
-</script>
+{% highlight javascript %}
+{
+  "name": "IoT-Labs",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ThingLabsIo/IoTLabs/tree/master/Photon/Blinky"
+  },
+  "version": "0.1.1",
+  "private":true,
+  "description": "Sample app that connects a device to Azure using Node.js",
+  "main": "blinky.js",
+    "author": "YOUR NAME HERE",
+  "license": "MIT",
+  "dependencies": {
+    "johnny-five": "latest",
+    "particle-io": "latest"
+  }
+}
+{% endhighlight %}
 
 With the package.json file created you can use NPM to pull down the necessary Node modules. Open a terminal window (Mac OS X) or Node.js command prompt (Windows) and execute the following commands (replace _C:\Development\IoTLabs_ with the path that leads to your labs folder):
 
@@ -82,7 +50,7 @@ With the package.json file created you can use NPM to pull down the necessary No
 
 Next you will create the application code to make the LED turn on and off.
 
-Create another file in the same directory named <strong>blinky.js</strong>.
+Create another file in the same directory named __blinky.js__.
 
 The first thing you need to do is define the objects you will be working with in the application. The three things that matter are a Johnny-Five framework object, an object to represent the board, and the output pin the LED will be connected to. 
 
@@ -96,70 +64,32 @@ The first thing you need to do is define the objects you will be working with in
   Find the token for _user_ (make sure if you see more than one that you choose the one that is not expired).
 </blockquote>
 
-Now add the following code to the <b>blinky.js</b> file:
+Now add the following code to the __blinky.js__ file:
 
-<div id="code-tabs">
-  <ul>
-    <li><a href="#arduino"><span>Arduino</span></a></li>
-    <li><a href="#photon"><span>Photon</span></a></li>
-  </ul>
-  <div id="arduino">
-    {% highlight javascript %}
-    'use strict'
-    // Define the Johnny Five and Particle-IO variables
-    var five = require ("johnny-five"); 
 
-    // Define the pin that is connected to the LED 
-    var LEDPIN = 13;
-    
-    // Create a Johnny Five board instance to represent your board.
-    // Board is simply an abstraction of the physical hardware, whether it is 
-    // a Photon, Arduino, Raspberry Pi or other boards. 
-    var board = new five.Board();
-    
-    /*
-    // You may optionally specify the port by providing it as a property
-    // of the options object parameter. * Denotes system specific 
-    // enumeration value (ie. a number)
-    // OSX
-    new five.Board({ port: "/dev/tty.usbmodem****" });
-    // Linux
-    new five.Board({ port: "/dev/ttyUSB*" });
-    // Windows
-    new five.Board({ port: "COM*" });
-    */
-    {% endhighlight %}
-  </div>
-  <div id="photon">
-    {% highlight javascript %}
-    'use strict'
-    // Define the Johnny Five and Particle-IO variables
-    var five = require ("johnny-five"); 
-    var Particle = require("particle-io");
-    
-    // Set up the access credentials for Particle and Azure 
-    var token = process.env.PARTICLE_KEY || 'YOUR PARTICLE ACCESS TOKEN HERE'; 
-    var deviceId = process.env.PHOTON_ID || 'YOUR PARTICLE PHOTON DEVICE ID/ALIAS HERE'; 
-    
-    // Define the pin that is connected to the LED 
-    var LEDPIN = 'D7';
-    
-    // Create a Johnny Five board instance to represent your Particle Photon.
-    // Board is simply an abstraction of the physical hardware, whether it is 
-    // a Photon, Arduino, Raspberry Pi or other boards. 
-    var board = new five.Board({ 
-      io: new Particle({ 
-        token: token, 
-        deviceId: deviceId 
-      }) 
-    });
-    {% endhighlight %}
-  </div>
-</div>
+{% highlight javascript %}
+// https://github.com/ThingLabsIo/IoTLabs/tree/master/Photon/Blinky
+'use strict';
+var five = require ("johnny-five"); 
+var Particle = require("particle-io");
 
-<script>
-$( "#code-tabs" ).tabs();
-</script>
+// Set up the access credentials for Particle and Azure 
+var token = process.env.PARTICLE_KEY || 'YOUR PARTICLE ACCESS TOKEN HERE'; 
+var deviceId = process.env.PHOTON_ID || 'YOUR PARTICLE PHOTON DEVICE ID/ALIAS HERE'; 
+
+// Define the pin that is connected to the LED 
+var LEDPIN = 'D7';
+
+// Create a Johnny Five board instance to represent your Particle Photon.
+// Board is simply an abstraction of the physical hardware, whether it is 
+// a Photon, Arduino, Raspberry Pi or other boards. 
+var board = new five.Board({ 
+	io: new Particle({ 
+		token: token, 
+		deviceId: deviceId 
+	}) 
+});
+{% endhighlight %}
 
 In this code you define four variables that you will be working with:
 
@@ -179,6 +109,7 @@ In the following code you will create a callback function that is invoked when t
 // board reports back that it is initialized and ready. 
 board.on("ready", function() { 
 	console.log("Board connected..."); 
+    
 	// Set the pin you connected to the LED to OUTPUT mode  
 	this.pinMode(LEDPIN, five.Pin.OUTPUT); 
 
@@ -189,7 +120,7 @@ board.on("ready", function() {
 });
 {% endhighlight %}
   
-Johnny-Five actually has an object model for an LED and we could also have simply done the following, but I wanted you to see how the <code>digitalWrite()</code> function works before abstracting it away.
+Johnny-Five actually has an object model for an LED and we could also have simply done the following, but one of the goals was for you to see how the __digitalWrite()__ function works before abstracting it away.
 
 {% highlight javascript %}
 board.on("ready", function() {
@@ -211,20 +142,18 @@ Open a terminal window (Mac OS X) or Node.js command prompt (Windows) and execut
 You should the indicator LED on the board blink a little as the app is initialized, and then the on-board LED next to pin _D7_ and the LED you connected should start blinking in unison at one blink per second.
 
 <blockquote>
-Note: The Photon doesn't need to be plugged into your PC - it simply needs to be powered on and on the same Wi-Fi you configured it for (and the PC running the Node.js app has to be on the same Wi-Fi network). 
+  When you power on the Photon and it establishes a Wi-Fi connection, the first thing it does is a 'phone home' to the Particle Cloud where it registers itself as online. When it does that, it also registers its local IP address. When you run the Node.js application, thanks to the Johnny-Five framework and the Particle-IO plugin, the Node app pings the Particle Cloud and requests the IP address for the device name you specified (that is why the Particle Token and Device ID/Alias are needed). Once the application has the local IP address for the Photon, all communications with the device are over local TCP (which is why your development machine and the Photon have to be on the same network). Since the communication from the Node.js app to the Photon is over TCP and not USB, the Photon doesn't need to be plugged into your USB port - it simply needs to be powered on and on the same Wi-Fi you configured it for (and the machine running the Node.js app has to be on the same Wi-Fi network). 
 </blockquote>
   
-When you want to quite the application, press <kbd>CTRL</kbd> + <kbd>C</kbd> twice to exit the program without closing the window (you may also have to press <kbd>Enter</kbd>). 
+When you want to quit the application, press <kbd>CTRL</kbd> + <kbd>C</kbd> twice to exit the program without closing the window (you may also have to press <kbd>Enter</kbd>). 
 
 <blockquote>
-  PARTICLE PHOTON USERS: After stopping the application press the _Reset_ button on the Photon to prepare it for the next run.
+  After stopping the application press the _Reset_ button on the Photon to prepare it for the next run.
 </blockquote>
 
 # Conclusion &amp; Next Steps
 In this lab you learned how to write a Node.js/Johnny-Five application that writes LOW and HIGH signals to a digital pin (designated for output) to make an LED blink. In itself this may not be very exciting, but the core concept is necessary - writing to a digital output pin.
 
-In the next lab you will learn how to read voltage coming in on an analog pin, and you will learn how to use a voltage divider to capture the variable resistance provided by a photoresistor.
+In the next lab you will provision an Azure IoT Hub and an IoT Hub device.
 
-<a class="radius button small" href="{{ site.url }}/device/photon/reading-analog-input/">Go to 'Reading Analog Input' ›</a>
-
-[1]: https://store.particle.io/?product=photon-kit
+<a class="radius button small" href="../setup-azure-iot-hub/">Go to 'Setting Up Azure IoT Hub' ›</a>

@@ -16,12 +16,6 @@ permalink: /tr22/js/visualize-iot-with-powerbi/
 
 In this lab you will process the data that you are sending into Azure IoT Hub using Azure Stream Analytics so that you can visualize it using Power BI.
 
-# Bill of Materials
-What you will need:
-
-1. The weather station device you created in the [previous lab](../sending-telemetry/).
-2. The Azure IoT Hub you created in a [previous lab](../setup-azure-iot-hub/).
-
 In the previous labs you provisioned an Azure IoT Hub and a physical device, and you wrote a Node.js application to collect data from the board and send it to your IoT Hub. At the end of the [previous lab](../sending-telemetry/) you had data going into your IoT Hub but you weren't yet doing anything with it. Let's change that.
 
 # Using Stream Analytics to Process and Route IoT Data
