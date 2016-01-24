@@ -15,6 +15,8 @@ permalink: /tr22/cs/
 *  Auto generated table of contents
 {:toc}
 
+# Thing 101 Labs
+
 ## Hello, Windows IoT!
 In this lab you will use one of the digital output pins to send a signal to an LED.
 
