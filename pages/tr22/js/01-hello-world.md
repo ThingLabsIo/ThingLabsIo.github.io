@@ -1,6 +1,6 @@
 ---
 layout: page-tr22
-title: "Writing Digital Output"
+title: "Writing Digital Output (Hello, World!)"
 subheadline: "Building Connected Things with Node.js"
 teaser: "In this lab you will use one of the digital output pins to send a signal to an LED."
 show_meta: true
@@ -8,60 +8,16 @@ comments: false
 header: no
 breadcrumb: true
 categories: [arduino, photon, iot, maker, javascript, node.js, johnny-five]
-permalink: /tr22/js/writing-digital-output/
+permalink: /tr22/js/hello-world/
 ---
-If you haven't already done so, please follow the instructions in the ['Getting Started' lab]({{ site.url }}/lang/js/getting-started/) section.
-
 # Table of Contents
 *  Auto generated table of contents
 {:toc}
 
 In this lab you will use one of the digital output pins to send a signal to an LED. You will use digital pin D7, which also has an LED on the board connected to it (so you will be able to see it turn on and off even if you mis-wire something). While this lesson could be done using only the onboard LED, one of the objectives of this lab is to familiarize you with connecting input and output devices (an LED is an output device) to the board and controlling them with software.
 
-# Bill of Materials
-What you will need:
-
-1. One of the following development boards:
-  * [SparkFun RedBoard Programmed with Arduino](https://www.sparkfun.com/products/12757)
-  * [Arduino Uno R3](https://www.sparkfun.com/products/11021)
-  * [Arduino Y&uacute;n](https://www.sparkfun.com/products/12053)
-  * [Particle Photon Development Kit](https://store.particle.io/?product=photon-kit)
-2. USB cable to connect the board to your computer (the type will vary depending on the board you are using)
-3. [5mm Green LED](http://www.sparkfun.com/products/12062)
-4. [330 Ohm 1/4 Watt resistor](http://www.sparkfun.com/products/10969) (Orange-Orange-Brown)
-
-For Arduino and RedBoard, you must upload the Standard Firmatta to the board. See [Setting Up Your Arduino Firmware](../setup-arduino/) for details. 
-
-For Particle Photon, you must upload the VoodooSpark firmware to the Photon. See [Setting Up Your Particle Photon Firmware](../setup-photon/) for details.
-
-# Wiring the Board
-Next you need to wire up the Photon board so that it can send <code>ON</code> and <code>OFF</code> commands to the LED. You can wire your board according to the diagram (wire colors don't matter, but help with identification of purpose).
-
-<div id="wiring-tabs">
-  <ul>
-    <li><a href="#arduino"><span>Arduino</span></a></li>
-    <li><a href="#photon"><span>Photon</span></a></li>
-  </ul>
-  <div id="arduino">
-    <img src="/images/lab01_bb.png" />
-  </div>
-  <div id="photon">
-    <img src="/images/photon_lab01_bb.png" />
-  </div>
-</div>
-
-<script>
-$( "#wiring-tabs" ).tabs();
-</script>
-
-## LED
-Insert a LED into the breadboard as shown in the diagram, connecting the positive lead to the D7 pin and inserting the negative lead into the negative (-) side rail. For reference, an LED has one lead that is longer than the other. The longer lead is the positive (+) lead, and the shorter lead is the negative (-) lead.
-
-## Resistor
-Connect a 220 Ohm resistor from the negative (-) side rail to the GND pin.
-
 ## Write the Code
-Since we are using Node.js and Johnny-Five for this lab we can take advantage of the dependency management capabilities that Node.js provides. We need to let our application know that it has a dependency on the Johnny-Five framework as well as the Spark-IO framework so that when the application is prepared for execution, it can fetch the required dependencies for us. In Node.js this is done with a package.json file. This file provides some basic meta-data about the application, including any dependencies on packages that can be retrieved using NPM (according to [npmjs.com](https://www.npmjs.com) today, NPM stands for Narrating Prophetic Monks...not Node Package Manager like you may have thought).
+Since you are using Node.js and Johnny-Five for this lab you can take advantage of the dependency management capabilities that Node.js provides. You need to let the application know that it has a dependency on the Johnny-Five framework as well as the Particle-IO plugin so that when the application is prepared for execution, it can fetch the required dependencies for us. In Node.js this is done with a package.json file. This file provides some basic meta-data about the application, including any dependencies on packages that can be retrieved using NPM (according to [npmjs.com](https://www.npmjs.com) today, NPM stands for Narrating Prophetic Monks...not Node Package Manager like you may have thought).
 
 Using your favorite/preferred text/code editor, create a file in your labs folder named <strong>package.json</strong> and add the following:
 
@@ -116,7 +72,6 @@ Using your favorite/preferred text/code editor, create a file in your labs folde
 <script>
 $( "#json-tabs" ).tabs();
 </script>
-
 
 With the package.json file created you can use NPM to pull down the necessary Node modules. Open a terminal window (Mac OS X) or Node.js command prompt (Windows) and execute the following commands (replace _C:\Development\IoTLabs_ with the path that leads to your labs folder):
 
