@@ -118,9 +118,9 @@ Note: You could connect the 3.3V pin directly to the same row as the lone lead o
 </blockquote>
 
 ## Writing the Code
-For this lab you will create a new file named <strong>lightin.js</strong> in the same directory as you did in Lab 1. There are no additional dependencies, so you don't need to make any changes to the package.json file.
+For this lab you will create a new file named __reading-analog-input.js__ in the same directory as you did in Lab 1. There are no additional dependencies, so you don't need to make any changes to the package.json file.
 
-In the lightin.js file start by declaring the key objects, including a variable for the analog pin number you will use (e.g. A0 or 0).
+In the reading-analog-input.js file start by declaring the key objects, including a variable for the analog pin number you will use (e.g. A0 or 0).
 
 <div id="code-tabs">
   <ul>
@@ -214,13 +214,13 @@ To run the application, plug the board into the USB port, then open a terminal w
 
 <pre>
   cd C:\Development\IoTLabs
-  node lightin.js
+  node reading-analog-input.js
 </pre>
 
 You should see the indicator LED blink a little as the app is initialized, and then you should see something like the following in the terminal/console window (the actual values will depend on how much light the photoresistor is receiving):
 
 <pre>
-c:\Development\IoTLabs>node lightin.js
+c:\Development\IoTLabs>node reading-analog-input.js
 1440573763366 Device(s) particle-io
 1440573764086 Connected particle-io
 1440573764109 Repl Initialized

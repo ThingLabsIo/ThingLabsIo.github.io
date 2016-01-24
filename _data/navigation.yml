@@ -29,7 +29,10 @@
   - title: "Connected Weather Station"
     url: "/lang/js/weather-station/"
 
-    
+- title: "TechReady 22"
+  url: "/tr22/"
+  side: right
+      
 - title: "Azure Road Tour"
   url: "/azure/"
   side: right
