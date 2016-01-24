@@ -43,13 +43,13 @@ To make life easy, you can get these components and more in the [Microsoft IoT P
 * ['Setting Up Your DragonBoard 410c']({{ site.url }}/lang/cs/setup-dragon/)
  
 # Capturing Analog Data with a Voltage Divider
-For this lab you will work with a few new concepts - both in the circuits connected to the Raspberry Pi 2 (RPi2) and in the Cloud. The first thing you will do is wire up the RPi2 to be able to read voltage as determined by the resistance created by a photoresistor. Wire your board according to the diagram (wire colors don't matter, but help with identification of purpose). This wiring uses an analog-to-digital-convertor (ADC) - either an MCP3208 or an MCP3002, depending on what you have - which enables you to capture analog input instead of simply digital input. When you did the lab with the LED you dealt only with a digital signal - you sent voltage to the LED to turn it on, or off (with no voltage). Many sensors, such as a _photoresistor_, are capable of analog input or output, giving them a broader range than simply a 1 or a 0. 
+For this lab you will work with a few new concepts - both in the circuits connected to the Raspberry Pi 2 (RPi2) and in the Cloud. The first thing you will do is wire up the RPi2 to be able to read voltage as determined by the resistance created by a photoresistor. Wire your board according to the diagram (wire colors don't matter, but help with identification of purpose). This wiring uses an analog-to-digital-converter (ADC) - either an MCP3208 or an MCP3002, depending on what you have - which enables you to capture analog input instead of simply digital input. When you did the lab with the LED you dealt only with a digital signal - you sent voltage to the LED to turn it on, or off (with no voltage). Many sensors, such as a _photoresistor_, are capable of analog input or output, giving them a broader range than simply a 1 or a 0. 
 
 A _photoresistor_, also known as _light-dependent resistor (LDR)_ or a photocell, works by limiting the amount of voltage that passes through it based on the intensity of light detected. The resistance decreases as light input increases - in other words, the more light, the more voltage passes through the photoresistor.
 
-In order to take advantage of the photoresistor you will create a _voltage divider_ - a passive linear circuit that splits the input voltage amongst two or more components (similar to a Y-splitter).
+In order to take advantage of the photoresistor you will create a _voltage divider_ - a passive linear circuit that splits the input voltage amongst two or more components (similar to a Y-splitter). The following schematic shows a voltage divider in use on an Arduino Uno R3 (this is a simpler way to show the diagram as compared ot the RPi2 which, as you will see, incorporates an external ADC).
 
-<img src="/images/lab02_schem.png"/>
+<img src="/images/photoresistor_schem.png"/>
 
 To create the voltage divider needed for this lesson you will:
 
