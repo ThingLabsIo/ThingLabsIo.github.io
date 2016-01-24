@@ -26,22 +26,37 @@ In order to take advantage of the photoresistor you will create a _voltage divid
 
 <img src="/images/photoresistor_schem.png"/>
 
-To create the voltage divider needed for this lesson you will:
+To create the voltage divider needed for this the RPi2 has been connected as follows:
 
-- Connect the voltage from the 5-volt (input voltage) pin to a circuit (using a breadboard).
-- Connect the input voltage to a static resistor (10k Ohm).
-- Establish a voltage divider coming out of the static resistor:
+- Voltage connected from the 5-volt (input voltage) pin to a circuit (using a breadboard).
+- Input voltage connected to a static resistor (10k Ohm).
+- Avoltage divider is established coming out of the static resistor:
    - One route to the ADC which is connected to the RPi2.
    - One route to a variable resistor (the photoresistor).
-- Completing the circuit out of the variable resistor to ground.
+- The circuit is completed out of the variable resistor to ground.
 
 As the photoresistor increases its resistance (lower light intensity) more of the input voltage coming through the circuit is diverted to the ADC. That means that the less intense the light into the photoresistor the more resistance it creates, which in turn diverts more voltage to the ADC (the current has to go somewhere). Likewise, the more intense the light into the photoresistor, the less resistance it creates, which in turn means there is less voltage to divert to the ADC.
 
 In short, the the darker it is, the more resistance the photoresistor provides and the more voltage is diverted to the ADC.
 
-Here are the specific wiring instructions for the MCP3008 or MCP3208. For the MCP3002 use [this](/images/rpi2/rpi2_lab03_mcp3002_bb.png) diagram.
+Following is the wiring diagram for this circuit. Select the ADC you have and take a minute to identify the circuit on the board.
 
-<img src="/images/rpi2/rpi2_lab03_mcp3008_bb.png"/>
+<div id="wiring-tabs">
+  <ul>
+    <li><a href="#mcp3002"><span>MCP3002</span></a></li>
+    <li><a href="#mcp3008"><span>MCP3008/MCP3208</span></a></li>
+  </ul>
+  <div id="mcp3002">
+    <img src="/images/rpi2/rpi2_lab03_mcp3002_bb.png"/>
+  </div>
+  <div id="mcp3008">
+    <img src="/images/rpi2/rpi2_lab03_mcp3008_bb.png"/>
+  </div>
+</div>
+
+<script>
+$( "#wiring-tabs" ).tabs();
+</script>
 
 __NOTE:__ _The ADC has a notch out of one side - ensure that the side with the notch is (according to the diagram) on the lower edge of the breadboard._
 
@@ -192,7 +207,7 @@ private void MainPage_Unloaded(object sender, RoutedEventArgs e)
 {% endhighlight %}
 
 ## Initialize the SPI and GPIO Busses
-Still in the _ManPage()_ constructor, add a call to a new method names __InitAll()__. 
+Still in the _ManPage()_ constructor, add a call to a new method names __InitAllAsync()__. 
 
 {% highlight csharp %}
 public MainPage()
@@ -203,18 +218,18 @@ public MainPage()
     Unloaded += MainPage_Unloaded;
     
     // Initialize GPIO and SPI
-    InitAll();
+    InitAllAsync();
 }
 {% endhighlight %}
 
-Use the Visual Studio Lightbulb feature to add the __InitAll()__ method. Modify the method signature to mark it as an asyn method.
+Use the Visual Studio Lightbulb feature to add the __InitAllAsync()__ method. Modify the method signature to mark it as an async method.
 
 {% highlight csharp %}
-private async void InitAll()
+private async void InitAllAsync()
 {
     try
     {
-        InitGpio();
+        await InitGpioAsync();
         await InitSpiAsync();
     }
     catch (Exception ex)
@@ -231,12 +246,12 @@ private async void InitAll()
 }
 {% endhighlight %}
 
-This method invokes two additional methods to initialize the GPIO and SPI busses. Use the Visual Studio Lightbulb feature to create the __InitGpio()__ method. Initialize the GPIO by assigning the default GPIO controller to the <code>gpio</code> variable, and check for _null_ (throw an exception if it is _null_). Next, initialize the <code>redLedPin</code> in the same way you did in [Lab 01](../01/).
+This method invokes two additional methods to initialize the GPIO and SPI busses. Use the Visual Studio Lightbulb feature to create the __InitGpioAsync()__ method. Initialize the GPIO by assigning the default GPIO controller to the <code>gpio</code> variable, and check for _null_ (throw an exception if it is _null_). Next, initialize the <code>redLedPin</code> in the same way you did in ['Hello, Windows IoT!'](../hello-windows-iot/).
 
 {% highlight csharp %}
-private void InitGpio()
+private async Task InitGpioAsync()
 {
-    var gpio = GpioController.GetDefault();
+    var gpio = await GpioController.GetDefaultAsync();
 
     if (gpio == null)
     {
@@ -248,6 +263,8 @@ private void InitGpio()
     redLedPin.SetDriveMode(GpioPinDriveMode.Output);
 }
 {% endhighlight %}
+
+Make sure that you added the <code>async</code> modifier to the method signature to make this an asynchronous method and set its return type to <code>Task</code>. 
 
 Go back to the _MainPage()_ constructor and use the Visual Studio Lightbulb feature to add the __InitSpi()__ method. In this method you will initialize the SPI buss so that you can use it to communicate through the ADC. Modify the method signature to mark it as an async method.
 
@@ -456,13 +473,13 @@ private async Task SendMessageToIoTHubAsync(int darkness)
     try
     {
         var payload = "{\"deviceId\": \"" +
-            IOT_HUB_DEVICE + 
+            IOT_HUB_DEVICE +
             "\", \"location\": \"" +
             IOT_HUB_DEVICE_LOCATION +
-            "\", \"data\":" +
-            darkness + 
-            "\", \"localTimestamp\": \"" +
-            DateTime.Now.ToLocalTime().ToString() + 
+            "\", \"messurementValue\": " +
+            darkness +
+            ", \"messurementType\": \"darkness\", \"localTimestamp\": \"" +
+            DateTime.Now.ToLocalTime().ToString() +
             "\"}";
 
         // UI updates must be invoked on the UI thread
@@ -488,7 +505,7 @@ private async Task SendMessageToIoTHubAsync(int darkness)
 
 With this method you attempt to construct a JSON message payload, display it on the screen and send it to your Azure IoT Hub. The communication with the Azure IoT Hub is managed by the <code>deviceClient</code> object from the _Microsoft.Azure.Devices.Client_ namespace.
 
-The final _MainPage.cxaml.cs_ can be founs [here](https://github.com/ThingLabsIo/IoTLabs/blob/master/RPi2/Lab03/Lab03/MainPage.xaml.cs) and the complete solution can be found [here](https://github.com/ThingLabsIo/IoTLabs/tree/master/RPi2/Lab03).
+The final _MainPage.cxaml.cs_ can be founs [here](https://github.com/ThingLabsIo/IoTLabs/blob/master/RPi2/IoTLightSensor/IoTLightSensor/MainPage.xaml.cs) and the complete solution can be found [here](https://github.com/ThingLabsIo/IoTLabs/tree/master/RPi2/Lab03).
 
 ## Run the Application
 Now you can run the application on your RPi2 and not only will you see the indicator bar changing, but you will also see the log of messages being sent to Azure IoT Hub at a rate of once per second.
@@ -502,6 +519,6 @@ Congratulations! You have built a Universal Windows Platform application that ca
 
 At this point, nothing interesting is happening with that data you are sending to Azure. It is simply being persisted for a default amount of time (1-day) and then being dropped. In the [next lab][nextlab] you will setup some Azure services to process and visualize the data.
 
-<a class="radius button small" href="{{ site.url }}/lang/cs/visualize-iot-with-powerbi/">Go to 'Visualize IoT Data with Microsoft Power BI' ›</a>
+<a class="radius button small" href="../visualize-iot-with-powerbi/">Go to 'Visualize IoT Data with Microsoft Power BI' ›</a>
 
 [nextlab]: ../visualize-iot-with-powerbi/

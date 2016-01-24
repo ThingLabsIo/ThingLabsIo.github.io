@@ -17,33 +17,12 @@ permalink: /tr22/cs/hello-windows-iot/
 
 In this lab you will create a simple _Thing_ using a Windows 10 IoT device and the Universal Windows Platform. 
 
-# Bill of Materials
-What you will need:
-
-1. One of the following development boards:
-    * [Raspberry Pi 2](http://www.amazon.com/Raspberry-Pi-Model-Project-Board/dp/B00T2U7R7I/) with a [5V 2A Switching Power Supply w/ 20AWG 6' MicroUSB Cable](https://www.adafruit.com/product/1995)
-    * [DragonBoard 410c](http://partners.arrow.com/campaigns-na/qualcomm/dragonboard-410c/) with a [WM24P-12-A-QL 12V 2A Switching Power Supply](https://www.arrow.com/en/products/wm24p-12-a-ql/autec-power-systems#page-1)
-2. [Jumper wires (Male to Female)](https://www.adafruit.com/product/1954)
-3. [(1) Red LED](http://www.adafruit.com/products/297)
-4. [(1) 330 Ohm resistors](http://www.amazon.com/E-Projects-Resistors-Watt-330R-Pieces/dp/B00BVOR6IS/)
-5. [(1) 10k Ohm resistor](http://www.amazon.com/E-Projects-10k-Resistors-Watt-Pieces/dp/B00BWYS9BA/)
-6. 8GB micro SD card - class 10 or better. Microsoft suggests one of the following:
-	* [Samsung 32GB EVO Class 10 Micro SDHC up to 48MB/s with Adapter (MB-MP32DA/AM)](http://www.amazon.com/gp/product/B00IVPU786)
-	* [SanDisk Ultra Micro SDHC, 16GB Card](http://www.amazon.com/SanDisk-Ultra-Micro-SDHC-16GB/dp/9966573445).
-
-To make life easy, you can get these components and more in the [Microsoft IoT Pack for Raspberry Pi 2](http://www.adafruit.com/windows10iotpi2) from AdaFruit.
-
-The devices should be configured according to thier specific instructions.
-
-* ['Setting Up Your Raspberry Pi 2']({{ site.url }}/lang/cs/setup-rpi2/)
-* ['Setting Up Your DragonBoard 410c']({{ site.url }}/lang/cs/setup-dragon/)
- 
 # Wire Up the Device
 The RPi2 connects to the physical world through the GPIO pins. GPIO stands for General Purpose Input/Output and refers to the two rows of pins on RPI2. The GPIO pins are a physical interface between the RPi2 and the physical world. Through your app you can designate pins to either receive input or send output. The inputs can be from switches, sensors or other devices. The outputs can be LEDs, servos, motors or countless other devices. Twenty-six of the 40 pins are GPIO pins; the others are power, ground, or reserved pins.
 
 <img src="/images/rpi2/rpi12_pinout.png"/>
 
-Wire up the RPi2 according to this diagram.
+The RPi2 for this workshop should already be wired for this lab and others - it has multiple circuits wired up; the circuit used for this lab is as shown here (take a minute to examine the RPi2 wiring and identify this circuit):
 
 <img src="/images/rpi2/rpi2_lab01_bb.png"/>
 
@@ -59,7 +38,7 @@ A Universal Windows app is a Windows experience that is built upon the Universal
 ## Create a Blank Universal App
 Launch Visual Studio and start a new __Blank App (Universal Windows)__ (found in the _C# -> Windows -> Universal_ node).
 
-Name the application _HelloWindowsIoT_.
+Name the application with your alias followed by _-HelloWindowsIoT_ (e.g. _dseven-HelloWindowsIoT_).
 
 <img src="/images/rpi2/rpi2_new_universal.png"/>
 
@@ -68,7 +47,7 @@ Once the solution is created, click on the _Project_ menu and select _Add Refere
 
 In the Reference Manager dialog, expand the _Universal Windows_ node and select _Extensions_.
 
-In the list of extensions, check the box next to __Windows IoT Extensions for the UWP__ and click __OK__.
+In the list of extensions, check the box next to __Windows IoT Extensions for the UWP__ (make sure to select the same version number as the OS running on the RPi2) and click __OK__.
 
 <img src="/images/rpi2/rpi2_install_iotextensions.png"/>
 
@@ -119,7 +98,7 @@ public sealed partial class MainPage : Page
 {% endhighlight %}
 
 ### Create a Timer to Control the LED
-Following the call to <code>InitializeComponent</code>, create a _Timer_ that will raise an event every 500ms.
+Following the call to <code>InitializeComponent</code>, create a _Timer_ that will raise an event every 500ms. Add the following code in place of the <code>// TODO: Create an instance of a Timer that will raise an event every 500ms</code>
 
 {% highlight csharp %}
 // Create an instance of a Timer that will raise an event every 500ms
@@ -160,24 +139,24 @@ private void Timer_Tick(object sender, object e)
 {% endhighlight %}
 
 ### Initialize the GPIO Controller
-The next thing to do is initialize the GPIO controller. Back in the _MainPage()_ constructor, following the timer code, make a call to a method that you haven't defined yet called <code>InitGpio()</code>. 
+The next thing to do is initialize the GPIO controller. Back in the _MainPage()_ constructor, following the timer code, make a call to a method that you haven't defined yet called <code>InitGpioAsync()</code>. Replace the <code>// TODO: Initialize the GPIO bus</code> comment with the following: 
 
 {% highlight csharp %}
 // Initialize the GPIO bus
-InitGpio();
+InitGpioAsync();
             
 // TODO: As long as the pin object is not null, proceed with the timer.                        
 {% endhighlight %}
 
-Just like you did with the _Timer\_Tick_ code, use the refactoring _lightbulb_ tool to generate the <code>InitGpio()</code> method. In the _InitGpio()_ method you will get the instance of the default GPIO controller - the object that brokers all communication between your app and the GPIO bus. 
+Just like you did with the _Timer\_Tick_ code, use the refactoring _lightbulb_ tool to generate the <code>InitGpioAsync()</code> method. In the _InitGpioAsync()_ method you will get the instance of the default GPIO controller - the object that brokers all communication between your app and the GPIO bus. 
 
 If the GPIO controller instance is _null_ then the device the app is running on doesn't support GPIO, and you will display a message on the screen indicating this, and that will be the end of the app functionality. If there is a GPIO controller instance, then you will use it to open the GPIO pin that you have connected to the LED and prepare it for use. Lastly you will display a message that the GPIO pin is initialized. 
 
 {% highlight csharp %}
-private void InitGpio()
+private async void InitGpioAsync()
 {
     // Get the default GPIO controller
-    var gpio = GpioController.GetDefault();
+    var gpio = await GpioController.GetDefaultAsync();
     // If the default GPIO controller is not present, then the device 
     // running this app isn't capable of GPIO operations.
     if (gpio == null)
@@ -198,6 +177,8 @@ private void InitGpio()
     GpioStatus.Text = "GPIO pin initialized correctly.";
 }
 {% endhighlight %}
+
+Make sure that you added the <code>async</code> modifier to the method signature to make this an asynchronous method. 
 
 ### Check for the Existence of the GPIO Pin Object and Start the Timer
 Back in the _MainPage()_ constructor, add a _null_ check on the _pin_ instance (remember, it will be _null_ if the GPIO controller was null). If it is not _null_, go ahead and start the timer. The timer will begin invoking the _Timer\_Tick_ event every 500ms.
