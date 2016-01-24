@@ -39,7 +39,6 @@ Since you will be using Node.js for this lab you can take advantage of the depen
 
 Using your favorite/preferred text/code editor, create a file in your development directory named __package.json__ and add the following:
 
-
 <div id="json-tabs">
   <ul>
     <li><a href="#arduino"><span>Arduino</span></a></li>
@@ -51,18 +50,19 @@ Using your favorite/preferred text/code editor, create a file in your developmen
       "name": "IoT-Labs-Arduino",
       "repository": {
         "type": "git",
-        "url": "https://github.com/ThingLabsIo/IoTLabs/js/WeatherStation"
+        "url": "https://github.com/ThingLabsIo/IoTLabs/tree/master/Arduino/Weather"
       },
-      "version": "0.1.0",
+      "version": "0.1.1",
       "private":true,
       "description": "Sample app that connects a device to Azure using Node.js",
       "main": "weather.js",
         "author": "YOUR NAME",
       "license": "MIT",
       "dependencies": {
-        "johnny-five": "latest",
-        "j5-sparkfun-weather-shield": "latest",
-        "azure-iot-device": "latest"
+        "azure-iot-device": "latest",
+        "azure-iot-device-amqp": "latest",
+        "johnny-five": "latest"
+        "j5-sparkfun-weather-shield": "latest"
       }
     }
     {% endhighlight %}
@@ -73,18 +73,19 @@ Using your favorite/preferred text/code editor, create a file in your developmen
       "name": "IoT-Labs-Photon",
       "repository": {
         "type": "git",
-        "url": "https://github.com/ThingLabsIo/IoTLabs/js/WeatherStation"
+        "url": "https://github.com/ThingLabsIo/IoTLabs/tree/master/Photon/Weather"
       },
-      "version": "0.1.0",
+      "version": "0.1.1",
       "private":true,
       "description": "Sample app that connects a device to Azure using Node.js",
       "main": "weather.js",
         "author": "YOUR NAME",
       "license": "MIT",
       "dependencies": {
-        "johnny-five": "latest",
-        "j5-sparkfun-weather-shield": "latest",
         "azure-iot-device": "latest",
+        "azure-iot-device-amqp": "latest",
+        "johnny-five": "latest"
+        "j5-sparkfun-weather-shield": "latest",
         "particle-io": "latest"
       }
     }
@@ -145,69 +146,81 @@ The first thing you need to do is define the objects you will be working with in
   </ul>
   <div id="arduino">
     {% highlight javascript %}
-    'use strict'
-    // https://github.com/ThingLabsIo/IoTLabs/blob/master/js/weather.js
-    // Define the Johnny Five object
-    var five = require ("johnny-five"); 
+    // https://github.com/ThingLabsIo/IoTLabs/tree/master/Arduino/Weather
+    'use strict';
+    // Define the objects you will be working with
+    var five = require ("johnny-five");
+    var Shield = require("j5-sparkfun-weather-shield")(five);
     var device = require('azure-iot-device');
+
+    // Use factory function from AMQP-specific package
+    // Other options include HTTP (azure-iot-device-http) and MQTT (azure-iot-device-mqtt)
+    var clientFromConnectionString = require('azure-iot-device-amqp').clientFromConnectionString;
 
     var location = process.env.DEVICE_LOCATION || 'GIVE A NAME TO THE LOCATION OF THE THING';
     var connectionString = process.env.IOTHUB_CONN || 'YOUR IOT HUB DEVICE-SPECIFIC CONNECTION STRING HERE';
-    
+
     // Create an Azure IoT client that will manage the connection to your IoT Hub
     // The client is created in the context of an Azure IoT device, which is why
     // you use a device-specific connection string.
-    var client = device.Client.fromConnectionString(connectionString);
+    var client = clientFromConnectionString(connectionString);
     var deviceId = device.ConnectionString.parse(connectionString).DeviceId;
-    
-    // Create a Johnny Five board instance to represent your board.
-    // Board is simply an abstraction of the physical hardware, whether it is 
-    // a Photon, Arduino, Raspberry Pi or other boards. 
+
+    // Create a Johnny-Five board instance to represent your Particle Photon
+    // Board is simply an abstraction of the physical hardware, whether is is a 
+    // Photon, Arduino, Raspberry Pi or other boards.
     var board = new five.Board();
-    
+
     /*
     // You may optionally specify the port by providing it as a property
     // of the options object parameter. * Denotes system specific 
     // enumeration value (ie. a number)
     // OSX
-    new five.Board({ port: "/dev/tty.usbmodem****" });
+    var board = new five.Board({ port: "/dev/tty.usbmodem****" });
     // Linux
-    new five.Board({ port: "/dev/ttyUSB*" });
+    var board = new five.Board({ port: "/dev/ttyUSB*" });
     // Windows
-    new five.Board({ port: "COM*" });
+    var board = new five.Board({ port: "COM*" });
     */
     {% endhighlight %}
   </div>
   <div id="photon">
     {% highlight javascript %}
-    'use strict'
-    // https://github.com/ThingLabsIo/IoTLabs/blob/master/js/weather.js
-    // Define the Johnny Five and Particle-IO variables
-    var five = require ("johnny-five"); 
-    var Particle = require("particle-io");
+    // https://github.com/ThingLabsIo/IoTLabs/tree/master/Photon/Weather
+    'use strict';
+    // Define the objects you will be working with
+    var five = require ("johnny-five");
+    var Shield = require("j5-sparkfun-weather-shield")(five);
     var device = require('azure-iot-device');
-    
+
+    // Add the following definition for the Particle plugin for Johnny-Five
+    var Particle = require("particle-io");
+
+    // Use factory function from AMQP-specific package
+    // Other options include HTTP (azure-iot-device-http) and MQTT (azure-iot-device-mqtt)
+    var clientFromConnectionString = require('azure-iot-device-amqp').clientFromConnectionString;
+
+    var token = process.env.PARTICLE_KEY || 'YOUR PARTICLE ACCESS TOKEN HERE';
     var location = process.env.DEVICE_LOCATION || 'GIVE A NAME TO THE LOCATION OF THE THING';
     var connectionString = process.env.IOTHUB_CONN || 'YOUR IOT HUB DEVICE-SPECIFIC CONNECTION STRING HERE';
-    
+
     // Create an Azure IoT client that will manage the connection to your IoT Hub
     // The client is created in the context of an Azure IoT device, which is why
     // you use a device-specific connection string.
-    var client = device.Client.fromConnectionString(connectionString);
+    var client = clientFromConnectionString(connectionString);
     var deviceId = device.ConnectionString.parse(connectionString).DeviceId;
 
-    // Set up the access credentials for Particle and Azure 
-    var token = process.env.PARTICLE_KEY || 'YOUR PARTICLE ACCESS TOKEN HERE'; 
-    var deviceId = process.env.PHOTON_ID || 'YOUR PARTICLE PHOTON DEVICE ID/ALIAS HERE'; 
-    
-    // Create a Johnny Five board instance to represent your Particle Photon.
-    // Board is simply an abstraction of the physical hardware, whether it is 
-    // a Photon, Arduino, Raspberry Pi or other boards. 
-    var board = new five.Board({ 
-      io: new Particle({ 
-        token: token, 
-        deviceId: deviceId 
-      }) 
+    // Create a Johnny-Five board instance to represent your Particle Photon
+    // Board is simply an abstraction of the physical hardware, whether is is a 
+    // Photon, Arduino, Raspberry Pi or other boards.
+    // When creating a Board instance for the Photon you must specify the token and device ID
+    // for your Photon using the Particle-IO Plugin for Johnny-five.
+    // Replace the Board instantiation with the following:
+    var board = new five.Board({
+        io: new Particle({
+            token: token,
+            deviceId: 'YOUR PARTICLE PHOTON DEVICE IS OR ALIAS'
+        })
     });
     {% endhighlight %}
   </div>
@@ -241,7 +254,7 @@ board.on("ready", function() {
     // barometer (MPL3115A2) which can provide both barometric pressure and humidity.
     // Controllers for these are wrapped in a convenient plugin class:
     var weather = new Shield({
-      variant: "ARDUINO", // or PHOTON
+      variant: "ARDUINO", // or variant: "PHOTON",
       freq: 1000,         // Set the callback frequency to 1-second
       elevation: 100      // Go to http://www.WhatIsMyElevation.com to get your current elevation
     });
@@ -277,7 +290,6 @@ board.on("ready", function() {
 function printResultFor(op) {
   return function printResult(err, res) {
     if (err) console.log(op + ' error: ' + err.toString());
-    if (res && (res.statusCode !== 204)) console.log(op + ' status: ' + res.statusCode + ' ' + res.statusMessage);
   };
 }
 {% endhighlight %}

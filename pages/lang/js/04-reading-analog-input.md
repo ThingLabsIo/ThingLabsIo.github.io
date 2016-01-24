@@ -49,7 +49,7 @@ In order to take advantage of the photoresistor you will create a voltage divide
     <li><a href="#photon"><span>Photon</span></a></li>
   </ul>
   <div id="arduino">
-    <img src="/images/lab02_schem.png"/>
+    <img src="/images/photoresistor_schem.png"/>
   </div>
   <div id="photon">
     <img src="/images/photon_lab02_schem.png"/>
@@ -81,7 +81,7 @@ Here are the specific wiring instructions.
     <li><a href="#photon"><span>Photon</span></a></li>
   </ul>
   <div id="arduino">
-    <img src="{{ sitte.url }}/images/lab02_bb.png"/>
+    <img src="/images/photoresistor_bb.png"/>
   </div>
   <div id="photon">
     <img src="/images/photon_lab02_bb.png"/>

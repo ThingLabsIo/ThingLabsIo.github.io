@@ -35,7 +35,7 @@ For Arduino and RedBoard, you must upload the Standard Firmatta to the board. Se
 For Particle Photon, you must upload the VoodooSpark firmware to the Photon. See [Setting Up Your Particle Photon Firmware](../setup-photon/) for details.
 
 # Wiring the Board
-This lab follows the same wiring plan as the ['Reading Analog Input' lab](../reading-analog-input/) . If your board is still wired up from the ['Input Controls Output'](/lang/js/input-controls-output/) lab, you can leave it as is and go to the next step. If not, wire it as follows.
+This lab follows the same wiring plan as the ['Reading Analog Input' lab](../reading-analog-input/) . If your board is still wired up from the ['Input Controls Output'](../input-controls-output/) lab, you can leave it as is and go to the next step. If not, wire it as follows.
 
 <div id="wiring-tabs">
   <ul>
@@ -43,7 +43,7 @@ This lab follows the same wiring plan as the ['Reading Analog Input' lab](../rea
     <li><a href="#photon"><span>Photon</span></a></li>
   </ul>
   <div id="arduino">
-    <img src="/images/lab02_bb.png"/>
+    <img src="/images/photoresistor_bb.png"/>
   </div>
   <div id="photon">
     <img src="/images/photon_lab02_bb.png"/>
@@ -102,8 +102,7 @@ Using your favorite/preferred text/code editor, create a file in your developmen
       "dependencies": {
         "azure-iot-device": "latest",
         "azure-iot-device-amqp": "latest",
-        "johnny-five": "latest",
-        "j5-sparkfun-weather-shield": "latest"
+        "johnny-five": "latest"
       }
     }
     {% endhighlight %}
@@ -126,7 +125,6 @@ Using your favorite/preferred text/code editor, create a file in your developmen
         "azure-iot-device": "latest",
         "azure-iot-device-amqp": "latest",
         "johnny-five": "latest",
-        "j5-sparkfun-weather-shield": "latest",
         "particle-io": "latest"
       }
     }
