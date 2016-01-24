@@ -26,7 +26,7 @@ What you will need:
 6. 16GB micro SD card - class 10 or better. Microsoft suggests [this one](http://www.amazon.com/gp/product/B00IVPU786) or [this one](http://www.amazon.com/SanDisk-Ultra-Micro-SDHC-16GB/dp/9966573445).
 7. Micro SD card writer
 
-# Install Windows 10 IoT Core on RaspBerry Pi 2
+# Install Windows 10 IoT Core on Raspberry Pi 2
 Windows 10 IoT Core is a version of Windows 10 designed to run on small devices, like the Raspberry Pi 2 (RPi2). You can download and install the Windows IoT Core image onto the micro SD card. 
 
 1. Download a Windows 10 IoT Core image from the [Microsoft downloads page](http://ms-iot.github.io/content/en-US/Downloads.htm). 
