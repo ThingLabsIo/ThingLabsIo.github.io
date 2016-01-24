@@ -45,7 +45,7 @@ Using your favorite/preferred text/code editor, create a file in your developmen
       "version": "0.1.0",
       "private":true,
       "description": "Sample app that connects a device to Azure using Node.js",
-      "main": "nightlight.js",
+      "main": "weather.js",
       "author": "YOUR NAME",
       "license": "MIT",
       "dependencies": {
@@ -68,7 +68,7 @@ Using your favorite/preferred text/code editor, create a file in your developmen
       "version": "0.1.0",
       "private":true,
       "description": "Sample app that connects a device to Azure using Node.js",
-      "main": "nightlight.js",
+      "main": "weather.js",
       "author": "YOUR NAME",
       "license": "MIT",
       "dependencies": {
@@ -207,10 +207,10 @@ The first thing you need to do is define the objects you will be working with in
     // for your Photon using the Particle-IO Plugin for Johnny-five.
     // Replace the Board instantiation with the following:
     var board = new five.Board({
-    io: new Particle({
-        token: token,
-        deviceId: 'YOUR PARTICLE PHOTON DEVICE IS OR ALIAS'
-    })
+        io: new Particle({
+            token: token,
+            deviceId: 'YOUR PARTICLE PHOTON DEVICE IS OR ALIAS'
+        })
     });
     {% endhighlight %}
   </div>

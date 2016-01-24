@@ -30,9 +30,9 @@ What you will need (all the parts from the previous lessons):
 5. [Photoresistor (5528)](http://www.sparkfun.com/products/9088)
 6. [10k Ohm 1/4 Watt resistor](http://www.sparkfun.com/products/10969) (Brown-Black-Orange)
 
-For Arduino and RedBoard, you must upload the Standard Firmatta to the board. See [Setting Up Your Arduino Firmware]({{ site.url }}/lang/js/setup-arduino/) for details. 
+For Arduino and RedBoard, you must upload the Standard Firmatta to the board. See [Setting Up Your Arduino Firmware](../setup-arduino/) for details. 
 
-For Particle Photon, you must upload the VoodooSpark firmware to the board. See [Setting Up Your Particle Photon Firmware]({{ site.url }}/lang/js/setup-photon/) for details.
+For Particle Photon, you must upload the VoodooSpark firmware to the Photon. See [Setting Up Your Particle Photon Firmware](../setup-photon/) for details.
 
 ## Wiring the Board
 In this lab you will creat two distinct circuits. This lesson combines the previous two lessons, so it's likely that you already have most of the wiring done from the previous lesson. Wire the board according to the diagram.

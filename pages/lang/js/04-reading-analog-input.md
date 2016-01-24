@@ -30,9 +30,9 @@ What you will need:
 5. [Photoresistor (5528)](http://www.sparkfun.com/products/9088)
 6. [10k Ohm 1/4 Watt resistor](http://www.sparkfun.com/products/10969) (Brown-Black-Orange)
 
-For Arduino and RedBoard, you must upload the Standard Firmatta to the board. See [Setting Up Your Arduino Firmware]({{ site.url }}/lang/js/setup-arduino/) for details. 
+For Arduino and RedBoard, you must upload the Standard Firmatta to the board. See [Setting Up Your Arduino Firmware](../setup-arduino/) for details. 
 
-For Particle Photon, you must upload the VoodooSpark firmware to the board. See [Setting Up Your Particle Photon Firmware]({{ site.url }}/lang/js/setup-photon/) for details.
+For Particle Photon, you must upload the VoodooSpark firmware to the Photon. See [Setting Up Your Particle Photon Firmware](../setup-photon/) for details.
 
 ## Wiring a Voltage Divider
 The first step is to wire up the board to read voltage as determined by the resistance created by the photoresistor. Wire your board according to the diagram (wire colors don't matter, but help with identification of purpose).

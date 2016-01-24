@@ -30,12 +30,12 @@ What you will need:
 5. [Photoresistor (5528)](http://www.sparkfun.com/products/9088)
 6. [10k Ohm 1/4 Watt resistor](http://www.sparkfun.com/products/10969) (Brown-Black-Orange)
 
-For Arduino and RedBoard, you must upload the Standard Firmatta to the board. See [Setting Up Your Arduino Firmware](/device/arduino/setup-arduino) for details. 
+For Arduino and RedBoard, you must upload the Standard Firmatta to the board. See [Setting Up Your Arduino Firmware](../setup-arduino/) for details. 
 
-For Particle Photon, you must upload the VoodooSpark firmware to the Photon. See [Setting Up Your Particle Photon Firmware](/device/photon/setup-photon) for details.
+For Particle Photon, you must upload the VoodooSpark firmware to the Photon. See [Setting Up Your Particle Photon Firmware](../setup-photon/) for details.
 
 # Wiring the Board
-This lab follows the same wiring plan as the ['Reading Analog Input' lab](/lang/js/reading-analog-input/) . If your board is still wired up from the ['Input Controls Output'](/lang/js/input-controls-output/) lab, you can leave it as is and go to the next step. If not, wire it as follows.
+This lab follows the same wiring plan as the ['Reading Analog Input' lab](../reading-analog-input/) . If your board is still wired up from the ['Input Controls Output'](/lang/js/input-controls-output/) lab, you can leave it as is and go to the next step. If not, wire it as follows.
 
 <div id="wiring-tabs">
   <ul>
@@ -91,17 +91,19 @@ Using your favorite/preferred text/code editor, create a file in your developmen
       "name": "IoT-Labs-Arduino",
       "repository": {
         "type": "git",
-        "url": "https://github.com/ThingLabsIo/IoTLabs/Arduino"
+        "url": "https://github.com/ThingLabsIo/IoTLabs/tree/master/Arduino/Weather"
       },
       "version": "0.1.0",
       "private":true,
       "description": "Sample app that connects a device to Azure using Node.js",
       "main": "nightlight.js",
-        "author": "YOUR NAME",
+      "author": "YOUR NAME",
       "license": "MIT",
       "dependencies": {
+        "azure-iot-device": "latest",
+        "azure-iot-device-amqp": "latest",
         "johnny-five": "latest",
-        "azure-iot-device": "latest"
+        "j5-sparkfun-weather-shield": "latest"
       }
     }
     {% endhighlight %}
@@ -112,18 +114,20 @@ Using your favorite/preferred text/code editor, create a file in your developmen
       "name": "IoT-Labs-Photon",
       "repository": {
         "type": "git",
-        "url": "https://github.com/ThingLabsIo/IoTLabs/Photon"
+        "url": "https://github.com/ThingLabsIo/IoTLabs/tree/master/Photon/Weather"
       },
       "version": "0.1.0",
       "private":true,
       "description": "Sample app that connects a device to Azure using Node.js",
       "main": "nightlight.js",
-        "author": "YOUR NAME",
+      "author": "YOUR NAME",
       "license": "MIT",
       "dependencies": {
+        "azure-iot-device": "latest",
+        "azure-iot-device-amqp": "latest",
         "johnny-five": "latest",
-        "particle-io": "latest",
-        "azure-iot-device": "latest"
+        "j5-sparkfun-weather-shield": "latest",
+        "particle-io": "latest"
       }
     }
     {% endhighlight %}
@@ -160,84 +164,90 @@ Create another file in the same directory named __nightlight.js__ and add the fo
   </ul>
   <div id="arduino">
     {% highlight javascript %}
-    'use strict'
-    // https://github.com/ThingLabsIo/IoTLabs/blob/master/Arduino/nightlight.js
-    // Define the Johnny Five object
-    var five = require ("johnny-five"); 
+    // https://github.com/ThingLabsIo/IoTLabs/tree/master/Arduino/IoTNightlight
+    'use strict';
+    // Define the objects you will be working with
+    var five = require ("johnny-five");
     var device = require('azure-iot-device');
+
+    // Use factory function from AMQP-specific package
+    // Other options include HTTP (azure-iot-device-http) and MQTT (azure-iot-device-mqtt)
+    var clientFromConnectionString = require('azure-iot-device-amqp').clientFromConnectionString;
 
     var location = process.env.DEVICE_LOCATION || 'GIVE A NAME TO THE LOCATION OF THE THING';
     var connectionString = process.env.IOTHUB_CONN || 'YOUR IOT HUB DEVICE-SPECIFIC CONNECTION STRING HERE';
-    
+
     // Create an Azure IoT client that will manage the connection to your IoT Hub
     // The client is created in the context of an Azure IoT device, which is why
     // you use a device-specific connection string.
-    var client = device.Client.fromConnectionString(connectionString);
+    var client = clientFromConnectionString(connectionString);
     var deviceId = device.ConnectionString.parse(connectionString).DeviceId;
 
-    // Define the pin that is connected to the LED
-    var LEDPIN = 13;
-    // Define the pin you will use to read the residual voltage 
-    // coming from the photoresistor
-    var ANALOGPIN = 0;
-    var darkIntensity = 0;
-    
-    // Create a Johnny Five board instance to represent your board.
-    // Board is simply an abstraction of the physical hardware, whether it is 
-    // a Photon, Arduino, Raspberry Pi or other boards. 
+    // Create a Johnny-Five board instance to represent your Particle Photon
+    // Board is simply an abstraction of the physical hardware, whether is is a 
+    // Photon, Arduino, Raspberry Pi or other boards.
     var board = new five.Board();
-    
+
     /*
     // You may optionally specify the port by providing it as a property
     // of the options object parameter. * Denotes system specific 
     // enumeration value (ie. a number)
     // OSX
-    new five.Board({ port: "/dev/tty.usbmodem****" });
+    var board = new five.Board({ port: "/dev/tty.usbmodem****" });
     // Linux
-    new five.Board({ port: "/dev/ttyUSB*" });
+    var board = new five.Board({ port: "/dev/ttyUSB*" });
     // Windows
-    new five.Board({ port: "COM*" });
+    var board = new five.Board({ port: "COM*" });
     */
+
+    // Define the pins used for the LED, photoresistor and the value from the voltage divider.
+    var LEDPIN = 13;
+    var ANALOGPIN = 0;
+    var darkIntensity = 0;
     {% endhighlight %}
   </div>
   <div id="photon">
     {% highlight javascript %}
-    'use strict'
-    // https://github.com/ThingLabsIo/IoTLabs/blob/master/Photon/nightlight.js
-    // Define the Johnny Five and Particle-IO variables
-    var five = require ("johnny-five"); 
-    var Particle = require("particle-io");
+    // https://github.com/ThingLabsIo/IoTLabs/tree/master/Photon/IoTNightlight
+    'use strict';
+    // Define the objects you will be working with
+    var five = require ("johnny-five");
     var device = require('azure-iot-device');
-    
+
+    // Add the following definition for the Particle plugin for Johnny-Five
+    var Particle = require("particle-io");
+
+    // Use factory function from AMQP-specific package
+    // Other options include HTTP (azure-iot-device-http) and MQTT (azure-iot-device-mqtt)
+    var clientFromConnectionString = require('azure-iot-device-amqp').clientFromConnectionString;
+
+    var token = process.env.PARTICLE_KEY || 'YOUR PARTICLE ACCESS TOKEN HERE';
     var location = process.env.DEVICE_LOCATION || 'GIVE A NAME TO THE LOCATION OF THE THING';
     var connectionString = process.env.IOTHUB_CONN || 'YOUR IOT HUB DEVICE-SPECIFIC CONNECTION STRING HERE';
-    
+
     // Create an Azure IoT client that will manage the connection to your IoT Hub
     // The client is created in the context of an Azure IoT device, which is why
     // you use a device-specific connection string.
-    var client = device.Client.fromConnectionString(connectionString);
+    var client = clientFromConnectionString(connectionString);
     var deviceId = device.ConnectionString.parse(connectionString).DeviceId;
 
-    // Set up the access credentials for Particle and Azure 
-    var token = process.env.PARTICLE_KEY || 'YOUR PARTICLE ACCESS TOKEN HERE'; 
-    var deviceId = process.env.PHOTON_ID || 'YOUR PARTICLE PHOTON DEVICE ID/ALIAS HERE'; 
-    
-    // Define the pin that is connected to the LED
-    var LEDPIN = "D0";
-    // Define the pin you will use to read the residual voltage 
-    // coming from the photoresistor
-    var ANALOGPIN = "A0";
-    var darkIntensity = 0;
-    
-    // Create a Johnny Five board instance to represent your Particle Photon.
-    // Board is simply an abstraction of the physical hardware, whether it is 
-    // a Photon, Arduino, Raspberry Pi or other boards. 
-    var board = new five.Board({ 
-      io: new Particle({ 
-        token: token, 
-        deviceId: deviceId 
-      }) 
+    // Create a Johnny-Five board instance to represent your Particle Photon
+    // Board is simply an abstraction of the physical hardware, whether is is a 
+    // Photon, Arduino, Raspberry Pi or other boards.
+    // When creating a Board instance for the Photon you must specify the token and device ID
+    // for your Photon using the Particle-IO Plugin for Johnny-five.
+    // Replace the Board instantiation with the following:
+    var board = new five.Board({
+    io: new Particle({
+        token: token,
+        deviceId: 'YOUR PARTICLE PHOTON DEVICE IS OR ALIAS'
+    })
     });
+
+    // Define the pins used for the LED, photoresistor and the value from the voltage divider.
+    var LEDPIN = "D1";
+    var ANALOGPIN = 0;
+    var darkIntensity = 0;
     {% endhighlight %}
   </div>
 </div>
@@ -263,6 +273,7 @@ connected to the board. The __Sensor__ class in Johnny-Five enables you to repre
 Next you will use the _Sensor_ class to represent the photoresistor and capture the light/darkness measurement. Start by defining 
 a _photoresistor_ variable using the __Sensor__ class. Next create a handler function for the photoresistor _data_ event. Add the 
 following code to _nightlight.js_:
+
 
 {% highlight javascript %}
 // The board.on() executes the anonymous function when the 
@@ -340,7 +351,6 @@ Add the following to the end of the _nightlight.js_ file, __after__ the cosing o
 function printResultFor(op) {
   return function printResult(err, res) {
     if (err) console.log(op + ' error: ' + err.toString());
-    if (res && (res.statusCode !== 204)) console.log(op + ' status: ' + res.statusCode + ' ' + res.statusMessage);
   };
 }
 {% endhighlight %}
