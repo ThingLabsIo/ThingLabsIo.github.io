@@ -156,4 +156,4 @@ In this lab you learned how to write a Node.js/Johnny-Five application that writ
 
 In the next lab you will provision an Azure IoT Hub and an IoT Hub device.
 
-<a class="radius button small" href="../setup-azure-iot-hub/">Go to 'Setting Up Azure IoT Hub' ›</a>
+<a class="radius button small" href="{{ site.url }}/tr22/js/setup-azure-iot-hub/">Go to 'Setting Up Azure IoT Hub' ›</a>

@@ -222,11 +222,8 @@ When you want to quite the application, press <kbd>CTRL</kbd> + <kbd>C</kbd> twi
 
 ## Conclusion &amp; Next Steps
 
-In this lab you learned how to write a Node.js + Johnny-Five application that collects environment telemetry and sends it to Azure IoT Hub. In the [next lab][visualize-iot-with-powerbi] you will setup some Azure services to store and visualize the data.
+In this lab you learned how to write a Node.js + Johnny-Five application that collects environment telemetry and sends it to Azure IoT Hub. In the next lab you will setup some Azure services to store and visualize the data.
 
-<a class="radius button small" href="../visualize-iot-with-powerbi/">Go to 'Visualizing IoT Data with Power BI' ›</a>
+<a class="radius button small" href="{{ site.url }}/tr22/js/visualize-iot-with-powerbi/">Go to 'Visualizing IoT Data with Power BI' ›</a>
 
-[setup-azure-iot-hub]: ../setup-azure-iot-hub/
-[sending-telemetry]: ../sending-telemetry/
-[visualize-iot-with-powerbi]: ../visualize-iot-with-powerbi/
 [deviceexplorer]: https://github.com/Azure/azure-iot-sdks/blob/master/tools/DeviceExplorer/doc/how_to_use_device_explorer.md

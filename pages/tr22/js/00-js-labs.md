@@ -25,7 +25,7 @@ The labs in this series build on each other to enable you to prototype your own 
 ## Hello, World
 In this lab you will use one of the digital output pins to send a signal to an LED.
 
-<a class="radius button small" href="{{ site.url }}/lang/js/writing-digital-output/">Estimated time to complete: 20-minutes. Go to  'Writing Digital Output' ›</a>
+<a class="radius button small" href="{{ site.url }}/tr22/js/writing-digital-output/">Estimated time to complete: 20-minutes. Go to  'Writing Digital Output' ›</a>
 
 # Connected Thing Labs
 There are options for the Connected Things Labs when coding with JavaScript depending on the board you are working with and the sensors, devices or shields you have available. Regardless of which option you pursue, you must first setup your Microsoft Azure IoT Hub. Once you have done that, return to this page to select the next lab based on your hardware.
@@ -33,12 +33,12 @@ There are options for the Connected Things Labs when coding with JavaScript depe
 ## Setting Up Azure IoT Hub
 In this lab you will provision a new Azure IoT Hub. Once you have the IoT Hub created, you will be able to create a new Azure IoT device (a software reference to your physical device) that you will use to send telemetry to Azure.
 
-<a class="radius button small" href="{{ site.url }}/lang/js/setup-azure-iot-hub/">Estimated time to complete: 20-minutes. Go to  'Setting Up Azure IoT Hub' ›</a>
+<a class="radius button small" href="{{ site.url }}/tr22/js/setup-azure-iot-hub/">Estimated time to complete: 20-minutes. Go to  'Setting Up Azure IoT Hub' ›</a>
 
 ## Sending Telemetry to the Cloud
 In this lab you will write a Node.js application that runs on a hub (your development machine) and collects data from a development board and sends it up to your Azure IoT Hub.
 
-<a class="radius button small" href="{{ site.url }}/lang/js/sending-telemetry/">Estimated time to complete: 20-minutes. Go to  'Sending Telemetry to the Cloud' ›</a>
+<a class="radius button small" href="{{ site.url }}/tr22/js/sending-telemetry/">Estimated time to complete: 20-minutes. Go to  'Sending Telemetry to the Cloud' ›</a>
 
 # Cloud IoT Service Labs
 In these labs you will learn how to use Cloud services to gain insights and derive value from the data you are collecting from your _Thing_.
@@ -46,4 +46,4 @@ In these labs you will learn how to use Cloud services to gain insights and deri
 ## Visualizing IoT Data with Power BI
 In this lab you will create visualizations of IoT data using Microsoft Power BI.
 
-<a class="radius button small" href="{{ site.url }}/lang/js/visualize-iot-with-powerbi/">Estimated time to complete: 20-minutes. Go to  'Visualizing IoT Data with Power BI' ›</a>
+<a class="radius button small" href="{{ site.url }}/tr22/js/visualize-iot-with-powerbi/">Estimated time to complete: 20-minutes. Go to  'Visualizing IoT Data with Power BI' ›</a>
