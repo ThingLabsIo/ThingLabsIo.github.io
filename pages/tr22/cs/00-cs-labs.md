@@ -16,14 +16,15 @@ permalink: /tr22/cs/
 {:toc}
 
 # Thing 101 Labs
+In the first set of labs you will learn the basics of creating a _Thing_ using WIndows 10 IoT Core.
 
 ## Hello, Windows IoT!
-In this lab you will use one of the digital output pins to send a signal to an LED.
+In this lab you will create a simple _Thing_ using a Raspberry Pi 2 running Windows 10 IoT Core. The Raspberry Pi 2 is a low cost, credit-card sized computer that plugs into a computer monitor or TV, and uses a standard keyboard and mouse.
 
 <a class="radius button small" href="../cs/hello-windows-iot/">Estimated time to complete: 20-minutes. Go to  'Hello, Windows IoT!' ›</a>
 
 # Connected Thing Labs
-There are options for the Connected Things Labs when coding with JavaScript depending on the board you are working with and the sensors, devices or shields you have available. Regardless of which option you pursue, you must first setup your Microsoft Azure IoT Hub. Once you have done that, return to this page to select the next lab based on your hardware.
+In the labs leading up to this point, you have prepared your hardware and developed a 'Hello, World!' application that you deployed to the board. In this set of labs you will build a new application for Windows 10 IoT Core and connect it to Microsoft Azure IoT Hubs.
 
 ## Setting Up Azure IoT Hub
 In this lab you will provision a new Azure IoT Hub. Once you have the IoT Hub created, you will be able to create a new Azure IoT device (a software reference to your physical device) that you will use to send telemetry to Azure.
@@ -31,7 +32,7 @@ In this lab you will provision a new Azure IoT Hub. Once you have the IoT Hub cr
 <a class="radius button small" href="../cs/setup-azure-iot-hub/">Estimated time to complete: 20-minutes. Go to  'Setting Up Azure IoT Hub' ›</a>
 
 ## Sending Telemetry to the Cloud
-In this lab you will write a Node.js application that runs on a hub (your development machine) and collects data from a development board and sends it up to your Azure IoT Hub.
+In this lab you will write an application that collects data from your Windows IoT board and sends it up to your Azure IoT Hub.
 
 <a class="radius button small" href="../cs/sending-telemetry/">Estimated time to complete: 20-minutes. Go to  'Sending Telemetry to the Cloud' ›</a>
 

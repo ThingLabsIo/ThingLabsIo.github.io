@@ -16,14 +16,14 @@ permalink: /lang/cs/
 {:toc}
 
 # Getting Started
-This is a step-by-step guide to preparing your computer for the IoT labs using JavaScript, Node.js and Johnny-Five.
+This is a step-by-step guide to preparing your computer for the Windows 10 IoT Labs.
 
 <a class="radius button small" href="{{ site.url }}/lang/cs/getting-started/">Estimated time to complete: 20-minutes. Go to  'Getting Started' ›</a>
 
 # Thing 101 Labs
 
 ## Setting Up Your Device
-In this lab you will install firmware onto your board that will enable communication with the gateway application. How you configure the board and what firmware you install will depend on the board you choose to use.
+In this lab you will install Windows 10 IoT Core on your hardware (select from one of the options below). 
 
 ### Raspberry Pi 2
 The Raspberry Pi 2 is a low cost, credit-card sized computer that plugs into a computer monitor or TV, and uses a standard keyboard and mouse. The Raspberry Pi 2 runs Windows 10 IoT Core.
@@ -40,12 +40,12 @@ In this lab you will install Windows 10 IoT Core on your DragonBoard 410c.
 <a class="radius button small" href="{{ site.url }}/lang/cs/setup-dragon/">Estimated time to complete: 20-minutes. Go to  'Setting Up Your Dragon Board' ›</a>
 
 ## Hello, Windows IoT!
-In this lab you will use one of the digital output pins to send a signal to an LED.
+In this lab you will create a simple _Thing_ using a Windows 10 IoT device and the Universal Windows Platform. 
 
 <a class="radius button small" href="{{ site.url }}/lang/cs/hello-windows-iot/">Estimated time to complete: 20-minutes. Go to  'Hello, Windows IoT!' ›</a>
 
 # Connected Thing Labs
-There are options for the Connected Things Labs when coding with JavaScript depending on the board you are working with and the sensors, devices or shields you have available. Regardless of which option you pursue, you must first setup your Microsoft Azure IoT Hub. Once you have done that, return to this page to select the next lab based on your hardware.
+In the labs leading up to this point, you have prepared your hardware and developed a 'Hello, World!' application that you deployed to the board. In this set of labs you will build a new application for Windows 10 IoT Core and connect it to Microsoft Azure IoT Hubs.
 
 ## Setting Up Azure IoT Hub
 In this lab you will provision a new Azure IoT Hub. Once you have the IoT Hub created, you will be able to create a new Azure IoT device (a software reference to your physical device) that you will use to send telemetry to Azure.
@@ -53,7 +53,7 @@ In this lab you will provision a new Azure IoT Hub. Once you have the IoT Hub cr
 <a class="radius button small" href="{{ site.url }}/lang/cs/setup-azure-iot-hub/">Estimated time to complete: 20-minutes. Go to  'Setting Up Azure IoT Hub' ›</a>
 
 ## Sending Telemetry to the Cloud
-In this lab you will write a Node.js application that runs on a hub (your development machine) and collects data from a development board and sends it up to your Azure IoT Hub.
+In this lab you will write an application that collects data from your Windows IoT board and sends it up to your Azure IoT Hub.
 
 <a class="radius button small" href="{{ site.url }}/lang/cs/sending-telemetry/">Estimated time to complete: 20-minutes. Go to  'Sending Telemetry to the Cloud' ›</a>
 
