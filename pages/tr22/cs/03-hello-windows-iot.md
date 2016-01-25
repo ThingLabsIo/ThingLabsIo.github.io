@@ -238,6 +238,6 @@ Congratulations! You have built a Universal Windows Platform application that co
 
 In the [next lab][nextlab] you will set up a Microsoft Azure IoT Hub that will act as the cloud backend for your IoT devices. In the labs after that you will build a new _Thing_ that will collect environment data and send it to your IoT hub.
 
-<a class="radius button small" href="{{ site.url }}/lang/cs/setup-azure-iot-hub/">Go to 'Setup Azure IoT Hub' ›</a>
+<a class="radius button small" href="{{ site.url }}/tr22/cs/setup-azure-iot-hub/">Go to 'Setup Azure IoT Hub' ›</a>
 
 [nextlab]: /lang/cs/setup-azure-iot-hub/

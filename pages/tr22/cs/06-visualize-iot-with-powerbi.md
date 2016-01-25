@@ -16,7 +16,7 @@ permalink: /tr22/cs/visualize-iot-with-powerbi/
 
 In this lab you will process the data that you are sending into Azure IoT Hub using Azure Stream Analytics so that you can visualize it using Power BI.
 
-In an [earlier lab](../setup-azure-iot-hub/) you provisioned an Azure IoT Hub and in the [previous lab](../sending-telemetry/) you built a physical device...a _Thing_. You coded an application to collect
+In an [earlier lab]({{ site.url }}/tr22/cs/setup-azure-iot-hub/) you provisioned an Azure IoT Hub and in the [previous lab]({{ site.url }}/tr22/cs/sending-telemetry/) you built a physical device...a _Thing_. You coded an application to collect
 data from the device and send it to your IoT Hub. At the end of the previous lab you had data going into your IoT Hub but you weren't yet doing 
 anything with it. Let's change that.
 
@@ -29,7 +29,7 @@ will write a SQL-like query that collects data coming in on the input stream and
 Open a new browser tab and navigate to [https://manage.windowsazure.com](https://manage.windowsazure.com). Login if necessary. Click on the __NEW__ icon in the 
 lower-left corner.
 
-<img src="{{ site.url }}/images/photon_lab07_5.png"/>
+<img src="/images/photon_lab07_5.png"/>
 
 Select __DATA SERVICES__ > __STREAM ANALYTICS__ > __QUICK CREATE__ and enter the following:
 
@@ -126,7 +126,7 @@ GROUP BY
 {% endhighlight %}
 
 Click _SAVE_ in the lower middle of the screen. Once the query is saved, click _START_ to start the Stream Analytics job. If your app 
-from the [previous lab](../sending-telemetry/) isn't still running, go ahead and start it up. It will take a few minutes for the Stream Analytics job to get 
+from the [previous lab]({{ site.url }}/tr22/cs/sending-telemetry/) isn't still running, go ahead and start it up. It will take a few minutes for the Stream Analytics job to get 
 started and to start sending data to Power BI, but you should see _MyIoTDataSet_ show up in Power BI within a few minutes. Remember, 
 the _TumblingWindow_ is set to 5-seconds, so PowerBI will only update every 5-seconds.
 

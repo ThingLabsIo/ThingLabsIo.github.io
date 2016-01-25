@@ -24,11 +24,11 @@ In these labs you will use JavaScript to write Node.js applications that control
 
 For these labs you will use the Particle Photon and you will build a gateway application that runs on your development machine and communicates with the Photon over TCP.
 
-<a class="radius button small" href="/tr22/js/">Go to 'Building Connected Things with Node.js' ›</a>
+<a class="radius button small" href="{{ site.url }}/tr22/js/">Go to 'Building Connected Things with Node.js' ›</a>
 
 # Windows 10 IoT &amp; C\#
 In these labs you will use Windows 10 IoT Core and C# to write applications for the Universal Windows Platform (UWP) running on your _Thing_. These labs require a Windows 10 development machine and Visual Studio 2015 Community (or higher edition).
 
 For these labs you will use the Raspberry Pi 2 and build an application that is deployed onto the _Thing_..
 
-<a class="radius button small" href="/tr22/cs/">Go to 'Building Connected Things with Windows 10 IoT Core and C#' ›</a>
+<a class="radius button small" href="{{ site.url }}/tr22/cs/">Go to 'Building Connected Things with Windows 10 IoT Core and C#' ›</a>
