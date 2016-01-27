@@ -68,7 +68,9 @@ Open the _MainPage.xaml_ file. This is the layout definition for the initial pag
 Open the _MainPage.xaml.cs_ file. This is the code behind the layout for the MainPage.xaml. Add the following to the _using_ statements at the top of the file. 
 
 {% highlight csharp %}
-using Windows.Devices.Gpio;
+using System.Threading; // This is for async operations
+using System.Threading.Tasks; // This is for async operations
+using Windows.Devices.Gpio; // This provides access to the GPIO pins on the board.
 {% endhighlight %}
 
 Add the following variable definitions inside the <code>public sealed partial class MainPage : Page</code> class definition:
@@ -105,6 +107,7 @@ Following the call to <code>InitializeComponent</code>, create a _Timer_ that wi
 timer = new DispatcherTimer();
 timer.Interval = TimeSpan.FromMilliseconds(500);
 timer.Tick += Timer_Tick;
+
 // TODO: Initialize the GPIO bus
 {% endhighlight %}
 
@@ -150,10 +153,10 @@ InitGpioAsync();
 
 Just like you did with the _Timer\_Tick_ code, use the refactoring _lightbulb_ tool to generate the <code>InitGpioAsync()</code> method. In the _InitGpioAsync()_ method you will get the instance of the default GPIO controller - the object that brokers all communication between your app and the GPIO bus. 
 
-If the GPIO controller instance is _null_ then the device the app is running on doesn't support GPIO, and you will display a message on the screen indicating this, and that will be the end of the app functionality. If there is a GPIO controller instance, then you will use it to open the GPIO pin that you have connected to the LED and prepare it for use. Lastly you will display a message that the GPIO pin is initialized. 
+If the GPIO controller instance is _null_ then the device the app is running on doesn't support GPIO, and you will display a message on the screen indicating this, and that will be the end of the app functionality. If there is a GPIO controller instance, then you will use it to open the GPIO pin that you have connected to the LED and prepare it for use. Add a _null_ check on the _pin_ instance. If it is not _null_, go ahead and start the timer. The timer will begin invoking the _Timer\_Tick_ event every 500ms. 
 
 {% highlight csharp %}
-private async void InitGpioAsync()
+private async Task InitGpioAsync()
 {
     // Get the default GPIO controller
     var gpio = await GpioController.GetDefaultAsync();
@@ -165,48 +168,30 @@ private async void InitGpioAsync()
         GpioStatus.Text = "There is no GPIO controller on this device.";
         return;
     }
-    // Open the GPIO pin channel
+    
+    // Open the GPIO channel
     pin = gpio.OpenPin(LED_PIN);
-    // Define the pin as an OUTPUT pin
-    pin.SetDriveMode(GpioPinDriveMode.Output);
-    // Define the initial state as LOW (off)
-    pinValue = GpioPinValue.Low;
-    // Write the state to to pin
-    pin.Write(pinValue);
-    // Update the on screen text to indicate that GPIO is ready
-    GpioStatus.Text = "GPIO pin initialized correctly.";
-}
-{% endhighlight %}
 
-Make sure that you added the <code>async</code> modifier to the method signature to make this an asynchronous method. 
-
-### Check for the Existence of the GPIO Pin Object and Start the Timer
-Back in the _MainPage()_ constructor, add a _null_ check on the _pin_ instance (remember, it will be _null_ if the GPIO controller was null). If it is not _null_, go ahead and start the timer. The timer will begin invoking the _Timer\_Tick_ event every 500ms.
-
-This is what the _MainPage()_ constructor should look like when completed.
-
-{% highlight csharp %}
-public MainPage()
-{
-    this.InitializeComponent();
-            
-    // Create an instance of a Timer that will raise an event every 500ms
-    timer = new DispatcherTimer();
-    timer.Interval = TimeSpan.FromMilliseconds(500);
-    timer.Tick += Timer_Tick;
-            
-    // Initialize the GPIO bus
-    InitGpio();
-            
-    // As long as the pin object is not null, proceed with the timer.
+    // As long as the pin object is not null, proceed
     if (pin != null)
     {
+        // Define the pin as an output pin
+        pin.SetDriveMode(GpioPinDriveMode.Output);
+        // Define the initial status as LOW (off)
+        pinValue = GpioPinValue.Low;
+        // Write the tate to the pin
+        pin.Write(pinValue);
+        // Update the on screen text to indicate that the GPIO is ready
+        GpioStatus.Text = "GPIO pin is initialized correctly.";
+
         timer.Start();
     }
 }
 {% endhighlight %}
 
-If you want to compare your code with the master lab code, you can find it [here](https://github.com/ThingLabsIo/IoTLabs/blob/master/RPi2/Lab01/Lab01/MainPage.xaml.cs).
+Make sure that you added the <code>async</code> modifier to the method signature to make this an asynchronous method and changed the return type to <code>Task</code>.. 
+
+If you want to compare your code with the master lab code, you can find it [here](https://github.com/ThingLabsIo/IoTLabs/blob/master/RPi2/HelloWindowsIoT/HelloWindowsIoT/MainPage.xaml.cs).
 
 # Run the App Locally
 Press __F5__ to run the app locally. You should see a screen similar to this:
