@@ -22,7 +22,7 @@ widget-2:
     
 widget-3:
     title: "Attend a Workshop"
-    url: '/rpi2/'
+    url: '/schedule/'
     text: 'Check out where we will be doing the IoT Labs live and join us for a fun filled few hours to build a Thing connected to Microsoft Azure.'
     image: /schedule-303x182.jpg
 
