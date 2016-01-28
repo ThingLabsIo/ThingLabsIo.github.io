@@ -75,7 +75,7 @@ We won't go any deeper into SPI or the pin layout of the two ADCs - suffice to s
 ## Create a Blank Universal App
 Launch Visual Studio and start a new __Blank App (Universal Windows)__ (found in the _C# -> Windows -> Universal_ node).
 
-Name the application _IoTLigthSensor_.
+Name the application _IoTLightSensor_.
 
 ## Add the Windows IoT Extensions for the UWP
 Once the solution is created, click on the _Project_ menu and select _Add Reference_.
