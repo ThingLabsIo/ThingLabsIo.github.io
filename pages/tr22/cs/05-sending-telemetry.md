@@ -222,15 +222,15 @@ public MainPage()
 }
 {% endhighlight %}
 
-Use the Visual Studio Lightbulb feature to add the __InitAllAsync()__ method. Modify the method signature to mark it as an async method.
+Use the Visual Studio Lightbulb feature to add the __InitAllAsync()__ method. Modify the method signature to mark it as an async method and return a <code>Task</code>.
 
 {% highlight csharp %}
-private async void InitAllAsync()
+private async Task InitAllAsync()
 {
     try
     {
-        await InitGpioAsync();
-        await InitSpiAsync();
+        Task[] initTasks = { InitGpioAsync(), InitSpiAsync() };
+        await Task.WhenAll(initTasks);
     }
     catch (Exception ex)
     {
@@ -246,7 +246,9 @@ private async void InitAllAsync()
 }
 {% endhighlight %}
 
-This method invokes two additional methods to initialize the GPIO and SPI busses. Use the Visual Studio Lightbulb feature to create the __InitGpioAsync()__ method. Initialize the GPIO by assigning the default GPIO controller to the <code>gpio</code> variable, and check for _null_ (throw an exception if it is _null_). Next, initialize the <code>redLedPin</code> in the same way you did in ['Hello, Windows IoT!'](../hello-windows-iot/).
+This method uses <code>Task.WhenAll()</code> to await two different asynchronous calls - one that will initialize the GPIO bus and one that will initialize the SPI bus. Using <code>Task.WhenAll()</code> suspends the <code>InitAllAsync</code> method until both of the contained asynchronous calls are are completed. 
+
+Use the Visual Studio Lightbulb feature to create the __InitGpioAsync()__ method. Initialize the GPIO bus by assigning the default GPIO controller to the <code>gpio</code> variable, and check for _null_ (throw an exception if it is _null_). Next, initialize the <code>redLedPin</code> in the same way you did in the earlier lab, ['Hello, Windows IoT!'](../hello-windows-iot/).
 
 {% highlight csharp %}
 private async Task InitGpioAsync()
@@ -274,8 +276,10 @@ private async Task InitSpiAsync()
     try
     {
         var settings = new SpiConnectionSettings(SPI_CHIP_SELECT_LINE);
-        // 3.6MHz is the rated speed of the MCP3008 at 5v
-        settings.ClockFrequency = 3600000;
+        // 3.2MHz is the rated speed of the MCP3002 at 5v (1.2MHz @ 2.7V)
+        // 3.6MHz is the rated speed of the MCP3008 at 5v (1.35MHz @ 2.7V)
+        // 2.0MHz is the rated speed of the MCP3208 at 5v (1.0MHz @ 2.7V)
+        settings.ClockFrequency = 1000000; // Set the clock frequency at or slightly below the specified rate speed
         // The ADC expects idle-low clock polarity so we use Mode0
         settings.Mode = SpiMode.Mode0; 
         // Get a selector string that will return all SPI controllers on the system
