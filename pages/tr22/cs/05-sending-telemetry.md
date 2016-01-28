@@ -268,7 +268,7 @@ private async Task InitGpioAsync()
 
 Make sure that you added the <code>async</code> modifier to the method signature to make this an asynchronous method and set its return type to <code>Task</code>. 
 
-Go back to the _MainPage()_ constructor and use the Visual Studio Lightbulb feature to add the __InitSpi()__ method. In this method you will initialize the SPI buss so that you can use it to communicate through the ADC. Modify the method signature to mark it as an async method.
+Go back to the _MainPage()_ constructor and use the Visual Studio Lightbulb feature to add the __InitSpiAsync()__ method. In this method you will initialize the SPI buss so that you can use it to communicate through the ADC. Modify the method signature to mark it as an async method and return a <code>Task</code>.
 
 {% highlight csharp %}
 private async Task InitSpiAsync()
