@@ -196,7 +196,7 @@ If you want to compare your code with the master lab code, you can find it [here
 # Run the App Locally
 Press __F5__ to run the app locally. You should see a screen similar to this:
 
-<img src="/images/rpi2/rpi2_lab01_nogpio.png"/>
+![No GPIO Warning](/images/rpi2/rpi2_lab01_nogpio.png)
 
 This screen is displayed because your development machine doesn't have a GPIO controller.
 
