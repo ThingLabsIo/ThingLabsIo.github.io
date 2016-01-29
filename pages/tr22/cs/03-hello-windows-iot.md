@@ -26,11 +26,11 @@ The RPi2 for this workshop should already be wired for this lab and others - it 
 
 <img src="/images/rpi2/rpi2_lab01_bb.png"/>
 
-1. GPIO pin 12 is connected to the positive (longer) lead on the LED. In the app you build, you will control whether or not GPIO pin 12 sends voltage over the circuit.
+1. GPIO 12 is connected to the positive (longer) lead on the LED. In the app you build, you will control whether or not GPIO pin 12 sends voltage over the circuit.
 2. The negative (shorter) lead on the LED is connected to a resistor to reduce the amount of voltage pulled through the circuit.
 3. The other end of the resistor is connected to one of the ground GPIO pins, completing the circuit.
 
-The LED will light up when current is passed through the circuit. 
+The LED will light up when current is passed through the circuit by the app you write; however, you haven't written the Windows 10 app for it yet, so for now it won't do anything.
 
 # Create an Application using the Universal Windows Platform
 A Universal Windows app is a Windows experience that is built upon the Universal Windows Platform (UWP), which was first introduced in Windows 8 as the Windows Runtime. The UWP enables you to write an app that targets a device family, such as IoT devices. In fact, the universal app that you write may be able to run on multiple devices families, depending on the device characteristics that it takes advantage of. In this lab you will create a universal app targeting IoT devices running Windows 10. Technically this could be nearly any device, such as a phone, a tablet or a RPi2, however; the universal app you write will access the General Purpose Input/Output (GPIO) of the device, so the app won't actually be compatible with devices that don't have a GPIO.   
@@ -47,7 +47,7 @@ Once the solution is created, click on the _Project_ menu and select _Add Refere
 
 In the Reference Manager dialog, expand the _Universal Windows_ node and select _Extensions_.
 
-In the list of extensions, check the box next to __Windows IoT Extensions for the UWP__ (make sure to select the same version number as the OS running on the RPi2) and click __OK__.
+In the list of extensions, check the box next to __Windows IoT Extensions for the UWP__ (make sure to select the same version number as the OS running on the RPi2) and click __OK__. It is easy to accidently select the _Windows Mobile Extensions for the UWP_ (which is just below the IoT extensions) - pay close attention and make sure you have added the correct reference.
 
 <img src="/images/rpi2/rpi2_install_iotextensions.png"/>
 
@@ -65,6 +65,9 @@ Open the _MainPage.xaml_ file. This is the layout definition for the initial pag
 {% endhighlight %}
 
 ## Code the App Logic
+Throughout this lab you will use a feature in Visual Studio called _light bulbs_. Light bulbs are a new productivity feature in Visual Studio 2015. They are icons that appear in the Visual Studio editor and that you can click to perform quick actions including refactoring fixing errors. Light bulbs bring error-fixing and refactoring assistance into a single focal point, often right on the line where you are typing. As you write the code in this lab you will add calls to methods that don't yet exist. The editor will indicate this to you by putting a red "sgugile" underline beneath the method call. When you hover over the offending code a ligh bulb will appear and you can expand it to see options for generating the missing method. 
+
+
 Open the _MainPage.xaml.cs_ file. This is the code behind the layout for the MainPage.xaml. Add the following to the _using_ statements at the top of the file. 
 
 {% highlight csharp %}
@@ -100,7 +103,7 @@ public sealed partial class MainPage : Page
 {% endhighlight %}
 
 ### Create a Timer to Control the LED
-Following the call to <code>InitializeComponent</code>, create a _Timer_ that will raise an event every 500ms. Add the following code in place of the <code>// TODO: Create an instance of a Timer that will raise an event every 500ms</code>
+Following the call to <code>InitializeComponent</code>, create a _Timer_ that will raise an event every 500ms. Add the following code to the <code>MainPage()</code> constructor in place of the <code>// TODO: Create an instance of a Timer that will raise an event every 500ms</code>
 
 {% highlight csharp %}
 // Create an instance of a Timer that will raise an event every 500ms
@@ -111,7 +114,7 @@ timer.Tick += Timer_Tick;
 // TODO: Initialize the GPIO bus
 {% endhighlight %}
 
-Using the Visual Studio refactoring tools, you can generate the method stub for the __Timer\_Tick__ event handler. Hover over the _Timer\_Tick_ text until a lightbulb appears. Click the down arrow and select _Generate method 'MainPage.Timer\_Tick'_ 
+Using the Visual Studio refactoring tools, you can generate the _method_ stub for the __Timer\_Tick__ event handler. Hover over the _Timer\_Tick_ text until a lightbulb appears. Click the down arrow and select _Generate method 'MainPage.Timer\_Tick'_ 
 
 <img src="/images/rpi2/rpi2_lab01_Timer_Tick.PNG"/>
 

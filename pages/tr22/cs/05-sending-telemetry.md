@@ -82,10 +82,10 @@ Once the solution is created, click on the _Project_ menu and select _Add Refere
 
 In the Reference Manager dialog, expand the _Universal Windows_ node and select _Extensions_.
 
-In the list of extensions, check the box next to __Windows IoT Extensions for the UWP__ and click __OK__.
+In the list of extensions, check the box next to __Windows IoT Extensions for the UWP__ and click __OK__ (make sure to select the same version number as the OS running on the RPi2). It is easy to accidently select the _Windows Mobile Extensions for the UWP_ (which is just below the IoT extensions) - pay close attention and make sure you have added the correct reference.
 
 ## Add the Microsoft.Azure.Devices.Client NuGet Package
-Once the _Windows IoT Extensions for the UWP_ are added, click on the _Project_ menu and select _Manage NuGet Packages.._
+Once the _Windows IoT Extensions for the UWP_ are added, click on the _Project_ menu and select _Manage NuGet Packages._
 
 Use the search field (check the __Include prereleases__ box) to search for __Microsoft.Azure.Devices.Client__.
 
@@ -110,6 +110,8 @@ Open the _MainPage.xaml_ file. This is the layout definition for the initial pag
 {% endhighlight %}
 
 ## Add 'using' Statements
+Throughout this lab you will use a feature in Visual Studio called _light bulbs_. Light bulbs are a new productivity feature in Visual Studio 2015. They are icons that appear in the Visual Studio editor and that you can click to perform quick actions including refactoring fixing errors. Light bulbs bring error-fixing and refactoring assistance into a single focal point, often right on the line where you are typing. As you write the code in this lab you will add calls to methods that don't yet exist. The editor will indicate this to you by putting a red "sgugile" underline beneath the method call. When you hover over the offending code a ligh bulb will appear and you can expand it to see options for generating the missing method. 
+
 Open the _MainPage.xaml.cs_ file. This is the code behind the layout for the MainPage.xaml. Add the following to the _using_ statements at the top of the file. Add the following <code>using</code> 
 
 {% highlight csharp %}
@@ -128,7 +130,7 @@ There are several constants and variables that you will reference throughout thi
 {% highlight csharp %}
 public sealed partial class MainPage : Page
 {
-    /* Important! Change this to either AdcDevice.MCP3002, AdcDevice.MCP3208 or AdcDevice.MCP3008 depending on which ADC you chose     */ 
+    /* IMPORTANT! Change this to either AdcDevice.MCP3002, AdcDevice.MCP3208 or AdcDevice.MCP3008 depending on which ADC you have     */ 
     private AdcDevice ADC_DEVICE = AdcDevice.MCP3008;
 
     enum AdcDevice { NONE, MCP3002, MCP3208, MCP3008 };
@@ -435,7 +437,7 @@ At this point you can deploy and run the application to see if the photoresistor
 
 <img src="/images/rpi2/rpi2_lab01_arm.png"/>
 
-You will be prompted with the _Remote Connections_ dialog. Select your device from the list of _Auto Detected_ devices, or type in the device name or IP address into the _Manual Configuration_ textbox (set the _Authentication Mode_ to __None__) and click _Select_.
+You will be prompted with the _Remote Connections_ dialog. Select your device from the list of _Auto Detected_ devices, or type in the device name or IP address into the _Manual Configuration_ textbox (set the _Authentication Mode_ to __Universal (Unencrypted Protocol)__)  and click _Select_.
 
 <img src="/images/rpi2/rpi2_lab01_remote.png"/>
 
