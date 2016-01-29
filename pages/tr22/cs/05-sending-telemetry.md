@@ -189,7 +189,7 @@ public MainPage()
 }
 {% endhighlight %}
 
-This event handler will be invoked whenever the _MainPage_ is unloaded. You will use it to clean up a few resources. Use the Visual Studio light bulb feature to add the __MainPage_Unloaded__ event handler and add the following code to dispose of connections to the pins on the RPi2.
+This event handler will be invoked whenever the _MainPage_ is unloaded. You will use it to clean up a few resources. Use the Visual Studio light bulb feature to _Generate method 'MainPage_Unloaded'_ and add the following code to the new method to dispose of connections to the pins of the RPi2.
 
 {% highlight csharp %}
 private void MainPage_Unloaded(object sender, RoutedEventArgs e)
