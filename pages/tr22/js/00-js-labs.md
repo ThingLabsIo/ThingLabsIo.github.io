@@ -25,7 +25,7 @@ The labs in this series build on each other to enable you to prototype your own 
 ## Hello, World
 In this lab you will use one of the digital output pins to send a signal to an LED.
 
-<a class="radius button small" href="{{ site.url }}/tr22/js/writing-digital-output/">Estimated time to complete: 20-minutes. Go to  'Writing Digital Output' ›</a>
+<a class="radius button small" href="{{ site.url }}/tr22/js/hello-world/">Estimated time to complete: 20-minutes. Go to  'Writing Digital Output' ›</a>
 
 # Connected Thing Labs
 There are options for the Connected Things Labs when coding with JavaScript depending on the board you are working with and the sensors, devices or shields you have available. Regardless of which option you pursue, you must first setup your Microsoft Azure IoT Hub. Once you have done that, return to this page to select the next lab based on your hardware.

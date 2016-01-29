@@ -95,10 +95,10 @@ In this code you define four variables that you will be working with:
 
 1. <code>five</code> - represents the Johnny Five framework capabilities, which provide a type of object model for working with boards like Arduino and Particle.
 2. <code>Particle</code> - represents the Particle IO framework capabilities which exposes the specifics of the Particle boards inclusing the Core and the Photon.
-3. <code>LEDPIN</code> - a variable that references pin D7, which you will connected the LED to.
-4. <code>board</code> - a representation of the physical board you are using. This is created by specifying the Spark board and passing in the Particle Cloud API token and the device ID.
+3. <code>LEDPIN</code> - a variable that references pin D7, which the LED is connected to.
+4. <code>board</code> - a representation of the physical board you are using. This is created by specifying the Particle Photon board and passing in the Particle Cloud API token and the device ID.
 
-Now that the objects are created, you can get to the meat of the application. Johnny-Five provides a board 'ready' construct that makes a callback when the board is on, initialized and ready for action. Inside the ananymous callback function is where your application code executes (this function is invoked when the board is ready for use).
+Now that the objects are created, you can get to the meat of the application. Johnny-Five provides a board 'ready' construct that makes a callback when the board is on, initialized and ready for action. Inside the anonymous callback function is where your application code executes (this function is invoked when the board is ready for use).
 
 Johnny-Five provides a collection of objects that represent the board, the pins on the board, and various types of sensors and devices that could be connected to the board. For this lab you are going to write code that is fairly true to the base Arduino C/sketch or Particle Build programming model (we'll get into the abstractions that Johnny-Five provides you later). This will help you understand some of the basic concepts for how an Arduino or Particle board works.
 
@@ -114,7 +114,8 @@ board.on("ready", function() {
 	this.pinMode(LEDPIN, five.Pin.OUTPUT); 
 
 	// Create a loop to "flash/blink/strobe" an led  
-	var val = 0;  this.loop( 1000, function() {
+	var val = 0;
+	this.loop( 1000, function() {
 		this.digitalWrite(LEDPIN, (val = val ? 0 : 1));
 	});
 });
