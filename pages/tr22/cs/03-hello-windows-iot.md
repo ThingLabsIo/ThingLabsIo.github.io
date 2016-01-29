@@ -114,7 +114,7 @@ timer.Tick += Timer_Tick;
 // TODO: Initialize the GPIO bus
 {% endhighlight %}
 
-Using the Visual Studio refactoring tools, you can generate the _method_ stub for the __Timer\_Tick__ event handler. Hover over the _Timer\_Tick_ text until a lightbulb appears. Click the down arrow and select _Generate method 'MainPage.Timer\_Tick'_ 
+Using the Visual Studio refactoring tools, you can generate the _method_ stub for the __Timer\_Tick__ event handler. Hover over the _Timer\_Tick_ text until a light bulb appears. Click the down arrow and select _Generate method 'MainPage.Timer\_Tick'_ 
 
 <img src="/images/rpi2/rpi2_lab01_Timer_Tick.PNG"/>
 
@@ -154,7 +154,7 @@ InitGpioAsync();
 // TODO: As long as the pin object is not null, proceed with the timer.                        
 {% endhighlight %}
 
-Just like you did with the _Timer\_Tick_ code, use the refactoring _lightbulb_ tool to generate the <code>InitGpioAsync()</code> method. In the _InitGpioAsync()_ method you will get the instance of the default GPIO controller - the object that brokers all communication between your app and the GPIO bus. 
+Just like you did with the _Timer\_Tick_ code, use the refactoring _light bulb_ tool to generate the <code>InitGpioAsync()</code> method. In the _InitGpioAsync()_ method you will get the instance of the default GPIO controller - the object that brokers all communication between your app and the GPIO bus. 
 
 If the GPIO controller instance is _null_ then the device the app is running on doesn't support GPIO, and you will display a message on the screen indicating this, and that will be the end of the app functionality. If there is a GPIO controller instance, then you will use it to open the GPIO pin that you have connected to the LED and prepare it for use. Add a _null_ check on the _pin_ instance. If it is not _null_, go ahead and start the timer. The timer will begin invoking the _Timer\_Tick_ event every 500ms. 
 

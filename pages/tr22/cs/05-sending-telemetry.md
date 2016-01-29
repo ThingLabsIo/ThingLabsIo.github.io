@@ -189,7 +189,7 @@ public MainPage()
 }
 {% endhighlight %}
 
-This event handler will be invoked whenever the _MainPage_ is unloaded. You will use it to clean up a few resources. Use the Visual Studio Lightbulb feature to add the __MainPage_Unloaded__ event handler and add the following code to dispose of connections to the pins on the RPi2.
+This event handler will be invoked whenever the _MainPage_ is unloaded. You will use it to clean up a few resources. Use the Visual Studio light bulb feature to add the __MainPage_Unloaded__ event handler and add the following code to dispose of connections to the pins on the RPi2.
 
 {% highlight csharp %}
 private void MainPage_Unloaded(object sender, RoutedEventArgs e)
@@ -222,7 +222,7 @@ public MainPage()
 }
 {% endhighlight %}
 
-Use the Visual Studio Lightbulb feature to add the __InitAllAsync()__ method. Modify the method signature to mark it as an async method and return a <code>Task</code>.
+Use the Visual Studio light bulb feature to add the __InitAllAsync()__ method. Modify the method signature to mark it as an async method and return a <code>Task</code>.
 
 {% highlight csharp %}
 private async Task InitAllAsync()
@@ -248,7 +248,7 @@ private async Task InitAllAsync()
 
 This method uses <code>Task.WhenAll()</code> to await two different asynchronous calls - one that will initialize the GPIO bus and one that will initialize the SPI bus. Using <code>Task.WhenAll()</code> suspends the <code>InitAllAsync</code> method until both of the contained asynchronous calls are are completed. 
 
-Use the Visual Studio Lightbulb feature to create the __InitGpioAsync()__ method. Initialize the GPIO bus by assigning the default GPIO controller to the <code>gpio</code> variable, and check for _null_ (throw an exception if it is _null_). Next, initialize the <code>redLedPin</code> in the same way you did in the earlier lab, ['Hello, Windows IoT!'](../hello-windows-iot/).
+Use the Visual Studio light bulb feature to create the __InitGpioAsync()__ method. Initialize the GPIO bus by assigning the default GPIO controller to the <code>gpio</code> variable, and check for _null_ (throw an exception if it is _null_). Next, initialize the <code>redLedPin</code> in the same way you did in the earlier lab, ['Hello, Windows IoT!'](../hello-windows-iot/).
 
 {% highlight csharp %}
 private async Task InitGpioAsync()
@@ -268,7 +268,7 @@ private async Task InitGpioAsync()
 
 Make sure that you added the <code>async</code> modifier to the method signature to make this an asynchronous method and set its return type to <code>Task</code>. 
 
-Go back to the _MainPage()_ constructor and use the Visual Studio Lightbulb feature to add the __InitSpiAsync()__ method. In this method you will initialize the SPI buss so that you can use it to communicate through the ADC. Modify the method signature to mark it as an async method and return a <code>Task</code>.
+Go back to the _MainPage()_ constructor and use the Visual Studio light bulb feature to add the __InitSpiAsync()__ method. In this method you will initialize the SPI buss so that you can use it to communicate through the ADC. Modify the method signature to mark it as an async method and return a <code>Task</code>.
 
 {% highlight csharp %}
 private async Task InitSpiAsync()
@@ -304,7 +304,7 @@ Next you will create a timer to read the data from the photoresistor and set the
 readSensorTimer = new Timer(this.SensorTimer_Tick, null, 0, 100);
 {% endhighlight %}
 
-Use the Visual Studio Lightbulb feature to add an event handler for __SensorTimer\_Tick__.
+Use the Visual Studio light bulb feature to add an event handler for __SensorTimer\_Tick__.
 
 {% highlight csharp %}
 private void SensorTimer_Tick(object state)
@@ -314,7 +314,7 @@ private void SensorTimer_Tick(object state)
 }
 {% endhighlight %}
 
-In _SensorTmer\_Tick_ you will call two methods - one to read the sensor data in, and one to set the state of the LED. Use the Visual Studio Lightbulb feature to create the __ReadAdc()__ method.
+In _SensorTmer\_Tick_ you will call two methods - one to read the sensor data in, and one to set the state of the LED. Use the Visual Studio light bulb feature to create the __ReadAdc()__ method.
 
 {% highlight csharp %}
 private void ReadAdc()
@@ -351,7 +351,7 @@ private void ReadAdc()
 
 In this method you create a command buffer to write to the ADC, and a read buffer to capture the values from the ADC. The SPI configuration (based on which ADC you are using) is the first node in the command/write buffer. When you call <code>TransferFullDuplex()</code> you open a two-way channel with the ADC over the SPI bus - a command/write channel and a read channel. 
 
-The <code>convertToInt(readBuffer)</code> is used to convert the byte array returned from the ADC into an integer. Use the Visual Studio Lightbulb feature to add __convertToInt(byte[])__. Modify the method signature - change the input variable name from _readBuffer_ to __data__. Each ADC returns the data a little differently, so this command will convert the byte array to an integer based on the ADC you are using.
+The <code>convertToInt(readBuffer)</code> is used to convert the byte array returned from the ADC into an integer. Use the Visual Studio light bulb feature to add __convertToInt(byte[])__. Modify the method signature - change the input variable name from _readBuffer_ to __data__. Each ADC returns the data a little differently, so this command will convert the byte array to an integer based on the ADC you are using.
 
 {% highlight csharp %}
 private int convertToInt(byte[] data)
@@ -379,7 +379,7 @@ private int convertToInt(byte[] data)
 }
 {% endhighlight %}
 
-In the _ReadAdc()_ method there was also a reference to a _Map()_ method. Use the Visual Studio Lightbulb feature to add Map(int, int, int, int, int)__. This method makes it easy to map data from one value range to another. Modify the method signature according to the code example below.
+In the _ReadAdc()_ method there was also a reference to a _Map()_ method. Use the Visual Studio light bulb feature to add Map(int, int, int, int, int)__. This method makes it easy to map data from one value range to another. Modify the method signature according to the code example below.
 
 {% highlight csharp %}
 private double Map(int val, int inMin, int inMax, int outMin, int outMax)
@@ -390,7 +390,7 @@ private double Map(int val, int inMin, int inMax, int outMin, int outMax)
 
 In this example you are using the _Map()_ method to map the value from the ADC, which is a range 0 - 1023 (or 0-4096 for the 12-bit MCP3208), to a range of 0 - 300, which is used to define the width of the darkness indicator bar in the UI (max width is 300).
 
-Next, return to the _SensorTimer\_Tick_ method and use the Visual Studio Lightbulb feature to add an event handler for __LightLed()__.
+Next, return to the _SensorTimer\_Tick_ method and use the Visual Studio light bulb feature to add an event handler for __LightLed()__.
 
 {% highlight csharp %}
 private void LightLed()
@@ -460,7 +460,7 @@ Next, replace the comment<code>// TODO: Send messages to Azure IoT Hub every one
 sendMessageTimer = new Timer(this.MessageTimer_Tick, null, 0, 1000);
 {% endhighlight %}
 
-Use the Visual Studio Lightbulb feature to create the __MessageTimer\_Tick()__ event handler.
+Use the Visual Studio light bulb feature to create the __MessageTimer\_Tick()__ event handler.
 
 {% highlight csharp %}
 private void MessageTimer_Tick(object state)
@@ -469,7 +469,7 @@ private void MessageTimer_Tick(object state)
 }
 {% endhighlight %}
 
-Each tme the _MessageTimer_ ticks (once per second) this event handler will invoke the _SendMessageToIoTHubAsync()_ method. Use the Visual Studio Lightbulb feature to create the __SendMessageToIoTHubAsync()__ method. Modify the method signature to mark it as an async method.
+Each tme the _MessageTimer_ ticks (once per second) this event handler will invoke the _SendMessageToIoTHubAsync()_ method. Use the Visual Studio light bulb feature to create the __SendMessageToIoTHubAsync()__ method. Modify the method signature to mark it as an async method.
 
 {% highlight csharp %}
 private async Task SendMessageToIoTHubAsync(int darkness)
