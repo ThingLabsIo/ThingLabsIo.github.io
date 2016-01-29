@@ -55,17 +55,13 @@ Create another file in the same directory named __blinky.js__.
 The first thing you need to do is define the objects you will be working with in the application. The three things that matter are a Johnny-Five framework object, an object to represent the board, and the output pin the LED will be connected to. 
 
 <blockquote>
-  __PHOTON ONLY: In order to complete this step you will need the device ID you copied earlier when you were claiming the Photon (or the name/alias you gave the Photon when you updated the firmware to VoodooSpark) and your Particle Cloud access token. To get the access token, Open a terminal window (Mac OS X) or Node.js command prompt (Windows) and execute the following command (you may be prompted to login or provide your Particle Cloud password again):
-  
-  <pre>
-    particle token list
-  </pre>
-  
-  Find the token for _user_ (make sure if you see more than one that you choose the one that is not expired).
+In order to complete this step you will need the device ID and access token from Particle Cloud (the cloud service that the Photon is coupled to). For the TechReady 22 labs you are sharing an existing Particle Cloud account and your Photon has already been configurted. 
+
+1. The device ID is_PhotonThingXX_ where XX is the number on your Photon
+2. The Particle Cloud access token is _65dbc7982187b1c1b1d34ed7ebad8f870c3b7e92_
 </blockquote>
 
 Now add the following code to the __blinky.js__ file:
-
 
 {% highlight javascript %}
 // https://github.com/ThingLabsIo/IoTLabs/tree/master/Photon/Blinky
