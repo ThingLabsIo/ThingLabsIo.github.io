@@ -64,10 +64,12 @@ On Mac OS X open Terminal and type the following:
 Next you will create the application code to gather temperature, humidity, and barometer data and send it to the cloud.
 
 <blockquote>
-In order to complete this step you will need the device ID and access token from Particle Cloud (the cloud service that the Photon is coupled to). For the TechReady 22 labs you are sharing an existing Particle Cloud account and your Photon has already been configurted. 
+    In order to complete this step you will need the device ID and access token from Particle Cloud (the cloud service that the Photon is coupled to). For the TechReady 22 labs you are sharing an existing Particle Cloud account and your Photon has already been configurted. 
 
-1. The device ID is_PhotonThingXX_ where XX is the number on your Photon
-2. The Particle Cloud access token is _65dbc7982187b1c1b1d34ed7ebad8f870c3b7e92_
+    <ul>
+        <li>The device ID is_PhotonThingXX_ where XX is the number on your Photon</li>
+        <li>The Particle Cloud access token is _65dbc7982187b1c1b1d34ed7ebad8f870c3b7e92_</li>
+    </ul>
 </blockquote>
 
 ## Write the Weather App
