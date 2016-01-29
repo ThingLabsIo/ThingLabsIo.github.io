@@ -67,8 +67,8 @@ Next you will create the application code to gather temperature, humidity, and b
     In order to complete this step you will need the device ID and access token from Particle Cloud (the cloud service that the Photon is coupled to). For the TechReady 22 labs you are sharing an existing Particle Cloud account and your Photon has already been configurted. 
 
     <ul>
-        <li>The device ID is_PhotonThingXX_ where XX is the number on your Photon</li>
-        <li>The Particle Cloud access token is _65dbc7982187b1c1b1d34ed7ebad8f870c3b7e92_</li>
+        <li>The device ID is <b>PhotonThingXX</b> where XX is the number on your Photon</li>
+        <li>The Particle Cloud access token is <b>65dbc7982187b1c1b1d34ed7ebad8f870c3b7e92</b></li>
     </ul>
 </blockquote>
 
