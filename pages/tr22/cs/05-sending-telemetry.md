@@ -4,7 +4,7 @@ title: "Sending Telemetry to the Cloud"
 subheadline: "Building Connected Things with Windows 10 IoT Core and C#"
 teaser: "In this lab you will build a Universal Windows Platform application that collects ambient light data and sends it to the Cloud."
 show_meta: true
-comments: false
+comments: true
 header: no
 breadcrumb: true
 categories: [raspberry-pi, windows-10, c#, iot, maker, azure, azure-iot-hub]

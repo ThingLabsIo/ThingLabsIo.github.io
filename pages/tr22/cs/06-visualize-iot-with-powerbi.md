@@ -4,7 +4,7 @@ title: "Visualizing IoT Data"
 subheadline: "Building Connected Things with Windows 10 IoT Core and C#"
 teaser: "In this lab you will create visualizations of IoT data."
 show_meta: true
-comments: false
+comments: true
 header: no
 breadcrumb: true
 categories: [raspberry-pi, windows-10, c#, iot, maker, azure, azure-iot-hub]

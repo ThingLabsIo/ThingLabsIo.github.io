@@ -4,7 +4,7 @@ title: "Writing Digital Output (Hello, World!)"
 subheadline: "Building Connected Things with Node.js"
 teaser: "In this lab you will use one of the digital output pins to send a signal to an LED."
 show_meta: true
-comments: false
+comments: true
 header: no
 breadcrumb: true
 categories: [arduino, photon, iot, maker, javascript, node.js, johnny-five]

@@ -4,7 +4,7 @@ title: "Visualizing IoT Data with Power BI"
 subheadline: "Building Connected Things with Node.js"
 teaser: "In this lab you will create visualizations of IoT data using Microsoft Azure Stream Analytics and Power BI."
 show_meta: true
-comments: false
+comments: true
 header: no
 breadcrumb: true
 categories: [azure, azure-iot-hub, javascript, node.js, johnny-five, arduino, photon]

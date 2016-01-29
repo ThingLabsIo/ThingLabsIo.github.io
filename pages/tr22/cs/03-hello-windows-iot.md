@@ -4,7 +4,7 @@ title: "Hello, Windows IoT!"
 subheadline: "Building Connected Things with Windows 10 IoT Core and C#"
 teaser: "In this lab you will create a simple 'Thing' using Windows 10 IoT Core."
 show_meta: true
-comments: false
+comments: true
 header: no
 breadcrumb: true
 categories: [raspberry-pi, windows-10, dragonboard, minnowboard, c#, iot, maker]

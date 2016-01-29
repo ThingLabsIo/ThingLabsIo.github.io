@@ -4,7 +4,7 @@ title: "Sending Telemetry to the Cloud"
 subheadline: "Building Connected Things with Node.js"
 teaser: "In this lab you will gather telemetry and send it to the cloud."
 show_meta: true
-comments: false
+comments: true
 header: no
 breadcrumb: true
 categories: [azure, azure-iot-hub, javascript, node.js, johnny-five, arduino, photon]
