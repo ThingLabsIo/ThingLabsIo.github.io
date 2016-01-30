@@ -16,7 +16,7 @@ If you haven't already done so, please follow the instructions in the ['Getting 
 *  Auto generated table of contents
 {:toc}
 
-In this lab you will use one of the digital output pins to send a signal to an LED. You will use digital pin D7, which also has an LED on the board connected to it (so you will be able to see it turn on and off even if you mis-wire something). While this lesson could be done using only the onboard LED, one of the objectives of this lab is to familiarize you with connecting input and output devices (an LED is an output device) to the board and controlling them with software.
+In this lab you will use one of the digital output pins to send a signal to an LED. You will use digital pin 13 (D7 on the Photon), which also has an LED on the board connected to it (so you will be able to see it turn on and off even if you mis-wire something). While this lesson could be done using only the onboard LED, one of the objectives of this lab is to familiarize you with connecting input and output devices (an LED is an output device) to the board and controlling them with software.
 
 # Bill of Materials
 What you will need:
@@ -55,10 +55,10 @@ $( "#wiring-tabs" ).tabs();
 </script>
 
 ## LED
-Insert a LED into the breadboard as shown in the diagram, connecting the positive lead to the D7 pin and inserting the negative lead into the negative (-) side rail. For reference, an LED has one lead that is longer than the other. The longer lead is the positive (+) lead, and the shorter lead is the negative (-) lead.
+Insert a LED into the breadboard as shown in the diagram, connecting the positive lead to the digital pin __13__ (D7 on the Photon) and inserting the negative lead into the negative (-) side rail. For reference, an LED has one lead that is longer than the other. The longer lead is the positive (+) lead, and the shorter lead is the negative (-) lead.
 
 ## Resistor
-Connect a 220 Ohm resistor from the negative (-) side rail to the GND pin.
+Connect a 330 Ohm resistor from the negative (-) side rail to the GND pin.
 
 ## Write the Code
 Since we are using Node.js and Johnny-Five for this lab we can take advantage of the dependency management capabilities that Node.js provides. We need to let our application know that it has a dependency on the Johnny-Five framework as well as the Spark-IO framework so that when the application is prepared for execution, it can fetch the required dependencies for us. In Node.js this is done with a package.json file. This file provides some basic meta-data about the application, including any dependencies on packages that can be retrieved using NPM (according to [npmjs.com](https://www.npmjs.com) today, NPM stands for Narrating Prophetic Monks...not Node Package Manager like you may have thought).
