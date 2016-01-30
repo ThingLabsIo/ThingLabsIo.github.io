@@ -18,7 +18,7 @@ permalink: /tr22/cs/sending-telemetry/
 In this lab you will build a Universal Windows Platform application that detects ambient light and sends the data that is being collected to Azure IoT Hub. In following lab you will build a data pipeline to process the incoming data stream and output it to a visualization tool.
  
 # Capturing Analog Data with a Voltage Divider
-For this lab you will work with a few new concepts - both in the circuits connected to the Raspberry Pi 2 (RPi2) and in the Cloud. The first thing you will do is wire up the RPi2 to be able to read voltage as determined by the resistance created by a photoresistor. Wire your board according to the diagram (wire colors don't matter, but help with identification of purpose). This wiring uses an analog-to-digital-convertor (ADC) - either an MCP3208 or an MCP3002, depending on what you have - which enables you to capture analog input instead of simply digital input. When you did the lab with the LED you dealt only with a digital signal - you sent voltage to the LED to turn it on, or off (with no voltage). Many sensors, such as a _photoresistor_, are capable of analog input or output, giving them a broader range than simply a 1 or a 0. 
+For this lab you will work with a few new concepts - both in the circuits connected to the Raspberry Pi 2 (RPi2) and in the Cloud. The first thing you will do is wire up the RPi2 to be able to read voltage as determined by the resistance created by a photoresistor. Wire your board according to the diagram (wire colors don't matter, but help with identification of purpose). This wiring uses an analog-to-digital-convertor (ADC) - either an MCP3008 or an MCP3002, depending on what you have - which enables you to capture analog input instead of simply digital input. When you did the lab with the LED you dealt only with a digital signal - you sent voltage to the LED to turn it on, or off (with no voltage). Many sensors, such as a _photoresistor_, are capable of analog input or output, giving them a broader range than simply a 1 or a 0. 
 
 A _photoresistor_, also known as _light-dependent resistor (LDR)_ or a photocell, works by limiting the amount of voltage that passes through it based on the intensity of light detected. The resistance decreases as light input increases - in other words, the more light, the more voltage passes through the photoresistor.
 
@@ -43,14 +43,14 @@ Following is the wiring diagram for this circuit. Select the ADC you have and ta
 
 <div id="wiring-tabs">
   <ul>
+    <li><a href="#mcp3008"><span>MCP3008</span></a></li>
     <li><a href="#mcp3002"><span>MCP3002</span></a></li>
-    <li><a href="#mcp3008"><span>MCP3008/MCP3208</span></a></li>
   </ul>
-  <div id="mcp3002">
-    <img src="/images/rpi2/rpi2_lab03_mcp3002_bb.png"/>
-  </div>
   <div id="mcp3008">
-    <img src="/images/rpi2/rpi2_lab03_mcp3008_bb.png"/>
+    <img src="/images/rpi2/rpi2_IoTLightSensor_mcp3008_bb.png"/>
+  </div>
+  <div id="mcp3002">
+    <img src="/images/rpi2/rpi2_IoTLightSensor_mcp3002_bb.png"/>
   </div>
 </div>
 
@@ -125,15 +125,15 @@ using Microsoft.Azure.Devices.Client;
 {% endhighlight %}
 
 ## Define Constants and Variables
-There are several constants and variables that you will reference throughout this code. This code is written to support the MCP3002, MCP3008, and MCP3208 ADCs. You must set the value of <code>ADC_DEVICE</code> to the specific ADC you are using, and follow the appropriate wiring diagram (above). 
+There are several constants and variables that you will reference throughout this code. This code is written to support the MCP3002 (10-bit, 2-channel) or the MCP3008 (10-bit, 8-channel) ADCs. You must set the value of <code>ADC_DEVICE</code> to the specific ADC you are using, and follow the appropriate wiring diagram (above). 
 
 {% highlight csharp %}
 public sealed partial class MainPage : Page
 {
-    /* IMPORTANT! Change this to either AdcDevice.MCP3002, AdcDevice.MCP3208 or AdcDevice.MCP3008 depending on which ADC you have     */ 
+    /* IMPORTANT! Change this to either AdcDevice.MCP3002 or AdcDevice.MCP3008 depending on which ADC you have     */ 
     private AdcDevice ADC_DEVICE = AdcDevice.MCP3008;
 
-    enum AdcDevice { NONE, MCP3002, MCP3208, MCP3008 };
+    enum AdcDevice { NONE, MCP3002, MCP3008 };
     
     // Use the device specific connection string here
     private const string IOT_HUB_CONN_STRING = "YOUR DEVICE SPECIFIC CONNECTION STRING GOES HERE";
@@ -147,9 +147,7 @@ public sealed partial class MainPage : Page
     private const string SPI_CONTROLLER_NAME = "SPI0";
 
     // 01101000 channel configuration data for the MCP3002
-    private const byte MCP3002_CONFIG = 0x68; 
-    // 00000110 channel configuration data for the MCP3208
-    private const byte MCP3208_CONFIG = 0x06; 
+    private const byte MCP3002_CONFIG = 0x68;
     // 00001000 channel configuration data for the MCP3008
     private const byte MCP3008_CONFIG = 0x08; 
 
@@ -161,7 +159,7 @@ public sealed partial class MainPage : Page
     private DeviceClient deviceClient;
     private GpioPin redLedPin;
     private SpiDevice spiAdc;
-    private int adcResolution;
+    private int adcResolution = 1024; // Both ADCs in this example are 10-bit (0-1023 range)
     private int adcValue;
     
     private Timer readSensorTimer;
@@ -278,7 +276,6 @@ private async Task InitSpiAsync()
         var settings = new SpiConnectionSettings(SPI_CHIP_SELECT_LINE);
         // 3.2MHz is the rated speed of the MCP3002 at 5v (1.2MHz @ 2.7V)
         // 3.6MHz is the rated speed of the MCP3008 at 5v (1.35MHz @ 2.7V)
-        // 2.0MHz is the rated speed of the MCP3208 at 5v (1.0MHz @ 2.7V)
         settings.ClockFrequency = 1000000; // Set the clock frequency at or slightly below the specified rate speed
         // The ADC expects idle-low clock polarity so we use Mode0
         settings.Mode = SpiMode.Mode0; 
@@ -325,15 +322,12 @@ private void ReadAdc()
 
     switch (ADC_DEVICE)
     {
-    case AdcDevice.MCP3002:
-        writeBuffer[0] = MCP3002_CONFIG;
-        break;
-    case AdcDevice.MCP3008:
-        writeBuffer[0] = MCP3008_CONFIG;
-        break;
-    case AdcDevice.MCP3208:
-        writeBuffer[0] = MCP3208_CONFIG;
-        break;
+        case AdcDevice.MCP3002:
+            writeBuffer[0] = MCP3002_CONFIG;
+            break;
+        case AdcDevice.MCP3008:
+            writeBuffer[0] = MCP3008_CONFIG;
+            break;
     }
 
     // Read data from the ADC
@@ -369,11 +363,6 @@ private int convertToInt(byte[] data)
             result <<= 8;
             result += data[2];
             break;
-        case AdcDevice.MCP3208:
-            result = data[1] & 0x0F;
-            result <<= 8;
-            result += data[2];
-            break;
     }
     return result;
 }
@@ -388,7 +377,7 @@ private double Map(int val, int inMin, int inMax, int outMin, int outMax)
 }
 {% endhighlight %}
 
-In this example you are using the _Map()_ method to map the value from the ADC, which is a range 0 - 1023 (or 0-4096 for the 12-bit MCP3208), to a range of 0 - 300, which is used to define the width of the darkness indicator bar in the UI (max width is 300).
+In this example you are using the _Map()_ method to map the value from the ADC, which is a 10-bit range (0 - 1023), to a range of 0 - 300, which is used to define the width of the darkness indicator bar in the UI (max width is 300).
 
 Next, return to the _SensorTimer\_Tick_ method and use the Visual Studio light bulb feature to add an event handler for __LightLed()__.
 
@@ -396,20 +385,6 @@ Next, return to the _SensorTimer\_Tick_ method and use the Visual Studio light b
 private void LightLed()
 {
     SolidColorBrush fillColor = grayFill;
-
-    // Turn on LED if potentiometer is rotated more than halfway
-    switch (ADC_DEVICE)
-    {
-        case AdcDevice.MCP3208:
-            adcResolution = 4096;
-            break;
-        case AdcDevice.MCP3008:
-            adcResolution = 1024;
-            break;
-        case AdcDevice.MCP3002:
-            adcResolution = 1024;
-            break;
-    }
 
     if (adcValue > adcResolution * 0.66)
     {
