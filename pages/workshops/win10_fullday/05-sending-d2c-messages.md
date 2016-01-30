@@ -1,10 +1,10 @@
 ---
 layout: "page-fullday-windows"
-title: "Sending Telemetry to the Cloud"
+title: "Sending Device-to-Cloud (D2C) Messages"
 subheadline: "Building Connected Things with Windows 10 IoT and Microsoft Azure"
 teaser: "In this lab you will build a Universal Windows Platform application that collects ambient light data and sends it to the Cloud."
 show_meta: true
-comments: false
+comments: true
 header: no
 breadcrumb: true
 categories: [raspberry-pi, windows-10, dragonboard, minnowboard, c#, iot, maker, azure, azure-iot-hub]
@@ -29,7 +29,6 @@ What you will need:
 7. [A few 330 Ohm resistors](http://www.amazon.com/E-Projects-Resistors-Watt-330R-Pieces/dp/B00BVOR6IS/)
 8. [A 10k Ohm resistor](http://www.amazon.com/E-Projects-10k-Resistors-Watt-Pieces/dp/B00BWYS9BA/)
 9. Oe of the following analog-digital-converters:
-	* [MCP3208 - 8-Channel 12-Bit ADC with SPI Interface](http://www.digikey.com/product-detail/en/MCP3208-CI%2FSL/MCP3208-CI%2FSL-ND/305929)
 	* [MCP3008 - 8-Channel 10-Bit ADC with SPI Interface](https://www.adafruit.com/product/856)
 	* [MCP3002 - 2-Channel 10-Bit ADC with SPI Interface](https://www.sparkfun.com/products/8636)
 10. 8GB micro SD card - class 10 or better. Microsoft suggests one of the following:
@@ -37,8 +36,6 @@ What you will need:
 	* [SanDisk Ultra Micro SDHC, 16GB Card](http://www.amazon.com/SanDisk-Ultra-Micro-SDHC-16GB/dp/9966573445).
 
 To make life easy, you can get these components and more in the [Microsoft IoT Pack for Raspberry Pi 2](http://www.adafruit.com/windows10iotpi2) from AdaFruit.
- 
-* ['Setting Up Your Raspberry Pi 2']({{ site.url }}/workshop/fullday-windows/setup-rpi2/)
  
 # Capturing Analog Data with a Voltage Divider
 For this lab you will work with a few new concepts - both in the circuits connected to the Raspberry Pi 2 (RPi2) and in the Cloud. The first thing you will do is wire up the RPi2 to be able to read voltage as determined by the resistance created by a photoresistor. Wire your board according to the diagram (wire colors don't matter, but help with identification of purpose). This wiring uses an analog-to-digital-convertor (ADC) - either an MCP3008 or an MCP3002, depending on what you have - which enables you to capture analog input instead of simply digital input. When you did the lab with the LED you dealt only with a digital signal - you sent voltage to the LED to turn it on, or off (with no voltage). Many sensors, such as a _photoresistor_, are capable of analog input or output, giving them a broader range than simply a 1 or a 0. 
