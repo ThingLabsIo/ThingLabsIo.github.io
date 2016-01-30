@@ -105,4 +105,4 @@ Your RPi2 will reboot and when it is back up and running it will have the new na
 # Conclusion &amp; Next Steps
 In this lab you prepared your Raspberry Pi 2 for the following labs. Next you will do the IoT equivalent 'Hello, World!' - you will make an LED blink.
 
-<a class="radius button small" href="{{ site.url }}/lang/cs/hello-windows-iot/">Go to 'Hello, Windows IoT!' ›</a>
+<a class="radius button small" href="{{ site.url }}/workshop/fullday-windows/hello-windows-iot/">Go to 'Hello, Windows IoT!' ›</a>

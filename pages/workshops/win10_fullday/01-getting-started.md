@@ -67,6 +67,6 @@ In this lab you prepared your development machine for the following labs. The ne
 
 Choose your own adventure - click one of these options to configure your board.
 
-<a class="radius button small" href="{{ site.url }}/lang/cs/setup-rpi2/">Go to 'Setting Up Your Raspberry Pi 2' ›</a>
+<a class="radius button small" href="{{ site.url }}/workshop/fullday-windows/setup-rpi2/">Go to 'Setting Up Your Raspberry Pi 2' ›</a>
 
-<a class="radius button small" href="{{ site.url }}/lang/cs/setup-dragon/">Go to 'Setting Up Your DragonBoard 410c MAX' ›</a>
+<a class="radius button small" href="{{ site.url }}/workshop/fullday-windows/setup-dragon/">Go to 'Setting Up Your DragonBoard 410c MAX' ›</a>

@@ -35,8 +35,7 @@ To make life easy, you can get these components and more in the [Microsoft IoT P
 
 The devices should be configured according to thier specific instructions.
 
-* ['Setting Up Your Raspberry Pi 2']({{ site.url }}/lang/cs/setup-rpi2/)
-* ['Setting Up Your DragonBoard 410c']({{ site.url }}/lang/cs/setup-dragon/)
+* ['Setting Up Your Raspberry Pi 2']({{ site.url }}/workshop/fullday-windows/setup-rpi2/)
  
 # Wire Up the Device
 The RPi2 connects to the physical world through the GPIO pins. GPIO stands for General Purpose Input/Output and refers to the two rows of pins on RPI2. The GPIO pins are a physical interface between the RPi2 and the physical world. Through your app you can designate pins to either receive input or send output. The inputs can be from switches, sensors or other devices. The outputs can be LEDs, servos, motors or countless other devices. Twenty-six of the 40 pins are GPIO pins; the others are power, ground, or reserved pins.
@@ -257,6 +256,6 @@ Congratulations! You have built a Universal Windows Platform application that co
 
 In the [next lab][nextlab] you will set up a Microsoft Azure IoT Hub that will act as the cloud backend for your IoT devices. In the labs after that you will build a new _Thing_ that will collect environment data and send it to your IoT hub.
 
-<a class="radius button small" href="{{ site.url }}/lang/cs/setup-azure-iot-hub/">Go to 'Setup Azure IoT Hub' ›</a>
+<a class="radius button small" href="{{ site.url }}/workshop/fullday-windows/setup-azure-iot-hub/">Go to 'Setup Azure IoT Hub' ›</a>
 
-[nextlab]: /lang/cs/setup-azure-iot-hub/
+[nextlab]: /workshop/fullday-windows/setup-azure-iot-hub/

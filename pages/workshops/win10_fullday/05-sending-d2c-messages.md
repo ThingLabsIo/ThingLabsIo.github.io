@@ -20,9 +20,8 @@ In this lab you will build a Universal Windows Platform application that detects
 # Bill of Materials
 What you will need:
 
-1. One of the following development boards:
-    * [Raspberry Pi 2](http://www.amazon.com/Raspberry-Pi-Model-Project-Board/dp/B00T2U7R7I/) with a [5V 2A Switching Power Supply w/ 20AWG 6' MicroUSB Cable](https://www.adafruit.com/product/1995)
-    * [DragonBoard 410c](http://partners.arrow.com/campaigns-na/qualcomm/dragonboard-410c/) with a [WM24P-12-A-QL 12V 2A Switching Power Supply](https://www.arrow.com/en/products/wm24p-12-a-ql/autec-power-systems#page-1)
+1. [Raspberry Pi 2](http://www.amazon.com/Raspberry-Pi-Model-Project-Board/dp/B00T2U7R7I/)
+2. [5V 2A Switching Power Supply w/ 20AWG 6' MicroUSB Cable](https://www.adafruit.com/product/1995)
 3. [Jumper wires (Male to Male)](https://www.adafruit.com/product/1957)
 4. [Jumper wires (Male to Female)](https://www.adafruit.com/product/1954)
 5. [Photoresistor](https://www.adafruit.com/products/161)
@@ -39,34 +38,48 @@ What you will need:
 
 To make life easy, you can get these components and more in the [Microsoft IoT Pack for Raspberry Pi 2](http://www.adafruit.com/windows10iotpi2) from AdaFruit.
  
-* ['Setting Up Your Raspberry Pi 2']({{ site.url }}/lang/cs/setup-rpi2/)
-* ['Setting Up Your DragonBoard 410c']({{ site.url }}/lang/cs/setup-dragon/)
+* ['Setting Up Your Raspberry Pi 2']({{ site.url }}/workshop/fullday-windows/setup-rpi2/)
  
 # Capturing Analog Data with a Voltage Divider
-For this lab you will work with a few new concepts - both in the circuits connected to the Raspberry Pi 2 (RPi2) and in the Cloud. The first thing you will do is wire up the RPi2 to be able to read voltage as determined by the resistance created by a photoresistor. Wire your board according to the diagram (wire colors don't matter, but help with identification of purpose). This wiring uses an analog-to-digital-converter (ADC) - either an MCP3208 or an MCP3002, depending on what you have - which enables you to capture analog input instead of simply digital input. When you did the lab with the LED you dealt only with a digital signal - you sent voltage to the LED to turn it on, or off (with no voltage). Many sensors, such as a _photoresistor_, are capable of analog input or output, giving them a broader range than simply a 1 or a 0. 
+For this lab you will work with a few new concepts - both in the circuits connected to the Raspberry Pi 2 (RPi2) and in the Cloud. The first thing you will do is wire up the RPi2 to be able to read voltage as determined by the resistance created by a photoresistor. Wire your board according to the diagram (wire colors don't matter, but help with identification of purpose). This wiring uses an analog-to-digital-convertor (ADC) - either an MCP3008 or an MCP3002, depending on what you have - which enables you to capture analog input instead of simply digital input. When you did the lab with the LED you dealt only with a digital signal - you sent voltage to the LED to turn it on, or off (with no voltage). Many sensors, such as a _photoresistor_, are capable of analog input or output, giving them a broader range than simply a 1 or a 0. 
 
 A _photoresistor_, also known as _light-dependent resistor (LDR)_ or a photocell, works by limiting the amount of voltage that passes through it based on the intensity of light detected. The resistance decreases as light input increases - in other words, the more light, the more voltage passes through the photoresistor.
 
-In order to take advantage of the photoresistor you will create a _voltage divider_ - a passive linear circuit that splits the input voltage amongst two or more components (similar to a Y-splitter). The following schematic shows a voltage divider in use on an Arduino Uno R3 (this is a simpler way to show the diagram as compared ot the RPi2 which, as you will see, incorporates an external ADC).
+In order to take advantage of the photoresistor you will create a _voltage divider_ - a passive linear circuit that splits the input voltage amongst two or more components (similar to a Y-splitter). The following schematic shows a voltage divider in use on an Arduino Uno R3 (this is a simpler way to show the diagram as compared to the RPi2 which, as you will see, incorporates an external ADC).
 
 <img src="/images/photoresistor_schem.png"/>
 
-To create the voltage divider needed for this lesson you will:
+To create the voltage divider needed for this the RPi2 has been connected as follows:
 
-- Connect the voltage from the 5-volt (input voltage) pin to a circuit (using a breadboard).
-- Connect the input voltage to a static resistor (10k Ohm).
-- Establish a voltage divider coming out of the static resistor:
+- Voltage connected from the 5-volt (input voltage) pin to a circuit (using a breadboard).
+- Input voltage connected to a static resistor (10k Ohm).
+- A voltage divider is established coming out of the static resistor:
    - One route to the ADC which is connected to the RPi2.
    - One route to a variable resistor (the photoresistor).
-- Completing the circuit out of the variable resistor to ground.
+- The circuit is completed out of the variable resistor to ground.
 
 As the photoresistor increases its resistance (lower light intensity) more of the input voltage coming through the circuit is diverted to the ADC. That means that the less intense the light into the photoresistor the more resistance it creates, which in turn diverts more voltage to the ADC (the current has to go somewhere). Likewise, the more intense the light into the photoresistor, the less resistance it creates, which in turn means there is less voltage to divert to the ADC.
 
-In short, the the darker it is, the more resistance the photoresistor provides and the more voltage is diverted to the ADC.
+In short, the darker it is, the more resistance the photoresistor provides and the more voltage is diverted to the ADC.
 
-Here are the specific wiring instructions for the MCP3008 or MCP3208. For the MCP3002 use [this](/images/rpi2/rpi2_lab03_mcp3002_bb.png) diagram.
+Following is the wiring diagram for this circuit. Select the ADC you have and take a minute to identify the circuit on the board.
 
-<img src="/images/rpi2/rpi2_lab03_mcp3008_bb.png"/>
+<div id="wiring-tabs">
+  <ul>
+    <li><a href="#mcp3008"><span>MCP3008</span></a></li>
+    <li><a href="#mcp3002"><span>MCP3002</span></a></li>
+  </ul>
+  <div id="mcp3008">
+    <img src="/images/rpi2/rpi2_IoTLightSensor_mcp3008_bb.png"/>
+  </div>
+  <div id="mcp3002">
+    <img src="/images/rpi2/rpi2_IoTLightSensor_mcp3002_bb.png"/>
+  </div>
+</div>
+
+<script>
+$( "#wiring-tabs" ).tabs();
+</script>
 
 __NOTE:__ _The ADC has a notch out of one side - ensure that the side with the notch is (according to the diagram) on the lower edge of the breadboard._
 
@@ -85,21 +98,19 @@ We won't go any deeper into SPI or the pin layout of the two ADCs - suffice to s
 ## Create a Blank Universal App
 Launch Visual Studio and start a new __Blank App (Universal Windows)__ (found in the _C# -> Windows -> Universal_ node).
 
-Name the application _IoTLigthSensor_.
+Name the application _IoTLightSensor_.
 
 ## Add the Windows IoT Extensions for the UWP
 Once the solution is created, click on the _Project_ menu and select _Add Reference_.
 
 In the Reference Manager dialog, expand the _Universal Windows_ node and select _Extensions_.
 
-In the list of extensions, check the box next to __Windows IoT Extensions for the UWP__ and click __OK__.
+In the list of extensions, check the box next to __Windows IoT Extensions for the UWP__ and click __OK__ (make sure to select the same version number as the OS running on the RPi2). It is easy to accidently select the _Windows Mobile Extensions for the UWP_ (which is just below the IoT extensions) - pay close attention and make sure you have added the correct reference.
 
 ## Add the Microsoft.Azure.Devices.Client NuGet Package
-Once the _Windows IoT Extensions for the UWP_ are added, click on the _Project_ menu and select _Manage NuGet Packages.._
+Once the _Windows IoT Extensions for the UWP_ are added, click on the _Project_ menu and select _Manage NuGet Packages._
 
-Use the search field to search for __Microsoft.Azure.Devices.Client__. 
-
-__NOTE:__ You must check the _Include prereleases_ box.
+Use the search field (check the __Include prereleases__ box) to search for __Microsoft.Azure.Devices.Client__.
 
 Click on the __Install__ button to install the package.
 
@@ -122,6 +133,8 @@ Open the _MainPage.xaml_ file. This is the layout definition for the initial pag
 {% endhighlight %}
 
 ## Add 'using' Statements
+Throughout this lab you will use a feature in Visual Studio called _light bulbs_. Light bulbs are a new productivity feature in Visual Studio 2015. They are icons that appear in the Visual Studio editor and that you can click to perform quick actions including refactoring fixing errors. Light bulbs bring error-fixing and refactoring assistance into a single focal point, often right on the line where you are typing. As you write the code in this lab you will add calls to methods that don't yet exist. The editor will indicate this to you by putting a red "squiggle" underline beneath the method call. When you hover over the offending code a light bulb will appear and you can expand it to see options for generating the missing method. 
+
 Open the _MainPage.xaml.cs_ file. This is the code behind the layout for the MainPage.xaml. Add the following to the _using_ statements at the top of the file. Add the following <code>using</code> 
 
 {% highlight csharp %}
@@ -135,15 +148,15 @@ using Microsoft.Azure.Devices.Client;
 {% endhighlight %}
 
 ## Define Constants and Variables
-There are several constants and variables that you will reference throughout this code. This code is written to support the MCP3002, MCP3008, and MCP3208 ADCs. You must set the value of <code>ADC_DEVICE</code> to the specific ADC you are using, and follow the appropriate wiring diagram (above). 
+There are several constants and variables that you will reference throughout this code. This code is written to support the MCP3002 (10-bit, 2-channel) or the MCP3008 (10-bit, 8-channel) ADCs. You must set the value of <code>ADC_DEVICE</code> to the specific ADC you are using, and follow the appropriate wiring diagram (above). 
 
 {% highlight csharp %}
 public sealed partial class MainPage : Page
 {
-    /* Important! Change this to either AdcDevice.MCP3002, AdcDevice.MCP3208 or AdcDevice.MCP3008 depending on which ADC you chose     */ 
+    /* IMPORTANT! Change this to either AdcDevice.MCP3002 or AdcDevice.MCP3008 depending on which ADC you have     */ 
     private AdcDevice ADC_DEVICE = AdcDevice.MCP3008;
 
-    enum AdcDevice { NONE, MCP3002, MCP3208, MCP3008 };
+    enum AdcDevice { NONE, MCP3002, MCP3008 };
     
     // Use the device specific connection string here
     private const string IOT_HUB_CONN_STRING = "YOUR DEVICE SPECIFIC CONNECTION STRING GOES HERE";
@@ -157,9 +170,7 @@ public sealed partial class MainPage : Page
     private const string SPI_CONTROLLER_NAME = "SPI0";
 
     // 01101000 channel configuration data for the MCP3002
-    private const byte MCP3002_CONFIG = 0x68; 
-    // 00000110 channel configuration data for the MCP3208
-    private const byte MCP3208_CONFIG = 0x06; 
+    private const byte MCP3002_CONFIG = 0x68;
     // 00001000 channel configuration data for the MCP3008
     private const byte MCP3008_CONFIG = 0x08; 
 
@@ -171,7 +182,7 @@ public sealed partial class MainPage : Page
     private DeviceClient deviceClient;
     private GpioPin redLedPin;
     private SpiDevice spiAdc;
-    private int adcResolution;
+    private int adcResolution = 1024; // Both ADCs in this example are 10-bit (0-1023 range)
     private int adcValue;
     
     private Timer readSensorTimer;
@@ -199,7 +210,7 @@ public MainPage()
 }
 {% endhighlight %}
 
-This event handler will be invoked whenever the _MainPage_ is unloaded. You will use it to clean up a few resources. Use the Visual Studio Lightbulb feature to add the __MainPage_Unloaded__ event handler and add the following code to dispose of connections to the pins on the RPi2.
+This event handler will be invoked whenever the _MainPage_ is unloaded. You will use it to clean up a few resources. Use the Visual Studio light bulb feature to _Generate method 'MainPage_Unloaded'_ and add the following code to the new method to dispose of connections to the pins of the RPi2.
 
 {% highlight csharp %}
 private void MainPage_Unloaded(object sender, RoutedEventArgs e)
@@ -217,7 +228,7 @@ private void MainPage_Unloaded(object sender, RoutedEventArgs e)
 {% endhighlight %}
 
 ## Initialize the SPI and GPIO Busses
-Still in the _ManPage()_ constructor, add a call to a new method names __InitAll()__. 
+Still in the _ManPage()_ constructor, add a call to a new method names __InitAllAsync()__. 
 
 {% highlight csharp %}
 public MainPage()
@@ -228,19 +239,19 @@ public MainPage()
     Unloaded += MainPage_Unloaded;
     
     // Initialize GPIO and SPI
-    InitAll();
+    InitAllAsync();
 }
 {% endhighlight %}
 
-Use the Visual Studio Lightbulb feature to add the __InitAll()__ method. Modify the method signature to mark it as an asyn method.
+Use the Visual Studio light bulb feature to add the __InitAllAsync()__ method. Modify the method signature to mark it as an async method and return a <code>Task</code>.
 
 {% highlight csharp %}
-private async void InitAll()
+private async Task InitAllAsync()
 {
     try
     {
-        InitGpio();
-        await InitSpiAsync();
+        Task[] initTasks = { InitGpioAsync(), InitSpiAsync() };
+        await Task.WhenAll(initTasks);
     }
     catch (Exception ex)
     {
@@ -256,12 +267,14 @@ private async void InitAll()
 }
 {% endhighlight %}
 
-This method invokes two additional methods to initialize the GPIO and SPI busses. Use the Visual Studio Lightbulb feature to create the __InitGpio()__ method. Initialize the GPIO by assigning the default GPIO controller to the <code>gpio</code> variable, and check for _null_ (throw an exception if it is _null_). Next, initialize the <code>redLedPin</code> in the same way you did in [Lab 01](../01/).
+This method uses <code>Task.WhenAll()</code> to await two different asynchronous calls - one that will initialize the GPIO bus and one that will initialize the SPI bus. Using <code>Task.WhenAll()</code> suspends the <code>InitAllAsync</code> method until both of the contained asynchronous calls are are completed. 
+
+Use the Visual Studio light bulb feature to create the __InitGpioAsync()__ method. Initialize the GPIO bus by assigning the default GPIO controller to the <code>gpio</code> variable, and check for _null_ (throw an exception if it is _null_). Next, initialize the <code>redLedPin</code> in the same way you did in the earlier lab, ['Hello, Windows IoT!'](../hello-windows-iot/).
 
 {% highlight csharp %}
-private void InitGpio()
+private async Task InitGpioAsync()
 {
-    var gpio = GpioController.GetDefault();
+    var gpio = await GpioController.GetDefaultAsync();
 
     if (gpio == null)
     {
@@ -274,7 +287,9 @@ private void InitGpio()
 }
 {% endhighlight %}
 
-Go back to the _MainPage()_ constructor and use the Visual Studio Lightbulb feature to add the __InitSpi()__ method. In this method you will initialize the SPI buss so that you can use it to communicate through the ADC. Modify the method signature to mark it as an async method.
+Make sure that you added the <code>async</code> modifier to the method signature to make this an asynchronous method and set its return type to <code>Task</code>. 
+
+Go back to the _MainPage()_ constructor and use the Visual Studio light bulb feature to add the __InitSpiAsync()__ method. In this method you will initialize the SPI buss so that you can use it to communicate through the ADC. Modify the method signature to mark it as an async method and return a <code>Task</code>.
 
 {% highlight csharp %}
 private async Task InitSpiAsync()
@@ -282,8 +297,9 @@ private async Task InitSpiAsync()
     try
     {
         var settings = new SpiConnectionSettings(SPI_CHIP_SELECT_LINE);
-        // 3.6MHz is the rated speed of the MCP3008 at 5v
-        settings.ClockFrequency = 3600000;
+        // 3.2MHz is the rated speed of the MCP3002 at 5v (1.2MHz @ 2.7V)
+        // 3.6MHz is the rated speed of the MCP3008 at 5v (1.35MHz @ 2.7V)
+        settings.ClockFrequency = 1000000; // Set the clock frequency at or slightly below the specified rate speed
         // The ADC expects idle-low clock polarity so we use Mode0
         settings.Mode = SpiMode.Mode0; 
         // Get a selector string that will return all SPI controllers on the system
@@ -308,7 +324,7 @@ Next you will create a timer to read the data from the photoresistor and set the
 readSensorTimer = new Timer(this.SensorTimer_Tick, null, 0, 100);
 {% endhighlight %}
 
-Use the Visual Studio Lightbulb feature to add an event handler for __SensorTimer\_Tick__.
+Use the Visual Studio light bulb feature to add an event handler for __SensorTimer\_Tick__.
 
 {% highlight csharp %}
 private void SensorTimer_Tick(object state)
@@ -318,7 +334,7 @@ private void SensorTimer_Tick(object state)
 }
 {% endhighlight %}
 
-In _SensorTmer\_Tick_ you will call two methods - one to read the sensor data in, and one to set the state of the LED. Use the Visual Studio Lightbulb feature to create the __ReadAdc()__ method.
+In _SensorTmer\_Tick_ you will call two methods - one to read the sensor data in, and one to set the state of the LED. Use the Visual Studio light bulb feature to create the __ReadAdc()__ method.
 
 {% highlight csharp %}
 private void ReadAdc()
@@ -329,15 +345,12 @@ private void ReadAdc()
 
     switch (ADC_DEVICE)
     {
-    case AdcDevice.MCP3002:
-        writeBuffer[0] = MCP3002_CONFIG;
-        break;
-    case AdcDevice.MCP3008:
-        writeBuffer[0] = MCP3008_CONFIG;
-        break;
-    case AdcDevice.MCP3208:
-        writeBuffer[0] = MCP3208_CONFIG;
-        break;
+        case AdcDevice.MCP3002:
+            writeBuffer[0] = MCP3002_CONFIG;
+            break;
+        case AdcDevice.MCP3008:
+            writeBuffer[0] = MCP3008_CONFIG;
+            break;
     }
 
     // Read data from the ADC
@@ -355,7 +368,7 @@ private void ReadAdc()
 
 In this method you create a command buffer to write to the ADC, and a read buffer to capture the values from the ADC. The SPI configuration (based on which ADC you are using) is the first node in the command/write buffer. When you call <code>TransferFullDuplex()</code> you open a two-way channel with the ADC over the SPI bus - a command/write channel and a read channel. 
 
-The <code>convertToInt(readBuffer)</code> is used to convert the byte array returned from the ADC into an integer. Use the Visual Studio Lightbulb feature to add __convertToInt(byte[])__. Modify the method signature - change the input variable name from _readBuffer_ to __data__. Each ADC returns the data a little differently, so this command will convert the byte array to an integer based on the ADC you are using.
+The <code>convertToInt(readBuffer)</code> is used to convert the byte array returned from the ADC into an integer. Use the Visual Studio light bulb feature to add __convertToInt(byte[])__. Modify the method signature - change the input variable name from _readBuffer_ to __data__. Each ADC returns the data a little differently, so this command will convert the byte array to an integer based on the ADC you are using.
 
 {% highlight csharp %}
 private int convertToInt(byte[] data)
@@ -373,17 +386,12 @@ private int convertToInt(byte[] data)
             result <<= 8;
             result += data[2];
             break;
-        case AdcDevice.MCP3208:
-            result = data[1] & 0x0F;
-            result <<= 8;
-            result += data[2];
-            break;
     }
     return result;
 }
 {% endhighlight %}
 
-In the _ReadAdc()_ method there was also a reference to a _Map()_ method. Use the Visual Studio Lightbulb feature to add Map(int, int, int, int, int)__. This method makes it easy to map data from one value range to another. Modify the method signature according to the code example below.
+In the _ReadAdc()_ method there was also a reference to a _Map()_ method. Use the Visual Studio light bulb feature to add Map(int, int, int, int, int)__. This method makes it easy to map data from one value range to another. Modify the method signature according to the code example below.
 
 {% highlight csharp %}
 private double Map(int val, int inMin, int inMax, int outMin, int outMax)
@@ -392,28 +400,14 @@ private double Map(int val, int inMin, int inMax, int outMin, int outMax)
 }
 {% endhighlight %}
 
-In this example you are using the _Map()_ method to map the value from the ADC, which is a range 0 - 1023 (or 0-4096 for the 12-bit MCP3208), to a range of 0 - 300, which is used to define the width of the darkness indicator bar in the UI (max width is 300).
+In this example you are using the _Map()_ method to map the value from the ADC, which is a 10-bit range (0 - 1023), to a range of 0 - 300, which is used to define the width of the darkness indicator bar in the UI (max width is 300).
 
-Next, return to the _SensorTimer\_Tick_ method and use the Visual Studio Lightbulb feature to add an event handler for __LightLed()__.
+Next, return to the _SensorTimer\_Tick_ method and use the Visual Studio light bulb feature to add an event handler for __LightLed()__.
 
 {% highlight csharp %}
 private void LightLed()
 {
     SolidColorBrush fillColor = grayFill;
-
-    // Turn on LED if potentiometer is rotated more than halfway
-    switch (ADC_DEVICE)
-    {
-        case AdcDevice.MCP3208:
-            adcResolution = 4096;
-            break;
-        case AdcDevice.MCP3008:
-            adcResolution = 1024;
-            break;
-        case AdcDevice.MCP3002:
-            adcResolution = 1024;
-            break;
-    }
 
     if (adcValue > adcResolution * 0.66)
     {
@@ -441,7 +435,7 @@ At this point you can deploy and run the application to see if the photoresistor
 
 <img src="/images/rpi2/rpi2_lab01_arm.png"/>
 
-You will be prompted with the _Remote Connections_ dialog. Select your device from the list of _Auto Detected_ devices, or type in the device name or IP address into the _Manual Configuration_ textbox (set the _Authentication Mode_ to __None__) and click _Select_.
+You will be prompted with the _Remote Connections_ dialog. Select your device from the list of _Auto Detected_ devices, or type in the device name or IP address into the _Manual Configuration_ textbox (set the _Authentication Mode_ to __Universal (Unencrypted Protocol)__)  and click _Select_.
 
 <img src="/images/rpi2/rpi2_lab01_remote.png"/>
 
@@ -464,7 +458,7 @@ Next, replace the comment<code>// TODO: Send messages to Azure IoT Hub every one
 sendMessageTimer = new Timer(this.MessageTimer_Tick, null, 0, 1000);
 {% endhighlight %}
 
-Use the Visual Studio Lightbulb feature to create the __MessageTimer\_Tick()__ event handler.
+Use the Visual Studio light bulb feature to create the __MessageTimer\_Tick()__ event handler.
 
 {% highlight csharp %}
 private void MessageTimer_Tick(object state)
@@ -473,7 +467,7 @@ private void MessageTimer_Tick(object state)
 }
 {% endhighlight %}
 
-Each tme the _MessageTimer_ ticks (once per second) this event handler will invoke the _SendMessageToIoTHubAsync()_ method. Use the Visual Studio Lightbulb feature to create the __SendMessageToIoTHubAsync()__ method. Modify the method signature to mark it as an async method.
+Each time the _MessageTimer_ ticks (once per second) this event handler will invoke the _SendMessageToIoTHubAsync()_ method. Use the Visual Studio light bulb feature to create the __SendMessageToIoTHubAsync()__ method. Modify the method signature to mark it as an async method.
 
 {% highlight csharp %}
 private async Task SendMessageToIoTHubAsync(int darkness)
@@ -481,13 +475,13 @@ private async Task SendMessageToIoTHubAsync(int darkness)
     try
     {
         var payload = "{\"deviceId\": \"" +
-            IOT_HUB_DEVICE + 
+            IOT_HUB_DEVICE +
             "\", \"location\": \"" +
             IOT_HUB_DEVICE_LOCATION +
-            "\", \"data\":" +
-            darkness + 
-            "\", \"localTimestamp\": \"" +
-            DateTime.Now.ToLocalTime().ToString() + 
+            "\", \"messurementValue\": " +
+            darkness +
+            ", \"messurementType\": \"darkness\", \"localTimestamp\": \"" +
+            DateTime.Now.ToLocalTime().ToString() +
             "\"}";
 
         // UI updates must be invoked on the UI thread
@@ -513,7 +507,7 @@ private async Task SendMessageToIoTHubAsync(int darkness)
 
 With this method you attempt to construct a JSON message payload, display it on the screen and send it to your Azure IoT Hub. The communication with the Azure IoT Hub is managed by the <code>deviceClient</code> object from the _Microsoft.Azure.Devices.Client_ namespace.
 
-The final _MainPage.cxaml.cs_ can be founs [here](https://github.com/ThingLabsIo/IoTLabs/blob/master/RPi2/Lab03/Lab03/MainPage.xaml.cs) and the complete solution can be found [here](https://github.com/ThingLabsIo/IoTLabs/tree/master/RPi2/Lab03).
+The final _MainPage.cxaml.cs_ can be found [here](https://github.com/ThingLabsIo/IoTLabs/blob/master/RPi2/IoTLightSensor/IoTLightSensor/MainPage.xaml.cs) and the complete solution can be found [here](https://github.com/ThingLabsIo/IoTLabs/tree/master/RPi2/IoTLightSensor).
 
 ## Run the Application
 Now you can run the application on your RPi2 and not only will you see the indicator bar changing, but you will also see the log of messages being sent to Azure IoT Hub at a rate of once per second.
@@ -527,6 +521,6 @@ Congratulations! You have built a Universal Windows Platform application that ca
 
 At this point, nothing interesting is happening with that data you are sending to Azure. It is simply being persisted for a default amount of time (1-day) and then being dropped. In the [next lab][nextlab] you will setup some Azure services to process and visualize the data.
 
-<a class="radius button small" href="{{ site.url }}/lang/cs/visualize-iot-with-powerbi/">Go to 'Visualize IoT Data with Microsoft Power BI' ›</a>
+<a class="radius button small" href="{{ site.url }}/workshop/fullday-windows/visualize-iot-with-powerbi/">Go to 'Visualize IoT Data with Microsoft Power BI' ›</a>
 
 [nextlab]: ../visualize-iot-with-powerbi/
