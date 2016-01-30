@@ -16,7 +16,7 @@ permalink: /workshop/fullday-windows/
 {:toc}
 
 # Goals
-The goals fo this workshop are:
+The goals of this workshop are:
 
 + Educate developers on the IoT stack offerred by Microsoft
 + Educate developers on the Universal Windows Platform (UWP)
@@ -34,6 +34,7 @@ By the end of the workshop a participant will be able to:
 + Build a client application that can send a command to the IoT device via Azure
 
 # Outline
+
 ## Getting Started (pre-workshop if possible)
 
 ## Welcome to the Internet of Things
@@ -68,7 +69,7 @@ In this lab you will build a prototype of a device similar to, but not quite, th
 
 ## Lunch
 
-## Intorduction to Azure for IoT
+## Introduction to Azure for IoT
 
 ## Device-to-Cloud (D2C)
 
