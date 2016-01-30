@@ -6,7 +6,7 @@ teaser: "In these IoT Labs you will begin by learning the basics of working with
 show_meta: true
 comments: false
 header: 
-        image_fullwidth: /images/workshops/fullday-windows/header.jpg
+        image_fullwidth: workshops/fullday-windows/header.jpg
 breadcrumb: true
 categories: [rpi, dragon, minnowboard, maker]
 permalink: /workshop/fullday-windows/home/
