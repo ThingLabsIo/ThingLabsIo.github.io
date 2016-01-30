@@ -22,7 +22,7 @@ For this lab you will work with a few new concepts - both in the circuits connec
 
 A _photoresistor_, also known as _light-dependent resistor (LDR)_ or a photocell, works by limiting the amount of voltage that passes through it based on the intensity of light detected. The resistance decreases as light input increases - in other words, the more light, the more voltage passes through the photoresistor.
 
-In order to take advantage of the photoresistor you will create a _voltage divider_ - a passive linear circuit that splits the input voltage amongst two or more components (similar to a Y-splitter). The following schematic shows a voltage divider in use on an Arduino Uno R3 (this is a simpler way to show the diagram as compared ot the RPi2 which, as you will see, incorporates an external ADC).
+In order to take advantage of the photoresistor you will create a _voltage divider_ - a passive linear circuit that splits the input voltage amongst two or more components (similar to a Y-splitter). The following schematic shows a voltage divider in use on an Arduino Uno R3 (this is a simpler way to show the diagram as compared to the RPi2 which, as you will see, incorporates an external ADC).
 
 <img src="/images/photoresistor_schem.png"/>
 
