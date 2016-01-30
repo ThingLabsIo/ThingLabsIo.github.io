@@ -65,7 +65,7 @@ Open the _MainPage.xaml_ file. This is the layout definition for the initial pag
 {% endhighlight %}
 
 ## Code the App Logic
-Throughout this lab you will use a feature in Visual Studio called _light bulbs_. Light bulbs are a new productivity feature in Visual Studio 2015. They are icons that appear in the Visual Studio editor and that you can click to perform quick actions including refactoring fixing errors. Light bulbs bring error-fixing and refactoring assistance into a single focal point, often right on the line where you are typing. As you write the code in this lab you will add calls to methods that don't yet exist. The editor will indicate this to you by putting a red "sgugile" underline beneath the method call. When you hover over the offending code a ligh bulb will appear and you can expand it to see options for generating the missing method. 
+Throughout this lab you will use a feature in Visual Studio called _light bulbs_. Light bulbs are a new productivity feature in Visual Studio 2015. They are icons that appear in the Visual Studio editor and that you can click to perform quick actions including refactoring fixing errors. Light bulbs bring error-fixing and refactoring assistance into a single focal point, often right on the line where you are typing. As you write the code in this lab you will add calls to methods that don't yet exist. The editor will indicate this to you by putting a red "squiggle" underline beneath the method call. When you hover over the offending code a light bulb will appear and you can expand it to see options for generating the missing method. 
 
 
 Open the _MainPage.xaml.cs_ file. This is the code behind the layout for the MainPage.xaml. Add the following to the _using_ statements at the top of the file. 
@@ -228,4 +228,4 @@ In the [next lab][nextlab] you will set up a Microsoft Azure IoT Hub that will a
 
 <a class="radius button small" href="{{ site.url }}/tr22/cs/setup-azure-iot-hub/">Go to 'Setup Azure IoT Hub' ›</a>
 
-[nextlab]: /lang/cs/setup-azure-iot-hub/
+[nextlab]: /tr22/cs/setup-azure-iot-hub/

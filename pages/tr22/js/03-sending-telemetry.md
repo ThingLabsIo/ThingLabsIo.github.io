@@ -64,7 +64,7 @@ On Mac OS X open Terminal and type the following:
 Next you will create the application code to gather temperature, humidity, and barometer data and send it to the cloud.
 
 <blockquote>
-    In order to complete this step you will need the device ID and access token from Particle Cloud (the cloud service that the Photon is coupled to). For the TechReady 22 labs you are sharing an existing Particle Cloud account and your Photon has already been configurted. 
+    In order to complete this step you will need the device ID and access token from Particle Cloud (the cloud service that the Photon is coupled to). For the TechReady 22 labs you are sharing an existing Particle Cloud account and your Photon has already been configured. 
 
     <ul>
         <li>The device ID is <b>PhotonThingXX</b> where XX is the number on your Photon</li>
@@ -125,7 +125,7 @@ In this code you define four variables that you will be working with:
 
 Now that the objects are created, you can get to the meat of the application. Johnny-Five provides a board 'ready' event that makes a callback when the board is on, initialized and ready for action. Inside the anonymous callback function is where your application code executes (this function is invoked when the board is ready for use).
 
-Johnny-Five provides a collection of objects that represent the board, the pins on the board, and various types of sensors and devices that could be connected to the board. The <code>Shield</code> plug-in that you specified earlier is a software representation of the physical SparkFun Weather Shield that abstracts the Johnny-Five <code>Temperature</code> and <code>Barometer</code> classes that represent the HTU21D humidity sensor and the MPL3115A2 barometric pressure sensor respectively. When you create an instance of the <code>Shield</code> class you will specify the varient of the <code>Shield</code> class -- either <code>PHOTON</code> or <code>ARDUINO</code>.
+Johnny-Five provides a collection of objects that represent the board, the pins on the board, and various types of sensors and devices that could be connected to the board. The <code>Shield</code> plug-in that you specified earlier is a software representation of the physical SparkFun Weather Shield that abstracts the Johnny-Five <code>Temperature</code> and <code>Barometer</code> classes that represent the HTU21D humidity sensor and the MPL3115A2 barometric pressure sensor respectively. When you create an instance of the <code>Shield</code> class you will specify the variant of the <code>Shield</code> class -- either <code>PHOTON</code> or <code>ARDUINO</code>.
 
 In the following code you will invoke the <code>board.on()</code> function which establishes a callback function that is invoked when the board is on, initialized and ready. All of the operational code for the board will be in the <code>board.on()</code> function (helper functions may exist outside the scope on the <code>board.on()</code> function). Within the <code>board.on()</code> function you will create an object reference to the weather shield. Similar to the <code>board</code> object, the object you create to reference the shield will have an <code>on()</code> function that establishes a callback that exposes the data read from the sensors on the shield.
 
