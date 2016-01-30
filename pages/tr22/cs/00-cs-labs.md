@@ -2,7 +2,7 @@
 layout: "page-tr22"
 title: "Windows 10 IoT and C# Labs"
 subheadline: "Building Connected Things with Windows 10 IoT Core and C#"
-teaser: "In these IoT Labs you will begin by learning the basics of working with Windows 10 IoT Core connected to sensors and devices. You will move on to connecting the device to the Cloud. You will learn how to leverage Microsoft Azure services to collect data and control devices and use advanced services like analytics and machine learningto discover insights using your Things."
+teaser: "In these IoT Labs you will begin by learning the basics of working with Windows 10 IoT Core connected to sensors and devices. You will move on to connecting the device to the Cloud. You will learn how to leverage Microsoft Azure services to collect data and control devices and use advanced services like analytics and machine learning to discover insights using your Things."
 show_meta: true
 comments: false
 header: no
@@ -16,7 +16,7 @@ permalink: /tr22/cs/
 {:toc}
 
 # Thing 101 Labs
-In the first set of labs you will learn the basics of creating a _Thing_ using WIndows 10 IoT Core.
+In the first set of labs you will learn the basics of creating a _Thing_ using Windows 10 IoT Core.
 
 ## Hello, Windows IoT!
 In this lab you will create a simple _Thing_ using a Raspberry Pi 2 running Windows 10 IoT Core. The Raspberry Pi 2 is a low cost, credit-card sized computer that plugs into a computer monitor or TV, and uses a standard keyboard and mouse.

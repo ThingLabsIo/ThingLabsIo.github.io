@@ -54,12 +54,10 @@ Create another file in the same directory named __blinky.js__.
 
 The first thing you need to do is define the objects you will be working with in the application. The three things that matter are a Johnny-Five framework object, an object to represent the board, and the output pin the LED will be connected to. 
 
-<blockquote>
-In order to complete this step you will need the device ID and access token from Particle Cloud (the cloud service that the Photon is coupled to). For the TechReady 22 labs you are sharing an existing Particle Cloud account and your Photon has already been configurted. 
-
-1. The device ID is_PhotonThingXX_ where XX is the number on your Photon
-2. The Particle Cloud access token is _65dbc7982187b1c1b1d34ed7ebad8f870c3b7e92_
-</blockquote>
+> In order to complete this step you will need the device ID and access token from Particle Cloud (the cloud service that the Photon is coupled to). For the TechReady 22 labs you are sharing an existing Particle Cloud account and your Photon has already been configured. 
+> 
+> 1. The device ID is ___PhotonThingXX___ where XX is the number on your Photon
+> 2. The Particle Cloud access token is ___65dbc7982187b1c1b1d34ed7ebad8f870c3b7e92___
 
 Now add the following code to the __blinky.js__ file:
 
@@ -90,7 +88,7 @@ var board = new five.Board({
 In this code you define four variables that you will be working with:
 
 1. <code>five</code> - represents the Johnny Five framework capabilities, which provide a type of object model for working with boards like Arduino and Particle.
-2. <code>Particle</code> - represents the Particle IO framework capabilities which exposes the specifics of the Particle boards inclusing the Core and the Photon.
+2. <code>Particle</code> - represents the Particle IO framework capabilities which exposes the specifics of the Particle boards including the Core and the Photon.
 3. <code>LEDPIN</code> - a variable that references pin D7, which the LED is connected to.
 4. <code>board</code> - a representation of the physical board you are using. This is created by specifying the Particle Photon board and passing in the Particle Cloud API token and the device ID.
 
@@ -127,7 +125,7 @@ board.on("ready", function() {
 {% endhighlight %}
 
 # Run the App
-When you run the application it will execute on your computer, and thanks to Johnny-Five, it will connect with your board and work directly with it. Basically, your computer is acting as a hub and communicating via Wi-Fi with the Photon as one of potentilly many devices (or spokes). In a future lab you will deploy the Node.js application to another device (like a Rasberry Pi 2) which will act as the hub and connect to multiple spoke devices.
+When you run the application it will execute on your computer, and thanks to Johnny-Five, it will connect with your board and work directly with it. Basically, your computer is acting as a hub and communicating via Wi-Fi with the Photon as one of potentially many devices (or spokes). In a future lab you will deploy the Node.js application to another device (like a Raspberry Pi 2) which will act as the hub and connect to multiple spoke devices.
 
 Open a terminal window (Mac OS X) or Node.js command prompt (Windows) and execute the following commands (replace c:\Development\IoTLabs with the path that leads to your labs folder):
 
@@ -144,9 +142,8 @@ You should the indicator LED on the board blink a little as the app is initializ
   
 When you want to quit the application, press <kbd>CTRL</kbd> + <kbd>C</kbd> twice to exit the program without closing the window (you may also have to press <kbd>Enter</kbd>). 
 
-<blockquote>
-  After stopping the application press the _Reset_ button on the Photon to prepare it for the next run.
-</blockquote>
+
+> After stopping the application press the __Reset__ button on the Photon to prepare it for the next run.
 
 # Conclusion &amp; Next Steps
 In this lab you learned how to write a Node.js/Johnny-Five application that writes LOW and HIGH signals to a digital pin (designated for output) to make an LED blink. In itself this may not be very exciting, but the core concept is necessary - writing to a digital output pin.

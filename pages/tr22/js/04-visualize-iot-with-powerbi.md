@@ -75,7 +75,7 @@ Click on the __OUTPUTS__ header.
 
 Click on __ADD AN OURPUT__.
 Select __Power BI__ and click on the forward arrow in the lower-right.
-Follow the instructions for either __Existing Microsoft Power BI User__ or __New User__using your __@microsoft.com__ email account.
+Follow the instructions for either __Existing Microsoft Power BI User__ or __New User__ using your __@microsoft.com__ email account.
 
 <blockquote>
 Power BI is a data visualization toolkit for organizations. To create a new user account, you will have to use an account that belongs to an organization, such as your place of employment. You will not be able to create a new user account using an email address that ends in Outlook.com, Hotmail.com, GMail.com or other general email provider accounts.
@@ -123,7 +123,7 @@ GROUP BY
     TumblingWindow (second, 5), deviceId, location
 {% endhighlight %}
 
-Click __SAVE__ in the lower middle of the screen. Once the query is saved, click __START_ to start the Stream Analytics job. If your Node.js app from the [previous lab](../sending-telemetry/) isn't still running, go ahead and start it up. It will take a few minutes for the Stream Analytics job to get started and to start sending data to Power BI, but you should see the _WeatherDataSet_ show up in Power BI within a few minutes.
+Click __SAVE__ in the lower middle of the screen. Once the query is saved, click __START__ to start the Stream Analytics job. If your Node.js app from the [previous lab](../sending-telemetry/) isn't still running, go ahead and start it up. It will take a few minutes for the Stream Analytics job to get started and to start sending data to Power BI, but you should see the _WeatherDataSet_ show up in Power BI within a few minutes.
 
 # Build Reports in Power BI
 
