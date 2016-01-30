@@ -54,10 +54,10 @@ Some Options:
 * [Eclipse](http://www.eclipse.org/downloads/) 
 * [Notepad++](http://notepad-plus-plus.org/)
 
-## Install Node.js v0.12.7
+## Install Node.js
 In the labs you will write small programs that will run on your computer, connected to your board. These programs will be written in JavaScript and will be built on Node.js. If you are not familiar or experienced with Node.js, don't worry. You will learn everything you need to know for these labs in these labs. 
 
-Follow the [instructions here to install Node.js](http://www.nodejs.org) on your computer.  __IMPORTANT:__ Be sure to install [version 0.12.x][node_12_7] - not version 4.0.
+Follow the [instructions here to install Node.js](http://www.nodejs.org) on your computer.
 
 ## Install Johnny-Five
 Johnny-Five is an open source JavaScript framework that provides a simple object model for interacting with a variety of hardware boards and the sensors and devices you connect to them. 
@@ -112,4 +112,3 @@ Choose your own adventure - click one of these options to configure your board.
  [14]: https://build.particle.io/signup
  [15]: https://azure.microsoft.com/en-us/pricing/free-trial/
  [16]: https://msdn.microsoft.com/subscriptions/manage/
- [node_12_7]: https://nodejs.org/dist/v0.12.7/

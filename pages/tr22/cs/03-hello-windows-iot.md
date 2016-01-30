@@ -24,7 +24,7 @@ The RPi2 connects to the physical world through the GPIO pins. GPIO stands for G
 
 The RPi2 for this workshop should already be wired for this lab and others - it has multiple circuits wired up; the circuit used for this lab is as shown here (take a minute to examine the RPi2 wiring and identify this circuit):
 
-<img src="/images/rpi2/rpi2_lab01_bb.png"/>
+<img src="/images/rpi2/rpi2_hello_windows_bb.png"/>
 
 1. GPIO 12 is connected to the positive (longer) lead on the LED. In the app you build, you will control whether or not GPIO pin 12 sends voltage over the circuit.
 2. The negative (shorter) lead on the LED is connected to a resistor to reduce the amount of voltage pulled through the circuit.
