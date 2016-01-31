@@ -46,21 +46,21 @@ Attach the Edison chip to the Arduino expansion board
     <li><a href="#linux"><span>Linux</span></a></li>
   </ul>
   <div id="windows10">
-    [Download and run the installer from Intel](https://software.intel.com/en-us/iot/hardware/edison/downloads)
+    Download and run the <a href="https://software.intel.com/en-us/iot/hardware/edison/downloads">installer from Intel</a>
     
-    __IMPORTANT:__ When running the Windows installer, uncheck everything except for the drivers and the "flash / update" device option.
+    <p>__IMPORTANT:__ When running the Windows installer, uncheck everything except for the drivers and the "flash / update" device option.</p>
   </div>
   <div id="windows7">
-    [Follow Instructions from Intel](http://www.intel.com/content/www/us/en/support/boards-and-kits/000005795.html)
+    Follow the <a target="_blank" href="http://www.intel.com/content/www/us/en/support/boards-and-kits/000005795.html">Instructions from Intel</a>
   </div>
   <div id="elcapitan">
-    [Follow Instructions from Rex St. John](http://rexstjohn.com/intel-edison-el-capitan-setup-process/)
+    Follow the <a target="_blank" href="http://rexstjohn.com/intel-edison-el-capitan-setup-process/">Instructions from Rex St. John</a>
   </div>
   <div id="yosemite">
-    [Follow Instructions from Intel](http://www.intel.com/content/www/us/en/support/boards-and-kits/000005801.html)
+    Follow the <a target="_blank" href="http://www.intel.com/content/www/us/en/support/boards-and-kits/000005801.html">Instructions from Intel</a>
   </div>
   <div id="linux">
-    [Follow Instructions from Intel](http://www.intel.com/content/www/us/en/support/boards-and-kits/000005990.html)
+    Follow the <a target="_blank" href="http://www.intel.com/content/www/us/en/support/boards-and-kits/000005990.html">Instructions from Intel</a>
   </div>
 </div>
 
@@ -79,11 +79,16 @@ Open terminal, type 'screen /dev/cu.usbs' then hit Tab to autocomplete, add '115
     <li><a href="#linux"><span>Linux</span></a></li>
   </ul>
   <div id="windows10">
-    Download PuTTy, select 'serial,' set baud rate to 115200, use Device Manager to find your COM port, hit Enter twice at blank screen
-    (select the COM port that doesn't say "Edison" anywhere in it)
+    <ol>
+    <li>Download PuTTy</li> 
+    <li>Select 'serial'</li> 
+    <li>Set baud rate to 115200</li>
+    <li>Use Device Manager to find your COM port (select the COM port that doesn't say "Edison" anywhere in it)</li>
+    <li>Press Enter twice at blank screen</li>
+    </ol>
   </div>
   <div id="windows7">
-    [Follow Instructions from Intel](http://www.intel.com/content/www/us/en/support/boards-and-kits/000005795.html)
+    Follow the <a target="_blank" href="http://www.intel.com/content/www/us/en/support/boards-and-kits/000005795.html">Instructions from Intel</a>
   </div>
   <div id="osx">
     Open terminal, type 'screen /dev/cu.usbs' then hit Tab to autocomplete, add '115200 -L' and hit Enter twice at blank screen
