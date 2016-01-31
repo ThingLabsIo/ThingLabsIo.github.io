@@ -16,52 +16,76 @@ permalink: /workshop/fullday-windows/home/
 *  Auto generated table of contents
 {:toc}
 
-# Getting Started
+
+# Workshop Goals
+The goals of this workshop are:
+
++ Educate developers on the IoT stack offerred by Microsoft
++ Educate developers on the Universal Windows Platform (UWP)
++ Educate developers on the Azure services related to IoT
+
+By the end of the workshop a participant will be able to:
+
++ Build an IoT device using the Raspberry Pi 2 (RPi2)
++ Build a UWP app for Windows IoT Core to run on the RPi2
++ Use Windows IoT Core and the RPi to both capture input and present output
++ Create and configure an Azure IoT Hub
++ Connect their UWP application running on the RPi2 to Azure IoT Hubs
++ Build a datapipe line that captures data coming into IoT Hub and stores it
++ Build a visualization of IoT data
++ Build a client application that can send a command to the IoT device via Azure
+
+# Prep Work
+The following are required to prepare for the workshop. Whenever possible this section should be completed prior to the workshop day.
+
+## Getting Started
 This is a step-by-step guide to preparing your computer for the Windows 10 IoT Labs.
 
 <a class="radius button small" href="{{ site.url }}/workshop/fullday-windows/getting-started/">Estimated time to complete: 20-minutes. Go to  'Getting Started' ›</a>
 
-# Thing 101 Labs
-
-## Setting Up Your Device
-In this lab you will install Windows 10 IoT Core on your hardware (select from one of the options below). 
-
-### Raspberry Pi 2
+## Setting Up Your Raspberry Pi 2
 The Raspberry Pi 2 is a low cost, credit-card sized computer that plugs into a computer monitor or TV, and uses a standard keyboard and mouse. The Raspberry Pi 2 runs Windows 10 IoT Core.
 
 In this lab you will install Windows 10 IoT Core on your Raspberry Pi 2.
 
 <a class="radius button small" href="{{ site.url }}/workshop/fullday-windows/setup-rpi2/">Estimated time to complete: 20-minutes. Go to  'Setting Up Your Raspberry Pi 2' ›</a>
 
-### DragonBoard 410c
-The DragonBoard™ 410c based on Linaro 96Boards™ specification features the Qualcomm® Snapdragon™ 410 processor, a Quad-core ARM® Cortex™ A53 at up to 1.2GHz clock speed per core, capable of 32-bit and 64-bit operation. WLAN, Bluetooth, and GPS, all packed into a board the size of a credit card.
+# Lab Guides
 
-In this lab you will install Windows 10 IoT Core on your DragonBoard 410c.
-
-<a class="radius button small" href="{{ site.url }}/workshop/fullday-windows/setup-dragon/">Estimated time to complete: 20-minutes. Go to  'Setting Up Your Dragon Board' ›</a>
-
-## Hello, Windows IoT!
-In this lab you will create a simple _Thing_ using a Windows 10 IoT device and the Universal Windows Platform. 
+## Lab 01: Hello, Windows IoT!
+In this lab you will build a simple single-circuit device that blinks an LED on and off (this is the ‘Hello, World! of the maker/IoT space).
 
 <a class="radius button small" href="{{ site.url }}/workshop/fullday-windows/hello-windows-iot/">Estimated time to complete: 20-minutes. Go to  'Hello, Windows IoT!' ›</a>
 
-# Connected Thing Labs
-In the labs leading up to this point, you have prepared your hardware and developed a 'Hello, World!' application that you deployed to the board. In this set of labs you will build a new application for Windows 10 IoT Core and connect it to Microsoft Azure IoT Hubs.
+## Lab 02: Nightlight
+In this lab you will capture analog input using a light-dependent resistor (photo cell) and turn on or off an LED based on the amount of light detected. 
 
-## Setting Up Azure IoT Hub
+<a class="radius button small" href="{{ site.url }}/workshop/fullday-windows/nightlight/">Estimated time to complete: 20-minutes. Go to  'Hello, Windows IoT!' ›</a>
+
+## Lab 03: Not Quite the Nest
+In this lab you will build a prototype of a device similar to, but not quite, the Nest thermostat. The device will:
+
+1. Captures temerature and humidity and display it on either an LCD or a connected monitor
+2. Enable input to alter the desired temperature
+3. Turn on a RED light to indicate heating and a blue LED to indicate cooling
+4. Stretch: Detects when someone approaches and comes out of sleep-mode
+
+<a class="radius button small" href="{{ site.url }}/workshop/fullday-windows/not-quite-the-nest/">Estimated time to complete: 20-minutes. Go to  'Hello, Windows IoT!' ›</a>
+
+## Lab 04: Setting Up Azure IoT Hub
 In this lab you will provision a new Azure IoT Hub. Once you have the IoT Hub created, you will be able to create a new Azure IoT device (a software reference to your physical device) that you will use to send telemetry to Azure.
 
 <a class="radius button small" href="{{ site.url }}/workshop/fullday-windows/setup-azure-iot-hub/">Estimated time to complete: 20-minutes. Go to  'Setting Up Azure IoT Hub' ›</a>
 
-## Sending Telemetry to the Cloud
-In this lab you will write an application that collects data from your Windows IoT board and sends it up to your Azure IoT Hub.
+## Lab 05: Sending Device-to-Cloud (D2C) Messages
+In this lab you will use the thermastat device that you built to capture and send telemetry data to Azure IoT Hub.
 
-<a class="radius button small" href="{{ site.url }}/workshop/fullday-windows/sending-telemetry/">Estimated time to complete: 20-minutes. Go to  'Sending Telemetry to the Cloud' ›</a>
+<a class="radius button small" href="{{ site.url }}/workshop/fullday-windows/sending-d2c-messages/">Estimated time to complete: 20-minutes. Go to  'Sending Telemetry to the Cloud' ›</a>
 
-# Cloud IoT Service Labs
-In these labs you will learn how to use Cloud services to gain insights and derive value from the data you are collecting from your _Thing_.
+## Lab 06: Storing and Displaying IoT Data
+In this lab you will build a data pipeline that captures the data coming into IoT Hub and persists it using Azure storage. You will then connect a website to Azure and retreive the data for display in a browser.
 
-## Visualizing IoT Data with Power BI
-In this lab you will create visualizations of IoT data using Microsoft Power BI.
+## Lab 07: Lab: Sending Cloud-to-Device (C2D) Messages
+In this lab you will extend your website by adding the ability to control the thermastat remotely. The website will send messages to the thermastat via Azure.
 
 <a class="radius button small" href="{{ site.url }}/workshop/fullday-windows/visualize-iot-with-powerbi/">Estimated time to complete: 20-minutes. Go to  'Visualizing IoT Data with Power BI' ›</a>
