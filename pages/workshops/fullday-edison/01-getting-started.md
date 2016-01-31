@@ -46,7 +46,7 @@ Attach the Edison chip to the Arduino expansion board
     <li><a href="#linux"><span>Linux</span></a></li>
   </ul>
   <div id="windows10">
-    Download and run the <a href="https://software.intel.com/en-us/iot/hardware/edison/downloads">installer from Intel</a>
+    Download and run the <a target="_blank" href="https://software.intel.com/en-us/iot/hardware/edison/downloads">installer from Intel</a>
     
     <p>__IMPORTANT:__ When running the Windows installer, uncheck everything except for the drivers and the "flash / update" device option.</p>
   </div>
