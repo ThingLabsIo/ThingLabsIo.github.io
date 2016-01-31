@@ -33,7 +33,8 @@ Install [PuTTy](http://www.putty.org/)
 
 # Prereqisites
 Follow [Getting Started](https://software.intel.com/en-us/iot/library/edison-getting-started) instructions from Intel to install any needed drivers 
-# Flash the Edison to the Latest Yocto Image
+
+## Flash the Edison to the Latest Yocto Image
  
 Attach the Edison chip to the Arduino expansion board
 
@@ -48,7 +49,7 @@ Attach the Edison chip to the Arduino expansion board
   <div id="windows10">
     Download and run the <a target="_blank" href="https://software.intel.com/en-us/iot/hardware/edison/downloads">installer from Intel</a>
     
-    <p>__IMPORTANT:__ When running the Windows installer, uncheck everything except for the drivers and the "flash / update" device option.</p>
+    <p><strong>IMPORTANT:</strong> When running the Windows installer, uncheck everything except for the drivers and the "flash / update" device option.</p>
   </div>
   <div id="windows7">
     Follow the <a target="_blank" href="http://www.intel.com/content/www/us/en/support/boards-and-kits/000005795.html">Instructions from Intel</a>
@@ -68,7 +69,7 @@ Attach the Edison chip to the Arduino expansion board
 $( "#flash-edison-tabs" ).tabs();
 </script>
  
-# Configure Edison
+## Configure Your Edison
 Open terminal, type 'screen /dev/cu.usbs' then hit Tab to autocomplete, add '115200 -L' and hit Enter twice at blank screen
  
 <div id="config-edison-tabs">
@@ -102,21 +103,23 @@ Open terminal, type 'screen /dev/cu.usbs' then hit Tab to autocomplete, add '115
 $( "#config-edison-tabs" ).tabs();
 </script>
 
+
 1. Login with __root__ and no password.
-2. Run __configure_edison --setup__
+2. Run <code>configure_edison --setup</code>
 3. Enter a new password for your Edison
 4. Give your Edison a unique name.
-5. Enter __Y__ to setup Wi-Fi. If scanning fails to discover your Wi-Fi network, enter __0__ to scan again.
+5. Enter <code>Y</code> to setup Wi-Fi. If scanning fails to discover your Wi-Fi network, enter <code>0</code> to scan again.
 6. Enter the numer for the network you want to connect to.
-7. ENter the network password.
+7. Enter the network password.
 8. When the new IP address for your Edison is displayed on screen, make a note of it for later use.
 
-# Install FTP Client - FileZilla for Mac, Linux, Windows
+## Install FileZilla
 You can either edit code directly on your Intel Edison or you can edit the code on your computer and copy it to your Edison using SCP or FileZilla! FileZilla Client is a fast and reliable cross-platform FTP, FTPS and SFTP client with lots of useful features and an intuitive graphical user interface. 
 
 Install from [filezilla-project.org](https://filezilla-project.org/)
 
 Deploying code you the Edison is as easy as Drag-n-Drop
+
 1. Open FileZilla
 2. Enter the IP address of your Edison in the _Host_ field.
 3. Enter __root__ in the _Username_ field
