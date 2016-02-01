@@ -204,7 +204,15 @@ To deploy this application to your RPi2, select __ARM__ from the _Solution Platf
 
 <img src="/images/rpi2/rpi2_lab01_arm.png"/>
 
-You will be prompted with the _Remote Connections_ dialog. Select your device from the list of _Auto Detected_ devices, or type in the device name or IP address into the _Manual Configuration_ textbox (set the _Authentication Mode_ to __Universal (Unencrypted Protocol)__) and click _Select_.
+You will be prompted with the _Remote Connections_ dialog. 
+
+<blockquote>
+The Raspberry Pi you are working with is named <string>ThingLabsXX</strong> where the XX is replaced with the number on your Raspberry Pi.
+</blockquote>
+
+1. Select your device from the list of _Auto Detected_ devices, or type in the device name or IP address into the _Manual Configuration_ textbox
+2. Set the _Authentication Mode_ to __Universal (Unencrypted Protocol)__
+3. Click _Select_
 
 <img src="/images/rpi2/rpi2_lab01_remote.png"/>
 
