@@ -56,8 +56,8 @@ The first thing you need to do is define the objects you will be working with in
 
 In order to complete this step you will need the device ID and access token from Particle Cloud (the cloud service that the Photon is coupled to). For the TechReady 22 labs you are sharing an existing Particle Cloud account and your Photon has already been configured. 
  
-1. The Particle Cloud access token is ___65dbc7982187b1c1b1d34ed7ebad8f870c3b7e92___
-2. The device ID is ___PhotonThingXX___ where XX is the number on your Photon
+1. The Particle Cloud access token (_PARTICLE_KEY_) is ___65dbc7982187b1c1b1d34ed7ebad8f870c3b7e92___
+2. The device ID (_PHOTON_ID_) is ___PhotonThingXX___ where XX is the number on your Photon
 
 Now add the following code to the __blinky.js__ file:
 

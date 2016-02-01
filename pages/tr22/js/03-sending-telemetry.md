@@ -63,14 +63,10 @@ On Mac OS X open Terminal and type the following:
 
 Next you will create the application code to gather temperature, humidity, and barometer data and send it to the cloud.
 
-<blockquote>
-    In order to complete this step you will need the device ID and access token from Particle Cloud (the cloud service that the Photon is coupled to). For the TechReady 22 labs you are sharing an existing Particle Cloud account and your Photon has already been configured. 
+In order to complete this step you will need the device ID and access token from Particle Cloud (the cloud service that the Photon is coupled to). For the TechReady 22 labs you are sharing an existing Particle Cloud account and your Photon has already been configured. 
 
-    <ul>
-        <li>The device ID is <b>PhotonThingXX</b> where XX is the number on your Photon</li>
-        <li>The Particle Cloud access token is <b>65dbc7982187b1c1b1d34ed7ebad8f870c3b7e92</b></li>
-    </ul>
-</blockquote>
+1. The Particle Cloud access token (_PARTICLE_KEY_) is ___65dbc7982187b1c1b1d34ed7ebad8f870c3b7e92___
+2. The device ID (_PHOTON_ID_) is ___PhotonThingXX___ where XX is the number on your Photon
 
 ## Write the Weather App
 The Weather app will run on your gateway (your development machine for now) and communicate between your _Thing_ and your Azure IoT Hub. Create another file in the same directory named __weather.js__.
