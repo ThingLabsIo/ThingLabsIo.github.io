@@ -41,7 +41,7 @@ In short, the darker it is, the more resistance the photoresistor provides and t
 
 Following is the wiring diagram for this circuit. Select the ADC you have and take a minute to identify the circuit on the board.
 
-[Wiring Diagram for MCP3002](rpi2/rpi2_IoTLightSensor_mcp3002_bb.png)
+<img src="/images/rpi2/rpi2_IoTLightSensor_mcp3002_bb.png"/>
 
 __NOTE:__ _The ADC has a notch out of one side - ensure that the side with the notch is (according to the diagram) on the lower edge of the breadboard._
 
