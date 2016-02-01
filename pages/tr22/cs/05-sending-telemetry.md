@@ -285,7 +285,7 @@ private async Task InitSpiAsync()
 {% endhighlight %}
 
 ## Create a Timer to Read the Sensor Values
-Next you will create a timer to read the data from the photoresistor and set the state of the LED. To do this, in the _MainPage()_ constructor, replace <code>// TODO: Read sensors every 25ms and refresh the UI</code> with:
+Next you will create a timer to read the data from the photoresistor and set the state of the LED. To do this, in the InitGpioAsync()_ method, replace <code>// TODO: Read sensors every 25ms and refresh the UI</code> with:
 
 {% highlight csharp %}
 // Read sensors every 100ms and refresh the UI
