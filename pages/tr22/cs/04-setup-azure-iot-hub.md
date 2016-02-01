@@ -45,7 +45,11 @@ The simplest way to provision a new device is with the _DeviceExplorer_ utility 
 
 ## Create a New Azure IoT Device
 
-If you are using the _DeviceExplorer_ simply open the _Management_ tab and click the _Create_ button. In the dialog that opens, enter the name of your device as your name followed by _Hub_ - e.g. _RickGrimesHub_. Then Click the _Create_ button, and click _Done_ on the confirmation dialog that opens.
+1. Open _DeviceExplorer_ 
+2. Open the _Management_ tab
+3. Click the _Create_ button
+4. In the dialog that opens, enter the name of your device - __ThingLabsXX__ where _XX_ is the number on your RaspBerry Pi.
+5. Click the _Create_ button, and click _Done_ on the confirmation dialog that opens.
 
 <img src="/images/rpi2/rpi2_deviceexplorer02.png"/> 
 
