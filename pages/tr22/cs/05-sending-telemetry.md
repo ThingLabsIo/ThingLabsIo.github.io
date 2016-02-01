@@ -50,36 +50,38 @@ In this application you will read the voltage value coming into the ADC from the
 
 The ADC is connected to the RPi2 through the Serial Peripheral Interface (SPI) bus. SPI is a synchronous serial communication interface specification used for short distance communication, primarily in embedded systems. SPI devices communicate in full duplex mode using a master-slave architecture with a single master. The master device originates the frame for reading and writing. Multiple slave devices are supported through selection with individual slave select (SS) lines. SPI is a four-wire serial bus as follows:
 
-1. SCLK - Serial Clock (output from master).
-2. MOSI - Master Output, Slave Input (output from master).
-3. MISO - Master Input, Slave Output (output from slave).
-4. SS - Slave Select (active low, output from master).
+ - SCLK - Serial Clock (output from master).
+ - MOSI - Master Output, Slave Input (output from master).
+ - MISO - Master Input, Slave Output (output from slave).
+ - SS - Slave Select (active low, output from master).
 
 We won't go any deeper into SPI or the pin layout of the two ADCs - suffice to say that the ADC is wired up to support the four-channel SPI bus, plus supply voltage and ground. The wire connecting the voltage divider to the ADC is the input channel you will read the residual voltage from. 
 
 ## Create a Blank Universal App
-Launch Visual Studio and start a new __Blank App (Universal Windows)__ (found in the _C# -> Windows -> Universal_ node).
 
-Name the application with your alias followed by _-IoTLightSensor_.
+1. Launch Visual Studio and start a new __Blank App (Universal Windows)__ (found in the _C# -> Windows -> Universal_ node).
+2. Name the application with your alias followed by _-IoTLightSensor_.
 
 ## Add the Windows IoT Extensions for the UWP
-Once the solution is created, click on the _Project_ menu and select _Add Reference_.
+Once the solution is created...
 
-In the Reference Manager dialog, expand the _Universal Windows_ node and select _Extensions_.
-
-In the list of extensions, check the box next to __Windows IoT Extensions for the UWP__ and click __OK__ (make sure to select the same version number as the OS running on the RPi2). It is easy to accidently select the _Windows Mobile Extensions for the UWP_ (which is just below the IoT extensions) - pay close attention and make sure you have added the correct reference.
+ 1. Click on the _Project_ menu and select _Add Reference_.
+ 2. In the Reference Manager dialog, expand the _Universal Windows_ node and select _Extensions_.
+ 3. In the list of extensions, __CHECK THE BOX__ next to _Windows IoT Extensions for the UWP_ and click __OK__ (make sure to select the same version number as the OS running on the RPi2). It is easy to accidently select the _Windows Mobile Extensions for the UWP_ (which is just below the IoT extensions) - pay close attention and make sure you have added the correct reference.
 
 ## Add the Microsoft.Azure.Devices.Client NuGet Package
-Once the _Windows IoT Extensions for the UWP_ are added, click on the _Project_ menu and select _Manage NuGet Packages._
+Once the _Windows IoT Extensions for the UWP_ are added...
 
-Use the search field (check the __Include prereleases__ box) to search for __Microsoft.Azure.Devices.Client__.
-
-Click on the __Install__ button to install the package.
+1. Click on the _Project_ menu and select _Manage NuGet Packages._
+2. Use the search field (check the __Include prereleases__ box) to search for __Microsoft.Azure.Devices.Client__.
+3. Click on the __Install__ button to install the package.
 
 <img src="/images/rpi2/rpi2_lab03_AzureNuGet.PNG"/>
 
 ## Design the App UI
-Open the _MainPage.xaml_ file. This is the layout definition for the initial page that loads when the app is run. Next you will add a few elements to the page.
+Open the _MainPage.xaml_ file. This is the layout definition for the initial page that loads when the app is run. 
+
+1. Replace the <code>&lt;Grid&gt;...&lt;/Grid&gt;</code> code with the following:
 
 {% highlight xml %}
 <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
@@ -94,7 +96,6 @@ Open the _MainPage.xaml_ file. This is the layout definition for the initial pag
 </Grid>
 {% endhighlight %}
 
-
 <blockquote>
 For these labs, we don't have monitors connected to the RPi2 so you will not see this UI. When you run these labs at home, if you connect your RPi2 to a monitor you will have a UI that coincides with the hardware.
 </blockquote>
@@ -102,7 +103,8 @@ For these labs, we don't have monitors connected to the RPi2 so you will not see
 ## Add 'using' Statements
 Throughout this lab you will use a feature in Visual Studio called _light bulbs_. Light bulbs are a new productivity feature in Visual Studio 2015. They are icons that appear in the Visual Studio editor and that you can click to perform quick actions including refactoring fixing errors. Light bulbs bring error-fixing and refactoring assistance into a single focal point, often right on the line where you are typing. As you write the code in this lab you will add calls to methods that don't yet exist. The editor will indicate this to you by putting a red "squiggle" underline beneath the method call. When you hover over the offending code a light bulb will appear and you can expand it to see options for generating the missing method. 
 
-Open the _MainPage.xaml.cs_ file. This is the code behind the layout for the MainPage.xaml. Add the following to the _using_ statements at the top of the file. Add the following <code>using</code> 
+1. Open the _MainPage.xaml.cs_ file. This is the code behind the layout for the MainPage.xaml. 
+2. Add the following to the _using_ statements at the top of the file.
 
 {% highlight csharp %}
 using Windows.Devices.Gpio;
@@ -115,7 +117,7 @@ using Microsoft.Azure.Devices.Client;
 {% endhighlight %}
 
 ## Define Constants and Variables
-There are several constants and variables that you will reference throughout this code. This code is written to support the MCP3002 (10-bit, 2-channel) or the MCP3208 (12-bit, 8-channel) ADCs. You must set the value of <code>ADC_DEVICE</code> to the specific ADC you are using, and follow the appropriate wiring diagram (above). 
+There are several constants and variables that you will reference throughout this code. This code is written to support the MCP3002 (10-bit, 2-channel) or the MCP3208 (12-bit, 8-channel) ADCs. You must set the value of <code>ADC_DEVICE</code> to the specific ADC you are using, and follow the appropriate wiring diagram (above). For this lab you have the MCP3002.
 
 {% highlight csharp %}
 public sealed partial class MainPage : Page
@@ -211,7 +213,8 @@ public MainPage()
 }
 {% endhighlight %}
 
-Use the Visual Studio light bulb feature to add the __InitAllAsync()__ method. Modify the method signature to mark it as an async method and return a <code>Task</code>.
+1. Use the Visual Studio light bulb feature to add the __InitAllAsync()__ method. 
+2. Modify the method signature to mark it as an <code>async</code> method and return a <code>Task</code>.
 
 {% highlight csharp %}
 private async Task InitAllAsync()
@@ -237,7 +240,11 @@ private async Task InitAllAsync()
 
 This method uses <code>Task.WhenAll()</code> to await two different asynchronous calls - one that will initialize the GPIO bus and one that will initialize the SPI bus. Using <code>Task.WhenAll()</code> suspends the <code>InitAllAsync</code> method until both of the contained asynchronous calls are are completed. 
 
-Use the Visual Studio light bulb feature to create the __InitGpioAsync()__ method. Initialize the GPIO bus by assigning the default GPIO controller to the <code>gpio</code> variable, and check for _null_ (throw an exception if it is _null_). Next, initialize the <code>redLedPin</code> in the same way you did in the earlier lab, ['Hello, Windows IoT!'](../hello-windows-iot/).
+Use the Visual Studio light bulb feature to create the __InitGpioAsync()__ method. 
+
+1. Initialize the GPIO bus by assigning the default GPIO controller to the <code>gpio</code> variable
+2. Check for _null_ (throw an exception if it is _null_).
+3. Initialize the <code>redLedPin</code> in the same way you did in the earlier lab, ['Hello, Windows IoT!'](../hello-windows-iot/).
 
 {% highlight csharp %}
 private async Task InitGpioAsync()
@@ -257,7 +264,11 @@ private async Task InitGpioAsync()
 
 Make sure that you added the <code>async</code> modifier to the method signature to make this an asynchronous method and set its return type to <code>Task</code>. 
 
-Go back to the _MainPage()_ constructor and use the Visual Studio light bulb feature to add the __InitSpiAsync()__ method. In this method you will initialize the SPI buss so that you can use it to communicate through the ADC. Modify the method signature to mark it as an async method and return a <code>Task</code>.
+Go back to the _MainPage()_ constructor 
+
+1. Use the Visual Studio light bulb feature to add the __InitSpiAsync()__ method. 
+3. In this method you initialize the SPI buss so that you can use it to communicate through the ADC.
+2. Modify the method signature to mark it as an async method and return a <code>Task</code>.
 
 {% highlight csharp %}
 private async Task InitSpiAsync()
@@ -302,7 +313,9 @@ private void SensorTimer_Tick(object state)
 }
 {% endhighlight %}
 
-In _SensorTmer\_Tick_ you will call two methods - one to read the sensor data in, and one to set the state of the LED. Use the Visual Studio light bulb feature to create the __ReadAdc()__ method.
+In _SensorTmer\_Tick_ you will call two methods - one to read the sensor data in, and one to set the state of the LED. 
+
+1. Use the Visual Studio light bulb feature to create the __ReadAdc()__ method.
 
 {% highlight csharp %}
 private void ReadAdc()
@@ -336,7 +349,10 @@ private void ReadAdc()
 
 In this method you create a command buffer to write to the ADC, and a read buffer to capture the values from the ADC. The SPI configuration (based on which ADC you are using) is the first node in the command/write buffer. When you call <code>TransferFullDuplex()</code> you open a two-way channel with the ADC over the SPI bus - a command/write channel and a read channel. 
 
-The <code>convertToInt(readBuffer)</code> is used to convert the byte array returned from the ADC into an integer. Use the Visual Studio light bulb feature to add __convertToInt(byte[])__. Modify the method signature - change the input variable name from _readBuffer_ to __data__. Each ADC returns the data a little differently, so this command will convert the byte array to an integer based on the ADC you are using.
+The <code>convertToInt(readBuffer)</code> is used to convert the byte array returned from the ADC into an integer. 
+
+1. Use the Visual Studio light bulb feature to add __convertToInt(byte[])__. 
+2. Modify the method signature - change the input variable name from _readBuffer_ to __data__. Each ADC returns the data a little differently, so this command will convert the byte array to an integer based on the ADC you are using.
 
 {% highlight csharp %}
 private int convertToInt(byte[] data)
@@ -360,7 +376,10 @@ private int convertToInt(byte[] data)
 }
 {% endhighlight %}
 
-In the _ReadAdc()_ method there was also a reference to a _Map()_ method. Use the Visual Studio light bulb feature to add Map(int, int, int, int, int)__. This method makes it easy to map data from one value range to another. Modify the method signature according to the code example below.
+In the _ReadAdc()_ method there was also a reference to a _Map()_ method. 
+
+1. Use the Visual Studio light bulb feature to add Map(int, int, int, int, int)__. This method makes it easy to map data from one value range to another. 
+2. Modify the method signature according to the code example below.
 
 {% highlight csharp %}
 private double Map(int val, int inMin, int inMax, int outMin, int outMax)
@@ -371,7 +390,7 @@ private double Map(int val, int inMin, int inMax, int outMin, int outMax)
 
 In this example you are using the _Map()_ method to map the value from the ADC, which is a 10-bit range (0 - 1023), to a range of 0 - 300, which is used to define the width of the darkness indicator bar in the UI (max width is 300).
 
-Next, return to the _SensorTimer\_Tick_ method and use the Visual Studio light bulb feature to add an event handler for __LightLed()__.
+1. In the _SensorTimer\_Tick_ method and use the Visual Studio light bulb feature to add an event handler for __LightLed()__.
 
 {% highlight csharp %}
 private void LightLed()
@@ -445,21 +464,21 @@ Just before the _MainPage()_ constructor definition, update the following code.
     private const string IOT_HUB_DEVICE_LOCATION = "YOUR DEVICE LOCATION GOES HERE";
 {% endhighlight %}    
 
-In the _MainPage()_ constructor, replace the comment <code>// TODO: Instantiate the Azure device client</code> with:
+1. In the _MainPage()_ constructor, replace the comment <code>// TODO: Instantiate the Azure device client</code> with:
 
 {% highlight csharp %}
 // Instantiate the Azure device client
 deviceClient = DeviceClient.CreateFromConnectionString(IOT_HUB_CONN_STRING);
 {% endhighlight %}
 
-Next, replace the comment<code>// TODO: Send messages to Azure IoT Hub every one-second</code> with:
+1. Replace the comment<code>// TODO: Send messages to Azure IoT Hub every one-second</code> with:
 
 {% highlight csharp %}
 // Send messages to Azure IoT Hub every one-second
 sendMessageTimer = new Timer(this.MessageTimer_Tick, null, 0, 1000);
 {% endhighlight %}
 
-Use the Visual Studio light bulb feature to create the __MessageTimer\_Tick()__ event handler.
+1. Use the Visual Studio light bulb feature to create the __MessageTimer\_Tick()__ event handler.
 
 {% highlight csharp %}
 private void MessageTimer_Tick(object state)
