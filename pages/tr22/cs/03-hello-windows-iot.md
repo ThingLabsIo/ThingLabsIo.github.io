@@ -210,7 +210,7 @@ You will be prompted with the _Remote Connections_ dialog.
 The Raspberry Pi you are working with is named <strong>ThingLabsXX</strong> where the XX is replaced with the number on your Raspberry Pi.
 </blockquote>
 
-1. Select your device from the list of _Auto Detected_ devices, or type in the device name or IP address into the _Manual Configuration_ textbox
+1. Select your device from the list of _Auto Detected_ devices - __IF YOUR DEVICE IS NOT LISTED__ type the device name into the _Manual Configuration_ textbox
 2. Set the _Authentication Mode_ to __Universal (Unencrypted Protocol)__
 3. Click _Select_
 
