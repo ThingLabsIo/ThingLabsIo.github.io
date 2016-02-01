@@ -64,6 +64,10 @@ Open the _MainPage.xaml_ file. This is the layout definition for the initial pag
 </Grid>
 {% endhighlight %}
 
+<blockquote>
+For these labs, we don't have monitors connected to the RPi2 so you will not see this UI. When you run these labs at home, if you connect your RPi2 to a monitor you will have a UI that coincides with the hardware.
+</blockquote>
+
 ## Code the App Logic
 Throughout this lab you will use a feature in Visual Studio called _light bulbs_. Light bulbs are a new productivity feature in Visual Studio 2015. They are icons that appear in the Visual Studio editor and that you can click to perform quick actions including refactoring fixing errors. Light bulbs bring error-fixing and refactoring assistance into a single focal point, often right on the line where you are typing. As you write the code in this lab you will add calls to methods that don't yet exist. The editor will indicate this to you by putting a red "squiggle" underline beneath the method call. When you hover over the offending code a light bulb will appear and you can expand it to see options for generating the missing method. 
 
@@ -71,9 +75,8 @@ Throughout this lab you will use a feature in Visual Studio called _light bulbs_
 Open the _MainPage.xaml.cs_ file. This is the code behind the layout for the MainPage.xaml. Add the following to the _using_ statements at the top of the file. 
 
 {% highlight csharp %}
-using System.Threading; // This is for async operations
-using System.Threading.Tasks; // This is for async operations
-using Windows.Devices.Gpio; // This provides access to the GPIO pins on the board.
+using System.Threading.Tasks;
+using Windows.Devices.Gpio;
 {% endhighlight %}
 
 Add the following variable definitions inside the <code>public sealed partial class MainPage : Page</code> class definition:
@@ -195,13 +198,6 @@ private async Task InitGpioAsync()
 Make sure that you added the <code>async</code> modifier to the method signature to make this an asynchronous method and changed the return type to <code>Task</code>.. 
 
 If you want to compare your code with the master lab code, you can find it [here](https://github.com/ThingLabsIo/IoTLabs/blob/master/RPi2/HelloWindowsIoT/HelloWindowsIoT/MainPage.xaml.cs).
-
-# Run the App Locally
-Press __F5__ to run the app locally. You should see a screen similar to this:
-
-![No GPIO Warning](/images/rpi2/rpi2_lab01_nogpio.png)
-
-This screen is displayed because your development machine doesn't have a GPIO controller.
 
 # Run the App on the Device
 To deploy this application to your RPi2, select __ARM__ from the _Solution Platforms_ list in the toolbar, and select __REMOTE MACHINE__ from the _Device_ dropdown list in the toolbar.

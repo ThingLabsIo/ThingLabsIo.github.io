@@ -41,22 +41,7 @@ In short, the darker it is, the more resistance the photoresistor provides and t
 
 Following is the wiring diagram for this circuit. Select the ADC you have and take a minute to identify the circuit on the board.
 
-<div id="wiring-tabs">
-  <ul>
-    <li><a href="#mcp3008"><span>MCP3008</span></a></li>
-    <li><a href="#mcp3002"><span>MCP3002</span></a></li>
-  </ul>
-  <div id="mcp3008">
-    <img src="/images/rpi2/rpi2_IoTLightSensor_mcp3008_bb.png"/>
-  </div>
-  <div id="mcp3002">
-    <img src="/images/rpi2/rpi2_IoTLightSensor_mcp3002_bb.png"/>
-  </div>
-</div>
-
-<script>
-$( "#wiring-tabs" ).tabs();
-</script>
+[Wiring Diagram for MCP3002](rpi2/rpi2_IoTLightSensor_mcp3002_bb.png)
 
 __NOTE:__ _The ADC has a notch out of one side - ensure that the side with the notch is (according to the diagram) on the lower edge of the breadboard._
 
@@ -75,7 +60,7 @@ We won't go any deeper into SPI or the pin layout of the two ADCs - suffice to s
 ## Create a Blank Universal App
 Launch Visual Studio and start a new __Blank App (Universal Windows)__ (found in the _C# -> Windows -> Universal_ node).
 
-Name the application _IoTLightSensor_.
+Name the application with your alias followed by _-IoTLightSensor_.
 
 ## Add the Windows IoT Extensions for the UWP
 Once the solution is created, click on the _Project_ menu and select _Add Reference_.
@@ -108,6 +93,11 @@ Open the _MainPage.xaml_ file. This is the layout definition for the initial pag
     </StackPanel>
 </Grid>
 {% endhighlight %}
+
+
+<blockquote>
+For these labs, we don't have monitors connected to the RPi2 so you will not see this UI. When you run these labs at home, if you connect your RPi2 to a monitor you will have a UI that coincides with the hardware.
+</blockquote>
 
 ## Add 'using' Statements
 Throughout this lab you will use a feature in Visual Studio called _light bulbs_. Light bulbs are a new productivity feature in Visual Studio 2015. They are icons that appear in the Visual Studio editor and that you can click to perform quick actions including refactoring fixing errors. Light bulbs bring error-fixing and refactoring assistance into a single focal point, often right on the line where you are typing. As you write the code in this lab you will add calls to methods that don't yet exist. The editor will indicate this to you by putting a red "squiggle" underline beneath the method call. When you hover over the offending code a light bulb will appear and you can expand it to see options for generating the missing method. 
