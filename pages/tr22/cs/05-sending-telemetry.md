@@ -424,7 +424,28 @@ __NOTE:__ You can verify or modify these values by navigating to the project pro
 Now press __F5__ to run the application and you should see it deploy on the RPi2. Test the circuit and application by changing the amount of light the photoresistor is exposed to.
 
 ## Send A Message to Azure IoT Hub
-Now that you know your physical device is working, it is time to send its data to Azure. In the _MainPage()_ constructor, replace the comment <code>// TODO: Instantiate the Azure device client</code> with:
+Now that you know your physical device is working, it is time to send its data to Azure. 
+
+In the previous lab you created a device in Azure IoT Hub. The last step of that lab was to copy the device specific connection string for that device (although I am guessing that your copy buffer has been rewritten since then). You can get the device-specific connection string by selecting it in the DeviceExplorer _Devices_ list - right-click and select _Copy connection string for selected device_:
+
+<img src="/images/rpi2/rpi2_deviceexplorer03.png"/> 
+
+Just before the _MainPage()_ constructor definition, update the following code.
+
+1. Use the device-specific connection string as the value of _IOT\_HUB\_CONN\_STRING_
+2. Use the name of the device you created in Azure IoT Hub as the _IOT\_HUB\_DEVICE_
+3. Use any string value you'd like as the _IOT\_HUB\_DEVICE\_LOCATION_
+
+{% highlight csharp %}
+// Use the device specific connection string here
+    private const string IOT_HUB_CONN_STRING = "YOUR DEVICE SPECIFIC CONNECTION STRING GOES HERE";
+    // Use the name of your Azure IoT device here - this should be the same as the name in the connections string
+    private const string IOT_HUB_DEVICE = "YOUR DEVICE NAME GOES HERE";
+    // Provide a short description of the location of the device, such as 'Home Office' or 'Garage'
+    private const string IOT_HUB_DEVICE_LOCATION = "YOUR DEVICE LOCATION GOES HERE";
+{% endhighlight %}    
+
+In the _MainPage()_ constructor, replace the comment <code>// TODO: Instantiate the Azure device client</code> with:
 
 {% highlight csharp %}
 // Instantiate the Azure device client
