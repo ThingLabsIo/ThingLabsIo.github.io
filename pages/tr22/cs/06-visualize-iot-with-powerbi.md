@@ -77,7 +77,7 @@ Before defining the query that will select data from the input and send it to th
 
 ![Create the output](/images/asaoutputs.png)
 
-1. Click on _ADD AN OURPUT_.
+1. Click on __ADD AN OUTPUT__.
 2. Select __Power BI__ and click on the forward arrow in the lower-right.
 3. Follow the instructions for either _Existing Microsoft Power BI User_ or _New User_ using your __@microsoft.com__ email account.
 
