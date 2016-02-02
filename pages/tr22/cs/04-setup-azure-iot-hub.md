@@ -43,7 +43,7 @@ The simplest way to provision a new device is with the _DeviceExplorer_ utility 
 
 1. Open the _DeviceExplorer.exe_ from the taskbar shortcut or from __C:\Program Files (x86)\Microsoft\DeviceExplorer__. 
 2. Open the _Configuration_ tab.
-3. Paste the _iothubowner_ connection strong (from the previous section of this lab) in the _IoT Hub Connection String_ field.
+3. Paste the _iothubowner_ connection string (from the previous section of this lab) in the _IoT Hub Connection String_ field.
 4. Click __Update__.
 
 ![Use DeviceExplorer](/images/rpi2/rpi2_deviceexplorer01.png)
