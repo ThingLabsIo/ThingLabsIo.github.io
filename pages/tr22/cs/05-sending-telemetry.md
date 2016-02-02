@@ -464,7 +464,7 @@ Just before the _MainPage()_ constructor definition, update the following code.
     private const string IOT_HUB_DEVICE_LOCATION = "YOUR DEVICE LOCATION GOES HERE";
 {% endhighlight %}    
 
-1. In the _MainPage()_ constructor, replace the comment <code>// TODO: Instantiate the Azure device client</code> with:
+1. In the _InitAllAsync()_ method, replace the comment <code>// TODO: Instantiate the Azure device client</code> with:
 
 {% highlight csharp %}
 // Instantiate the Azure device client
