@@ -184,7 +184,7 @@ In the _InitGpioAsync()_ method you will get the instance of the default GPIO co
 
 <blockquote>
 The GpioController.GetDefaultAsync() asynchronous method was added to the Windows IoT Extensions for the UWP in the 10.0.10586 version. If you are running Windows 10 (version 10.0.10240) the GpioController.GetDefaultAsync() method will not work.
-<blockquote>
+</blockquote>
 
 1. Add the following code for the <code>InitGpioAsync()</code> method.
 2. Add the <code>async</code> modifier to the method signature.
