@@ -148,6 +148,10 @@ When you want to quit the application, press <kbd>CTRL</kbd> + <kbd>C</kbd> twic
 # Conclusion &amp; Next Steps
 In this lab you learned how to write a Node.js/Johnny-Five application that writes LOW and HIGH signals to a digital pin (designated for output) to make an LED blink. In itself this may not be very exciting, but the core concept is necessary - writing to a digital output pin.
 
-In the next lab you will provision an Azure IoT Hub and an IoT Hub device.
+If this is as far as you want to go in this workshop, [please complete the TechReady 22 IoT Maker Den survey](https://www.surveymonkey.com/r/G72GWH7) and take 1-minute to comlete the survey (we love feedback!).
+
+In the [next lab][nextlab] you will set up a Microsoft Azure IoT Hub that will act as the cloud backend for your IoT devices. In the labs after that you will build a new _Thing_ that will collect environment data and send it to your IoT hub.
 
 <a class="radius button small" href="{{ site.url }}/tr22/js/setup-azure-iot-hub/">Go to 'Setting Up Azure IoT Hub' ›</a>
+
+[nextlab]: /tr22/js/setup-azure-iot-hub/
