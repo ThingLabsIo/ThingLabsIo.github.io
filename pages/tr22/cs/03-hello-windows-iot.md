@@ -259,6 +259,8 @@ Congratulations! You have built a Universal Windows Platform application that co
 2. Testing for the existence of the GPIO controller to inform the application of what capabilities are accessible.
 3. Controlling the state of a device via the GPIO pins. 
 
+If this is as far as you want to go in this workshop, please click on the desktop shortcut for the IoT Lab Survey and take 1-minute to comlete the survey (we love feedback!).
+
 In the [next lab][nextlab] you will set up a Microsoft Azure IoT Hub that will act as the cloud backend for your IoT devices. In the labs after that you will build a new _Thing_ that will collect environment data and send it to your IoT hub.
 
 <a class="radius button small" href="{{ site.url }}/tr22/cs/setup-azure-iot-hub/">Go to 'Setup Azure IoT Hub' ›</a>
