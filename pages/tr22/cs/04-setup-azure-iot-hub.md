@@ -1,5 +1,5 @@
 ---
-layout: "page-tr22"
+layout: page-fullwidth
 title: "Setting Up Azure IoT"
 subheadline: "Building Connected Things with Windows 10 IoT Core and C#"
 teaser: "In this lab you will provision an Azure IoT Hub and an IoT Hub device."

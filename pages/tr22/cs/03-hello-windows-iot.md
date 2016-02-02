@@ -1,5 +1,5 @@
 ---
-layout: "page-tr22"
+layout: page-fullwidth
 title: "Hello, Windows IoT!"
 subheadline: "Building Connected Things with Windows 10 IoT Core and C#"
 teaser: "In this lab you will create a simple 'Thing' using Windows 10 IoT Core."

@@ -1,5 +1,5 @@
 ---
-layout: page-tr22
+layout: page-fullwidth
 title: "Sending Telemetry to the Cloud"
 subheadline: "Building Connected Things with Windows 10 IoT Core and C#"
 teaser: "In this lab you will build a Universal Windows Platform application that collects ambient light data and sends it to the Cloud."

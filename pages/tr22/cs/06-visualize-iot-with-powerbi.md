@@ -1,5 +1,5 @@
 ---
-layout: page-tr22
+layout: page-fullwidth
 title: "Visualizing IoT Data"
 subheadline: "Building Connected Things with Windows 10 IoT Core and C#"
 teaser: "In this lab you will create visualizations of IoT data."
