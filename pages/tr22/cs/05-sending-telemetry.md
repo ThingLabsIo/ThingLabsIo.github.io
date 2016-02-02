@@ -24,7 +24,7 @@ A _photoresistor_, also known as _light-dependent resistor (LDR)_ or a photocell
 
 In order to take advantage of the photoresistor you will create a _voltage divider_ - a passive linear circuit that splits the input voltage amongst two or more components (similar to a Y-splitter). The following schematic shows a voltage divider in use on an Arduino Uno R3 (this is a simpler way to show the diagram as compared to the RPi2 which, as you will see, incorporates an external ADC).
 
-<img src="/images/photoresistor_schem.png"/>
+![A voltage divder schematic](/images/photoresistor_schem.png")
 
 To create the voltage divider needed for this the RPi2 has been connected as follows:
 
@@ -41,7 +41,7 @@ In short, the darker it is, the more resistance the photoresistor provides and t
 
 Following is the wiring diagram for this circuit. Select the ADC you have and take a minute to identify the circuit on the board.
 
-<img src="/images/rpi2/rpi2_IoTLightSensor_mcp3002_bb.png"/>
+![Wiring diagram using the MCP3002 ADC](/images/rpi2/rpi2_IoTLightSensor_mcp3002_bb.png)
 
 __NOTE:__ _The ADC has a notch out of one side - ensure that the side with the notch is (according to the diagram) on the lower edge of the breadboard._
 
@@ -76,7 +76,7 @@ Once the _Windows IoT Extensions for the UWP_ are added...
 2. Use the search field (check the __Include prereleases__ box) to search for __Microsoft.Azure.Devices.Client__.
 3. Click on the __Install__ button to install the package.
 
-<img src="/images/rpi2/rpi2_lab03_AzureNuGet.PNG"/>
+![Getting the NuGet package](/images/rpi2/rpi2_lab03_AzureNuGet.PNG)
 
 ## Design the App UI
 Open the _MainPage.xaml_ file. This is the layout definition for the initial page that loads when the app is run. 
@@ -432,11 +432,11 @@ In this method you simply check to see if the ADC value is greater than two-thir
 ## Test Run the App
 At this point you can deploy and run the application to see if the photoresistor and LED are working. You still haven't sent a message to Azure, but testing the circuit is never a bad idea. To deploy this application to your RPi2, select __ARM__ from the _Solution Platforms_ list in the toolbar, and select __REMOTE MACHINE__ from the _Device_ dropdown list in the toolbar.
 
-<img src="/images/rpi2/rpi2_lab01_arm.png"/>
+![Targeting ARM on a remote machine](/images/rpi2/rpi2_lab01_arm.png)
 
 You will be prompted with the _Remote Connections_ dialog. Select your device from the list of _Auto Detected_ devices, or type in the device name or IP address into the _Manual Configuration_ textbox (set the _Authentication Mode_ to __Universal (Unencrypted Protocol)__)  and click _Select_.
 
-<img src="/images/rpi2/rpi2_lab01_remote.png"/>
+![Choose the remote machine to deploy to](/images/rpi2/rpi2_lab01_remote.png)
 
 __NOTE:__ You can verify or modify these values by navigating to the project properties (select Properties in the Solution Explorer) and choosing the Debug tab on the left.
 
@@ -447,7 +447,7 @@ Now that you know your physical device is working, it is time to send its data t
 
 In the previous lab you created a device in Azure IoT Hub. The last step of that lab was to copy the device specific connection string for that device (although I am guessing that your copy buffer has been rewritten since then). You can get the device-specific connection string by selecting it in the DeviceExplorer _Devices_ list - right-click and select _Copy connection string for selected device_:
 
-<img src="/images/rpi2/rpi2_deviceexplorer03.png"/> 
+![Get the device-specific connection string](/images/rpi2/rpi2_deviceexplorer03.png) 
 
 Just before the _MainPage()_ constructor definition, update the following code.
 
@@ -527,7 +527,7 @@ private async Task SendMessageToIoTHubAsync(int darkness)
 
 With this method you attempt to construct a JSON message payload, display it on the screen and send it to your Azure IoT Hub. The communication with the Azure IoT Hub is managed by the <code>deviceClient</code> object from the _Microsoft.Azure.Devices.Client_ namespace.
 
-The final _MainPage.cxaml.cs_ can be found [here](https://github.com/ThingLabsIo/IoTLabs/blob/master/RPi2/IoTLightSensor/IoTLightSensor/MainPage.xaml.cs) and the complete solution can be found [here](https://github.com/ThingLabsIo/IoTLabs/tree/master/RPi2/IoTLightSensor).
+The final _MainPage.xaml.cs_ can be found [here](https://github.com/ThingLabsIo/IoTLabs/blob/master/RPi2/IoTLightSensor/IoTLightSensor/MainPage.xaml.cs) and the complete solution can be found [here](https://github.com/ThingLabsIo/IoTLabs/tree/master/RPi2/IoTLightSensor).
 
 ## Run the Application
 Now you can run the application on your RPi2 and not only will you see the indicator bar changing, but you will also see the log of messages being sent to Azure IoT Hub at a rate of once per second.

@@ -141,7 +141,7 @@ You can create an event handler that will fire every time the _Timer.Tick_ event
 2. Click the down arrow and select _Generate method 'MainPage.Timer\_Tick'_ 
 3. Add the following code for the _Timer\_Tick_ event handler.
 
-<img src="/images/rpi2/rpi2_lab01_Timer_Tick.PNG"/>
+![Using Visual Studio light bulb refactoring](/images/rpi2/rpi2_lab01_Timer_Tick.PNG)
 
 {% highlight csharp %}
 private void Timer_Tick(object sender, object e)
@@ -233,7 +233,7 @@ The application is ready to be deployed and run on the RPi2. You must set the ta
 1. Select __ARM__ from the _Solution Platforms_ list in the toolbar.
 2. Select __REMOTE MACHINE__ from the _Device_ dropdown list in the toolbar.
 
-<img src="/images/rpi2/rpi2_lab01_arm.png"/>
+![Targeting ARM on a remote machine](/images/rpi2/rpi2_lab01_arm.png)
 
 You will be prompted with the _Remote Connections_ dialog. 
 
@@ -245,7 +245,7 @@ The RPi2 you are working with is named <strong>ThingLabsXX</strong> where the XX
 2. Set the _Authentication Mode_ to __Universal (Unencrypted Protocol)__
 3. Click _Select_
 
-<img src="/images/rpi2/rpi2_lab01_remote.png"/>
+![Choose the remote machine to deploy to](/images/rpi2/rpi2_lab01_remote.png)
 
 __NOTE:__ You can verify or modify these values by navigating to the project properties (select Properties in the Solution Explorer) and choosing the Debug tab on the left.
 
