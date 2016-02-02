@@ -24,7 +24,7 @@ A _photoresistor_, also known as _light-dependent resistor (LDR)_ or a photocell
 
 In order to take advantage of the photoresistor you will create a _voltage divider_ - a passive linear circuit that splits the input voltage amongst two or more components (similar to a Y-splitter). The following schematic shows a voltage divider in use on an Arduino Uno R3 (this is a simpler way to show the diagram as compared to the RPi2 which, as you will see, incorporates an external ADC).
 
-![A voltage divder schematic](/images/photoresistor_schem.png")
+![A voltage divder schematic](/images/photoresistor_schem.png)
 
 To create the voltage divider needed for this the RPi2 has been connected as follows:
 
