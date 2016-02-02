@@ -60,7 +60,7 @@ You will see your device in the _Devices_ list. Once a device is created, you ca
 ## Conclusion &amp; Next Steps
 Congratulations! You have created an Azure IoT Hub that you will connect devices to. You also created a representation of a physical device in your IoT Hub. In the next lab you will build a Universal Windows Application that will collect data from the RPi2 and send it to Azure IoT Hub.
 
-If this is as far as you want to go in this workshop, please click on the desktop shortcut for the IoT Lab Survey and take 1-minute to comlete the survey (we love feedback!).
+If this is as far as you want to go in this workshop, [please complete the TechReady 22 IoT Maker Den survey](https://www.surveymonkey.com/r/G72GWH7) and take 1-minute to comlete the survey (we love feedback!).
 
 <a class="radius button small" href="{{ site.url }}/tr22/cs/sending-telemetry/">Go to 'Sending Telemetry to the Cloud' ›</a>
 

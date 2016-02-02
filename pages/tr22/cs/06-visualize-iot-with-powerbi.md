@@ -151,4 +151,6 @@ In this lab you learned how to create an Azure Stream Analytics job to query dat
 Congratulations! In this hands-on workshop you experienced an IoT solution end-to-end. You built a _Thing_ that both sent output (blinked an LED) and collected input (ambient light) and uased it to send data to Azure IoT Hubs. You then passed that data stream into Azure Stream Analytics, queried it and sent the output to Power BI where you created a visualization of the IoT data.
 
 # Complete the Survey
-Please click on the desktop shortcut for the IoT Lab Survey and take 1-minute to comlete the survey (we love feedback!).
+Please [complete the TechReady 22 IoT Maker Den survey](https://www.surveymonkey.com/r/G72GWH7) and take 1-minute to comlete the survey (we love feedback!).
+
+If this is as far as you want to go in this workshop, [please complete the TechReady 22 IoT Maker Den survey](https://www.surveymonkey.com/r/G72GWH7) and take 1-minute to comlete the survey (we love feedback!).

@@ -541,7 +541,7 @@ Congratulations! You have built a Universal Windows Platform application that ca
 
 At this point, nothing interesting is happening with that data you are sending to Azure. It is simply being persisted for a default amount of time (1-day) and then being dropped. In the [next lab][nextlab] you will setup some Azure services to process and visualize the data.
 
-If this is as far as you want to go in this workshop, please click on the desktop shortcut for the IoT Lab Survey and take 1-minute to comlete the survey (we love feedback!).
+If this is as far as you want to go in this workshop, [please complete the TechReady 22 IoT Maker Den survey](https://www.surveymonkey.com/r/G72GWH7) and take 1-minute to comlete the survey (we love feedback!).
 
 <a class="radius button small" href="{{ site.url }}/tr22/cs/visualize-iot-with-powerbi/">Go to 'Visualize IoT Data with Microsoft Power BI' ›</a>
 
