@@ -1,5 +1,5 @@
 ---
-layout: page-tr22
+layout: page-fullwidth
 title: "Setting Up Azure IoT Hub"
 subheadline: "Building Connected Things with Node.js"
 teaser: "In this lab you will provision an Azure IoT Hub and an IoT Hub device."

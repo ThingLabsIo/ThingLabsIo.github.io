@@ -1,5 +1,5 @@
 ---
-layout: page-tr22
+layout: page-fullwidth
 title: "Writing Digital Output (Hello, World!)"
 subheadline: "Building Connected Things with Node.js"
 teaser: "In this lab you will use one of the digital output pins to send a signal to an LED."
@@ -35,8 +35,8 @@ Using your favorite/preferred text/code editor, create a file in your labs folde
     "author": "YOUR NAME HERE",
   "license": "MIT",
   "dependencies": {
-    "johnny-five": "latest",
-    "particle-io": "latest"
+    "johnny-five": "0.9.19",
+    "particle-io": "0.12.0"
   }
 }
 {% endhighlight %}

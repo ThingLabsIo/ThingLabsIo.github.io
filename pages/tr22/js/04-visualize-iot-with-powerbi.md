@@ -1,5 +1,5 @@
 ---
-layout: page-tr22
+layout: page-fullwidth
 title: "Visualizing IoT Data with Power BI"
 subheadline: "Building Connected Things with Node.js"
 teaser: "In this lab you will create visualizations of IoT data using Microsoft Azure Stream Analytics and Power BI."
