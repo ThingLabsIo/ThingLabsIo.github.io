@@ -170,9 +170,9 @@ board.on("ready", function() {
             // barometer (MPL3115A2) which can provide both barometric pressure and humidity.
             // Controllers for these are wrapped in a convenient plugin class:
             var weather = new Shield({
-            variant: "PHOTON",  // or ARDUINO
-            freq: 1000,         // Set the callback frequency to 1-second
-            elevation: 100      // Go to http://www.WhatIsMyElevation.com to get your current elevation
+                variant: "PHOTON",  // or ARDUINO
+                freq: 1000,         // Set the callback frequency to 1-second
+                elevation: 100      // Go to http://www.WhatIsMyElevation.com to get your current elevation
             });
             
             // The weather.on("data", callback) function invokes the anonymous callback function 
@@ -194,10 +194,8 @@ board.on("ready", function() {
                 
                 // Create the message based on the payload JSON
                 var message = new Message(payload);
-                
                 // For debugging purposes, write out the message payload to the console
                 console.log("Sending message: " + message.getData());
-                
                 // Send the message to Azure IoT Hub
                 client.sendEvent(message, printResultFor('send'));
             });
