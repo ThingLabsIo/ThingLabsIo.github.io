@@ -1,5 +1,5 @@
 ---
-layout: "page-tr22"
+layout: page-fullwidth
 title: "Setting Up Azure IoT"
 subheadline: "Building Connected Things with Windows 10 IoT Core and C#"
 teaser: "In this lab you will provision an Azure IoT Hub and an IoT Hub device."
@@ -26,7 +26,7 @@ In a browser, navigate to the Azure Portal at [https://portal.azure.com](https:/
 5. Select or create a new __Resource Group__
 6. Select a location (choose the one closest to your physical location)
 
-<img src="/images/rpi2/rpi2_New-IoT-Hub.png"/>
+![Create an IoT Hub](/images/rpi2/rpi2_New-IoT-Hub.png)
   
 Once the IoT Hub is created, navigate into it and:
 
@@ -34,57 +34,38 @@ Once the IoT Hub is created, navigate into it and:
 2. In the next blade, click on the __iothubowner__ entry
 3. Copy the __Connection string-primary key__ to your clipboard
 
-<img src="/images/rpi2/rpi2_AzureIoTConnectionString.png"/>
+![Get the IoT Hub Owner Connection String](/images/rpi2/rpi2_AzureIoTConnectionString.png)
 
-## Install Azure IoT Hub DeviceExplorer
+## Use Azure IoT Hub DeviceExplorer
 Azure IoT Hub only allows connections from known devices that present proper credentials. In this lab series you will use either the _DeviceExplorer_ utility or the _iothub-explorer_ command line interface to provision a device for use in Azure IoT Hub. While Azure IoT Hub supports multiple authentication schemes, you will use pre-shared keys in this lab series.
 
-The simplest way to provision a new device is with the _DeviceExplorer_ utility (Windows only). If you are using Windows, download and run [Device Explorer][deviceexplorer]. After running the installer, the _DeviceExplorer.exe_ can be found at __C:\Program Files (x86)\Microsoft\DeviceExplorer__. When you run the utility you need to input the _iothubowner_ connection strong (from the previous step) in the _IoT Hub Connection String_ field found in the _Configuration_ tab.
+The simplest way to provision a new device is with the _DeviceExplorer_ utility (Windows only). 
 
-<img src="/images/rpi2/rpi2_deviceexplorer01.png"/>
+1. Open the _DeviceExplorer.exe_ from the taskbar shortcut or from __C:\Program Files (x86)\Microsoft\DeviceExplorer__. 
+2. Open the _Configuration_ tab.
+3. Paste the _iothubowner_ connection string (from the previous section of this lab) in the _IoT Hub Connection String_ field.
+4. Click __Update__.
 
-### Optional: Install the IoT Hub Explorer Command Line Interface
-If you prefer to use a command line interface instead of the _DeviceExplorer_ utility, you can install the _iothub-explorer_ command line interface. The iothub-explorer tool enables you to provision devices in your IoT hub. It runs on any computer where Node.js is available. You can install Node.js from [NodeJS.org](https://nodejs.org).
-
-On Windows, open the Node.js command prompt and type the following:
-<pre>
-  npm install -g iothub-explorer
-  npm update -g iothub-explorer
-</pre>
+![Use DeviceExplorer](/images/rpi2/rpi2_deviceexplorer01.png)
 
 ## Create a New Azure IoT Device
 
-If you are using the _DeviceExplorer_ simply open the _Management_ tab and click the _Create_ button. In the dialog that opens, enter the name of your device as your name followed by _Hub_ - e.g. _RickGrimesHub_. Then Click the _Create_ button, and click _Done_ on the confirmation dialog that opens.
+1. Open _DeviceExplorer_ 
+2. Open the _Management_ tab
+3. Click the _Create_ button
+4. In the dialog that opens, enter the name of your device - __ThingLabsXX__ where _XX_ is the number on your Raspberry Pi.
+5. Click the _Create_ button, and click _Done_ on the confirmation dialog that opens.
 
-<img src="/images/rpi2/rpi2_deviceexplorer02.png"/> 
+![Create a new virtual device](/images/rpi2/rpi2_deviceexplorer02.png) 
 
 You will see your device in the _Devices_ list. Once a device is created, you can get the device-specific connection string by selecting it in the _Devices_ list, right-clicking and selecting _Copy connection string for selected device_:
 
-<img src="/images/rpi2/rpi2_deviceexplorer03.png"/> 
-
-### Optional: Create a New Azure IoT Device from the Command Line
-If you are on a non-Windows machine, or prefer to use a command line interface instead of the _DeviceExplorer_ utility, you can provision a new Azure IoT Hub device using the _iothub-explorer_ command line interface.
-
-In the same directory as before, using the Node.js command prompt or Terminal:
-
-<pre>
-  iothub-explorer [YOUR IOT HUB CONNECTION STRING] create [YOUR DEVICE NAME] --connection-string
-</pre>
-
-The device will be created in your IoT Hub and the device-specific connection string will be displayed. 
-
-<img src="/images/rpi2/rpi2_iothub-explorer01.png"/> 
-
-If you ever need to get the connection string again, you can use the <code>get</code> command:
-
-<pre>
-  iothub-explorer [YOUR IOT HUB CONNECTION STRING] get [YOUR DEVICE NAME] --connection-string
-</pre>
-
-The device-specific connection string identifies the device by name and includes a key that is only for that device, which makes authorizing and revoking that specific device much easier. Copy the device connection string somewhere that you will be able to access it in the [next lab][nextlab].
+![Get the device-specific connection string](/images/rpi2/rpi2_deviceexplorer03.png) 
 
 ## Conclusion &amp; Next Steps
 Congratulations! You have created an Azure IoT Hub that you will connect devices to. You also created a representation of a physical device in your IoT Hub. In the next lab you will build a Universal Windows Application that will collect data from the RPi2 and send it to Azure IoT Hub.
+
+If this is as far as you want to go in this workshop, [please complete the TechReady 22 IoT Maker Den survey](https://www.surveymonkey.com/r/G72GWH7) and take 1-minute to comlete the survey (we love feedback!).
 
 <a class="radius button small" href="{{ site.url }}/tr22/cs/sending-telemetry/">Go to 'Sending Telemetry to the Cloud' ›</a>
 

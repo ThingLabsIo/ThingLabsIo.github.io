@@ -44,22 +44,6 @@ The simplest way to provision a new device is with the _DeviceExplorer_ utility 
 
 <img src="/images/deviceexplorer01.png"/>
 
-## Install the IoT Hub Explorer Command Line Interface
-If you are on a non-Windows machine, or prefer to use a command line interface instead of the _DeviceExplorer_ utility, you can install the _iothub-explorer_ command line interface. The iothub-explorer tool enables you to provision devices in your IoT hub. It runs on any computer where Node.js is available.
-
-On Windows, open the Node.js command prompt and type the following:
-<pre>
-  cd C:\Development\IoTLabs
-  npm install -g iothub-explorer
-</pre>
-
-On Mac OS X open Terminal and type the following:
-
-<pre>
-  cd ~/Development/IoTLabs
-  npm install -g iothub-explorer
-</pre>
-
 # Create a New Azure IoT Device
 If you are using the _DeviceExplorer_ simply open the _Management_ tab and click the _Create_ button. In the dialog that opens, enter the name of your device  - something like __MyIoTGateway__ works well. Then Click the _Create_ button, and click _Done_ on the confirmation dialog that opens.
 
@@ -68,21 +52,6 @@ If you are using the _DeviceExplorer_ simply open the _Management_ tab and click
 You will see your device in the _Devices_ list. Once a device is created, you can get the device-specific connection string by selecting it in the _Devices_ list, right-clicking and selecting _Copy connection string for selected device_:
 
 <img src="/images/deviceexplorer03.png"/> 
-
-## Create a New Azure IoT Device from the Command Line
-If you are on a non-Windows machine, or prefer to use a command line interface instead of the _DeviceExplorer_ utility, you can provision a new Azure IoT Hub device using the _iothub-explorer_ command line interface.
-
-In the same directory as before, using the Node.js command prompt or Terminal, execute the following commands (you may need to wrap the connections string in quotes, depending on the terminal application you are using). You may replace __MyIoTGateway__ with any name you'd like:
-
-<pre>
-  iothub-explorer [YOUR IOT HUB CONNECTION STRING] create MyIoTGateway --connection-string
-</pre>
-
-Once a device is created, the device information, including the device-specific connection string will be displayed.
-
-<img src="/images/iothub-explorer01.png"/> 
-
-The device-specific connection string identifies the device by name and includes a key that is only for that device. Copy the device connection string somewhere that you will be able to access it shortly.
 
 # Conclusion &amp; Next Steps
 Congratulations! You have created an Azure IoT Hub and a representation of a physical device. Next you will write the app that will collect data and send it to the Azure IoT Hubs.

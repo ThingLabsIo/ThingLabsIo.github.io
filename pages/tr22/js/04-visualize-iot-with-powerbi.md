@@ -73,7 +73,7 @@ Click on the __OUTPUTS__ header.
 
 <img src="/images/asaoutputs.png"/>
 
-Click on __ADD AN OURPUT__.
+Click on __ADD AN OUTPUT__.
 Select __Power BI__ and click on the forward arrow in the lower-right.
 Follow the instructions for either __Existing Microsoft Power BI User__ or __New User__ using your __@microsoft.com__ email account.
 
