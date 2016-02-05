@@ -6,7 +6,7 @@ teaser: "In these Labs you will learn how to build and connect Things to Microso
 show_meta: true
 comments: false
 header: 
-        image_fullwidth: workshops/fullday-windows/header.jpg
+        image_fullwidth: workshops/thinglabs-rpi-header.png
 breadcrumb: true
 categories: [arduino, redboard, photon, raspberry-pi, iot]
 permalink: /tr22/
