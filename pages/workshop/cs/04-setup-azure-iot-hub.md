@@ -87,3 +87,5 @@ If you prefer to use a command line interface instead of the _DeviceExplorer_ ut
 Congratulations! You have created an Azure IoT Hub that you will connect devices to. You also created a representation of a physical device in your IoT Hub. In the next lab you will build a Universal Windows Application that will collect data from the RPi2 and send it to Azure IoT Hub.
 
 <a class="radius button small" href="../sending-telemetry/">Go to 'Sending Telemetry to the Cloud' ›</a>
+
+[deviceexplorer]: https://github.com/Azure/azure-iot-sdks/blob/master/tools/DeviceExplorer/doc/how_to_use_device_explorer.md
