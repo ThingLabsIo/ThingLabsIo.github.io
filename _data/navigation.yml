@@ -12,26 +12,24 @@
 #    url: "/device/photon/"
 #  - title: "Raspberry Pi 2"
 #    url: "/device/rpi2/"
-    
-- title: "Labs by Programming Language"
-  url: "/lang/"
+       
+- title: "Workshops"
+  url: "/workshop/"
   side: left
   dropdown:
-  - title: "JavaScript, Node.js &amp; Johnny-Five"
-    url: "/lang/js/"
-  - title: "C# &amp; Windows 10 IoT Core"
-    url: "/lang/cs/"
-    
-- title: "Projects"
-  url: "/project/"
-  side: left
-  dropdown:
-  - title: "Connected Weather Station"
-    url: "/lang/js/weather-station/"
+  - title: "Windows 10 IoT - Connected Nightlight (2-hours)"
+    url: "/workshop/cs/nightlight/"
+  - title: "Node.js - Connected Weather Station (2-hours)"
+    url: "/workshop/js/weather/"
 
 - title: "TechReady 22"
   url: "/tr22/"
   side: right
+  dropdown:
+  - title: "Windows 10 IoT - Connected Nightlight (90-minutes)"
+    url: "/tr22/cs/"
+  - title: "Node.js - Connected Weather Station (90-minutes)"
+    url: "/tr22/js/"
       
 - title: "Azure Road Tour"
   url: "/azure/"

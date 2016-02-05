@@ -1,14 +1,14 @@
 ---
-layout: page-js
-title: "Setting Up Your Particle Photon Firmware"
-subheadline: "Building Connected Things with JavaScript"
+layout: page-fullwidth
+title: "Setting Up Your Particle Photon"
+subheadline: "Node.js - Connected Weather Station"
 teaser: "In this lab you will install firmware onto your Particle Photon that will enable communication with the gateway application."
 show_meta: true
-comments: false
+comments: true
 header: no
 breadcrumb: true
 categories: [photon, iot, maker, javascript, node.js, johnny-five]
-permalink: /lang/js/setup-photon/
+permalink: /workshop/js/weather/setup-photon/
 ---
 ### Table of Contents
 *  Auto generated table of contents
@@ -16,13 +16,8 @@ permalink: /lang/js/setup-photon/
 
 For this lab series you are using a Particle Photon, a small Wi-Fi enabled development board. The Photon is an excellent prototyping board for connected Things and Particle, the makers of the Photon, sell the P0 chip that drives the board (so when you are ready to go into production you can easily use the same chip). While you can develop for the Photon using Particle Build or Particle Dev and leverage the Particle Cloud services, this lab series is designed to teach you how to build an IoT solution using the _gsateway_ patterm, similar to how consumer products like SmartThings, Lowes Iris, or Phillips Hue works using a Node.js application on the gateway that communicates with the Photon over Wi-Fi. For the first few labs you will learn how to create the Node.js applications that run on your PC and controls the baord through a USB connection. If you choose to continue with these labs on your own, you will learn how to deploy the Node.js applications to a gateway device capable of running the Node.js application, such as a Raspberry Pi or an Arduino Y&uacute;n.
 
-## Bill of Materials
-The following hardware is needed to complete these labs with the Particle Photon:
-
-<script src="https://www.sparkfun.com/wish_lists/120932.js"></script>
-
-## Install Particle-CLI
-The [Particle-CLI][particlecli] is a command line interface for working with both the Particle Photon and the Particle Cloud. This tool will be used to 'claim' or provision your Photon, and may provide other useful benefits.
+# Install Particle-CLI
+The [Particle-CLI][particlecli]{:target="_blank"} is a command line interface for working with both the Particle Photon and the Particle Cloud. This tool will be used to 'claim' or provision your Photon, and may provide other useful benefits.
 
 On Windows, open the Node.js command prompt and type the following:
 <pre>
@@ -34,15 +29,15 @@ On Mac OS X open Terminal and type the following:
   npm install -g particle-cli
 </pre>
 
-## Create a Free Particle Cloud Account
-The Particle Photon is pre-configured to connect to the Particle Cloud. In order to 'claim' or provision the device, and to update its firmware you must create a free account with Particle Cloud. Go to [https://build.particle.io/signup][particle] to create a new Particle Cloud account.
+# Create a Free Particle Cloud Account
+The Particle Photon is pre-configured to connect to the Particle Cloud. In order to 'claim' or provision the device, and to update its firmware you must create a free account with Particle Cloud. Go to [https://build.particle.io/signup][particle]{:target="_blank"} to create a new Particle Cloud account.
 
-## Claim Your Photon
-Associating a Particle Photon to your Particle account is known as _claiming_ (you are claiming the Photon so no one else can claim it - it's like high-tech cookie-licking). If you refer to the Particle website there is information about how to [claim the Photon using either an iOS or Android device](https://docs.particle.io/guide/getting-started/start/photon/#step-1-power-on-your-device), or [over USB from Windows or OS X](https://docs.particle.io/guide/getting-started/connect/photon/). 
+# Claim Your Photon
+Associating a Particle Photon to your Particle account is known as _claiming_ (you are claiming the Photon so no one else can claim it - it's like high-tech cookie-licking). If you refer to the Particle website there is information about how to [claim the Photon using either an iOS or Android device](https://docs.particle.io/guide/getting-started/start/photon/#step-1-power-on-your-device){:target="_blank"}, or [over USB from Windows or OS X](https://docs.particle.io/guide/getting-started/connect/photon/){:target="_blank"}. 
 
 If you use the Android or iOS application for claiming your device and there are other developers around you doing the same thing, it can get confusing figuring out which Wi-Fi SSID goes with which physical device. The trick is to look at the sticker on the underside of the box. The four digits at the end of the barcode are the same four digits that are appended to the SSID name _Photon-_. Simply match the numbers on your box with the SSID and claim your Photon.
 
-<img src="/images/photonclaim.png"/>
+![Claim the Photon](/images/photonclaim.png)
 
 <blockquote>
   As of the writing of this tutorial, there is a bug in the USB claiming process for Windows 10. After following the steps to install the Particle USB driver, use the following steps to claim the Photon to your account if you are on Windows 10, or if you experience difficulties on previous versions of Windows.
@@ -138,11 +133,11 @@ If you are not already logged in to your Particle.io account, you will be prompt
 
 At this point your Photon may blink magenta on and off for a few seconds (or up to a few minutes) as it gets any core firmware updates available for it. When the blinking light turns to a 'breathing' cyan then your Photon is ready for use (the 'breathing' cyan is the ready state indicator).
  
-## Upload the VoodooSpark Firmware to Your Photon
+# Upload the VoodooSpark Firmware to Your Photon
 For this lab series you will be controlling the Photon from a master/hub device (during development this will be your laptop). The controller application will use Node.js and a framework called Johnny Five. In order for these tools to communicate with the Photon, it needs to have the VoodooSpark firmware installed. The VoodooSpark firmware enables direct TCP communication from the host machine (your laptop running the Node.js app) and the Photon (provided they are on the same Wi-Fi network). Installing the VoodooSpark firmware is fairly easy to do using the Particle Build web-based IDE.
 
-1. In a browser open the [VoodooSpark code from GitHub](https://raw.githubusercontent.com/voodootikigod/voodoospark/master/firmware/voodoospark.cpp). Make sure in the comments at the top of the file it specifies '@version V3.1.2' or greater.
-2. With your Photon still powered on, use a second browser tab/window to open [Particle Build](https://build.particle.io/).
+1. In a browser open the [VoodooSpark code from GitHub](https://raw.githubusercontent.com/voodootikigod/voodoospark/master/firmware/voodoospark.cpp){:target="_blank"}. Make sure in the comments at the top of the file it specifies '@version V3.1.2' or greater.
+2. With your Photon still powered on, use a second browser tab/window to open [Particle Build](https://build.particle.io/){:target="_blank"}.
 3. In Particle Build, click on the code icon in the lower-left toolbar (it looks like opening and closing angle brackets &lt; &gt;).
 4. Click on the _Create New App_ button.
 5. Name the app "VoodooSpark"
@@ -150,18 +145,22 @@ For this lab series you will be controlling the Photon from a master/hub device 
 7. Click on the _Devices_ icon in the lower-left toolbar (it looks like a targeting sight).
 8. Find your new Photon (if you claimed your Photon using the command line interface, there will likely be a device with no name/alias with the text 'No Title (click to edit)' - that is your new Photon - feel free to give it a friendly name at this time).
 9. If you have more than one device, click on the gray star that appears next to the Photon when you hover over it to turn it yellow (doing this selects this device as the target for a firmware flash).
-10. Click on the carrot (greater then sign) on the right on the name of your new Photon. Choose 0.4.6 from the "Your are building with firmware:" dropdown box.
-11. Click on the verify icon in the upper-left toolbar (it looks like a checkmark). In the lower-left corner of the IDE you will see the verification status.
-12. After the app is verified, click the flash firmware icon in the upper-left toolbar (it looks like a lightening bolt) to flash your Photon with the VoodooSpark firmware.
+10. Click on the verify icon in the upper-left toolbar (it looks like a checkmark). In the lower-left corner of the IDE you will see the verification status.
+11. After the app is verified, click the flash firmware icon in the upper-left toolbar (it looks like a lightening bolt) to flash your Photon with the VoodooSpark firmware.
 
-<img src="/images/particlebuild01.png"/>
+![Particle Build](/images/particlebuild01.png)
 
 After completing the last step, you should see the indicator LED on your Photon begin to blink. When it returns to the 'breathing' cyan the update is complete.
 
-## Conclusion &amp; Next Steps
-That's it for now. You are ready to start the next lab.
+# Connecting the Weather Shield
+The weather shield comes equipped with two onboard sensors - a HTU21D humidity sensor capable of gathering both humidity and temperature, and a MPL3115A2 barometric pressure sensor. There are connections for other optional sensors, such as wind, rain and soil moisture sensors (we will not be working with the optional sensors in this lab series). Simply plug the Photon into the weather shield so that the USB port on the Photon is on the same side as the RJ-11 plugs on the weather shield. 
 
-<a class="radius button small" href="{{ site.url }}/lang/js/writing-digital-output/">Go to 'Writing Digital Output' ›</a>
+![Photon Weather Shield](/images/Photon_Weather_Shield.jpg)
+
+# Conclusion &amp; Next Steps
+You have configured your prototyping device for use in this workshop. Now you can proceed to the next lab.
+
+<a class="radius button small" href="../hello-iot-world/">Go to  'Hello, IoT World!' ›</a>
 
 [particle]: https://build.particle.io/signup
 [particlecli]: http://www.particle.io/prototype#cli
