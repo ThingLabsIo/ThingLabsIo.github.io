@@ -80,7 +80,7 @@ Once the _Windows IoT Extensions for the UWP_ are added...
 2. Use the search field to search for __Microsoft.Azure.Devices.Client__.
 3. Click on the __Install__ button to install the package.
 
-![IoTNightlight Project](/images/rpi2/azure-devicees-client.png)
+![IoTNightlight Project](/images/rpi2/azure-devices-client.png)
 
 ## Design the App UI
 Open the _MainPage.xaml_ file. This is the layout definition for the initial page that loads when the app is run. 

@@ -1,11 +1,12 @@
 ---
-layout: page-tr22
+layout: page-fullwidth
 title: "Connected Things Labs"
 subheadline: "Building Connected Things with Microsoft Azure"
 teaser: "In these Labs you will learn how to build and connect Things to Microsoft Azure using Azure IoT Hubs, Azure Stream Analytics, and Power BI."
 show_meta: true
 comments: false
-header: no
+header: 
+        image_fullwidth: workshops/fullday-windows/header.jpg
 breadcrumb: true
 categories: [arduino, redboard, photon, raspberry-pi, iot]
 permalink: /tr22/

@@ -17,36 +17,14 @@
   url: "/workshop/"
   side: left
   dropdown:
+  - title: "TechReady 22"
+    url: "/tr22/"
+  - title: "Azure Road Tour"
+    url: "/azure/"
   - title: "Windows 10 IoT - Connected Nightlight (2-hours)"
     url: "/workshop/cs/nightlight/"
   - title: "Node.js - Connected Weather Station (2-hours)"
     url: "/workshop/js/weather/"
-
-- title: "TechReady 22"
-  url: "/tr22/"
-  side: right
-  dropdown:
-  - title: "Windows 10 IoT - Connected Nightlight (90-minutes)"
-    url: "/tr22/cs/"
-  - title: "Node.js - Connected Weather Station (90-minutes)"
-    url: "/tr22/js/"
-      
-- title: "Azure Road Tour"
-  url: "/azure/"
-  side: right
-  dropdown:
-  - title: "Getting Started"
-    url: "/getting-started/"
-  - title: "Setting Up Azure IoT Hub"
-    url: "/setup-azure-iot-hub/"
-  - title: "Option 1: Preparing the Arduino"
-    url: "/setup-arduino/"
-  - title: "Option 2: Preparing the Particle Photon"
-    url: "/setup-photon/"
-  - title: "Sending Telemetry to the Cloud"
-    url: "/sending-telemetry/"
-  - title: "Visualizing IoT Data"
-    url: "/visualize-iot-with-powerbi/"
         
 - title: Attend a Workshop
   url: "/schedule/"
