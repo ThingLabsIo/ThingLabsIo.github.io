@@ -17,8 +17,6 @@
   url: "/workshop/"
   side: left
   dropdown:
-  - title: "TechReady 22"
-    url: "/tr22/"
   - title: "Azure Road Tour"
     url: "/azure/"
   - title: "Windows 10 IoT - Connected Nightlight (2-hours)"
