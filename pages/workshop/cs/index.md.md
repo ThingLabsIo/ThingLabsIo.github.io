@@ -6,7 +6,7 @@ teaser: "In these IoT Labs you will begin by learning the basics of working with
 show_meta: true
 comments: true
 header: 
-        image_fullwidth: workshops/fullday-windows/header.jpg
+        image_fullwidth: workshops/thinglabs-rpi-header.png
 breadcrumb: true
 categories: [rpi, iot, maker]
 permalink: /workshop/cs/nightlight/
