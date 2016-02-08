@@ -11,7 +11,6 @@ breadcrumb: true
 categories: [photon, maker-101]
 permalink: /workshop/js/weather/
 ---
-
 # Table of Contents
 *  Auto generated table of contents
 {:toc}
