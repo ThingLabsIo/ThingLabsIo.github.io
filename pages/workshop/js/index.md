@@ -6,7 +6,7 @@ teaser: "In these Labs you will begin by learning the basics of working with mic
 show_meta: true
 comments: false
 header: 
-        image_fullwidth: workshops/WeatherShield.jpg
+        image_fullwidth: workshops/Photon_Weather_Shield.jpg
 breadcrumb: true
 categories: [photon, maker-101]
 permalink: /workshop/js/weather/
