@@ -138,61 +138,61 @@ From a terminal session, <code>vi /etc/network/interfaces</code>
 
 Edit the following, changing <code>Emutex</code> and <code>passphrase</code> to your SSID and passcode respectively.
 
-{% highlight %}
+```
 #auto wlan0
 iface wlan0 inet dhcp
     # For WPA
     wpa-ssid Emutex
     wpa-psk passphrase
-{% endhighlight %}
+```
 
 Restart the networking service:
 
-{% highlight %}
+```
 /etc/init.d/networking restart
-{% endhighlight %}
+```
 
 ### Update APT packages
 Run <code>apt-get update</code>
 
 ### Install Node.js
 
-{% highlight %}
+```
 apt-get install curl
 curl -sL https://deb.nodesource.com/setup_5.x | bash -
 
 apt-get install --yes nodejs
-{% endhighlight %}
+```
 
 Optional: install build tools
 
-To compile and install native addons from npm you may also need to install build tools:
+To compile and install native addons from npm you may also need to install build tools
 
-{% highlight %}
+```
 apt-get install --yes build-essential
-{% endhighlight %}
+```
 
 ### Install NVM
 
-{% highlight %}
+```
 git clone https://github.com/creationix/nvm.git ~/.nvm && cd ~/.nvm && git checkout `git describe --abbrev=0 --tags`
-{% endhighlight %}
+```
 
 To activate nvm, you need to source it from your shell:
 
-{% highlight %}
+```
 . ~/.nvm/nvm.sh
-{% endhighlight %}
+```
 
 Add these lines to your ~/.bashrc, ~/.profile, or ~/.zshrc file to have it automatically sourced upon login:
 
-{% highlight %}
+```
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
-{% endhighlight %}
+```
 
 ### Install Node.js 4.3.1
 
-{% highlight %}
+```
 nvm install stable
-{% endhighlight %}
+```
