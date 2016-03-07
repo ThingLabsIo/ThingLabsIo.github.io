@@ -275,7 +275,7 @@ board.on("ready", function() {
         
         if(err) {
             // If there is a connection error, show it
-            console.err('Could not connect: ' + err.message);
+            console.error('Could not connect: ' + err.message);
         } else {
             // If the client gets an error, handle it
             client.on('error', function (err) {
