@@ -38,6 +38,9 @@ Follow [Getting Started](https://software.intel.com/en-us/iot/library/edison-get
  
 Attach the Edison chip to the Arduino expansion board
 
+[Flash the Edison using Mac OS X Yosemite](../getting-started/yosemite)
+
+
 <div id="flash-edison-tabs">
   <ul>
     <li><a href="#windows10"><span>Windows 8/10</span></a></li>
