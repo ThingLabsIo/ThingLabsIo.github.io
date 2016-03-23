@@ -1,5 +1,5 @@
 ---
-layout: "page-fullday-windows"
+layout: "page-fullwidth"
 title: "Sending Device-to-Cloud (D2C) Messages"
 subheadline: "Building Connected Things with Windows 10 IoT and Microsoft Azure"
 teaser: "In this lab you will build a Universal Windows Platform application that collects ambient light data and sends it to the Cloud."
@@ -7,7 +7,7 @@ show_meta: true
 comments: true
 header: no
 breadcrumb: true
-categories: [raspberry-pi, windows-10, dragonboard, minnowboard, c#, iot, maker, azure, azure-iot-hub]
+categories: [raspberry-pi, windows-10, grove, c#, iot, maker, azure, azure-iot-hub]
 permalink: /workshop/fullday-windows/sending-d2c-messages/
 ---
 

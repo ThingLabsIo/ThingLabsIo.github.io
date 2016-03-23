@@ -1,5 +1,5 @@
 ---
-layout: "page-fullday-windows"
+layout: "page-fullwidth"
 title: "Hello, Windows IoT!"
 subheadline: "Building Connected Things with Windows 10 IoT and Microsoft Azure"
 teaser: "In this lab you will create a simple 'Thing' using Windows 10 IoT Core."
@@ -7,7 +7,7 @@ show_meta: true
 comments: false
 header: no
 breadcrumb: true
-categories: [raspberry-pi, windows-10, dragonboard, minnowboard, c#, iot, maker]
+categories: [raspberry-pi, windows-10, grove, c#, iot, maker]
 permalink: /workshop/fullday-windows/hello-windows-iot/
 ---
 

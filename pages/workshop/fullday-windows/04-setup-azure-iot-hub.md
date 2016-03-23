@@ -1,5 +1,5 @@
 ---
-layout: "page-fullday-windows"
+layout: "page-fullwidth"
 title: "Setting Up Azure IoT"
 subheadline: "Building Connected Things with Windows 10 IoT and Microsoft Azure"
 teaser: "In this lab you will provision an Azure IoT Hub and an IoT Hub device."
@@ -7,7 +7,7 @@ show_meta: true
 comments: false
 header: no
 breadcrumb: true
-categories: [raspberry-pi, windows-10, dragonboard, minnowboard, c#, iot, maker, azure, azure-iot-hub]
+categories: [raspberry-pi, windows-10, grove, c#, iot, maker, azure, azure-iot-hub]
 permalink: /workshop/fullday-windows/setup-azure-iot-hub/
 ---
 ### Table of Contents

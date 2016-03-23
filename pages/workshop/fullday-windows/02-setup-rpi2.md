@@ -1,5 +1,5 @@
 ---
-layout: "page-fullday-windows"
+layout: "page-fullwidth"
 title: "Setting Up Your Raspberry Pi 2"
 subheadline: "Building Connected Things with Windows 10 IoT and Microsoft Azure"
 teaser: "In this lab you will install Windows 10 IoT Core on your Raspberry Pi 2."
@@ -7,7 +7,7 @@ show_meta: true
 comments: false
 header: no
 breadcrumb: true
-categories: [raspberry-pi, windows-10, c#, iot, maker]
+categories: [raspberry-pi, windows-10, grove, c#, iot, maker]
 permalink: /workshop/fullday-windows/setup-rpi2/
 ---
 # Table of Contents
@@ -25,28 +25,28 @@ Windows 10 IoT Core is a version of Windows 10 designed to run on small devices,
 2. Click on the __Get IoT Core Dashboard__ button to download the dashboard utility.
 3. Once the __setup.exe__ has downloaded, open it to install the dashboard utility.
 
-Once the Windows IoT Core Dashboard is installed, use it to flash the microSD card with the latest Windows IoT Core OS image.
+   Once the Windows IoT Core Dashboard is installed, use it to flash the microSD card with the latest Windows IoT Core OS image.
 
-1. Insert the micro SD card into your SD card writer.
-2. In the IoT Dashboard, select _Set up a new device_.
+4. Insert the micro SD card into your SD card writer.
+5. In the IoT Dashboard, select _Set up a new device_.
 
-![Set up a new device](/images/rpi2/dashboard-setup01.png)
+   ![Set up a new device](/images/rpi2/dashboard-setup01.png)
 
-3. Use the dropdown list to make _Device Type_ = __Raspberry Pi 2__.
-4. Select __Windows 10 IoT Core for Raspberry Pi 2__.
-4. Select the microSD card in the _Drive_ dropdown list.
-5. Check the box for _I accept the software license terms_ (of course you have already read them).
-6. Click the __Download and install__ button.
+6. Use the dropdown list to make _Device Type_ = __Raspberry Pi 2__.
+7. Select __Windows 10 IoT Core for Raspberry Pi 2__.
+8. Select the microSD card in the _Drive_ dropdown list.
+9. Check the box for _I accept the software license terms_ (of course you have already read them).
+10. Click the __Download and install__ button.
 
-![Download and install](/images/rpi2/dashboard-setup02.png)
+    ![Download and install](/images/rpi2/dashboard-setup02.png)
 
-7. When prompted, select __Continue__ indicating that you have backed up any files from the microSD card before it gets erased.
+11. When prompted, select __Continue__ indicating that you have backed up any files from the microSD card before it gets erased.
 
-![Accept License](/images/rpi2/dashboard-setup03.png)
+    ![Accept License](/images/rpi2/dashboard-setup03.png)
 
-The download and install could take some time depending on your bandwidth and the size of the microSD card. Whe it is complete you will see the _You SD card is ready_ screen.
+    The download and install could take some time depending on your bandwidth and the size of the microSD card. Whe it is complete you will see the _You SD card is ready_ screen.
 
-![Your SD card is ready](/images/rpi2/dashboard-setup04.png)
+    ![Your SD card is ready](/images/rpi2/dashboard-setup04.png)
 
 # Connect the RPi2
 You are now ready to connect and power on your RPi2.
@@ -56,7 +56,7 @@ You are now ready to connect and power on your RPi2.
 3. Connect an HDMI monitor to the HDMI port on the board.
 4. Connect the power supply to the micro USB port on the board. You must power this from the 5V 2A adapter - USB power from your computer is insufficient.
 
-Windows 10 IoT Core will boot on power-up. The first boot may take a few minutes.
+Windows 10 IoT Core will boot on power-up. The first boot may take a few minutes. If you have the RPi2 connected to a display, you should see the default app screen.
 
 ![Default app](/images/rpi2/rpi2_defaultapp.png)
 
@@ -72,3 +72,5 @@ Your RPi2 will reboot and when it is back up and running it will have the new na
 
 # Conclusion &amp; Next Steps
 In this lab you prepared your Raspberry Pi 2 for the following labs. Next you will do the IoT equivalent of 'Hello, World!' - you will make an LED blink.
+
+<a class="radius button small" href="{{ site.url }}/workshop/fullday-windows/hello-windows-iot/">Go to 'Hello, Windows IoT!' ›</a>
