@@ -1,5 +1,5 @@
 ---
-layout: "page-fullday-windows"
+layout: "page-fullwidth"
 title: "Full Day Windows & Azure IoT Workshop: Getting Started"
 subheadline: "Building Connected Things with Windows 10 IoT and Microsoft Azure"
 teaser: "This is a step-by-step guide to preparing your computer for the Windows 10 IoT Labs."
@@ -15,7 +15,7 @@ permalink: /workshop/fullday-windows/getting-started/
 {:toc}
 
 ## Preparing for the Windows 10 IoT Labs
-The labs in this series build on each other to enable you to prototype your own Internet of Things (IoT) devices. In this lab you will use the Microsoft .NET Framework to build an application for the Universal Windows Platform (UWP) that can run on any Windows 10 device, including a Raspberry Pi 2, MinnowBoard MAX, or DragonBoard 410c running Windows 10 IoT Core.
+The labs in this series build on each other to enable you to prototype your own Internet of Things (IoT) devices. In this lab you will use the Microsoft .NET Framework to build an application for the Universal Windows Platform (UWP) that can run on any Windows 10 device, including a Raspberry Pi 2, MinnowBoard MAX, or DragonBoard 410c running Windows 10 IoT Core. We will use the Raspberry Pi 2 for this lab series.
 
 ## Bill of Materials
 In this lab series you will need the following:
@@ -29,8 +29,8 @@ In this lab series you will need the following:
 7. [A few 330 Ohm resistors](http://www.amazon.com/E-Projects-Resistors-Watt-330R-Pieces/dp/B00BVOR6IS/)
 8. [A 10k Ohm resistor](http://www.amazon.com/E-Projects-10k-Resistors-Watt-Pieces/dp/B00BWYS9BA/)
 9. One of the following analog-digital-converters:
-	* [MCP3008 - 8-Channel 10-Bit ADC with SPI Interface](https://www.adafruit.com/product/856)
 	* [MCP3002 - 2-Channel 10-Bit ADC with SPI Interface](https://www.sparkfun.com/products/8636)
+	* [MCP3008 - 8-Channel 10-Bit ADC with SPI Interface](https://www.adafruit.com/product/856)
 10. 8GB micro SD card - class 10 or better. Microsoft suggests one of the following:
 	* [Samsung 32GB EVO Class 10 Micro SDHC up to 48MB/s with Adapter (MB-MP32DA/AM)](http://www.amazon.com/gp/product/B00IVPU786)
 	* [SanDisk Ultra Micro SDHC, 16GB Card](http://www.amazon.com/SanDisk-Ultra-Micro-SDHC-16GB/dp/9966573445).

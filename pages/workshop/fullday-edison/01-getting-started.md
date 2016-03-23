@@ -58,7 +58,37 @@ Attach the Edison chip to the Arduino expansion board
     Follow the <a target="_blank" href="http://rexstjohn.com/intel-edison-el-capitan-setup-process/">Instructions from Rex St. John</a>
   </div>
   <div id="yosemite">
-    Follow the <a target="_blank" href="http://www.intel.com/content/www/us/en/support/boards-and-kits/000005801.html">Instructions from Intel</a>
+    The following is based on the <a target="_blank" href="http://www.intel.com/content/www/us/en/support/boards-and-kits/000005801.html">Instructions from Intel</a>
+    
+    1. Install Homebrew if it is not already installed:
+
+    ```
+    ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+    ```
+
+    2. Install dfu-util, coreutils, and gnu-getopt if not already installed:
+
+    ```
+    brew install dfu-util coreutils gnu-getopt
+    ```
+    
+    3. Download and extract the <a target="_blank" href="https://software.intel.com/en-us/iot/hardware/edison/downloads">Release #.# Yocto complete image</a> and Extract the contents of to your development directory (e.g. ~/Development/).
+
+    Using Terminal (Command + Space and type Terminal), change to the directory where you extracted the Yocto image (your directoyr name and the name/version of the Edison folder may be different).
+
+    ```
+    cd ~/Development/edison-iotdk-image-280915
+    ```
+    
+    Run the flashall script and then plug the USB cables into board.
+
+    ```
+    ./flashall.sh
+    ```
+    
+    Note: The script can take up to 5 minutes to complete the flashing.
+
+    You should now have the latest image on your Intel® Edison development board.
   </div>
   <div id="linux">
     Follow the <a target="_blank" href="http://www.intel.com/content/www/us/en/support/boards-and-kits/000005990.html">Instructions from Intel</a>
