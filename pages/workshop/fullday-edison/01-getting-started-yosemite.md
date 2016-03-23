@@ -11,24 +11,30 @@ categories: [intel-edison, node, iot, maker]
 permalink: /workshop/fullday-edison/getting-started/yosemite
 ---
 
-The following is based on the [Instructions from Intel](http://www.intel.com/content/www/us/en/support/boards-and-kits/000005801.html).
+### Table of Contents
+*  Auto generated table of contents
+{:toc}
 
-## Flash the Edison with the Latest Yocto Image: Mac OS X Yosemite
- 
+The following is based on the [instructions from Intel](http://www.intel.com/content/www/us/en/support/boards-and-kits/000005801.html).
+
+# Flashing the Edison with Mac OS X El Capitan
 Ensure the Intel Edison is attached to the Arduino expansion board.
 
+## Install Homebrew
 Install Homebrew if it is not already installed:
 
 ```
 ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 ```
 
+## Install Utilities with Homebrew
 Install dfu-util, coreutils, and gnu-getopt if not already installed:
 
 ```
 brew install dfu-util coreutils gnu-getopt
 ```
-    
+
+## Prepare the Yocto Image
 Download and extract the <a target="_blank" href="https://software.intel.com/en-us/iot/hardware/edison/downloads">Release #.# Yocto complete image</a> and Extract the contents of to your development directory (e.g. ~/Development/).
 
 Using Terminal (Command + Space and type Terminal), change to the directory where you extracted the Yocto image (your directoyr name and the name/version of the Edison folder may be different).
@@ -36,7 +42,8 @@ Using Terminal (Command + Space and type Terminal), change to the directory wher
 ```
 cd ~/Development/edison-iotdk-image-280915
 ```
-    
+
+## Flash the Edison
 Run the flashall script and then plug the USB cables into board.
 
 ```

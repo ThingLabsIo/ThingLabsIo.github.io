@@ -149,6 +149,22 @@ $( "#config-edison-tabs" ).tabs();
 7. Enter the network password.
 8. When the new IP address for your Edison is displayed on screen, make a note of it for later use.
 
+## Install Libmraa
+Libmraa is a C/C++ library with bindings to Python, Javascript and Java to interface with the I/O on Galileo, Edison & other platforms, with a structured and sane API where port names/numbering matches the board that you are on. Use of libmraa does not tie you to specific hardware with board detection done at runtime you can create portable code that will work across the supported platforms.
+
+Using the screen session to the Edison, run the following
+
+```
+$ echo "src mraa-upm http://iotdk.intel.com/repos/1.1/intelgalactic" > /etc/opkg/mraa-upm.conf
+$ opkg update
+$ opkg install libmraa0
+$ opkg upgrade
+$ cd /
+$ cd node_app_slot
+$ npm install
+$ node blink.js
+```
+
 ## Install FileZilla
 You can either edit code directly on your Intel Edison or you can edit the code on your computer and copy it to your Edison using SCP or FileZilla! FileZilla Client is a fast and reliable cross-platform FTP, FTPS and SFTP client with lots of useful features and an intuitive graphical user interface. 
 
