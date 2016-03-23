@@ -10,6 +10,9 @@ breadcrumb: true
 categories: [intel-edison, node, iot, maker]
 permalink: /workshop/fullday-edison/getting-started/
 ---
+
+<blockquote>This is premilinary information and is not a complete Getting Started Guide</blockquote>
+
 ### Table of Contents
 *  Auto generated table of contents
 {:toc}
