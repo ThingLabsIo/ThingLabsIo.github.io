@@ -16,32 +16,37 @@ permalink: /workshop/fullday-windows/setup-rpi2/
 
 If you haven't already done so, please follow the instructions in the ['Getting Started' lab](../getting-started/) section.
 
-In this lab you will install Windows 10 IoT Core on your Raspberry Pi 2. 
-
-# Bill of Materials
-What you will need:
-
-1. [Raspberry Pi 2 - $42.00](http://www.amazon.com/Raspberry-Pi-Model-Project-Board/dp/B00T2U7R7I/)
-2. [5V 2A Switching Power Supply w/ 20AWG 6' MicroUSB Cable - $7.95](https://www.adafruit.com/product/1995)
-6. 16GB micro SD card - class 10 or better. Microsoft suggests [this one](http://www.amazon.com/gp/product/B00IVPU786) or [this one](http://www.amazon.com/SanDisk-Ultra-Micro-SDHC-16GB/dp/9966573445).
-7. Micro SD card writer
+In this lab you will install Windows 10 IoT Core on your Raspberry Pi 2 (RPi2). 
 
 # Install Windows 10 IoT Core on Raspberry Pi 2
 Windows 10 IoT Core is a version of Windows 10 designed to run on small devices, like the Raspberry Pi 2 (RPi2). You can download and install the Windows IoT Core image onto the micro SD card. 
 
-1. Download a Windows 10 IoT Core image from the [Microsoft downloads page](http://ms-iot.github.io/content/en-US/Downloads.htm). 
-2. Save the ISO to a local folder (e.g. C:\Development\IoTLabs).
-3. Double-click the ISO to mount it as a virtual drive. 
-4. Install __Windows_10_IoT_Core_RPi2.msi__. This will install the _Windows IoT Core Watcher_ utility and the RPi2 FFU (Field Firmware Update).
-5. Eject the virtual drive after the installation is complete.
+1. In a browser, navigate to the [Microsoft Windows IoT Downloads &amp; Tools page](http://ms-iot.github.io/content/en-US/Downloads.htm){:target="_blank"}. 
+2. Click on the __Get IoT Core Dashboard__ button to download the dashboard utility.
+3. Once the __setup.exe__ has downloaded, open it to install the dashboard utility.
 
-Now that the utilities and firmware (FFU) are on your development device, you can create a Windows IoT Core image on the SD card.
+Once the Windows IoT Core Dashboard is installed, use it to flash the microSD card with the latest Windows IoT Core OS image.
 
 1. Insert the micro SD card into your SD card writer.
-2. Click on the Windows icon (Start menu) and type _WindowsIoT_ - select the __WindowsIoTImageHelper__ from the _Best match_ list.
-3. When the tool launches, select the SD card from the list.
-4. Select the FFU file be browsing to __C:\Program Files (x86)\Microsoft IoT\FFU\RaspberryPi2__
-5. Once the SD card is complete, safely eject the SD card (use either _Safely Remove Hardware_ from the taskbar, or right-click on the SD card in File Explorer and choose _Eject_ - failing to do so may corrupt the SD card.). 
+2. In the IoT Dashboard, select _Set up a new device_.
+
+![Set up a new device](/images/rpi2/dashboard-setup01.png)
+
+3. Use the dropdown list to make _Device Type_ = __Raspberry Pi 2__.
+4. Select __Windows 10 IoT Core for Raspberry Pi 2__.
+4. Select the microSD card in the _Drive_ dropdown list.
+5. Check the box for _I accept the software license terms_ (of course you have already read them).
+6. Click the __Download and install__ button.
+
+![Download and install](/images/rpi2/dashboard-setup02.png)
+
+7. When prompted, select __Continue__ indicating that you have backed up any files from the microSD card before it gets erased.
+
+![Accept License](/images/rpi2/dashboard-setup03.png)
+
+The download and install could take some time depending on your bandwidth and the size of the microSD card. Whe it is complete you will see the _You SD card is ready_ screen.
+
+![Your SD card is ready](/images/rpi2/dashboard-setup04.png)
 
 # Connect the RPi2
 You are now ready to connect and power on your RPi2.
@@ -53,56 +58,17 @@ You are now ready to connect and power on your RPi2.
 
 Windows 10 IoT Core will boot on power-up. The first boot may take a few minutes.
 
-<img src="/images/rpi2/rpi2_defaultapp.png"/>
+![Default app](/images/rpi2/rpi2_defaultapp.png)
 
 # Set the Machine Name and Password
-By default the RPi2 will have a machine name of _minwinpc_ and an Administrator password of _p@ssw0rd_. It is recommend that you change both of these to avoid confusion with other devices on your network.
+Once the RPi2 has booted up, it will appear in the _My devices_ tab of the IoT Dashboard - by default it will have the name __minwinpc__ and an Administrator password of __p@ssw0rd__. It is recommend that you change both of these to avoid confusion with other devices on your network.
 
-Launch PowerShell using the _Run as Administrator_ option (right-click on the PowerShell icon to reveal this option). Run the following set of commands:
-
-You may need to start the WinRM service on your desktop to enable remote connections:
-
-{% highlight PowerShell %}
-net start WinRM
-{% endhighlight %}
-
-With the WInRM service running, add the RPi2 to your Trusted Hosts. Replace _\<machine-name or IP Address\>_ with your actual machine name or IP address (this will be displayed on the default app screen when your RPi2 is running).
-
-{% highlight PowerShell %}
-Set-Item WSMan:\localhost\Client\TrustedHosts -Value <machine-name or IP Address>
-{% endhighlight %}
-
-Enter __Y__ to confirm the change.
-
-Start a PowerShell session with your RPi2. 
-
-{% highlight PowerShell %}
-Enter-PSSession -ComputerName <machine-name or IP Address> -Credential <machine-name or IP Address or localhost>\Administrator
-{% endhighlight %}
-
-When prompted, enter the Administrator password (_p@ssw0rd_ is the default). If you successfully connected to the device, you should see the IP address of your device before the prompt.
-
-Next, change the Administrator password (replace _\<new password\>_ with a strong password):
-
-{% highlight PowerShell %}
-net user Administrator <new password>
-{% endhighlight %}
-
-Optionally you can change the name of your RPi2 (replace _<new name>_ with the name you prefer):
- 
-{% highlight PowerShell %}
-setcomputername <new name>
-{% endhighlight %}
-
-Finally, reboot the RPi2.
- 
-{% highlight PowerShell %}
-shutdown /r /t 0
-{% endhighlight %}
+1. Click on the stylus icon to edit the RPi2.
+2. Change the password if you would like.
+3. Change the name to something unique (remember, you are naming a Windows device - all normal naming rules and practices apply).
+4. Click __Accept__ to accept the changes and reboot the RPi2
 
 Your RPi2 will reboot and when it is back up and running it will have the new name you gave it, and the Administrator account will use the password you created. 
 
 # Conclusion &amp; Next Steps
-In this lab you prepared your Raspberry Pi 2 for the following labs. Next you will do the IoT equivalent 'Hello, World!' - you will make an LED blink.
-
-<a class="radius button small" href="{{ site.url }}/workshop/fullday-windows/hello-windows-iot/">Go to 'Hello, Windows IoT!' ›</a>
+In this lab you prepared your Raspberry Pi 2 for the following labs. Next you will do the IoT equivalent of 'Hello, World!' - you will make an LED blink.
