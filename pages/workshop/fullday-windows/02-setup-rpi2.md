@@ -52,8 +52,8 @@ Windows 10 IoT Core is a version of Windows 10 designed to run on small devices,
 You are now ready to connect and power on your RPi2.
 
 1. Insert the micro SD card with the Windows 10 IoT Core image on it into your RPi2 (the slot is on the underside, on the opposite edge from the side with the USB ports).
-2. Connect a network cable from your local network to the Ethernet port on the RPi2. Your development device must be on the same network.
-3. Connect an HDMI monitor to the HDMI port on the board.
+2. If you will be connecting to a physical network, connect a network cable from your local network to the Ethernet port on the RPi2. Your development device must be on the same network. If you will be using Wi-Fi, see the Joinning the Wi-Fi Network section below.
+3. If you will be working with a monitor, connect an HDMI monitor to the HDMI port on the board.
 4. Connect the power supply to the micro USB port on the board. You must power this from the 5V 2A adapter - USB power from your computer is insufficient.
 
 Windows 10 IoT Core will boot on power-up. The first boot may take a few minutes. If you have the RPi2 connected to a display, you should see the default app screen.
@@ -69,6 +69,9 @@ Once the RPi2 has booted up, it will appear in the _My devices_ tab of the IoT D
 4. Click __Accept__ to accept the changes and reboot the RPi2
 
 Your RPi2 will reboot and when it is back up and running it will have the new name you gave it, and the Administrator account will use the password you created. 
+
+# Join the Wireless Network
+//TODO
 
 # Conclusion &amp; Next Steps
 In this lab you prepared your Raspberry Pi 2 for the following labs. Next you will do the IoT equivalent of 'Hello, World!' - you will make an LED blink.
