@@ -20,234 +20,134 @@ In this lab you will create a simple _Thing_ using a Windows 10 IoT device and t
 # Bill of Materials
 What you will need:
 
-1. One of the following development boards:
-    * [Raspberry Pi 2](http://www.amazon.com/Raspberry-Pi-Model-Project-Board/dp/B00T2U7R7I/) with a [5V 2A Switching Power Supply w/ 20AWG 6' MicroUSB Cable](https://www.adafruit.com/product/1995)
-    * [DragonBoard 410c](http://partners.arrow.com/campaigns-na/qualcomm/dragonboard-410c/) with a [WM24P-12-A-QL 12V 2A Switching Power Supply](https://www.arrow.com/en/products/wm24p-12-a-ql/autec-power-systems#page-1)
-2. [Jumper wires (Male to Female)](https://www.adafruit.com/product/1954)
-3. [(1) Red LED](http://www.adafruit.com/products/297)
-4. [(1) 330 Ohm resistors](http://www.amazon.com/E-Projects-Resistors-Watt-330R-Pieces/dp/B00BVOR6IS/)
-5. [(1) 10k Ohm resistor](http://www.amazon.com/E-Projects-10k-Resistors-Watt-Pieces/dp/B00BWYS9BA/)
-6. 8GB micro SD card - class 10 or better. Microsoft suggests one of the following:
+1. [Raspberry Pi 2](http://www.amazon.com/Raspberry-Pi-Model-Project-Board/dp/B00T2U7R7I/)
+2. [5V (2A to 3A) Switching Power Supply w/ MicroUSB Cable](http://www.amazon.com/CanaKit-Raspberry-Supply-Adapter-Charger/dp/B00MARDJZ4/)
+3. From the [GrovePi+ Starter Kit for Raspberry Pi](http://www.seeedstudio.com/depot/GrovePi-Starter-Kit-for-Raspberry-Pi-ABB23-CE-certified-p-2572.html)
+ * GrovePi shield
+ * Grove LED (any color) × 1 + connector cable
+4. A Wi-Fi Adapter (choose one from the list [here](http://ms-iot.github.io/content/en-US/win10/SupportedInterfaces.htm#WiFi-Dongles))
+5. 8GB micro SD card - class 10 or better. Microsoft suggests one of the following:
 	* [Samsung 32GB EVO Class 10 Micro SDHC up to 48MB/s with Adapter (MB-MP32DA/AM)](http://www.amazon.com/gp/product/B00IVPU786)
 	* [SanDisk Ultra Micro SDHC, 16GB Card](http://www.amazon.com/SanDisk-Ultra-Micro-SDHC-16GB/dp/9966573445).
 
-To make life easy, you can get these components and more in the [Microsoft IoT Pack for Raspberry Pi 2](http://www.adafruit.com/windows10iotpi2) from AdaFruit.
+If you haven't already done so, follow the setup instructions at ['Setting Up Your Raspberry Pi 2']({{ site.url }}/workshop/fullday-windows/setup-rpi2/).
 
-The devices should be configured according to thier specific instructions.
-
-* ['Setting Up Your Raspberry Pi 2']({{ site.url }}/workshop/fullday-windows/setup-rpi2/)
- 
-# Wire Up the Device
+# Connect the Grove Parts (Shield and LED)
 The RPi2 connects to the physical world through the GPIO pins. GPIO stands for General Purpose Input/Output and refers to the two rows of pins on RPI2. The GPIO pins are a physical interface between the RPi2 and the physical world. Through your app you can designate pins to either receive input or send output. The inputs can be from switches, sensors or other devices. The outputs can be LEDs, servos, motors or countless other devices. Twenty-six of the 40 pins are GPIO pins; the others are power, ground, or reserved pins.
 
-<img src="/images/rpi2/rpi12_pinout.png"/>
+![RPi2 Pin Map](/images/rpi2/rpi12_pinout.png)
 
-Wire up the RPi2 according to this diagram.
+The Grove Shield simplifies accessing the pins by providing connectors that you can simply plug sensors and devices into. The GrovePi Shield exposes GPIO pins (labelled D2-D8 for digital and A0-2 for analog), I2C (pronounced Eye-Squared-See) and Serial/SPI connections.
 
-<img src="/images/rpi2/rpi2_lab01_bb.png"/>
+![GrovePi Shiled](/images/rpi2/GrovePi-Shield.jpg)
 
-1. GPIO pin 12 is connected to the positive (longer) lead on the LED. In the app you build, you will control whether or not GPIO pin 12 sends voltage over the circuit.
-2. The negative (shorter) lead on the LED is connected to a resistor to reduce the amount of voltage pulled through the circuit.
-3. The other end of the resistor is connected to one of the ground GPIO pins, completing the circuit.
+> Note: The RPI2 doesn't have analog GPIO - the Grove shield includes an Analog-Digital Converter enabling you to connect analog devices to the A0-A2 connectors.
 
-The LED will light up when current is passed through the circuit. 
+Connect the GrovePi shield to the RPi2.
 
-# Create an Application using the Universal Windows Platform
+![Connect the GrovePi Shield](/images/rpi2/Connect-GrovePi.jpg)
+
+Connec the LED to the D4 jack.
+
+![Connect the LED to D4](/images/workshops/fullday-windows/blink_example.jpg)
+
+# Create an IoT Background Application 
 A Universal Windows app is a Windows experience that is built upon the Universal Windows Platform (UWP), which was first introduced in Windows 8 as the Windows Runtime. The UWP enables you to write an app that targets a device family, such as IoT devices. In fact, the universal app that you write may be able to run on multiple devices families, depending on the device characteristics that it takes advantage of. In this lab you will create a universal app targeting IoT devices running Windows 10. Technically this could be nearly any device, such as a phone, a tablet or a RPi2, however; the universal app you write will access the General Purpose Input/Output (GPIO) of the device, so the app won't actually be compatible with devices that don't have a GPIO.   
 
 ## Create a Blank Universal App
-Launch Visual Studio and start a new __Blank App (Universal Windows)__ (found in the _C# -> Windows -> Universal_ node).
 
-Name the application _HelloWindowsIoT_.
+1. Launch Visual Studio and start a new __Background Application (IoT)__ (found in the _Templates -> C# -> Windows -> Windows IoT Core_ node).
+2. Name the application _HelloWindowsIoT_.
 
-<img src="/images/rpi2/rpi2_new_universal.png"/>
+![Create a new IoT Background application](/images/workshops/fullday-windows/new_hello.png)
 
-## Add the Windows IoT Extensions for the UWP
-Once the solution is created, click on the _Project_ menu and select _Add Reference_.
+## Add a Reference to the GrovePi Libraries
+To install GrovePi for Windows IoT, run the following command from the __Package Manager Console__
 
-In the Reference Manager dialog, expand the _Universal Windows_ node and select _Extensions_.
-
-In the list of extensions, check the box next to __Windows IoT Extensions for the UWP__ and click __OK__.
-
-<img src="/images/rpi2/rpi2_install_iotextensions.png"/>
-
-## Design the App UI
-Open the _MainPage.xaml_ file. This is the layout definition for the initial page that loads when the app is run. Next you will add a few elements to the page.
-
-{% highlight xml %}
-<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-        <Ellipse x:Name="LedGraphic" Fill="LightGray" Stroke="White" Width="100" Height="100" Margin="10"/>
-        <TextBlock x:Name="DelayText" Text="500ms" Margin="10" TextAlignment="Center" FontSize="26"/>
-        <TextBlock x:Name="GpioStatus" Text="Waiting to initialize GPIO..." Margin="10,50,10,10" TextAlignment="Center" FontSize="26"/>
-    </StackPanel>
-</Grid>
-{% endhighlight %}
-
+```
+Install-Package GrovePi
+```
 ## Code the App Logic
-Open the _MainPage.xaml.cs_ file. This is the code behind the layout for the MainPage.xaml. Add the following to the _using_ statements at the top of the file. 
+This example will demonstrate how to use the Grove LED Socket Kit with the Grove Rotary Angle Sensor to create a fade effect using Pulse Width Modulation (PWM).
+
+Open the StartupTask.cs_ file. Add the following to the _using_ statements at the top of the file. 
 
 {% highlight csharp %}
-using Windows.Devices.Gpio;
+using GrovePi;
+using GrovePi.Sensors;
+using Windows.System.Threading;
 {% endhighlight %}
 
-Add the following variable definitions inside the <code>public sealed partial class MainPage : Page</code> class definition:
+Add the following variable definitions inside the ```public sealed class StartupTask : IBackgroundTask``` class definition:
 
 {% highlight csharp %}
-public sealed partial class MainPage : Page
+namespace Blinky
 {
-        // Define the physical pin connected to the LED.
-        private const int LED_PIN = 12;
-        // Deifne a variable to represent the pin as an object.
-        private GpioPin pin;
-        // Define a variable to hold the value of the pin (HIGH or LOW).
-        private GpioPinValue pinValue;
-        // Define a time used to control the frequency of events.
-        private DispatcherTimer timer;
-        // Define a color brushes for the on screen representation of the LED.
-        private SolidColorBrush redBrush = new SolidColorBrush(Windows.UI.Colors.Red);
-        private SolidColorBrush grayBrush = new SolidColorBrush(Windows.UI.Colors.LightGray);
+    public sealed class StartupTask : IBackgroundTask
+    {
+        ThreadPoolTimer timer;
+        BackgroundTaskDeferral deferral;
+        ILed led;
 
-        public MainPage()
+        public void Run(IBackgroundTaskInstance taskInstance)
         {
-            this.InitializeComponent();
             
-            // TODO: Create an instance of a Timer that will raise an event every 500ms
         }
+    }
 }
 {% endhighlight %}
 
-### Create a Timer to Control the LED
-Following the call to <code>InitializeComponent</code>, create a _Timer_ that will raise an event every 500ms.
+### Create the LED Object and a Timer to Control It
+Inside the ```public void Run(IBackgroundTaskInstance taskInstance)``` function create a new object instance using the ```led``` variable, and  a _ThreadPoolTimer_ that will raise an event every one-second.
 
 {% highlight csharp %}
-// Create an instance of a Timer that will raise an event every 500ms
-timer = new DispatcherTimer();
-timer.Interval = TimeSpan.FromMilliseconds(500);
-timer.Tick += Timer_Tick;
-// TODO: Initialize the GPIO bus
+public void Run(IBackgroundTaskInstance taskInstance)
+{
+    deferral = taskInstance.GetDeferral();
+
+    // Connect the LED to digital port 4
+    led = DeviceFactory.Build.Led(Pin.DigitalPin4);
+
+    // Create a timer that will 'tick' every one-second
+    timer = ThreadPoolTimer.CreatePeriodicTimer(this.Timer_Tick, TimeSpan.FromSeconds(1));
+}
 {% endhighlight %}
 
 Using the Visual Studio refactoring tools, you can generate the method stub for the __Timer\_Tick__ event handler. Hover over the _Timer\_Tick_ text until a lightbulb appears. Click the down arrow and select _Generate method 'MainPage.Timer\_Tick'_ 
 
-<img src="/images/rpi2/rpi2_lab01_Timer_Tick.PNG"/>
+__//TODO__ Need image here
 
 Add the following code for the _Timer\_Tick_ event handler.
 
 {% highlight csharp %}
-private void Timer_Tick(object sender, object e)
+private void Timer_Tick(ThreadPoolTimer timer)
 {
-    // This Timer event will be raised on each timer interval (defined above)
-            
-    if (pinValue == GpioPinValue.Low)
+    if (led.CurrentState == SensorStatus.Off)
     {
-        // If the current state of the pin is LOW (off), then set it to HIGH (on)
-        // and update the on screen UI to represent the LED in the on state
-        pinValue = GpioPinValue.High;
-        LedGraphic.Fill = redBrush;
+        led.ChangeState(SensorStatus.On);
     }
-    else
-    {
-        // If the current state of the pin is HIGH (on), then set it to LOW (off)
-        // and update the on screen UI to represent the LED in the off state
-        pinValue = GpioPinValue.Low;
-        LedGraphic.Fill = grayBrush;
-    }
-    // Write the state to to pin
-    pin.Write(pinValue);
-}
-{% endhighlight %}
-
-### Initialize the GPIO Controller
-The next thing to do is initialize the GPIO controller. Back in the _MainPage()_ constructor, following the timer code, make a call to a method that you haven't defined yet called <code>InitGpio()</code>. 
-
-{% highlight csharp %}
-// Initialize the GPIO bus
-InitGpio();
-            
-// TODO: As long as the pin object is not null, proceed with the timer.                        
-{% endhighlight %}
-
-Just like you did with the _Timer\_Tick_ code, use the refactoring _lightbulb_ tool to generate the <code>InitGpio()</code> method. In the _InitGpio()_ method you will get the instance of the default GPIO controller - the object that brokers all communication between your app and the GPIO bus. 
-
-If the GPIO controller instance is _null_ then the device the app is running on doesn't support GPIO, and you will display a message on the screen indicating this, and that will be the end of the app functionality. If there is a GPIO controller instance, then you will use it to open the GPIO pin that you have connected to the LED and prepare it for use. Lastly you will display a message that the GPIO pin is initialized. 
-
-{% highlight csharp %}
-private void InitGpio()
-{
-    // Get the default GPIO controller
-    var gpio = GpioController.GetDefault();
-    // If the default GPIO controller is not present, then the device 
-    // running this app isn't capable of GPIO operations.
-    if (gpio == null)
-    {
-        pin = null;
-        GpioStatus.Text = "There is no GPIO controller on this device.";
-        return;
-    }
-    // Open the GPIO pin channel
-    pin = gpio.OpenPin(LED_PIN);
-    // Define the pin as an OUTPUT pin
-    pin.SetDriveMode(GpioPinDriveMode.Output);
-    // Define the initial state as LOW (off)
-    pinValue = GpioPinValue.Low;
-    // Write the state to to pin
-    pin.Write(pinValue);
-    // Update the on screen text to indicate that GPIO is ready
-    GpioStatus.Text = "GPIO pin initialized correctly.";
-}
-{% endhighlight %}
-
-### Check for the Existence of the GPIO Pin Object and Start the Timer
-Back in the _MainPage()_ constructor, add a _null_ check on the _pin_ instance (remember, it will be _null_ if the GPIO controller was null). If it is not _null_, go ahead and start the timer. The timer will begin invoking the _Timer\_Tick_ event every 500ms.
-
-This is what the _MainPage()_ constructor should look like when completed.
-
-{% highlight csharp %}
-public MainPage()
-{
-    this.InitializeComponent();
-            
-    // Create an instance of a Timer that will raise an event every 500ms
-    timer = new DispatcherTimer();
-    timer.Interval = TimeSpan.FromMilliseconds(500);
-    timer.Tick += Timer_Tick;
-            
-    // Initialize the GPIO bus
-    InitGpio();
-            
-    // As long as the pin object is not null, proceed with the timer.
-    if (pin != null)
-    {
-        timer.Start();
+    else {
+        led.ChangeState(SensorStatus.Off);
     }
 }
 {% endhighlight %}
 
 If you want to compare your code with the master lab code, you can find it [here](https://github.com/ThingLabsIo/IoTLabs/blob/master/RPi2/Lab01/Lab01/MainPage.xaml.cs).
 
-# Run the App Locally
-Press __F5__ to run the app locally. You should see a screen similar to this:
-
-<img src="/images/rpi2/rpi2_lab01_nogpio.png"/>
-
-This screen is displayed because your development machine doesn't have a GPIO controller.
-
 # Run the App on the Device
 To deploy this application to your RPi2, select __ARM__ from the _Solution Platforms_ list in the toolbar, and select __REMOTE MACHINE__ from the _Device_ dropdown list in the toolbar.
 
-<img src="/images/rpi2/rpi2_lab01_arm.png"/>
+![Select ARM](/images/rpi2/rpi2_lab01_arm.png)
 
 You will be prompted with the _Remote Connections_ dialog. Select your device from the list of _Auto Detected_ devices, or type in the device name or IP address into the _Manual Configuration_ textbox (set the _Authentication Mode_ to __None__) and click _Select_.
 
-<img src="/images/rpi2/rpi2_lab01_remote.png"/>
+![Select your device](/images/rpi2/rpi2_lab01_remote.png)
 
 __NOTE:__ You can verify or modify these values by navigating to the project properties (select Properties in the Solution Explorer) and choosing the Debug tab on the left.
 
-Now press __F5__ to run the application and you should see it deploy on the RPi2. You will see the red LED blink in unison with the red circle on the screen. If the red LED is not blinking, but the display on the screen is, recheck your wiring. 
+Now press __F5__ to run the application and you should see it deploy on the RPi2. You will see the LED blink once per second.
 
 # Conclusion &amp; Next Steps
-
 Congratulations! You have built a Universal Windows Platform application that controlled one of the GPIO pins and deployed the app to a Raspberry Pi. The core concepts you've learned are:
 
 1. Building a Universal Windows Platform application that can run on any Windows 10 device. 
