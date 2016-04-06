@@ -52,7 +52,7 @@ Congratulations!
 2. ?
 3. ?
 
-In the [next lab][nextlab] you will build the evice that you will use for the rest of this workshop - an indoor environment station. 
+In the [next lab][nextlab] you will build the device that you will use for the rest of this workshop - an indoor environment station. 
 
 <a class="radius button small" href="{{ site.url }}/workshop/fullday-windows/indoor-environment/">Go to 'Indoor Environment Station' ›</a>
 
