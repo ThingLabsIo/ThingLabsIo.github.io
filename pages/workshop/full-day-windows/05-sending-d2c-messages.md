@@ -8,7 +8,7 @@ comments: true
 header: no
 breadcrumb: true
 categories: [raspberry-pi, windows-10, grove, c#, iot, maker, azure, azure-iot-hub]
-permalink: /workshop/fullday-windows/sending-d2c-messages/
+permalink: /workshop/full-day-windows/sending-d2c-messages/
 ---
 
 # Table of Contents
@@ -518,6 +518,6 @@ Congratulations! You have built a Universal Windows Platform application that ca
 
 At this point, nothing interesting is happening with that data you are sending to Azure. It is simply being persisted for a default amount of time (1-day) and then being dropped. In the [next lab][nextlab] you will setup some Azure services to process and visualize the data.
 
-<a class="radius button small" href="{{ site.url }}/workshop/fullday-windows/visualize-iot-with-powerbi/">Go to 'Visualize IoT Data with Microsoft Power BI' ›</a>
+<a class="radius button small" href="{{ site.url }}/workshop/full-day-windows/visualize-iot-with-powerbi/">Go to 'Visualize IoT Data with Microsoft Power BI' ›</a>
 
 [nextlab]: ../visualize-iot-with-powerbi/
