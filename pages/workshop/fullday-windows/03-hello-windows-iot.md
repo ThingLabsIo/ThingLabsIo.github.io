@@ -62,7 +62,7 @@ A Universal Windows app is a Windows experience that is built upon the Universal
 ![Create a new IoT Background application](/images/workshops/fullday-windows/new_hello.png)
 
 ## Add a Reference to the GrovePi Libraries
-The GrovePi libraries provide an abstration over the Windows 10 IoT Core GPIO, I2C and SPI interfaces and expose the sensor and device functionality as objects. The GrovePi libraries are easy to install using the Package Manager Console.
+The GrovePi libraries provide an abstraction over the Windows 10 IoT Core GPIO, I2C and SPI interfaces and expose the sensor and device functionality as objects. The GrovePi libraries are easy to install using the Package Manager Console.
 
 1. To install GrovePi for Windows IoT, run the following command from the __Package Manager Console__
 
@@ -71,7 +71,7 @@ Install-Package GrovePi
 ```
 
 ## Define the Libraries the App Requires
-This applicatin will run as a background task on a Windows 10 IoT device. Unlike a Universal WIndows Platform application - where the Windows IoT OS is limited to running only one app at a time - Windows 10 IoT Core (and better) can run multiple BackGround Task applications at once. These are _headless_ applications... that is, there is no UI. You will write code that performs the necessary functions for the application, but there will not be any UI. This example will demonstrate how to blink and LED on and off.
+This application will run as a background task on a Windows 10 IoT device. Unlike a Universal WIndows Platform application - where the Windows IoT OS is limited to running only one app at a time - Windows 10 IoT Core (and better) can run multiple BackGround Task applications at once. These are _headless_ applications... that is, there is no UI. You will write code that performs the necessary functions for the application, but there will not be any UI. This example will demonstrate how to blink and LED on and off.
 
 1. Open the __StartupTask.cs__ file. Add the following to the __using__ statements at the top of the file. 
 
@@ -128,7 +128,7 @@ public void Run(IBackgroundTaskInstance taskInstance)
 ## Handle the Timer_Tick Event
 In the previous section you defined an event handler that will be invoked each time the timer ticks off a second using the ```ThreadPoolTimer.CreatePeriodicTimer(callback, TimeSpan))``` method. Now you will add the callback event (aka the event handler). When the Timer\_Tick event handler is invoked it will check the current state of the LED (on or off) and switch it to the opposite state.
 
-1. Using the Visual Studio refactoring tools, you can generate the method stub for the __Timer\_Tick__ event handler. Hover over the _Timer\_Tick_ text until a lightbulb appears. Click the down arrow and select _Generate method 'MainPage.Timer\_Tick'_ 
+1. Using the Visual Studio refactoring tools, you can generate the method stub for the __Timer\_Tick__ event handler. Hover over the _Timer\_Tick_ text until a light bulb appears. Click the down arrow and select _Generate method 'MainPage.Timer\_Tick'_ 
 
 ![Generate Timer\_Tick Event Handler](/images/workshops/fullday-windows/timer_tick.png)
 

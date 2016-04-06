@@ -102,7 +102,7 @@ Once the solution is created, click on the _Project_ menu and select _Add Refere
 
 In the Reference Manager dialog, expand the _Universal Windows_ node and select _Extensions_.
 
-In the list of extensions, check the box next to __Windows IoT Extensions for the UWP__ and click __OK__ (make sure to select the same version number as the OS running on the RPi2). It is easy to accidently select the _Windows Mobile Extensions for the UWP_ (which is just below the IoT extensions) - pay close attention and make sure you have added the correct reference.
+In the list of extensions, check the box next to __Windows IoT Extensions for the UWP__ and click __OK__ (make sure to select the same version number as the OS running on the RPi2). It is easy to accidentally select the _Windows Mobile Extensions for the UWP_ (which is just below the IoT extensions) - pay close attention and make sure you have added the correct reference.
 
 ## Add the Microsoft.Azure.Devices.Client NuGet Package
 Once the _Windows IoT Extensions for the UWP_ are added, click on the _Project_ menu and select _Manage NuGet Packages._
@@ -504,7 +504,7 @@ private async Task SendMessageToIoTHubAsync(int darkness)
 
 With this method you attempt to construct a JSON message payload, display it on the screen and send it to your Azure IoT Hub. The communication with the Azure IoT Hub is managed by the <code>deviceClient</code> object from the _Microsoft.Azure.Devices.Client_ namespace.
 
-The final _MainPage.cxaml.cs_ can be found [here](https://github.com/ThingLabsIo/IoTLabs/blob/master/RPi2/IoTLightSensor/IoTLightSensor/MainPage.xaml.cs) and the complete solution can be found [here](https://github.com/ThingLabsIo/IoTLabs/tree/master/RPi2/IoTLightSensor).
+The final _MainPage.xaml.cs_ can be found [here](https://github.com/ThingLabsIo/IoTLabs/blob/master/RPi2/IoTLightSensor/IoTLightSensor/MainPage.xaml.cs) and the complete solution can be found [here](https://github.com/ThingLabsIo/IoTLabs/tree/master/RPi2/IoTLightSensor).
 
 ## Run the Application
 Now you can run the application on your RPi2 and not only will you see the indicator bar changing, but you will also see the log of messages being sent to Azure IoT Hub at a rate of once per second.
