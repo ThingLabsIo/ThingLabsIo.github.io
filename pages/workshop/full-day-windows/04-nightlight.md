@@ -8,7 +8,7 @@ comments: false
 header: no
 breadcrumb: true
 categories: [raspberry-pi, windows-10, grove, c#, iot, maker]
-permalink: /workshop/fullday-windows/nightlight/
+permalink: /workshop/full-day-windows/nightlight/
 ---
 
 # Table of Contents
@@ -31,14 +31,14 @@ What you will need:
 	* [Samsung 32GB EVO Class 10 Micro SDHC up to 48MB/s with Adapter (MB-MP32DA/AM)](http://www.amazon.com/gp/product/B00IVPU786)
 	* [SanDisk Ultra Micro SDHC, 16GB Card](http://www.amazon.com/SanDisk-Ultra-Micro-SDHC-16GB/dp/9966573445).
 
-If you haven't already done so, follow the setup instructions at ['Setting Up Your Raspberry Pi 2']({{ site.url }}/workshop/fullday-windows/setup-rpi2/).
+If you haven't already done so, follow the setup instructions at ['Setting Up Your Raspberry Pi 2']({{ site.url }}/workshop/full-day-windows/setup-rpi2/).
 
 # Connecting the Sensors
 In this lab you will combine the output device you previously used (a Grove LED module) with an input sensor - a Grove Light Sensor. You will use the measurement of ambient light from the Light Sensor to control the intensity of the LED. Basically you are making a nightlight. 
 
 The Grove Light Snesor is made up of a photoresistor and a 10k Ohm resistor. A _photoresistor_, also known as _light-dependent resistor (LDR)_ or a photocell, works by limiting the amount of voltage that passes through it based on the intensity of light detected. The resistance decreases as light input increases - in other words, the more light, the more voltage passes through the photoresistor.
 
-![Connect the LED and Light Sensor](/images/workshops/fullday-windows/nightlight.jpg)
+![Connect the LED and Light Sensor](/images/workshops/full-day-windows/nightlight.jpg)
 
 
 
@@ -54,6 +54,6 @@ Congratulations!
 
 In the [next lab][nextlab] you will build the device that you will use for the rest of this workshop - an indoor environment station. 
 
-<a class="radius button small" href="{{ site.url }}/workshop/fullday-windows/indoor-environment/">Go to 'Indoor Environment Station' ›</a>
+<a class="radius button small" href="{{ site.url }}/workshop/full-day-windows/indoor-environment/">Go to 'Indoor Environment Station' ›</a>
 
-[nextlab]: /workshop/fullday-windows/indoor-environment/
+[nextlab]: /workshop/full-day-windows/indoor-environment/

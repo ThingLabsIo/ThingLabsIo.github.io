@@ -8,7 +8,7 @@ comments: false
 header: no
 breadcrumb: true
 categories: [raspberry-pi, windows-10, grove, c#, iot, maker]
-permalink: /workshop/fullday-windows/hello-windows-iot/
+permalink: /workshop/full-day-windows/hello-windows-iot/
 ---
 
 # Table of Contents
@@ -30,7 +30,7 @@ What you will need:
 	* [Samsung 32GB EVO Class 10 Micro SDHC up to 48MB/s with Adapter (MB-MP32DA/AM)](http://www.amazon.com/gp/product/B00IVPU786)
 	* [SanDisk Ultra Micro SDHC, 16GB Card](http://www.amazon.com/SanDisk-Ultra-Micro-SDHC-16GB/dp/9966573445).
 
-If you haven't already done so, follow the setup instructions at ['Setting Up Your Raspberry Pi 2']({{ site.url }}/workshop/fullday-windows/setup-rpi2/).
+If you haven't already done so, follow the setup instructions at ['Setting Up Your Raspberry Pi 2']({{ site.url }}/workshop/full-day-windows/setup-rpi2/).
 
 # Connect the Grove Parts (Shield and LED)
 The RPi2 connects to the physical world through the GPIO pins. GPIO stands for General Purpose Input/Output and refers to the two rows of pins on RPI2. The GPIO pins are a physical interface between the RPi2 and the physical world. Through your app you can designate pins to either receive input or send output. The inputs can be from switches, sensors or other devices. The outputs can be LEDs, servos, motors or countless other devices. Twenty-six of the 40 pins are GPIO pins; the others are power, ground, or reserved pins.
@@ -49,7 +49,7 @@ Connect the GrovePi shield to the RPi2.
 
 Connec the LED to the D4 jack.
 
-![Connect the LED to D4](/images/workshops/fullday-windows/blink_example.jpg)
+![Connect the LED to D4](/images/workshops/full-day-windows/blink_example.jpg)
 
 # Create the Device Application 
 A Universal Windows app is a Windows experience that is built upon the Universal Windows Platform (UWP), which was first introduced in Windows 8 as the Windows Runtime. The UWP enables you to write an app that targets a device family, such as IoT devices. In fact, the universal app that you write may be able to run on multiple devices families, depending on the device characteristics that it takes advantage of. In this lab you will create a universal app targeting IoT devices running Windows 10. Technically this could be nearly any device, such as a phone, a tablet or a RPi2, however; the universal app you write will access the General Purpose Input/Output (GPIO) of the device, so the app won't actually be compatible with devices that don't have a GPIO.   
@@ -59,7 +59,7 @@ A Universal Windows app is a Windows experience that is built upon the Universal
 1. Launch Visual Studio and start a new __Background Application (IoT)__ (found in the _Templates -> C# -> Windows -> Windows IoT Core_ node).
 2. Name the application __HelloWindowsIoT__.
 
-![Create a new IoT Background application](/images/workshops/fullday-windows/new_hello.png)
+![Create a new IoT Background application](/images/workshops/full-day-windows/new_hello.png)
 
 ## Add a Reference to the GrovePi Libraries
 The GrovePi libraries provide an abstraction over the Windows 10 IoT Core GPIO, I2C and SPI interfaces and expose the sensor and device functionality as objects. The GrovePi libraries are easy to install using the Package Manager Console.
@@ -130,7 +130,7 @@ In the previous section you defined an event handler that will be invoked each t
 
 1. Using the Visual Studio refactoring tools, you can generate the method stub for the __Timer\_Tick__ event handler. Hover over the _Timer\_Tick_ text until a light bulb appears. Click the down arrow and select _Generate method 'MainPage.Timer\_Tick'_ 
 
-![Generate Timer\_Tick Event Handler](/images/workshops/fullday-windows/timer_tick.png)
+![Generate Timer\_Tick Event Handler](/images/workshops/full-day-windows/timer_tick.png)
 
 1. Add the following code for the _Timer\_Tick_ event handler.
 
@@ -151,14 +151,14 @@ To run the application you will build it locally and then deploy it to the RPi2 
 1. Ensure __ARM__ is selected in the _Solution Platforms_ drop down list in the toolbar
 2. elect __Remote Machine__ from the _Device_ list in the toolbar.
 
-![Select ARM](/images/workshops/fullday-windows/target_remote_machine.png)
+![Select ARM](/images/workshops/full-day-windows/target_remote_machine.png)
 
 You will be prompted with the _Remote Connections_ dialog. You can select your device in one of two ways:
 
 1. Select your device from the list of _Auto Detected_ devices, __OR__ 
 2. Type in the __device name__ or __IP address__ into the _Manual Configuration_ textbox (set the _Authentication Mode_ to __Universal (Unencrypted Protocol)__) and click __Select__.
 
-![Select your device](/images/workshops/fullday-windows/find_remote_machine.png)
+![Select your device](/images/workshops/full-day-windows/find_remote_machine.png)
 
 1. Now press __F5__ to run the application and you should see (in the _Output_ windows) it building locally and then deploying on the RPi2. You will see the LED blink once per second.
 
@@ -177,6 +177,6 @@ Congratulations! You have built a Windows 10 IoT application that controlled a d
 
 In the [next lab][nextlab] you will build a more complicated _Thing_ that uses both input sensors and output devices. 
 
-<a class="radius button small" href="{{ site.url }}/workshop/fullday-windows/nightlight/">Go to 'Nightlight' ›</a>
+<a class="radius button small" href="{{ site.url }}/workshop/full-day-windows/nightlight/">Go to 'Nightlight' ›</a>
 
-[nextlab]: /workshop/fullday-windows/nightlight/
+[nextlab]: /workshop/full-day-windows/nightlight/

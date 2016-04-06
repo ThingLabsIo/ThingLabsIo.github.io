@@ -1,15 +1,15 @@
 ---
-layout: "page-fullday-windows"
+layout: "page-full-day-windows"
 title: "ThingLabs Full Day Workshop"
 subheadline: "Building Connected Things with Windows 10 IoT and Microsoft Azure"
 teaser: "In these IoT Labs you will begin by learning the basics of working with Windows 10 IoT Core connected to sensors and devices. You will move on to connecting the device to the Cloud. You will learn how to leverage Microsoft Azure services to collect data and control devices and use advanced services like analytics and machine learningto discover insights using your Things."
 show_meta: true
 comments: false
 header: 
-        image_fullwidth: workshops/fullday-windows/header.jpg
+    image_fullwidth: workshops/full-day-windows/header.jpg
 breadcrumb: true
 categories: [rpi, dragon, minnowboard, maker]
-permalink: /workshop/fullday-windows/home/
+permalink: /workshop/full-day-windows/home/
 ---
 
 # Table of Contents
@@ -41,26 +41,26 @@ The following are required to prepare for the workshop. Whenever possible this s
 ## Getting Started
 This is a step-by-step guide to preparing your computer for the Windows 10 IoT Labs.
 
-<a class="radius button small" href="{{ site.url }}/workshop/fullday-windows/getting-started/">Estimated time to complete: 20-minutes. Go to  'Getting Started' ›</a>
+<a class="radius button small" href="{{ site.url }}/workshop/full-day-windows/getting-started/">Estimated time to complete: 20-minutes. Go to  'Getting Started' ›</a>
 
 ## Setting Up Your Raspberry Pi 2
 The Raspberry Pi 2 is a low cost, credit-card sized computer that plugs into a computer monitor or TV, and uses a standard keyboard and mouse. The Raspberry Pi 2 runs Windows 10 IoT Core.
 
 In this lab you will install Windows 10 IoT Core on your Raspberry Pi 2.
 
-<a class="radius button small" href="{{ site.url }}/workshop/fullday-windows/setup-rpi2/">Estimated time to complete: 20-minutes. Go to  'Setting Up Your Raspberry Pi 2' ›</a>
+<a class="radius button small" href="{{ site.url }}/workshop/full-day-windows/setup-rpi2/">Estimated time to complete: 20-minutes. Go to  'Setting Up Your Raspberry Pi 2' ›</a>
 
 # Lab Guides
 
 ## Lab 01: Hello, Windows IoT!
 In this lab you will build a simple single-circuit device that blinks an LED on and off (this is the ‘Hello, World! of the maker/IoT space).
 
-<a class="radius button small" href="{{ site.url }}/workshop/fullday-windows/hello-windows-iot/">Estimated time to complete: 20-minutes. Go to  'Hello, Windows IoT!' ›</a>
+<a class="radius button small" href="{{ site.url }}/workshop/full-day-windows/hello-windows-iot/">Estimated time to complete: 20-minutes. Go to  'Hello, Windows IoT!' ›</a>
 
 ## Lab 02: Nightlight
 In this lab you will capture analog input using a light-dependent resistor (photo cell) and turn on or off an LED based on the amount of light detected. 
 
-<a class="radius button small" href="{{ site.url }}/workshop/fullday-windows/nightlight/">Estimated time to complete: 20-minutes. Go to  'Hello, Windows IoT!' ›</a>
+<a class="radius button small" href="{{ site.url }}/workshop/full-day-windows/nightlight/">Estimated time to complete: 20-minutes. Go to  'Hello, Windows IoT!' ›</a>
 
 ## Lab 03: Not Quite the Nest
 In this lab you will build a prototype of a device similar to, but not quite, the Nest thermostat. The device will:
@@ -70,17 +70,17 @@ In this lab you will build a prototype of a device similar to, but not quite, th
 3. Turn on a RED light to indicate heating and a blue LED to indicate cooling
 4. Stretch: Detects when someone approaches and comes out of sleep-mode
 
-<a class="radius button small" href="{{ site.url }}/workshop/fullday-windows/not-quite-the-nest/">Estimated time to complete: 20-minutes. Go to  'Hello, Windows IoT!' ›</a>
+<a class="radius button small" href="{{ site.url }}/workshop/full-day-windows/not-quite-the-nest/">Estimated time to complete: 20-minutes. Go to  'Hello, Windows IoT!' ›</a>
 
 ## Lab 04: Setting Up Azure IoT Hub
 In this lab you will provision a new Azure IoT Hub. Once you have the IoT Hub created, you will be able to create a new Azure IoT device (a software reference to your physical device) that you will use to send telemetry to Azure.
 
-<a class="radius button small" href="{{ site.url }}/workshop/fullday-windows/setup-azure-iot-hub/">Estimated time to complete: 20-minutes. Go to  'Setting Up Azure IoT Hub' ›</a>
+<a class="radius button small" href="{{ site.url }}/workshop/full-day-windows/setup-azure-iot-hub/">Estimated time to complete: 20-minutes. Go to  'Setting Up Azure IoT Hub' ›</a>
 
 ## Lab 05: Sending Device-to-Cloud (D2C) Messages
 In this lab you will use the thermastat device that you built to capture and send telemetry data to Azure IoT Hub.
 
-<a class="radius button small" href="{{ site.url }}/workshop/fullday-windows/sending-d2c-messages/">Estimated time to complete: 20-minutes. Go to  'Sending Telemetry to the Cloud' ›</a>
+<a class="radius button small" href="{{ site.url }}/workshop/full-day-windows/sending-d2c-messages/">Estimated time to complete: 20-minutes. Go to  'Sending Telemetry to the Cloud' ›</a>
 
 ## Lab 06: Storing and Displaying IoT Data
 In this lab you will build a data pipeline that captures the data coming into IoT Hub and persists it using Azure storage. You will then connect a website to Azure and retreive the data for display in a browser.
@@ -88,4 +88,4 @@ In this lab you will build a data pipeline that captures the data coming into Io
 ## Lab 07: Lab: Sending Cloud-to-Device (C2D) Messages
 In this lab you will extend your website by adding the ability to control the thermastat remotely. The website will send messages to the thermastat via Azure.
 
-<a class="radius button small" href="{{ site.url }}/workshop/fullday-windows/visualize-iot-with-powerbi/">Estimated time to complete: 20-minutes. Go to  'Visualizing IoT Data with Power BI' ›</a>
+<a class="radius button small" href="{{ site.url }}/workshop/full-day-windows/visualize-iot-with-powerbi/">Estimated time to complete: 20-minutes. Go to  'Visualizing IoT Data with Power BI' ›</a>

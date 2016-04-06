@@ -8,7 +8,7 @@ comments: false
 header: no
 breadcrumb: true
 categories: [raspberry-pi, windows-10, dragonboard, minnowboard, c#, iot, maker]
-permalink: /workshop/fullday-windows/getting-started/
+permalink: /workshop/full-day-windows/getting-started/
 ---
 ### Table of Contents
 *  Auto generated table of contents
@@ -56,4 +56,4 @@ In this lab you prepared your development machine for the following labs. The ne
 
 Choose your own adventure - click one of these options to configure your board.
 
-<a class="radius button small" href="{{ site.url }}/workshop/fullday-windows/setup-rpi2/">Go to 'Setting Up Your Raspberry Pi 2' ›</a>
+<a class="radius button small" href="{{ site.url }}/workshop/full-day-windows/setup-rpi2/">Go to 'Setting Up Your Raspberry Pi 2' ›</a>

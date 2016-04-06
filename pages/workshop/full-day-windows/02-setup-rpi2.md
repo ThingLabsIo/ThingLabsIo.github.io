@@ -8,7 +8,7 @@ comments: false
 header: no
 breadcrumb: true
 categories: [raspberry-pi, windows-10, grove, c#, iot, maker]
-permalink: /workshop/fullday-windows/setup-rpi2/
+permalink: /workshop/full-day-windows/setup-rpi2/
 ---
 # Table of Contents
 *  Auto generated table of contents
@@ -76,4 +76,4 @@ Your RPi2 will reboot and when it is back up and running it will have the new na
 # Conclusion &amp; Next Steps
 In this lab you prepared your Raspberry Pi 2 for the following labs. Next you will do the IoT equivalent of 'Hello, World!' - you will make an LED blink.
 
-<a class="radius button small" href="{{ site.url }}/workshop/fullday-windows/hello-windows-iot/">Go to 'Hello, Windows IoT!' ›</a>
+<a class="radius button small" href="{{ site.url }}/workshop/full-day-windows/hello-windows-iot/">Go to 'Hello, Windows IoT!' ›</a>

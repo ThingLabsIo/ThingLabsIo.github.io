@@ -8,7 +8,7 @@ comments: false
 header: no
 breadcrumb: true
 categories: [rpi, iot, maker, azure-iot]
-permalink: /workshop/fullday-windows/
+permalink: /workshop/full-day-windows/
 ---
 
 # Table of Contents

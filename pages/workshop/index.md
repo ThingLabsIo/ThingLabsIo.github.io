@@ -6,7 +6,7 @@ teaser: "ThingLabs provides a number of workshops of different lenghts and using
 show_meta: true
 comments: false
 header: 
-        image_fullwidth: workshops/fullday-windows/header.jpg
+    image_fullwidth: workshops/full-day-windows/header.jpg
 breadcrumb: true
 categories: [workshops]
 permalink: /workshop/
