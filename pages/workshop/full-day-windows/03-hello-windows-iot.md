@@ -41,7 +41,7 @@ The Grove Shield simplifies accessing the pins by providing connectors that you 
 
 ![GrovePi Shiled](/images/rpi2/GrovePi-Shield.jpg)
 
-> Note: The RPI2 doesn't have analog GPIO - the Grove shield includes an Analog-Digital Converter enabling you to connect analog devices to the A0-A2 connectors.
+cNote: The RPI2 doesn't have analog GPIO - the Grove shield includes an Analog-Digital Converter enabling you to connect analog devices to the A0-A2 connectors.
 
 Connect the GrovePi shield to the RPi2.
 
@@ -63,6 +63,8 @@ A Universal Windows app is a Windows experience that is built upon the Universal
 
 ## Add a Reference to the GrovePi Libraries
 The GrovePi libraries provide an abstraction over the Windows 10 IoT Core GPIO, I2C and SPI interfaces and expose the sensor and device functionality as objects. The GrovePi libraries are easy to install using the Package Manager Console.
+
+> WARNING: This section needs updating. You will have to download the GrovePi C\# project from https://github.com/DexterInd/GrovePi/tree/master/Software/CSharp/GrovePi, build it and add a reference to the GrovePi.dll (which is more current than the NuGet package.
 
 1. To install GrovePi for Windows IoT, run the following command from the __Package Manager Console__
 

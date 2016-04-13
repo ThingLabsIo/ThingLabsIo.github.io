@@ -79,6 +79,16 @@ By default your board will have the name __minwinpc__ and an Administrator passw
 
 Your RPi2 will reboot and when it is back up and running it will have the new name you gave it, and the Administrator account will use the password you created. 
 
+# Test Device
+Quick-Run samples are pre-built and require no compiling or coding to get going. This is a great way to make sure everything is working and easily play with your board.
+
+1. Navigate to __Quick-run samples__ in the left nav bar.
+2. Select _Hello Blinky_
+3. Select your board from the dropdown list
+4. Launch the sample. 
+
+In the background, the dashboard will temporarily install the quick-run sample onto you device. Once loaded, the device will broadcast a webpage over the network and IoT Dashboard will automatically connect to it. This lets you control the app without having to plug in a monitor directly to your device.
+
 # Conclusion &amp; Next Steps
 In this lab you prepared your Raspberry Pi 2 for the following labs. Next you will do the IoT equivalent of 'Hello, World!' - you will make an LED blink.
 
