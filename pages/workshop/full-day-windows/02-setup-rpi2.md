@@ -51,7 +51,7 @@ Windows 10 IoT Core is a version of Windows 10 designed to run on small devices,
 # Connect the RPi2
 You are now ready to connect and power on your RPi2.
 
-1. Insert the micro SD card with the Windows 10 IoT Core image on it into your RPi2 (the slot is on the underside, on the opposite edge from the side with the USB ports).
+1. Insert the microSD card with the Windows 10 IoT Core image on it into your RPi2 (the slot is on the underside, on the opposite edge from the side with the USB ports).
 2. If you will be connecting to a physical network, connect a network cable from your local network to the Ethernet port on the RPi2. Your development device must be on the same network. If you will be using Wi-Fi, see the Joinning the Wi-Fi Network section below.
 3. If you will be working with a monitor, connect an HDMI monitor to the HDMI port on the board.
 4. Connect the power supply to the micro USB port on the board. You must power this from the 5V 2A adapter - USB power from your computer is insufficient.
@@ -60,18 +60,24 @@ Windows 10 IoT Core will boot on power-up. The first boot may take a few minutes
 
 ![Default app](/images/rpi2/rpi2_defaultapp.png)
 
-# Set the Machine Name and Password
-Once the RPi2 has booted up, it will appear in the _My devices_ tab of the IoT Dashboard - by default it will have the name __minwinpc__ and an Administrator password of __p@ssw0rd__. It is recommend that you change both of these to avoid confusion with other devices on your network.
+# Join the Wireless Network
+If your board has a WiFi adapater and it has not yet be set up, it will start to broadcast itself as a network. Unconfigured boards will begin with "AJ_" (e.g. AJ_58EA6C68).
 
-1. Click on the stylus icon to edit the RPi2.
-2. Change the password if you would like.
-3. Change the name to something unique (remember, you are naming a Windows device - all normal naming rules and practices apply).
+![Devices broadcasting their ID](/images/rpi2/dashboard-setup05.png)
+
+1. Go to __My devices__. From my devices, you can dsicover your device and configure it (including connecting to Wi-Fi).
+2. Find your board and click __Configure Device__. If you don’t see your board, make sure that you’ve allowed enough time for your board to boot. If all else fails, reboot your device.
+3. Enter your network credentials. Your computer will now connect to your board.
+
+# Set the Machine Name and Password
+By default your board will have the name __minwinpc__ and an Administrator password of __p@ssw0rd__. It is recommend that you change both of these to avoid confusion with other devices on your network.
+
+1. Find your device in the list
+2. Click the edit symbol (pencil symbol). This will take you to settings page. From the settings page you can launch Windows Device Portal, and set basic settings.
+3. Set the machine name and change the password (highly recommended). All devices start with a default password. The default password is __p@ssw0rd__. It is highly suggested that you change it.
 4. Click __Accept__ to accept the changes and reboot the RPi2
 
 Your RPi2 will reboot and when it is back up and running it will have the new name you gave it, and the Administrator account will use the password you created. 
-
-# Join the Wireless Network
-//TODO
 
 # Conclusion &amp; Next Steps
 In this lab you prepared your Raspberry Pi 2 for the following labs. Next you will do the IoT equivalent of 'Hello, World!' - you will make an LED blink.
