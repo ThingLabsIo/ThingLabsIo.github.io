@@ -60,17 +60,19 @@ In this lab you will build a simple single-circuit device that blinks an LED on 
 ## Lab 02: Nightlight
 In this lab you will capture analog input using a light-dependent resistor (photo cell) and turn on or off an LED based on the amount of light detected. 
 
-<a class="radius button small" href="{{ site.url }}/workshop/full-day-windows/nightlight/">Estimated time to complete: 20-minutes. Go to  'Hello, Windows IoT!' ›</a>
+<a class="radius button small" href="{{ site.url }}/workshop/full-day-windows/nightlight/">Estimated time to complete: 20-minutes. Go to  'Nightlight' ›</a>
 
-## Lab 03: Not Quite the Nest
-In this lab you will build a prototype of a device similar to, but not quite, the Nest thermostat. The device will:
+## Lab 03: ThingLabs Thingy&trade;
+In this lab you will build a device with multiple sensors and actuators. The device will:
 
-1. Captures temerature and humidity and display it on either an LCD or a connected monitor
-2. Enable input to alter the desired temperature
-3. Turn on a RED light to indicate heating and a blue LED to indicate cooling
-4. Stretch: Detects when someone approaches and comes out of sleep-mode
+* Capture the amount of ambient light
+* Increase the brightness intensity of an LED inversely to the amount of ambient light measured.
+* Capture the amount of ambient  sound
+* Display the ambient light and sound measurments on an LCD display.
+* The display will adjust its backlight brightness according to the amount of ambient light in the area.
+* Enable a button to turn on and off an LED and trigger sound.
 
-<a class="radius button small" href="{{ site.url }}/workshop/full-day-windows/not-quite-the-nest/">Estimated time to complete: 20-minutes. Go to  'Hello, Windows IoT!' ›</a>
+<a class="radius button small" href="{{ site.url }}/workshop/full-day-windows/thingy/">Estimated time to complete: 30-minutes. Go to  'Thingy' ›</a>
 
 ## Lab 04: Setting Up Azure IoT Hub
 In this lab you will provision a new Azure IoT Hub. Once you have the IoT Hub created, you will be able to create a new Azure IoT device (a software reference to your physical device) that you will use to send telemetry to Azure.
@@ -86,6 +88,6 @@ In this lab you will use the thermastat device that you built to capture and sen
 In this lab you will build a data pipeline that captures the data coming into IoT Hub and persists it using Azure storage. You will then connect a website to Azure and retreive the data for display in a browser.
 
 ## Lab 07: Lab: Sending Cloud-to-Device (C2D) Messages
-In this lab you will extend your website by adding the ability to control the thermastat remotely. The website will send messages to the thermastat via Azure.
+In this lab you will extend your website by adding the ability to control the THingLabs Thingy&trade; remotely. The website will send messages to the Thingy via Azure.
 
 <a class="radius button small" href="{{ site.url }}/workshop/full-day-windows/visualize-iot-with-powerbi/">Estimated time to complete: 20-minutes. Go to  'Visualizing IoT Data with Power BI' ›</a>
