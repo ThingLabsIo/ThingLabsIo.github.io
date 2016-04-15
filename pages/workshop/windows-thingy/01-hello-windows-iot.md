@@ -2,7 +2,7 @@
 layout: "page-fullwidth"
 title: "Hello, Windows IoT!"
 subheadline: "Building Connected Things with Windows 10 IoT and Microsoft Azure"
-teaser: "In this lab you will create a simple 'Thing' using Windows 10 IoT Core."
+teaser: "In this lab, you will create a simple 'Thing' using Windows 10 IoT Core."
 show_meta: true
 comments: false
 header: no
@@ -15,7 +15,7 @@ permalink: /workshop/windows-thingy/hello-windows-iot/
 *  Auto generated table of contents
 {:toc}
 
-In this lab you will create a simple _Thing_ using a Windows 10 IoT device and the Universal Windows Platform. 
+In this lab, you will create a simple _Thing_ using a Windows 10 IoT device and the Universal Windows Platform. 
 
 # Bill of Materials
 What you will need:
@@ -33,13 +33,13 @@ What you will need:
 If you haven't already done so, follow the setup instructions at ['Setting Up Your Raspberry Pi 2']({{ site.url }}/workshop/windows-thingy/setup-rpi2/).
 
 # Connect the Grove Parts (Shield and LED)
-The RPi2 connects to the physical world through the GPIO pins. GPIO stands for General Purpose Input/Output and refers to the two rows of pins on RPI2. The GPIO pins are a physical interface between the RPi2 and the physical world. Through your app you can designate pins to either receive input or send output. The inputs can be from switches, sensors or other devices. The outputs can be LEDs, servos, motors or countless other devices. Twenty-six of the 40 pins are GPIO pins; the others are power, ground, or reserved pins.
+The RPi2 connects to the physical world through the GPIO pins. GPIO stands for General Purpose Input/Output and refers to the two rows of pins on RPI2. The GPIO pins are a physical interface between the RPi2 and the physical world. Through your app, you can designate pins to either receive input or send output. The inputs can be from switches, sensors or other devices. The outputs can be LEDs, servos, motors or countless other devices. Twenty-six of the 40 pins are GPIO pins; the others are power, ground, or reserved pins.
 
 ![RPi2 Pin Map](/images/rpi2/rpi12_pinout.png)
 
-The Grove Shield simplifies accessing the pins by providing connectors that you can simply plug sensors and devices into. The GrovePi Shield exposes GPIO pins (labelled D2-D8 for digital and A0-2 for analog), I2C (pronounced Eye-Squared-See) and Serial/SPI connections.
+The Grove Shield simplifies accessing the pins by providing connectors that you can simply plug sensors and devices into. The GrovePi Shield exposes GPIO pins (labeled D2-D8 for digital and A0-2 for analog), I2C (pronounced Eye-Squared-See) and Serial/SPI connections.
 
-![GrovePi Shiled](/images/rpi2/GrovePi-Shield.jpg)
+![GrovePi Shield](/images/rpi2/GrovePi-Shield.jpg)
 
 >Note: The RPI2 doesn't have analog GPIO - the Grove shield includes an Analog-Digital Converter enabling you to connect analog devices to the A0-A2 connectors.
 
@@ -49,12 +49,12 @@ Connect the GrovePi shield to the RPi2.
 
 ![Connect the GrovePi Shield](/images/rpi2/Connect-GrovePi.jpg)
 
-Connec the LED to the D4 jack.
+Connect the LED to the D4 jack.
 
 ![Connect the LED to D4](/images/workshops/windows-thingy/blink_example.jpg)
 
 # Create the Device Application 
-A Universal Windows app is a Windows experience that is built upon the Universal Windows Platform (UWP), which was first introduced in Windows 8 as the Windows Runtime. The UWP enables you to write an app that targets a device family, such as IoT devices. In fact, the universal app that you write may be able to run on multiple devices families, depending on the device characteristics that it takes advantage of. In this lab you will create a universal app targeting IoT devices running Windows 10. Technically this could be nearly any device, such as a phone, a tablet or a RPi2, however; the universal app you write will access the General Purpose Input/Output (GPIO) of the device, so the app won't actually be compatible with devices that don't have a GPIO.   
+A Universal Windows app is a Windows experience that is built upon the Universal Windows Platform (UWP), which was first introduced in Windows 8 as the Windows Runtime. The UWP enables you to write an app that targets a device family, such as IoT devices. In fact, the universal app that you write may be able to run on multiple devices families, depending on the device characteristics that it takes advantage of. In this lab, you will create a universal app targeting IoT devices running Windows 10. Technically this could be nearly any device, such as a phone, a tablet or an RPi2, however; the universal app you write will access the General Purpose Input/Output (GPIO) of the device, so the app won't actually be compatible with devices that don't have a GPIO.   
 
 ## Create a New Background Task Project
 
@@ -75,7 +75,7 @@ Install-Package GrovePi
 ```
 
 ## Define the Libraries the App Requires
-This application will run as a background task on a Windows 10 IoT device. Unlike a Universal WIndows Platform application - where the Windows IoT OS is limited to running only one app at a time - Windows 10 IoT Core (and better) can run multiple BackGround Task applications at once. These are _headless_ applications... that is, there is no UI. You will write code that performs the necessary functions for the application, but there will not be any UI. This example will demonstrate how to blink and LED on and off.
+This application will run as a background task on a Windows 10 IoT device. Unlike a Universal Windows Platform application - where the Windows IoT OS is limited to running only one app at a time - Windows 10 IoT Core (and better) can run multiple BackGround Task applications at once. These are _headless_ applications... that is, there is no UI. You will write code that performs the necessary functions for the application, but there will not be any UI. This example will demonstrate how to blink and LED on and off.
 
 1. Open the __StartupTask.cs__ file. Add the following to the __using__ statements at the top of the file. 
 
@@ -112,7 +112,7 @@ namespace HelloWindowsIoT
 {% endhighlight %}
 
 ## Instantiate the LED Sensor and a Timer to Control It
-For this application you will use a _ThreadPoolTimer_ to raise an event at a predefined interval (in this example you will use once per second). 
+For this application, you will use a _ThreadPoolTimer_ to raise an event at a predefined interval (in this example you will use once per second). 
 
 1. Inside the ```public void Run(IBackgroundTaskInstance taskInstance)``` function create a new object instance using the ```led``` variable, and  a _ThreadPoolTimer_ that will raise an event every one-second.
 
@@ -130,7 +130,7 @@ public void Run(IBackgroundTaskInstance taskInstance)
 {% endhighlight %}
 
 ## Handle the Timer_Tick Event
-In the previous section you defined an event handler that will be invoked each time the timer ticks off a second using the ```ThreadPoolTimer.CreatePeriodicTimer(callback, TimeSpan))``` method. Now you will add the callback event (aka the event handler). When the Timer\_Tick event handler is invoked it will check the current state of the LED (on or off) and switch it to the opposite state.
+In the previous section, you defined an event handler that will be invoked each time the timer ticks off a second using the ```ThreadPoolTimer.CreatePeriodicTimer(callback, TimeSpan))``` method. Now you will add the callback event (aka the event handler). When the Timer\_Tick event handler is invoked it will check the current state of the LED (on or off) and switch it to the opposite state.
 
 1. Using the Visual Studio refactoring tools, you can generate the method stub for the __Timer\_Tick__ event handler. Hover over the _Timer\_Tick_ text until a light bulb appears. Click the down arrow and select _Generate method 'MainPage.Timer\_Tick'_ 
 
@@ -150,17 +150,17 @@ That's all there is to it. Now you are ready to run the application.
 If you want to compare your code with the master lab code, you can find it [on GitHub here](https://github.com/ThingLabsIo/IoTLabs/tree/master/Workshops/Windows/HelloWindowsIoT).
 
 # Run the App on a Device
-To run the application you will build it locally and then deploy it to the RPi2 and open a remote debugging session. Fortunately this is all encapsulated in a simple gesture once you have it configured.
+To run the application you will build it locally and then deploy it to the RPi2 and open a remote debugging session. Fortunately, this is all encapsulated in a simple gesture once you have it configured.
 
-1. Ensure __ARM__ is selected in the _Solution Platforms_ drop down list in the toolbar
-2. elect __Remote Machine__ from the _Device_ list in the toolbar.
+1. Ensure __ARM__ is selected in the _Solution Platforms_ drop-down list in the toolbar
+2. Select __Remote Machine__ from the _Device_ list in the toolbar.
 
 ![Select ARM](/images/workshops/windows-thingy/target_remote_machine.png)
 
 You will be prompted with the _Remote Connections_ dialog. You can select your device in one of two ways:
 
 1. Select your device from the list of _Auto Detected_ devices, __OR__ 
-2. Type in the __device name__ or __IP address__ into the _Manual Configuration_ textbox (set the _Authentication Mode_ to __Universal (Unencrypted Protocol)__) and click __Select__.
+2. Type in the __device name__ or __IP address__ into the _Manual Configuration_ text box (set the _Authentication Mode_ to __Universal (Unencrypted Protocol)__) and click __Select__.
 
 ![Select your device](/images/workshops/windows-thingy/find_remote_machine.png)
 
@@ -179,7 +179,7 @@ Congratulations! You have built a Windows 10 IoT application that controlled a d
 2. Using _BackgroundTaskDeferral_ to enable an application to run even after the ```Run()``` method completes.
 3. Controlling the state of a device. 
 
-In the [next lab][nextlab] you will build a more complicated _Thing_ that uses both input sensors and output devices. 
+In the [next lab][nextlab], you will build a more complicated _Thing_ that uses both input sensors and output devices. 
 
 <a class="radius button small" href="{{ site.url }}/workshop/windows-thingy/nightlight/">Go to 'Nightlight' ›</a>
 
