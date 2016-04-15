@@ -18,3 +18,16 @@ permalink: /workshop/full-day-windows/storing-displaying-data/
 In this lab you will build a data pipeline that captures the data coming into IoT Hub and persists it using Azure storage. You will then connect a website to Azure and retreive the data for display in a browser.
 
 // TODO - Ivan
+
+# Conclusion &amp; Next Steps
+Congratulations! 
+
+1. ?
+2. ?
+3. ?
+
+In the [next lab][nextlab] you will modify the web application to include a capability to send a Cloud-to-Device (C2D) message. 
+
+<a class="radius button small" href="{{ site.url }}/workshop/full-day-windows/sending-c2d-messages/">Go to 'Sending Cloud-to-Device (C2D) Messages' ›</a>
+
+[nextlab]: ../sending-c2d-messages/
