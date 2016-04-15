@@ -8,7 +8,7 @@ comments: false
 header: no
 breadcrumb: true
 categories: [raspberry-pi, windows-10, grove, c#, iot, maker, azure, azure-iot-hub]
-permalink: /workshop/full-day-windows/setup-azure-iot-hub/
+permalink: /workshop/windows-thingy/setup-azure-iot-hub/
 ---
 ### Table of Contents
 *  Auto generated table of contents
@@ -91,7 +91,7 @@ The device-specific connection string identifies the device by name and includes
 ## Conclusion &amp; Next Steps
 Congratulations! You have created an Azure IoT Hub that you will connect devices to. You also created a representation of a physical device in your IoT Hub. In the [next lab][nextlab] you will build a Universal Windows Application application that will collect data from the RPi2 and send it to Azure IoT Hub.
 
-<a class="radius button small" href="{{ site.url }}/workshop/full-day-windows/sending-d2c-messages/">Go to 'Sending Device-to-Cloud (D2C) Messages' ›</a>
+<a class="radius button small" href="{{ site.url }}/workshop/windows-thingy/sending-d2c-messages/">Go to 'Sending Device-to-Cloud (D2C) Messages' ›</a>
 
-[nextlab]: ../workshop/full-day-windows/sending-d2c-messages/
+[nextlab]: ../workshop/windows-thingy/sending-d2c-messages/
 [deviceexplorer]: https://github.com/Azure/azure-iot-sdks/blob/master/tools/DeviceExplorer/doc/how_to_use_device_explorer.md

@@ -1,6 +1,6 @@
 ---
 layout: "page-fullwidth"
-title: "Nightlight"
+title: "ThingLabs Thingy&trade;"
 subheadline: "Building Connected Things with Windows 10 IoT and Microsoft Azure"
 teaser: "In this lab you will create a device that responds to ambient light and changes the intensity of an LED - a nightlight."
 show_meta: true
@@ -8,14 +8,23 @@ comments: false
 header: no
 breadcrumb: true
 categories: [raspberry-pi, windows-10, grove, c#, iot, maker]
-permalink: /workshop/full-day-windows/nightlight/
+permalink: /workshop/windows-thingy/thingy/
 ---
 
 # Table of Contents
 *  Auto generated table of contents
 {:toc}
 
-In this lab you will create a simple _Thing_ using a Windows 10 IoT device and the Universal Windows Platform. 
+In this lab you will expand on the Nightlight you created in the previous lab and build the __ThingLabs Thingy&trade;__. This device will do the following:
+
+* Capture the amount of ambient light
+* Increase the brightness intensity of an LED inversely to the amount of ambient light measured.
+* Capture the amount of ambient  sound
+* Display the ambient light and sound measurments on an LCD display.
+* The display will adjust its backlight brightness according to the amount of ambient light in the area.
+* Enable a button to turn on and off an LED and trigger sound.
+
+In the following labs you will use the ThingLabs Thingy&trade; to connect to Azure IoT services and track all of this data.
 
 # Bill of Materials
 What you will need:
@@ -24,21 +33,24 @@ What you will need:
 2. [5V (2A to 3A) Switching Power Supply w/ MicroUSB Cable](http://www.amazon.com/CanaKit-Raspberry-Supply-Adapter-Charger/dp/B00MARDJZ4/)
 3. From the [GrovePi+ Starter Kit for Raspberry Pi](http://www.seeedstudio.com/depot/GrovePi-Starter-Kit-for-Raspberry-Pi-ABB23-CE-certified-p-2572.html)
  * GrovePi shield
- * Grove LED (any color) × 1 + connector cable
+ * Grove LED (red) × 1 + connector cable
+ * Grove LED (blue) × 1 + connector cable
  * Grove Light Sensor × 1 + connector cable
+ * Grove Button Sensor x 1 + connector cable
+ * Grove Sound Sensor x 1 _ connector cable
+ * Grove Buzzer x 1 + connector cable
+ * Grove RGB LCD Display x 1 + connector cable
 4. A Wi-Fi Adapter (choose one from the list [here](http://ms-iot.github.io/content/en-US/win10/SupportedInterfaces.htm#WiFi-Dongles))
 5. 8GB micro SD card - class 10 or better. Microsoft suggests one of the following:
 	* [Samsung 32GB EVO Class 10 Micro SDHC up to 48MB/s with Adapter (MB-MP32DA/AM)](http://www.amazon.com/gp/product/B00IVPU786)
 	* [SanDisk Ultra Micro SDHC, 16GB Card](http://www.amazon.com/SanDisk-Ultra-Micro-SDHC-16GB/dp/9966573445).
 
-If you haven't already done so, follow the setup instructions at ['Setting Up Your Raspberry Pi 2']({{ site.url }}/workshop/full-day-windows/setup-rpi2/).
+If you haven't already done so, complete the previous lab - ['Nightlight']({{ site.url }}/workshop/windows-thingy/nightlight/).
 
 # Connecting the Sensors
-In this lab you will combine the output device you previously used (a Grove LED module) with an input sensor - a Grove Light Sensor. You will use the measurement of ambient light from the Light Sensor to control the intensity of the LED. Basically you are making a nightlight. 
+In this lab you will combine the Nightlight device you previously created (a Grove LED module and a Grove Light Sensor) with several other input sensors and output actuators.
 
-The Grove Light Snesor is made up of a photoresistor and a 10k Ohm resistor. A _photoresistor_, also known as _light-dependent resistor (LDR)_ or a photocell, works by limiting the amount of voltage that passes through it based on the intensity of light detected. The resistance decreases as light input increases - in other words, the more light, the more voltage passes through the photoresistor.
-
-![Connect the LED and Light Sensor](/images/workshops/full-day-windows/nightlight.jpg)
+# Code for Thingy
 
 {% highlight csharp %}
 using System;
@@ -47,20 +59,33 @@ using Windows.ApplicationModel.Background;
 // Add using statements to the GrovePi libraries
 using GrovePi;
 using GrovePi.Sensors;
+using GrovePi.I2CDevices;
 using Windows.System.Threading;
 
-namespace Nightlight
+namespace Thingy
 {
     public sealed class StartupTask : IBackgroundTask
     {
         /**** DIGITAL SENSORS AND ACTUATORS ****/
+        // Connect the buzzer to digital port 2
+        IBuzzer buzzer;
+        // Connect the button sensor to digital port 4
+        IButtonSensor button;
+        // Connect the Blue LED to digital port 5
+        ILed blueLed;
         // Connect the Red LED to digital port 6
         ILed redLed;
 
         /**** ANALOG SENSORS ****/
+        // Connect the sound sensor to analog port 0
+        ISoundSensor soundSensor;
         // Connect the light sensor to analog port 2
         ILightSensor lightSensor;
-        
+
+        /**** I2C Deices ****/
+        // Connect the RGB display to one of the I2C ports
+        IRgbLcdDisplay display;
+
         /**** Constants and Variables ****/
         // Decide an a level of ambient light at which the LED should
         // be in a completely off state (e.g. sensorValue == 700)
@@ -69,6 +94,8 @@ namespace Nightlight
         private int brightness;
         // Create a variable to track the current value from the Light Sensor
         private int actualAmbientLight;
+        // Create a variable to track the current ambient noise level
+        private int soundLevel;
         // Create a timer to control the rateof sensor and actuator interactions
         ThreadPoolTimer timer;
         // Create a deferral object to prevent the app from terminating
@@ -80,18 +107,55 @@ namespace Nightlight
             deferral = taskInstance.GetDeferral();
 
             // Instantiate the sensors and actuators
+            buzzer = DeviceFactory.Build.Buzzer(Pin.DigitalPin2);
+            button = DeviceFactory.Build.ButtonSensor(Pin.DigitalPin4);
+            blueLed = DeviceFactory.Build.Led(Pin.DigitalPin5);
             redLed = DeviceFactory.Build.Led(Pin.DigitalPin6);
-
+         
+            soundSensor = DeviceFactory.Build.SoundSensor(Pin.AnalogPin0);
             lightSensor = DeviceFactory.Build.LightSensor(Pin.AnalogPin2);
             
-            // Start a timer to check the sensor and activate the actuator five times per second
+            display = DeviceFactory.Build.RgbLcdDisplay();
+
+            // The IO to the GrovePi sensors and actuators can generate a lot
+            // of exceptions - wrap all GrovePi API calls in try/cath statements.
+            try {
+                // Set the RGB backlight to red and display a message
+                display.SetBacklightRgb(255, 0, 0);
+                display.SetText("The Thingy is getting started");
+            }
+            catch(Exception ex)
+            {
+                // On Error, Resume Next :)
+            }
+
+            // Start a timer to check the sensors and activate the actuators five times per second
             timer = ThreadPoolTimer.CreatePeriodicTimer(Timer_Tick, TimeSpan.FromMilliseconds(200));
         }
 
         private void Timer_Tick(ThreadPoolTimer timer)
         {
-            try
-            {
+            try {
+                // Capture the current ambient noise level
+                soundLevel = soundSensor.SensorValue();
+                
+                // Check the button state
+                if (button.CurrentState == SensorStatus.On)
+                {
+                    // If the button is depressed, turn on the blue LED
+                    // and activate the buzzer
+                    buzzer.ChangeState(SensorStatus.On);
+                    blueLed.ChangeState(SensorStatus.On);
+                    // For debugging purposes, log a console message
+                    System.Diagnostics.Debug.WriteLine("**** BUTTON ON ****");
+                }
+                else if(buzzer.CurrentState == SensorStatus.On || blueLed.CurrentState == SensorStatus.On)
+                {
+                    // Turn the buzzer and LED off
+                    buzzer.ChangeState(SensorStatus.Off);
+                    blueLed.ChangeState(SensorStatus.Off);
+                }
+
                 // Capture the current value from the Light Sensor
                 actualAmbientLight = lightSensor.SensorValue();
 
@@ -117,6 +181,13 @@ namespace Nightlight
                 // AnalogWrite uses Pulse Width Modulation (PWM) to 
                 // control the brightness of the digital LED on pin D6.
                 redLed.AnalogWrite(Convert.ToByte(brightness));
+                
+                // Use the brightness value to control the brightness of the RGB LCD backlight
+                byte rgbVal = Convert.ToByte(brightness);
+                display.SetBacklightRgb(rgbVal, rgbVal, rgbVal);
+
+                // Updae the RGB LCD with the light and sound levels
+                display.SetText(String.Format("Thingy\nL:{0} S:{1}", actualAmbientLight, soundLevel));
             }
             catch (Exception ex)
             {
@@ -148,8 +219,8 @@ Congratulations!
 2. ?
 3. ?
 
-In the [next lab][nextlab] you will build the device that you will use for the rest of this workshop - an indoor environment station. 
+In the [next lab][nextlab] you will set up an Azure IoT Hub to use with the ThingLabs Thingy&trade;. 
 
-<a class="radius button small" href="{{ site.url }}/workshop/full-day-windows/thingy/">Go to 'ThingLabs Thingy&trade;' ›</a>
+<a class="radius button small" href="{{ site.url }}/workshop/windows-thingy/setup-azure-iot-hub/">Go to 'Setting Up Azure IoT' ›</a>
 
-[nextlab]: /workshop/full-day-windows/thingy/
+[nextlab]: /workshop/windows-thingy/setup-azure-iot-hub/

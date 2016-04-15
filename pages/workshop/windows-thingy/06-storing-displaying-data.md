@@ -8,7 +8,7 @@ comments: true
 header: no
 breadcrumb: true
 categories: [raspberry-pi, windows-10, grove, c#, iot, maker, azure, azure-iot-hub]
-permalink: /workshop/full-day-windows/storing-displaying-data/
+permalink: /workshop/windows-thingy/storing-displaying-data/
 ---
 
 # Table of Contents
@@ -28,6 +28,6 @@ Congratulations!
 
 In the [next lab][nextlab] you will modify the web application to include a capability to send a Cloud-to-Device (C2D) message. 
 
-<a class="radius button small" href="{{ site.url }}/workshop/full-day-windows/sending-c2d-messages/">Go to 'Sending Cloud-to-Device (C2D) Messages' ›</a>
+<a class="radius button small" href="{{ site.url }}/workshop/windows-thingy/sending-c2d-messages/">Go to 'Sending Cloud-to-Device (C2D) Messages' ›</a>
 
 [nextlab]: ../sending-c2d-messages/
