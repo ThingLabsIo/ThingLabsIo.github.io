@@ -82,7 +82,7 @@ Your RPi2 will reboot and when it is back up and running it will have the new na
 # Test Device
 Quick-Run samples are pre-built and require no compiling or coding to get going. This is a great way to make sure everything is working and easily play with your board.
 
-1. Navigate to __Quick-run samples__ in the left nav bar.
+1. Navigate to __Try some samples__ in the left nav bar.
 2. Select _Hello Blinky_
 3. Select your board from the dropdown list
 4. Launch the sample. 
