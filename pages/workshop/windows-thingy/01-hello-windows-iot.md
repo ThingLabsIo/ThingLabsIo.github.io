@@ -132,7 +132,7 @@ public void Run(IBackgroundTaskInstance taskInstance)
 ## Handle the Timer_Tick Event
 In the previous section, you defined an event handler that will be invoked each time the timer ticks off a second using the ```ThreadPoolTimer.CreatePeriodicTimer(callback, TimeSpan))``` method. Now you will add the callback event (aka the event handler). When the Timer\_Tick event handler is invoked it will check the current state of the LED (on or off) and switch it to the opposite state.
 
-1. Using the Visual Studio refactoring tools, you can generate the method stub for the __Timer\_Tick__ event handler. Hover over the _Timer\_Tick_ text until a light bulb appears. Click the down arrow and select _Generate method 'MainPage.Timer\_Tick'_ 
+1. Using the Visual Studio refactoring tools, you can generate the method stub for the __Timer\_Tick__ event handler. Hover over the _Timer\_Tick_ text until a light bulb appears. Click the down arrow and select _Generate method 'StartupTask.Timer\_Tick'_ 
 
 ![Generate Timer\_Tick Event Handler](/images/workshops/windows-thingy/timer_tick.png)
 
