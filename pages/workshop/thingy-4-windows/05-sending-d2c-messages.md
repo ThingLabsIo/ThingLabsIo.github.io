@@ -8,7 +8,7 @@ comments: true
 header: no
 breadcrumb: true
 categories: [raspberry-pi, windows-10, grove, c#, iot, maker, azure, azure-iot-hub]
-permalink: /workshop/thingy-4-windows/sending-d2c-messages/
+permalink: /workshop/windows-thingy/sending-d2c-messages/
 ---
 
 # Table of Contents
@@ -22,8 +22,21 @@ What you will need:
 
 1. The ThingLabs Thingy&trade; created in the ['ThingLabs Thingy' lab](../thingy/)
 
-## Modify the ThingLabs Thingy&trade; Background Task Application
-For this lab you will use the same _Thingy_ from the earlier lab, and you can use the _Thingy_ application as your starting point.
+# Build the Application
+In this application you will read the voltage value coming into the ADC from the voltage divider - the higher the voltage, the darker it is (remember, you are reading in the residual voltage, which is diverted to the ADC when there is resistance in the photoresistor). You will use the _darkness_ value to determine if the LED should be on or off.
+
+The ADC is connected to the RPi2 through the Serial Peripheral Interface (SPI) bus. SPI is a synchronous serial communication interface specification used for short distance communication, primarily in embedded systems. SPI devices communicate in full duplex mode using a master-slave architecture with a single master. The master device originates the frame for reading and writing. Multiple slave devices are supported through selection with individual slave select (SS) lines. SPI is a four-wire serial bus as follows:
+
+1. SCLK - Serial Clock (output from master).
+2. MOSI - Master Output, Slave Input (output from master).
+3. MISO - Master Input, Slave Output (output from slave).
+4. SS - Slave Select (active low, output from master).
+
+We won't go any deeper into SPI or the pin layout of the two ADCs - suffice to say that the ADC is wired up to support the four-channel SPI bus, plus supply voltage and ground. The wire connecting the voltage divider to the ADC is the input channel you will read the residual voltage from. 
+
+## Modify the ThingLabs Thingy&trade;
+
+//TODO
 
 ## Send A Message to Azure IoT Hub
 
@@ -104,6 +117,6 @@ Congratulations! You have built a Universal Windows Platform application that ca
 
 At this point, nothing interesting is happening with that data you are sending to Azure. It is simply being persisted for a default amount of time (1-day) and then being dropped. In the [next lab][nextlab] you will create a web application to visualize the data.
 
-<a class="radius button small" href="{{ site.url }}/workshop/thingy-4-windows/storing-displaying-data/">Go to 'Storing and Displaying IoT Data' ›</a>
+<a class="radius button small" href="{{ site.url }}/workshop/windows-thingy/storing-displaying-data/">Go to 'Storing and Displaying IoT Data' ›</a>
 
 [nextlab]: ../storing-displaying-data/

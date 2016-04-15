@@ -6,10 +6,10 @@ teaser: "In these IoT Labs you will begin by learning the basics of working with
 show_meta: true
 comments: false
 header: 
-    image_fullwidth: workshops/thingy-4-windows/header.jpg
+    image_fullwidth: workshops/windows-thingy/header.jpg
 breadcrumb: true
 categories: [raspberry-pi, windows-10, grove, c#, iot, maker]
-permalink: /workshop/thingy-4-windows/
+permalink: /workshop/windows-thingy/
 ---
 
 # Table of Contents
@@ -41,26 +41,26 @@ The following are required to prepare for the workshop. Whenever possible this s
 ## Getting Started
 This is a step-by-step guide to preparing your computer for the Windows 10 IoT Labs.
 
-<a class="radius button small" href="{{ site.url }}/workshop/thingy-4-windows/getting-started/">Estimated time to complete: 20-minutes. Go to  'Getting Started' ›</a>
+<a class="radius button small" href="{{ site.url }}/workshop/windows-thingy/getting-started/">Estimated time to complete: 20-minutes. Go to  'Getting Started' ›</a>
 
 ## Setting Up Your Raspberry Pi 2
 The Raspberry Pi 2 is a low cost, credit-card sized computer that plugs into a computer monitor or TV, and uses a standard keyboard and mouse. The Raspberry Pi 2 runs Windows 10 IoT Core.
 
 In this lab you will install Windows 10 IoT Core on your Raspberry Pi 2.
 
-<a class="radius button small" href="{{ site.url }}/workshop/thingy-4-windows/setup-rpi2/">Estimated time to complete: 20-minutes. Go to  'Setting Up Your Raspberry Pi 2' ›</a>
+<a class="radius button small" href="{{ site.url }}/workshop/windows-thingy/setup-rpi2/">Estimated time to complete: 20-minutes. Go to  'Setting Up Your Raspberry Pi 2' ›</a>
 
 # Lab Guides
 
 ## Lab 01: Hello, Windows IoT!
 In this lab you will build a simple single-circuit device that blinks an LED on and off (this is the ‘Hello, World! of the maker/IoT space).
 
-<a class="radius button small" href="{{ site.url }}/workshop/thingy-4-windows/hello-windows-iot/">Estimated time to complete: 20-minutes. Go to  'Hello, Windows IoT!' ›</a>
+<a class="radius button small" href="{{ site.url }}/workshop/windows-thingy/hello-windows-iot/">Estimated time to complete: 20-minutes. Go to  'Hello, Windows IoT!' ›</a>
 
 ## Lab 02: Nightlight
 In this lab you will capture analog input using a light-dependent resistor (photo cell) and turn on or off an LED based on the amount of light detected. 
 
-<a class="radius button small" href="{{ site.url }}/workshop/thingy-4-windows/nightlight/">Estimated time to complete: 20-minutes. Go to  'Nightlight' ›</a>
+<a class="radius button small" href="{{ site.url }}/workshop/windows-thingy/nightlight/">Estimated time to complete: 20-minutes. Go to  'Nightlight' ›</a>
 
 ## Lab 03: ThingLabs Thingy&trade;
 In this lab you will build a device with multiple sensors and actuators. The device will:
@@ -72,24 +72,24 @@ In this lab you will build a device with multiple sensors and actuators. The dev
 * The display will adjust its backlight brightness according to the amount of ambient light in the area.
 * Enable a button to turn on and off an LED and trigger sound.
 
-<a class="radius button small" href="{{ site.url }}/workshop/thingy-4-windows/thingy/">Estimated time to complete: 30-minutes. Go to  'Thingy' ›</a>
+<a class="radius button small" href="{{ site.url }}/workshop/windows-thingy/thingy/">Estimated time to complete: 30-minutes. Go to  'Thingy' ›</a>
 
 ## Lab 04: Setting Up Azure IoT Hub
 In this lab you will provision a new Azure IoT Hub. Once you have the IoT Hub created, you will be able to create a new Azure IoT device (a software reference to your physical device) that you will use to send telemetry to Azure.
 
-<a class="radius button small" href="{{ site.url }}/workshop/thingy-4-windows/setup-azure-iot-hub/">Estimated time to complete: 20-minutes. Go to  'Setting Up Azure IoT Hub' ›</a>
+<a class="radius button small" href="{{ site.url }}/workshop/windows-thingy/setup-azure-iot-hub/">Estimated time to complete: 20-minutes. Go to  'Setting Up Azure IoT Hub' ›</a>
 
 ## Lab 05: Sending Device-to-Cloud (D2C) Messages
 In this lab you will use the thermastat device that you built to capture and send telemetry data to Azure IoT Hub.
 
-<a class="radius button small" href="{{ site.url }}/workshop/thingy-4-windows/sending-d2c-messages/">Estimated time to complete: 20-minutes. Go to  'Sending Telemetry to the Cloud' ›</a>
+<a class="radius button small" href="{{ site.url }}/workshop/windows-thingy/sending-d2c-messages/">Estimated time to complete: 20-minutes. Go to  'Sending Telemetry to the Cloud' ›</a>
 
 ## Lab 06: Storing and Displaying IoT Data
 In this lab you will build a data pipeline that captures the data coming into IoT Hub and persists it using Azure storage. You will then connect a website to Azure and retreive the data for display in a browser.
 
-<a class="radius button small" href="{{ site.url }}/workshop/thingy-4-windows/storing-displaying-data/">Estimated time to complete: 20-minutes. Go to  'Storing & Displaying IoT Data' ›</a>
+<a class="radius button small" href="{{ site.url }}/workshop/windows-thingy/storing-displaying-data/">Estimated time to complete: 20-minutes. Go to  'Storing & Displaying IoT Data' ›</a>
 
 ## Lab 07: Lab: Sending Cloud-to-Device (C2D) Messages
 In this lab you will extend your website by adding the ability to control the ThingLabs Thingy&trade; remotely. The website will send messages to the Thingy via Azure.
 
-<a class="radius button small" href="{{ site.url }}/workshop/thingy-4-windows/sending-c2d-messages/">Estimated time to complete: 20-minutes. Go to  'Sending Cloud to Device (C2D) Messages' ›</a>
+<a class="radius button small" href="{{ site.url }}/workshop/windows-thingy/sending-c2d-messages/">Estimated time to complete: 20-minutes. Go to  'Sending Cloud to Device (C2D) Messages' ›</a>

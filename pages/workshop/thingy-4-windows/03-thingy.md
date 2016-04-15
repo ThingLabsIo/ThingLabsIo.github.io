@@ -8,7 +8,7 @@ comments: false
 header: no
 breadcrumb: true
 categories: [raspberry-pi, windows-10, grove, c#, iot, maker]
-permalink: /workshop/thingy-4-windows/thingy/
+permalink: /workshop/windows-thingy/thingy/
 ---
 
 # Table of Contents
@@ -45,7 +45,7 @@ What you will need:
 	* [Samsung 32GB EVO Class 10 Micro SDHC up to 48MB/s with Adapter (MB-MP32DA/AM)](http://www.amazon.com/gp/product/B00IVPU786)
 	* [SanDisk Ultra Micro SDHC, 16GB Card](http://www.amazon.com/SanDisk-Ultra-Micro-SDHC-16GB/dp/9966573445).
 
-If you haven't already done so, complete the previous lab - ['Nightlight']({{ site.url }}/workshop/thingy-4-windows/nightlight/).
+If you haven't already done so, complete the previous lab - ['Nightlight']({{ site.url }}/workshop/windows-thingy/nightlight/).
 
 # Connecting the Sensors
 In this lab you will combine the Nightlight device you previously created (a Grove LED module and a Grove Light Sensor) with several other input sensors and output actuators.
@@ -221,6 +221,6 @@ Congratulations!
 
 In the [next lab][nextlab] you will set up an Azure IoT Hub to use with the ThingLabs Thingy&trade;. 
 
-<a class="radius button small" href="{{ site.url }}/workshop/thingy-4-windows/setup-azure-iot-hub/">Go to 'Setting Up Azure IoT' ›</a>
+<a class="radius button small" href="{{ site.url }}/workshop/windows-thingy/setup-azure-iot-hub/">Go to 'Setting Up Azure IoT' ›</a>
 
-[nextlab]: /workshop/thingy-4-windows/setup-azure-iot-hub/
+[nextlab]: /workshop/windows-thingy/setup-azure-iot-hub/
