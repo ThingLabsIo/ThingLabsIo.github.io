@@ -141,7 +141,14 @@ In the previous section, you defined an event handler that will be invoked each 
 {% highlight csharp %}
 private void Timer_Tick(ThreadPoolTimer timer)
 {
-    led.ChangeState( (led.CurrentState == SensorStatus.Off) ? SensorStatus.On : SensorStatus.Off );
+    try
+    {
+        led.ChangeState( (led.CurrentState == SensorStatus.Off) ? SensorStatus.On : SensorStatus.Off );
+    }
+    catch (Exception ex)
+    {
+        // Swallow the exception
+    }
 }
 {% endhighlight %}
 
