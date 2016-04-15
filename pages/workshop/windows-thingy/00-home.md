@@ -2,7 +2,7 @@
 layout: "page-full-day-windows"
 title: "ThingLabs Thingy&trade; Workshop (full day)"
 subheadline: "Building Connected Things with Windows 10 and Microsoft Azure"
-teaser: "In these IoT Labs you will begin by learning the basics of working with Windows 10 IoT Core connected to sensors and actuators. You will move on to connecting the _Thing_ to the Cloud. You will learn how to leverage Microsoft Azure services to collect data and control devices and use advanced services like analytics and machine learning to discover insights using your Things."
+teaser: "In these IoT Labs you will begin by learning the basics of working with Windows 10 IoT Core connected to sensors and actuators. You will move on to connecting the Thing to the Cloud. You will learn how to leverage Microsoft Azure services to collect data and control devices and use advanced services like analytics and machine learning to discover insights using your Things."
 show_meta: true
 comments: false
 header: 
