@@ -41,7 +41,9 @@ The Grove Shield simplifies accessing the pins by providing connectors that you 
 
 ![GrovePi Shiled](/images/rpi2/GrovePi-Shield.jpg)
 
-cNote: The RPI2 doesn't have analog GPIO - the Grove shield includes an Analog-Digital Converter enabling you to connect analog devices to the A0-A2 connectors.
+>Note: The RPI2 doesn't have analog GPIO - the Grove shield includes an Analog-Digital Converter enabling you to connect analog devices to the A0-A2 connectors.
+
+You can read more about how the GrovePi shield works [here](../grovepi/).
 
 Connect the GrovePi shield to the RPi2.
 

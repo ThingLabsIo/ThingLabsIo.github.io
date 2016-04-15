@@ -117,6 +117,6 @@ Congratulations! You have built a Universal Windows Platform application that ca
 
 At this point, nothing interesting is happening with that data you are sending to Azure. It is simply being persisted for a default amount of time (1-day) and then being dropped. In the [next lab][nextlab] you will create a web application to visualize the data.
 
-<a class="radius button small" href="{{ site.url }}/workshop/full-day-windows/storing-displaying-data/">Go to 'Storing and Displaying Data' ›</a>
+<a class="radius button small" href="{{ site.url }}/workshop/full-day-windows/storing-displaying-data/">Go to 'Storing and Displaying IoT Data' ›</a>
 
 [nextlab]: ../storing-displaying-data/

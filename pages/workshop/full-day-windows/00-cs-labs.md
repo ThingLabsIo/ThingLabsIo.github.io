@@ -87,7 +87,9 @@ In this lab you will use the thermastat device that you built to capture and sen
 ## Lab 06: Storing and Displaying IoT Data
 In this lab you will build a data pipeline that captures the data coming into IoT Hub and persists it using Azure storage. You will then connect a website to Azure and retreive the data for display in a browser.
 
-## Lab 07: Lab: Sending Cloud-to-Device (C2D) Messages
-In this lab you will extend your website by adding the ability to control the THingLabs Thingy&trade; remotely. The website will send messages to the Thingy via Azure.
+<a class="radius button small" href="{{ site.url }}/workshop/full-day-windows/storing-displaying-data/">Estimated time to complete: 20-minutes. Go to  'Storing & Displaying IoT Data' ›</a>
 
-<a class="radius button small" href="{{ site.url }}/workshop/full-day-windows/visualize-iot-with-powerbi/">Estimated time to complete: 20-minutes. Go to  'Visualizing IoT Data with Power BI' ›</a>
+## Lab 07: Lab: Sending Cloud-to-Device (C2D) Messages
+In this lab you will extend your website by adding the ability to control the ThingLabs Thingy&trade; remotely. The website will send messages to the Thingy via Azure.
+
+<a class="radius button small" href="{{ site.url }}/workshop/full-day-windows/sending-c2d-messages/">Estimated time to complete: 20-minutes. Go to  'Sending Cloud to Device (C2D) Messages' ›</a>

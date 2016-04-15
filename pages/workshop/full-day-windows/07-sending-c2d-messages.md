@@ -8,7 +8,7 @@ comments: true
 header: no
 breadcrumb: true
 categories: [raspberry-pi, windows-10, grove, c#, iot, maker, azure, azure-iot-hub]
-permalink: /workshop/full-day-windows/storing-displaying-data/
+permalink: /workshop/full-day-windows/sending-c2d-messages/
 ---
 
 # Table of Contents
