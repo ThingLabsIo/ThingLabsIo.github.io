@@ -8,7 +8,7 @@ comments: false
 header: no
 breadcrumb: true
 categories: [raspberry-pi, windows-10, dragonboard, minnowboard, c#, iot, maker]
-permalink: /workshop/thingy-4-windows/grovepi/
+permalink: /workshop/windows-thingy/grovepi/
 ---
 
 # Shield and Port Descriptions
@@ -18,7 +18,7 @@ Grove modules, which work on analog and digital signals, connect directly to the
 
 In addition, the GrovePi allows the Raspberry Pi to access some Grove sensors directly.  The Raspberry Pi has an I2C Bus and a Serial bus.  These buses can directly connect to sensors via the I2C Ports and the USART Port.
 
-![GrovePi Port Descriptions](/images/workshops/thingy-4-windows/GrovePi-Port-description.jpg)
+![GrovePi Port Descriptions](/images/workshops/windows-thingy/GrovePi-Port-description.jpg)
 
 The GrovePi runs an ATmega328 which contains an on-board 6 channel analog-to-digital (A/D) converter. The AD converter has 10-bit resolution, returning values __0-1023__. Analog pins are usually used for reading analog sensors but can also be used for general purpose i/o, same as digital pins 0-13.
 If you need more digital sockets, you can re-purpose an analog socket.

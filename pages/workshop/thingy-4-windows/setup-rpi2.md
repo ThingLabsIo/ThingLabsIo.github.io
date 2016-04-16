@@ -8,7 +8,7 @@ comments: false
 header: no
 breadcrumb: true
 categories: [raspberry-pi, windows-10, grove, c#, iot, maker]
-permalink: /workshop/thingy-4-windows/setup-rpi2/
+permalink: /workshop/windows-thingy/setup-rpi2/
 ---
 # Table of Contents
 *  Auto generated table of contents
@@ -92,4 +92,4 @@ In the background, the dashboard will temporarily install the sample onto your d
 # Conclusion &amp; Next Steps
 In this lab, you prepared your Raspberry Pi 2 for the following labs. Next, you will do the IoT equivalent of 'Hello, World!' - you will make an LED blink.
 
-<a class="radius button small" href="{{ site.url }}/workshop/thingy-4-windows/hello-windows-iot/">Go to 'Hello, Windows IoT!' ›</a>
+<a class="radius button small" href="{{ site.url }}/workshop/windows-thingy/hello-windows-iot/">Go to 'Hello, Windows IoT!' ›</a>
