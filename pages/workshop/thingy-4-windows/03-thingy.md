@@ -132,6 +132,8 @@ namespace Thingy
             lightSensor = DeviceFactory.Build.LightSensor(Pin.AnalogPin2);
             
             display = DeviceFactory.Build.RgbLcdDisplay();
+            
+            buttonState = SensorState.Off;
 
             // The IO to the GrovePi sensors and actuators can generate a lot
             // of exceptions - wrap all GrovePi API calls in try/cath statements.
