@@ -8,7 +8,7 @@ comments: false
 header: no
 breadcrumb: true
 categories: [raspberry-pi, windows-10, grove, c#, iot, maker]
-permalink: /workshop/windows-thingy/thingy/
+permalink: /workshop/thingy-4-windows/thingy/
 ---
 
 # Table of Contents
@@ -45,10 +45,24 @@ What you will need:
 	* [Samsung 32GB EVO Class 10 Micro SDHC up to 48MB/s with Adapter (MB-MP32DA/AM)](http://www.amazon.com/gp/product/B00IVPU786)
 	* [SanDisk Ultra Micro SDHC, 16GB Card](http://www.amazon.com/SanDisk-Ultra-Micro-SDHC-16GB/dp/9966573445).
 
-If you haven't already done so, complete the previous lab - ['Nightlight']({{ site.url }}/workshop/windows-thingy/nightlight/).
+If you haven't already done so, complete the previous lab - ['Nightlight']({{ site.url }}/workshop/thingy-4-windows/nightlight/).
 
 # Connecting the Sensors
 In this lab you will combine the Nightlight device you previously created (a Grove LED module and a Grove Light Sensor) with several other input sensors and output actuators.
+
+
+In this application you will read the voltage value coming into the ADC from the voltage divider - the higher the voltage, the darker it is (remember, you are reading in the residual voltage, which is diverted to the ADC when there is resistance in the photoresistor). You will use the _darkness_ value to determine if the LED should be on or off.
+
+The ADC is connected to the RPi2 through the Serial Peripheral Interface (SPI) bus. SPI is a synchronous serial communication interface specification used for short distance communication, primarily in embedded systems. SPI devices communicate in full duplex mode using a master-slave architecture with a single master. The master device originates the frame for reading and writing. Multiple slave devices are supported through selection with individual slave select (SS) lines. SPI is a four-wire serial bus as follows:
+
+1. SCLK - Serial Clock (output from master).
+2. MOSI - Master Output, Slave Input (output from master).
+3. MISO - Master Input, Slave Output (output from slave).
+4. SS - Slave Select (active low, output from master).
+
+We won't go any deeper into SPI or the pin layout of the two ADCs - suffice to say that the ADC is wired up to support the four-channel SPI bus, plus supply voltage and ground. The wire connecting the voltage divider to the ADC is the input channel you will read the residual voltage from. 
+
+
 
 # Code for Thingy
 
@@ -221,6 +235,6 @@ Congratulations!
 
 In the [next lab][nextlab] you will set up an Azure IoT Hub to use with the ThingLabs Thingy&trade;. 
 
-<a class="radius button small" href="{{ site.url }}/workshop/windows-thingy/setup-azure-iot-hub/">Go to 'Setting Up Azure IoT' ›</a>
+<a class="radius button small" href="{{ site.url }}/workshop/thingy-4-windows/setup-azure-iot-hub/">Go to 'Setting Up Azure IoT' ›</a>
 
-[nextlab]: /workshop/windows-thingy/setup-azure-iot-hub/
+[nextlab]: /workshop/thingy-4-windows/setup-azure-iot-hub/

@@ -2,37 +2,28 @@
 layout: "page-fullwidth"
 title: "Sending Device-to-Cloud (D2C) Messages"
 subheadline: "Building Connected Things with Windows 10 IoT and Microsoft Azure"
-teaser: "In this lab you will build a Universal Windows Platform application that collects ambient light data and sends it to the Cloud."
+teaser: "In this lab you will build send messages from the Thingy you have built to the cloud."
 show_meta: true
 comments: true
 header: no
 breadcrumb: true
 categories: [raspberry-pi, windows-10, grove, c#, iot, maker, azure, azure-iot-hub]
-permalink: /workshop/windows-thingy/sending-d2c-messages/
+permalink: /workshop/thingy-4-windows/sending-d2c-messages/
 ---
 
 # Table of Contents
 *  Auto generated table of contents
 {:toc}
 
-In this lab you will build a Universal Windows Platform application that detects ambient light and sends the data that is being collected to Azure IoT Hub. In following lab you will build a data pipeline to process the incoming data stream and output it to a visualization tool.
-
 # Bill of Materials
 What you will need:
 
-1. The ThingLabs Thingy&trade; created in the ['ThingLabs Thingy' lab](../thingy/)
+1. The ThingLabs Thingy&trade; created in the ['ThingLabs Thingy' lab](../thingy/).
+2. The Visual Studio Project for the Thingy created in the ['ThingLabs Thingy' lab](../thingy/).
 
-# Build the Application
-In this application you will read the voltage value coming into the ADC from the voltage divider - the higher the voltage, the darker it is (remember, you are reading in the residual voltage, which is diverted to the ADC when there is resistance in the photoresistor). You will use the _darkness_ value to determine if the LED should be on or off.
 
-The ADC is connected to the RPi2 through the Serial Peripheral Interface (SPI) bus. SPI is a synchronous serial communication interface specification used for short distance communication, primarily in embedded systems. SPI devices communicate in full duplex mode using a master-slave architecture with a single master. The master device originates the frame for reading and writing. Multiple slave devices are supported through selection with individual slave select (SS) lines. SPI is a four-wire serial bus as follows:
-
-1. SCLK - Serial Clock (output from master).
-2. MOSI - Master Output, Slave Input (output from master).
-3. MISO - Master Input, Slave Output (output from slave).
-4. SS - Slave Select (active low, output from master).
-
-We won't go any deeper into SPI or the pin layout of the two ADCs - suffice to say that the ADC is wired up to support the four-channel SPI bus, plus supply voltage and ground. The wire connecting the voltage divider to the ADC is the input channel you will read the residual voltage from. 
+# Add the Azure ioT SDK to Your Project
+In a previous lab you built the ThingLabs Thingy&trade; for Windows 10 IoT Core. Now its time to add the __I__ to your __IoT__ solution. In this lab you will send messages from the Thingy to the Microsoft Azure IoT Hub you created in the previous lab. There is an Azure IoT SDK for C# that enables all of the connection and communications with your Azure IoT Hub.  The SDK is available as a NuGet package that you can easily add to your project. 
 
 ## Modify the ThingLabs Thingy&trade;
 
@@ -117,6 +108,6 @@ Congratulations! You have built a Universal Windows Platform application that ca
 
 At this point, nothing interesting is happening with that data you are sending to Azure. It is simply being persisted for a default amount of time (1-day) and then being dropped. In the [next lab][nextlab] you will create a web application to visualize the data.
 
-<a class="radius button small" href="{{ site.url }}/workshop/windows-thingy/storing-displaying-data/">Go to 'Storing and Displaying IoT Data' ›</a>
+<a class="radius button small" href="{{ site.url }}/workshop/thingy-4-windows/storing-displaying-data/">Go to 'Storing and Displaying IoT Data' ›</a>
 
 [nextlab]: ../storing-displaying-data/
