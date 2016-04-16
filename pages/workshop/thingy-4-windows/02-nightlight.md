@@ -40,6 +40,11 @@ The Grove Light Snesor is made up of a photoresistor and a 10k Ohm resistor. A _
 
 ![Connect the LED and Light Sensor](/images/workshops/thingy-4-windows/nightlight.jpg)
 
+
+> Throughout this lab you will use a feature in Visual Studio called light bulbs. Light bulbs are a new productivity feature in Visual Studio 2015. They are icons that appear in the Visual Studio editor and that you can click to perform quick actions including refactoring fixing errors. Light bulbs bring error-fixing and refactoring assistance into a single focal point, often right on the line where you are typing. As you write the code in this lab you will add calls to methods that don't yet exist. The editor will indicate this to you by putting a red "squiggle" underline beneath the method call. When you hover over the offending code a light bulb will appear and you can expand it to see options for generating the missing method. 
+
+
+
 {% highlight csharp %}
 using System;
 using Windows.ApplicationModel.Background;

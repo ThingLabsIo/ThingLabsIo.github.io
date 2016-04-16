@@ -104,16 +104,18 @@ namespace Thingy
         // Decide an a level of ambient light at which the LED should
         // be in a completely off state (e.g. sensorValue == 700)
         const int ambientLightThreshold = 700;
-        // Create a variable to track the current LED brightness
+        // Create a variable to track the current red LED brightness
         private int brightness;
         // Create a variable to track the current value from the Light Sensor
         private int actualAmbientLight;
         // Create a variable to track the current ambient noise level
         private int soundLevel;
+        // Create a variable to track the state of the button
+        private SensorStatus buttonState;
         // Create a timer to control the rateof sensor and actuator interactions
-        ThreadPoolTimer timer;
+        private ThreadPoolTimer timer;
         // Create a deferral object to prevent the app from terminating
-        BackgroundTaskDeferral deferral;
+        private BackgroundTaskDeferral deferral;
 
         public void Run(IBackgroundTaskInstance taskInstance)
         {
@@ -154,22 +156,17 @@ namespace Thingy
                 soundLevel = soundSensor.SensorValue();
                 
                 // Check the button state
-                if (button.CurrentState == SensorStatus.On)
+                if (button.CurrentState != buttonState)
                 {
-                    // If the button is depressed, turn on the blue LED
-                    // and activate the buzzer
-                    buzzer.ChangeState(SensorStatus.On);
-                    blueLed.ChangeState(SensorStatus.On);
+                    buttonState = button.CurrentState == SensorStatus.Off ? SensorStatus.On : SensorStatus.Off;
+                    
+                    blueLed.ChangeState(buttonState);
+                    buzzer.ChangeState(buttonState);
+                    
                     // For debugging purposes, log a console message
-                    System.Diagnostics.Debug.WriteLine("**** BUTTON ON ****");
+                    System.Diagnostics.Debug.WriteLine("**** BUTTON STATE: " + buttonState + " ****");
                 }
-                else if(buzzer.CurrentState == SensorStatus.On || blueLed.CurrentState == SensorStatus.On)
-                {
-                    // Turn the buzzer and LED off
-                    buzzer.ChangeState(SensorStatus.Off);
-                    blueLed.ChangeState(SensorStatus.Off);
-                }
-
+                
                 // Capture the current value from the Light Sensor
                 actualAmbientLight = lightSensor.SensorValue();
 
