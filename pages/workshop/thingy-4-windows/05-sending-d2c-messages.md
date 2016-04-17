@@ -138,47 +138,6 @@ With this method, once per second you construct a JSON message payload for the a
 # Run the Application
 Now you can run the application on your RPi2 and you will see the log of messages being sent to Azure IoT Hub at a rate of once per second.
 
-# Sending Messages Based on Loud Noises
-For the ambient light measurement, you are sending a message once per second regardless of whether the light has changed. For sound, you can send a message only when there is a significant volume event. 
-
-1. Locate the `Timer_Tick` method (the one from the previous lab that is used to collect sensor data). 
-2. Define a state variable before the `Timer_Tick` method to maintain the state of messages sent.
-2. Modify the `Timer_Tick` method as follows:
-
-{% highlight csharp %}
-// To avoid sending messages every 200ms when there is a loud sound, 
-// create a boolean variable to remember if the current message has been sent
-Boolean soundLevelMessageSent = false;
-
-private void Timer_Tick(ThreadPoolTimer timer)
-{
-    try {
-        // Capture the current ambient noise level
-        soundLevel = soundSensor.SensorValue();
-        
-        // If the sound level exceeds a significant volume, send a message
-        // Pick a sound level that would be significant based on your Thingy
-        if(soundLevel > 800)
-        {
-            System.Diagnostics.Debug.WriteLine.WriteLine("!!!! Sound Threshold Exceeded");
-            
-            if(!soundLevelMessageSent)
-            {
-                SendMessageToIoTHubAsync("soundLevel", soundLevel);
-                soundLevelMessageSent = true;
-            }
-        }
-        else 
-        {
-            soundLevelMessageSent = false;
-        }
-        
-        // The rest of the method doesn't change and is omitted here       
-{% endhighlight %}
-
-# Run the Application and Get Noisy
-Run your application again. Once you see the ambient light messages being sent, make enough noise to trigger a sound-level message. You should see that message go by as well.
-
 # Send Messages Based on Button Presses
 For the ambient light measurement, you are sending a message once per second regardless of whether the light has changed. For the button, send a message based on an explicit state change (i.e. a button press event or release event). 
 
