@@ -8,7 +8,7 @@ comments: false
 header: no
 breadcrumb: true
 categories: [raspberry-pi, windows-10, grove, c#, iot, maker]
-permalink: /workshop/windows-thingy/nightlight/
+permalink: /workshop/thingy-4-windows/nightlight/
 ---
 
 # Table of Contents
@@ -31,14 +31,19 @@ What you will need:
 	* [Samsung 32GB EVO Class 10 Micro SDHC up to 48MB/s with Adapter (MB-MP32DA/AM)](http://www.amazon.com/gp/product/B00IVPU786)
 	* [SanDisk Ultra Micro SDHC, 16GB Card](http://www.amazon.com/SanDisk-Ultra-Micro-SDHC-16GB/dp/9966573445).
 
-If you haven't already done so, follow the setup instructions at ['Setting Up Your Raspberry Pi 2']({{ site.url }}/workshop/windows-thingy/setup-rpi2/).
+If you haven't already done so, follow the setup instructions at ['Setting Up Your Raspberry Pi 2']({{ site.url }}/workshop/thingy-4-windows/setup-rpi2/).
 
 # Connecting the Sensors
 In this lab you will combine the output device you previously used (a Grove LED module) with an input sensor - a Grove Light Sensor. You will use the measurement of ambient light from the Light Sensor to control the intensity of the LED. Basically you are making a nightlight. 
 
 The Grove Light Snesor is made up of a photoresistor and a 10k Ohm resistor. A _photoresistor_, also known as _light-dependent resistor (LDR)_ or a photocell, works by limiting the amount of voltage that passes through it based on the intensity of light detected. The resistance decreases as light input increases - in other words, the more light, the more voltage passes through the photoresistor.
 
-![Connect the LED and Light Sensor](/images/workshops/windows-thingy/nightlight.jpg)
+![Connect the LED and Light Sensor](/images/workshops/thingy-4-windows/nightlight.jpg)
+
+
+> Throughout this lab you will use a feature in Visual Studio called light bulbs. Light bulbs are a new productivity feature in Visual Studio 2015. They are icons that appear in the Visual Studio editor and that you can click to perform quick actions including refactoring fixing errors. Light bulbs bring error-fixing and refactoring assistance into a single focal point, often right on the line where you are typing. As you write the code in this lab you will add calls to methods that don't yet exist. The editor will indicate this to you by putting a red "squiggle" underline beneath the method call. When you hover over the offending code a light bulb will appear and you can expand it to see options for generating the missing method. 
+
+
 
 {% highlight csharp %}
 using System;
@@ -150,6 +155,6 @@ Congratulations!
 
 In the [next lab][nextlab] you will build the device that you will use for the rest of this workshop - an indoor environment station. 
 
-<a class="radius button small" href="{{ site.url }}/workshop/windows-thingy/thingy/">Go to 'ThingLabs Thingy&trade;' ›</a>
+<a class="radius button small" href="{{ site.url }}/workshop/thingy-4-windows/thingy/">Go to 'ThingLabs Thingy&trade;' ›</a>
 
-[nextlab]: /workshop/windows-thingy/thingy/
+[nextlab]: /workshop/thingy-4-windows/thingy/
