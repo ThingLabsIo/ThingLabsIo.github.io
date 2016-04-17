@@ -156,12 +156,21 @@ If your app from the [previous lab](../sending-telemetry/) isn't still running, 
 # Create Azure Website that Shows EventHub Data
 
 
-# Optional PowerBI Dashboard
+# Build Reports in Power BI
+Go back to the browser tab where you have Power BI open. Look in the _Datasets_ node in the left-hand navigation. The _MyIoTDataSet_ should appear there within a few minutes of IoT Hub data streaming into the Stream Analytics job. 
 
-If you have access to PowerBI you can build a similar real-time reporting dashboard in the [Building a PowerBI Dashboard](../06a-powerbi-dashboard).
-<a class="radius button small" href="{{ site.url }}/workshop/thingy-4-windows/powerbi-dashboard/">Go to 'Building a PowerBI Dashboard' ›</a>
+1. Click on the _MyIoTDataSet_ dataset to open the report designer.
+2. Select the __Line__ chart from the _Visualizations_ toolbox on the right side.
+3. Select __maxdark__ to set it as the _Value_
+4. Click on the dropdown arrow for _maxdark_ in the _Values_ box and select __Maximum__
+5. Select __timestamp__ to set it as the _Axis_ 
 
- 
+Repeat steps 2-4 for __avgdark__ and __mindark__, changing their field type to __Average__ and __Minimum__ respectively.
+
+![Create the Power BI report](/images/rpi2/powerbi01.png)
+
+As you are setting the values you should see the line chart updating with the changes. Click _File_ > _Save_ and give the report the name __Darkness Report__. Hover over the upper-right corner of the chart and click on the pin icon. Create a new dashboard to pin the gauges to. Once you have pinned all three gauges, click on the dashboard in the left sidebar. On the dashboard you can watch the data update in near real-time. While you are watching the dashboard, pinch or blow on the sensors on the weather shield and you will see the data change in the gauges.
+
 # Conclusion
 In this lab you learned how to create an Azure Stream Analytics job to query data coming in to Azure IoT Hub, process it and send it to Event Hub and Power BI.
 
