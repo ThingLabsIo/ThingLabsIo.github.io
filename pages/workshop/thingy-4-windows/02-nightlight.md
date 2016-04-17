@@ -72,7 +72,7 @@ using GrovePi.Sensors;
 using Windows.System.Threading;
 {% endhighlight %}
 
-## Define the Sensors for the Nightlight
+## Define the Class-level Variables
 There are two (2) class-level variables you will use to refer to the physical Light Sensor and LED Module:
 
 * __redLed__ - an _ILed_ instance that derives from `GrovePi.Sensor` and exposes properties to get the current status of the LED and change its state. 
@@ -90,7 +90,6 @@ ILed redLed;
 ILightSensor lightSensor;
 {% endhighlight %}
 
-## Define the Class-level Variables
 There are five (5) class-level variables you will use in this application:
 
 * __ambientLightThreshold__ - an _int_ constant between 0 (dark) and 1023 (bright) that defines the measurement of ambient light at which the LED should be in a completely off state.

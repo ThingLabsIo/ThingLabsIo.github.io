@@ -2,7 +2,7 @@
 layout: "page-fullwidth"
 title: "ThingLabs Thingy&trade;"
 subheadline: "Building Connected Things with Windows 10 IoT and Microsoft Azure"
-teaser: "In this lab you will create a device that responds to ambient light and changes the intensity of an LED - a nightlight."
+teaser: "In this lab, you will build a device with multiple sensors and actuators."
 show_meta: true
 comments: false
 header: no
@@ -15,16 +15,7 @@ permalink: /workshop/thingy-4-windows/thingy/
 *  Auto generated table of contents
 {:toc}
 
-In this lab you will expand on the Nightlight you created in the previous lab and build the __ThingLabs Thingy&trade;__. This device will do the following:
-
-* Capture the amount of ambient light
-* Increase the brightness intensity of an LED inversely to the amount of ambient light measured.
-* Capture the amount of ambient  sound
-* Display the ambient light and sound measurments on an LCD display.
-* The display will adjust its backlight brightness according to the amount of ambient light in the area.
-* Enable a button to turn on and off an LED and trigger sound.
-
-In the following labs you will use the ThingLabs Thingy&trade; to connect to Azure IoT services and track all of this data.
+In this lab, you will expand on the Nightlight you created in the previous lab and build the __ThingLabs Thingy&trade;__. In the following labs you will use the ThingLabs Thingy&trade; to connect to Azure IoT services and track all of this data.
 
 # Bill of Materials
 What you will need:
@@ -64,6 +55,7 @@ Connect the LED Sensor and Light Sensor to the GrovePi shield as illustrated her
 * Connect the __red__ LED module to D6
 * Connect the __blue__ LED module to D5
 * Connect the Button module to D4
+* Connect the Buzzer module to D2
 * Connect the Light Sensor to A2
 * Connect the RGB LCD Display to one of the I2C ports.
 
@@ -73,11 +65,13 @@ Like the ['Hello, Windows IoT!'](../hello-windows-iot/) and ['Nightlight'](../ni
 1. Launch Visual Studio and start a new __Background Application (IoT)__ (found in the _Templates -> C# -> Windows -> Windows IoT Core_ node).
 2. Name the application __Thingy__.
 3. Add a reference to the GrovePi libraries the same way you did in the previous labs.
-   * To install GrovePi for Windows IoT, run the following command from the __Package Manager Console__
+   * To install GrovePi for Windows IoT, ensure __thinglabs__ is the selected _Package Source_ and run the following command from the __Package Manager Console__
 
     ```
     Install-Package GrovePi
     ```
+    * Verify that GrovePi v1.0.7 was installed but reading the log in the Package Manager Console.
+    
 4. Open the __StartupTask.cs__ file. Add the following to the __using__ statements at the top of the file. 
 
 {% highlight csharp %}
@@ -88,7 +82,7 @@ using GrovePi.I2CDevices;
 using Windows.System.Threading;
 {% endhighlight %}
 
-## Define the Sensors for the Thingy
+## Define the Class-level Variables for the Thingy
 There are five (5) class-level variables you will use to refer to the physical sensors and actuators:
 
 * Digital Sensors and Actuators - sensors and actuators that have on/off (i.e. 0 or 1) states.
@@ -122,7 +116,6 @@ ILightSensor lightSensor;
 IRgbLcdDisplay display;
 {% endhighlight %}
 
-## Define the Class-level Variables
 There are six (6) class-level variables you will use in this application:
 
 * __ambientLightThreshold__ - an _int_ constant between 0 (dark) and 1023 (bright) that defines the measurement of ambient light at which the LED should be in a completely off state.
@@ -132,8 +125,9 @@ There are six (6) class-level variables you will use in this application:
 * __timer__ - a _ThreadPoolTimer_ instance that will control the rate of sensor and actuator interactions. 
 * __deferral__ - a _BackgroundTaskDeferral_ instance that will allow the application to continue to run even after the `Run()` method has completed.
 
-These are class-level variables that will be used primarily to track state of the 
-1. Add the following class-level variable definitions inside the `public sealed class StartupTask : IBackgroundTask` class definition:
+These are class-level variables that will be used primarily to track state of the sensors.
+ 
+1. Add the following class-level variable definitions immediately after the preceeding variables.
 
 {% highlight csharp %}
 /**** Constants and Variables ****/
@@ -151,6 +145,7 @@ private ThreadPoolTimer timer;
 // Create a deferral object to prevent the app from terminating
 private BackgroundTaskDeferral deferral;
 {% endhighlight %}
+
 
 # Code for Thingy
 
