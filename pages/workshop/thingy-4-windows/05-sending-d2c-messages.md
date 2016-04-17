@@ -78,7 +78,6 @@ The Thingy enables you to collect multiple sensor measurements (ambient light, s
 1. In the `Run(IBackgroundTaskInstance taskInstance)` locate the code that creates the `deferral` instance (it should be the first line of code in that method).
 2. Immediately after the creation of the `deferral` object, add the following (the `deferral` code is added here for reference):
 
-
 {% highlight csharp %}
 // Get the deferral instance
 deferral = taskInstance.GetDeferral();
@@ -86,6 +85,8 @@ deferral = taskInstance.GetDeferral();
 // Instantiate the Azure device client
 deviceClient = DeviceClient.CreateFromConnectionString(IOT_HUB_CONN_STRING);
 {% endhighlight %}
+
+1. Still in the `Run(IBackgroundTaskInstance taskInstance)` method, add the following code after the `timer = ThreadPoolTimer.CreatePeriodicTimer(Timer_Tick, TimeSpan.FromMilliseconds(200));` code.
 
 {% highlight csharp %}
 // Send messages to Azure IoT Hub every one-second
