@@ -54,7 +54,7 @@ Connect the LED to the D4 jack.
 ![Connect the LED to D4](/images/workshops/thingy-4-windows/blink_example.jpg)
 
 # Create the Device Application 
-A Universal Windows app is a Windows experience that is built upon the Universal Windows Platform (UWP), which was first introduced in Windows 8 as the Windows Runtime. The UWP enables you to write an app that targets a device family, such as IoT devices. In fact, the universal app that you write may be able to run on multiple devices families, depending on the device characteristics that it takes advantage of. In this lab, you will create a universal app targeting IoT devices running Windows 10. Technically this could be nearly any device, such as a phone, a tablet or an RPi2, however; the universal app you write will access the General Purpose Input/Output (GPIO) of the device, so the app won't actually be compatible with devices that don't have a GPIO.   
+A Universal Windows app is a Windows experience that is built upon the Universal Windows Platform (UWP), which was first introduced in Windows 8 as the Windows Runtime. The UWP enables you to write an app that targets a device family, such as IoT devices. In fact, the universal app that you write may be able to run on multiple devices families, depending on the device characteristics that it takes advantage of. In this lab, you will create a universal app targeting IoT devices running Windows 10. Technically this could be nearly any device, such as a phone, a tablet or an RPi2, however; the universal app you write will access the input/output capabilities of the device, so the app won't actually be compatible with devices that don't have a this capability.
 
 ## Create a New Background Task Project
 
@@ -75,7 +75,7 @@ Install-Package GrovePi
 ```
 
 ## Define the Libraries the App Requires
-This application will run as a background task on a Windows 10 IoT device. Unlike a Universal Windows Platform application - where the Windows IoT OS is limited to running only one app at a time - Windows 10 IoT Core (and better) can run multiple BackGround Task applications at once. These are _headless_ applications... that is, there is no UI. You will write code that performs the necessary functions for the application, but there will not be any UI. This example will demonstrate how to blink and LED on and off.
+This application will run as a background task on a Windows 10 IoT device. Unlike a graphical (or _headed_) Universal Windows Platform application - where the Windows IoT OS is limited to running only one app at a time - Windows 10 IoT Core (and better) can run multiple BackGround Task applications at once. These are _headless_ applications... that is, there is no UI. You will write code that performs the necessary functions for the application, but there will not be any UI. This example will demonstrate how to blink and LED on and off.
 
 1. Open the __StartupTask.cs__ file. Add the following to the __using__ statements at the top of the file. 
 
@@ -115,7 +115,7 @@ namespace HelloWindowsIoT
 ## Instantiate the LED Sensor and a Timer to Control It
 For this application, you will use a _ThreadPoolTimer_ to raise an event at a predefined interval (in this example you will use once per second). 
 
-1. Inside the ```public void Run(IBackgroundTaskInstance taskInstance)``` function create a new object instance using the ```led``` variable, and  a _ThreadPoolTimer_ that will raise an event every one-second.
+1. Inside the `public void Run(IBackgroundTaskInstance taskInstance)` function create a new object instance using the `led` variable, and  a _ThreadPoolTimer_ that will raise an event every one-second.
 
 {% highlight csharp %}
 public void Run(IBackgroundTaskInstance taskInstance)
@@ -175,10 +175,7 @@ You will be prompted with the _Remote Connections_ dialog. You can select your d
 1. Now press __F5__ to run the application and you should see (in the _Output_ windows) it building locally and then deploying on the RPi2. You will see the LED blink once per second.
 
 
-__NOTE:__ You can verify or modify these values by navigating to the project properties:
-
-1. Double-click the _Properties_ node in _Solution Explorer_.
-2. Click on the _Debug_ tab on the left.
+>NOTE: You can verify or modify these values by navigating to the project properties (double-click the Properties node in Solution Explorer and click on the Debug tab on the left.
 
 # Conclusion &amp; Next Steps
 Congratulations! You have built a Windows 10 IoT application that controlled a device connected to a Raspberry Pi 2. The core concepts you've learned are:
