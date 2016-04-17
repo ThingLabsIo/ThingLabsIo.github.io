@@ -141,8 +141,7 @@ Now you can run the application on your RPi2 and you will see the log of message
 # Send Messages Based on Button Presses
 For the ambient light measurement, you are sending a message once per second regardless of whether the light has changed. For the button, send a message based on an explicit state change (i.e. a button press event or release event). 
 
-1. Locate the `Timer_Tick` method (the one from the previous lab that is used to collect sensor data). 
-2. Define a state variable before the `Timer_Tick` method to maintain the state of messages sent.
+1. Locate the `Timer_Tick` method (the one from the previous lab that is used to collect sensor data).
 2. Modify the `Timer_Tick` method as follows:
 
 {% highlight csharp %}
