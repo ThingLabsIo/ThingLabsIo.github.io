@@ -215,6 +215,8 @@ private int Map(int src, int in_min, int in_max, int out_min, int out_max)
 }
 {% endhighlight %}
 
+If you want to compare your code with the master lab code, you can find it [in the __ThingLabs - Thingy4Windows__ GitHub repo here](https://github.com/ThingLabsIo/Thingy4Windows/blob/master/Nightlight/Nightlight/StartupTask.cs).
+
 # Run the App on a Device
 As in the previous lab, you will build the application locally and then deploy it to the RPi2 and open a remote debugging session using Visual Studio.
 

@@ -155,7 +155,7 @@ private void Timer_Tick(ThreadPoolTimer timer)
 
 That's all there is to it. Now you are ready to run the application. 
 
-If you want to compare your code with the master lab code, you can find it [on GitHub here](https://github.com/ThingLabsIo/IoTLabs/tree/master/Workshops/Windows/HelloWindowsIoT).
+If you want to compare your code with the master lab code, you can find it [in the __ThingLabs - Thingy4Windows__ GitHub repo here](https://github.com/ThingLabsIo/Thingy4Windows/blob/master/HellowWindowsIoT/HellowWindowsIoT/StartupTask.cs).
 
 # Run the App on a Device
 To run the application you will build it locally and then deploy it to the RPi2 and open a remote debugging session. Fortunately, this is all encapsulated in a simple gesture once you have it configured.
@@ -173,7 +173,6 @@ You will be prompted with the _Remote Connections_ dialog. You can select your d
 ![Select your device](/images/workshops/thingy-4-windows/find_remote_machine.png)
 
 1. Now press __F5__ to run the application and you should see (in the _Output_ windows) it building locally and then deploying on the RPi2. You will see the LED blink once per second.
-
 
 >NOTE: You can verify or modify these values by navigating to the project properties (double-click the Properties node in Solution Explorer and click on the Debug tab on the left.
 

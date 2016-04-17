@@ -224,6 +224,7 @@ namespace Thingy
 }
 {% endhighlight %}
 
+If you want to compare your code with the master lab code, you can find it [in the __ThingLabs - Thingy4Windows__ GitHub repo here](https://github.com/ThingLabsIo/Thingy4Windows/blob/master/Thingy/Thingy/StartupTask.cs).
 
 # Conclusion &amp; Next Steps
 Congratulations! 

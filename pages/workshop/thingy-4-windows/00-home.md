@@ -97,4 +97,7 @@ In this lab you will build a data pipeline that captures the data coming into Io
 ## Lab 07: Lab: Sending Cloud-to-Device (C2D) Messages
 In this lab you will extend your website by adding the ability to control the ThingLabs Thingy&trade; remotely. The website will send messages to the Thingy via Azure.
 
+# Workshop Source Files
+If you wantaccess to the completed projects used in the labs, you can copy or clone the __Thingy4Windows__ GitHub repo [here](https://github.com/ThingLabsIo/Thingy4Windows).
+
 <a class="radius button small" href="{{ site.url }}/workshop/thingy-4-windows/sending-c2d-messages/">Estimated time to complete: 20-minutes. Go to  'Sending Cloud to Device (C2D) Messages' ›</a>
