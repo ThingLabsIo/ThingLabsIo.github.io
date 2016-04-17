@@ -11,6 +11,31 @@ categories: [raspberry-pi, windows-10, grove, c#, iot, maker, azure, azure-iot-h
 permalink: /workshop/thingy-4-windows/powerbi/
 ---
 
+## Define Output Data Stream (From Stream Analytics Job)
+Before defining the query that will select data from the input and send it to the outputs you need to define the outputs. For this lab you will output the results of the query to an Azure Web Dashboard you'll create later and/or Power BI dataset for reporting.
+
+You will create two outputs, one for data to flow to EventHub and a second for data to flow to PowerBI, so for EventHub:
+
+1. Click on the _OUTPUTS_ header.
+
+![Create the output](/images/asaoutputs.png)
+
+1. Click on __ADD AN OUTPUT__.
+2. Select __Power BI__ and click on the forward arrow in the lower-right.
+3. Click "Authorize Now" to allow data to publish to PowerBI (Dialogs will appear)
+4. After you have authorized the connection to Power BI, complete the form as follows:
+
+ - OUTPUT ALIAS - __OutputAlias__
+ - DATASET NAME - __MyIoTDataSet__
+ - TABLE NAME - __MyIoTDataTable__
+ - GROUP NAME - __My Workplace__
+
+5. Click on the checkmark in the lower-right.
+
+![Stream Analytics output definition](/images/asaoutputform.png)
+
+![Stream Analytics output definition](/images/asaoutputform.png)
+
 # Build Reports in Power BI
 Go back to the browser tab where you have Power BI open. Look in the _Datasets_ node in the left-hand navigation. The _MyIoTDataSet_ should appear there within a few minutes of IoT Hub data streaming into the Stream Analytics job. 
 
