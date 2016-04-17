@@ -80,6 +80,7 @@ This application will run as a background task on a Windows 10 IoT device. Unlik
 1. Open the __StartupTask.cs__ file. Add the following to the __using__ statements at the top of the file. 
 
 {% highlight csharp %}
+// Add using statements to the GrovePi libraries
 using GrovePi;
 using GrovePi.Sensors;
 using Windows.System.Threading;
@@ -88,9 +89,9 @@ using Windows.System.Threading;
 ## Define the Class-level Variables
 There are three class-level variables you will use in this application:
 
-* ```timer``` - a _ThreadPoolTimer_ instance that will control the LED blinking interval. 
-* ```deferral``` - a _BackgroundTaskDeferral_ instance that will allow the application to continue to run even after the ```Run()``` method has completed.
-* ```led``` - a _GrovePi.ILed_ instance that represents the Grove LED sensor.
+* `timer` - a _ThreadPoolTimer_ instance that will control the LED blinking interval. 
+* `deferral` - a _BackgroundTaskDeferral_ instance that will allow the application to continue to run even after the ```Run()``` method has completed.
+* `led` - a _GrovePi.ILed_ instance that represents the Grove LED sensor.
 
 1. Add the following class-level variable definitions inside the ```public sealed class StartupTask : IBackgroundTask``` class definition:
 
