@@ -211,6 +211,13 @@ private void Timer_Tick(ThreadPoolTimer timer)
 # Run the Application and Get Pushy
 Run your application again. Once you see the ambient light messages being sent, push the button a few times. You should see LED state message go by as well (and hear an annoying sound from the buzzer).
 
+## Monitor the Messages Being Received by Azure IoT Hub
+Using the Device Explorer utility for Windows you installed in the [previous lab](../setup-azure-iot-hub/), you can monitor the messages being received in Azure IoT Hub.
+
+1. Open the __Data__ tab.
+2. Select the device from the drop-down list.
+3. Click __Monitor__ to begin monitoring messages as they come into your Azure IoT Hub.
+
 # Conclusion &amp; Next Steps
 Congratulations! In this lab, you updated the __Thingy__ application to send messages to Azure IoT Hub. The core concepts you've learned are:
 
