@@ -21,7 +21,6 @@ What you will need:
 1. The ThingLabs Thingy&trade; created in the ['ThingLabs Thingy' lab](../thingy/).
 2. The Visual Studio Project for the Thingy created in the ['ThingLabs Thingy' lab](../thingy/).
 
-
 # Add the Azure ioT SDK to Your Project
 In a previous lab, you built the ThingLabs Thingy&trade; for Windows 10 IoT Core. Now it's time to add the __I__ to your __IoT__ solution. In this lab, you will send messages from the Thingy to the Microsoft Azure IoT Hub you created in the previous lab. There is an Azure IoT SDK for C# that enables all of the connection and communications with your Azure IoT Hub.  The SDK is available as a NuGet package that you can easily add to your project. 
 
@@ -39,6 +38,7 @@ To use the Azure IoT SDK you will modify the StartupTask.cs file in the _Thingy_
 2. Add the following to the `using` statements where you have added the other `using` statements (e.g. `using GrovePi;`).
 
 {% highlight csharp %}
+using System.Threading.Tasks;
 using Microsoft.Azure.Devices.Client;
 {% endhighlight %}
 
