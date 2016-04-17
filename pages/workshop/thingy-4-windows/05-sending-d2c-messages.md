@@ -111,17 +111,17 @@ private async Task SendMessageToIoTHubAsync(string sensorType, int sensorState)
 {
     try
     {
-        var payload = "{" + 
-            "\"deviceId\": \"" + IOT_HUB_DEVICE + "\", " + 
-            "\"location\": \"" + IOT_HUB_DEVICE_LOCATION + "\", " + 
-            "\"sensorType\": " + sensorType + ", " + 
-            "\"sensorState\": " + sensorState + "\", " + 
-            "\"localTimestamp\": \"" + DateTime.Now.ToLocalTime() + "\"" +
+        var payload = "{" +
+            "\"deviceId\":\"" + IOT_HUB_DEVICE + "\", " +
+            "\"location\":\"" + IOT_HUB_DEVICE_LOCATION + "\", " +
+            "\"sensorType\":\"" + sensorType + "\", " +
+            "\"sensorState\":" + sensorState + ", " +
+            "\"localTimestamp\":\"" + DateTime.Now.ToLocalTime() + "\"" +
             "}";
 
         var msg = new Message(Encoding.UTF8.GetBytes(payload));
         
-        System.Diagnostics.Debug.WriteLine("\t{0}> Sending message: [{2}]", DateTime.Now.ToLocalTime(), msg);
+        System.Diagnostics.Debug.WriteLine("\t{0}> Sending message: [{1}]", DateTime.Now.ToLocalTime(), payload);
 
         await deviceClient.SendEventAsync(msg);
     }
@@ -179,20 +179,13 @@ private void Timer_Tick(ThreadPoolTimer timer)
 Run your application again. Once you see the ambient light messages being sent, make enough noise to trigger a sound-level message. You should see that message go by as well.
 
 # Send Messages Based on Button Presses
-By now you should see that regardless of the trigger, sending messages to Azure IoT Hub is pretty much the same no matter how you trigger them. As a last exercise, send a message based on an explicit button press event.
+For the ambient light measurement, you are sending a message once per second regardless of whether the light has changed. For the button, send a message based on an explicit state change (i.e. a button press event or release event). 
 
 1. Locate the `Timer_Tick` method (the one from the previous lab that is used to collect sensor data). 
 2. Define a state variable before the `Timer_Tick` method to maintain the state of messages sent.
 2. Modify the `Timer_Tick` method as follows:
 
 {% highlight csharp %}
-// To avoid sending messages every 200ms when there is a loud sound, 
-// create a boolean variable to remember if the current message has been sent
-Boolean soundLevelMessageSent = false;
-// To avoid sending messages every 200ms when the button is held down, 
-// create a boolean variable to remember if the current message has been sent
-Boolean buttonMessageSent = false;
-
 private void Timer_Tick(ThreadPoolTimer timer)
 {
     try {
@@ -201,30 +194,21 @@ private void Timer_Tick(ThreadPoolTimer timer)
         // Check the button state
         if (button.CurrentState != buttonState)
         {
-            buttonState = button.CurrentState == SensorStatus.Off ? SensorStatus.On : SensorStatus.Off;
-            
+            // Capture the button state
+            buttonState = button.CurrentState;
+            // Change the state of the blue LED
             blueLed.ChangeState(buttonState);
             buzzer.ChangeState(buttonState);
             
-            // For debugging purposes, log a console message
-            System.Diagnostics.Debug.WriteLine("**** BUTTON STATE: " + buttonState + " ****");
-            
-            if(buttonState == SensorState.On && !buttonMessageSent)
-            {
-                SendMessageToIoTHubAsync("led", blueLed.CurrentStatus());
-                buttonMessageSent = true;
-            }
-            else
-            {
-                buttonMessageSent = false;
-            }
+            // Send a message to Azure indicating the state change
+            SendMessageToIoTHubAsync("led", (int)buttonState);
         }
         
-        // The rest of the method doesn't change and is omitted here       
+        // ... the rest of the method doesn't change and is omitted here       
 {% endhighlight %}
 
 # Run the Application and Get Pushy
-Run your application again. Once you see the ambient light messages being sent, push the button a few times. You should see LED state message go by as well.
+Run your application again. Once you see the ambient light messages being sent, push the button a few times. You should see LED state message go by as well (and hear an annoying sound from the buzzer).
 
 # Conclusion &amp; Next Steps
 Congratulations! In this lab, you updated the __Thingy__ application to send messages to Azure IoT Hub. The core concepts you've learned are:
