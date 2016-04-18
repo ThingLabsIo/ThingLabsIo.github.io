@@ -132,7 +132,12 @@ WITH ProcessedData as (
         TumblingWindow (second, 5), deviceId, location
 )
 
-SELECT * INTO [DeviceBI] FROM ProcessedData
+-- If you do the optional lab you will need to uncomment this line
+--   to get data to flow to PowerBI
+-- SELECT * INTO [DeviceBI] FROM ProcessedData
+
+-- Make sure this matches your Event Hub Name from above,
+-- If you've forgotten it you can go back and get it in another browser tab
 SELECT * INTO [ThingLabsEventHub] FROM ProcessedData
 {% endhighlight %}
 
@@ -152,8 +157,8 @@ lower-left corner.
 
 1. Select __+__ > __COMPUTE__ > __WEB APP__ > __QUICK CREATE__
     - URL: You can use anything that is a valid name here, such as thinglabs-eventhub-[yourname, initials, etc]
-    - SERVICE PLAN: If you created your IoT Hub in _East US_, select __East US 2__. Select the same region you created your IoT Hub in.
-    - SUBSCRIPTION: Select the subscription you've created your resources in.
+    - APP SERVICE PLAN: Select "Create a new App Service Plan".
+    - REGION: If you created your IoT Hub in _East US_, select __East US 2__. Select the same region you created your IoT Hub in.
     
     ![Configure Event Hub](/images/webappquickcreate.png)
 
@@ -166,7 +171,8 @@ lower-left corner.
     ![Git repo url](/images/thinglabs-github-webapp-repo.png)
     - Paste it into the dialog on the configuration (the External Repository Page)
     ![Git repo url](/images/webapp-config-repo.png)
-    - Click checkmark on the lower-right to configure the Web App to deploy from the ThingLabs Github Repository.
+    - Click checkmark on the lower-right to setup your deployment from the ThingLabs Github Repository
+    - Click on "Configure" to customize settings for your the Web App.
         - Turn Web Sockets on
         ![Web App Enable Web Sockets](/images/WebAppConfigureWebSockets.png)
         - Add an App Setting (Key: THINGLABS_EVENTHUB_CONNSTRING Value: Connection String from your EventHub)
