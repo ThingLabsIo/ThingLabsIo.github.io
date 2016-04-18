@@ -90,6 +90,6 @@ Quick-Run samples are pre-built and require no compiling or coding to get going.
 In the background, the dashboard will temporarily install the sample onto your device. Once loaded, the device will broadcast a web page over the network and IoT Dashboard will automatically connect to it. This lets you control the app without having to plug in a monitor directly to your device.
 
 # Conclusion &amp; Next Steps
-In this lab, you prepared your Raspberry Pi 2 for the following labs. Next, you will do the IoT equivalent of 'Hello, World!' - you will make an LED blink.
+In this lab, you prepared your Raspberry Pi 2 for the following labs. Next, you will learn about how the GrovePi hardware you will be using in this workshop works with the Raspberry Pi 2.
 
 <a class="radius button small" href="{{ site.url }}/workshop/thingy-4-windows/hello-windows-iot/">Go to 'Hello, Windows IoT!' ›</a>

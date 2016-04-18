@@ -35,7 +35,18 @@ If you don't already have one installed, install [Visual Studio 2015](https://ww
 
 <img src="/images/rpi2/rpi2_install_uwp.png"/>
 
+## Install Windows IoT Core Project Templates
 After the installation is complete, install the Windows IoT Core Project Templates from [here](https://visualstudiogallery.msdn.microsoft.com/55b357e1-a533-43ad-82a5-a88ac4b01dec).
+
+## Add ThingLabs NuGet Server to Visual Studio
+ThingLabs uses a custom NuGet server to enables us to fix up some packages fast when we find issues. The fixes are always submitted back to the owner of the package and as the owner inegrates the changes back into the official package the package will be removed from the ThingLabs NuGet server.
+ 
+ 1. Navigate to Tools -> Options -> NuGet Package Manager -> Package Sources
+ 2. Add new package source using the green plus button
+ 3. Set the name to "thinglabs"
+ 4. Set the source to "http://thinglabs-nuget.azurewebsites.net/nuget"
+ 
+ <img src="/images/workshops/thingy-4-windows/nuget-settings.png"/>
 
 ## Enable Developer Mode on your Windows 10 Development Device
 When you are developing on Windows 10, you choose what tasks you want to enable on the device. This includes any devices - Windows 10 desktops, tablets and phones. You can enable a device for development, or just app side loading. To enable _Developer mode_ on your Windows 10 device:
