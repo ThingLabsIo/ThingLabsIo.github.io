@@ -28,12 +28,11 @@ will write a SQL-like query that collects data coming in on the input stream and
 
 ## Create an Event Hub
 
-First, you need to create an Event Hub to queue the data coming out of the Azure Stream Analytics Job. Click on the __NEW__ icon in the 
-lower-left corner.
+First, you need to create an Event Hub to queue the data coming out of the Azure Stream Analytics Job. Open a new browser tab and navigate to the [https://manage.windowsazure.com](https://manage.windowsazure.com). Click on the __NEW__ icon in the lower-left corner.
 
 ![Windows Azure Portal v1](/images/photon_lab07_5.png)
 
-1. Select __+__ > __APP SERVICES__ > __SERVICE BUS__ > __EVENT HUB__
+1. Select __+__ > __APP SERVICES__ > __SERVICE BUS__ > __EVENT HUB__ > __QUICK CREATE__ and enter the following:
     - EVENT HUB NAME: You can use anything that is a valid name here, such as thinglabs-eventhub-[yourname, initials, etc]
     - REGION: If you created your IoT Hub in _East US_, select __East US 2__. Select the same region you created your IoT Hub in.
     - SUBSCRIPTION: Select the subscription you've created your resources in.
