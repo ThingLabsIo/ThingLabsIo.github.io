@@ -17,6 +17,8 @@ permalink: /workshop/thingy-4-windows/storing-displaying-data/
 
 In this lab you will build a data pipeline that captures the data coming into IoT Hub, processes it with Azure Stream Analytics, then routes it to downstream services. The first service you'll build will consume the data and present it through an Azure Web App where it is rendered as a real-time graph.
 
+We will use the light data you are sending from [lab 5](../sending-d2c-messages) and deploy a web application to azure that will render the data so you can visualize it even if you don't have access to PowerBI.
+
 In an [earlier lab](../setup-azure-iot-hub/) you provisioned an Azure IoT Hub and in the [previous lab](../sending-d2c-messages/) you built a physical device...a _Thing_. You coded an application to collect
 data from the device and send it to your IoT Hub. At the end of the previous lab you had data going into your IoT Hub but you weren't yet doing 
 anything with it. Let's change that.
@@ -164,21 +166,37 @@ lower-left corner.
 
 2. Setup deployment from github:
     - On the web app configuration dashboard, click "Set up deployment from source control." (on the lower righthand side of the page)
+    
     ![Configure Event Hub](/images/webappconfig1.png)
-    - Select "External repositiory" from the dialog
+    
+    - Select "External repositiory" from the dialog 
+     
+     (Note: You'd think this should be "Github repository", but we're avoiding having you fork and maintain your own version fo the code for today. If you want to modify it later, you can fork the repository and modify it. Then you would have to update your deployment source to "Github Repository" which finds *your* repositories.)
+     
     ![External Repository](/images/webapp-external-repository.png)
+    
     - Navigate to the [ThingLabs Web App repository](https://github.com/ThingLabsIo/ThingLabs-IoT-Dashboard), copy the git repo url
+    
     ![Git repo url](/images/thinglabs-github-webapp-repo.png)
+    
     - Paste it into the dialog on the configuration (the External Repository Page)
+    
     ![Git repo url](/images/webapp-config-repo.png)
+    
     - Click checkmark on the lower-right to setup your deployment from the ThingLabs Github Repository
     - Click on "Configure" to customize settings for your the Web App.
         - Turn Web Sockets on
+        
         ![Web App Enable Web Sockets](/images/WebAppConfigureWebSockets.png)
+    
         - Add an App Setting (Key: THINGLABS_EVENTHUB_CONNSTRING Value: Connection String from your EventHub)
+        
         ![Web App App Settings](/images/WebAppConfigureAppSettings.png)
+    
         - Use the connection string from your Event Hub
+        
         ![Event Hub Connection String](/images/EventHubConfigureConnectionString.png)
+    
         - Save the changes
     - Restart the Web Application
 3. Browse to your site
