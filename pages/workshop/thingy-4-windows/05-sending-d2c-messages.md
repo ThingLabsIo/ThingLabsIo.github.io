@@ -166,6 +166,8 @@ private void Timer_Tick(ThreadPoolTimer timer)
         // ... the rest of the method doesn't change and is omitted here       
 {% endhighlight %}
 
+If you want to compare your code with the master lab code, you can find it [in the __ThingLabs - Thingy4Windows__ Github repo here](https://github.com/ThingLabsIo/Thingy4Windows/blob/master/ConnectedThingy/ConnectedThingy/StartupTask.cs).
+
 # Run the Application and Get Pushy
 Run your application again. Once you see the ambient light messages being sent, push the button a few times. You should see LED state message go by as well (and hear an annoying sound from the buzzer).
 

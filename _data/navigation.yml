@@ -23,7 +23,34 @@
     url: "/workshop/cs/nightlight/"
   - title: "Node.js - Connected Weather Station (2-hours)"
     url: "/workshop/js/weather/"
-        
+  - title: "Thingy 4 Windows (8-hours)"
+    url: "/workshop/thingy-4-windows/"
+    
+- title: "Thingy 4 Windows"
+  url: "/workshop/thingy-4-windows/"
+  side: left
+  dropdown:
+  - title: "Getting Started"
+    url: "/workshop/thingy-4-windows/getting-started/"
+  - title: "Setting Up Raspberry Pi 2"
+    url: "/workshop/thingy-4-windows/setup-rpi2/"
+  - title: "About the GrovePi"
+    url: "/workshop/thingy-4-windows/grovepi/"
+  - title: "Lab 01: Hello, Windows IoT!"
+    url: "/workshop/thingy-4-windows/hello-windows-iot/"
+  - title: "Lab 02: Nightlight"
+    url: "/workshop/thingy-4-windows/nightlight/"
+  - title: "Lab 03: ThingLabs Thingy&trade;"
+    url: "/workshop/thingy-4-windows/thingy/"
+  - title: "Lab 04: Setting Up Azure IoT Hub"
+    url: "/workshop/thingy-4-windows/setup-azure-iot-hub/"
+  - title: "Lab 05: Sending D2C Messages"
+    url: "/workshop/thingy-4-windows/sending-d2c-messages/"
+  - title: "Lab 06: Storing & Displaying IoT Data"
+    url: "/workshop/thingy-4-windows/storing-displaying-data/"
+  - title: "Lab 07: Sending C2D Messages"
+    url: "/workshop/thingy-4-windows/sending-c2d-messages/"
+            
 - title: Attend a Workshop
   url: "/schedule/"
   side: right

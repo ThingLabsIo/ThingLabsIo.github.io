@@ -2,7 +2,7 @@
 layout: "page-full-day-windows"
 title: "ThingLabs Thingy&trade; Workshop (full day)"
 subheadline: "Building Connected Things with Windows 10 and Microsoft Azure"
-teaser: "In these IoT Labs you will begin by learning the basics of working with Windows 10 IoT Core connected to sensors and actuators. You will move on to connecting the Thing to the Cloud. You will learn how to leverage Microsoft Azure services to collect data and control devices and use advanced services like analytics and machine learning to discover insights using your Things."
+teaser: "In these IoT labs, you will begin by learning the basics of working with Windows 10 IoT Core connected to sensors and actuators. You will move on to connecting the Thing to the Cloud. You will learn how to leverage Microsoft Azure services to collect data and control devices and use advanced services like analytics and machine learning to discover insights using your Things."
 show_meta: true
 comments: false
 header: 
@@ -20,7 +20,7 @@ permalink: /workshop/thingy-4-windows/
 # Workshop Goals
 The goals of this workshop are:
 
-+ Educate developers on the IoT stack offerred by Microsoft
++ Educate developers on the IoT stack offered by Microsoft
 + Educate developers on the Universal Windows Platform (UWP)
 + Educate developers on the Azure services related to IoT
 
@@ -29,9 +29,9 @@ By the end of the workshop a participant will be able to:
 + Build an IoT device using the Raspberry Pi 2 (RPi2)
 + Build a UWP app for Windows IoT Core to run on the RPi2
 + Use Windows IoT Core and the RPi to both capture input and present output
-+ Create and configure an Azure IoT Hub
-+ Connect their UWP application running on the RPi2 to Azure IoT Hubs
-+ Build a datapipe line that captures data coming into IoT Hub and stores it
++ Create and configure an Azure IoT Hub to manage device-to-cloud and cloud-to-device messaging
++ Connect a UWP application running on the RPi2 to an Azure IoT Hub
++ Build a data pipeline that captures data coming into IoT Hub and stores it
 + Build a visualization of IoT data
 + Build a client application that can send a command to the IoT device via Azure
 
@@ -39,14 +39,14 @@ By the end of the workshop a participant will be able to:
 The following are required to prepare for the workshop. Whenever possible this section should be completed prior to the workshop day.
 
 ## Getting Started
-This is a step-by-step guide to preparing your computer for the Windows 10 IoT Labs.
+This is a step-by-step guide to preparing your computer for the Thingy for Windows IoT Workshop
 
 <a class="radius button small" href="{{ site.url }}/workshop/thingy-4-windows/getting-started/">Estimated time to complete: 20-minutes. Go to  'Getting Started' ›</a>
 
 ## Setting Up Your Raspberry Pi 2
 The Raspberry Pi 2 is a low cost, credit-card sized computer that plugs into a computer monitor or TV, and uses a standard keyboard and mouse. The Raspberry Pi 2 runs Windows 10 IoT Core.
 
-In this lab you will install Windows 10 IoT Core on your Raspberry Pi 2.
+In this lab, you will install Windows 10 IoT Core on your Raspberry Pi 2.
 
 <a class="radius button small" href="{{ site.url }}/workshop/thingy-4-windows/setup-rpi2/">Estimated time to complete: 20-minutes. Go to  'Setting Up Your Raspberry Pi 2' ›</a>
 
@@ -58,46 +58,45 @@ The GrovePi is a shield stacked on top of the Raspberry Pi 2 without the need fo
 # Lab Guides
 
 ## Lab 01: Hello, Windows IoT!
-In this lab you will build a simple single-circuit device that blinks an LED on and off (this is the ‘Hello, World! of the maker/IoT space).
+In this lab, you will build a simple single-circuit device that blinks an LED on and off (this is the ‘Hello, World! of the maker/IoT space).
 
 <a class="radius button small" href="{{ site.url }}/workshop/thingy-4-windows/hello-windows-iot/">Estimated time to complete: 20-minutes. Go to  'Hello, Windows IoT!' ›</a>
 
 ## Lab 02: Nightlight
-In this lab you will capture analog input using a light-dependent resistor (photo cell) and turn on or off an LED based on the amount of light detected. 
+In this lab, you will capture analog input using a light-dependent resistor (photocell) and turn on or off an LED based on the amount of light detected. 
 
 <a class="radius button small" href="{{ site.url }}/workshop/thingy-4-windows/nightlight/">Estimated time to complete: 20-minutes. Go to  'Nightlight' ›</a>
 
 ## Lab 03: ThingLabs Thingy&trade;
-In this lab you will build a device with multiple sensors and actuators. The device will:
+In this lab, you will build a device with multiple sensors and actuators. The device will:
 
 * Capture the amount of ambient light
 * Increase the brightness intensity of an LED inversely to the amount of ambient light measured.
-* Capture the amount of ambient  sound
-* Display the ambient light and sound measurments on an LCD display.
+* Display the ambient light and sound measurements on an LCD display.
 * The display will adjust its backlight brightness according to the amount of ambient light in the area.
 * Enable a button to turn on and off an LED and trigger sound.
 
 <a class="radius button small" href="{{ site.url }}/workshop/thingy-4-windows/thingy/">Estimated time to complete: 30-minutes. Go to  'Thingy' ›</a>
 
 ## Lab 04: Setting Up Azure IoT Hub
-In this lab you will provision a new Azure IoT Hub. Once you have the IoT Hub created, you will be able to create a new Azure IoT device (a software reference to your physical device) that you will use to send telemetry to Azure.
+In this lab, you will provision a new Azure IoT Hub. Once you have the IoT Hub created, you will be able to create a new Azure IoT device (a software reference to your physical device) that you will use to send telemetry to Azure.
 
 <a class="radius button small" href="{{ site.url }}/workshop/thingy-4-windows/setup-azure-iot-hub/">Estimated time to complete: 20-minutes. Go to  'Setting Up Azure IoT Hub' ›</a>
 
 ## Lab 05: Sending Device-to-Cloud (D2C) Messages
-In this lab you will use the thermastat device that you built to capture and send telemetry data to Azure IoT Hub.
+In this lab, you will use the ThingLabs Thingy&trade; device that you built to capture and send messages to Azure IoT Hub.
 
 <a class="radius button small" href="{{ site.url }}/workshop/thingy-4-windows/sending-d2c-messages/">Estimated time to complete: 20-minutes. Go to  'Sending Telemetry to the Cloud' ›</a>
 
 ## Lab 06: Storing and Displaying IoT Data
-In this lab you will build a data pipeline that captures the data coming into IoT Hub and persists it using Azure storage. You will then connect a website to Azure and retreive the data for display in a browser.
+In this lab, you will build a data pipeline that captures the data coming into IoT Hub, processes it with Azure Stream Analytics, then routes it to downstream services. The first service you'll build will consume the data and present it through an Azure Web App where it is rendered as a real-time graph.
 
 <a class="radius button small" href="{{ site.url }}/workshop/thingy-4-windows/storing-displaying-data/">Estimated time to complete: 20-minutes. Go to  'Storing & Displaying IoT Data' ›</a>
 
 ## Lab 07: Lab: Sending Cloud-to-Device (C2D) Messages
-In this lab you will extend your website by adding the ability to control the ThingLabs Thingy&trade; remotely. The website will send messages to the Thingy via Azure.
+In this lab, you will use the Azure Web App to control the ThingLabs Thingy&trade; remotely. The Web App will send messages to the Thingy via Azure, which the Thingy will receive, procees, and act on.
 
 # Workshop Source Files
-If you wantaccess to the completed projects used in the labs, you can copy or clone the __Thingy4Windows__ GitHub repo [here](https://github.com/ThingLabsIo/Thingy4Windows).
+If you want access to the completed projects used in the labs, you can copy or clone the __Thingy4Windows__ Github repo [here](https://github.com/ThingLabsIo/Thingy4Windows).
 
 <a class="radius button small" href="{{ site.url }}/workshop/thingy-4-windows/sending-c2d-messages/">Estimated time to complete: 20-minutes. Go to  'Sending Cloud to Device (C2D) Messages' ›</a>

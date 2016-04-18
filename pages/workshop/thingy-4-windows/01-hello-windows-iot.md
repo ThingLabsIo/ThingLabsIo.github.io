@@ -155,7 +155,7 @@ private void Timer_Tick(ThreadPoolTimer timer)
 
 That's all there is to it. Now you are ready to run the application. 
 
-If you want to compare your code with the master lab code, you can find it [in the __ThingLabs - Thingy4Windows__ GitHub repo here](https://github.com/ThingLabsIo/Thingy4Windows/blob/master/HellowWindowsIoT/HellowWindowsIoT/StartupTask.cs).
+If you want to compare your code with the master lab code, you can find it [in the __ThingLabs - Thingy4Windows__ Github repo here](https://github.com/ThingLabsIo/Thingy4Windows/blob/master/HellowWindowsIoT/HellowWindowsIoT/StartupTask.cs).
 
 # Run the App on a Device
 To run the application you will build it locally and then deploy it to the RPi2 and open a remote debugging session. Fortunately, this is all encapsulated in a simple gesture once you have it configured.
