@@ -6,7 +6,7 @@ teaser: "In these IoT labs, you will begin by learning the basics of working wit
 show_meta: true
 comments: false
 header: 
-    image_fullwidth: workshops/thingy-4-windows/header.jpg
+    image_fullwidth: workshops/thingy-4-windows/header.jpeg
 breadcrumb: true
 categories: [raspberry-pi, windows-10, grove, c#, iot, maker]
 permalink: /workshop/thingy-4-windows/
