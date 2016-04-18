@@ -50,6 +50,11 @@ In this lab you will install Windows 10 IoT Core on your Raspberry Pi 2.
 
 <a class="radius button small" href="{{ site.url }}/workshop/thingy-4-windows/setup-rpi2/">Estimated time to complete: 20-minutes. Go to  'Setting Up Your Raspberry Pi 2' ›</a>
 
+## The GrovePi
+The GrovePi is a shield stacked on top of the Raspberry Pi 2 without the need for any other connections.  Communication between the GrovePi and the RPi2 occurs over the I2C interface. All Grove modules connect to the universal Grove connectors on the GrovePi shield via the universal 4 pin connector cable. This document provides a description of the GrovePi shield and how it interfaces with the Raspberry Pi 2.
+
+<a class="radius button small" href="{{ site.url }}/workshop/thingy-4-windows/grovepi/">Estimated time to complete: 5-minutes. Go to  'The GrovePi' ›</a>
+
 # Lab Guides
 
 ## Lab 01: Hello, Windows IoT!
@@ -91,5 +96,8 @@ In this lab you will build a data pipeline that captures the data coming into Io
 
 ## Lab 07: Lab: Sending Cloud-to-Device (C2D) Messages
 In this lab you will extend your website by adding the ability to control the ThingLabs Thingy&trade; remotely. The website will send messages to the Thingy via Azure.
+
+# Workshop Source Files
+If you wantaccess to the completed projects used in the labs, you can copy or clone the __Thingy4Windows__ GitHub repo [here](https://github.com/ThingLabsIo/Thingy4Windows).
 
 <a class="radius button small" href="{{ site.url }}/workshop/thingy-4-windows/sending-c2d-messages/">Estimated time to complete: 20-minutes. Go to  'Sending Cloud to Device (C2D) Messages' ›</a>

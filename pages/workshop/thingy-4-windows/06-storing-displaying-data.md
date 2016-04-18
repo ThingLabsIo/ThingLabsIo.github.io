@@ -28,12 +28,11 @@ will write a SQL-like query that collects data coming in on the input stream and
 
 ## Create an Event Hub
 
-First, you need to create an Event Hub to queue the data coming out of the Azure Stream Analytics Job. Click on the __NEW__ icon in the 
-lower-left corner.
+First, you need to create an Event Hub to queue the data coming out of the Azure Stream Analytics Job. Open a new browser tab and navigate to the [https://manage.windowsazure.com](https://manage.windowsazure.com). Click on the __NEW__ icon in the lower-left corner.
 
 ![Windows Azure Portal v1](/images/photon_lab07_5.png)
 
-1. Select __+__ > __APP SERVICES__ > __SERVICE BUS__ > __EVENT HUB__
+1. Select __+__ > __APP SERVICES__ > __SERVICE BUS__ > __EVENT HUB__ > __QUICK CREATE__ and enter the following:
     - EVENT HUB NAME: You can use anything that is a valid name here, such as thinglabs-eventhub-[yourname, initials, etc]
     - REGION: If you created your IoT Hub in _East US_, select __East US 2__. Select the same region you created your IoT Hub in.
     - SUBSCRIPTION: Select the subscription you've created your resources in.
@@ -42,8 +41,7 @@ lower-left corner.
 ![Configure Event Hub](/images/ehquickcreate.png)
 
 ## Create the Stream Analytics Job
-Next, you can create the Stream Analytics Job by opening a new browser tab and navigate to [https://manage.windowsazure.com](https://manage.windowsazure.com){:target="_blank"}. Login if necessary. Click on the __NEW__ icon in the 
-lower-left corner.
+Next, you can create the Stream Analytics Job by opening a new browser tab and navigate to [https://manage.windowsazure.com](https://manage.windowsazure.com){:target="_blank"}. Login if necessary. Click on the __NEW__ icon in the lower-left corner.
 
 1. Select __DATA SERVICES__ > __STREAM ANALYTICS__ > __QUICK CREATE__ and enter the following:
     - JOB NAME: You can use anything you'd like here...like __iotlab__ or something similar so you can identify it easily later.
@@ -56,7 +54,7 @@ lower-left corner.
 
 ![Creating a new Stream Analytics job](/images/asajobcreated.png)
 
-When the job indicates that it is created, click into it to create the data streams and query. Once you are in the Stream Analytics job you will need to define the job input, query and output. 
+When the job indicates that it is created, click into it to create the data streams and query. Once you are in the Stream Analytics job you will need to define the job input, query, and output. 
 
 ### Define the Input Data Stream
 The data will come in as a data stream from the Event Hub that was automatically created when you created the Azure IoT Hub. 
@@ -109,7 +107,7 @@ You will create two outputs, one for data to flow to EventHub and a second for d
 6. Start the Event Hub by clicking the Start triangle at the bottom of the window
 
 ### Write the Query
-In the query, you want to select data from the input stream and put it into the output stream. With data like _darkness_ you can do interesting things like apply operations on the data as you query it. For this example, you will write a query that selects from the input stream and sends the output stream the minimum, maximum and average darkness values across all devices, and enables you to group the data by either location or device ID. Using a <code>TumblingWindow</code> you will send data to the output stream in rolling increments of 5-seconds.
+In the query, you want to select data from the input stream and put it into the output stream. With data like _darkness_, you can do interesting things like applying operations on the data as you query it. For this example, you will write a query that selects from the input stream and sends the output stream the minimum, maximum and average darkness values across all devices, and enables you to group the data by either location or device ID. Using a <code>TumblingWindow</code> you will send data to the output stream in rolling increments of 5-seconds.
 
 1. Click on the _QUERY_ header.
 

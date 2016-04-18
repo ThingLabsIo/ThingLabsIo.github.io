@@ -20,7 +20,7 @@ In addition, the GrovePi allows the Raspberry Pi to access some Grove sensors di
 
 ![GrovePi Port Descriptions](/images/workshops/thingy-4-windows/GrovePi-Port-description.jpg)
 
-The GrovePi runs an ATmega328 which contains an on-board 6 channel analog-to-digital (A/D) converter. The AD converter has 10-bit resolution, returning values __0-1023__. Analog pins are usually used for reading analog sensors but can also be used for general purpose i/o, same as digital pins 0-13.
+The GrovePi runs an ATmega328 which contains an onboard 6 channel analog-to-digital (A/D) converter. The AD converter has 10-bit resolution, returning values __0-1023__. Analog pins are usually used for reading analog sensors but can also be used for general purpose i/o, same as digital pins 0-13.
 If you need more digital sockets, you can re-purpose an analog socket.
 
 The __pinMode()__ method is used to set the pin to __INPUT__ or __OUTPUT__.
@@ -48,5 +48,9 @@ The sensors and actuators included in the ThingLabs IoT Workshop Kit can be clas
 |Digital    |Output	        |LED, Buzzer, Relay            	                                         |ChangeState(SensorStatus)                 |
 |I2C        |Output         |RGB LCD Display                                                         |SetBackLightRgb(r,g,b), SetText(string)   |
 
-
 Taken from <http://www.dexterindustries.com/GrovePi/engineering/port-description/>
+
+# Conclusion &amp; Next Steps
+In this lab, you learned how the GrovePi solution works. Next, you will use the RPi2 and the GrovePi to build the IoT equivalent of 'Hello, World!' - you will make an LED blink.
+
+<a class="radius button small" href="{{ site.url }}/workshop/thingy-4-windows/hello-windows-iot/">Go to 'Hello, Windows IoT!' ›</a>
