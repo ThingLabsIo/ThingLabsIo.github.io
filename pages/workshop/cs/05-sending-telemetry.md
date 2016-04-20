@@ -18,7 +18,7 @@ permalink: /workshop/cs/nightlight/sending-telemetry/
 In this lab you will build a Universal Windows Platform application that detects ambient light and sends the data that is being collected to Azure IoT Hub. In following lab you will build a data pipeline to process the incoming data stream and output it to a visualization tool.
  
 # Capturing Analog Data with a Voltage Divider
-For this lab you will work with a few new concepts - both in the circuits connected to the Raspberry Pi 2 (RPi2) and in the Cloud. The first thing you will do is wire up the RPi2 to be able to read voltage as determined by the resistance created by a photoresistor. Wire your board according to the diagram (wire colors don't matter, but help with identification of purpose). This wiring uses an analog-to-digital-convertor (ADC) - either an MCP3208 or an MCP3002, depending on what you have - which enables you to capture analog input instead of simply digital input. When you did the lab with the LED you dealt only with a digital signal - you sent voltage to the LED to turn it on, or off (with no voltage). Many sensors, such as a _photoresistor_, are capable of analog input or output, giving them a broader range than simply a 1 or a 0. 
+For this lab you will work with a few new concepts - both in the circuits connected to the Raspberry Pi 2 (RPi2) and in the Cloud. The first thing you will do is wire up the RPi2 to be able to read voltage as determined by the resistance created by a photoresistor. Wire your board according to the diagram (wire colors don't matter, but help with identification of purpose). This wiring uses an analog-to-digital-convertor (ADC) - either an MCP3208, MCP3008, or an MCP3002, depending on what you have - which enables you to capture analog input instead of simply digital input. When you did the lab with the LED you dealt only with a digital signal - you sent voltage to the LED to turn it on, or off (with no voltage). Many sensors, such as a _photoresistor_, are capable of analog input or output, giving them a broader range than simply a 1 or a 0. 
 
 A _photoresistor_, also known as _light-dependent resistor (LDR)_ or a photocell, works by limiting the amount of voltage that passes through it based on the intensity of light detected. The resistance decreases as light input increases - in other words, the more light, the more voltage passes through the photoresistor.
 
@@ -41,7 +41,13 @@ In short, the darker it is, the more resistance the photoresistor provides and t
 
 Following is the wiring diagram for this circuit. Select the ADC you have and take a minute to identify the circuit on the board.
 
+__MCP3002 - 10-bit, 2-channel ADC__
+
 ![Wiring diagram using the MCP3002 ADC](/images/rpi2/rpi2_IoTLightSensor_mcp3002_bb.png)
+
+__MCP3008 - 10-bit, 8-channel ADC__
+
+![Wiring diagram using the MCP3008 ADC](/images/rpi2/rpi2_IoTLightSensor_mcp3008_bb.png)
 
 __NOTE:__ _The ADC has a notch out of one side - ensure that the side with the notch is (according to the diagram) on the lower edge of the breadboard._
 
@@ -117,16 +123,17 @@ using Microsoft.Azure.Devices.Client;
 {% endhighlight %}
 
 ## Define Constants and Variables
-There are several constants and variables that you will reference throughout this code. This code is written to support the MCP3002 (10-bit, 2-channel) or the MCP3208 (12-bit, 8-channel) ADCs. You must set the value of <code>ADC_DEVICE</code> to the specific ADC you are using, and follow the appropriate wiring diagram (above). For this lab you have the MCP3002.
+There are several constants and variables that you will reference throughout this code. This code is written to support the MCP3002 (10-bit, 2-channel), MCP3008 (10-bit, 8-channel) , or the MCP3208 (12-bit, 8-channel) ADCs. You must set the value of <code>ADC_DEVICE</code> to the specific ADC you are using, and follow the appropriate wiring diagram (above). For this lab you have the MCP3002.
 
 {% highlight csharp %}
 public sealed partial class MainPage : Page
 {
-    /* IMPORTANT! Change this to either AdcDevice.MCP3002 or AdcDevice.MCP3208 depending on which ADC you have     */ 
-    private AdcDevice ADC_DEVICE = AdcDevice.MCP3002;
+    // Important! Change this to either AdcDevice.MCP3002, AdcDevice.MCP3208 or 
+    // AdcDevice.MCP3008 depending on which ADC you chose
+    private AdcDevice ADC_DEVICE = AdcDevice.MCP3008;
 
-    enum AdcDevice { NONE, MCP3002, MCP3208 };
-    
+    enum AdcDevice { NONE, MCP3002, MCP3208, MCP3008 };
+
     // Use the device specific connection string here
     private const string IOT_HUB_CONN_STRING = "YOUR DEVICE SPECIFIC CONNECTION STRING GOES HERE";
     // Use the name of your Azure IoT device here - this should be the same as the name in the connections string
@@ -140,9 +147,10 @@ public sealed partial class MainPage : Page
 
     // 01101000 channel configuration data for the MCP3002
     private const byte MCP3002_CONFIG = 0x68;
-    // 00000110 channel configuration data for the MCP3208 
-    private const byte MCP3208_CONFIG = 0x06; 
-
+    // 00001000 channel configuration data for the MCP3008
+    private const byte MCP3008_CONFIG = 0x08;
+    // 00001000 channel configuration data for the MCP3008
+    private const byte MCP3008_CONFIG = 0x08;
 
     private const int RED_LED_PIN = 12;
 
@@ -277,6 +285,7 @@ private async Task InitSpiAsync()
     {
         var settings = new SpiConnectionSettings(SPI_CHIP_SELECT_LINE);
         // 3.2MHz is the rated speed of the MCP3002 at 5v (1.2MHz @ 2.7V)
+        // 3.6MHz is the rated speed of the MCP3008 at 5v (1.35 MHz @ 2.7V)
         // 2.0MHz is the rated speed of the MCP3208 at 5v (1.0MHz @ 2.7V)
         settings.ClockFrequency = 800000; // Set the clock frequency at or slightly below the specified rate speed
         // The ADC expects idle-low clock polarity so we use Mode0
@@ -329,6 +338,9 @@ private void ReadAdc()
         case AdcDevice.MCP3002:
             writeBuffer[0] = MCP3002_CONFIG;
             break;
+        case AdcDevice.MCP3008:
+            writeBuffer[0] = MCP3008_CONFIG;
+            break;
         case AdcDevice.MCP3208:
             writeBuffer[0] = MCP3208_CONFIG;
             break;
@@ -364,6 +376,11 @@ private int convertToInt(byte[] data)
             result = data[0] & 0x03;
             result <<= 8;
             result += data[1];
+            break;
+        case AdcDevice.MCP3008:
+            result = data[1] & 0x03;
+            result <<= 8;
+            result += data[2];
             break;
         case AdcDevice.MCP3208:
             result = data[1] & 0x0F; 
@@ -401,6 +418,9 @@ private void LightLed()
     {
         case AdcDevice.MCP3002: 
             adcResolution = 1024; 
+            break;
+        case AdcDevice.MCP3008:
+            adcResolution = 1024;
             break;
         case AdcDevice.MCP3208: 
             adcResolution = 4096; 
