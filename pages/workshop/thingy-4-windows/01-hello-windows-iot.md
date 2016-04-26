@@ -66,8 +66,6 @@ A Universal Windows app is a Windows experience that is built upon the Universal
 ## Add a Reference to the GrovePi Libraries
 The GrovePi libraries provide an abstraction over the Windows 10 IoT Core GPIO, I2C and SPI interfaces and expose the sensor and device functionality as objects. The GrovePi libraries are easy to install using the Package Manager Console.
 
-> WARNING: This section needs updating. You will have to download the GrovePi C\# project from https://github.com/DexterInd/GrovePi/tree/master/Software/CSharp/GrovePi, build it and add a reference to the GrovePi.dll (which is more current than the NuGet package.
-
 1. To install GrovePi for Windows IoT, run the following command from the __Package Manager Console__
 
 ```
