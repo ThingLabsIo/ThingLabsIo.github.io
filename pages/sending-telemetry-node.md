@@ -29,28 +29,63 @@ Since you will be using Node.js for this lab you can take advantage of the depen
 
 Using your favorite/preferred text/code editor, create a file in your development directory named __package.json__ and add the following:
 
-{% highlight json %}
-{
-  "name": "IoT-Labs",
-  "version": "0.1.0",
-  "private":true,
-  "description": "Sample app that connects a device to Azure using Node.js",
-  "main": "weather.js",
-    "author": "YOUR NAME HERE",
-  "license": "MIT",
-  "dependencies": {
-    "azure-iot-device": "1.0.0-preview.6",
-    "johnny-five": "0.9.10",
-    "j5-sparkfun-weather-shield": "0.2.0"
-  }
-}
-{% endhighlight %}
+<div id="json-tabs">
+  <ul>
+    <li><a href="#arduino"><span>Arduino</span></a></li>
+    <li><a href="#photon"><span>Photon</span></a></li>
+  </ul>
+  <div id="arduino">
+    {% highlight json %}
+    {
+      "name": "IoT-Labs-Arduino",
+      "repository": {
+        "type": "git",
+        "url": "https://github.com/ThingLabsIo/IoTLabs/tree/master/Arduino/Weather"
+      },
+      "version": "0.1.0",
+      "private":true,
+      "description": "Sample app that connects a device to Azure using Node.js",
+      "main": "weather.js",
+      "author": "YOUR NAME",
+      "license": "MIT",
+      "dependencies": {
+        "azure-iot-device": "latest",
+        "azure-iot-device-amqp": "latest",
+        "johnny-five": "latest",
+        "j5-sparkfun-weather-shield": "latest"
+      }
+    }
+    {% endhighlight %}
+  </div>
+  <div id="photon">
+    {% highlight json %}
+    {
+      "name": "IoT-Labs-Photon",
+      "repository": {
+        "type": "git",
+        "url": "https://github.com/ThingLabsIo/IoTLabs/tree/master/Photon/Weather"
+      },
+      "version": "0.1.0",
+      "private":true,
+      "description": "Sample app that connects a device to Azure using Node.js",
+      "main": "weather.js",
+      "author": "YOUR NAME",
+      "license": "MIT",
+      "dependencies": {
+        "azure-iot-device": "latest",
+        "azure-iot-device-amqp": "latest",
+        "johnny-five": "latest",
+        "j5-sparkfun-weather-shield": "latest",
+        "particle-io": "latest"
+      }
+    }
+    {% endhighlight %}
+  </div>
+</div>
 
-If you are using the Particle Photon, add the following line to the <code>dependencies</code> list:
-
-{% highlight json %}
-"particle-io": "0.10.1"
-{% endhighlight %}
+<script>
+$( "#json-tabs" ).tabs();
+</script>
 
 With the _package.json_ file created you can use NPM to pull down the necessary Node modules. Open a terminal window (Mac OS X) or Node.js command prompt (Windows) and execute the following commands (replace _C:\Development\IoTLabs_ with the path that leads to your development directory):
 
@@ -94,47 +129,96 @@ The Weather app will run on your gateway (your development machine for now) and 
 
 The first thing you need to do is define the objects you will be working with in the application. The four things that matter are the Azure IoT _device_ object, a Johnny-Five framework object, the Weather Shield plugin object, and an object to represent the physical board you are working with. 
 
-{% highlight javascript %}
-'use strict';
-// Define the objects you will be working with
-var five = require ("johnny-five");
-var Shield = require("j5-sparkfun-weather-shield")(five);
-var device = require('azure-iot-device');
+<div id="code-tabs">
+  <ul>
+    <li><a href="#arduino"><span>Arduino</span></a></li>
+    <li><a href="#photon"><span>Photon</span></a></li>
+  </ul>
+  <div id="arduino">
+    {% highlight javascript %}
+    // https://github.com/ThingLabsIo/IoTLabs/tree/master/Arduino/Weather
+    'use strict';
+    // Define the objects you will be working with
+    var five = require ("johnny-five");
+    var Shield = require("j5-sparkfun-weather-shield")(five);
+    var device = require('azure-iot-device');
 
-/* 
-// PARTICLE PHOTON USERS
-// Add the following definition for the Particle plugin for Johnny-Five
-var Particle = require("particle-io");
+    // Use factory function from AMQP-specific package
+    // Other options include HTTP (azure-iot-device-http) and MQTT (azure-iot-device-mqtt)
+    var clientFromConnectionString = require('azure-iot-device-amqp').clientFromConnectionString;
 
-var token = 'YOUR PARTICLE ACCESS TOKEN HERE';
-*/
+    var location = process.env.DEVICE_LOCATION || 'GIVE A NAME TO THE LOCATION OF THE THING';
+    var connectionString = process.env.IOTHUB_CONN || 'YOUR IOT HUB DEVICE-SPECIFIC CONNECTION STRING HERE';
 
-var location = process.env.DEVICE_LOCATION || 'GIVE A NAME TO THE LOCATION OF THE THING';
-var connectionString = process.env.IOTHUB_CONN || 'YOUR IOT HUB DEVICE-SPECIFIC CONNECTION STRING HERE';
+    // Create an Azure IoT client that will manage the connection to your IoT Hub
+    // The client is created in the context of an Azure IoT device, which is why
+    // you use a device-specific connection string.
+    var client = clientFromConnectionString(connectionString);
+    var deviceId = device.ConnectionString.parse(connectionString).DeviceId;
 
-// Create an Azure IoT client that will manage the connection to your IoT Hub
-// The client is created in the context of an Azure IoT device, which is why
-// you use a device-specific connection string.
-var client = device.Client.fromConnectionString(connectionString);
-var deviceId = device.ConnectionString.parse(connectionString).DeviceId;
+    // Create a Johnny-Five board instance to represent your Particle Photon
+    // Board is simply an abstraction of the physical hardware, whether is is a 
+    // Photon, Arduino, Raspberry Pi or other boards.
+    var board = new five.Board();
 
-// Create a Johnny-Five board instance to represent your Particle Photon
-// Board is simply an abstraction of the physical hardware, whether is is a 
-// Photon, Arduino, Raspberry Pi or other boards.
-var board = new five.Board();
-/* 
-// PARTICLE PHOTON USERS
-// When creating a Board instance for the Photon you must specify the token and device ID
-// for your Photon using the Particle-IO Plugin for Johnny-five.
-// Replace the Board instantiation with the following:
-var board = new five.Board({
-  io: new Particle({
-    token: token,
-    deviceId: 'YOUR PARTICLE PHOTON DEVICE IS OR ALIAS'
-  })
-});
-*/
-{% endhighlight %}
+    /*
+    // You may optionally specify the port by providing it as a property
+    // of the options object parameter. * Denotes system specific 
+    // enumeration value (ie. a number)
+    // OSX
+    var board = new five.Board({ port: "/dev/tty.usbmodem****" });
+    // Linux
+    var board = new five.Board({ port: "/dev/ttyUSB*" });
+    // Windows
+    var board = new five.Board({ port: "COM*" });
+    */
+    {% endhighlight %}
+  </div>
+  <div id="photon">
+    {% highlight javascript %}
+    // https://github.com/ThingLabsIo/IoTLabs/tree/master/Photon/Weather
+    'use strict';
+    // Define the objects you will be working with
+    var five = require ("johnny-five");
+    var Shield = require("j5-sparkfun-weather-shield")(five);
+    var device = require('azure-iot-device');
+
+    // Add the following definition for the Particle plugin for Johnny-Five
+    var Particle = require("particle-io");
+
+    // Use factory function from AMQP-specific package
+    // Other options include HTTP (azure-iot-device-http) and MQTT (azure-iot-device-mqtt)
+    var clientFromConnectionString = require('azure-iot-device-amqp').clientFromConnectionString;
+
+    var token = process.env.PARTICLE_KEY || 'YOUR PARTICLE ACCESS TOKEN HERE';
+    var location = process.env.DEVICE_LOCATION || 'GIVE A NAME TO THE LOCATION OF THE THING';
+    var connectionString = process.env.IOTHUB_CONN || 'YOUR IOT HUB DEVICE-SPECIFIC CONNECTION STRING HERE';
+
+    // Create an Azure IoT client that will manage the connection to your IoT Hub
+    // The client is created in the context of an Azure IoT device, which is why
+    // you use a device-specific connection string.
+    var client = clientFromConnectionString(connectionString);
+    var deviceId = device.ConnectionString.parse(connectionString).DeviceId;
+
+    // Create a Johnny-Five board instance to represent your Particle Photon
+    // Board is simply an abstraction of the physical hardware, whether is is a 
+    // Photon, Arduino, Raspberry Pi or other boards.
+    // When creating a Board instance for the Photon you must specify the token and device ID
+    // for your Photon using the Particle-IO Plugin for Johnny-five.
+    // Replace the Board instantiation with the following:
+    var board = new five.Board({
+        io: new Particle({
+            token: token,
+            deviceId: 'YOUR PARTICLE PHOTON DEVICE IS OR ALIAS'
+        })
+    });
+    {% endhighlight %}
+  </div>
+</div>
+
+<script>
+$( "#code-tabs" ).tabs();
+</script>
 
 In this code you define four variables that you will be working with:
 
@@ -160,7 +244,7 @@ board.on("ready", function() {
     // barometer (MPL3115A2) which can provide both barometric pressure and humidity.
     // Controllers for these are wrapped in a convenient plugin class:
     var weather = new Shield({
-      variant: "ARDUINO", // or PHOTON
+      variant: "ARDUINO", // or variant: "PHOTON",
       freq: 1000,         // Set the callback frequency to 1-second
       elevation: 100      // Go to http://www.WhatIsMyElevation.com to get your current elevation
     });
@@ -196,7 +280,6 @@ board.on("ready", function() {
 function printResultFor(op) {
   return function printResult(err, res) {
     if (err) console.log(op + ' error: ' + err.toString());
-    if (res && (res.statusCode !== 204)) console.log(op + ' status: ' + res.statusCode + ' ' + res.statusMessage);
   };
 }
 {% endhighlight %}
