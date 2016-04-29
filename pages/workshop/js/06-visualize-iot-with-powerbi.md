@@ -34,7 +34,7 @@ Select __DATA SERVICES__ > __STREAM ANALYTICS__ > __QUICK CREATE__ and enter the
 2. REGION: Select __East US__ (or whatever region you created your IoT Hub in) __NOTE:__ If you are using a new Azure Account and experience errors, try creating the Stream Analytics job in the __East US 2__ region
 3. REGIONAL MONITORING STORAGE ACCOUNT: Select or create a storage account.
 
-![New Stream Analytics]/images/newasa.png)
+![New Stream Analytics](/images/newasa.png)
 
 Click __CREATE STREAM ANALYTICS JOB__. It will take a few minutes for the Steam Analytics job to get created and become available.
 
@@ -46,7 +46,7 @@ When the job indicates that it is created, click into it to create the data stre
 
 Once you are in the Stream Analytics job, click on the __INPUTS__ header.
 
-!{Inputs](/images/asainputs.png)
+![Inputs](/images/asainputs.png)
 
 1. Click on __ADD AN INPUT__.
 2. Select __Data stream__ and click on the forward arrow in the lower-right.
