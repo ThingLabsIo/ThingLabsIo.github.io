@@ -44,7 +44,7 @@ Some Options:
 # Install Node.js
 In the labs you will write small programs that will run on your computer, connected to your _Thing_. These programs will be written in JavaScript and will run as Node.js apps. If you are not familiar or experienced with Node.js, don't worry. You will learn everything you need to know for these labs in these labs. 
 
-Follow the [instructions here to install Node.js v5.5.0][node]{:target="_blank"} on your computer.
+Install the latest Long-Term Support (LTS) relase from [nodejs.org][node]{:target="_blank"} (while writing this, the latest was `v4.4.3 LTS`).
 
 # Set Up a Development Directory
 Prepare a place to save all of your work in the labs. We recommend an easy to navigate to directory with a relatively short path. Create a new folder/directory for the labs:
