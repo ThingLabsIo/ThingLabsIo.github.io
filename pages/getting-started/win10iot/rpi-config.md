@@ -23,7 +23,7 @@ To enable you to remotely deploy and debug applications on the Raspberry Pi you 
 Connecting to a physical network is the easiest. Simply plug the Ethernet cable into the Ethernet port on the Raspberry Pi.
 
 ## Connect to a Wireless Network
-If your board has a Wi-Fi adapter or is a Raspberry Pi 3, and it has not yet be set up, it will start to broadcast itself as a network. Unconfigured boards will begin with "AJ_" (e.g. AJ_58EA6C68).
+If your board has a Wi-Fi adapter or is a Raspberry Pi 3, and it has not yet be set up, it will start to broadcast itself as a network. Unconfigured boards will begin with __AJ\___ (e.g. AJ_CD2C196A).
 
 ![Devices broadcasting their ID]({{ site.urlimg }}/getting-started/rpi/dashboard-setup05.png)
 
