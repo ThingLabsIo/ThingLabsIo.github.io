@@ -83,7 +83,7 @@ You are now ready to connect and power on your Raspberry Pi.
 
 Windows 10 IoT Core will boot on power-up. The first boot may take a few minutes. If you have the Raspberry Pi connected to a display, you should see the default app screen.
 
-![Default app]({{ site.urlimg }}/getting-started/rpi/rpi2_defaultapp.png)
+![Default app]({{ site.urlimg }}/getting-started/rpi/defaultapp.png)
 
 # Conclusion &amp; Next Steps
 In this lab, you flashed a non-standard version of Windows 10 IoT Core onto your Raspberry Pi for use in labs, tutorials, and workshops on __ThingLabs.io__ that use Windows 10 IoT. 

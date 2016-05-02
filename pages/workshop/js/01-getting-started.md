@@ -8,7 +8,6 @@ comments: true
 header: no
 breadcrumb: true
 categories: [arduino, photon, iot, maker, javascript, node.js, johnny-five, weather-station]
-author: doug_seven
 permalink: /workshop/js/weather/getting-started/
 ---
 ### Table of Contents

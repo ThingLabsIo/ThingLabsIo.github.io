@@ -8,7 +8,7 @@ comments: false
 header: no
 breadcrumb: true
 categories: [raspberry-pi, windows-10, grove, c#, iot, maker]
-permalink: /getting-started/win10iot/Raspberry Pi 2/
+permalink: /getting-started/win10iot/rpi2/
 ---
 # Table of Contents
 *  Auto generated table of contents
