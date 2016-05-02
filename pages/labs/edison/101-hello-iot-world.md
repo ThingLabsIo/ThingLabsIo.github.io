@@ -2,7 +2,7 @@
 layout: page-fullwidth
 title: "Hello, IoT World!"
 subheadline: "Building Connected Things with Node.js, Johnny-Five, and Microsoft Azure"
-teaser: "In this lab, you will use a LED Module to send digital output in the form of a blinking LED. This is the Hello, World of the IoT space."
+teaser: "In this lab, you will use an LED Module to send digital output in the form of a blinking LED. This is the Hello, World of the IoT space."
 show_meta: true
 comments: true
 header: no
@@ -15,7 +15,7 @@ permalink: /labs/edison/js/hello-iot-world/
 {:toc}
 
 # Setting Up the Board
-For this lab, you will creat a _Thing_ that can blink an LED. 
+For this lab, you will create a _Thing_ that can blink an LED. 
 
 1. Connect the Grove shield to the Edison (mounted to the Arduino adapter).
 2. Connect the LED Module to port D6.
@@ -31,7 +31,7 @@ There are five (5) steps to building the application in this lab:
 5. Handle the board.on("ready") callback.
 
 ## Define Application Metadata and Dependencies
-{% include node-package.md %}
+{% include node/node-package.md %}
 
 ## Install Dependencies Using NPM
 {% include node/install-dependencies.md %}
@@ -42,11 +42,11 @@ There are five (5) steps to building the application in this lab:
 ## Define the Device Abstractions
 {% include edison/define-blinky.md %}
 
-## Hanlde the board.on("ready") Callback
+## Handle the board.on("ready") Callback
 {% include johnny-five/board-on-blinky.md %}
 
 # Run the Application
-The Blinky application will run on the Intel Edison - but first you have to get the code on the board. 
+The Blinky application will run on the Intel Edison, but first, you have to get the code on the board. 
 
 ## Copy the Application Files to the Edison
 The application will execute on the Intel Edison.
@@ -54,7 +54,7 @@ The application will execute on the Intel Edison.
 1. Open __FileZilla__
 2. Set the __Host__ to the IP address of your device.
 3. Set the __Username__ to the administrative username (e.g. root).
-4. Set the __Password__ to whatever you set as the password for the device.
+4. Set the __Password__ to whatever you set the password for the device.
 5. Set the __Port__ to `22`
 6. Click __Quickconnect__
 7. In the __Local site__ window (typically the left side), navigate to your local application directory.
@@ -65,7 +65,7 @@ The application will execute on the Intel Edison.
 9. Drag the __package.json__ and __blinky.js__ files to the _blinky_ directory on the Edison.
 
 ## Install the Application Dependencies
-You can remotely execute NPM on the board to install the applicaiton dependencies. The instructions are a little different, depending on whether you are using a Windows PC or a Mac. Select the appropriate tab below and follow the instructions.
+You can remotely execute NPM on the board to install the application dependencies. The instructions are a little different, depending on whether you are using a Windows PC or a Mac. Select the appropriate tab below and follow the instructions.
 
 <div id="run-tabs">
   <ul>
@@ -103,7 +103,7 @@ $( "#run-tabs" ).tabs();
 </script>
 
 ## Run the Application on the Board
-From the remote session (Command Prompt or Terminal), execute the following command in the application directory (remember, using `.` will tell node.exe to execute the JavaScript file references in the `main` property of the package.json file):
+From the remote session (Command Prompt or Terminal), execute the following command in the application directory (remember, using `.` will tell node.exe to execute the JavaScript file referenced in the `main` property of the package.json file):
 
 {% highlight text %}
 node .
@@ -114,7 +114,7 @@ You should the indicator LED on the Arduino shield start to blink once per secon
 When you want to quit the application, press <kbd>CTRL</kbd> + <kbd>C</kbd> twice to exit the program without closing the window (you may also have to press <kbd>Enter</kbd>). 
 
 # Conclusion &amp; Next Steps
-In this lab you learned how to write a Node.js/Johnny-Five application that writes LOW (0) and HIGH (1) signals to a digital output pin to make an LED blink. In itself this may not be very exciting, but the core concept is necessary.
+In this lab, you learned how to write a Node.js/Johnny-Five application that writes LOW (0) and HIGH (1) signals to a digital output pin to make an LED blink. In itself, this may not be very exciting, but the core concept is necessary.
 
 In this lab you learned the following concepts:
 

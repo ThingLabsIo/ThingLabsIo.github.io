@@ -2,12 +2,12 @@ Since you are building a Node.js application, you will use a __package.json__ fi
 
 The package.json is kept at the application root and requires two fields:
 
-* Application name - The name must be less than or equal to 214 characters, may not start with a `.` or `_`, may not have uppercase letters in the name, and must not contain non-URL safe characters.
+* Application name - The name must be less than or equal to 214 characters, may not start with a `.` or `_`, may not have uppercase letters in the name, and must not contain non-URL-safe characters.
 * Application version.
 
 Optionally, for these labs, you will include:
 
-* The repository information where the soource code is maintained - this will help you to identify the master source if you need to reference it.
+* The repository information where the source code is maintained - this will help you to identify the master source if you need to reference it.
 * Application description - this will help you understand what each lab sample does.
 * A pointer to the Github issues tracker for the lab samples (in case you find something you want to tell us about).
 * A license specification (MIT).
