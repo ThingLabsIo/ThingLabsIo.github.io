@@ -71,10 +71,14 @@ You can remotely execute NPM on the board to install the application dependencie
   </ul>
   <div id="windows">
     <h3>Installing Application Dependencies Using Windows (PuTTy)</h3>
-    
-    {% highlight text %}
-    npm install
-    {% endhighlight %}
+    <ol>
+      <li>Download PuTTy</li>
+      <li>Select <b>serial</b></li>
+      <li>Set baud rate to <b>115200</b></li>
+      <li>Use Device Manager to find your COM port</li>
+      <li>Click <b>Open</b></li>
+      <li>Press <kbd>Enter</kbd> again. You should be logged into the Edison now.</li>
+    </ol>
   </div>
   <div id="mac">
     <h3>Installing Application Dependencies Using Mac (Screen)</h3>
@@ -85,12 +89,6 @@ You can remotely execute NPM on the board to install the application dependencie
       <li>Type <code>screen /dev/cu.usbs</code> then press <kbd>Tab</kbd> to autocomplete.</li>
       <li>Add <code>115200 -L</code> after the device identifier, and press <kbd>Enter</kbd>.</li>
       <li>Press <kbd>Enter</kbd> again. You should be logged into the Edison now.</li>
-      <li>Execute the following commands:
-      {% highlight text %}
-cd labs
-npm install
-      {% endhighlight %}
-      </li>
     </ol>
   </div>
 </div>
@@ -98,6 +96,12 @@ npm install
 <script>
 $( "#run-tabs" ).tabs();
 </script>
+
+1. Execute the following commands:
+{% highlight text %}
+cd labs
+npm install
+{% endhighlight %}
 
 ## Run the Application on the Board
 From the remote session (Command Prompt or Terminal), execute the following command in the application directory (remember, using `.` will tell node.exe to execute the JavaScript file referenced in the `main` property of the package.json file):
