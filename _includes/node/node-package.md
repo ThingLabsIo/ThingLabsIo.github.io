@@ -29,7 +29,7 @@ Start by creating the basic package.json file in the application directory.
     },
     "bugs": {
       "url": "https://github.com/ThingLabsIo/IoTLabs/issues"
-    }
+    },
     "description": "Hello, World using Node.js and Johnny-Five blinks an LED.",
     "main": "blinky.js",
     "license": "MIT",

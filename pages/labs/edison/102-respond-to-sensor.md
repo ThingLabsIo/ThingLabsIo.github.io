@@ -1,50 +1,46 @@
 ---
 layout: page-fullwidth
-title: "Hello, IoT World!"
+title: "Responding to Sensor Input"
 subheadline: "Building Connected Things with Node.js, Johnny-Five, and Microsoft Azure"
-teaser: "In this lab, you will use an LED Module to send digital output in the form of a blinking LED. This is the Hello, World of the IoT space."
+teaser: "In this lab, you will us a Grove Button Sensor as an input sensor and use the data comeing from the button to turn an LED Module on and off."
 show_meta: true
 comments: true
 header: no
 breadcrumb: true
 categories: [edison, iot, maker, javascript, node.js, johnny-five]
-permalink: /labs/edison/js/grove/hello-iot-world/
+permalink: /labs/edison/js/grove/respond-to-sensor/
 ---
 # Table of Contents
 *  Auto generated table of contents
 {:toc}
 
 # Setting Up the Board
-For this lab, you will create a _Thing_ that can blink an LED. 
+In this lab, you will us a Grove Button Sensor as an input sensor and use the data comeing from the button to turn an LED Module on and off.
 
 1. Connect the Grove shield to the Edison (mounted to the Arduino adapter).
+2. Connect the Grove Button Sensor to port __D4__
+3. Connect the LED Module to port __D6__, and insert an LED into the LED Module. 
 
 # Building the Application
-There are five (5) steps to building the application in this lab:
+There are three (3) steps to building the application in this lab:
 
-1. Define the application metadata and dependencies.
-2. Install the dependencies.
-3. Install specific dependencies for the Intel Edison.
-4. Define the device abstractions.
-5. Handle the board.on("ready") callback.
+1. Define and install the application metadata and dependencies.
+2. Define the device abstractions.
+3. Handle the board.on("ready") callback.
 
-## Define Application Metadata and Dependencies
-{% include node/node-package.md %}
+## Define an Install the Application Metadata and Dependencies
+Defining and installing the application metadata and dependencies works similarly to steps 1-3 in the [Hello, IoT World!](../hello-iot-world/) lab.
 
-## Install Dependencies Using NPM
-{% include node/install-dependencies.md %}
-
-## Install Specific Dependencies for the Intel Edison Board.
-{% include edison/edison-io.md %}
+{% include edison/package-button-led.md %}
 
 ## Define the Device Abstractions
-{% include edison/define-blinky.md %}
+{% include edison/define-button-led.md %}
 
 ## Handle the board.on("ready") Callback
-{% include johnny-five/board-on-blinky.md %}
+{% include johnny-five/board-on-button-led.md %}
 
 # Run the Application
-The Blinky application will run on the Intel Edison, but first, you have to get the code on the board. 
+The Button-Led application will run on the Intel Edison, but first, you have to get the code on the board. 
 
 ## Copy the Application Files to the Edison
 The application will execute on the Intel Edison.
@@ -57,9 +53,8 @@ The application will execute on the Intel Edison.
 6. Click __Quickconnect__
 7. In the __Local site__ window (typically the left side), navigate to your local application directory.
 8. In the __Remote site__ windows (typically on the right side) - this is the file system on the Edison.
-   * Right-click on __root__ and select __Create directory__
-   * Name the directory __labs__
-9. Drag the __package.json__ and __blinky.js__ files to the _labs_ directory on the Edison.
+   * Navigate to the __labs__ directory you previously created (e.g. _$root\labs_)
+9. Drag the __package.json__ and __button-led.js__ files to the _blinky_ directory on the Edison.
 
 ## Install the Application Dependencies
 You can remotely execute NPM on the board to install the application dependencies. The instructions are a little different, depending on whether you are using a Windows PC or a Mac. Select the appropriate tab below and follow the instructions.
@@ -87,7 +82,7 @@ You can remotely execute NPM on the board to install the application dependencie
       <li>Press <kbd>Enter</kbd> again. You should be logged into the Edison now.</li>
       <li>Execute the following commands:
       {% highlight text %}
-cd labs
+cd labs\blinky
 npm install
       {% endhighlight %}
       </li>
@@ -100,13 +95,13 @@ $( "#run-tabs" ).tabs();
 </script>
 
 ## Run the Application on the Board
-From the remote session (Command Prompt or Terminal), execute the following command in the application directory (remember, using `.` will tell node.exe to execute the JavaScript file referenced in the `main` property of the package.json file):
+From the remote session (Command Prompt or Terminal), execute the following command in the application directory. In this lab you are specifying the JavaScript file that node.exe should execute.
 
 {% highlight text %}
-node .
+node button-led.js
 {% endhighlight %}
 
-You should the indicator LED on the Arduino shield start to blink once per second.
+Once the application is running, you can press the button and see the LED light up (you will also see the `PRESSED` log message in the remote session). As long as the button is pressed, the LED will remain on. When you release the button, the `button.on('release')` callback is invoked and the LED turns off (you will also see the `RELEASED` log message). 
   
 When you want to quit the application, press <kbd>CTRL</kbd> + <kbd>C</kbd> twice to exit the program without closing the window (you may also have to press <kbd>Enter</kbd>). 
 
@@ -115,8 +110,8 @@ In this lab, you learned how to write a Node.js/Johnny-Five application that wri
 
 In this lab you learned the following concepts:
 
-1. Creating a Node.js application using Johnny-Five.
-2. Working with digital output.
-3. Running the application on a device. 
+1. Using Johnny-Five abstractions for sensors and actuators.
+2. Responsing to sensor events using the `sensor.on('eventType')` pattern.
+3. Using data collected from input sensros to control output actuators. 
 
-{% include edison/nextlab title='Responding to Input' url='../responding-to-input/' %}
+{% include edison/nextlab title='Building the Thingy 4 Edison' url='../thingy/' %}
