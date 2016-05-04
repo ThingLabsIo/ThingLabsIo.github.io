@@ -28,6 +28,8 @@
   dropdown:
   - title: "Intel Edison"
     url: "/labs/edison/"
+  - title: "Raspberry Pi"
+    url: "/labs/rpi/"
                  
 - title: "Workshops"
   url: "/workshop/"
