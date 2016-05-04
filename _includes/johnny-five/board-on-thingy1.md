@@ -78,12 +78,47 @@ The callback function for the Temperature sensor is invoked every 25ms (the defa
 
 1. Repace the `// TODO` comment with the following code:
 
-  {% highlight javascript %}
+{% highlight javascript %}
 // Set the state of the variables based on the 
 // value read from the thermometer
 // 'this' scope is the thermometer
 tempC = this.celsius;
 tempF = this.fahrenheit;
-  {% endhighlight %}
+{% endhighlight %}
 
-This will collect the current reading from the 
+This will collect the current reading from the Temperature sensor. 
+
+1. Next, use the temperature value to alter the RGB LCD display.
+
+{% highlight javascript %}
+// Use a simple linear function to determine
+// the RGB color to paint the LCD screen.
+// The LCD's background will change color
+// according to the temperature.
+// Hot -> Moderate -> Cold
+// 122°F ->  77°F  -> 32°F
+// 50°C  ->  25°C  -> 0°C
+// Red ->  Violet  -> Blue
+r = linear(0x00, 0xFF, tempC, 50);
+g = linear(0x00, 0x00, tempC, 50);
+b = linear(0xFF, 0x00, tempC, 50);
+        
+// Paint the LCD and print the temperture
+// (rounded up to the nearest whole integer)
+lcd.bgColor(r, g, b).cursor(0, 0).print('Fahrenheit: ' + Math.ceil(tempF) + '\nCelsius: ' + Math.ceil(tempC));
+{% endhighlight %}
+
+This code creates an RGB (Red, Green, Blue) value based on the temperature. It relies on a helper function named `linear()`. 
+
+1. Add the linear function to the end of the _thingy.js_ file, after the `board.on('ready')` callback is closed.
+
+{% highlight javascript %}
+// *********************************************
+// Helper method for painting the LCD.
+// Linear Interpolation
+// (https://en.wikipedia.org/wiki/Linear_interpolation)
+// *********************************************
+function linear(start, end, step, steps) {
+  return (end - start) * step / steps + start;
+}
+{% endhighlight %}

@@ -8,7 +8,7 @@ comments: true
 header: no
 breadcrumb: true
 categories: [edison, iot, maker, javascript, node.js, johnny-five]
-permalink: /labs/edison/js/grove/hello-iot-world/
+permalink: /labs/edison/grove/hello-iot-world/
 ---
 # Table of Contents
 *  Auto generated table of contents

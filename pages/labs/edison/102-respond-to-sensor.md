@@ -8,7 +8,7 @@ comments: true
 header: no
 breadcrumb: true
 categories: [edison, iot, maker, javascript, node.js, johnny-five]
-permalink: /labs/edison/js/grove/respond-to-sensor/
+permalink: /labs/edison/grove/respond-to-sensor/
 ---
 # Table of Contents
 *  Auto generated table of contents

@@ -8,7 +8,7 @@ comments: true
 header: no
 breadcrumb: true
 categories: [edison, iot, maker, javascript, node.js, johnny-five]
-permalink: /labs/edison/js/grove/thingy/
+permalink: /labs/edison/grove/thingy/
 ---
 # Table of Contents
 *  Auto generated table of contents
@@ -48,39 +48,21 @@ Defining and installing the application metadata and dependencies works similarl
 {% include johnny-five/board-on-thingy1.md %}
 
 # Run the Application
-The Button-Led application will run on the Intel Edison, but first, you have to get the code on the board. 
 
-## Copy the Application Files to the Edison
-The application will execute on the Intel Edison.
-
-1. Open __FileZilla__
-2. Set the __Host__ to the IP address of your device.
-3. Set the __Username__ to the administrative username (e.g. root).
-4. Set the __Password__ to whatever you set the password for the device.
-5. Set the __Port__ to `22`
-6. Click __Quickconnect__
-7. In the __Local site__ window (typically the left side), navigate to your local application directory.
-8. In the __Remote site__ windows (typically on the right side) - this is the file system on the Edison.
-   * Navigate to the __labs__ directory you previously created (e.g. _$root\labs_)
-9. Drag the __package.json__ and __button-led.js__ files to the _blinky_ directory on the Edison.
-
-## Install the Application Dependencies
-You can remotely execute NPM on the board to install the application dependencies. The instructions are a little different, depending on whether you are using a Windows PC or a Mac. Select the appropriate tab below and follow the instructions.
-
-{% include edison/serial-screen.md %}
-
-## Run the Application on the Board
-From the remote session (Command Prompt or Terminal), execute the following command in the application directory. In this lab you are specifying the JavaScript file that node.exe should execute.
+1. Copy the application files to the Edison in the same way you have done in the preceeding labs.
+2. Install the application dependencies on the Edison (if you are using the same application directory as the preceeding labs, the dependencies should all be installed already). 
+3. From the remote session (Command Prompt or Terminal), execute the following command in the application directory. In this lab you are specifying the JavaScript file that node.exe should execute.
 
 {% highlight text %}
-node button-led.js
+node thingy.js
 {% endhighlight %}
 
-Once the application is running, you can press the button and see the LED light up (you will also see the `PRESSED` log message in the remote session). As long as the button is pressed, the LED will remain on. When you release the button, the `button.on('release')` callback is invoked and the LED turns off (you will also see the `RELEASED` log message). 
+Once the application is running, you will see the temperature reading on the RGB LCD Display. You can press the button and see the LED light up (you will also see the `PRESSED` log message in the remote session). As long as the button is pressed, the LED will remain on. When you release the button, the `button.on('release')` callback is invoked and the LED turns off (you will also see the `RELEASED` log message). 
   
 When you want to quit the application, press <kbd>CTRL</kbd> + <kbd>C</kbd> twice to exit the program without closing the window (you may also have to press <kbd>Enter</kbd>). 
 
 # Conclusion &amp; Next Steps
-In this lab, you learned how to write a Node.js/Johnny-Five application that writes LOW (0) and HIGH (1) signals to a digital output pin to make an LED blink. In itself, this may not be very exciting, but the core concept is necessary.
+In this lab, you built the _ThingLabs Thingy&trade; for Edison_, which you will use in the subsequent labs.
 
-In this lab you learned the following concepts:
+
+{% include edison/nextlab title='Setting Up an Azure IoT Hub' url='../setup-iot-hub/' %}

@@ -21,7 +21,14 @@
     url: "/getting-started/win10iot/"
   - title: "Node.js &amp; Johnny-Five"
     url: "/getting-started/js/"
-             
+
+- title: "Labs"
+  url: "/labs/"
+  side: left
+  dropdown:
+  - title: "Intel Edison"
+    url: "/labs/edison/"
+                 
 - title: "Workshops"
   url: "/workshop/"
   side: left
