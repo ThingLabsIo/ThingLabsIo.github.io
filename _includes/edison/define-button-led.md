@@ -16,6 +16,7 @@ The application code resides in a JavaScript file in the same directory as the p
     'use strict';
 var five = require ("johnny-five"); 
 var Edison = require("edison-io");
+
 // Define the sensors you will use
 var button, led;
 

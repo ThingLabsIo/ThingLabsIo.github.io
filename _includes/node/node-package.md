@@ -21,7 +21,7 @@ Start by creating the basic package.json file in the application directory.
 
   {% highlight json %}
   {
-    "name": "IoT-Labs",
+    "name": "blinky",
     "version": "0.0.1",
     "repository": {
       "type": "git",

@@ -64,40 +64,9 @@ The application will execute on the Intel Edison.
 ## Install the Application Dependencies
 You can remotely execute NPM on the board to install the application dependencies. The instructions are a little different, depending on whether you are using a Windows PC or a Mac. Select the appropriate tab below and follow the instructions.
 
-<div id="run-tabs">
-  <ul>
-    <li><a href="#windows"><span>Windows</span></a></li>
-    <li><a href="#mac"><span>Mac</span></a></li>
-  </ul>
-  <div id="windows">
-    <h3>Installing Application Dependencies Using Windows (PuTTy)</h3>
-    <ol>
-      <li>Download PuTTy</li>
-      <li>Select <b>serial</b></li>
-      <li>Set baud rate to <b>115200</b></li>
-      <li>Use Device Manager to find your COM port</li>
-      <li>Click <b>Open</b></li>
-      <li>Press <kbd>Enter</kbd> again. You should be logged into the Edison now.</li>
-    </ol>
-  </div>
-  <div id="mac">
-    <h3>Installing Application Dependencies Using Mac (Screen)</h3>
-    You can execute commands on the Edison using the <b>screen</b> utility.
-    
-    <ol>
-      <li>Open <b>Terminal</b></li>
-      <li>Type <code>screen /dev/cu.usbs</code> then press <kbd>Tab</kbd> to autocomplete.</li>
-      <li>Add <code>115200 -L</code> after the device identifier, and press <kbd>Enter</kbd>.</li>
-      <li>Press <kbd>Enter</kbd> again. You should be logged into the Edison now.</li>
-    </ol>
-  </div>
-</div>
+{% include edison/serial-screen.md %}
 
-<script>
-$( "#run-tabs" ).tabs();
-</script>
-
-1. Execute the following commands:
+1. To install the application dependencies on the Edison, navigate to the directory where the application files are located and run `npm install` by executing the following commands:
 {% highlight text %}
 cd labs
 npm install
@@ -123,4 +92,4 @@ In this lab you learned the following concepts:
 2. Working with digital output.
 3. Running the application on a device. 
 
-{% include edison/nextlab title='Responding to Input' url='../responding-to-input/' %}
+{% include edison/nextlab title='Responding to Sensor Input' url='../respond-to-sensor/' %}

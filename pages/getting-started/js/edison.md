@@ -29,10 +29,7 @@ Follow the [Getting Started](https://software.intel.com/en-us/iot/library/edison
 ## Flash the Edison to the Latest Yocto Image
 Yocto is the official Linux image compiled for the Intel Edison. The _Intel® Edison Board Firmware Software Release 3.0_ (Yocto 2.1) includes Node.js v0.10.x.
 
-1. Attach the Edison chip to the Arduino expansion board
-
-[Flash the Edison using Mac OS X Yosemite](../getting-started/yosemite)
-
+1. Attach the Edison chip to the Arduino expansion board.
 
 <div id="flash-edison-tabs">
   <ul>
@@ -54,37 +51,7 @@ Yocto is the official Linux image compiled for the Intel Edison. The _Intel® Ed
     Follow the <a target="_blank" href="http://rexstjohn.com/intel-edison-el-capitan-setup-process/">Instructions from Rex St. John</a>
   </div>
   <div id="yosemite">
-    The following is based on the <a target="_blank" href="http://www.intel.com/content/www/us/en/support/boards-and-kits/000005801.html">Instructions from Intel</a>
-    
-    1. Install Homebrew if it is not already installed:
-
-    ```
-    ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-    ```
-
-    2. Install dfu-util, coreutils, and gnu-getopt if not already installed:
-
-    ```
-    brew install dfu-util coreutils gnu-getopt
-    ```
-    
-    3. Download and extract the <a target="_blank" href="https://software.intel.com/en-us/iot/hardware/edison/downloads">Release #.# Yocto complete image</a> and Extract the contents of to your development directory (e.g. ~/Development/).
-
-    Using Terminal (Command + Space and type Terminal), change to the directory where you extracted the Yocto image (your directoyr name and the name/version of the Edison folder may be different).
-
-    ```
-    cd ~/Development/edison-iotdk-image-280915
-    ```
-    
-    Run the flashall script and then plug the USB cables into board.
-
-    ```
-    ./flashall.sh
-    ```
-    
-    Note: The script can take up to 5 minutes to complete the flashing.
-
-    You should now have the latest image on your Intel® Edison development board.
+    {% include edison/setup-yosemite.md %}
   </div>
   <div id="linux">
     Follow the <a target="_blank" href="http://www.intel.com/content/www/us/en/support/boards-and-kits/000005990.html">Instructions from Intel</a>
@@ -144,7 +111,7 @@ Libmraa is a C/C++ library with bindings to Python, Javascript and Java to inter
 
 Using the screen session to the Edison, run the following
 
-```
+{% highlight text %}
 $ echo "src mraa-upm http://iotdk.intel.com/repos/1.1/intelgalactic" > /etc/opkg/mraa-upm.conf
 $ opkg update
 $ opkg install libmraa0
@@ -153,7 +120,7 @@ $ cd /
 $ cd node_app_slot
 $ npm install
 $ node blink.js
-```
+{% endhighlight %}
 
 ## Install FileZilla
 You can either edit code directly on your Intel Edison or you can edit the code on your computer and copy it to your Edison using SCP or FileZilla! FileZilla Client is a fast and reliable cross-platform FTP, FTPS and SFTP client with lots of useful features and an intuitive graphical user interface. 
@@ -169,72 +136,3 @@ Deploying code you the Edison is as easy as Drag-n-Drop
 5. Enter __22__ in the _Port_ field
 6. Click _Quickconnect_
 7. Drag & drop files from your machine onto the Edison
- 
-
-## Installing ubiLinux
-Follow the instructions at [ubilinux installation instructions for Intel® Edison](http://www.emutexlabs.com/ubilinux/29-ubilinux/218-ubilinux-installation-instructions-for-intel-edison)
-This can take 15-20 minutes.
-
-### Configure WiFi
-From a terminal session, <code>vi /etc/network/interfaces</code>
-
-Edit the following, changing <code>Emutex</code> and <code>passphrase</code> to your SSID and passcode respectively.
-
-```
-#auto wlan0
-iface wlan0 inet dhcp
-    # For WPA
-    wpa-ssid Emutex
-    wpa-psk passphrase
-```
-
-Restart the networking service:
-
-```
-/etc/init.d/networking restart
-```
-
-### Update APT packages
-Run <code>apt-get update</code>
-
-### Install Node.js
-
-```
-apt-get install curl
-curl -sL https://deb.nodesource.com/setup_5.x | bash -
-
-apt-get install --yes nodejs
-```
-
-Optional: install build tools
-
-To compile and install native addons from npm you may also need to install build tools
-
-```
-apt-get install --yes build-essential
-```
-
-### Install NVM
-
-```
-git clone https://github.com/creationix/nvm.git ~/.nvm && cd ~/.nvm && git checkout `git describe --abbrev=0 --tags`
-```
-
-To activate nvm, you need to source it from your shell:
-
-```
-. ~/.nvm/nvm.sh
-```
-
-Add these lines to your ~/.bashrc, ~/.profile, or ~/.zshrc file to have it automatically sourced upon login:
-
-```
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
-```
-
-### Install Node.js 4.3.1
-
-```
-nvm install stable
-```

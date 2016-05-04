@@ -5,7 +5,7 @@ Start by creating a new application directory and a new package.json file.
 
   {% highlight json %}
   {
-    "name": "button-led",
+    "name": "myapp",
     "version": "0.0.1",
     "repository": {
       "type": "git",
@@ -14,8 +14,7 @@ Start by creating a new application directory and a new package.json file.
     "bugs": {
       "url": "https://github.com/ThingLabsIo/IoTLabs/issues"
     },
-    "description": "Responding to sensor input using Node.js, Johnny-Five, a Grove Button Sensor and LED Module.",
-    "main": "button.js",
+    "description": "Sample using Node.js, Johnny-Five, and the Intel Edison.",
     "license": "MIT",
     "dependencies": {
       "johnny-five": "latest",
