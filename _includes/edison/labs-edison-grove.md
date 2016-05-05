@@ -3,5 +3,5 @@
 3. [Building the Thingy 4 Edison]({{ site.ur }}/labs/edison/grove/thingy/)<br/>In this lab, you will use multiple Grove sensors and actuators to build a device with multiple inputs and outputs. You will use this device for the rest of the labs in this series.
 4. [Setting Up and Azure IoT Hub]({{ site.url }}/labs/edison/grove/setup-iot-hub/)<br/>In this lab, you will provision a new Azure IoT Hub. Once you have the IoT Hub created, you will be able to create a new Azure IoT device (a software reference to your physical device) that you will use to send telemetry to Azure.
 5. [Sending Device to Cloud (D2C) Messages]({{ site.url }}/labs/edison/grove/d2c/)<br/>In this lab, you will capture data from the ThingLabs Thingy and send messages from the device to the Cloud using the Azure IoT SDK for Node.js.
-6. Visualizing Iot Data<br/>Coming soon
+6. [Visualizing IoT Data]9({{ site.url }}/labs/edison/grove/visualize/ )<br/>In this lab, you will build a data pipeline that captures the data coming into IoT Hub, processes it with Azure Stream Analytics, then routes it to downstream services. The first service you'll build will consume the data and present it through an Azure Web App where it is rendered as a real-time graph.
 7. Sending Cloud to Device (C2D) Messages<br/>Coming soon
