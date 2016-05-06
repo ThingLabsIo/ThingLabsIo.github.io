@@ -124,27 +124,23 @@ In the query, you want to select data from the input stream and put it into the 
 {% highlight sql %}
 WITH ProcessedData as (
     SELECT
-        MAX(sensorState) MaxLight,
-        MIN(sensorState) MinLight,
-        AVG(sensorState) AvgLight,
+        MAX(sensorValue) MaxTemperature,
+        MIN(sensorValue) MinTemperature,
+        AVG(sensorValue) AvgTemperature,
         location,
         deviceId,
         System.Timestamp AS Timestamp
     FROM
         [DeviceInputStream]
     WHERE
-        sensorType = 'ambientLight'
+        sensorType = 'temperature'
     GROUP BY
         TumblingWindow (second, 5), deviceId, location
 )
 
--- If you do the optional lab you will need to uncomment this line
---   to get data to flow to PowerBI
--- SELECT * INTO [DeviceBI] FROM ProcessedData
-
 -- Make sure this matches your Event Hub output name from above,
 -- If you've forgotten it you can go back and get it in another browser tab
-SELECT * INTO [ThingLabsEventHub] FROM ProcessedData
+SELECT * INTO [ThingLabsEHOutput] FROM ProcessedData
 {% endhighlight %}
 
 3. Click _SAVE_ in the lower middle of the screen. 
