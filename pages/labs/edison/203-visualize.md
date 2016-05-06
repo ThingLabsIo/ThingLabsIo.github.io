@@ -77,7 +77,7 @@ The data will come in as a data stream from the Event Hub that was automatically
     - SUBSCRIPTION - choose your subscription
     - CHOOSE AN IOT HUB - choose the IoT Hub you created earlier
     - IOT HUB SHARED ACCESS POLICY NAME - leave this as the default, which should be _iothubowner_
-    - IOT HUB CONSUMER GROUP - select _Create a new consumer group_ and name it __AnalyticsConsumerGroup__
+    - IOT HUB CONSUMER GROUP - enter the default consumer group name: ```$Default```
 
 6. Click on the forward arrow in the lower-right.
 7. On the _Serialization settings_ form, leave the defaults (Event Serialization Format:JSON and Encoding:UTF8) click on the checkmark in the lower-right. 
