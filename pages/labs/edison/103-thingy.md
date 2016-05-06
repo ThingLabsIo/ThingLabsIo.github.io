@@ -20,8 +20,8 @@ In this lab, you will use multiple Grove sensors and actuators to build a device
 1. Connect the Grove shield to the Edison (mounted to the Arduino adapter).
 2. Connect the Grove Button Sensor to port __D4__
 3. Connect the LED Module to port __D6__, and insert an LED into the LED Module. 
-4. Connect the RGB LSD Module to one of the __I2C__ ports.
-5. Connect the Temperature Sensor (TH02) to one of the __I2C__ ports.
+4. Connect the RGB LCD Module to one of the __I2C__ ports.
+5. Connect the Temperature Sensor (TH02) to __A0__ port.
 
 # Building the Application
 There are three (3) steps to building the application in this lab:

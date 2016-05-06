@@ -18,7 +18,7 @@ In an earlier lab you likely used `digitalWrite(pin, value)` to set the pin stat
       
     // Plug the LED module into the
     // Grove Shield's D6 jack.
-    led = new five.Led(13);
+    led = new five.Led(6);
     
     // Plug the Button module into the
     // Grove Shield's D4 jack.

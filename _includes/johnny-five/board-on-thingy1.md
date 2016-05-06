@@ -34,7 +34,7 @@ board.on('ready', function() {
     
     // Plug the LED module into the
     // Grove Shield's D6 jack.
-    led = new five.Led(13);
+    led = new five.Led(6);
     
     // Plug the Button module into the
     // Grove Shield's D4 jack.
@@ -105,7 +105,9 @@ b = linear(0xFF, 0x00, tempC, 50);
         
 // Paint the LCD and print the temperture
 // (rounded up to the nearest whole integer)
-lcd.bgColor(r, g, b).cursor(0, 0).print('Fahrenheit: ' + Math.ceil(tempF) + '\nCelsius: ' + Math.ceil(tempC));
+lcd.bgColor(r, g, b).cursor(0, 0).print('Fahrenheit: ' + Math.ceil(tempF));
+lcd.bgColor(r, g, b).cursor(1, 0).print('Celsius: ' + Math.ceil(tempC));
+
 {% endhighlight %}
 
 This code creates an RGB (Red, Green, Blue) value based on the temperature. It relies on a helper function named `linear()`. 
