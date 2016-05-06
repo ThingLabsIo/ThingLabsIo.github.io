@@ -142,7 +142,7 @@ WITH ProcessedData as (
 --   to get data to flow to PowerBI
 -- SELECT * INTO [DeviceBI] FROM ProcessedData
 
--- Make sure this matches your Event Hub Name from above,
+-- Make sure this matches your Event Hub output name from above,
 -- If you've forgotten it you can go back and get it in another browser tab
 SELECT * INTO [ThingLabsEventHub] FROM ProcessedData
 {% endhighlight %}
