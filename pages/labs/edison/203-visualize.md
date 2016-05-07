@@ -208,3 +208,7 @@ lower-left corner.
 In this lab you learned how to create an Azure Stream Analytics job to query data coming in to Azure IoT Hub, process it and send it to Event Hub and Power BI.
 
 Congratulations! In this hands-on workshop you experienced an IoT solution end-to-end. You built a _Thing_ that both sent output (blinked an LED) and collected input (ambient light) and uased it to send data to Azure IoT Hubs.
+
+In the [next lab][nextlab] you will modify the web application to include a capability to send a Cloud-to-Device (C2D) message. 
+
+{% include edison/nextlab title='Sending Cloud to Device (C2D) Messages' url='../c2d/' %}
