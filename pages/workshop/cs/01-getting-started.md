@@ -29,8 +29,9 @@ In this lab series you will need the following:
 7. [330 Ohm resistors](http://www.amazon.com/E-Projects-Resistors-Watt-330R-Pieces/dp/B00BVOR6IS/){:target="_blank"}
 8. [10k Ohm resistor](http://www.amazon.com/E-Projects-10k-Resistors-Watt-Pieces/dp/B00BWYS9BA/){:target="_blank"}
 9. Oe of the following analog-digital-converters:
-	* [MCP3208 - 8-Channel 12-Bit ADC with SPI Interface](http://www.digikey.com/product-detail/en/MCP3208-CI%2FSL/MCP3208-CI%2FSL-ND/305929){:target="_blank"}
-	* [MCP3002 - 2-Channel 10-Bit ADC with SPI Interface](https://www.sparkfun.com/products/8636){:target="_blank"}
+    * [MCP3002 - 2-Channel 10-Bit ADC with SPI Interface](https://www.sparkfun.com/products/8636){:target="_blank"}	
+	* [MCP3008 - 8-Channel 10-Bit ADC with SPI Interface](https://www.adafruit.com/products/856){:target="_blank"}
+    * [MCP3208 - 8-Channel 12-Bit ADC with SPI Interface](http://www.digikey.com/product-detail/en/MCP3208-CI%2FSL/MCP3208-CI%2FSL-ND/305929){:target="_blank"}
 10. 8GB micro SD card - class 10 or better. Microsoft suggests one of the following:
 	* [Samsung 32GB EVO Class 10 Micro SDHC up to 48MB/s with Adapter (MB-MP32DA/AM)](http://www.amazon.com/gp/product/B00IVPU786){:target="_blank"}
 	* [SanDisk Ultra Micro SDHC, 16GB Card](http://www.amazon.com/SanDisk-Ultra-Micro-SDHC-16GB/dp/9966573445).{:target="_blank"}

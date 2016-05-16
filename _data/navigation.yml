@@ -12,7 +12,25 @@
 #    url: "/device/photon/"
 #  - title: "Raspberry Pi 2"
 #    url: "/device/rpi2/"
-       
+
+- title: "Getting Started"
+  url: "/getting-started/"
+  side: left
+  dropdown:
+  - title: "Windows 10 IoT"
+    url: "/getting-started/win10iot/"
+  - title: "Node.js &amp; Johnny-Five"
+    url: "/getting-started/js/"
+
+- title: "Labs"
+  url: "/labs/"
+  side: left
+  dropdown:
+  - title: "Intel Edison"
+    url: "/labs/edison/"
+  - title: "Raspberry Pi"
+    url: "/labs/rpi/"
+                 
 - title: "Workshops"
   url: "/workshop/"
   side: left
@@ -25,6 +43,8 @@
     url: "/workshop/js/weather/"
   - title: "Thingy 4 Windows (8-hours)"
     url: "/workshop/thingy-4-windows/"
+  - title: "ESP8266 Workshop"
+    url: "/workshop/esp8266/"
     
 - title: "Thingy 4 Windows"
   url: "/workshop/thingy-4-windows/"
