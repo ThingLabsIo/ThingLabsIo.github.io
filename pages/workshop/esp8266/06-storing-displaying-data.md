@@ -217,6 +217,6 @@ Congratulations! In this hands-on workshop you experienced an IoT solution end-t
 
 In the [next lab][nextlab] you will modify the web application to include a capability to send a Cloud-to-Device (C2D) message. 
 
-<a class="radius button small" href="{{ site.url }}/workshop/thingy-4-windows/sending-c2d-messages/">Go to 'Sending Cloud-to-Device (C2D) Messages' ›</a>
+<a class="radius button small" href="{{ site.url }}/workshop/esp8266/sending-c2d-messages/">Go to 'Sending Cloud-to-Device (C2D) Messages' ›</a>
 
 [nextlab]: ../sending-c2d-messages/

@@ -18,158 +18,179 @@ permalink: /workshop/esp8266/sending-d2c-messages/
 # Bill of Materials
 What you will need:
 
-1. The ThingLabs Thingy&trade; created in the ['ThingLabs Thingy' lab](../thingy/).
-2. The Visual Studio Project for the Thingy created in the ['ThingLabs Thingy' lab](../thingy/).
+1. The ThingLabs Weather Station created in the ['ThingLabs Weather' lab](../weather/).
 
-# Add the Azure ioT SDK to Your Project
-In a previous lab, you built the ThingLabs Thingy&trade; for Windows 10 IoT Core. Now it's time to add the __I__ to your __IoT__ solution. In this lab, you will send messages from the Thingy to the Microsoft Azure IoT Hub you created in the previous lab. There is an Azure IoT SDK for C# that enables all of the connection and communications with your Azure IoT Hub.  The SDK is available as a NuGet package that you can easily add to your project. 
+# Connecting your Weather Station to the Cloud
 
-1. Open the __Thingy__ project.
-2. Click on the _Project_ menu and select _Manage NuGet Packages._
-3. Use the search field to search for __Microsoft.Azure.Devices.Client__.
-4. Click on the __Install__ button to install the package.
+This lab will show you how to restructure your existing simple application into an application that uses the MQTT protocol to send telemetry data to Azure. On the Azure side we're using the MQTT gateway to accept messages instead of the default AMQP protocol IoTHub's support.
 
-![IoTNightlight Project](/images/rpi2/azure-devices-client.png)
+From [Wikipedia's MQTT Article](https://en.wikipedia.org/wiki/MQTT):
+    
+> MQTT[1] (formerly MQ Telemetry Transport) is an ISO standard (ISO/IEC PRF 20922)[2] publish-subscribe based "light weight" messaging protocol for use on top of the TCP/IP protocol. It is designed for connections with remote locations where a "small code footprint" is required or the network bandwidth is limited. The publish-subscribe messaging pattern requires a message broker. The broker is responsible for distributing messages to interested clients based on the topic of a message. Andy Stanford-Clark and Arlen Nipper of Cirrus Link Solutions authored the first version of the protocol in 1999.
 
-# Define the Azure IoT SDK Components
-To use the Azure IoT SDK you will modify the StartupTask.cs file in the _Thingy_ project. You will add the definitions for the SDK components, such as `DeviceClient` (the client-side agent), the `Message` and the connection string for your specific device.
- 
-1. Open the _StartupTask.cs_ file. 
-2. Add the following to the `using` statements where you have added the other `using` statements (e.g. `using GrovePi;`).
+The structure of the [NodeMCU MQTT client](http://nodemcu.readthedocs.io/en/dev/en/modules/mqtt/) is documented to provide both telemetry and command processing. For this lab we focus just on telemetry. An example is provided from the NodeMCU documents:
 
-{% highlight csharp %}
-using System.Threading.Tasks;
-using Microsoft.Azure.Devices.Client;
+{% highlight lua %}
+-- init mqtt client with keepalive timer 120sec
+m = mqtt.Client("clientid", 120, "user", "password")
+
+-- setup Last Will and Testament (optional)
+-- Broker will publish a message with qos = 0, retain = 0, data = "offline" 
+-- to topic "/lwt" if client don't send keepalive packet
+m:lwt("/lwt", "offline", 0, 0)
+
+m:on("connect", function(client) print ("connected") end)
+m:on("offline", function(client) print ("offline") end)
+
+-- on publish message receive event
+m:on("message", function(client, topic, data) 
+  print(topic .. ":" ) 
+  if data ~= nil then
+    print(data)
+  end
+end)
+
+-- for TLS: m:connect("192.168.11.118", secure-port, 1)
+m:connect("192.168.11.118", 1883, 0, function(client) print("connected") end, 
+                                     function(client, reason) print("failed reason: "..reason) end)
+
+-- Calling subscribe/publish only makes sense once the connection
+-- was successfully established. In a real-world application you want
+-- move those into the 'connect' callback or make otherwise sure the 
+-- connection was established.
+
+-- subscribe topic with qos = 0
+m:subscribe("/topic",0, function(client) print("subscribe success") end)
+-- publish a message with data = hello, QoS = 0, retain = 0
+m:publish("/topic","hello",0,0, function(client) print("sent") end)
+
+m:close();
+-- you can call m:connect again
 {% endhighlight %}
 
-Next, define a variable to represent the `DeviceClient`.
+Adapting this example, we have the program below that connects to the MQTT IoTHub Gateway and sets a timer to send telemetry every 1 second.
 
-1. Locate the section in the _StartupTask.cs_ file indicated with the comment `/**** Constants and Variables ****/`
-2. Add the following variable definition:
+# Create the Lua Program in ESPlorer 
 
-{% highlight csharp %}
-// Define the Azure IoT SDK DeviceClient instance
-private DeviceClient deviceClient;
-// Create a timer to control the rate of sending messages to Azure.
-private ThreadPoolTimer messageTimer;
-{% endhighlight %}
+As in the previous lab, you'll write lua code in ESplorer. This code (below), operates the photocell and LED as a nightlight.
 
-The last step of the [previous lab](../setup-azure-iot-hub/) was to copy the device specific connection string for that device (although I am guessing that your copy buffer has been rewritten since then). You can get the device-specific connection string by selecting it in the DeviceExplorer __Devices__ list - right-click and select __Copy connection string for selected device__:
+1. Launch ESPlorer.jar, select your serial port, and press the 'Open' button
 
-![Get the device-specific connection string](/images/rpi2/rpi2_deviceexplorer03.png) 
+<img src="/images/esplorer-connect.png" alt="Launch Esplorer, connect your device" style="width: 400px;"/>
 
-1. In the same section of the _StartupTask.cs_ file (indicated with the comment `/**** Constants and Variables ****/`) and add the code below, making changes as indicated here:
-2. Use the device-specific connection string as the value of `IOT_HUB_CONN_STRING`
-3. Use the name of the device you created in Azure IoT Hub as the `IOT_HUB_DEVICE`
-4. Use any string value you'd like as the `IOT_HUB_DEVICE_LOCATION` (e.g. 'Home Office');
+2. Cut and Paste or write this code into the left side of the ESPlorer
 
-{% highlight csharp %}
-// Use the device specific connection string here
-private const string IOT_HUB_CONN_STRING = "YOUR DEVICE SPECIFIC CONNECTION STRING GOES HERE";
-// Use the name of your Azure IoT device here - this should be the same as the name in the connections string
-private const string IOT_HUB_DEVICE = "YOUR DEVICE NAME GOES HERE";
-// Provide a short description of the location of the device, such as 'Home Office' or 'Garage'
-private const string IOT_HUB_DEVICE_LOCATION = "YOUR DEVICE LOCATION GOES HERE";
-{% endhighlight %}    
+{% highlight lua %}
+--
+-- LAB 04: Sending Device-to-Cloud (D2C) Messages
+--
+-- This program sends the telemetry (light, temperature and humidity) and sends it to the cloud.
+--
 
-# Send Ambient Light Measurements Once per Second
-The Thingy enables you to collect multiple sensor measurements (ambient light, sound, and LED state which is controlled by a button press).
- 
-1. In the `Run(IBackgroundTaskInstance taskInstance)` locate the code that creates the `deferral` instance (it should be the first line of code in that method).
-2. Immediately after the creation of the `deferral` object, add the following (the `deferral` code is added here for reference):
+-- Configuration to connect to the MQTT broker.
+DEVICE = "DEVICE ID" -- like "ThingLabs-esp8266"
+IOTHUB = "IOTHUB DNS NAME" -- like "ThingLabsIoTHub.azure-devices.net"  
+IOTHUB_DEVICE_CONNECTION_KEY = "Device Connect Key" -- like "5AohmbYte0vuQtkpUCxTRjcnQOe5bmU2zaotv9hUS/k="
 
-{% highlight csharp %}
-// Get the deferral instance
-deferral = taskInstance.GetDeferral();
+-- Standard variables for connecting via MQTT to IoTHUB Do Not Change
+PORT   = 8883
+USER   = IOTHUB.."/"..DEVICE
 
-// Instantiate the Azure device client
-deviceClient = DeviceClient.CreateFromConnectionString(IOT_HUB_CONN_STRING);
-{% endhighlight %}
+-- Pin Assignment Variables from the previous Labs
+ADCPIN = 0
+LEDPIN = 3
+DHTPIN = 6
+MAXLIGHT = 1024
 
-1. Still in the `Run(IBackgroundTaskInstance taskInstance)` method, add the following code after the `timer = ThreadPoolTimer.CreatePeriodicTimer(Timer_Tick, TimeSpan.FromMilliseconds(200));` code.
+-- Generate a SAS Token for Azure IoTHub
+PASSWD = generateSasToken(IOTHUB..'/devices/'..DEVICE, IOTHUB_DEVICE_CONNECTION_KEY, 'device', 7 * 24 * 60)
 
-{% highlight csharp %}
-// Send messages to Azure IoT Hub every one-second
-// Start a timer to send messages to Azure once per second
-messageTimer = ThreadPoolTimer.CreatePeriodicTimer(MessageTimer_Tick, TimeSpan.FromSeconds(1));
-{% endhighlight %}
+-- MQTT topics to subscribe
+telemetry_topic="devices/"..DEVICE.."/messages/events/"
+connected = false
 
-> Throughout this lab you will use a feature in Visual Studio called light bulbs. Light bulbs are a new productivity feature in Visual Studio 2015. They are icons that appear in the Visual Studio editor and that you can click to perform quick actions including refactoring fixing errors. Light bulbs bring error-fixing and refactoring assistance into a single focal point, often right on the line where you are typing. As you write the code in this lab you will add calls to methods that don't yet exist. The editor will indicate this to you by putting a red "squiggle" underline beneath the method call. When you hover over the offending code a light bulb will appear and you can expand it to see options for generating the missing method. 
+-- Create an MQTT Client
+esp8266 = mqtt.Client(DEVICE, 240, USER, PASSWD)
 
-Use the Visual Studio light bulb feature to create the __MessageTimer\_Tick()__ event handler.
+-- Connect to IoTHub via MQTT
+print "Connecting to MQTT broker. Please wait..."
+esp8266:connect(IOTHUB, PORT, 1, 0, 
+    -- Callback for a successful connection
+    function(client)
+        print("Connected to MQTT: "..IOTHUB..":"..PORT.." as "..DEVICE)
+        connected = true
+        setup()        
+    end,
+    -- Error callback, if connection fails
+    function(client, reason)
+        print("Error Connecting: "..reason)
+    end
+)
 
-{% highlight csharp %}
-private void MessageTimer_Tick(ThreadPoolTimer timer)
-{
-    SendMessageToIoTHubAsync("ambientLight", actualAmbientLight);
-}
-{% endhighlight %}
+function setup()    
+    tmr.alarm(2, 1000, tmr.ALARM_AUTO, publish_data)
 
-Each time the _MessageTimer_ ticks (once per second) this event handler will invoke the _SendMessageToIoTHubAsync()_ method. Use the Visual Studio light bulb feature to create the __SendMessageToIoTHubAsync()__ method. Modify the method signature to mark it as an async method.
+    -- If we get disconnected a callback informs us
+    esp8266:on("offline", function(client)
+        print("MQTT Disconnected.")
+        connected = false
+    end)
+end
 
-{% highlight csharp %}
-private async Task SendMessageToIoTHubAsync(string sensorType, int sensorState)
-{
-    try
-    {
-        var payload = "{" +
-            "\"deviceId\":\"" + IOT_HUB_DEVICE + "\", " +
-            "\"location\":\"" + IOT_HUB_DEVICE_LOCATION + "\", " +
-            "\"sensorType\":\"" + sensorType + "\", " +
-            "\"sensorState\":" + sensorState + ", " +
-            "\"localTimestamp\":\"" + DateTime.Now.ToLocalTime() + "\"" +
-            "}";
-
-        var msg = new Message(Encoding.UTF8.GetBytes(payload));
+-- Sample publish functions:
+function publish_data()
+    if connected == true then
+        -- Turn the LED on
+        gpio.write(LEDPIN, gpio.LOW)
+        light = MAXLIGHT - adc.read(ADCPIN)
         
-        System.Diagnostics.Debug.WriteLine("\t{0}> Sending message: [{1}]", DateTime.Now.ToLocalTime(), payload);
-
-        await deviceClient.SendEventAsync(msg);
-    }
-    catch (Exception ex)
-    {
-        System.Diagnostics.Debug.WriteLine("!!!! " + ex.Message);
-    }
-}
-{% endhighlight %}
-
-With this method, once per second you construct a JSON message payload for the ambient light measurement and send it to your Azure IoT Hub. The communication with the Azure IoT Hub is managed by the `deviceClient` object from the __Microsoft.Azure.Devices.Client__ namespace.
-
-# Run the Application
-Now you can run the application on your RPi2 and you will see the log of messages being sent to Azure IoT Hub at a rate of once per second.
-
-# Send Messages Based on Button Presses
-For the ambient light measurement, you are sending a message once per second regardless of whether the light has changed. For the button, send a message based on an explicit state change (i.e. a button press event or release event). 
-
-1. Locate the `Timer_Tick` method (the one from the previous lab that is used to collect sensor data).
-2. Modify the `Timer_Tick` method as follows:
-
-{% highlight csharp %}
-private void Timer_Tick(ThreadPoolTimer timer)
-{
-    try {
-        // ... code omitted for simplicity of this example
-           
-        // Check the button state
-        if (button.CurrentState != buttonState)
-        {
-            // Capture the button state
-            buttonState = button.CurrentState;
-            // Change the state of the blue LED
-            blueLed.ChangeState(buttonState);
-            buzzer.ChangeState(buttonState);
+        status, temperature, humidity, temperature_dec, humidity_dec = dht.read(DHTPIN)
+        if status == dht.OK then
+            -- Integer firmware using this example
+            -- print(string.format("DHT Temperature:%d.%03d;Humidity:%d.%03d\r\n",
+            --       math.floor(temperature),
+            --       temperature_dec,
+            --       math.floor(humidity),
+            --       humidity_dec
+            -- ))
             
-            // Send a message to Azure indicating the state change
-            SendMessageToIoTHubAsync("led", (int)buttonState);
-        }
+            -- Float firmware using this example
+            -- print("DHT Temperature: "..temperature.."; ".."Humidity: "..humidity)
+            print("Light: "..light.." Temperature: "..temperature.." ".."Humidity: "..humidity)
+        elseif status == dht.ERROR_CHECKSUM then
+            print( "DHT Checksum error." )
+        elseif status == dht.ERROR_TIMEOUT then
+            print( "DHT timed out." )
+        end
         
-        // ... the rest of the method doesn't change and is omitted here       
+        -- Construct the payload of data
+        payload =  
+            "{ \"deviceId\" : \""..DEVICE.."\","..
+            "\"location\" : \"Instructor ESP8266 Virtual Weather Station\""..","..
+            "\"celsius\" :"..temperature..","..
+            "\"relativeHumidity\" :"..humidity..","..
+            "\"lightLevel\" :"..light.."}"
+    
+        -- Send it to the cloud via mqtt
+        esp8266:publish(telemetry_topic, payload, 1, 0, function(client)
+            print("Data published successfully.")
+        end)
+    
+        -- Turn the LED off
+        gpio.write(LEDPIN, gpio.HIGH)
+    end
+end
 {% endhighlight %}
 
-If you want to compare your code with the master lab code, you can find it [in the __ThingLabs - Thingy4Windows__ Github repo here](https://github.com/ThingLabsIo/Thingy4Windows/blob/master/ConnectedThingy/ConnectedThingy/StartupTask.cs).
+# Run the App on the Device
+To run the application you will save it to the ESP8266, reset the device, then invoke the code.
 
-# Run the Application and Get Pushy
-Run your application again. Once you see the ambient light messages being sent, push the button a few times. You should see LED state message go by as well (and hear an annoying sound from the buzzer).
+1. Press the button 'Save to ESP' on the lower left of the ESPlorer interface.
+2. Push the reset button on the ES8266
+3. When it's done booting, click the 'Reload' button on the right side.
+   You should see a list of files on the ESP8266
+4. Double click the file on the right hand side that you saved.
+   This should execute your code.
 
 ## Monitor the Messages Being Received by Azure IoT Hub
 Using the Device Explorer utility for Windows you installed in the [previous lab](../setup-azure-iot-hub/), you can monitor the messages being received in Azure IoT Hub.
@@ -179,14 +200,13 @@ Using the Device Explorer utility for Windows you installed in the [previous lab
 3. Click __Monitor__ to begin monitoring messages as they come into your Azure IoT Hub.
 
 # Conclusion &amp; Next Steps
-Congratulations! In this lab, you updated the __Thingy__ application to send messages to Azure IoT Hub. The core concepts you've learned are:
+Congratulations! In this lab, you updated the __Weather Station__ application to send messages to Azure IoT Hub. The core concepts you've learned are:
 
-1. Using the Azure IoT SDK to connect to Azure and send device-to-cloud (D2C) messages.
+1. Using the Azure IoT MQTT Gateway to receive data sent using MQTT to send device-to-cloud (D2C) messages.
 2. Sending messages as a continuous stream (e.g. once per second from a continuously measuring sensor).
-3. Sending messages based on events (e.g. exceeding measurement thresholds or explicit events like a button push).
 
 At this point, nothing interesting is happening in the cloud with that data you are sending to Azure. It is simply being persisted for a default amount of time (1-day) and then being dropped. In the [next lab][nextlab], you will create a web application to visualize the data.
 
-<a class="radius button small" href="{{ site.url }}/workshop/thingy-4-windows/storing-displaying-data/">Go to 'Storing and Displaying IoT Data' ›</a>
+<a class="radius button small" href="{{ site.url }}/workshop/esp8266/storing-displaying-data/">Go to 'ThingLabs Storing &amp; Displaying Data' ›</a>
 
-[nextlab]: ../storing-displaying-data/
+[nextlab]: /workshop/esp8266/storing-displaying-data/

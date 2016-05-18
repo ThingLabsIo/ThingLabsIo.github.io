@@ -53,22 +53,27 @@ In this lab, you will capture analog input using a light-dependent resistor (pho
 
 <a class="radius button small" href="{{ site.url }}/workshop/esp8266/nightlight/">Estimated time to complete: 20-minutes. Go to  'Nightlight' ›</a>
 
-## Lab 03: Setting Up Azure IoT Hub
+## Lab 03: Weather Station
+In this lab, you will add a DHT22 to your ESP8266 and capture temperature and humidity to build a minimal weather station.
+
+<a class="radius button small" href="{{ site.url }}/workshop/esp8266/weather/">Estimated time to complete: 20-minutes. Go to  'Weather Station' ›</a>
+
+## Lab 04: Setting Up Azure IoT Hub
 In this lab, you will provision a new Azure IoT Hub. Once you have the IoT Hub created, you will be able to create a new Azure IoT device (a software reference to your physical device) that you will use to send telemetry to Azure.
 
 <a class="radius button small" href="{{ site.url }}/workshop/esp8266/setup-azure-iot-hub/">Estimated time to complete: 20-minutes. Go to  'Setting Up Azure IoT Hub' ›</a>
 
-## Lab 04: Sending Device-to-Cloud (D2C) Messages
+## Lab 05: Sending Device-to-Cloud (D2C) Messages
 In this lab, you will use the ThingLabs Thingy&trade; device that you built to capture and send messages to Azure IoT Hub.
 
 <a class="radius button small" href="{{ site.url }}/workshop/esp8266/sending-d2c-messages/">Estimated time to complete: 20-minutes. Go to  'Sending Telemetry to the Cloud' ›</a>
 
-## Lab 05: Storing and Displaying IoT Data
+## Lab 06: Storing and Displaying IoT Data
 In this lab, you will build a data pipeline that captures the data coming into IoT Hub, processes it with Azure Stream Analytics, then routes it to downstream services. The first service you'll build will consume the data and present it through an Azure Web App where it is rendered as a real-time graph.
 
 <a class="radius button small" href="{{ site.url }}/workshop/esp8266/storing-displaying-data/">Estimated time to complete: 20-minutes. Go to  'Storing & Displaying IoT Data' ›</a>
 
-## Lab 06: Lab: Sending Cloud-to-Device (C2D) Messages
+## Lab 07: Lab: Sending Cloud-to-Device (C2D) Messages
 In this lab, you will use the Azure Web App to control the ThingLabs Thingy&trade; remotely. The Web App will send messages to the Thingy via Azure, which the Thingy will receive, procees, and act on.
 
 <a class="radius button small" href="{{ site.url }}/workshop/esp8266/sending-c2d-messages/">Estimated time to complete: 20-minutes. Go to  'Sending Cloud to Device (C2D) Messages' ›</a>
