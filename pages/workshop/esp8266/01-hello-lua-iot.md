@@ -26,13 +26,6 @@ In this lab series you will need the following:
 
 If you haven't already done so, follow the setup instructions at ['Getting Started']({{ site.url }}/workshop/esp8266/getting-started/).
 
-# Assemble the Parts
-Insert the Huzzah Feather carefully into the prototyping board
-
-<img src="/images/huzzah-feather-board.png" alt="Assembled Parts" style="width: 400px;"/>
-
-NOTE: We _do not_ have a battery in our kit!
-
 The Huzzah Feather connects to the physical world through the a set of pins. These pins have various functions, but most are General Purpose Input/Output (GPIO) pins. 
 Because there are so few connections to the Huzzah, some of the pins are used for more than one function and 
 need to be configured before you can use them. In fact, GPIO pins can be used for both input and output and 

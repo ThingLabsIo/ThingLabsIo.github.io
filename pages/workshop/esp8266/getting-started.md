@@ -40,6 +40,13 @@ This is the primary tool you will use to program the ESP8266, but first we have 
 <a class="radius button small" href="https://www.python.org/ftp/python/2.7.11/python-2.7.11-macosx10.6.pkg">Python 2.7 for Mac</a>
 2. Once done, install [esptool](https://github.com/themadinventor/esptool/blob/master/README.md) by doing the following: ```pip install esptool```
 
+# Assemble the Parts
+Insert the Huzzah Feather carefully into the prototyping board
+
+<img src="/images/huzzah-feather-board.png" alt="Assembled Parts" style="width: 400px;"/>
+
+NOTE: We _do not_ have a battery in our kit!
+
 # Download and Burn the firmware to your ESP8266
 
 1. [Install Serial Drivers](https://www.silabs.com/products/mcu/Pages/USBtoUARTBridgeVCPDrivers.aspx) for the Huzzah Feather.
