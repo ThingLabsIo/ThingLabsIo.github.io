@@ -2,7 +2,7 @@
 layout: "page-fullwidth"
 title: "ESP8266 Workshop"
 subheadline: "Building Connected Things with an ESP8266 and Microsoft Azure"
-teaser: "In these IoT labs, you will learning to build a _Thing_ connected to sensors and actuators. You will move on to connecting the Thing to the _Internet_. You will learn how to leverage the _Cloud_ (Microsoft Azure) to collect data and control devices and use advanced services like analytics and machine learning to discover insights using your Things."
+teaser: "In these IoT labs, you will learning to build a Thing connected to sensors and actuators. You will move on to connecting the Thing to the Internet. You will learn how to leverage the Cloud (Microsoft Azure) to collect data and control devices and use advanced services like analytics and machine learning to discover insights using your Things."
 show_meta: true
 comments: false
 header: 

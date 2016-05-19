@@ -48,11 +48,11 @@ This is the primary tool you will use to program the ESP8266, but first we have 
 <a class="radius button small" href="https://www.silabs.com/Support%20Documents/Software/Linux_3.x.x_VCP_Driver_Source.zip">Linux</a>
 2. Plug in the ESP8266 into an open USB port using the cable
 3. Identify the USB Port, for me (on OS X) it's: /dev/tty.SLAB_USBtoUART
-4. Download the [firmware for the ESP8266](nodemcu-dev-23-modules-2016-04-25-03-53-01-float.bin)
-<a class="radius button small" href="">ESP8266 ThingLabs Firmware</a>
+4. Download the [firmware for the ESP8266](/workshop/esp8266/nodemcu-float.bin)
+<a class="radius button small" href="/workshop/esp8266/nodemcu-float.bin">ESP8266 ThingLabs Firmware</a>
 5. Burn the firmware first, using	
 
-```esptool.py -p /dev/tty.SLAB_USBtoUART write_flash 0x00000 nodemcu-dev-23-modules-2016-04-25-03-53-01-float.bin```
+```esptool.py -p /dev/tty.SLAB_USBtoUART write_flash 0x00000 nodemcu-float.bin```
 
 # Create a Microsoft Azure Trial Account
 In this lab series you will use Microsoft Azure as the cloud backend for your IoT solution. If you don't already have an Azure account, go to [https://azure.microsoft.com/en-us/pricing/free-trial/](https://azure.microsoft.com/en-us/pricing/free-trial/) to start a free trial of Microsoft Azure. You may need a credit card for identity verification, but the trial is completely free. If you have an MSDN Subscription you may be eligible for free credits to Microsoft Azure every month. Check your [MSDN account](https://msdn.microsoft.com/subscriptions/manage/) page for details.
