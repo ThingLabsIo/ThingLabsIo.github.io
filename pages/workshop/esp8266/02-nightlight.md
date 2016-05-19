@@ -56,7 +56,8 @@ As in the previous lab, you'll write lua code in ESplorer. This code (below), op
 
 <img src="/images/esplorer-connect.png" alt="Launch Esplorer, connect your device" style="width: 400px;"/>
 
-2. Cut and Paste or write this code into the left side of the ESPlorer
+2. Create a new script in Esplorer with these contents. Save it as Lab02.lua
+
 {% highlight lua %}
 --
 -- LAB 02: NightLight

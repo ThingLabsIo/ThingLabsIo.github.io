@@ -38,11 +38,11 @@ Before you can run Cloud code on your device you need a couple of important piec
 2. You need to set the clock (The ESP8266 has a real-time clock that's reliable once it's set)
 3. You need some extra code to generate security tokens to access Azure.
 
-The following two scripts work together to initialize your ESP8266 to have these pieces. NodeMCU will look for an init.lua when it boots and execute it, so you have to be sure it's correct.
+The following two scripts work together to initialize your ESP8266 to have these pieces. NodeMCU will look for an __init.lua__ when it boots and execute it, so you have to be sure it's correct.
 
-The init.lua provided below invokes the startup.lua to set the clock (which requires wifi), so you need to save the startup.lua first, before you save the init.lua or things will break.
+The __init.lua__ provided below invokes the __startup.lua__ to set the clock (which requires wifi), so you need to save the startup.lua first, before you save the init.lua or things will break.
 
-In Esplorer create a new script and paste the following code into it. Then save the file as your startup.lua and save to the ESP8266.
+In Esplorer create a new script and paste the following code into it. Then save the file as your __startup.lua__ and save to the ESP8266.
 
 {% highlight lua %}
 function char_to_pchar(c)
@@ -96,7 +96,7 @@ sntp.sync('pool.ntp.org',
 )
 {% endhighlight %}
 
-In Esplorer create a new script and paste the following code into it. Then save the file as your init.lua and save to the ESP8266.
+In Esplorer create a new script and paste the following code into it. Then save the file as your __init.lua__ and save to the ESP8266.
 
 {% highlight lua %}
 -- Diagnostic Information
@@ -145,7 +145,7 @@ As in the previous lab, you'll write lua code in ESplorer. This code (below), op
 
 <img src="/images/esplorer-connect.png" alt="Launch Esplorer, connect your device" style="width: 400px;"/>
 
-2. Cut and Paste or write this code into the left side of the ESPlorer
+2. Create a new script in Esplorer with these contents. Save it as Lab04.lua
 
 {% highlight lua %}
 --

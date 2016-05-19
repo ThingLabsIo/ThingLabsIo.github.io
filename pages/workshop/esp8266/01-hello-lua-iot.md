@@ -85,7 +85,7 @@ To write your first lua program for the ESP8266 you'll only have to write a few 
 
 <img src="/images/esplorer-connect.png" alt="Launch Esplorer, connect your device" style="width: 400px;"/>
 
-2. Cut and Paste or write this code into the left side of the ESPlorer
+2. Create a new script in Esplorer with these contents. Save it as Lab01.lua
 
 {% highlight lua %}
 --
