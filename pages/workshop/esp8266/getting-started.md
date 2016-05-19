@@ -41,7 +41,7 @@ This is the primary tool you will use to program the ESP8266, but first we have 
 2. Once done, install [esptool](https://github.com/themadinventor/esptool/blob/master/README.md) by doing the following: ```pip install esptool```
 
 # Assemble the Parts
-Insert the Huzzah Feather carefully into the prototyping board
+Insert the Huzzah Feather carefully into the prototyping board, attach the usb cable to the board and your computer.
 
 <img src="/images/huzzah-feather-board.png" alt="Assembled Parts" style="width: 400px;"/>
 
