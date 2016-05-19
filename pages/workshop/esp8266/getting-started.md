@@ -48,8 +48,8 @@ This is the primary tool you will use to program the ESP8266, but first we have 
 <a class="radius button small" href="https://www.silabs.com/Support%20Documents/Software/Linux_3.x.x_VCP_Driver_Source.zip">Linux</a>
 2. Plug in the ESP8266 into an open USB port using the cable
 3. Identify the USB Port, for me (on OS X) it's: /dev/tty.SLAB_USBtoUART
-4. Download the [firmware for the ESP8266](/workshop/esp8266/nodemcu-float.bin)
-<a class="radius button small" href="/workshop/esp8266/nodemcu-float.bin">ESP8266 ThingLabs Firmware</a>
+4. Download the [firmware for the ESP8266](https://cdn.rawgit.com/ThingLabsIo/ThingLabsIo.github.io/master/pages/workshop/esp8266/nodemcu-float.bin)
+<a class="radius button small" href="https://cdn.rawgit.com/ThingLabsIo/ThingLabsIo.github.io/master/pages/workshop/esp8266/nodemcu-float.bin">ESP8266 ThingLabs Firmware</a>
 5. Burn the firmware first, using	
 
 ```esptool.py -p /dev/tty.SLAB_USBtoUART write_flash 0x00000 nodemcu-float.bin```
