@@ -120,16 +120,20 @@ In the query, you want to select data from the input stream and put it into the 
 {% highlight sql %}
 WITH ProcessedData as (
     SELECT
-        MAX(sensorState) MaxLight,
-        MIN(sensorState) MinLight,
-        AVG(sensorState) AvgLight,
+        MAX(celsius) MaxTemperature,
+        MIN(celsius) MinTemperature,
+        AVG(celsius) AvgTemperature,
+        MAX(lightLevel) MaxLightLevel,
+        MIN(lightLevel) MinLightLevel,
+        AVG(lightLevel) AvgLightLevel,
+        MAX(relativeHumidity) MaxRelativeHumidity,
+        MIN(relativeHumidity) MinRelativeHumidity,
+        AVG(relativeHumidity) AvgRelativeHumidity,
         location,
         deviceId,
         System.Timestamp AS Timestamp
     FROM
         [DeviceInputStream]
-    WHERE
-        sensorType = 'ambientLight'
     GROUP BY
         TumblingWindow (second, 5), deviceId, location
 )
