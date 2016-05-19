@@ -62,7 +62,7 @@ function decodeURI(str)
     return str
 end
 
-function generateSasToken(resourceUri, signingKey, policyName, expiresInMinutes)
+function generateSasToken(resourceUri, signingKey, expiresInMinutes)
     resourceUri = string.lower(encodeURIComponent(string.lower(resourceUri)));
     -- Set expiration
     sec, usec = rtctime.get()
@@ -74,7 +74,7 @@ function generateSasToken(resourceUri, signingKey, policyName, expiresInMinutes)
     base64UriEncoded = encodeURIComponent(base64signature)
     -- construct the authorization string
     token = "SharedAccessSignature sr="..resourceUri.."&sig="..base64UriEncoded.."&se="..expires;
-    if (policyName) then token = token.."&skn="..policyName end
+    token = token.."&skn="
     return token    
 end
 
@@ -147,6 +147,16 @@ As in the previous lab, you'll write lua code in ESplorer. This code (below), op
 
 2. Create a new script in Esplorer with these contents. Save it as Lab04.lua
 
+If you recall, you should have your connection from before and it should look something like this:
+
+HostName=ThingLabsIoTHub.azure-devices.net;DeviceId=ThingLabs-esp8266;SharedAccessKey=XBoriIl+BZTpz6Yk84SPtDxel+wINQy1izIOfEQ4E3w=
+
+From this, you insert the DeviceId(ThingLabs-esp8266) as your DEVICE, the HostName (ThingLabsIoTHub.azure-devices.net) as your IOTHUB, and the SharedAccesskey (XBoriIl+BZTpz6Yk84SPtDxel+wINQy1izIOfEQ4E3w=) as your IOTHUB_DEVICE_CONNECTION_KEY. It should look like this:
+
+DEVICE = "THingLabs-esp8266"
+IOTHUB = "ThingLabsIoTHub.azure-devices.net"
+IOTHUB_DEVICE_CONNECTION_KEY = "XBoriIl+BZTpz6Yk84SPtDxel+wINQy1izIOfEQ4E3w="
+
 {% highlight lua %}
 --
 -- LAB 04: Sending Device-to-Cloud (D2C) Messages
@@ -155,9 +165,9 @@ As in the previous lab, you'll write lua code in ESplorer. This code (below), op
 --
 
 -- Configuration to connect to the MQTT broker.
-DEVICE = "DEVICE ID" -- like "ThingLabs-esp8266"
-IOTHUB = "IOTHUB DNS NAME" -- like "ThingLabsIoTHub.azure-devices.net"  
-IOTHUB_DEVICE_CONNECTION_KEY = "Device Connect Key" -- like "5AohmbYte0vuQtkpUCxTRjcnQOe5bmU2zaotv9hUS/k="
+DEVICE = "DEVICE ID" 
+IOTHUB = "IOTHUB DNS NAME"   
+IOTHUB_DEVICE_CONNECTION_KEY = "DEVICE CONNECTION KEY"
 
 -- Standard variables for connecting via MQTT to IoTHUB Do Not Change
 PORT   = 8883
