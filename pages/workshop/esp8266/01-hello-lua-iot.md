@@ -97,8 +97,8 @@ To write your first lua program for the ESP8266 you'll only have to write a few 
 -- Symbolic names for the pins
 ONBOARD  = 3
 
--- Number of milliseconds to leave the LED on
-STAYLIT  = 250
+-- Number of microseconds to leave the LED on
+STAYLIT  = 250000 -- 1/4 second
 
 -- Set the GPIO pin controlling the LED to output mode.
 gpio.mode(ONBOARD, gpio.OUTPUT)
@@ -115,7 +115,7 @@ end
 
 -- Creates a timer 
 --   Timer id = 1
---   Duration = 1000 microseconds (1 second)
+--   Duration = 1000 milliseconds (1 second)
 --   Mode     = tmr.ALARM_AUTO (reregister to do it again forever)
 --   Callback = flash_led
 tmr.alarm(1, 1000, tmr.ALARM_AUTO, flash_led)
@@ -134,12 +134,130 @@ To run the application you will save it to the ESP8266, reset the device, then i
 5. Double click the file on the right hand side that you saved.
    This should execute your code.
 
+# Wire the Huzzah Feather to the Power and Ground Rails
+
+Connect the 3V pin to the Red column of holes marked with a '+'.
+Connect the GND pin to the Blue column of holes marked with a '-'.
+
+This image shows what it should look like:
+
+<img src="/images/ESP8266-Rail-Wiring.jpeg" alt="Wire 3V and GND" style="width: 400px;"/>
+
 # Add a Three Color LED from the kit
 
 Find the three color LED and the 560 Ohm resistors, then wire it up to pins 1, 2, 5 (aka 4, 5, 14 on the Huzzah) as the following images illustrate:
 
-<img src="/images/ESP8266-LED-Power.jpeg" alt="Connecting Power Rail to LED" style="width: 400px;"/>
 <img src="/images/ESP8266-LED-Resistors.jpeg" alt="Connecting Resistors to LED" style="width: 400px;"/>
+
+Then wire the LED to the power Rail, as shown here:
+
+<img src="/images/ESP8266-LED-Power.jpeg" alt="Connecting Power Rail to LED" style="width: 400px;"/>
+
+# Startup Scripts for your ESP8266
+
+Before you can run Cloud code on your device you need a couple of important pieces:
+
+1. You need to connect to a wifi network
+2. You need to set the clock (The ESP8266 has a real-time clock that's reliable once it's set)
+3. You need some extra code to generate security tokens to access Azure.
+
+The following two scripts work together to initialize your ESP8266 to have these pieces. NodeMCU will look for an init.lua when it boots and execute it, so you have to be sure it's correct.
+
+The init.lua provided below invokes the startup.lua to set the clock (which requires wifi), so you need to save the startup.lua first, before you save the init.lua or things will break.
+
+In Esplorer create a new script and paste the following code into it. Then save the file as your startup.lua and save to the ESP8266.
+
+{% highlight lua %}
+function char_to_pchar(c)
+    return string.format("%%%02X", c:byte(1,1))
+end
+function encodeURI(str)
+    return (str:gsub("[^%;%,%/%?%:%@%&%=%+%$%w%-%_%.%!%~%*%'%(%)%#]", char_to_pchar))
+end
+function encodeURIComponent(str)
+    return (str:gsub("[^%w%-_%.%!%~%*%'%(%)]", char_to_pchar))
+end
+
+function _(hex) return string.char(tonumber(hex, 16)) end
+
+function decodeURI(str)
+    str = string.gsub(str, '%%(%x%x)', _)
+    return str
+end
+
+function generateSasToken(resourceUri, signingKey, policyName, expiresInMinutes)
+    resourceUri = string.lower(encodeURIComponent(string.lower(resourceUri)));
+    -- Set expiration
+    sec, usec = rtctime.get()
+    expires = math.ceil(sec + expiresInMinutes * 60)
+    toSign = resourceUri.."\n"..expires
+    -- add the password
+    decodedPassword = encoder.fromBase64(signingKey)
+    base64signature = crypto.toBase64(crypto.hmac("SHA256", toSign, decodedPassword))
+    base64UriEncoded = encodeURIComponent(base64signature)
+    -- construct the authorization string
+    token = "SharedAccessSignature sr="..resourceUri.."&sig="..base64UriEncoded.."&se="..expires;
+    if (policyName) then token = token.."&skn="..policyName end
+    return token    
+end
+
+sntp_connect_status_codes = {
+    [1] = "DNS lookup failed",
+    [2] = "Memory allocation failure",
+    [3] = "UDP send failed",
+    [4] = "Timeout, no NTP response received"
+}
+
+-- sync the clock via NTP
+sntp.sync('pool.ntp.org',
+  function(sec, usec, server)
+    print("Clock Synced: "..sec..", "..usec..", "..server)
+    end,
+  function(error_code)
+    print("Clock Sync Failed: "..sntp_connect_status_codes[error_code])
+  end
+)
+{% endhighlight %}
+
+In Esplorer create a new script and paste the following code into it. Then save the file as your init.lua and save to the ESP8266.
+
+{% highlight lua %}
+-- Diagnostic Information
+print('init.lua ver 1.2') 
+wifi.setmode(wifi.STATION)
+print('set mode=STATION (mode='..wifi.getmode()..')')
+print('MAC: '..wifi.sta.getmac())
+print('chip: '..node.chipid())
+print('heap: '..node.heap())
+
+-- Connect to Wifi
+wifi.sta.config("SSID", "PASSWORD")
+
+wifi_status_codes = {
+    [0] = "Idle",
+    [1] = "Connecting",
+    [2] = "Wrong Password",
+    [3] = "No AP Found",
+    [4] = "Connection Failed",
+    [5] = "Got IP"
+}
+
+-- Wait for wifi to get connected, fail if it doesn't
+tmr.alarm(1,1000, 1, function() 
+    if wifi.sta.getip()==nil then 
+        print("Waiting for IP address! (Status: "..wifi_status_codes[wifi.sta.status()]..")") 
+    else 
+        print("New IP address is "..wifi.sta.getip()) 
+        tmr.stop(1) 
+    end 
+  end
+)
+
+-- Launch Next Startup File
+tmr.alarm(0, 5000, 0, function() -- Zero as third parameter. Call once the file.
+   dofile('startup.lua')
+end)
+{% endhighlight %}
 
 # Modify the code
 
