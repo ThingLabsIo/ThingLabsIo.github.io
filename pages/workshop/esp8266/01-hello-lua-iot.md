@@ -115,7 +115,7 @@ end
 
 -- Creates a timer 
 --   Timer id = 1
---   Duration = 1000 milliseconds (1 second)
+--   Duration = 1000 microseconds (1 second)
 --   Mode     = tmr.ALARM_AUTO (reregister to do it again forever)
 --   Callback = flash_led
 tmr.alarm(1, 1000, tmr.ALARM_AUTO, flash_led)
@@ -171,8 +171,8 @@ GREENLED = 2
 BLUELED  = 5
 ONBOARD  = 3
 
--- Number of milliseconds to leave the LED on
-STAYLIT  = 250
+-- Number of microseconds to leave the LED on
+STAYLIT  = 250000 -- 1/4 second
 
 -- Set the GPIO pins controlling the LED to output mode.
 -- There are three pins, one each for: Red, Green, and Blue.
