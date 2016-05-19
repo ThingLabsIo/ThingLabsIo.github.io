@@ -25,7 +25,7 @@ In this lab series you will need the following:
 
 Each lab will specify which components will be used. See the Bill of Materials section at the beginning of each lab.
 
-# Install a ESPlorer
+# Install ESPlorer
 Please install [ESPlorer](http://esp8266.ru/esplorer/), source is available from github: [ESPLorer Source](https://github.com/4refr0nt/ESPlorer).
 This is the primary tool you will use to program the ESP8266, but first we have to do some preparation.
 
