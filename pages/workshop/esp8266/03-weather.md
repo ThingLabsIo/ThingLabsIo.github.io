@@ -67,9 +67,6 @@ REDLEDONBOARD = 3
 PHOTOCELL= 0
 DHTPIN   = 6
 
--- Number of milliseconds between cycles
-SPEED  = 500
-
 -- Set the GPIO pins controlling the LED to PWM mode.
 -- There are three pins, one each for: Red, Green, and Blue.
 pwm.setup(REDLED, 500, 512)
@@ -126,10 +123,10 @@ end
 
 -- Creates a timer 
 --   Timer id = 1
---   Duration = 1000 microseconds (1 second)
+--   Duration = 500 microseconds (1/2 second)
 --   Mode     = tmr.ALARM_AUTO (reregister to do it again forever)
 --   Callback = flash_led
-tmr.alarm(1, SPEED, tmr.ALARM_AUTO, check_weather)
+tmr.alarm(1, 500, tmr.ALARM_AUTO, check_weather)
 {% endhighlight %}
 
 # Run the App on the Device
