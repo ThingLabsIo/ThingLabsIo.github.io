@@ -31,6 +31,8 @@ Insert the Huzzah Feather carefully into the prototyping board
 
 <img src="/images/huzzah-feather-board.png" alt="Assembled Parts" style="width: 400px;"/>
 
+NOTE: We _do not_ have a battery in our kit!
+
 The Huzzah Feather connects to the physical world through the a set of pins. These pins have various functions, but most are General Purpose Input/Output (GPIO) pins. 
 Because there are so few connections to the Huzzah, some of the pins are used for more than one function and 
 need to be configured before you can use them. In fact, GPIO pins can be used for both input and output and 
@@ -48,7 +50,7 @@ Besides the GPIO Pins there are a set of other pins including:
 
 **EN** - this is the 3.3V regulator's enable pin. It's pulled up, so connect to ground to disable the 3.3V regulator
 
-**3V** - this is the output from the 3.3V regulator, it can supply 500mA peak (try to keep your current draw under 250mA so you have plenty for the ESP8266's power 
+**3V** - this is the output from the 3.3V regulator, it can supply 500mA peak (try to keep your current draw under 250mA so you have plenty for the ESP8266's power) 
 
 **RST** - this is the reset pin for the ESP8266, pulled high by default. When pulled down to ground momentarily it will reset the ESP8266 system. This pin is 3.3V logic only
 
@@ -124,11 +126,12 @@ That's all there is to it. Now you are ready to run the application.
 # Run the App on the Device
 To run the application you will save it to the ESP8266, reset the device, then invoke the code.
 
-1. Press the button 'Save to ESP' on the lower left of the ESPlorer interface.
-2. Push the reset button on the ES8266
-3. When it's done booting, click the 'Reload' button on the right side.
+1. Save the file, giving it a name: Lab01.lua
+2. Press the button 'Save to ESP' on the lower left of the ESPlorer interface.
+3. Push the reset button on the ES8266
+4. When it's done booting, click the 'Reload' button on the right side.
    You should see a list of files on the ESP8266
-4. Double click the file on the right hand side that you saved.
+5. Double click the file on the right hand side that you saved.
    This should execute your code.
 
 # Add a Three Color LED from the kit
