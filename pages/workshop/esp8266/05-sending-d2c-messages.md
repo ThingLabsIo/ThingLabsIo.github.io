@@ -30,45 +30,112 @@ From [Wikipedia's MQTT Article](https://en.wikipedia.org/wiki/MQTT):
 
 The structure of the [NodeMCU MQTT client](http://nodemcu.readthedocs.io/en/dev/en/modules/mqtt/) is documented to provide both telemetry and command processing. For this lab we focus just on telemetry. An example is provided from the NodeMCU documents:
 
+# Startup Scripts for your ESP8266 to use the Cloud
+
+Before you can run Cloud code on your device you need a couple of important pieces:
+
+1. You need to connect to a wifi network
+2. You need to set the clock (The ESP8266 has a real-time clock that's reliable once it's set)
+3. You need some extra code to generate security tokens to access Azure.
+
+The following two scripts work together to initialize your ESP8266 to have these pieces. NodeMCU will look for an init.lua when it boots and execute it, so you have to be sure it's correct.
+
+The init.lua provided below invokes the startup.lua to set the clock (which requires wifi), so you need to save the startup.lua first, before you save the init.lua or things will break.
+
+In Esplorer create a new script and paste the following code into it. Then save the file as your startup.lua and save to the ESP8266.
+
 {% highlight lua %}
--- init mqtt client with keepalive timer 120sec
-m = mqtt.Client("clientid", 120, "user", "password")
+function char_to_pchar(c)
+    return string.format("%%%02X", c:byte(1,1))
+end
+function encodeURI(str)
+    return (str:gsub("[^%;%,%/%?%:%@%&%=%+%$%w%-%_%.%!%~%*%'%(%)%#]", char_to_pchar))
+end
+function encodeURIComponent(str)
+    return (str:gsub("[^%w%-_%.%!%~%*%'%(%)]", char_to_pchar))
+end
 
--- setup Last Will and Testament (optional)
--- Broker will publish a message with qos = 0, retain = 0, data = "offline" 
--- to topic "/lwt" if client don't send keepalive packet
-m:lwt("/lwt", "offline", 0, 0)
+function _(hex) return string.char(tonumber(hex, 16)) end
 
-m:on("connect", function(client) print ("connected") end)
-m:on("offline", function(client) print ("offline") end)
+function decodeURI(str)
+    str = string.gsub(str, '%%(%x%x)', _)
+    return str
+end
 
--- on publish message receive event
-m:on("message", function(client, topic, data) 
-  print(topic .. ":" ) 
-  if data ~= nil then
-    print(data)
+function generateSasToken(resourceUri, signingKey, policyName, expiresInMinutes)
+    resourceUri = string.lower(encodeURIComponent(string.lower(resourceUri)));
+    -- Set expiration
+    sec, usec = rtctime.get()
+    expires = math.ceil(sec + expiresInMinutes * 60)
+    toSign = resourceUri.."\n"..expires
+    -- add the password
+    decodedPassword = encoder.fromBase64(signingKey)
+    base64signature = crypto.toBase64(crypto.hmac("SHA256", toSign, decodedPassword))
+    base64UriEncoded = encodeURIComponent(base64signature)
+    -- construct the authorization string
+    token = "SharedAccessSignature sr="..resourceUri.."&sig="..base64UriEncoded.."&se="..expires;
+    if (policyName) then token = token.."&skn="..policyName end
+    return token    
+end
+
+sntp_connect_status_codes = {
+    [1] = "DNS lookup failed",
+    [2] = "Memory allocation failure",
+    [3] = "UDP send failed",
+    [4] = "Timeout, no NTP response received"
+}
+
+-- sync the clock via NTP
+sntp.sync('pool.ntp.org',
+  function(sec, usec, server)
+    print("Clock Synced: "..sec..", "..usec..", "..server)
+    end,
+  function(error_code)
+    print("Clock Sync Failed: "..sntp_connect_status_codes[error_code])
   end
-end)
-
--- for TLS: m:connect("192.168.11.118", secure-port, 1)
-m:connect("192.168.11.118", 1883, 0, function(client) print("connected") end, 
-                                     function(client, reason) print("failed reason: "..reason) end)
-
--- Calling subscribe/publish only makes sense once the connection
--- was successfully established. In a real-world application you want
--- move those into the 'connect' callback or make otherwise sure the 
--- connection was established.
-
--- subscribe topic with qos = 0
-m:subscribe("/topic",0, function(client) print("subscribe success") end)
--- publish a message with data = hello, QoS = 0, retain = 0
-m:publish("/topic","hello",0,0, function(client) print("sent") end)
-
-m:close();
--- you can call m:connect again
+)
 {% endhighlight %}
 
-Adapting this example, we have the program below that connects to the MQTT IoTHub Gateway and sets a timer to send telemetry every 1 second.
+In Esplorer create a new script and paste the following code into it. Then save the file as your init.lua and save to the ESP8266.
+
+{% highlight lua %}
+-- Diagnostic Information
+print('init.lua ver 1.2') 
+wifi.setmode(wifi.STATION)
+print('set mode=STATION (mode='..wifi.getmode()..')')
+print('MAC: '..wifi.sta.getmac())
+print('chip: '..node.chipid())
+print('heap: '..node.heap())
+
+-- Connect to Wifi
+wifi.sta.config("SSID", "PASSWORD")
+
+wifi_status_codes = {
+    [0] = "Idle",
+    [1] = "Connecting",
+    [2] = "Wrong Password",
+    [3] = "No AP Found",
+    [4] = "Connection Failed",
+    [5] = "Got IP"
+}
+
+-- Wait for wifi to get connected, fail if it doesn't
+tmr.alarm(1,1000, 1, function() 
+    if wifi.sta.getip()==nil then 
+        print("Waiting for IP address! (Status: "..wifi_status_codes[wifi.sta.status()]..")") 
+    else 
+        print("New IP address is "..wifi.sta.getip()) 
+        tmr.stop(1) 
+    end 
+  end
+)
+
+-- Launch Next Startup File
+tmr.alarm(0, 5000, 0, function() -- Zero as third parameter. Call once the file.
+   dofile('startup.lua')
+end)
+{% endhighlight %}
+
 
 # Create the Lua Program in ESPlorer 
 
