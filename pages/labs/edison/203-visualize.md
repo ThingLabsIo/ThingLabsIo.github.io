@@ -77,7 +77,7 @@ The data will come in as a data stream from the Event Hub that was automatically
     - SUBSCRIPTION - choose your subscription
     - CHOOSE AN IOT HUB - choose the IoT Hub you created earlier
     - IOT HUB SHARED ACCESS POLICY NAME - leave this as the default, which should be _iothubowner_
-    - IOT HUB CONSUMER GROUP - select _Create a new consumer group_ and name it __AnalyticsConsumerGroup__
+    - IOT HUB CONSUMER GROUP - enter the default consumer group name: ```$Default```
 
 6. Click on the forward arrow in the lower-right.
 7. On the _Serialization settings_ form, leave the defaults (Event Serialization Format:JSON and Encoding:UTF8) click on the checkmark in the lower-right. 
@@ -124,27 +124,23 @@ In the query, you want to select data from the input stream and put it into the 
 {% highlight sql %}
 WITH ProcessedData as (
     SELECT
-        MAX(sensorState) MaxLight,
-        MIN(sensorState) MinLight,
-        AVG(sensorState) AvgLight,
+        MAX(sensorValue) MaxTemperature,
+        MIN(sensorValue) MinTemperature,
+        AVG(sensorValue) AvgTemperature,
         location,
         deviceId,
         System.Timestamp AS Timestamp
     FROM
         [DeviceInputStream]
     WHERE
-        sensorType = 'ambientLight'
+        sensorType = 'temperature'
     GROUP BY
         TumblingWindow (second, 5), deviceId, location
 )
 
--- If you do the optional lab you will need to uncomment this line
---   to get data to flow to PowerBI
--- SELECT * INTO [DeviceBI] FROM ProcessedData
-
 -- Make sure this matches your Event Hub output name from above,
 -- If you've forgotten it you can go back and get it in another browser tab
-SELECT * INTO [ThingLabsEventHub] FROM ProcessedData
+SELECT * INTO [ThingLabsEHOutput] FROM ProcessedData
 {% endhighlight %}
 
 3. Click _SAVE_ in the lower middle of the screen. 
@@ -208,19 +204,11 @@ lower-left corner.
     
     ![Thing Labs Web Dashboard - Web App](/images/ThingLabs-Web-Dashboard.png)
 
-## Optional: PowerBI Dashboard
-
-If you have access to PowerBI you can build a similar real-time reporting dashboard in the [Building a PowerBI Dashboard](../06a-powerbi-dashboard).
-<a class="radius button small" href="{{ site.url }}/workshop/thingy-4-windows/powerbi-dashboard/">Go to 'Building a PowerBI Dashboard' ›</a>
- 
- 
 # Conclusion
 In this lab you learned how to create an Azure Stream Analytics job to query data coming in to Azure IoT Hub, process it and send it to Event Hub and Power BI.
 
-Congratulations! In this hands-on workshop you experienced an IoT solution end-to-end. You built a _Thing_ that both sent output (blinked an LED) and collected input (ambient light) and uased it to send data to Azure IoT Hubs. You then passed that data stream into Azure Stream Analytics, queried it and sent the output to Power BI where you created a visualization of the IoT data.
+Congratulations! In this hands-on workshop you experienced an IoT solution end-to-end. You built a _Thing_ that both sent output (blinked an LED) and collected input (ambient light) and uased it to send data to Azure IoT Hubs.
 
 In the [next lab][nextlab] you will modify the web application to include a capability to send a Cloud-to-Device (C2D) message. 
 
-<a class="radius button small" href="{{ site.url }}/workshop/thingy-4-windows/sending-c2d-messages/">Go to 'Sending Cloud-to-Device (C2D) Messages' ›</a>
-
-[nextlab]: ../sending-c2d-messages/
+{% include edison/nextlab title='Sending Cloud to Device (C2D) Messages' url='../c2d/' %}
