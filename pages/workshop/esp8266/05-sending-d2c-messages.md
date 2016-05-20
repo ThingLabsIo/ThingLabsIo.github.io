@@ -180,7 +180,7 @@ DHTPIN = 6
 MAXLIGHT = 1024
 
 -- Generate a SAS Token for Azure IoTHub
-PASSWD = generateSasToken(IOTHUB..'/devices/'..DEVICE, IOTHUB_DEVICE_CONNECTION_KEY, 'device', 7 * 24 * 60)
+PASSWD = generateSasToken(IOTHUB..'/devices/'..DEVICE, IOTHUB_DEVICE_CONNECTION_KEY, 7 * 24 * 60)
 
 -- MQTT topics to subscribe
 telemetry_topic="devices/"..DEVICE.."/messages/events/"
