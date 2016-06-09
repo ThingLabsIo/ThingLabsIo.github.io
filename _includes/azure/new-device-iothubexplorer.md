@@ -3,7 +3,7 @@ If you are on a non-Windows machine, or prefer to use a command line interface i
 In the same directory as before, using the Node.js command prompt or Terminal, execute the following command (you may need to wrap the connections string in quotes, depending on the command line application you are using).
 
 <pre>
-  iothub-explorer [YOUR IOT HUB CONNECTION STRING] create Thingy --connection-string
+  iothub-explorer "[YOUR IOT HUB CONNECTION STRING]" create Thingy --connection-string
 </pre>
 
 Once a device is created, the device information, including the device-specific connection string will be displayed.

@@ -20,8 +20,8 @@ In this lab you will write a Node.js application that runs on a hub (your develo
 # Setup the App Dependencies
 Since you will be using Node.js for this lab you can take advantage of the dependency management capabilities that Node.js and NPM provide. You need to let your application know that it has a dependency on the following NPM packages - Azure IoT Device, Johnny-Five and Particle-IO. In Node.js this is done with a _package.json_ file. This file provides some basic meta-data about the application, including any dependencies on packages that can be retrieved using NPM (according to [npmjs.com](https://www.npmjs.com) today, NPM stands for Narrating Prophetic Monks...not Node Package Manager like you may have thought).
 
-1. Create a file in your development directory named __package.json__
-2. Add the following code to the __package.json__ file (select the tab for the type of board you are using).
+1. Create a file in your development directory named __package.json__ (or edit the one your created previously)
+2. Add the following code to the __package.json__ file (select the tab for the type of board you are using)
 
 <div id="json-tabs">
   <ul>
@@ -388,7 +388,7 @@ If you downloaded the Device Explorer utility for Windows or the iothub-explorer
   <div id="iothubexplorer">
 From a command prompt execute the following command, replacing <code>[connection-string]</code> with your <i>iothubowner</i> connection string (from the previous lab) and <code>[device-id]</code> with the Azure IoT Hub id for this device.
 <pre>
-  iothub-explorer [connection-string] monitor-events [device-id]
+  iothub-explorer "[connection-string]" monitor-events [device-id]
 </pre>
   </div>
 </div>
@@ -407,4 +407,4 @@ When you want to quite the application, press <kbd>CTRL</kbd> + <kbd>C</kbd> twi
 
 In this lab you learned how to write a Node.js + Johnny-Five application that collects environment telemetry and sends it to Azure IoT Hub. In the next lab you will setup some Azure services to store and visualize the data.
 
-<a class="radius button small" href="../visualize-iot-with-powerbi/">Go to 'Visualizing IoT Data with Power BI' ›</a>
+<a class="radius button small" href="../visualize-iot-with-powerbi/">Go to 'Visualizing IoT Data with Power BI' ›</a> or <a class="radius button small" href="../visualize-iot-with-web-app/">Go to 'Visualizing IoT Data with Web App' ›</a>
