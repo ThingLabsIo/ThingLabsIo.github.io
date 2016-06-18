@@ -39,6 +39,7 @@ This is the primary tool you will use to program the ESP8266, but first we have 
 <a class="radius button small" href="https://www.python.org/ftp/python/2.7.11/python-2.7.11.amd64.msi">Python 2.7 for Windows</a>
 <a class="radius button small" href="https://www.python.org/ftp/python/2.7.11/python-2.7.11-macosx10.6.pkg">Python 2.7 for Mac</a>
 2. Once done, install [esptool](https://github.com/themadinventor/esptool/blob/master/README.md) by doing the following: ```pip install esptool```
+To run the pip install on Windows, you might have to either add the Python Tools folder to your path (on my machine it's c:\Python27\Tools) or explicitly type it out. 
 
 # Assemble the Parts
 Insert the Huzzah Feather carefully into the prototyping board, attach the usb cable to the board and your computer.
@@ -54,12 +55,16 @@ NOTE: We _do not_ have a battery in our kit!
 <a class="radius button small" href="https://www.silabs.com/Support%20Documents/Software/Mac_OSX_VCP_Driver.zip">Mac</a>
 <a class="radius button small" href="https://www.silabs.com/Support%20Documents/Software/Linux_3.x.x_VCP_Driver_Source.zip">Linux</a>
 2. Plug in the ESP8266 into an open USB port using the cable
-3. Identify the USB Port, for me (on OS X) it's: /dev/tty.SLAB_USBtoUART
+3. Identify the USB Port, for me (on OS X) it's: /dev/tty.SLAB_USBtoUART. On Windows, open the "Device Manager" and look under Ports. 
 4. Download the [firmware for the ESP8266](https://cdn.rawgit.com/ThingLabsIo/ThingLabsIo.github.io/master/pages/workshop/esp8266/nodemcu-float.bin)
 <a class="radius button small" href="https://cdn.rawgit.com/ThingLabsIo/ThingLabsIo.github.io/master/pages/workshop/esp8266/nodemcu-float.bin">ESP8266 ThingLabs Firmware</a>
 5. Burn the firmware first, using	
 
+On OSX:
 ```esptool.py -p /dev/tty.SLAB_USBtoUART write_flash 0x00000 nodemcu-float.bin```
+
+On Windows:
+```esptool.py -p Com3 write_flash 0x00000 nodemcu-float.bin```
 
 This is what you should see if it's successfully putting your firmware on the ESP8266:
 
