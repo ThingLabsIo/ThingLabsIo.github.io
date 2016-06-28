@@ -37,7 +37,7 @@ For this lab series you will use tools that require your Arduino to have the Sta
 # Connecting the Weather Shield
 The weather shield comes equipped with two onboard sensors - a HTU21D humidity sensor capable of gathering both humidity and temperature, and a MPL3115A2 barometric pressure sensor. There are connections for other optional sensors, such as wind, rain and soil moisture sensors (we will not be working with the optional sensors in this lab series). Simply plug the Weather Shield into the Arduino (the pins only match one way).
 
-![Arduino Weather Shield](/images/devices/arduino-weather-station.jpg)
+![Arduino Weather Shield](/images/devices/arduino-weather-station-1306x979.jpg)
 
 # Conclusion &amp; Next Steps
 You have configured your prototyping device for use in this workshop. Now you can proceed to the next lab.
