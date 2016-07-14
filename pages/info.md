@@ -33,3 +33,8 @@ Twitter: [@irjudson](https://twitter.com/irjudson)
 
 Twitter: [@rpedersen](https://twitter.com/rpedersen)
 
+## Ville Rantala
+
+<img src="../images/author_ville.png"/>
+
+Twitter: [@vjrantal](https://twitter.com/vjrantal)

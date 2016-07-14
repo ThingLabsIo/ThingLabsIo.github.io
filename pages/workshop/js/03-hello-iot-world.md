@@ -201,17 +201,19 @@ board.on("ready", function() {
 });
 {% endhighlight %}
   
-Johnny-Five actually has an object model for an LED and we could also have simply done the following, but one of the goals was for you to see how the __digitalWrite()__ function works before abstracting it away.
+As an option to code above, Johnny-Five actually has an object model for an LED and we could also have simply done the following, but one of the goals was for you to see how the __digitalWrite()__ function works before abstracting it away.
 
 {% highlight javascript %}
 board.on("ready", function() {
+	console.log("Board connected...");
+
 	var led = new five.Led(LEDPIN);
 	led.blink(1000);
 });
 {% endhighlight %}
 
 # Run the App
-When you run the application it will execute on your computer, and thanks to Johnny-Five, it will connect with your board and work directly with it. Basically, your computer is acting as a hub and communicating via Wi-Fi with the micro-controller on the prototyping board as one of potentially many devices (or spokes). This application will run on your development machine during this workshop, but it could also be deployed to a small micro-processor device like the Raspberry Pi or Intel Edison.
+When you run the application it will execute on your computer, and thanks to Johnny-Five, it will connect with your board and work directly with it. Basically, your computer is acting as a hub and communicating via USB or Wi-Fi with the micro-controller on the prototyping board as one of potentially many devices (or spokes). This application will run on your development machine during this workshop, but it could also be deployed to a small micro-processor device like the Raspberry Pi or Intel Edison.
 
 1. Open a terminal window (Mac OS X) or command prompt (Windows)
 2. Execute the following commands (replace c:\Development\IoTLabs with the path that leads to your labs folder).

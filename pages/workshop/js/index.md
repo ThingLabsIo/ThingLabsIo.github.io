@@ -53,7 +53,9 @@ In this lab you will write a Node.js application that runs on a hub (your develo
 
 <a class="radius button small" href="./sending-telemetry/">Estimated time to complete: 20-minutes. Go to  'Sending Telemetry to the Cloud' ›</a>
 
-# Visualizing IoT Data with Power BI
-In this lab you will create visualizations of IoT data using Microsoft Power BI.
+# Visualizing IoT Data
+In this lab you have two options for visualizations of IoT data. First option is using Microsoft Power BI and the second is a dashboard hosted in an Azure Web App.
 
 <a class="radius button small" href="./visualize-iot-with-powerbi/">Estimated time to complete: 20-minutes. Go to  'Visualizing IoT Data with Power BI' ›</a>
+
+<a class="radius button small" href="./visualize-iot-with-web-app/">Estimated time to complete: 20-minutes. Go to  'Visualizing IoT Data with Web App' ›</a>

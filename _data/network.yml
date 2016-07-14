@@ -2,20 +2,20 @@
 
 - name: "Doug Seven"
   url: "https://twitter.com/dseven"
-  class: "network-entypo"
   title: "Doug Seven"
 
 - name: "Josh Holmes"
   url: "https://twitter.com/joshholmes"
-  class: "services-newsletter"
   title: "Josh Holmes"
 
 - name: "Ivan Judson"
   url: "https://twitter.com/irjudson"
-  class: "rss-link"
   title: "Ivan Judson"
 
 - name: "Ryan Pedersen"
   url: "https://twitter.com/rpedersen"
-  class: "sitemap-link"
   title: "Ryan Pedersen"
+
+- name: "Ville Rantala"
+  url: "https://twitter.com/vjrantal"
+  title: "Ville Rantala"
