@@ -56,16 +56,16 @@ NOTE: We _do not_ have a battery in our kit!
 <a class="radius button small" href="https://www.silabs.com/Support%20Documents/Software/Linux_3.x.x_VCP_Driver_Source.zip">Linux</a>
 2. Plug in the ESP8266 into an open USB port using the cable
 3. Identify the USB Port, for me (on OS X) it's: /dev/tty.SLAB_USBtoUART. On Windows, open the "Device Manager" and look under Ports. 
-4. Download the [firmware for the ESP8266](https://cdn.rawgit.com/ThingLabsIo/ThingLabsIo.github.io/master/pages/workshop/esp8266/nodemcu_float_dev_pwm.bin)
-<a class="radius button small" href="https://cdn.rawgit.com/ThingLabsIo/ThingLabsIo.github.io/master/pages/workshop/esp8266/nodemcu_float_dev_pwm.bin">ESP8266 ThingLabs Firmware</a> and download the [device certificate](https://cdn.rawgit.com/ThingLabsIo/ThingLabsIo.github.io/master/pages/workshop/esp8266/esp_device_cert.bin)
+4. Download the [firmware for the ESP8266](https://cdn.rawgit.com/ThingLabsIo/ThingLabsIo.github.io/master/pages/workshop/esp8266/nodemcu_float_dev_pwm_cert.bin)
+<a class="radius button small" href="https://cdn.rawgit.com/ThingLabsIo/ThingLabsIo.github.io/master/pages/workshop/esp8266/nodemcu_float_dev_pwm_cert.bin">ESP8266 ThingLabs Firmware</a> and download the [device certificate](https://cdn.rawgit.com/ThingLabsIo/ThingLabsIo.github.io/master/pages/workshop/esp8266/esp_device_cert.bin)
 <a class="radius button small" href="https://cdn.rawgit.com/ThingLabsIo/ThingLabsIo.github.io/master/pages/workshop/esp8266/esp_device_cert.bin">ESP8266 Device Cert</a>
 5. Burn the firmware and the device cert first, using	
 
 On OSX:
-```esptool.py -p /dev/tty.SLAB_USBtoUART write_flash 0x00000 nodemcu_float_dev_pwm.bin 0x84000 esp_device_cert.bin```
+```esptool.py -p /dev/tty.SLAB_USBtoUART write_flash 0x00000 nodemcu_float_dev_pwm_cert.bin 0x84000 esp_device_cert.bin```
 
 On Windows:
-```esptool.py -p Com3 write_flash 0x00000 nodemcu_float_dev_pwm.bin 0x84000 esp_device_cert.bin```
+```esptool.py -p Com3 write_flash 0x00000 nodemcu_float_dev_pwm_cert.bin 0x84000 esp_device_cert.bin```
 
 This is what you should see if it's successfully putting your firmware on the ESP8266:
 
