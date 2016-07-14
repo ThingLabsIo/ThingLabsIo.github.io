@@ -109,6 +109,7 @@ You will create two outputs, one for data to flow to EventHub and a second for d
     - FORMAT - _Line separated_
 
 4. Click on the Create button on the bottom of the page.
+
 ![Stream Analytics output definition](/images/azurestreamoutputdetail.png)
 
 ### Write the Query
