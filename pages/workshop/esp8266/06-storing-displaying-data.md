@@ -96,8 +96,6 @@ You will create two outputs, one for data to flow to EventHub and a second for d
 
 2. Click on __+ Add__.
 3. Complete the form as follows:
-
-    ![Stream Analytics output definition](/images/ehsettings.png)
     - OUTPUT ALIAS - __ThingLabsOutput__
     - SINK - _Event hub_
     - SUBSCRIPTION - _Provide event hub settings manually_
@@ -111,6 +109,7 @@ You will create two outputs, one for data to flow to EventHub and a second for d
     - FORMAT - _Line separated_
 
 4. Click on the Create button on the bottom of the page.
+![Stream Analytics output definition](/images/azurestreamoutputdetail.png)
 
 ### Write the Query
 In the query, you want to select data from the input stream and put it into the output stream. With data like _darkness_, you can do interesting things like applying operations on the data as you query it. For this example, you will write a query that selects from the input stream and sends the output stream the minimum, maximum and average darkness values across all devices, and enables you to group the data by either location or device ID. Using a <code>TumblingWindow</code> you will send data to the output stream in rolling increments of 5-seconds.
