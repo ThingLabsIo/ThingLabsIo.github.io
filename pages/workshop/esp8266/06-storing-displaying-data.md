@@ -61,17 +61,15 @@ When the job indicates that it is created, click into it to create the data stre
 ### Define the Input Data Stream
 The data will come in as a data stream from the Event Hub that was automatically created when you created the Azure IoT Hub. 
 
-1. Click on the __INPUTS__ header.
+1. Click on the __Inputs__ section.
 
     ![Create the input](/images/azurestreaminput.png)
 
-2. Click on _Inputs_, then _+ Add_.
-3. Select __Data stream__ and click on the forward arrow in the lower-right.
-4. Select __IoT Hub__ and click on the forward arrow in the lower-right.
+2. Click _+ Add_.
 5. Complete the form as follows:
     - INPUT ALIAS - __DeviceInputStream__
     - SOURCE TYPE - _Data stream_
-    - Source - IoT hub
+    - Source - _IoT hub_
     - SUBSCRIPTION - _Provide IoT hub settings manually_
     - IOT HUB - type the name of the IoT Hub you created earlier
     - ENDPOINT - _Messaging_
@@ -179,7 +177,7 @@ lower-left corner.
     
     ![Configure Event Hub](/images/webappconfig1.png)
     
-    - Select "External repositiory" from the dialog 
+    - Select "External repository" from the dialog 
      
      (Note: You'd think this should be "Github repository", but we're avoiding having you fork and maintain your own version fo the code for today. If you want to modify it later, you can fork the repository and modify it. Then you would have to update your deployment source to "Github Repository" which finds *your* repositories.)
      
