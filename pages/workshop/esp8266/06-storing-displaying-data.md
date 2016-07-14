@@ -63,22 +63,27 @@ The data will come in as a data stream from the Event Hub that was automatically
 
 1. Click on the __INPUTS__ header.
 
-    ![Create the input](/images/asainputs.png)
+    ![Create the input](/images/azurestreaminput.png)
 
-2. Click on _ADD AN INPUT_.
+2. Click on _Inputs_, then _+ Add_.
 3. Select __Data stream__ and click on the forward arrow in the lower-right.
 4. Select __IoT Hub__ and click on the forward arrow in the lower-right.
 5. Complete the form as follows:
     - INPUT ALIAS - __DeviceInputStream__
-    - SUBSCRIPTION - choose your subscription
-    - CHOOSE AN IOT HUB - choose the IoT Hub you created earlier
-    - IOT HUB SHARED ACCESS POLICY NAME - leave this as the default, which should be _iothubowner_
-    - IOT HUB CONSUMER GROUP - select _Create a new consumer group_ and name it __AnalyticsConsumerGroup__
+    - SOURCE TYPE - _Data stream_
+    - Source - IoT hub
+    - SUBSCRIPTION - _Provide IoT hub settings manually_
+    - IOT HUB - type the name of the IoT Hub you created earlier
+    - ENDPOINT - _Messaging_
+    - SHARED ACCESS POLICY NAME - leave this as the default, which should be _iothubowner_
+    - SHARED ACCESS POLICY KEY - type the primary key of the IoT Hub you created earlier
+    - CONSUMER GROUP - __AnalyticsConsumerGroup__
+    - EVENT SERIALIZATION - _JSON_
+    - ENCODING - _UTF-8_
 
-6. Click on the forward arrow in the lower-right.
-7. On the _Serialization settings_ form, leave the defaults (Event Serialization Format:JSON and Encoding:UTF8) click on the checkmark in the lower-right. 
+6. Click on the Create button on the bottom of the page.
 
-![Stream Analytics input definition](/images/asainputform.png)
+![Stream Analytics input definition](/images/azurestreaminputdetail.png)
 
 After a few seconds, a new input will be listed.
 
@@ -87,26 +92,27 @@ Before defining the query that will select data from the input and send it to th
 
 You will create two outputs, one for data to flow to EventHub and a second for data to flow to PowerBI, so for EventHub:
 
-1. Click on the _OUTPUTS_ header.
+1. Click on the _Outputs_ header.
 
-    ![Create the output](/images/asaoutputs.png)
+    ![Create the output](/images/azurestreaminput.png)
 
-2. Click on __ADD AN OUTPUT__.
-3. Select __Event Hub__ and click on the forward arrow in the lower-right.
+2. Click on __+ Add__.
+3. Complete the form as follows:
 
-    ![Event Hub Output](/images/ehoutput.png)
+    ![Stream Analytics output definition](/images/ehsettings.png)
+    - OUTPUT ALIAS - __ThingLabsOutput__
+    - SINK - _Event hub_
+    - SUBSCRIPTION - _Provide event hub settings manually_
+    - SERVICE BUS NAMESPACE - type the namespace of the service bus you created earlier
+    - EVENT HUB NAME - type the name of the event hub you created earlier
+    - EVENT HUB POLICY NAME - _RootManageSharedAccessKey_
+    - EVENT HUB POLICY KEY - type the key of the Event Hub you created earlier
+    - PARTITION KEY COLUMN - you can leave this blank
+    - EVENT SERIALIZATION - _JSON_
+    - ENCODING - _UTF-8_
+    - FORMAT - _Line separated_
 
-4. Configure the EventHub
-
-    ![Event Hub Configuration](/images/ehsettings.png)
-
-    1. Give it a unique name
-    2. Select "Use Event Hub from Current Subscription"
-    3. From the drop-down, select your previously created Event Hub
-    4. Click the right arrow to go to the "Serialization Settings"
-    5. Accept the defaults (JSON, UTF8, Line Separated)
-5. Click checkmark on the lower-right to create the Event Hub
-6. Start the Event Hub by clicking the Start triangle at the bottom of the window
+4. Click on the Create button on the bottom of the page.
 
 ### Write the Query
 In the query, you want to select data from the input stream and put it into the output stream. With data like _darkness_, you can do interesting things like applying operations on the data as you query it. For this example, you will write a query that selects from the input stream and sends the output stream the minimum, maximum and average darkness values across all devices, and enables you to group the data by either location or device ID. Using a <code>TumblingWindow</code> you will send data to the output stream in rolling increments of 5-seconds.
@@ -115,7 +121,7 @@ In the query, you want to select data from the input stream and put it into the 
 
     ![Create the query](/images/asaquery.png)
 
-2. Write the following query:
+2. Write the following query, make sure to update _DeviceInputStream_ and _ThingLabsEventHub_ in the following query to the stream analytics input and output values you created in the previous steps.
 
 {% highlight sql %}
 WITH ProcessedData as (
