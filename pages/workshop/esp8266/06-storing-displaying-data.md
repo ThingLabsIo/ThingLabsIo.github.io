@@ -119,7 +119,7 @@ In the query, you want to select data from the input stream and put it into the 
 
     ![Create the query](/images/asaquery.png)
 
-2. Write the following query, make sure to update _DeviceInputStream_ and _ThingLabsEventHub_ in the following query to the stream analytics input and output values you created in the previous steps.
+2. Write the following query, make sure to update _DeviceInputStream_ and _ThingLabsOutput_ in the following query to the stream analytics input and output values you created in the previous steps.
 
 {% highlight sql %}
 WITH ProcessedData as (
@@ -145,10 +145,10 @@ WITH ProcessedData as (
 -- If you do the optional lab you will need to uncomment this line
 --   to get data to flow to PowerBI
 -- SELECT * INTO [DeviceBI] FROM ProcessedData
-
 -- Make sure this matches your Event Hub Name from above,
 -- If you've forgotten it you can go back and get it in another browser tab
-SELECT * INTO [ThingLabsEventHub] FROM ProcessedData
+
+SELECT * INTO [ThingLabsOutput] FROM ProcessedData
 {% endhighlight %}
 
 3. Click _SAVE_ in the lower middle of the screen. 
