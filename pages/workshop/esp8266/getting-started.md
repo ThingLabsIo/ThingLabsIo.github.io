@@ -27,7 +27,7 @@ Each lab will specify which components will be used. See the Bill of Materials s
 
 # Install ESPlorer
 Please install [ESPlorer](http://esp8266.ru/esplorer/), source is available from github: [ESPLorer Source](https://github.com/4refr0nt/ESPlorer).
-This is the primary tool you will use to program the ESP8266, but first we have to do some preparation.
+This is the primary tool you will use to program the ESP8266, but first we have to do some preparation. Make sure to select 115200 as your baud rate.
 
 <a class="radius button small" href="http://esp8266.ru/esplorer-latest/?f=ESPlorer.zip">Download Esplorer›</a>
 
