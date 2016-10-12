@@ -204,6 +204,8 @@ lower-left corner.
         - Use the connection string from your Event Hub
         
         ![Event Hub Connection String](/images/EventHubConfigureConnectionString.png)
+
+        - Use the name from your Event Hub: Add _THINGLABS_EVENTHUBNAME_ and the name of your event hub
     
         - Save the changes
     - Restart the Web Application
