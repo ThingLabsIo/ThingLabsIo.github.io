@@ -74,7 +74,7 @@ The Lua programming language is a simple language designed to avoid the clutter 
 
 To write your first lua program for the ESP8266 you'll only have to write a few lines of code.
 
-1. Launch ESPlorer.jar, select your serial port, and press the 'Open' button
+1. Launch ESPlorer.jar, select your serial port, make sure to select 115200 as your baud rate, and then press the 'Open' button
 
 <img src="/images/esplorer-connect.png" alt="Launch Esplorer, connect your device" style="width: 400px;"/>
 
