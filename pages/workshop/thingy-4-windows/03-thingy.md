@@ -1,6 +1,6 @@
 ---
 layout: "page-fullwidth"
-title: "ThingLabs Thingy&trade;"
+title: "Lab 03: ThingLabs Thingy&trade;"
 subheadline: "Building Connected Things with Windows 10 IoT and Microsoft Azure"
 teaser: "In this lab, you will build a device with multiple sensors and actuators."
 show_meta: true
@@ -21,7 +21,6 @@ In this lab, you will expand on the Nightlight you created in the previous lab a
 What you will need:
 
 1. [Raspberry Pi 2](http://www.amazon.com/Raspberry-Pi-Model-Project-Board/dp/B00T2U7R7I/)
-2. [5V (2A to 3A) Switching Power Supply w/ MicroUSB Cable](http://www.amazon.com/CanaKit-Raspberry-Supply-Adapter-Charger/dp/B00MARDJZ4/)
 3. From the [GrovePi+ Starter Kit for Raspberry Pi](http://www.seeedstudio.com/depot/GrovePi-Starter-Kit-for-Raspberry-Pi-ABB23-CE-certified-p-2572.html)
  * GrovePi shield
  * Grove LED (red) × 1 + connector cable
@@ -31,6 +30,7 @@ What you will need:
  * Grove Sound Sensor x 1 + connector cable
  * Grove Buzzer x 1 + connector cable
  * Grove RGB LCD Display x 1 + connector cable
+3. [5V (2A to 3A) Switching Power Supply w/ MicroUSB Cable](http://www.amazon.com/CanaKit-Raspberry-Supply-Adapter-Charger/dp/B00MARDJZ4/)
 4. A Wi-Fi Adapter (choose one from the list [here](http://ms-iot.github.io/content/en-US/win10/SupportedInterfaces.htm#WiFi-Dongles))
 5. 8GB micro SD card - class 10 or better. Microsoft suggests one of the following:
 	* [Samsung 32GB EVO Class 10 Micro SDHC up to 48MB/s with Adapter (MB-MP32DA/AM)](http://www.amazon.com/gp/product/B00IVPU786)
@@ -39,7 +39,7 @@ What you will need:
 If you haven't already done so, complete the previous lab - ['Nightlight']({{ site.url }}/workshop/thingy-4-windows/nightlight/).
 
 # Overview
-In this lab you will combine the Nightlight device you previously created (a Grove LED module and a Grove Light Sensor) with several other input sensors and output actuators. The device will:
+In this lab you will combine the Nightlight device you previously created with several other input sensors and output actuators. The device will:
 
 * Capture the amount of ambient light
 * Increase the brightness intensity of an LED inversely to the amount of ambient light measured.
@@ -60,7 +60,7 @@ Connect the sensors and actuators to the GrovePi shield as illustrated here:
 * Connect the RGB LCD Display to one of the I2C ports.
 
 # Build the App
-Like the ['Hello, Windows IoT!'](../hello-windows-iot/) and ['Nightlight'](../nightlight/) labs, the _ThingLabs Thingy&trade;_ application is a _Background Application (IoT)_ project in Visual Studio. 
+Like the apps in the ['Hello, Windows IoT!'](../hello-windows-iot/) and ['Nightlight'](../nightlight/) labs, the _ThingLabs Thingy&trade;_ application is a _Background Application (IoT)_ project in Visual Studio. 
 
 1. Launch Visual Studio and start a new __Background Application (IoT)__ (found in the _Templates -> C# -> Windows -> Windows IoT Core_ node).
 2. Name the application __Thingy__.
@@ -71,7 +71,7 @@ Like the ['Hello, Windows IoT!'](../hello-windows-iot/) and ['Nightlight'](../ni
     Install-Package GrovePi
     ```
     
-    * Verify that GrovePi v1.0.7 was installed but reading the log in the Package Manager Console.
+    * Verify that GrovePi v1.0.7 was installed by reading the log in the Package Manager Console.
     
 4. Open the __StartupTask.cs__ file. Add the following to the __using__ statements at the top of the file. 
 
@@ -86,17 +86,17 @@ using Windows.System.Threading;
 ## Define the Class-level Variables for the Thingy
 
 ### Sensor Variables
-There are five (5) class-level variables you will use to refer to the physical sensors and actuators:
+There are six class-level variables you will use to refer to the physical sensors and actuators:
 
-* Digital Sensors and Actuators - sensors and actuators that have on/off (i.e. 0 or 1) states.
-  * __buzzer__ - an _IBuzzer_ instance that derives from `GrovePi.Sensor` and exposes properties to get the current status of the buzzer and change its state. 
-  * __button__ - an _IButton_ instance that derives from `GrovePi.Sensor` and exposes properties to get the current status of the button and change its state. 
-  * __redLed__ - an _ILed_ instance that derives from `GrovePi.Sensor` and exposes properties to get the current status of the red LED and change its state.
-  * __blueLed__ - an _ILed_ instance that derives from `GrovePi.Sensor` and exposes properties to get the current status of the blue LED and change its state.
-* Analog Sensors - sensors that expose a range of measurement from 0-1023.
-  * __lightSensor__ - an _ILightSensor_ instance that enables measuring ambient light and is connected on an analog pin.
-* Inter-Integrated Circuit (I2C - pronounces Eye-Squared-See) - a multi-master, multi-slave, single-ended, serial computer bus
-  * __display__ an _IRgbLcdDisplay__ instance that enables displaying text and background color on a screen.
+* Digital Sensors and Actuators - Sensors and actuators that have on/off (i.e. 0 or 1) states.
+  * __buzzer__ - An _IBuzzer_ instance that derives from `GrovePi.Sensor` and exposes properties to get the current status of the buzzer and change its state. 
+  * __button__ - An _IButton_ instance that derives from `GrovePi.Sensor` and exposes properties to get the current status of the button and change its state. 
+  * __redLed__ - An _ILed_ instance that derives from `GrovePi.Sensor` and exposes properties to get the current status of the red LED and change its state.
+  * __blueLed__ - An _ILed_ instance that derives from `GrovePi.Sensor` and exposes properties to get the current status of the blue LED and change its state.
+* Analog Sensors - Sensors that expose a range of measurement from 0-1023.
+  * __lightSensor__ - An _ILightSensor_ instance that enables measuring ambient light and is connected on an analog pin.
+* Inter-Integrated Circuit (I2C - pronounces Eye-Squared-See) - A multi-master, multi-slave, single-ended, serial computer bus.
+  * __display__ - An _IRgbLcdDisplay__ instance that enables displaying text and background color on a screen.
 
 You will define these as class-level variables to be used throughout the application. 
 
@@ -123,14 +123,14 @@ IRgbLcdDisplay display;
 {% endhighlight %}
 
 ### State and Other Variables
-There are six (6) class-level variables you will use in this application:
+There are six class-level variables you will use in this application:
 
-* __ambientLightThreshold__ - an _int_ constant between 0 (dark) and 1023 (bright) that defines the measurement of ambient light at which the LED should be in a completely off state.
-* __brightness__ - an _int_ variable to track the current LED brightness.
-* __actualAmbientLight__ - an _int_ variable to track the current value of ambient light as measured by the light sensor.
-* __buttonState__ - a _SensorStatus_ variable to track the state of the button.
-* __timer__ - a _ThreadPoolTimer_ instance that will control the rate of sensor and actuator interactions. 
-* __deferral__ - a _BackgroundTaskDeferral_ instance that will allow the application to continue to run even after the `Run()` method has completed.
+* __ambientLightThreshold__ - An _int_ constant between 0 (dark) and 1023 (bright) that defines the measurement of ambient light at which the LED should be in a completely off state.
+* __brightness__ - An _int_ variable to track the current LED brightness.
+* __actualAmbientLight__ - An _int_ variable to track the current value of ambient light as measured by the light sensor.
+* __buttonState__ - A _SensorStatus_ variable to track the state of the button.
+* __timer__ - A _ThreadPoolTimer_ instance that will control the rate of sensor and actuator interactions. 
+* __deferral__ - A _BackgroundTaskDeferral_ instance that will allow the application to continue to run even after the `Run()` method has completed.
 
 These are class-level variables that will be used primarily to track state of the sensors.
  
@@ -194,9 +194,9 @@ public void Run(IBackgroundTaskInstance taskInstance)
 {% endhighlight %}
 
 ## Handle the TimePeriodElapsed Event
-As with the [Nightlight lab](../nightlight/), you will handle measuring light data and setting the LED brightness in the timer's _TimePeriodElapsed_. You will also poll the _Thingy_ for button state changes and handle them by doing the following:
+As with the [Nightlight](../nightlight/) lab, you will handle measuring light data and setting the LED brightness in the timer's _TimePeriodElapsed_. You will also poll the _Thingy_ for button state changes and handle them by doing the following:
 
-1. Evaluate the `button.CurrentState` against the `buttonState` state variable. If there is a state change...
+1. Evaluate the `button.CurrentState` against the `buttonState` state variable. If there is a state change you will:
   * Update the `buttonState` value to the new state.
   * Use the `ChangeState()` method to change the state of the __blue__ LED and the buzzer.
 2. Get the light value from the light sensor by calling `lightSensor.SensorValue()`.
@@ -278,7 +278,7 @@ private void Timer_Tick(ThreadPoolTimer timer)
 {% endhighlight %}
 
 ## Create a Range Mapping Method
-In the preceding code, you determine the LED brightness by mapping the delta of the actual light and the threshold value to an 8-bit range. This is don using a custom method - `Map()`. Using the Visual Studio light bulb feature, add the `Map()` method.
+In the preceding code, you determine the LED brightness by mapping the delta of the actual light and the threshold value to an 8-bit range. This is done using a custom method - `Map()`. Using the Visual Studio light bulb feature, add the `Map()` method.
 
 Where you wrote `brightness = Map(ambientLightThreshold - actualAmbientLight, 0, ambientLightThreshold, 0, 255);`, do the following:
 
@@ -295,31 +295,31 @@ private int Map(int src, int in_min, int in_max, int out_min, int out_max)
 }
 {% endhighlight %}
 
-If you want to compare your code with the master lab code, you can find it [in the __ThingLabs - Thingy4Windows__ Github repo here](https://github.com/ThingLabsIo/Thingy4Windows/blob/master/Thingy/Thingy/StartupTask.cs).
+If you want to compare your code with the master lab code, you can find it in the __ThingLabs - Thingy4Windows__ Github repo [here](https://github.com/ThingLabsIo/Thingy4Windows/blob/master/Thingy/Thingy/StartupTask.cs).
 
 # Run the App on a Device
-As in the previous lab, you will build the application locally and then deploy it to the RPi2 and open a remote debugging session using Visual Studio.
+As in the previous lab, you will build the application locally and then deploy it to the Raspberry Pi 2 and open a remote debugging session using Visual Studio.
 
 1. Ensure __ARM__ is selected in the _Solution Platforms_ drop-down list in the toolbar
 2. Select __Remote Machine__ from the _Device_ list in the toolbar.
 
 ![Select ARM](/images/workshops/thingy-4-windows/target_remote_machine.png)
 
-You will be prompted with the _Remote Connections_ dialog. You can select your device in one of two ways:
+3. You will be prompted with the _Remote Connections_ dialog. You can select your device in one of two ways:
 
-1. Select your device from the list of _Auto Detected_ devices, __OR__ 
-2. Type in the __device name__ or __IP address__ into the _Manual Configuration_ text box (set the _Authentication Mode_ to __Universal (Unencrypted Protocol)__) and click __Select__.
+* Select your device from the list of _Auto Detected_ devices, __OR__ 
+* Type in the __device name__ or __IP address__ into the _Manual Configuration_ text box (set the _Authentication Mode_ to __Universal (Unencrypted Protocol)__) and click __Select__.
 
 ![Select your device](/images/workshops/thingy-4-windows/find_remote_machine.png)
 
->NOTE: You can verify or modify these values by navigating to the project properties (double-click the Properties node in Solution Explorer and click on the Debug tab on the left.
+>NOTE: You can verify or modify these values by navigating to the project properties. This can be accomplished by double-clicking the Properties node in Solution Explorer and clicking on the Debug tab on the left.
 
-1. Now press __F5__ to run the application and you should see (in the _Output_ window) it building locally and then deploying on the RPi2.
+4. Now press __F5__ to run the application and you should see (in the _Output_ window) it building locally and then deploying on the Raspberry Pi 2.
 
 Once the application is deployed and running, try changing the amount of light the light sensor is exposed to. As it gets darker, the LED should glow brighter (it will glow brightest in complete darkness). When there is enough light, the threshold will be surpassed and the LED will turn off completely.
 
 # Conclusion &amp; Next Steps
-Congratulations! You have created the ThingLabs Thingy&trade;. In the following labs you will use the Thingy to connect to Azure IoT services and track all of this data. The concepts you learned in this lab are:
+Congratulations! You have created the ThingLabs Thingy&trade;. In subsequent labs you will use the Thingy to connect to Azure IoT services and track all of this data. The concepts you learned in this lab are:
 
 1. Working with multiple sensors and actuators.
 2. Maintaining state while constantly polling sensors for state changes.
@@ -327,6 +327,6 @@ Congratulations! You have created the ThingLabs Thingy&trade;. In the following 
 
 In the [next lab][nextlab] you will set up an Azure IoT Hub to use with the ThingLabs Thingy&trade;. 
 
-<a class="radius button small" href="{{ site.url }}/workshop/thingy-4-windows/setup-azure-iot-hub/">Go to 'Setting Up Azure IoT' ›</a>
+<a class="radius button small" href="{{ site.url }}/workshop/thingy-4-windows/setup-azure-iot-hub/">Go to 'Lab 04: Setting Up an Azure IoT' ›</a>
 
 [nextlab]: /workshop/thingy-4-windows/setup-azure-iot-hub/

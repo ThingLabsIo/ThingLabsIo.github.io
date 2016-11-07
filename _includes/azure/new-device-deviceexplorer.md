@@ -1,9 +1,10 @@
-Using the _DeviceExplorer_...
+To create a new azure IoT device with DeviceExplorer, do the following:
 
-1. Select the __Management__ tab
-2. Click the __Create__ button. 
-3. In the dialog that opens, enter the name of your device (e.g. _Thingy_). 
-4. Click the __Create__ button, and click __Done__ on the confirmation dialog that opens.
+1. Open DeviceExplorer.
+2. Select the __Management__ tab.
+3. Click the __Create__ button. 
+4. In the dialog that opens, enter the name of your device (e.g. _Thingy_). 
+5. Click the __Create__ button, and click __Done__ on the confirmation dialog that opens.
 
 ![Create a Device]({{site.url}}/images/rpi2/rpi2_deviceexplorer02.png)
 

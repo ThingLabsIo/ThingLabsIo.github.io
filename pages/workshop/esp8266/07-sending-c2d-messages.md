@@ -1,8 +1,8 @@
 ---
 layout: "page-fullwidth"
-title: "Sending Cloud-to-Device (C2D) Messages"
+title: "Lab 07: Sending Cloud-to-Device (C2D) Messages"
 subheadline: "Building Connected Things with an ESP8266 and Microsoft Azure"
-teaser: "In this lab you will extend your website by adding the ability to control the ThingLabs Thingy&trade; remotely. The website will send messages to the Thingy via Azure."
+teaser: "In this lab, you will use the Azure Web App from Lab 06 to control the ThingLabs Weather Station remotely. The Web App will send messages to the Weather Station via Azure, which the Weather Station will receive, process, and act upon."
 show_meta: true
 comments: true
 header: no
@@ -15,21 +15,22 @@ permalink: /workshop/esp8266/sending-c2d-messages/
 *  Auto generated table of contents
 {:toc}
 
-In this lab you will extend your website by adding the ability to control the ThingLabs Weather Station remotely. The website will send messages to the Thingy via Azure.
 
 # Create the Lua Program in ESPlorer 
 
-As in the previous lab, you'll write lua code in ESplorer. This code (below), operates the photocell and LED as a nightlight.
+As in the previous lab, you'll write lua code in ESplorer. The code below, operates the photocell and LED as a nightlight.
 
-1. Launch ESPlorer.jar, select your serial port, and press the 'Open' button
+1. Use an A to Micro B USB cable to connect the ESP2866 to your computer.
+ 
+2. Launch ESPlorer.jar, select your serial port, and press the 'Open' button.
 
 <img src="/images/esplorer-connect.png" alt="Launch Esplorer, connect your device" style="width: 400px;"/>
 
-2. Create a new script in Esplorer with these contents. Save it as Lab05.lua
+3. Create a new script in Esplorer with these contents. Save it as Lab07.lua
 
 {% highlight lua %}
 --
--- LAB 05: Receiving Cloud-to-Device (C2D) Messages
+-- LAB 07: Receiving Cloud-to-Device (C2D) Messages
 --
 -- This program receives commands from the cloud and executes them.
 --
@@ -147,17 +148,17 @@ function publish_data()
 end
 {% endhighlight %}
 
-# Run the App on the Device
-To run the application you will save it to the ESP8266, reset the device, then invoke the code.
+# Run the Lua Program on the ESP8266
+To run Lab07.lua on your Weather Station, do the following:
 
 1. Press the button 'Save to ESP' on the lower left of the ESPlorer interface.
-2. Push the reset button on the ES8266
+2. Push the reset button on the ES8266.
 3. When it's done booting, click the 'Reload' button on the right side.
    You should see a list of files on the ESP8266
 4. Double click the file on the right hand side that you saved.
    This should execute your code.
 
-# Run the Application Again Turning the LED On and Off
+# Run the Lua Program Again Turning the LED On and Off
 Now you can browse to the website you deployed in Lab 05 and use the buttons to turn the LED on and off.
 
 1. Browse to your website and enter the name of your device as the __device id__.

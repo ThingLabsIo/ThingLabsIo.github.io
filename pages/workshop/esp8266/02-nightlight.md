@@ -1,6 +1,6 @@
 ---
 layout: "page-fullwidth"
-title: "Nightlight"
+title: "Lab 02: Nightlight"
 subheadline: "Building Connected Things with an ESP8266 and Microsoft Azure"
 teaser: "In this lab, you will create a device that responds to ambient light and changes the intensity of an LED - a nightlight."
 show_meta: true
@@ -18,25 +18,26 @@ permalink: /workshop/esp8266/nightlight/
 In this lab, you will create a simple _Thing_, using Lua on your ESP8266, that changes the intensity of a LED in response to ambient light measured with a photocell. Your own nightlight! 
 
 # Bill of Materials
-In this lab series you will need the following:
+In this lab you will need the following:
 
 1. [Microsoft Azure IoT Starter Kit w/ Adafruit Feather HUZZAH](https://www.adafruit.com/product/3032), including
     - Photocell
     - 1 - 10 KOhm Resistor
+    - A to Micro B USB cable
     
 # Overview
-In this lab, you will combine the output device you previously made (The LED) with an input sensor (a Photocell). You will use the measurement of ambient light from the Photocell to control the intensity of the LED. You are making a nightlight. 
+In this lab, you will combine the output device you made in [Lab01](../01-hello-lua-iot/) with an input sensor (a Photocell). You will use the measurement of ambient light from the Photocell to control the intensity of the LED. You are making a nightlight. 
 
 A _photocell_, also known as a _light-dependent resistor (LDR)_ or a _photoresistor_, works by limiting the amount of voltage that passes through it based on the intensity of light detected. The resistance decreases as light input increases - in other words, the more light, the more voltage passes through the photoresistor. By measuring how much voltage is passed through the photoresistor you can determine the range of ambient light, using a measurement of 0-1023.
 
-In this lab, you will measure the amount of ambient light and increase the brightness intensity of an LED at an inverse rate to the amount of light (i.e. as it gets darker the LED gets brighter). In the previous lab, you connected the LED sensor to digital pin 4, which only supports On/Off states. There is a technique for using a digital device (like an LED) to simulate analog behavior, such as fading the brightness of an LED over a range of 256 value stops (0-255) instead of simply 0 or 1 - _Pulse Width Modulation_.
+In this lab, you will measure the amount of ambient light and increase the brightness intensity of an LED at an inverse rate to the amount of light (i.e. as it gets darker the LED gets brighter). In the previous lab, you connected the LED sensor to digital pin 4, which only supports On/Off states. There is a technique for using a digital device (like an LED) to simulate analog behavior, such as fading the brightness of an LED over a range of 256 value stops (0-255) instead of simply 0 or 1: _Pulse Width Modulation_.
 
 # Pulse Width Modulation (PWM)
 Pulse Width Modulation (PWM) is a technique for simulating analog values on a digital actuator. PWM simulates analog data by creating a square wave (basically a repeating switch between on and off) where the duration of 'on' time is the pulse width. If the square wave has a 50% pulse width (more commonly known as a duty cycle), then the output from that pin is equal amounts on and off. If the duty cycle is 25% then the output from the pin will be on for only one-quarter of the duty cycle (inversely it will be off for three times as long as it is on - 25% on, 75% off).
 
 ![PWM Duty Cycle]({{site.url}}/images/duty-cycle.jpg)
 
-Because the time window of a cycle is too fast for the human eye to perceive (about 2 milliseconds for this example), instead of causing an LED to strobe or flicker, it simply appears to be more or less bright. Using a 25% duty cycle the LED would be __On__ for half a millisecond and __Off__ for 1.5 milliseconds, which makes the LED appear to be at 25% brightness. So while we aren't truly sending analog data to a digital LED, we are using PWM to simulate the effect of analog data.
+Because the time window of a cycle is too fast for the human eye to perceive (about 2 milliseconds for this example), we don't perceive the LED as flickering.  Instead, we perceive the LED as more or less bright. Using a 25% duty cycle the LED would be __On__ for half a millisecond and __Off__ for 1.5 milliseconds, which makes the LED appear to be at 25% brightness. So while we aren't truly sending analog data to a digital LED, we are using PWM to simulate the effect of analog data.
 
 NodeMCU (our firmware) only supports _Pulse Width Modulation (PWM)_ on a maximum of 6 pins.
 
@@ -52,11 +53,13 @@ Wire up the components as shown here:
 
 As in the previous lab, you'll write lua code in ESplorer. This code (below), operates the photocell and LED as a nightlight.
 
-1. Launch ESPlorer.jar, select your serial port, and press the 'Open' button
+1. Use an A to Micro B USB cable to connect the ESP2866 to your computer.
+
+2. Launch ESPlorer.jar, select your serial port, and press the 'Open' button
 
 <img src="/images/esplorer-connect.png" alt="Launch Esplorer, connect your device" style="width: 400px;"/>
 
-2. Create a new script in Esplorer with these contents. Save it as Lab02.lua
+3. Create a new script in Esplorer with these contents. Save it as Lab02.lua
 
 {% highlight lua %}
 --
@@ -114,8 +117,8 @@ end
 tmr.alarm(1, 100, tmr.ALARM_AUTO, check_light)
 {% endhighlight %}
 
-# Run the App on the Device
-To run the application you will save it to the ESP8266, reset the device, then invoke the code.
+# Run the Lua Program on the ESP2866
+To run the Lua program on the ESP2866, do the following:
 
 1. Press the button 'Save to ESP' on the lower left of the ESPlorer interface.
 2. Push the reset button on the ES8266
@@ -132,6 +135,6 @@ Congratulations! You have created a _Thing_ that uses an input sensor to measure
 
 In the [next lab][nextlab], you will extend this device to build the __ThingLabs Weather Station__ - a multi-sensor, device you will use for the remainder of this workshop.
 
-<a class="radius button small" href="{{ site.url }}/workshop/esp8266/weather/">Go to 'ThingLabs Weather Station' ›</a>
+<a class="radius button small" href="{{ site.url }}/workshop/esp8266/weather/">Go to 'Lab 03: ThingLabs Weather Station' ›</a>
 
 [nextlab]: /workshop/esp8266/weather/

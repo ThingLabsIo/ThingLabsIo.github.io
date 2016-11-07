@@ -1,6 +1,6 @@
 ---
 layout: "page-fullwidth"
-title: "Setting Up Azure IoT"
+title: "Lab 04: Setting Up Azure IoT"
 subheadline: "Building Connected Things with an ESP8266 and Microsoft Azure"
 teaser: "In this lab, you will provision an Azure IoT Hub and an IoT Hub device."
 show_meta: true
@@ -14,35 +14,33 @@ permalink: /workshop/esp8266/setup-azure-iot-hub/
 *  Auto generated table of contents
 {:toc}
 
-In this lab, you will provision a new Azure IoT Hub. Once you have the IoT Hub created, you will be able to create a new Azure IoT device (a software reference to your physical device) that you will use to send telemetry to Azure.
+In this lab, you will provision a new Azure IoT Hub. Creating and provisioning an IoT Hub will allow you to create new Azure IoT devices (a software reference to your physical device) that can send telemetry data to Azure.
 
 # Bill of Materials
-What you will need:
+In this lab you will need the following:
 
 1. An Azure Account.
 
 # Setup an Azure IoT Hub
 {% include azure/setup-iot-hub.md %}
 
-# Option 1: Install the IoT Hub Explorer Command Line Interface
-
-__Cross Platform__
-
-{% include azure/install-iothub-explorer.md %}
-
-# Create a New Azure IoT Device with the IoTHub-Explorer
-{% include azure/new-device-iothubexplorer.md %}
-
-# Option 2: Install Azure IoT Hub DeviceExplorer (Windows Only)
-
-__Windows Only__
+# Option 1: Install Azure IoT Hub DeviceExplorer (Windows Only)
 
 {% include azure/install-device-explorer.md %}
 
-# Create a New Azure IoT Device with the DeviceExplorer
+## Create a New Azure IoT Device with the DeviceExplorer
 {% include azure/new-device-deviceexplorer.md %}
 
 For more information on how to use DeviceExplorer, the Project [deviceexplorer](https://github.com/Azure/azure-iot-sdks/blob/master/tools/DeviceExplorer/doc/how_to_use_device_explorer.md) is available on Github.
+
+# Option 2: Install the IoT Hub Explorer Command Line Interface (Cross Platform)
+
+{% include azure/install-iothub-explorer.md %}
+
+## Create a New Azure IoT Device with the IoTHub-Explorer
+{% include azure/new-device-iothubexplorer.md %}
+
+
 
 
 # Conclusion &amp; Next Steps
@@ -50,6 +48,6 @@ Congratulations! You have created an Azure IoT Hub that you will connect devices
 
 In the [next lab][nextlab], you'll deploy an Azure Web Site that uses D3.js to visualize the output of your Weather Station.
 
-<a class="radius button small" href="{{ site.url }}/workshop/esp8266/sending-d2c-messages/">Go to 'Sending Device-to-Cloud (D2C) Messages' ›</a>
+<a class="radius button small" href="{{ site.url }}/workshop/esp8266/sending-d2c-messages/">Go to 'Lab 05: Sending Device-to-Cloud (D2C) Messages' ›</a>
 
 [nextlab]: /workshop/esp8266/sending-d2c-messages/

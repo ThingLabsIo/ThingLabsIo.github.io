@@ -1,6 +1,6 @@
 ---
 layout: "page-fullwidth"
-title: "Storing and Displaying Data"
+title: "Lab 06: Storing and Displaying IoT Data"
 subheadline: "Building Connected Things with an ESP8266 and Microsoft Azure"
 teaser: "In this lab you will build a data pipeline that captures the data coming into IoT Hub, processes it with Azure Stream Analytics, then routes it to downstream services. The first service you'll build will consume the data and present it through an Azure Web App where it is rendered as a real-time graph."
 show_meta: true
@@ -15,13 +15,13 @@ permalink: /workshop/esp8266/storing-displaying-data/
 *  Auto generated table of contents
 {:toc}
 
-In this lab you will build a data pipeline that captures the data coming into IoT Hub, processes it with Azure Stream Analytics, then routes it to downstream services. The first service you'll build will consume the data and present it through an Azure Web App where it is rendered as a real-time graph.
+In this lab, you will build a data pipeline that captures the data coming into your Azure IoT Hub, processes the data with Azure Stream Analytics, and then routes the data to downstream services. You will also create one of those downstream services. Your service will consume the data and present it through an Azure Web App where it will be rendered as a real-time graph.
 
-We will use the light data you are sending from [lab 5](../sending-d2c-messages) and deploy a web application to azure that will render the data so you can visualize it even if you don't have access to PowerBI.
+We will use the light data you are sending from [lab 05](../sending-d2c-messages) and deploy a web application to Azure that will render the data so you can visualize it even if you don't have access to PowerBI.
 
 In an [earlier lab](../setup-azure-iot-hub/) you provisioned an Azure IoT Hub and in the [previous lab](../sending-d2c-messages/) you built a physical device...a _Thing_. You coded an application to collect
-data from the device and send it to your IoT Hub. At the end of the previous lab you had data going into your IoT Hub but you weren't yet doing 
-anything with it. Let's change that.
+data from the device and send it to your IoT Hub. At the end of the previous lab you had data going into your IoT Hub but you weren't doing 
+anything with the data. This lab will make use of that unused data.
 
 # Using Stream Analytics to Process and Route IoT Data
 Azure Stream Analytics is a service that does real-time data processing in the cloud. You will create a new Stream Analytics job and define the 
@@ -36,18 +36,18 @@ First, you need to create an Event Hub to queue the data coming out of the Azure
 
 1. Select __+__ > __APP SERVICES__ > __SERVICE BUS__ > __EVENT HUB__ > __QUICK CREATE__ and enter the following:
     - EVENT HUB NAME: You can use anything that is a valid name here, such as thinglabs-eventhub-[yourname, initials, etc]
-    - REGION: If you created your IoT Hub in _East US_, select __East US 2__. Select the same region you created your IoT Hub in.
+    - REGION: If you created your IoT Hub in _East US_, select __East US 2__. For other regions, select the same region you created your IoT Hub in.
     - SUBSCRIPTION: Select the subscription you've created your resources in.
     - NAMESPACE: You can use anything that is a valid name here, such as thinglabs-eh-[yourname, initials, etc]
     
 ![Configure Event Hub](/images/ehquickcreate.png)
 
 ## Create the Stream Analytics Job
-Next, you can create the Stream Analytics Job by opening a new browser tab and navigate to [https://manage.windowsazure.com](https://manage.windowsazure.com){:target="_blank"}. Login if necessary. Click on the __NEW__ icon in the lower-left corner.
+Next, you can create the Stream Analytics Job by opening a new browser tab and navigating to [https://manage.windowsazure.com](https://manage.windowsazure.com){:target="_blank"}. Login if necessary. Click on the __NEW__ icon in the lower-left corner.
 
 1. Select __DATA SERVICES__ > __STREAM ANALYTICS__ > __QUICK CREATE__ and enter the following:
-    - JOB NAME: You can use anything you'd like here...like __iotlab__ or something similar so you can identify it easily later.
-    - REGION: If you created your IoT Hub in _East US_, select __East US 2__. Select the same region you created your IoT Hub in.
+    - JOB NAME: You can use whatever name you like. (e.g. __iotlab__)
+    - REGION: Select the same region you created your IoT Hub in. For example, if you created your IoT Hub in _East US_, select __East US 2__. 
     - REGIONAL MONITORING STORAGE ACCOUNT: Select or create a storage account.
 
     ![Defining a new Stream Analytics job](/images/newasa.png)
@@ -71,10 +71,10 @@ The data will come in as a data stream from the Event Hub that was automatically
     - SOURCE TYPE - _Data stream_
     - Source - _IoT hub_
     - SUBSCRIPTION - _Provide IoT hub settings manually_
-    - IOT HUB - type the name of the IoT Hub you created earlier
+    - IOT HUB - Type the name of the IoT Hub you created earlier.
     - ENDPOINT - _Messaging_
-    - SHARED ACCESS POLICY NAME - leave this as the default, which should be _iothubowner_
-    - SHARED ACCESS POLICY KEY - type the primary key of the IoT Hub you created earlier
+    - SHARED ACCESS POLICY NAME - Leave this as the default, which should be _iothubowner_.
+    - SHARED ACCESS POLICY KEY - Type the primary key of the IoT Hub you created earlier.
     - CONSUMER GROUP - __AnalyticsConsumerGroup__
     - EVENT SERIALIZATION - _JSON_
     - ENCODING - _UTF-8_
@@ -88,7 +88,9 @@ After a few seconds, a new input will be listed.
 ### Define Output Data Streams
 Before defining the query that will select data from the input and send it to the outputs you need to define the outputs. For this lab you will output the results of the query to an Azure Web Dashboard you'll create later and/or Power BI dataset for reporting.
 
-You will create two outputs, one for data to flow to EventHub and a second for data to flow to PowerBI, so for EventHub:
+You will create two outputs, one for data to flow to EventHub and a second for data to flow to PowerBI. 
+
+To define  the EventHub output data stream, do the following:
 
 1. Click on the _Outputs_ header.
 
@@ -99,11 +101,11 @@ You will create two outputs, one for data to flow to EventHub and a second for d
     - OUTPUT ALIAS - __ThingLabsOutput__
     - SINK - _Event hub_
     - SUBSCRIPTION - _Provide event hub settings manually_
-    - SERVICE BUS NAMESPACE - type the namespace of the service bus you created earlier
-    - EVENT HUB NAME - type the name of the event hub you created earlier
+    - SERVICE BUS NAMESPACE - Type the namespace of the service bus you created earlier.
+    - EVENT HUB NAME - Type the name of the event hub you created earlier.
     - EVENT HUB POLICY NAME - _RootManageSharedAccessKey_
-    - EVENT HUB POLICY KEY - type the key of the Event Hub you created earlier
-    - PARTITION KEY COLUMN - you can leave this blank
+    - EVENT HUB POLICY KEY - Type the key of the Event Hub you created earlier.
+    - PARTITION KEY COLUMN - You can leave this blank.
     - EVENT SERIALIZATION - _JSON_
     - ENCODING - _UTF-8_
     - FORMAT - _Line separated_
@@ -119,7 +121,7 @@ In the query, you want to select data from the input stream and put it into the 
 
     ![Create the query](/images/asaquery.png)
 
-2. Write the following query, make sure to update _DeviceInputStream_ and _ThingLabsOutput_ in the following query to the stream analytics input and output values you created in the previous steps.
+2. Write the following query. Make sure to update _DeviceInputStream_ and _ThingLabsOutput_ to the stream analytics input and output values you created in the previous steps.
 
 {% highlight sql %}
 WITH ProcessedData as (
@@ -156,9 +158,7 @@ SELECT * INTO [ThingLabsOutput] FROM ProcessedData
 
 If your app from the [previous lab](../sending-telemetry/) isn't still running, go ahead and start it up. It will take a few minutes for the Stream Analytics job to get started and to start sending data to Power BI, but you should see _MyIoTDataSet_ show up in Power BI within a few minutes. Remember, the _TumblingWindow_ is set to 5-seconds, so PowerBI will only update every 5-seconds.
 
-## Create Azure Website that Shows EventHub Data
-
-Content Goes here
+## Create an Azure Website that Shows EventHub Data
 
 You need to create a Web App to visualize the data coming out of the Event Hub. Click on the __NEW__ icon in the 
 lower-left corner.
@@ -168,7 +168,7 @@ lower-left corner.
 1. Select __+__ > __COMPUTE__ > __WEB APP__ > __QUICK CREATE__
     - URL: You can use anything that is a valid name here, such as thinglabs-eventhub-[yourname, initials, etc]
     - APP SERVICE PLAN: Select "Create a new App Service Plan".
-    - REGION: If you created your IoT Hub in _East US_, select __East US 2__. Select the same region you created your IoT Hub in.
+    - REGION: Select the same region you created your IoT Hub in. For example, if you created your IoT Hub in _East US_, select __East US 2__.
     
     ![Configure Event Hub](/images/webappquickcreate.png)
 
@@ -227,6 +227,6 @@ Congratulations! In this hands-on workshop you experienced an IoT solution end-t
 
 In the [next lab][nextlab] you will modify the web application to include a capability to send a Cloud-to-Device (C2D) message. 
 
-<a class="radius button small" href="{{ site.url }}/workshop/esp8266/sending-c2d-messages/">Go to 'Sending Cloud-to-Device (C2D) Messages' ›</a>
+<a class="radius button small" href="{{ site.url }}/workshop/esp8266/sending-c2d-messages/">Go to 'Lab 07: Sending Cloud-to-Device (C2D) Messages' ›</a>
 
 [nextlab]: ../sending-c2d-messages/

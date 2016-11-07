@@ -1,6 +1,6 @@
 ---
 layout: "page-fullwidth"
-title: "Sending Cloud-to-Device (C2D) Messages"
+title: "Lab 97: Sending Cloud-to-Device (C2D) Messages"
 subheadline: "Building Connected Things with Windows 10 IoT and Microsoft Azure"
 teaser: "In this lab you will extend your website by adding the ability to control the THingLabs Thingy&trade; remotely. The website will send messages to the Thingy via Azure."
 show_meta: true
@@ -18,7 +18,7 @@ permalink: /workshop/thingy-4-windows/sending-c2d-messages/
 In this lab you will extend your website by adding the ability to control the ThingLabs Thingy&trade; remotely. The website will send messages to the Thingy via Azure.
 
 # Add Newtonsoft Json Library
-In a previous lab, you built the ThingLabs Thingy&trade; for Windows 10 IoT Core and deployed a website to display data from the Thingy. In this lab, you will send messages from the Microsoft Azure IoT Hub to the Thingy you created in the previous lab. In the same way that you added a NuGet package for the Azure IoT SDK you need to add a package for working with JSON data. 
+In a previous lab, you built the ThingLabs Thingy&trade; for Windows 10 IoT Core and deployed a website to display data from the Thingy. In this lab, you will send messages from the Microsoft Azure IoT Hub to the Thingy. In the same way that you added a NuGet package for the Azure IoT SDK, you need to add a package for working with JSON data. 
 
 1. Open the __Thingy__ project.
 2. Click on the _Project_ menu and select _Manage NuGet Packages._
@@ -38,10 +38,10 @@ public class CommandMessage
 }
 {% endhighlight %}
 
-# Add Method to Receive Message from the Cloud
-Now you will add a method to the end of the __StartupTask__ class that will look for message from the __deviceClient__ that you created in a previous lab.
+# Add A Method to Receive Messages from the Cloud
+Now you will add a method to the end of the __StartupTask__ class that will look for messages from the __deviceClient__ that you created in a previous lab.
 
-1. Locate the end of the __StartupTask__ and add a method called __ReceiveCloudToDeviceMessagesAsync__
+1. Locate the end of the __StartupTask__ and add a method called __ReceiveCloudToDeviceMessagesAsync__.
 
 {% highlight csharp %}
 private async void ReceiveCloudToDeviceMessagesAsync()
@@ -67,7 +67,7 @@ private async void ReceiveCloudToDeviceMessagesAsync()
 }
 {% endhighlight %}
 
-2. Located the end of the __Run(IBackgroundTaskInstance taskInstance)__ method and add a call to the __ReceiveCloudToDeviceMessagesAsync__ method
+2. Locate the end of the __Run(IBackgroundTaskInstance taskInstance)__ method and add a call to the __ReceiveCloudToDeviceMessagesAsync__ method.
 
 {% highlight csharp %}
 public void Run(IBackgroundTaskInstance taskInstance)
@@ -78,8 +78,8 @@ public void Run(IBackgroundTaskInstance taskInstance)
 }
 {% endhighlight %}
 
-# Run the Application Again Turning the LED On and Off
-Now you can browse to the website you deployed in Lab 05 and use the buttons to turn the blue LED on and off.
+# Run the Application Again and Turn the LED On and Off
+Now you can browse to the website you deployed in [lab 05](../sending-d2c-messages) and use the buttons to turn the blue LED on and off.
 
 1. Browse to your website and enter the name of your device as the __device id__.
 2. Press the __LED ON__ button and see your blue led turn on.
