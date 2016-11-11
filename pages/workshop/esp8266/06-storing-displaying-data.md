@@ -215,9 +215,10 @@ lower-left corner.
     ![Thing Labs Web Dashboard - Web App](/images/ThingLabs-Web-Dashboard.png)
 
 ## Optional: PowerBI Dashboard
+Coming soon.
 
-If you have access to PowerBI you can build a similar real-time reporting dashboard in the [Building a PowerBI Dashboard](../06a-powerbi-dashboard).
-<a class="radius button small" href="{{ site.url }}/workshop/thingy-4-windows/powerbi-dashboard/">Go to 'Building a PowerBI Dashboard' ›</a>
+<!-- If you have access to PowerBI you can build a similar real-time reporting dashboard in the [Building a PowerBI Dashboard](../06a-powerbi-dashboard).
+<a class="radius button small" href="{{ site.url }}/workshop/thingy-4-windows/powerbi-dashboard/">Go to 'Building a PowerBI Dashboard' ›</a>-->
  
  
 # Conclusion
