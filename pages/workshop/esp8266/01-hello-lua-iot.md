@@ -133,22 +133,17 @@ To run the Lua application on the ESP2866, do the following:
 
 # Wire the Huzzah Feather ESP2866 to the Power and Ground Rails
 
-Connect the 3V pin to the Red column of holes marked with a '+'.
-Connect the GND pin to the Blue column of holes marked with a '-'.
+Connect the 3V pin to the Red column of holes marked with a '+' and connect the GND pin to the Blue column of holes marked with a '-', as shown below:
 
-This image shows what it should look like:
+<img src="/images/esp8266-rail.png" alt="Wire 3V and GND" style="width: 400px;"/>
 
-<img src="/images/ESP8266-Rail-Wiring.jpeg" alt="Wire 3V and GND" style="width: 400px;"/>
 
 # Add a Three Color LED from the kit
 
-Find the three color LED and the 560 Ohm resistors, then wire it up to pins 1, 2, 5 (aka 4, 5, 14 on the Huzzah) as the following images illustrate:
+Find the three color LED and the 560 Ohm resistors. Wire them up to pins 1, 2, 5 (aka 4, 5, 14 on the Huzzah), then wire the LED to the power rail, as shown below:
 
-<img src="/images/ESP8266-LED-Resistors.jpeg" alt="Connecting Resistors to LED" style="width: 400px;"/>
+<img src="/images/esp8266-led-resistors.png" alt="Connecting Resistors to LED" style="width: 400px;"/>
 
-Then wire the LED to the power Rail, as shown here:
-
-<img src="/images/ESP8266-LED-Power.jpeg" alt="Connecting Power Rail to LED" style="width: 400px;"/>
 
 # Modify the code
 

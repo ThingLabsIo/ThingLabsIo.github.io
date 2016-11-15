@@ -29,14 +29,13 @@ In this lab you will need the following:
 In this lab, you will combine the nightlight you previously built with a DHT22 temmperature/humidity sensor. Your device will record the ambient light, the temperature, and the humidity and use that data to function as a minimal weather station. This data will get sent to Azure so you can start exploring the data processing pipeline for IoT data. 
 
 # Connecting the Sensors
-Connect the DHT22 to the ESP8266 (Huzzah Feather) as shown in these images:
+Connect the DHT22 to the ESP8266 (Huzzah Feather) as shown below:
 
-<img src="/images/ESP8266-DHT-Rails.jpeg" alt="Connecting DHT to Rails" style="width: 400px;"/>
-<img src="/images/ESP8266-DHT-Signal.jpeg" alt="Connecting DHT to ESP8266" style="width: 400px;"/>
+<img src="/images/esp8266-dht.png" alt="Connecting DHT to ESP8266" style="width: 400px;"/>
 
-* Connect the DHT22 Left Connection (when facing it) to +3V
-* Connect the DHT22 Right Connection (when facing it) to Ground
-* Connect the DHT22 Connection 2nd from Left when facing it, to Huzzah Feather Pin 12 (NodeMCU Pin 6)
+* Connect the DHT22 Left Connection (when facing it) to +3V.
+* Connect the DHT22 Right Connection (when facing it) to Ground.
+* Connect the DHT22 Connection 2nd from Left when facing it, to Huzzah Feather Pin 12 (NodeMCU Pin 6).
 
 # Create the Lua Program in ESPlorer 
 

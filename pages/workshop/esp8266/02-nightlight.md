@@ -42,12 +42,12 @@ Because the time window of a cycle is too fast for the human eye to perceive (ab
 NodeMCU (our firmware) only supports _Pulse Width Modulation (PWM)_ on a maximum of 6 pins.
 
 # Connecting the Sensors
-Wire up the components as shown here:
+Wire up the components as shown below:
 
-<img src="/images/ESP8266-Photocell-Wiring.jpeg" alt="Wire up the photocell" style="width: 400px;"/>
+<img src="/images/esp8266-photocell.png" alt="Wire up the photocell" style="width: 400px;"/>
 
-* Connect the Photocell to ADC and Ground
-* Connect the Resistor to +3v and ADC
+* Connect the Photocell to ADC and Ground.
+* Connect the Resistor to +3v and ADC.
 
 # Create the Lua Program in ESPlorer 
 
