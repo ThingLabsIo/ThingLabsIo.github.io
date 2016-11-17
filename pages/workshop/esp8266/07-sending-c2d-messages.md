@@ -29,15 +29,16 @@ As in the previous lab, you'll write lua code in ESplorer. This code (below), op
 
 {% highlight lua %}
 --
--- LAB 04: Sending Device-to-Cloud (D2C) Messages
+-- LAB 05: Sending Cloud-to-Device (C2D) Messages
 --
 -- This program sends the telemetry (light, temperature and humidity) and sends it to the cloud.
+-- It also receives commands from the cloud to turn the RGB LED on and off.
 --
 
 -- Configuration to connect to the MQTT broker.
-DEVICE = "ESP8266-1"
-IOTHUB = "ivan-iothub.azure-devices.net"  
-IOTHUB_DEVICE_CONNECTION_KEY = "mr3hUEdsO13tCUEhU1GQ9OQI4VqzHnnpioSnRhWIdjw="
+DEVICE = "THingLabs-esp8266"
+IOTHUB = "ThingLabsIoTHub.azure-devices.net"
+IOTHUB_DEVICE_CONNECTION_KEY = "XBoriIl+BZTpz6Yk84SPtDxel+wINQy1izIOfEQ4E3w="
 
 -- Standard variables for connecting via MQTT to IoTHUB Do Not Change
 PORT   = 8883
