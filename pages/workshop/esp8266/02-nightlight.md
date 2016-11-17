@@ -43,7 +43,7 @@ NodeMCU (our firmware) only supports _Pulse Width Modulation (PWM)_ on a maximum
 # Connecting the Sensors
 Wire up the components as shown here:
 
-<img src="/images/ESP8266-photocell.png" alt="Wire up the photocell" style="width: 400px;"/>
+<img src="/images/esp8266-photocell.png" alt="Wire up the photocell" style="width: 400px;"/>
 
 * Connect the Photocell to ADC and Ground
 * Connect the Resistor to +3v and ADC
