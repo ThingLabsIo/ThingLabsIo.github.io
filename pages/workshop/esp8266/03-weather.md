@@ -29,8 +29,7 @@ In this lab, you will combine the nightlight you previously built with a DHT22 -
 # Connecting the Sensors
 Connect the DHT22 to the ESP8266 (Huzzah Feather) as shown in these images:
 
-<img src="/images/ESP8266-DHT-Rails.jpeg" alt="Connecting DHT to Rails" style="width: 400px;"/>
-<img src="/images/ESP8266-DHT-Signal.jpeg" alt="Connecting DHT to ESP8266" style="width: 400px;"/>
+<img src="/images/ESP8266-dht.png" alt="Connecting DHT" style="width: 400px;"/>
 
 * Connect the DHT22 Left Connection (when facing it) to +3V
 * Connect the DHT22 Right Connection (when facing it) to Ground
