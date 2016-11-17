@@ -29,7 +29,7 @@ As in the previous lab, you'll write lua code in ESplorer. This code (below), op
 
 {% highlight lua %}
 --
--- LAB 05: Sending Cloud-to-Device (C2D) Messages
+-- LAB 05: Receiving Cloud-to-Device (C2D) Messages
 --
 -- This program sends the telemetry (light, temperature and humidity) and sends it to the cloud.
 -- It also receives commands from the cloud to turn the RGB LED on and off.
