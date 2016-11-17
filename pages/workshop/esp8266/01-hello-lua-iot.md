@@ -140,7 +140,7 @@ This image shows what it should look like:
 
 Find the three color LED and the 560 Ohm resistors. Wire it up to the power rail and pins 1, 2, 5 (aka 4, 5, 14 on the Huzzah) as the following images illustrate:
 
-<img src="/images/ESP8266-led-resistors.png" alt="Connecting Resistors to LED" style="width: 400px;"/>
+<img src="/images/esp8266-led-resistors.png" alt="Connecting Resistors to LED" style="width: 400px;"/>
 
 # Modify the code
 
