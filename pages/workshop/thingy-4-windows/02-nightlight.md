@@ -197,7 +197,7 @@ private void Timer_Tick(ThreadPoolTimer timer)
 {% endhighlight %}
 
 ## Create a Range Mapping Method
-In the preceding code, you determine the LED brightness by mapping the delta of the actual light and the threshold value to an 8-bit range. This is don using a custom method - `Map()`. Using the Visual Studio light bulb feature, add the `Map()` method.
+In the preceding code, you determine the LED brightness by mapping the delta of the actual light and the threshold value to an 8-bit range. This is done using a custom method - `Map()`. Using the Visual Studio light bulb feature, add the `Map()` method.
 
 Where you wrote `brightness = Map(ambientLightThreshold - actualAmbientLight, 0, ambientLightThreshold, 0, 255);`, do the following:
 

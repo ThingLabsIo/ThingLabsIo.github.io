@@ -40,7 +40,7 @@ When you are developing on Windows 10, you choose what tasks you want to enable 
 3. Click on __For developers__ in the left sidebar.
 4. Ensure the __Developer mode__ radio button is selected. If it was not selected, select it and click __Yes__ to switch your Windows 10 installation to developer mode.
 
-   ![Developer Modes]({{ site.urlimg }}/getting-started/developer-mode.png)
+   ![Developer Modes]({{ site.urlimg }}/getting-started/developer-mode.PNG)
    
 5. Save your changes and close the _Settings_ window.  
 
