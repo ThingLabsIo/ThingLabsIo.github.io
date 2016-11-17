@@ -74,7 +74,7 @@ The Lua programming language is a simple language designed to avoid the clutter 
 
 To write your first lua program for the ESP8266 you'll only have to write a few lines of code.
 
-1. Launch ESPlorer.jar, select your serial port, make sure to select 115200 as your baud rate, and then press the 'Open' button
+1. Launch ESPlorer.jar, select your serial port, and press the 'Open' button
 
 <img src="/images/esplorer-connect.png" alt="Launch Esplorer, connect your device" style="width: 400px;"/>
 
@@ -134,13 +134,17 @@ Connect the GND pin to the Blue column of holes marked with a '-'.
 
 This image shows what it should look like:
 
-<img src="/images/esp8266-rail.png" alt="Wire 3V and GND" style="width: 400px;"/>
+<img src="/images/ESP8266-Rail-Wiring.jpeg" alt="Wire 3V and GND" style="width: 400px;"/>
 
 # Add a Three Color LED from the kit
 
-Find the three color LED and the 560 Ohm resistors. Wire it up to the power rail and pins 1, 2, 5 (aka 4, 5, 14 on the Huzzah) as the following images illustrate:
+Find the three color LED and the 560 Ohm resistors, then wire it up to pins 1, 2, 5 (aka 4, 5, 14 on the Huzzah) as the following images illustrate:
 
-<img src="/images/esp8266-led-resistors.png" alt="Connecting Resistors to LED" style="width: 400px;"/>
+<img src="/images/ESP8266-LED-Resistors.jpeg" alt="Connecting Resistors to LED" style="width: 400px;"/>
+
+Then wire the LED to the power Rail, as shown here:
+
+<img src="/images/ESP8266-LED-Power.jpeg" alt="Connecting Power Rail to LED" style="width: 400px;"/>
 
 # Modify the code
 
