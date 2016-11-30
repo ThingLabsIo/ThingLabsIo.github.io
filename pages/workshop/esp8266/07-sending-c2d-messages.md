@@ -32,120 +32,128 @@ As in the previous lab, you'll write lua code in ESplorer. The code below, opera
 --
 -- LAB 07: Receiving Cloud-to-Device (C2D) Messages
 --
--- This program receives commands from the cloud and executes them.
+-- This program sends the telemetry (light, temperature and humidity) and sends it to the cloud.
+-- It also receives commands from the cloud to turn the RGB LED on and off.
 --
 
 -- Configuration to connect to the MQTT broker.
-DEVICE = "ThingLabs-esp8266"
-IOTHUB = "ThingLabsIoTHub.azure-devices.net"  
-IOTHUB_DEVICE_CONNECTION_KEY = "5AohmbYte0vuQtkpUCxTRjcnQOe5bmU2zaotv9hUS/k="
+DEVICE = "THingLabs-esp8266"
+IOTHUB = "ThingLabsIoTHub.azure-devices.net"
+IOTHUB_DEVICE_CONNECTION_KEY = "XBoriIl+BZTpz6Yk84SPtDxel+wINQy1izIOfEQ4E3w="
 
 -- Standard variables for connecting via MQTT to IoTHUB Do Not Change
 PORT   = 8883
 USER   = IOTHUB.."/"..DEVICE
 
 -- Pin Assignment Variables from the previous Labs
+ADCPIN   = 0
 REDLED   = 1
 GREENLED = 2
+LEDPIN   = 3
 BLUELED  = 5
-ADCPIN = 0
-LEDPIN = 3
-DHTPIN = 6
+DHTPIN   = 6
 MAXLIGHT = 1024
+TELEMETRY_TIMER = 2
 
 -- Generate a SAS Token for Azure IoTHub
-PASSWD = generateSasToken(IOTHUB..'/devices/'..DEVICE, IOTHUB_DEVICE_CONNECTION_KEY, 'device', 7 * 24 * 60)
+PASSWD = generateSasToken(IOTHUB.."/devices/"..DEVICE, IOTHUB_DEVICE_CONNECTION_KEY, 7 * 24 * 60)
 
 -- MQTT topics to subscribe
 telemetry_topic="devices/"..DEVICE.."/messages/events/"
 command_topic="devices/"..DEVICE.."/messages/devicebound/#"
-connected = false
 
--- Create an MQTT Client
-esp8266 = mqtt.Client(DEVICE, 240, USER, PASSWD)
+-- Setting up the RGB LED
+pwm.setup(REDLED,   500, 1023)
+pwm.setup(GREENLED, 500, 1023)
+pwm.setup(BLUELED,  500, 1023)
+pwm.start(REDLED)
+pwm.start(GREENLED)
+pwm.start(BLUELED)
 
--- Connect to IoTHub via MQTT
-print "Connecting to MQTT broker. Please wait..."
-esp8266:connect(IOTHUB, PORT, 1, 0, 
-    -- Callback for a successful connection
-    function(client)
-        print("Connected to MQTT: "..IOTHUB..":"..PORT.." as "..DEVICE)
-        connected = true
-        setup()        
-    end,
-    -- Error callback, if connection fails
-    function(client, reason)
-        print("Error Connecting: "..reason)
-    end
-)
+-- On Board LED
+gpio.mode(LEDPIN, gpio.OUTPUT)
 
+-- LED Helper function
 function led(r, g, b)
     pwm.setduty(REDLED, r)
     pwm.setduty(GREENLED, g)
     pwm.setduty(BLUELED, b)
 end
 
-function setup()    
-    esp8266:subscribe(command_topic, 0, function(client)
-        connected = true
-        print("Subscribed to command and control topic.")
-    end)
-
-    tmr.alarm(2, 1000, tmr.ALARM_AUTO, publish_data)
-
-    -- If we get disconnected a callback informs us
-    esp8266:on("offline", function(client)
-        print("MQTT Disconnected.")
-        connected = false
-    end)
-end
-
 -- Sample publish functions:
 function publish_data()
-    if connected == true then
-        -- Turn the LED on
-        gpio.write(LEDPIN, gpio.LOW)
-        light = MAXLIGHT - adc.read(ADCPIN)
-        
-        status, temperature, humidity, temperature_dec, humidity_dec = dht.read(DHTPIN)
-        if status == dht.OK then
-            -- Integer firmware using this example
-            -- print(string.format("DHT Temperature:%d.%03d;Humidity:%d.%03d\r\n",
-            --       math.floor(temperature),
-            --       temperature_dec,
-            --       math.floor(humidity),
-            --       humidity_dec
-            -- ))
-            
-            -- Float firmware using this example
-            -- print("DHT Temperature: "..temperature.."; ".."Humidity: "..humidity)
-            print("Light: "..light.." Temperature: "..temperature.." ".."Humidity: "..humidity)
-        elseif status == dht.ERROR_CHECKSUM then
-            print( "DHT Checksum error." )
-        elseif status == dht.ERROR_TIMEOUT then
-            print( "DHT timed out." )
-        end
-        
-        -- Construct the payload of data
-        payload =  
-            "{ \"deviceId\" : \""..DEVICE.."\","..
-            "\"location\" : \"Instructor ESP8266 Virtual Weather Station\""..","..
-            "\"celsius\" :"..temperature..","..
-            "\"relativeHumidity\" :"..humidity..","..
-            "\"lightLevel\" :"..light.."}"
+    -- Turn the LED on
+    gpio.write(LEDPIN, gpio.LOW)
+    light = MAXLIGHT - adc.read(ADCPIN)
     
-        -- Send it to the cloud via mqtt
-        esp8266:publish(telemetry_topic, payload, 1, 0, function(client)
-            print("Data published successfully.")
-        end)
-
-        -- Set the LED Brightness
-        led(light, light, light)
-    
-        -- Turn the LED off
-        gpio.write(LEDPIN, gpio.HIGH)
+    status, temperature, humidity, temperature_dec, humidity_dec = dht.read(DHTPIN)
+    if status == dht.OK then
+        print("Light: "..light.." Temperature: "..temperature.." ".."Humidity: "..humidity)
+    elseif status == dht.ERROR_CHECKSUM then
+        print( "DHT Checksum error." )
+    elseif status == dht.ERROR_TIMEOUT then
+        print( "DHT timed out." )
     end
+    
+    -- Construct the payload of data
+    payload =  
+        "{ \"deviceId\" : \""..DEVICE.."\","..
+        "\"location\" : \"Instructor ESP8266 Virtual Weather Station\""..","..
+        "\"celsius\" :"..temperature..","..
+        "\"relativeHumidity\" :"..humidity..","..
+        "\"lightLevel\" :"..light.."}"
+
+    -- Send it to the cloud via mqtt
+    esp8266:publish(telemetry_topic, payload, 1, 0, function(client)
+        print("Data published successfully.")
+    end)
+
+    -- Turn the LED off
+    gpio.write(LEDPIN, gpio.HIGH)
 end
+
+-- Create an MQTT Client
+esp8266 = mqtt.Client(DEVICE, 240, USER, PASSWD)
+
+-- callback handler for incoming messages
+esp8266:on("message", function(client, topic, message)
+    print("MQTT Message.")
+    if message ~= nil then
+        print("Message: "..message)
+    end
+
+    jsondata = cjson.decode(message)
+    for k,v in pairs(jsondata) do print(k,v) end
+            
+    -- jsondata.ledState = 0 | 1
+    if jsondata.ledState == 1 then
+        pwm.setduty(REDLED,   0)
+        pwm.setduty(GREENLED, 0)
+        pwm.setduty(BLUELED,  0)
+    end
+    if jsondata.ledState == 0 then
+        pwm.setduty(REDLED,   1023)
+        pwm.setduty(GREENLED, 1023)
+        pwm.setduty(BLUELED,  1023)
+    end
+end)
+
+-- Connect to IoTHub via MQTT
+print "Connecting to MQTT broker. Please wait..."
+esp8266:connect(IOTHUB, PORT, 1, 0, 
+    -- Callback for a successful connection
+    function(client) 
+        print("Connected to MQTT: "..IOTHUB..":"..PORT.." as "..DEVICE) 
+        -- Subscribe to command & control messages
+        esp8266:subscribe(command_topic, 0, function(client) print("Subscribed to command and control topic.") end)
+        -- Register Timer to send telemetry
+        tmr.alarm(TELEMETRY_TIMER, 5000, tmr.ALARM_AUTO, publish_data)
+    end,
+    -- Error callback, if connection fails
+    function(client, reason) 
+        print("Error Connecting: "..reason) 
+    end
+)
 {% endhighlight %}
 
 # Run the Lua Program on the ESP8266

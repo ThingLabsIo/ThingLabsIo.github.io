@@ -1,8 +1,8 @@
 ---
 layout: "page-fullwidth"
-title: "Lab 01: Hello, Lua IoT!"
-subheadline: "Building Connected Things using an ESP8266 and Microsoft Azure"
-teaser: "In this lab, you will create a simple 'Thing' using an ESP8266 WiFi module and the Lua programming  language."
+title: "Hello, Lua IoT!"
+subheadline: "Building Connected Things with an ESP8266 and Microsoft Azure"
+teaser: "In this lab, you will create a simple 'Thing' using Lua on the ESP8266."
 show_meta: true
 comments: false
 header: no
@@ -15,20 +15,18 @@ permalink: /workshop/esp8266/hello-lua-iot/
 *  Auto generated table of contents
 {:toc}
 
-In this lab, you will create a simple _Thing_ using an ESP8266 and the Lua programming language. 
+In this lab, you will create a simple _Thing_ using a ESP8266 and the Lua programming language. 
 
 # Bill of Materials
-In this lab you will need the following:
+In this lab series you will need the following:
 
 1. [Microsoft Azure IoT Starter Kit w/ Adafruit Feather HUZZAH](https://www.adafruit.com/product/3032), including
     - RGB LED
-    - 3 - 560 Ohm Resistors (These resistors have a green band on them.)
-    - A to Micro B USB cable
+    - 3 - 560 Ohm Resistors
 
 If you haven't already done so, follow the setup instructions at ['Getting Started']({{ site.url }}/workshop/esp8266/getting-started/).
 
-##Supplemental Information about the Huzzah Feather ESP8266
-The Huzzah Feather ESP2866 connects to the physical world through the a set of pins. These pins have various functions, but most are General Purpose Input/Output (GPIO) pins. 
+The Huzzah Feather connects to the physical world through the a set of pins. These pins have various functions, but most are General Purpose Input/Output (GPIO) pins. 
 Because there are so few connections to the Huzzah, some of the pins are used for more than one function and 
 need to be configured before you can use them. In fact, GPIO pins can be used for both input and output and 
 therefore need configuration to tell them how to operate.
@@ -37,19 +35,19 @@ Besides the GPIO Pins there are a set of other pins including:
 
 **#0, #2, #4, #5, #12, #13, #14, #15, #16** - GPIO
 
-**GND** - This is the common ground for all power and logic.
+**GND** - this is the common ground for all power and logic
 
-**BAT** - This is the positive voltage to/from the JST jack for the optional Lipoly battery.
+**BAT** - this is the positive voltage to/from the JST jack for the optional Lipoly battery
 
-**USB** - This is the positive voltage to/from the micro USB jack if connected.
+**USB** - this is the positive voltage to/from the micro USB jack if connected
 
-**EN** - This is the 3.3V regulator's enable pin. It's pulled up, so connect to ground to disable the 3.3V regulator.
+**EN** - this is the 3.3V regulator's enable pin. It's pulled up, so connect to ground to disable the 3.3V regulator
 
-**3V** - This is the output from the 3.3V regulator, it can supply 500mA peak. (It's recommended that you keep your current draw under 250mA so you have plenty of power for the ESP8266.) 
+**3V** - this is the output from the 3.3V regulator, it can supply 500mA peak (try to keep your current draw under 250mA so you have plenty for the ESP8266's power) 
 
-**RST** - This is the reset pin for the ESP8266, pulled high by default. When pulled down to ground momentarily it will reset the ESP8266 system. This pin is 3.3V logic only.
+**RST** - this is the reset pin for the ESP8266, pulled high by default. When pulled down to ground momentarily it will reset the ESP8266 system. This pin is 3.3V logic only
 
-**EN (CH_PD)** - This is the enable pin for the ESP8266, pulled high by default. When pulled down to ground momentarily it will reset the ESP8266 system. This pin is 3.3V logic only.
+**EN (CH_PD)** - This is the enable pin for the ESP8266, pulled high by default. When pulled down to ground momentarily it will reset the ESP8266 system. This pin is 3.3V logic only
 
 <img src="/images/huzzah-layout.png" alt="Huzzah Layout" style="width: 400px;"/>
 
@@ -67,22 +65,20 @@ Besides the GPIO Pins there are a set of other pins including:
 
 Serial Communication Occurs over TX/RX:
 
-**TX** - Output from the module and is 3.3V logic.
+**TX** - output from the module and is 3.3V logic.
 
-**RX** - Input into the module and is 5V compliant. (There is a level shifter on this pin.)
+**RX** - input into the module and is 5V compliant (there is a level shifter on this pin)
 
 # Create the Lua Program in ESPlorer 
-The Lua programming language is a simple language designed to be less cluttered than most other programming languages. It's powerful _enough_ and simple _enough_ to make it an effective language for working on devices. It's also much more user friendly than many other languages typically used in small devices, such as _forth_. In addition, Lua is more flexible than _C_.
+The Lua programming language is a simple language designed to avoid the clutter of many languages. It's powerful _enough_ and simple _enough_ to make it an effective language for working on devices. It's also much more user friendly than other languages typically used in small devices, like _forth_, and more flexible than _C_.
 
-To write and execute your first Lua program for the ESP8266, do the following:
+To write your first lua program for the ESP8266 you'll only have to write a few lines of code.
 
-1. Use an A to Micro B USB cable to connect the Huzzah Feather ESP2866 to your computer.
-
-2. Launch ESPlorer.jar, select your serial port, select 115200 as your baud rate, and then press the 'Open' button.
+1. Launch ESPlorer.jar, select your serial port, and press the 'Open' button
 
 <img src="/images/esplorer-connect.png" alt="Launch Esplorer, connect your device" style="width: 400px;"/>
 
-3. Create a new script in Esplorer with these contents. Save it as Lab01.lua
+2. Create a new script in Esplorer with these contents. Save it as Lab01.lua
 
 {% highlight lua %}
 --
@@ -120,30 +116,35 @@ tmr.alarm(1, 1000, tmr.ALARM_AUTO, flash_led)
 
 That's all there is to it. Now you are ready to run the application. 
 
-# Run the Lua Application on the ESP2866
-To run the Lua application on the ESP2866, do the following:
+# Run the App on the Device
+To run the application you will save it to the ESP8266, reset the device, then invoke the code.
 
-1. Save the file, giving it a name: Lab01.lua.
+1. Save the file, giving it a name: Lab01.lua
 2. Press the button 'Save to ESP' on the lower left of the ESPlorer interface.
-3. Push the reset button on the ES8266.
-4. When it's done booting, click the 'Reload' button on the right side of ESPlorer.
-   You should see a list of files on the ESP8266.
+3. Push the reset button on the ES8266
+4. When it's done booting, click the 'Reload' button on the right side.
+   You should see a list of files on the ESP8266
 5. Double click the file on the right hand side that you saved.
    This should execute your code.
 
-# Wire the Huzzah Feather ESP2866 to the Power and Ground Rails
+# Wire the Huzzah Feather to the Power and Ground Rails
 
-Connect the 3V pin to the Red column of holes marked with a '+' and connect the GND pin to the Blue column of holes marked with a '-', as shown below:
+Connect the 3V pin to the Red column of holes marked with a '+'.
+Connect the GND pin to the Blue column of holes marked with a '-'.
 
-<img src="/images/esp8266-rail.png" alt="Wire 3V and GND" style="width: 400px;"/>
+This image shows what it should look like:
 
-<img src="/images/esp8266-rail.png" alt="Wire 3V and GND" style="width: 400px;"/>
+<img src="/images/ESP8266-Rail-Wiring.jpeg" alt="Wire 3V and GND" style="width: 400px;"/>
 
 # Add a Three Color LED from the kit
 
-Find the three color LED and the 560 Ohm resistors. Wire it up to the power rail and pins 1, 2, 5 (aka 4, 5, 14 on the Huzzah) as the following images illustrate:
+Find the three color LED and the 560 Ohm resistors, then wire it up to pins 1, 2, 5 (aka 4, 5, 14 on the Huzzah) as the following images illustrate:
 
-<img src="/images/esp8266-led-resistors.png" alt="Connecting Resistors to LED" style="width: 400px;"/>
+<img src="/images/ESP8266-LED-Resistors.jpeg" alt="Connecting Resistors to LED" style="width: 400px;"/>
+
+Then wire the LED to the power Rail, as shown here:
+
+<img src="/images/ESP8266-LED-Power.jpeg" alt="Connecting Power Rail to LED" style="width: 400px;"/>
 
 # Modify the code
 
@@ -198,7 +199,7 @@ tmr.alarm(1, 1000, tmr.ALARM_AUTO, flash_led)
 {% endhighlight %}
 
 
-# Run the Modified Lua Program on the ESP2866
+# Run the Modified App on the Device
 
 To run the application you will save it to the ESP8266, reset the device, then invoke the code.
 
@@ -211,12 +212,12 @@ To run the application you will save it to the ESP8266, reset the device, then i
 
 # Conclusion &amp; Next Steps
 
-Congratulations! You have built a Lua application that controlled a device connected to an ESP8266. The main concept you learned in this lab was:
+Congratulations! You have built a Lua application that controlled a device connected to an ESP8266. The core concepts you've learned are:
 
-1. How to build and execute a Lua application on an ESP 2866.
+1. Building a Lua application that can run on an ESP8266. 
 
 In the [next lab][nextlab], you will build a more complicated _Thing_ that uses both input sensors and output devices. 
 
-<a class="radius button small" href="{{ site.url }}/workshop/esp8266/nightlight/">Go to 'Lab 02: Nightlight' ›</a>
+<a class="radius button small" href="{{ site.url }}/workshop/esp8266/nightlight/">Go to 'Nightlight' ›</a>
 
 [nextlab]: /workshop/esp8266/nightlight/
