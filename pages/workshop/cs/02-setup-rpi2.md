@@ -71,6 +71,6 @@ Once the Raspberry Pi 2 has booted up, it will appear in the _My devices_ tab of
 Your Raspberry Pi 2 will reboot and when it is back up and running it will have the new name you gave it, and the Administrator account will use the password you created. 
 
 # Conclusion &amp; Next Steps
-In this section you prepared your Raspberry Pi 2 for the subsequent labs. Next you will do the IoT equivalent  of a 'Hello, World!' program: you will make an LED blink.
+In this section you prepared your Raspberry Pi 2 for the subsequent labs. Next you will do the IoT equivalent of a 'Hello, World!' program: you will make an LED blink.
 
 <a class="radius button small" href="../hello-windows-iot/">Go to 'Hello, Windows IoT!' ›</a>

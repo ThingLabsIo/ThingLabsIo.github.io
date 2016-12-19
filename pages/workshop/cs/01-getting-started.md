@@ -15,7 +15,7 @@ permalink: /workshop/cs/nightlight/getting-started/
 {:toc}
 
 ## Preparing for the Windows 10 IoT - Connected Nightlight Workshop
-The labs in the Connected Nightlight Workshop build on each other to enable you to prototype your own Internet of Things (IoT) devices. You will use the Microsoft .NET Framework to build an application for the Universal Windows Platform (UWP) that can run on any Windows 10 device, including a Raspberry Pi 2, MinnowBoard MAX, or  a DragonBoard 410c running Windows 10 IoT Core.
+The labs in the Connected Nightlight Workshop build on each other to enable you to prototype your own Internet of Things (IoT) devices. You will use the Microsoft .NET Framework to build an application for the Universal Windows Platform (UWP) that can run on any Windows 10 device, including a Raspberry Pi 2, MinnowBoard MAX, or a DragonBoard 410c running Windows 10 IoT Core.
 
 ## Bill of Materials
 In the Connected Nightlight Workshop you will need the following:

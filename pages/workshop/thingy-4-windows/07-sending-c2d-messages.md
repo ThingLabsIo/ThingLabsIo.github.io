@@ -1,6 +1,6 @@
 ---
 layout: "page-fullwidth"
-title: "Lab 97: Sending Cloud-to-Device (C2D) Messages"
+title: "Lab 7: Sending Cloud-to-Device (C2D) Messages"
 subheadline: "Building Connected Things with Windows 10 IoT and Microsoft Azure"
 teaser: "In this lab you will extend your website by adding the ability to control the THingLabs Thingy&trade; remotely. The website will send messages to the Thingy via Azure."
 show_meta: true
