@@ -2,7 +2,7 @@
 layout: "page-fullwidth"
 title: "ESP8266 Workshop: Getting Started"
 subheadline: "Building Connected Things with Windows 10 IoT and Microsoft Azure"
-teaser: "This is a step-by-step guide to preparing your computer for the Thingy for Windows IoT Workshop."
+teaser: "This is a step-by-step guide to preparing your computer for the ESP8266 Workshop."
 show_meta: true
 comments: false
 header: no
@@ -14,16 +14,15 @@ permalink: /workshop/esp8266/getting-started/
 *  Auto generated table of contents
 {:toc}
 
-# Preparing for the ESP8266 IoT Labs
-The labs in this series build on each other to enable you to prototype your own Internet of Things (IoT) devices. 
-In this lab you will use the Lua to build software than runs on the ESP8266.
+# Preparing for the ESP8266 Workshop
+The labs in the ESP8266 Workshop build on each other to enable you to prototype your own Internet of Things (IoT) devices. 
+This Getting Started section sets up your computer so that you'll be able to build software that runs on the ESP8266. This Getting Started section also prepares the ESP8266 to accept the software that you've created.
 
 # Bill of Materials
-In this lab series you will need the following:
+In the ESP8266 Workshop you will need the following:
 
 1. [Microsoft Azure IoT Starter Kit w/ Adafruit Feather HUZZAH](https://www.adafruit.com/product/3032)
 
-Each lab will specify which components will be used. See the Bill of Materials section at the beginning of each lab.
 
 # Install ESPlorer
 Please install [ESPlorer](http://esp8266.ru/esplorer/), source is available from github: [ESPLorer Source](https://github.com/4refr0nt/ESPlorer).
@@ -42,11 +41,9 @@ This is the primary tool you will use to program the ESP8266, but first we have 
 To run the pip install on Windows, you might have to either add the Python Tools folder to your path (on my machine it's c:\Python27\Tools) or explicitly type it out. 
 
 # Assemble the Parts
-Insert the Huzzah Feather carefully into the prototyping board, attach the usb cable to the board and your computer.
+Insert the Huzzah Feather carefully into the prototyping board, attach the A to Micro B USB cable to the board and your computer.
 
 <img src="/images/huzzah-feather-board.png" alt="Assembled Parts" style="width: 400px;"/>
-
-NOTE: We _do not_ have a battery in our kit!
 
 # Download and Burn the firmware to your ESP8266
 
@@ -74,9 +71,9 @@ This is what you should see if it's successfully putting your firmware on the ES
 Afterwards, hit the reset button to load up the new firmware.
 
 # Create a Microsoft Azure Trial Account
-In this lab series you will use Microsoft Azure as the cloud backend for your IoT solution. If you don't already have an Azure account, go to [https://azure.microsoft.com/en-us/pricing/free-trial/](https://azure.microsoft.com/en-us/pricing/free-trial/) to start a free trial of Microsoft Azure. You may need a credit card for identity verification, but the trial is completely free. If you have an MSDN Subscription you may be eligible for free credits to Microsoft Azure every month. Check your [MSDN account](https://msdn.microsoft.com/subscriptions/manage/) page for details.
+In the ESP you will use Microsoft Azure as the cloud backend for your IoT solution. If you don't already have an Azure account, go to [https://azure.microsoft.com/en-us/pricing/free-trial/](https://azure.microsoft.com/en-us/pricing/free-trial/) to start a free trial of Microsoft Azure. You may need a credit card for identity verification, but the trial is completely free. If you have an MSDN Subscription you may be eligible for free credits to Microsoft Azure every month. Check your [MSDN account](https://msdn.microsoft.com/subscriptions/manage/) page for details.
 
 # Conclusion &amp; Next Steps
 In this lab you prepared your development machine for the following labs. Next, you will learn about how the ESP8266 uses the Lua programming language to create a tiny application development environment.
 
-<a class="radius button small" href="{{ site.url }}/workshop/esp8266/hello-lua-iot/">Go to 'Hello, Lua IoT!' ›</a>
+<a class="radius button small" href="{{ site.url }}/workshop/esp8266/hello-lua-iot/">Go to 'Lab 01: Hello, Lua IoT!' ›</a>

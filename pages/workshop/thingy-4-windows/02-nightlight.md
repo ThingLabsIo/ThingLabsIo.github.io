@@ -1,6 +1,6 @@
 ---
 layout: "page-fullwidth"
-title: "Nightlight"
+title: "Lab 02: Nightlight"
 subheadline: "Building Connected Things with Windows 10 IoT and Microsoft Azure"
 teaser: "In this lab, you will create a device that responds to ambient light and changes the intensity of an LED - a nightlight."
 show_meta: true
@@ -21,11 +21,11 @@ In this lab, you will create a simple _Thing_ using a Windows 10 IoT device and 
 What you will need:
 
 1. [Raspberry Pi 2](http://www.amazon.com/Raspberry-Pi-Model-Project-Board/dp/B00T2U7R7I/)
-2. [5V (2A to 3A) Switching Power Supply w/ MicroUSB Cable](http://www.amazon.com/CanaKit-Raspberry-Supply-Adapter-Charger/dp/B00MARDJZ4/)
-3. From the [GrovePi+ Starter Kit for Raspberry Pi](http://www.seeedstudio.com/depot/GrovePi-Starter-Kit-for-Raspberry-Pi-ABB23-CE-certified-p-2572.html)
+2. From the [GrovePi+ Starter Kit for Raspberry Pi](http://www.seeedstudio.com/depot/GrovePi-Starter-Kit-for-Raspberry-Pi-ABB23-CE-certified-p-2572.html)
  * GrovePi shield
  * Grove LED (any color) × 1 + connector cable
  * Grove Light Sensor × 1 + connector cable
+3. [5V (2A to 3A) Switching Power Supply w/ MicroUSB Cable](http://www.amazon.com/CanaKit-Raspberry-Supply-Adapter-Charger/dp/B00MARDJZ4/)
 4. A Wi-Fi Adapter (choose one from the list [here](http://ms-iot.github.io/content/en-US/win10/SupportedInterfaces.htm#WiFi-Dongles))
 5. 8GB micro SD card - class 10 or better. Microsoft suggests one of the following:
 	* [Samsung 32GB EVO Class 10 Micro SDHC up to 48MB/s with Adapter (MB-MP32DA/AM)](http://www.amazon.com/gp/product/B00IVPU786)
@@ -34,9 +34,9 @@ What you will need:
 If you haven't already done so, follow the setup instructions at ['Setting Up Your Raspberry Pi 2']({{ site.url }}/workshop/thingy-4-windows/setup-rpi2/).
 
 # Overview
-In this lab, you will combine the output device you previously used (a Grove LED module) with an input sensor - a Grove Light Sensor. You will use the measurement of ambient light from the Light Sensor to control the intensity of the LED. Basically, you are making a nightlight. 
+In this lab, you will combine the output device you previously used (a Grove LED module) with an input sensor: a Grove Light Sensor. You will use the measurement of ambient light from the Light Sensor to control the intensity of the LED. Basically, you are making a nightlight. 
 
-The Grove Light Sensor is made up of a photoresistor and a 10k Ohm resistor. A _photoresistor_, also known as a _light-dependent resistor (LDR)_ or a photocell, works by limiting the amount of voltage that passes through it based on the intensity of light detected. The resistance decreases as light input increases - in other words, the more light, the more voltage passes through the photoresistor. By measuring how much voltage is passed through the photoresistor you can determine the range of ambient light, using a measurement of 0-1023. The GrovePi libraries do this for you and expose it as a method call - `ILightSensor.SensorValue()` (or even `ILightSensor.Resistance()`).
+The Grove Light Sensor is made up of a photoresistor and a 10k Ohm resistor. A _photoresistor_, also known as a _light-dependent resistor (LDR)_ or a photocell, works by limiting the amount of voltage that passes through it based on the intensity of light detected. The resistance decreases as light input increases - in other words, the more light there is, the more voltage passes through the photoresistor. By measuring how much voltage is passed through the photoresistor you can determine the range of ambient light, using a measurement of 0-1023. The GrovePi libraries do this for you and expose it as a method call: `ILightSensor.SensorValue()` (You can also use `ILightSensor.Resistance()`).
 
 In this lab, you will measure the amount of ambient light and increase the brightness intensity of an LED at an inverse rate to the amount of light (i.e. as it gets darker the LED gets brighter). In the previous lab, you connected the LED sensor to digital pin 4, which only supports On/Off states. There is a technique for using a digital device (like an LED) to simulate analog behavior, such as fading the brightness of an LED over a range of 256 value stops (0-255) instead of simply 0 or 1 - _Pulse Width Modulation_.
 
@@ -45,7 +45,7 @@ Pulse Width Modulation (PWM) is a technique for simulating analog values on a di
 
 ![PWM Duty Cycle]({{site.url}}/images/duty-cycle.jpg)
 
-Because the time window of a cycle is too fast for the human eye to perceive (about 2 milliseconds for this example), instead of causing an LED to strobe or flicker, it simply appears to be more or less bright. Using a 25% duty cycle the LED would be __On__ for half a millisecond and __Off__ for 1.5 milliseconds, which makes the LED appear to be at 25% brightness. So while we aren't truly sending analog data to a digital LED, we are using PWM to simulate the effect of analog data.
+Because the time window of a cycle is too fast for the human eye to perceive (about 2 milliseconds for this example), we don’t perceive the LED as flickering. Instead, we perceive the LED as more or less bright.  Using a 25% duty cycle the LED would be __On__ for half a millisecond and __Off__ for 1.5 milliseconds, which makes the LED appear to be at 25% brightness. So while we aren't truly sending analog data to a digital LED, we are using PWM to simulate the effect of analog data.
 
 GrovePi sockets __D3__, __D5__, __D6__ support _Pulse Width Modulation (PWM)_ which means you can write 8-bit values __0-255__ with `analogWrite()`.
 
@@ -54,8 +54,8 @@ Connect the LED Sensor and Light Sensor to the GrovePi shield as illustrated her
 
 ![Connect the LED and Light Sensor](/images/workshops/thingy-4-windows/nightlight.jpg)
 
-* Connect the LED Sensor to D6
-* Connect the Light Sensor to A2
+* Connect the LED Sensor to D6.
+* Connect the Light Sensor to A2.
 
 # Build the App
 Like the ['Hello, Windows IoT!'](../hello-windows-iot/) lab, the _Nightlight_ application is a _Background Application (IoT)_ project in Visual Studio. 
@@ -73,10 +73,10 @@ using Windows.System.Threading;
 {% endhighlight %}
 
 ## Define the Class-level Variables
-There are two (2) class-level variables you will use to refer to the physical Light Sensor and LED Module:
+There are two class-level variables you will use to refer to the physical Light Sensor and LED Module:
 
-* __redLed__ - an _ILed_ instance that derives from `GrovePi.Sensor` and exposes properties to get the current status of the LED and change its state. 
-* __lightSensor__ - an _ILightSensor_ the also derives from `GrovePi.Sensor` and is instantiated (later) on an analog pin.
+* __redLed__ - An _ILed_ instance that derives from `GrovePi.Sensor` and exposes properties to get the current status of the LED and change its state. 
+* __lightSensor__ - An _ILightSensor_ that also derives from `GrovePi.Sensor` and will be instantiated on an analog pin.
 
 1. Add the following class-level variable definitions inside the `public sealed class StartupTask : IBackgroundTask` class definition:
 
@@ -90,13 +90,13 @@ ILed redLed;
 ILightSensor lightSensor;
 {% endhighlight %}
 
-There are five (5) class-level variables you will use in this application:
+There are five class-level variables you will use in this application:
 
-* __ambientLightThreshold__ - an _int_ constant between 0 (dark) and 1023 (bright) that defines the measurement of ambient light at which the LED should be in a completely off state.
-* __actualAmbientLight__ - an _int_ variable to track the current value of ambient light as measured by the light sensor.
-* __brightness__ - an _int_ variable to track the current LED brightness.
-* __timer__ - a _ThreadPoolTimer_ instance that will control the rate of sensor and actuator interactions. 
-* __deferral__ - a _BackgroundTaskDeferral_ instance that will allow the application to continue to run even after the `Run()` method has completed.
+* __ambientLightThreshold__ - An _int_ constant between 0 (dark) and 1023 (bright) that defines the measurement of ambient light at which the LED should be in a completely off state.
+* __actualAmbientLight__ - An _int_ variable to track the current value of ambient light as measured by the light sensor.
+* __brightness__ - An _int_ variable to track the current LED brightness.
+* __timer__ - A _ThreadPoolTimer_ instance that will control the rate of sensor and actuator interactions. 
+* __deferral__ - A _BackgroundTaskDeferral_ instance that will allow the application to continue to run even after the `Run()` method has completed.
 
 1. Add the following class-level variable definitions inside the `public sealed class StartupTask : IBackgroundTask` class definition:
 
@@ -144,9 +144,9 @@ As previously stated, you will handle measuring light data and setting the LED b
 4. Use the value derived above to set the intensity/brightness of the LED.
 
 ## Interact with Sensors Using the Timer
-Throughout these labs, you will use a feature in Visual Studio called light bulbs. Light bulbs are a new productivity feature in Visual Studio 2015. They are icons that appear in the Visual Studio editor and that you can click to perform quick actions including refactoring fixing errors. Light bulbs bring error-fixing and refactoring assistance into a single focal point, often right on the line where you are typing. As you write the code in this lab you will add calls to methods that don't yet exist. The editor will indicate this to you by putting a red "squiggle" underline beneath the method call. When you hover over the offending code a light bulb will appear and you can expand it to see options for generating the missing method. 
+Throughout these labs, you will use a feature in Visual Studio called light bulbs. Light bulbs are a new productivity feature in Visual Studio 2015. They are icons that appear in the Visual Studio editor and that you can click to perform quick actions including refactoring fixing errors. Light bulbs bring error-fixing and refactoring assistance into a single focal point, often right on the line where you are typing. As you write the code in this lab you will add calls to methods that don't yet exist. The editor will indicate this to you by putting a red squiggle underline beneath the method call. When you hover over the offending code a light bulb will appear and you can expand it to see options for generating the missing method. 
 
-Where you created the timer in the `ThreadPoolTimer.CreatePeriodicTimer(Timer_Tick, TimeSpan.FromMilliseconds(200))` call do the following:
+Where you created the timer in the `ThreadPoolTimer.CreatePeriodicTimer(Timer_Tick, TimeSpan.FromMilliseconds(200))` call, do the following:
 
 1. Hover the mouse over the `Timer_Tick` reference until a light bulb appears.
 2. Click the down arrow and select __Generate method ‘StartupTask.Timer_Tick’__.
@@ -197,7 +197,7 @@ private void Timer_Tick(ThreadPoolTimer timer)
 {% endhighlight %}
 
 ## Create a Range Mapping Method
-In the preceding code, you determine the LED brightness by mapping the delta of the actual light and the threshold value to an 8-bit range. This is don using a custom method - `Map()`. Using the Visual Studio light bulb feature, add the `Map()` method.
+In the preceding code, you determine the LED brightness by mapping the delta of the actual light and the threshold value to an 8-bit range. This is done using a custom method: `Map()`. Using the Visual Studio light bulb feature, we'll add the `Map()` method.
 
 Where you wrote `brightness = Map(ambientLightThreshold - actualAmbientLight, 0, ambientLightThreshold, 0, 255);`, do the following:
 
@@ -214,26 +214,26 @@ private int Map(int src, int in_min, int in_max, int out_min, int out_max)
 }
 {% endhighlight %}
 
-If you want to compare your code with the master lab code, you can find it [in the __ThingLabs - Thingy4Windows__ Github repo here](https://github.com/ThingLabsIo/Thingy4Windows/blob/master/Nightlight/Nightlight/StartupTask.cs).
+If you want to compare your code with the master lab code, you can find it in the __ThingLabs - Thingy4Windows__ Github repo [here](https://github.com/ThingLabsIo/Thingy4Windows/blob/master/Nightlight/Nightlight/StartupTask.cs).
 
 # Run the App on a Device
-As in the previous lab, you will build the application locally and then deploy it to the RPi2 and open a remote debugging session using Visual Studio.
+As in the previous lab, you will build the application locally and then deploy it to the Raspberry Pi 2 and open a remote debugging session using Visual Studio.
 
 1. Ensure __ARM__ is selected in the _Solution Platforms_ drop-down list in the toolbar
 2. Select __Remote Machine__ from the _Device_ list in the toolbar.
 
 ![Select ARM](/images/workshops/thingy-4-windows/target_remote_machine.png)
 
-You will be prompted with the _Remote Connections_ dialog. You can select your device in one of two ways:
+3. You will be prompted with the _Remote Connections_ dialog. You can select your device in one of two ways:
 
-1. Select your device from the list of _Auto Detected_ devices, __OR__ 
-2. Type in the __device name__ or __IP address__ into the _Manual Configuration_ text box (set the _Authentication Mode_ to __Universal (Unencrypted Protocol)__) and click __Select__.
+* Select your device from the list of _Auto Detected_ devices, __OR__ 
+* Type in the __device name__ or __IP address__ into the _Manual Configuration_ text box (set the _Authentication Mode_ to __Universal (Unencrypted Protocol)__) and click __Select__.
 
 ![Select your device](/images/workshops/thingy-4-windows/find_remote_machine.png)
 
->NOTE: You can verify or modify these values by navigating to the project properties (double-click the Properties node in Solution Explorer and click on the Debug tab on the left.
+>NOTE: You can verify or modify these values by navigating to the project properties. This can be accomplished by double-clicking the Properties node in Solution Explorer and clicking on the Debug tab on the left.
 
-1. Now press __F5__ to run the application and you should see (in the _Output_ window) it building locally and then deploying on the RPi2.
+4. Now press __F5__ to run the application and you should see (in the _Output_ window) it building locally and then deploying on the Raspberry Pi 2.
 
 Once the application is deployed and running, try changing the amount of light the light sensor is exposed to. As it gets darker, the LED should glow brighter (it will glow brightest in complete darkness). When there is enough light, the threshold will be surpassed and the LED will turn off completely.
 
@@ -246,6 +246,6 @@ Congratulations! You have created a _Thing_ that uses an input sensor to measure
 
 In the [next lab][nextlab], you will extend this device to build the __ThingLabs Thingy&trade; for Windows IoT__ - a multi-sensor, multi-actuator device you will use for the remainder of this workshop.
 
-<a class="radius button small" href="{{ site.url }}/workshop/thingy-4-windows/thingy/">Go to 'ThingLabs Thingy&trade;' ›</a>
+<a class="radius button small" href="{{ site.url }}/workshop/thingy-4-windows/thingy/">Go to 'Lab 03: ThingLabs Thingy&trade;' ›</a>
 
 [nextlab]: /workshop/thingy-4-windows/thingy/

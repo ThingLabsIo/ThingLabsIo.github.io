@@ -2,7 +2,7 @@
 layout: page-fullwidth
 title: "Windows 10 IoT - Connected Nightlight Workshop"
 subheadline: "Building Connected Things with Windows 10 IoT Core, C# and Azure IoT Hubs"
-teaser: "In these IoT Labs you will begin by learning the basics of working with Windows 10 IoT Core connected to sensors and devices. You will move on to connecting the device to the Cloud. You will learn how to leverage Microsoft Azure services to collect data and control devices and use advanced services like analytics and machine learning to discover insights using your Things."
+teaser: "This Internet of Things (IoT) workshop begins by showing you how to use Windows 10 IoT Core to connect sensors and devices.  You will then be shown how to connect a device to the Cloud.  Next you will be shown how to leverage Microsoft Azure services to collect data and control devices. Finally, you will be shown how to use advanced services like analytics and machine learning to gain insights using your devices."
 show_meta: true
 comments: true
 header: 
@@ -17,34 +17,38 @@ permalink: /workshop/cs/nightlight/
 {:toc}
 
 
-# Getting Started
-This is a step-by-step guide to preparing your computer for the _Windows 10 IoT - Connected Nightlight_ workshop. This can be completed before the workshop.
+# Prep Work
 
-<a class="radius button small" href="./getting-started/">Estimated time to complete: 20-minutes. Go to  'Getting Started' ›</a>
+##Getting Started
+This is a step-by-step guide to preparing your computer for this workshop.
 
-# Setting Up Your Raspberry Pi 2
-he Raspberry Pi 2 is a low cost, credit-card sized computer that plugs into a computer monitor or TV, and uses a standard keyboard and mouse. The Raspberry Pi 2 runs Windows 10 IoT Core.
+<a class="radius button small" href="./getting-started/">Estimated time to complete: 60-minutes. Go to  'Getting Started' ›</a>
 
-In this lab you will install Windows 10 IoT Core on your Raspberry Pi 2.
+## Setting Up Your Raspberry Pi 2
+The Raspberry Pi 2 is a low cost credit-card sized computer that plugs into a computer monitor or TV, and uses a standard keyboard and mouse. 
 
-<a class="radius button small" href="./setup-rpi2/">Estimated time to complete: 20-minutes. Go to  'Setting Up Your Raspberry Pi 2' ›</a>
+In this section you will install Windows 10 IoT Core on your Raspberry Pi 2.
 
-# Hello, Windows IoT!
-In this lab you will create a simple _Thing_ using a Raspberry Pi 2 running Windows 10 IoT Core. The Raspberry Pi 2 is a low cost, credit-card sized computer that plugs into a computer monitor or TV, and uses a standard keyboard and mouse.
+<a class="radius button small" href="./setup-rpi2/">Estimated time to complete: 30-minutes. Go to  'Setting Up Your Raspberry Pi 2' ›</a>
 
-<a class="radius button small" href="./hello-windows-iot/">Estimated time to complete: 20-minutes. Go to  'Hello, Windows IoT!' ›</a>
+#Lab Guides
 
-# Setting Up Azure IoT Hub
-In this lab you will provision a new Azure IoT Hub. Once you have the IoT Hub created, you will be able to create a new Azure IoT device (a software reference to your physical device) that you will use to send telemetry to Azure.
+## Lab01: Hello, Windows IoT!
+In this lab you will create a simple _Thing_ using a Raspberry Pi 2 running Windows 10 IoT Core.
 
-<a class="radius button small" href="./setup-azure-iot-hub/">Estimated time to complete: 20-minutes. Go to  'Setting Up Azure IoT Hub' ›</a>
+<a class="radius button small" href="./hello-windows-iot/">Estimated time to complete: 30-minutes. Go to  'Lab01: Hello, Windows IoT!' ›</a>
 
-# Sending Telemetry to the Cloud
+## Lab02: Setting Up an Azure IoT Hub
+In this lab you will provision a new Azure IoT Hub. Once you have the IoT Hub created, you will be able to create a new Azure IoT device that you will use to send telemetry to Azure. Azure IoT devices are software references to physical devices.
+
+<a class="radius button small" href="./setup-azure-iot-hub/">Estimated time to complete: 20-minutes. Go to  'Lab02: Setting Up Azure IoT Hub' ›</a>
+
+## Lab03: Sending Telemetry to the Cloud
 In this lab you will write an application that collects data from your Windows IoT board and sends it up to your Azure IoT Hub.
 
-<a class="radius button small" href="./sending-telemetry/">Estimated time to complete: 20-minutes. Go to  'Sending Telemetry to the Cloud' ›</a>
+<a class="radius button small" href="./sending-telemetry/">Estimated time to complete: 40-minutes. Go to  'Lab03: Sending Telemetry to the Cloud' ›</a>
 
-# Visualizing IoT Data with Power BI
+## Lab04: Visualize IoT Data with Power BI
 In this lab you will create visualizations of IoT data using Microsoft Power BI.
 
-<a class="radius button small" href="./visualize-iot-with-powerbi/">Estimated time to complete: 20-minutes. Go to  'Visualizing IoT Data with Power BI' ›</a>
+<a class="radius button small" href="./visualize-iot-with-powerbi/">Estimated time to complete: 30-minutes. Go to  'Lab04: Visualize IoT Data with Power BI' ›</a>

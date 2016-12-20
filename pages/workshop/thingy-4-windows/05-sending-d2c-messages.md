@@ -1,8 +1,8 @@
 ---
 layout: "page-fullwidth"
-title: "Sending Device-to-Cloud (D2C) Messages"
+title: "Lab 05: Sending Device-to-Cloud (D2C) Messages"
 subheadline: "Building Connected Things with Windows 10 IoT and Microsoft Azure"
-teaser: "In this lab, you will build send messages from the Thingy you have built to the cloud."
+teaser: "In this lab, you will send messages from the Thingy you have built to the cloud."
 show_meta: true
 comments: true
 header: no
@@ -21,7 +21,7 @@ What you will need:
 1. The ThingLabs Thingy&trade; created in the ['ThingLabs Thingy' lab](../thingy/).
 2. The Visual Studio Project for the Thingy created in the ['ThingLabs Thingy' lab](../thingy/).
 
-# Add the Azure ioT SDK to Your Project
+# Add the Azure IoT SDK to Your Project
 In a previous lab, you built the ThingLabs Thingy&trade; for Windows 10 IoT Core. Now it's time to add the __I__ to your __IoT__ solution. In this lab, you will send messages from the Thingy to the Microsoft Azure IoT Hub you created in the previous lab. There is an Azure IoT SDK for C# that enables all of the connection and communications with your Azure IoT Hub.  The SDK is available as a NuGet package that you can easily add to your project. 
 
 1. Open the __Thingy__ project.
@@ -32,7 +32,7 @@ In a previous lab, you built the ThingLabs Thingy&trade; for Windows 10 IoT Core
 ![IoTNightlight Project](/images/rpi2/azure-devices-client.png)
 
 # Define the Azure IoT SDK Components
-To use the Azure IoT SDK you will modify the StartupTask.cs file in the _Thingy_ project. You will add the definitions for the SDK components, such as `DeviceClient` (the client-side agent), the `Message` and the connection string for your specific device.
+To use the Azure IoT SDK you will modify the StartupTask.cs file in the _Thingy_ project. You will add the definitions for the SDK components, such as `DeviceClient` (the client-side agent), the `Message`, and the connection string for your specific device.
  
 1. Open the _StartupTask.cs_ file. 
 2. Add the following to the `using` statements where you have added the other `using` statements (e.g. `using GrovePi;`).
@@ -54,14 +54,14 @@ private DeviceClient deviceClient;
 private ThreadPoolTimer messageTimer;
 {% endhighlight %}
 
-The last step of the [previous lab](../setup-azure-iot-hub/) was to copy the device specific connection string for that device (although I am guessing that your copy buffer has been rewritten since then). You can get the device-specific connection string by selecting it in the DeviceExplorer __Devices__ list - right-click and select __Copy connection string for selected device__:
+The last step of the [previous lab](../setup-azure-iot-hub/) was to copy the device-specific connection string for that device. If the connection string is still in your copy buffer, simply paste it into the IOT_HUB_CONN_STRING field in Step 2 below. If the connection string is no longer in your copy buffer, you can get the device-specific connection string again by selecting it in the DeviceExplorer _Devices_ list by right-clicking and selecting _Copy connection string for selected device_.
 
 ![Get the device-specific connection string](/images/rpi2/rpi2_deviceexplorer03.png) 
 
 1. In the same section of the _StartupTask.cs_ file (indicated with the comment `/**** Constants and Variables ****/`) and add the code below, making changes as indicated here:
-2. Use the device-specific connection string as the value of `IOT_HUB_CONN_STRING`
-3. Use the name of the device you created in Azure IoT Hub as the `IOT_HUB_DEVICE`
-4. Use any string value you'd like as the `IOT_HUB_DEVICE_LOCATION` (e.g. 'Home Office');
+2. Use the device-specific connection string as the value of `IOT_HUB_CONN_STRING`.
+3. Use the name of the device you created in Azure IoT Hub as the `IOT_HUB_DEVICE`.
+4. Use any string value you'd like as the `IOT_HUB_DEVICE_LOCATION`.
 
 {% highlight csharp %}
 // Use the device specific connection string here
@@ -86,7 +86,7 @@ deferral = taskInstance.GetDeferral();
 deviceClient = DeviceClient.CreateFromConnectionString(IOT_HUB_CONN_STRING);
 {% endhighlight %}
 
-1. Still in the `Run(IBackgroundTaskInstance taskInstance)` method, add the following code after the `timer = ThreadPoolTimer.CreatePeriodicTimer(Timer_Tick, TimeSpan.FromMilliseconds(200));` code.
+3. Still in the `Run(IBackgroundTaskInstance taskInstance)` method, add the following code after the `timer = ThreadPoolTimer.CreatePeriodicTimer(Timer_Tick, TimeSpan.FromMilliseconds(200));` code.
 
 {% highlight csharp %}
 // Send messages to Azure IoT Hub every one-second
@@ -105,7 +105,7 @@ private void MessageTimer_Tick(ThreadPoolTimer timer)
 }
 {% endhighlight %}
 
-Each time the _MessageTimer_ ticks (once per second) this event handler will invoke the _SendMessageToIoTHubAsync()_ method. Use the Visual Studio light bulb feature to create the __SendMessageToIoTHubAsync()__ method. Modify the method signature to mark it as an async method.
+Each time the _MessageTimer_ ticks this event handler will invoke the _SendMessageToIoTHubAsync()_ method. Use the Visual Studio light bulb feature to create the __SendMessageToIoTHubAsync()__ method. Modify the method signature to mark it as an async method.
 
 {% highlight csharp %}
 private async Task SendMessageToIoTHubAsync(string sensorType, int sensorState)
@@ -133,13 +133,13 @@ private async Task SendMessageToIoTHubAsync(string sensorType, int sensorState)
 }
 {% endhighlight %}
 
-With this method, once per second you construct a JSON message payload for the ambient light measurement and send it to your Azure IoT Hub. The communication with the Azure IoT Hub is managed by the `deviceClient` object from the __Microsoft.Azure.Devices.Client__ namespace.
+With this method, you construct a JSON message payload once every second for the ambient light measurement and send it to your Azure IoT Hub. The communication with the Azure IoT Hub is managed by the `deviceClient` object from the __Microsoft.Azure.Devices.Client__ namespace.
 
 # Run the Application
-Now you can run the application on your RPi2 and you will see the log of messages being sent to Azure IoT Hub at a rate of once per second.
+Now you can run the application on your Raspberry Pi 2 and you will see the log of messages being sent to Azure IoT Hub at a rate of once per second.
 
 # Send Messages Based on Button Presses
-For the ambient light measurement, you are sending a message once per second regardless of whether the light has changed. For the button, send a message based on an explicit state change (i.e. a button press event or release event). 
+For the ambient light measurement, you are sending a message once per second regardless of whether the light has changed. For the button, we'll send a message based on an explicit state change (i.e. a button press event or release event). 
 
 1. Locate the `Timer_Tick` method (the one from the previous lab that is used to collect sensor data).
 2. Modify the `Timer_Tick` method as follows:
@@ -166,12 +166,12 @@ private void Timer_Tick(ThreadPoolTimer timer)
         // ... the rest of the method doesn't change and is omitted here       
 {% endhighlight %}
 
-If you want to compare your code with the master lab code, you can find it [in the __ThingLabs - Thingy4Windows__ Github repo here](https://github.com/ThingLabsIo/Thingy4Windows/blob/master/ConnectedThingy/ConnectedThingy/StartupTask.cs).
+If you want to compare your code with the master lab code, you can find it in the __ThingLabs - Thingy4Windows__ Github repo [here](https://github.com/ThingLabsIo/Thingy4Windows/blob/master/ConnectedThingy/ConnectedThingy/StartupTask.cs).
 
 # Run the Application and Get Pushy
-Run your application again. Once you see the ambient light messages being sent, push the button a few times. You should see LED state message go by as well (and hear an annoying sound from the buzzer).
+Run your application again. Once you see the ambient light messages being sent, push the button a few times. You should see LED state messages go by. (You'll also hear an annoying sound from the buzzer.)
 
-## Monitor the Messages Being Received by Azure IoT Hub
+## Monitor the Messages Being Received by the Azure IoT Hub
 Using the Device Explorer utility for Windows you installed in the [previous lab](../setup-azure-iot-hub/), you can monitor the messages being received in Azure IoT Hub.
 
 1. Open the __Data__ tab.
@@ -187,6 +187,6 @@ Congratulations! In this lab, you updated the __Thingy__ application to send mes
 
 At this point, nothing interesting is happening in the cloud with that data you are sending to Azure. It is simply being persisted for a default amount of time (1-day) and then being dropped. In the [next lab][nextlab], you will create a web application to visualize the data.
 
-<a class="radius button small" href="{{ site.url }}/workshop/thingy-4-windows/storing-displaying-data/">Go to 'Storing and Displaying IoT Data' ›</a>
+<a class="radius button small" href="{{ site.url }}/workshop/thingy-4-windows/storing-displaying-data/">Go to 'Lab 06: Storing and Displaying IoT Data' ›</a>
 
 [nextlab]: ../storing-displaying-data/

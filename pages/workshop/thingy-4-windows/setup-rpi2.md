@@ -14,12 +14,12 @@ permalink: /workshop/thingy-4-windows/setup-rpi2/
 *  Auto generated table of contents
 {:toc}
 
-If you haven't already done so, please follow the instructions in the ['Getting Started' lab](../getting-started/) section.
+If you haven't already done so, please follow the instructions in the ['Getting Started'](../getting-started/) section.
 
-In this lab, you will install Windows 10 IoT Core on your Raspberry Pi 2 (RPi2). 
+In this section, you will install Windows 10 IoT Core on your Raspberry Pi 2. 
 
 # Install Windows 10 IoT Core on Raspberry Pi 2
-Windows 10 IoT Core is a version of Windows 10 designed to run on small devices, like the Raspberry Pi 2 (RPi2). You can download and install the Windows IoT Core image onto the micro SD card. 
+Windows 10 IoT Core is a version of Windows 10 designed to run on small devices, like the Raspberry Pi 2. You can download and install the Windows IoT Core image onto the micro SD card. 
 
 1. In a browser, navigate to the [Microsoft Windows IoT Downloads &amp; Tools page](http://ms-iot.github.io/content/en-US/Downloads.htm){:target="_blank"}. 
 2. Click on the __Get IoT Core Dashboard__ button to download the dashboard utility.
@@ -48,15 +48,15 @@ Windows 10 IoT Core is a version of Windows 10 designed to run on small devices,
 
     ![Your SD card is ready](/images/rpi2/dashboard-setup04.png)
 
-# Connect the RPi2
-You are now ready to connect and power on your RPi2.
+# Connect the Raspberry Pi 2
+You are now ready to connect and power on your Raspberry Pi 2.
 
-1. Insert the microSD card with the Windows 10 IoT Core image on it into your RPi2 (the slot is on the underside, on the opposite edge from the side with the USB ports).
-2. If you will be connecting to a physical network, connect a network cable from your local network to the Ethernet port on the RPi2. Your development device must be on the same network. If you will be using Wi-Fi, see the _Joining the Wi-Fi Network_ section below.
+1. Insert the microSD card with the Windows 10 IoT Core image on it into your Raspberry Pi 2 (the slot is on the underside, on the opposite edge from the side with the USB ports).
+2. If you will be connecting to a physical network, connect a network cable from your local network to the Ethernet port on the Raspberry Pi 2. Your development device must be on the same network. If you will be using Wi-Fi, see the _Joining the Wi-Fi Network_ section below.
 3. If you will be working with a monitor, connect an HDMI monitor to the HDMI port on the board.
 4. Connect the power supply to the micro USB port on the board. You must power this from the 5V 2A adapter - USB power from your computer is insufficient.
 
-Windows 10 IoT Core will boot on power-up. The first boot may take a few minutes. If you have the RPi2 connected to a display, you should see the default app screen.
+Windows 10 IoT Core will boot on power-up. The first boot may take a few minutes. If you have the Raspberry Pi 2 connected to a display, you should see the default app screen.
 
 ![Default app](/images/rpi2/rpi2_defaultapp.png)
 
@@ -75,9 +75,9 @@ By default, your board will have the name __minwinpc__ and an Administrator pass
 1. Find your device in the list
 2. Click the edit symbol (pencil symbol). This will take you to the _Settings_ page. From the settings page, you can launch Windows Device Portal, and set basic settings.
 3. Set the machine name and change the password (highly recommended). All devices start with a default password. The default password is __p@ssw0rd__. It is highly suggested that you change it.
-4. Click __Accept__ to accept the changes and reboot the RPi2
+4. Click __Accept__ to accept the changes and reboot the Raspberry Pi 2
 
-Your RPi2 will reboot and when it is back up and running it will have the new name you gave it, and the Administrator account will use the password you created. 
+Your Raspberry Pi 2 will reboot and when it is back up and running it will have the new name you gave it, and the Administrator account will use the password you created. 
 
 # Test Device
 Quick-Run samples are pre-built and require no compiling or coding to get going. This is a great way to make sure everything is working and easily play with your board.

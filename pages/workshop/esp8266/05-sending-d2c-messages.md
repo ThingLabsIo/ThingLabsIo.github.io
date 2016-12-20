@@ -1,8 +1,8 @@
 ---
 layout: "page-fullwidth"
-title: "Sending Device-to-Cloud (D2C) Messages"
+title: "Lab 05: Sending Device-to-Cloud (D2C) Messages"
 subheadline: "Building Connected Things with an ESP8266 and Microsoft Azure"
-teaser: "In this lab, you will build send messages from the Thingy you have built to the cloud."
+teaser: "In this lab, you will send messages from your Thinglabs Weather Station to the cloud."
 show_meta: true
 comments: true
 header: no
@@ -16,9 +16,10 @@ permalink: /workshop/esp8266/sending-d2c-messages/
 {:toc}
 
 # Bill of Materials
-What you will need:
+In this lab you will need the following:
 
 1. The ThingLabs Weather Station created in the ['ThingLabs Weather' lab](../weather/).
+2. An A to Micro B USB cable
 
 # Connecting your Weather Station to the Cloud
 
@@ -28,19 +29,19 @@ From [Wikipedia's MQTT Article](https://en.wikipedia.org/wiki/MQTT):
     
 > MQTT[1] (formerly MQ Telemetry Transport) is an ISO standard (ISO/IEC PRF 20922)[2] publish-subscribe based "light weight" messaging protocol for use on top of the TCP/IP protocol. It is designed for connections with remote locations where a "small code footprint" is required or the network bandwidth is limited. The publish-subscribe messaging pattern requires a message broker. The broker is responsible for distributing messages to interested clients based on the topic of a message. Andy Stanford-Clark and Arlen Nipper of Cirrus Link Solutions authored the first version of the protocol in 1999.
 
-The structure of the [NodeMCU MQTT client](http://nodemcu.readthedocs.io/en/dev/en/modules/mqtt/) is documented to provide both telemetry and command processing. For this lab we focus just on telemetry. An example is provided from the NodeMCU documents:
+The structure of the [NodeMCU MQTT client](http://nodemcu.readthedocs.io/en/dev/en/modules/mqtt/) is documented to provide both telemetry and command processing. For this lab we'll focus just on telemetry.
 
 # Startup Scripts for your ESP8266 to use the Cloud
 
-Before you can run Cloud code on your device you need a couple of important pieces:
+Before you can run Cloud code on your Weather Station you'll need to do the following things:
 
-1. You need to connect to a wifi network
-2. You need to set the clock (The ESP8266 has a real-time clock that's reliable once it's set)
-3. You need some extra code to generate security tokens to access Azure.
+1. Connect to a wifi network.
+2. Set the clock. (The ESP8266 has a real-time clock that's reliable once it's set)
+3. Generate security tokens to access Azure.
 
-The following two scripts work together to initialize your ESP8266 to have these pieces. NodeMCU will look for an __init.lua__ when it boots and execute it, so you have to be sure it's correct.
+The following two scripts work together to initialize your ESP8266 to accomplish the three tasks above. NodeMCU will look for an __init.lua__ when it boots and execute it, so you have to be sure it's correct.
 
-The __init.lua__ provided below invokes the __startup.lua__ to set the clock (which requires wifi), so you need to save the startup.lua first, before you save the init.lua or things will break.
+The __init.lua__ provided below invokes the __startup.lua__ to set the clock (which requires wifi), so you need to save the startup.lua first before you save the init.lua.
 
 In Esplorer create a new script and paste the following code into it. Then save the file as your __startup.lua__ and save to the ESP8266.
 
@@ -96,7 +97,7 @@ sntp.sync('pool.ntp.org',
 )
 {% endhighlight %}
 
-In Esplorer create a new script and paste the following code into it. Then save the file as your __init.lua__ and save to the ESP8266.
+In Esplorer create a new script and paste the following code into it. Then save the file as your __init.lua__ and save it to the ESP8266.
 
 {% highlight lua %}
 -- Diagnostic Information
@@ -141,11 +142,13 @@ end)
 
 As in the previous lab, you'll write lua code in ESplorer. This code (below), operates the photocell and LED as a nightlight.
 
-1. Launch ESPlorer.jar, select your serial port, and press the 'Open' button
+1. Use an A to Micro B USB cable to connect the ESP2866 to your computer.
+
+2. Launch ESPlorer.jar, select your serial port, and press the 'Open' button
 
 <img src="/images/esplorer-connect.png" alt="Launch Esplorer, connect your device" style="width: 400px;"/>
 
-2. Create a new script in Esplorer with these contents. Save it as Lab04.lua
+3. Create a new script in Esplorer with these contents. Save it as Lab05.lua
 
 If you recall, you should have your connection from before and it should look something like this:
 
@@ -259,8 +262,8 @@ function publish_data()
 end
 {% endhighlight %}
 
-# Run the App on the Device
-To run the application you will save it to the ESP8266, reset the device, then invoke the code.
+# Run Lab05.lua on your Weather Station
+To run Lab05.lua on your Weather Station, do the following:
 
 1. Press the button 'Save to ESP' on the lower left of the ESPlorer interface.
 2. Push the reset button on the ES8266
@@ -284,6 +287,6 @@ Congratulations! In this lab, you updated the __Weather Station__ application to
 
 At this point, nothing interesting is happening in the cloud with that data you are sending to Azure. It is simply being persisted for a default amount of time (1-day) and then being dropped. In the [next lab][nextlab], you will create a web application to visualize the data.
 
-<a class="radius button small" href="{{ site.url }}/workshop/esp8266/storing-displaying-data/">Go to 'ThingLabs Storing &amp; Displaying Data' ›</a>
+<a class="radius button small" href="{{ site.url }}/workshop/esp8266/storing-displaying-data/">Go to 'Lab 06: ThingLabs Storing &amp; Displaying Data' ›</a>
 
 [nextlab]: /workshop/esp8266/storing-displaying-data/
